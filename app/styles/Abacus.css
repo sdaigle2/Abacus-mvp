@@ -7,9 +7,19 @@
   height: 20px;
 }
 
+.btn .btn-primary{
+  padding: 5px;
+  margin:20px;
+}
 
-.mainpic img{
- /* height: 600px;*/
+.mainpic img {
+  /* height: 600px;*/
   margin-top: 3%;
   margin-left: 5%;
 }
+
+
+ #sideBar .well {
+  padding: 5px 10px;
+}
+
