@@ -87,14 +87,13 @@ body {
 }
 
 #background {
-  min-height: 200px;
-  max-height: 800px;
+
   height: 50%;
   background-color: #EAEAEA;
   width: 100%;
   position: absolute;
   top: 0%;
-  left: 0%;
-  display: block;
+
   z-index: -2;
+
 }

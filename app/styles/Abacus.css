@@ -7,6 +7,10 @@
   height: 20px;
 }
 
+/*.display h4{*/
+  /*text-indent:0px;*/
+/*}*/
+
 .btn .btn-primary{
   padding: 5px;
   margin:20px;
@@ -19,7 +23,16 @@
 }
 
 
- #sideBar .well {
+
+
+ .sideBar .well {
   padding: 5px 10px;
+
+}
+
+.sideBar{
+  background-color: #f1f2f2;
+  border: 1px solid greenyellow ;
+  border-radius: 4px 4px 0 0;
 }
 
