@@ -1,0 +1,15 @@
+.progress{
+  width: 90%;
+}
+.progress button .btn  {
+  font-size:5px;
+  padding: 6px 6px;
+  height: 20px;
+}
+
+
+.mainpic img{
+ /* height: 600px;*/
+  margin-top: 3%;
+  margin-left: 5%;
+}

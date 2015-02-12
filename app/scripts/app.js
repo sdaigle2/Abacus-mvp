@@ -23,8 +23,8 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
+      .when('/abacus', {
+        templateUrl: 'views/Abacus.html',
         controller: 'AboutCtrl'
       })
       .when('/contact', {
