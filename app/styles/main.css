@@ -1,8 +1,24 @@
-/* Space out content a bit */
+
+/* ----- CSS FOR INDEX.HTML ----- */
 body {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-image: url("../images/AbacusBG.png");
+  background-repeat: repeat-x;
 }
+
+.navbar {
+    background-color: #FFFFFF;
+    margin-bottom: 0px;
+    border-radius: 0px;
+}
+.navbar-brand {
+  padding-top: 5px;
+}
+.navbar .nav-pills li{
+  padding-left: 10px;
+}
+/* ------------------------------- */
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -24,12 +40,7 @@ body {
   padding-bottom: 19px;
 }
 
-.navbar-brand {
-  padding-top: 5px;
-}
-.navbar .nav-pills li{
-  padding-left: 10px;
-}
+
 
 
 /* Custom page footer */
@@ -86,14 +97,3 @@ body {
   }
 }
 
-#background {
-
-  height: 50%;
-  background-color: #EAEAEA;
-  width: 100%;
-  position: absolute;
-  top: 0%;
-
-  z-index: -2;
-
-}

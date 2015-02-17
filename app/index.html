@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html class="no-js">
   <head>
     <meta charset="utf-8">
@@ -24,31 +24,26 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div id="background">
-     <div class="container-fliud">
+    <div class="container-fliud">
       <div class=" nav navbar ">
-          <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-              <img alt="Brand" src="images/tiarrow_logo.png" width="100" height="30">
-            </a>
-          </div>
-          <ul class="nav navbar-nav">
-            <li><a ng-href="#"><span class="glyphicon glyphicon-camera"></span>  FRAMES</a></li>
-            <li class="active"><a ng-href="#/abacus">ABACUS</a></li>
-            <li><a ng-href="#/contact">MY ACCOUNT <span class="caret"></span></a></li>
-            <li><a ng-href="#/contact">ABOUT US</a></li>
-
-          </ul>
-
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <img alt="Brand" src="images/tiarrow_logo.png" width="100" height="30">
+          </a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a ng-href="#"><span class="glyphicon glyphicon-camera"></span>  FRAMES</a></li>
+          <li class="active"><a ng-href="#/abacus">ABACUS</a></li>
+          <li><a ng-href="#/contact">MY ACCOUNT <span class="caret"></span></a></li>
+          <li><a ng-href="#/contact">ABOUT US</a></li>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a ng-href="#/contact">LOG IN</a></li>
-            <li><a ng-href="#/contact">SIGN OUT</a></li>
-          </ul>
-
+          <li><a ng-href="#/contact">LOG IN</a></li>
+          <li><a ng-href="#/contact">SIGN OUT</a></li>
+        </ul>
       </div>
-     </div>
-      <div  ng-view=""></div>
     </div>
+    <div id="appSpace" ng-view=""></div> <!-- Angular App -->
 
 
 
@@ -89,5 +84,5 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <!-- endbuild -->
-</body>
+ </body>
 </html>
