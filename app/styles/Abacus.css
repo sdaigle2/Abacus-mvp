@@ -16,6 +16,13 @@
   margin:20px;
 }
 
+#SaveButton {
+    width:10%;
+    background-color:#000;
+    border-color: #000;
+    border-radius: 0px;
+}
+
 .mainpic img {
   /* height: 600px;*/
   margin-top: 3%;
