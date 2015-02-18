@@ -2,21 +2,30 @@
 /* ----- CSS FOR INDEX.HTML ----- */
 body {
   padding-top: 0px;
-  padding-bottom: 0px;
+  padding-bottom: 20px;
+
   background-image: url("../images/AbacusBG.png");
   background-repeat: repeat-x;
+  font-family: 'PT Sans', sans-serif;
 }
 
 .navbar {
     background-color: #FFFFFF;
     margin-bottom: 0px;
     border-radius: 0px;
+    top:0px;
+    position:relative;
+
+
 }
 .navbar-brand {
-  padding-top: 5px;
+  padding-top: 8px;
 }
 .navbar .nav-pills li{
   padding-left: 10px;
+}
+.navbar .navbar-right li:last-child{
+  padding-right: 10px;
 }
 /* ------------------------------- */
 
