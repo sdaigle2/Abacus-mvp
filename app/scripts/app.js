@@ -24,12 +24,16 @@ angular
         controller: 'MainCtrl'
       })
       .when('/abacus', {
-        templateUrl: 'views/Abacus.html',
-        controller: 'AboutCtrl'
+        templateUrl: 'views/abacus.html',
+        controller: 'AbacusCtrl'
       })
-      .when('/contact', {
-        templateUrl: 'views/contact.html',
-        controller: 'ContactCtrl'
+      .when('/account', {
+        templateUrl: 'views/account.html',
+        controller: 'AccountCtrl'
+      })
+      .when('/about', {
+          templateUrl: 'views/about.html',
+          controller: 'AboutCtrl'
       })
       .otherwise({
         redirectTo: '/'

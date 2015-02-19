@@ -12,8 +12,12 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/Abacus.css">
+
+    <link href="styles/index.css" rel="stylesheet" />
+    <link href="styles/main.css" rel="stylesheet" />
+    <link href="styles/abacus.css" rel="stylesheet" />
+    <link href="styles/about.css" rel="stylesheet" />
+    <link href="styles/account.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 
 
@@ -24,19 +28,26 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
     <div class="container-fliud">
-      <div class=" nav navbar ">
+      <div class=" nav navbar navbar-default" data-ng-controller="HeaderController">
         <div class="navbar-header">
           <a class="navbar-brand" href="#">
             <img alt="Brand" src="images/tiarrow_logo.png" width="100" height="30">
           </a>
         </div>
         <ul class="nav navbar-nav">
-          <li><a ng-href="#"><span class="glyphicon glyphicon-camera"></span>  FRAMES</a></li>
-          <li class="active"><a ng-href="#/abacus">ABACUS</a></li>
-          <li><a ng-href="#/contact">MY ACCOUNT <span class="caret"></span></a></li>
-          <li><a ng-href="#/contact">ABOUT US</a></li>
+          <li ng-class="{ active: isActive('/')}">
+            <a ng-href="#/"><span><img data-ng-src="{{isActive('/') && 'images/icons/on_frames.png' || 'images/icons/frames.png'}}" /></span>FRAMES</a>
+          </li>
+          <li ng-class="{ active: isActive('/abacus')}">
+            <a ng-href="#/abacus"><span><img data-ng-src="{{isActive('/abacus') && 'images/icons/on_abacus.png' || 'images/icons/abacus.png'}}" /></span>ABACUS</a>
+          </li>
+          <li ng-class="{ active: isActive('/account')}">
+            <a ng-href="#/account"><span><img data-ng-src="{{isActive('/account') && 'images/icons/on_my_account.png' || 'images/icons/my_account.png'}}" /></span>MY ACCOUNT <span class="caret"></span></a>
+          </li>
+          <li ng-class="{ active: isActive('/about')}">
+            <a ng-href="#/about"><span><img data-ng-src="{{isActive('/about') && 'images/icons/on_about_us.png' || 'images/icons/about_us.png'}}" /></span>ABOUT US</a>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a ng-href="#/contact">LOG IN</a></li>
@@ -68,7 +79,7 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script> <!-- We should switch these to .min.js files eventually -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -82,8 +93,11 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/MainCtrl.js"></script>
+        <script src="scripts/controllers/AboutCtrl.js"></script>
+        <script src="scripts/controllers/AbacusCtrl.js"></script>
+        <script src="scripts/controllers/AccountCtrl.js"></script>
+        <script src="scripts/controllers/HeaderController.js"></script>
         <!-- endbuild -->
  </body>
 </html>

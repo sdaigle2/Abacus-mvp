@@ -1,0 +1,87 @@
+﻿/* ----- CSS FOR INDEX.HTML ----- */
+body {
+  padding-top: 0px;
+  padding-bottom: 20px;
+  line-height: 0;
+
+  background-image: url("../images/AbacusBG.png");
+  background-repeat: repeat-x;
+
+  font-family: 'PT Sans', sans-serif;
+}
+
+.navbar {
+    background-color: #FFFFFF;
+    margin-bottom: 0px;
+    border-radius: 0px;
+    top:0px;
+    position:relative;
+    height:20px;
+}
+.navbar .nav-pills li{
+  padding-left: 10px;
+}
+.navbar .navbar-right li:last-child{
+  padding-right: 10px;
+}
+
+/*Change navbar height*/
+.navbar-nav > li > a {
+    padding-top:5px !important; 
+    padding-bottom:5px !important;
+}
+.navbar-brand {
+    padding-top:0px !important; 
+    padding-bottom:0px !important; 
+    height:30px;
+}
+
+.navbar {
+    min-height:35px !important
+}
+
+/*Navbar icon positioning*/
+.navbar-nav > li img {
+    position:relative;
+    top: -3px;
+    left: -3px;
+}
+
+/* The following modified from http://stackoverflow.com/questions/18529274/change-navbar-color-in-twitter-bootstrap-3 */
+.navbar-default .navbar-nav > li > a {
+    color: #000;
+    font-family:inherit;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #777;
+}
+.navbar-default .navbar-nav > .active > a, 
+.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #00A89C;
+    background-color: #FFF;
+}
+.navbar-default .navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #00A89C;
+    background-color: #FFF;
+}
+/* caret */
+.navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: #000;
+    border-bottom-color: #000;
+}
+.navbar-default .navbar-nav > .dropdown > a:hover .caret,
+.navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #777;
+    border-bottom-color: #777;
+}
+.navbar-default .navbar-nav > .open > a .caret, 
+.navbar-default .navbar-nav > .open > a:hover .caret, 
+.navbar-default .navbar-nav > .open > a:focus .caret {
+    border-top-color: #00A89C;
+    border-bottom-color: #00A89C;
+}
+}
