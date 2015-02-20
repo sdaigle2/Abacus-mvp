@@ -46,7 +46,7 @@
             <a ng-href="#/account"><span><img data-ng-src="{{isActive('/account') && 'images/icons/on_my_account.png' || 'images/icons/my_account.png'}}" /></span>MY ACCOUNT <span class="caret"></span></a>
           </li>
           <li ng-class="{ active: isActive('/about')}">
-            <a ng-href="#/about"><span><img data-ng-src="{{isActive('/about') && 'images/icons/on_about_us.png' || 'images/icons/about_us.png'}}" /></span>ABOUT US</a>
+            <a ng-href="#/about"><span><img data-ng-src="{{isActive('/about') && 'images/icons/on_about_us.png' || 'images/icons/about_us.png'}}" /></span>ABOUT US </a>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -55,6 +55,7 @@
         </ul>
       </div>
     </div>
+
     <div id="appSpace" ng-view=""></div> <!-- Angular App -->
 
 
@@ -79,7 +80,7 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script> <!-- We should switch these to .min.js files eventually -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>

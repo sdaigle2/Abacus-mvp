@@ -27,12 +27,12 @@ body {
 
 /*Change navbar height*/
 .navbar-nav > li > a {
-    padding-top:5px !important; 
+    padding-top:5px !important;
     padding-bottom:5px !important;
 }
 .navbar-brand {
-    padding-top:0px !important; 
-    padding-bottom:0px !important; 
+    padding-top:0px !important;
+    padding-bottom:0px !important;
     height:30px;
 }
 
@@ -56,14 +56,14 @@ body {
 .navbar-default .navbar-nav > li > a:focus {
     color: #777;
 }
-.navbar-default .navbar-nav > .active > a, 
-.navbar-default .navbar-nav > .active > a:hover, 
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
     color: #00A89C;
     background-color: #FFF;
 }
-.navbar-default .navbar-nav > .open > a, 
-.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
     color: #00A89C;
     background-color: #FFF;
@@ -78,10 +78,9 @@ body {
     border-top-color: #777;
     border-bottom-color: #777;
 }
-.navbar-default .navbar-nav > .open > a .caret, 
-.navbar-default .navbar-nav > .open > a:hover .caret, 
+.navbar-default .navbar-nav > .open > a .caret,
+.navbar-default .navbar-nav > .open > a:hover .caret,
 .navbar-default .navbar-nav > .open > a:focus .caret {
     border-top-color: #00A89C;
     border-bottom-color: #00A89C;
-}
 }
