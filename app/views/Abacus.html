@@ -3,7 +3,7 @@
   <div class="progress">
     <div data-ng-controller="AbacusCtrl as abc" id="ProgressSec">
       <span><img  ng-click="item = true" data-ng-src="{{((item && 'images/progress_bar/progress_bar_front_visited.png') || 'images/progress_bar/progress_bar_front_link.png')}}"></span>
-      <span id="pSec" ng-repeat="item in progs"><img  ng-click="item = true" data-ng-src="{{((item && 'images/progress_bar/progress_bar_visited.png') || 'images/progress_bar/progress_bar_link.png')}}"></span>
+      <span  ng-repeat="item in progs"><img id="pSec"  ng-click="item = true" data-ng-src="{{((item && 'images/progress_bar/progress_bar_visited.png') || 'images/progress_bar/progress_bar_link.png')}}"></span>
     </div>
   </div>
   <button type="button" id="SaveButton" class="btn btn-primary">Save & Review</button>

@@ -33,7 +33,8 @@ body {
 .navbar-brand {
     padding-top:0px !important;
     padding-bottom:0px !important;
-    height:30px;
+    height:34px;
+    border-right: 1px solid grey;
 }
 
 .navbar {
