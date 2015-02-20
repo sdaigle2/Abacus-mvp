@@ -20,6 +20,12 @@
     font-size: 14px;
 }
 
+#ProgressSec  #pSec {
+  margin-left: -18px;
+  position: relative;
+  left: -5px;
+}
+
 /*
 .progress{
   width: 90%;
