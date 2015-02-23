@@ -57,25 +57,57 @@
   margin-left: 5%;
 }
 
-.nav-tabs.nav-justified > li.active {
-  background-color:#f1f2f2;
+
+
+.nav-tabs.nav-justified > li.active,
+.nav-tabs.nav-justified > li {
   margin-right: 10px;
   line-height: 1.42857143;
   /*border: 1px solid transparent;*/
-  border-radius: 8px 8px 0 0;
+  border-radius: 20px 20px 0px 0px;
+  font-size: 20px;
 }
 
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a:hover,
-.nav-tabs > li.active > a:focus {
-  color: #555;
+
+.nav-tabs.nav-justified > li > a,
+.nav-tabs.nav-justified > li > a:hover,
+.nav-tabs.nav-justified > li > a:focus {
+  color: #FFFFFF;
   cursor: default;
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: #bcbec0;
+  border: none;
+  border-radius: 20px 20px 0px 0px;
   border-bottom-color: transparent;
 }
 
 
+
+.nav-tabs.nav-justified > li.active > a,
+.nav-tabs.nav-justified > li.active > a:hover,
+.nav-tabs.nav-justified > li.active > a:focus {
+  color: #000000;
+  cursor: default;
+  background-color: #f1f2f2;
+  border: none;
+  border-radius: 20px 20px 0px 0px;
+  border-bottom-color: transparent;
+  -webkit-box-shadow: 0px -2px 3px 2px #999999;
+  -moz-box-shadow:    0px -2px 3px 2px #999999;
+  box-shadow:         0px -2px 3px 2px #999999;
+  z-index: 50; /* pull to the front so shadow shows over other tabs */
+}
+
+
+
+
+
+.sideBarWrapper {
+  display: inline-block;
+  clear: right;
+  float: right;
+  width: 400px;
+  margin-right: 20px;
+}
 
 
  .sideBar .well {
