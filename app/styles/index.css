@@ -17,6 +17,7 @@ body {
     top:0px;
     position:relative;
     height:20px;
+
 }
 .navbar .nav-pills li{
   padding-left: 10px;
@@ -27,7 +28,7 @@ body {
 
 /*Change navbar height*/
 .navbar-nav > li > a {
-    padding-top:5px !important;
+    padding-top:6px !important;
     padding-bottom:5px !important;
 }
 .navbar-brand {
