@@ -1,3 +1,4 @@
+
 #ProgressSaveBar {
     height: 30px;
 
@@ -121,5 +122,28 @@
   border-radius: 4px 4px 0 0;
 }
 
+
+.sideBar h3 img.leftButton {
+  float: left;
+  margin-top: -5px;
+  width: 30px;
+  height: 30px;
+}
+
+.sideBar h3 img.rightButton {
+  float: right;
+  margin-top: -5px;
+  width: 30px;
+  height: 30px;
+}
+
+.sideBar {
+  overflow: scroll;
+  max-height: 600px;
+  height: auto;
+}
+
+.sideBar .sideBarItem {
+}
 
 
