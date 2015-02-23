@@ -57,7 +57,7 @@
   margin-left: 5%;
 }
 
-.nav-tabs.nav-justified >li.active {
+.nav-tabs.nav-justified > li.active {
   background-color:#f1f2f2;
   margin-right: 10px;
   line-height: 1.42857143;

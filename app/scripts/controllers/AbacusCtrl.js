@@ -11,8 +11,14 @@ angular.module('abacuApp')
   .controller('AbacusCtrl', function ($scope) {
     $scope.progs=progesssec;
 
+    $scope.toggleItem = function(item) {
+      return !item;
+    }
 
   });
+
+
+
 
 
 var progesssec={
