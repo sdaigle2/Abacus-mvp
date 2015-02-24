@@ -1,13 +1,11 @@
 <link href="styles/Abacus.css" rel="stylesheet" />
 
-<div ng-app="abacuApp">
-
 <!-- Progress Bar and Save Button-->
 <div id="ProgressSaveBar">
   <div class="progress">
-    <div data-ng-controller="AbacusCtrl as abc" id="ProgressSec">
-      <span><img  ng-click="item = toggleItem(item)" data-ng-src="{{((item && 'images/progress_bar/progress_bar_front_visited.png') || 'images/progress_bar/progress_bar_front_link.png')}}"></span>
-      <span  ng-repeat="item in progs"><img id="pSec"  ng-click="item = toggleItem(item)" data-ng-src="{{((item && 'images/progress_bar/progress_bar_visited.png') || 'images/progress_bar/progress_bar_link.png')}}"></span>
+    <div id="ProgressSec">
+      <span><img ng-click="item = toggleItem(item)" data-ng-src="{{((item && 'images/progress_bar/progress_bar_front_visited.png') || 'images/progress_bar/progress_bar_front_link.png')}}"></span>
+      <span ng-repeat="item in progs"><img id="pSec" ng-click="item = toggleItem(item)" data-ng-src="{{((item && 'images/progress_bar/progress_bar_visited.png') || 'images/progress_bar/progress_bar_link.png')}}"></span>
     </div>
   </div>
   <button type="button" id="SaveButton" class="btn btn-primary">Save & Review</button>
@@ -46,64 +44,25 @@
                   <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30" />
               </h3>
           </div>
-          <table class="table">
-            <tr class="sideBarItem" data-ng-repeat="option in getCurPart().options">
-                <td>
-                    <img src="{{option.image}}" height="100">
-                </td>
-                <td>
-                    <h5><strong>{{option.name}}</strong></h5>
-                    <h5>${{option.price}} | {{option.weight}}lbs</h5>
-                    <div>
-                        <span class="sideBarItem-Button" data-ng-click="">Details</span>
-                        <span class="sideBarItem-Button" data-ng-click="">Add</span>
-                    </div>
-                </td>
-            </tr>
-
-            <!--<tr class="sideBarItem">
-              <td>
-                <img src="images/d_panel_1.png" height="100" >
-              </td>
-              <td>
-                <h4>Tilite Slipstream Single-sided Fork  </h4>
-                <h3>$150 | 4lbs</h3>
-              </td>
-            </tr>
-            <tr class="sideBarItem">
-              <td><img src="images/d_panel_2.png" height="100"> </td>
-              <td>
-                <h4>Tilite Slipstream Single-sided Fork </h4>
-                <h3>$150 | 4lbs</h3>
-              </td>
-            </tr>
-            <tr class="sideBarItem">
-              <td><img src="images/d_panel_3.png" height="100"></td>
-              <td>
-                <h4>Tilite Slipstream Single-sided Fork </h4>
-                <h3>$150 | 4lbs</h3>
-
-              </td>
-            </tr>
-            <tr class="sideBarItem">
-              <td><img src="images/d_panel_4.png" height="100"></td>
-              <td>
-                <h4>Tilite Slipstream Single-sided Fork </h4>
-                <h3>$150 | 4lbs</h3>
-
-              </td>
-            </tr>
-            <tr class="sideBarItem">
-              <td><img src="images/d_panel_3.png" height="100"></td>
-              <td>
-                <h4>Tilite Slipstream Single-sided Fork </h4>
-                <h3>$150 | 4lbs</h3>
-
-              </td>
-            </tr> -->
-          </table>
+          <div class="sideBarTable">
+              <table class="table">
+                <tr class="sideBarItem" data-ng-repeat="option in getCurPart().options">
+                    <td>
+                        <img data-ng-src="{{option.image}}" height="100">
+                    </td>
+                    <td>
+                        <h4><strong>{{option.name}}</strong></h4>
+                        <h4>${{option.price}} | {{option.weight}}lbs</h4>
+                        <div>
+                            <div class="sideBarItem-Button text-center" data-ng-click="">Details</div>
+                            <div class="sideBarItem-Button text-center" data-ng-click="">Add</div>
+                        </div>
+                    </td>
+                </tr>
+              </table>
+          </div>
         </div>
     </div>
 </div>
-</div>
+
 
