@@ -1,7 +1,6 @@
 
 #ProgressSaveBar {
     height: 30px;
-
 }
 
 
@@ -144,6 +143,22 @@
 }
 
 .sideBar .sideBarItem {
+
+}
+
+.sideBarItem img {
+    border-right: 1px solid #A7A9Ac;
+    padding-right: 10px;
+}
+
+.sideBarItem .buttonRow .sideBarItem-Button {
+    border: 1px solid #939598;
+}
+
+.sideBarItem .buttonRow .sideBarItem-Button:hover {
+    border: 1px solid #60C2B1;
+    background-color: #60C2B1;
+    color: #FFFFFF;
 }
 
 

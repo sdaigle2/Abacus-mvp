@@ -1,5 +1,8 @@
 <link href="styles/Abacus.css" rel="stylesheet" />
+
 <div ng-app="abacuApp">
+
+<!-- Progress Bar and Save Button-->
 <div id="ProgressSaveBar">
   <div class="progress">
     <div data-ng-controller="AbacusCtrl as abc" id="ProgressSec">
@@ -10,89 +13,97 @@
   <button type="button" id="SaveButton" class="btn btn-primary">Save & Review</button>
 </div>
 
-
-
-
+<!-- Price & Weight Display -->
 <div class="display col-lg-3 col-lg-offset-9">
   <p>
     <h4>
-      Price: <small>$1234.45</small> Weight: <small>12.34lbs</small>
-
+      <small>Price:</small> ${{getTotalPrice().toFixed(2)}} <small>Weight:</small> {{getTotalWeight()}}lbs
     </h4>
   </p>
 </div>
 
+<!-- Main Body of Page -->
 <div class="row">
+
+  <!-- Wheelchair Display and controls -->
   <div class="mainpic col-lg-8 col-md-8 "  >
     <img src="images/mainpic.png" class="img-responsive">
   </div>
+
+  <!-- Sidebar -->
   <div class="sideBarWrapper">
-  <ul  class="nav nav-tabs nav-justified">
-    <li role="presentation" class="active"><a ng-href="#/abacus">Customize</a></li>
-    <li role="presentation" ><a ng-href="#/abacus">Measure</a></li>
+      <ul  class="nav nav-tabs nav-justified">
+        <li role="presentation" class="active"><a ng-href="#/abacus">Customize</a></li>
+        <li role="presentation" ><a ng-href="#/abacus">Measure</a></li>
+      </ul>
 
-  </ul>
-
-  <!--<div class="well"></div>-->
-  <div class="sideBar">
-
-
-      <table class="table">
-        <tr>
-          <div class="text-center">
-            <h3>
-              <img class="leftButton" src="images/icons/left_button.png" alt="left" width="30" height="30"/>
-              Caster-Fork
-              <img class="rightButton" src="images/icons/right_button.png" alt="right" width="30" height="30"/>
-            </h3>
+      <!--<div class="well"></div>-->
+      <div class="sideBar">
+          <div class="text-center" id="SidebarHeader">
+              <h3>
+                  <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30" />
+                  {{getCurPart().name}}
+                  <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30" />
+              </h3>
           </div>
+          <table class="table">
+            <tr class="sideBarItem" data-ng-repeat="option in getCurPart().options">
+                <td>
+                    <img src="{{option.image}}" height="100">
+                </td>
+                <td>
+                    <h5><strong>{{option.name}}</strong></h5>
+                    <h5>${{option.price}} | {{option.weight}}lbs</h5>
+                    <div>
+                        <span class="sideBarItem-Button" data-ng-click="">Details</span>
+                        <span class="sideBarItem-Button" data-ng-click="">Add</span>
+                    </div>
+                </td>
+            </tr>
 
+            <!--<tr class="sideBarItem">
+              <td>
+                <img src="images/d_panel_1.png" height="100" >
+              </td>
+              <td>
+                <h4>Tilite Slipstream Single-sided Fork  </h4>
+                <h3>$150 | 4lbs</h3>
+              </td>
+            </tr>
+            <tr class="sideBarItem">
+              <td><img src="images/d_panel_2.png" height="100"> </td>
+              <td>
+                <h4>Tilite Slipstream Single-sided Fork </h4>
+                <h3>$150 | 4lbs</h3>
+              </td>
+            </tr>
+            <tr class="sideBarItem">
+              <td><img src="images/d_panel_3.png" height="100"></td>
+              <td>
+                <h4>Tilite Slipstream Single-sided Fork </h4>
+                <h3>$150 | 4lbs</h3>
 
-        </tr>
-        <tr class="sideBarItem">
-          <td><img src="images/d_panel_1.png" height="100" ></td>
-          <td>
-            <h4>Tilite Slipstream Single-sided Fork  </h4>
-            <h3>$150 | 4lbs</h3>
-          </td>
-        </tr>
-        <tr class="sideBarItem">
-          <td><img src="images/d_panel_2.png" height="100"> </td>
-          <td>
-            <h4>Tilite Slipstream Single-sided Fork </h4>
-            <h3>$150 | 4lbs</h3>
+              </td>
+            </tr>
+            <tr class="sideBarItem">
+              <td><img src="images/d_panel_4.png" height="100"></td>
+              <td>
+                <h4>Tilite Slipstream Single-sided Fork </h4>
+                <h3>$150 | 4lbs</h3>
 
-          </td>
-        </tr>
-        <tr class="sideBarItem">
-          <td><img src="images/d_panel_3.png" height="100"></td>
-          <td>
-            <h4>Tilite Slipstream Single-sided Fork </h4>
-            <h3>$150 | 4lbs</h3>
+              </td>
+            </tr>
+            <tr class="sideBarItem">
+              <td><img src="images/d_panel_3.png" height="100"></td>
+              <td>
+                <h4>Tilite Slipstream Single-sided Fork </h4>
+                <h3>$150 | 4lbs</h3>
 
-          </td>
-        </tr>
-        <tr class="sideBarItem">
-          <td><img src="images/d_panel_4.png" height="100"></td>
-          <td>
-            <h4>Tilite Slipstream Single-sided Fork </h4>
-            <h3>$150 | 4lbs</h3>
-
-          </td>
-        </tr>
-        <tr class="sideBarItem">
-          <td><img src="images/d_panel_3.png" height="100"></td>
-          <td>
-            <h4>Tilite Slipstream Single-sided Fork </h4>
-            <h3>$150 | 4lbs</h3>
-
-          </td>
-        </tr>
-      </table>
+              </td>
+            </tr> -->
+          </table>
+        </div>
     </div>
-
-
-</div>
 </div>
 </div>
 
