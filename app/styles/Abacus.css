@@ -116,6 +116,7 @@
 }
 
 .sideBar{
+  position: relative;
   background-color: #f1f2f2;
   border: 1px solid #A7A9Ac ;
   border-radius: 0px;
@@ -136,18 +137,21 @@
   height: 30px;
 }
 
-.sideBar {
-  
-}
-
 .sideBar .sideBarTable {
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 500px;
     height: auto;
 }
 
-.sideBar .sideBarItem {
+.sideBar .sideBarItem .sideBarItemLeft {
+  position: relative;
+}
 
+.sideBar .sideBarItem .sideBarItemLeft .colorOptionsIndicator {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border: none;
 }
 
 .sideBarItem img {
@@ -169,4 +173,24 @@
     cursor: pointer;
 }
 
+
+
+.sideBar .colorPanel {
+  position: absolute;
+  top: 55px;
+  left: -140px;
+  width: 140px;
+  height: auto;
+  max-height: 500px;
+  overflow-y: auto;
+  background-color: #D6D8D8;
+}
+
+.sideBar .colorPanel .colorPanelItem {
+  width: 90px;
+  height: 90px;
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
 

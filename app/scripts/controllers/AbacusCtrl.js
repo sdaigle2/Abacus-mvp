@@ -9,7 +9,7 @@
  */
 angular.module('abacuApp')
   .controller('AbacusCtrl', function ($scope) {
-    //Array representing progressbar 
+    //Array representing progressbar
     $scope.progs = progesssec;
 
     //Method that toggles a provided boolean value
@@ -36,7 +36,7 @@ angular.module('abacuApp')
             }
         ]
     };
-    
+
     //The current partID the user is customizing
     $scope.curPartID = 0;
 
@@ -93,15 +93,15 @@ var frameData = {
                     colors: [
                         {
                             name: "Red",
-                            hex: 0xFF0000
+                            hex: "#E7331A"
                         },
                         {
                             name: "Green",
-                            hex: 0x00FF00
+                            hex: "#2CA635"
                         },
                         {
                             name: "Blue",
-                            hex: 0x0000FF
+                            hex: "#075EDA"
                         }
                     ]
                 },

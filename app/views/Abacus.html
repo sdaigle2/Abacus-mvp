@@ -47,16 +47,21 @@
           <div class="sideBarTable">
               <table class="table">
                 <tr class="sideBarItem" data-ng-repeat="option in getCurPart().options">
-                    <td>
+                    <td class="sideBarItemLeft">
+                        <div class="colorPanelArrow"></div>
+                        <img class="colorOptionsIndicator" ng-show="option.colors" src="images/icons/abacus.png" alt="See color options" width="30" height="20"/>
                         <img data-ng-src="{{option.image}}" height="100">
                     </td>
-                    <td>
+                    <td class="sideBarItemRight">
                         <h4><strong>{{option.name}}</strong></h4>
                         <h4>${{option.price}} | {{option.weight}}lbs</h4>
                         <div>
                             <div class="sideBarItem-Button text-center" data-ng-click="">Details</div>
                             <div class="sideBarItem-Button text-center" data-ng-click="">Add</div>
                         </div>
+                    </td>
+                    <td class="colorPanel">
+                      <div data-ng-repeat="color in option.colors" class="colorPanelItem" style="background-color: {{color.hex}}"></div>
                     </td>
                 </tr>
               </table>
