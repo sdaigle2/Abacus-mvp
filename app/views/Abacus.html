@@ -48,7 +48,7 @@
                 <tr class="sideBarItem" data-ng-repeat="option in getCurPart().options">
                     <td class="sideBarItemLeft">
                         <div class="colorPanelArrow" ng-class="{ 'colorPanelArrowOut': ! showColorPanel , 'colorPanelArrowIn': showColorPanel}"></div>
-                        <img class="colorOptionsIndicator" ng-show="option.colors" src="images/icons/color_option.png" alt="See color options" ng-click="closeAllColorPanels(); showColorPanel = ! showColorPanel;" />
+                        <img class="colorOptionsIndicator" ng-show="option.colors" src="images/icons/color_option.png" alt="See color options" ng-click="showColorPanel = ! showColorPanel" />
                         <img data-ng-src="{{option.image}}" height="100">
                     </td>
                     <td class="sideBarItemRight">
