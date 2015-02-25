@@ -48,8 +48,8 @@
               <table class="table">
                 <tr class="sideBarItem" data-ng-repeat="option in getCurPart().options">
                     <td class="sideBarItemLeft">
-                        <div class="colorPanelArrow"></div>
-                        <img class="colorOptionsIndicator" ng-show="option.colors" src="images/icons/abacus.png" alt="See color options" width="30" height="20"/>
+                        <div class="colorPanelArrow" ng-class="{ 'colorPanelArrowOut': ! showColorPanel , 'colorPanelArrowIn': showColorPanel}"></div>
+                        <img class="colorOptionsIndicator" ng-show="option.colors" src="images/icons/color_option.png" alt="See color options" ng-click="closeAllColorPanels(); showColorPanel = ! showColorPanel;" />
                         <img data-ng-src="{{option.image}}" height="100">
                     </td>
                     <td class="sideBarItemRight">
@@ -60,7 +60,7 @@
                             <div class="sideBarItem-Button text-center" data-ng-click="">Add</div>
                         </div>
                     </td>
-                    <td class="colorPanel">
+                    <td class="colorPanel" ng-class="{ 'colorPanelOut': ! showColorPanel , 'colorPanelIn': showColorPanel}">
                       <div data-ng-repeat="color in option.colors" class="colorPanelItem" style="background-color: {{color.hex}}"></div>
                     </td>
                 </tr>

@@ -143,11 +143,11 @@
     height: auto;
 }
 
-.sideBar .sideBarItem .sideBarItemLeft {
+.sideBar .sideBarItemLeft {
   position: relative;
 }
 
-.sideBar .sideBarItem .sideBarItemLeft .colorOptionsIndicator {
+.sideBar .sideBarItemLeft .colorOptionsIndicator {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -174,16 +174,24 @@
 }
 
 
+.sideBar .colorPanelIn {
+  left: -140px;
+  opacity: 1;
+}
+.sideBar .colorPanelOut {
+  left: -160px;
+  opacity: 0;
+}
 
 .sideBar .colorPanel {
   position: absolute;
   top: 55px;
-  left: -140px;
   width: 140px;
   height: auto;
   max-height: 500px;
   overflow-y: auto;
   background-color: #D6D8D8;
+  transition: 1s;
 }
 
 .sideBar .colorPanel .colorPanelItem {
@@ -194,3 +202,24 @@
   margin-bottom: 30px;
 }
 
+
+.sideBar .colorPanelArrowIn {
+  opacity: 1;
+}
+
+.sideBar .colorPanelArrowOut {
+  opacity: 0;
+}
+
+.sideBar .colorPanelArrow {
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+
+  border-left: 15px solid #D6D8D8;
+  transition: 1s;
+}

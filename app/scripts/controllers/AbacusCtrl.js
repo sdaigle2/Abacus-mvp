@@ -52,6 +52,16 @@ angular.module('abacuApp')
         }
         return null;
     };
+
+    $scope.closeAllColorPanels = function () {
+      $(".colorPanel").each(function () {
+        $(this).removeClass("colorPanelIn").addClass("colorPanelOut");
+      });
+      $(".colorPanelArrow").each(function () {
+        $(this).removeClass("colorPanelArrowIn").addClass("colorPanelArrowOut");
+      });
+    }
+
   });
 
 var progesssec={
@@ -112,9 +122,19 @@ var frameData = {
                     weight: 45,
                     desc: "An ultra-extreme description",
                     image: "images/d_panel_2.png",
-                    colors: []
+                  colors: [
+                    {
+                      name: "Red",
+                      hex: "#E7331A"
+                    },
+                    {
+                      name: "Green",
+                      hex: "#2CA635"
+                    }
+                  ]
                 }
             ]
         }
     ]
 };
+
