@@ -28,19 +28,19 @@ angular.module('abacuApp')
 
     $scope.getCurStatus1 = function(item){
       if(item.partID ===0) {
-        if (item.progstatus === "unvisited")
+        if (item.progstatus === 'unvisited')
           return ('images/progress_bar/progress_bar_front_link.png');
-        if (item.progstatus === "visited")
+        if (item.progstatus === 'visited')
           return ('images/progress_bar/progress_bar_front_visited.png');
-        if (item.progstatus === "current")
+        if (item.progstatus === 'current')
           return ('images/progress_bar/progress_bar_front_clicked.png');
       }
       else {
-        if (item.progstatus === "unvisited")
+        if (item.progstatus === 'unvisited')
           return ('images/progress_bar/progress_bar_link.png');
-        if (item.progstatus === "visited")
+        if (item.progstatus === 'visited')
           return ('images/progress_bar/progress_bar_visited.png');
-        if (item.progstatus === "current")
+        if (item.progstatus === 'current')
           return ('images/progress_bar/progress_bar_clicked.png');
       }
 
@@ -56,7 +56,7 @@ angular.module('abacuApp')
             {
                 partID: 0,
                 optionID: 0,
-                colorName: "Red"
+                colorName: 'Red'
             }
         ]
     };
@@ -80,25 +80,31 @@ angular.module('abacuApp')
     };
 
     $scope.secSwitchLeft = function (){
-      $scope.curPart.progstatus = "visited";
+      $scope.curPart.progstatus = 'visited';
       $scope.curPart = $scope.progs[($scope.curPart.partID)-1];
-      $scope.curPart.progstatus = "current";
+      $scope.curPart.progstatus = 'current';
 
 
     };
 
     $scope.secSwitchRight = function (){
-      $scope.curPart.progstatus = "visited";
+      $scope.curPart.progstatus = 'visited';
       $scope.curPart = $scope.progs[($scope.curPart.partID)+1];
-      $scope.curPart.progstatus = "current";
+      $scope.curPart.progstatus = 'current';
     };
+
+    $scope.secSwitchClick = function(item){
+      $scope.curPart.progstatus = 'visited';
+      $scope.curPart = item;
+      $scope.curPart.progstatus = 'current';
+    }
 
 
   });
 var progstatus = {
-  VISITED: "visited",
-  UNVISITED: "unvisited",
-  CURRENT: "current"
+  VISITED: 'visited',
+  UNVISITED: 'unvisited',
+  CURRENT: 'current'
 }
 
 var progSecFirst = {partID:0,progstatus:progstatus.UNVISITED};
