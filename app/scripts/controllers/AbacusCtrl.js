@@ -9,8 +9,8 @@
  */
 angular.module('abacuApp')
   .controller('AbacusCtrl', function ($scope) {
-    //object representing first section in progressbar
-    $scope.progsFirst = progSecFirst;
+    //Array representing progressbar
+    $scope.progs = progesssec;
 
     //Array representing progressbar
     $scope.progs = progSec;
@@ -56,7 +56,7 @@ angular.module('abacuApp')
             {
                 partID: 0,
                 optionID: 0,
-                colorName: 'Red'
+                colorName: "Red"
             }
         ]
     };
@@ -100,6 +100,16 @@ angular.module('abacuApp')
     }
 
 
+
+    $scope.closeAllColorPanels = function () {
+      $(".colorPanel").each(function () {
+        $(this).removeClass("colorPanelIn").addClass("colorPanelOut");
+      });
+      $(".colorPanelArrow").each(function () {
+        $(this).removeClass("colorPanelArrowIn").addClass("colorPanelArrowOut");
+      });
+    }
+
   });
 var progstatus = {
   VISITED: 'visited',
@@ -107,7 +117,7 @@ var progstatus = {
   CURRENT: 'current'
 }
 
-var progSecFirst = {partID:0,progstatus:progstatus.UNVISITED};
+
 
 var progSec=[
   {partID:0,progstatus:progstatus.CURRENT},
@@ -149,15 +159,15 @@ var frameData = {
                     colors: [
                         {
                             name: "Red",
-                            hex: 0xFF0000
+                            hex: "#E7331A"
                         },
                         {
                             name: "Green",
-                            hex: 0x00FF00
+                            hex: "#2CA635"
                         },
                         {
                             name: "Blue",
-                            hex: 0x0000FF
+                            hex: "#075EDA"
                         }
                     ]
                 },
@@ -168,7 +178,16 @@ var frameData = {
                     weight: 45,
                     desc: "An ultra-extreme description",
                     image: "images/d_panel_2.png",
-                    colors: []
+                  colors: [
+                    {
+                      name: "Red",
+                      hex: "#E7331A"
+                    },
+                    {
+                      name: "Green",
+                      hex: "#2CA635"
+                    }
+                  ]
                 }
             ]
         },

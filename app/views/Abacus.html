@@ -4,7 +4,8 @@
 <div id="ProgressSaveBar">
   <div class="progress">
     <div id="ProgressSec">
-      <span ng-repeat="item in progs"><img id="pSec" ng-click="secSwitchClick(item)" data-ng-src="{{getCurStatus1(item)}}"></span>
+      <span><img ng-click="item = toggleItem(item)" data-ng-src="{{((item && 'images/progress_bar/progress_bar_front_visited.png') || 'images/progress_bar/progress_bar_front_link.png')}}"></span>
+      <span ng-repeat="item in progs"><img id="pSec" ng-click="item = toggleItem(item)" data-ng-src="{{((item && 'images/progress_bar/progress_bar_visited.png') || 'images/progress_bar/progress_bar_link.png')}}"></span>
     </div>
   </div>
   <button type="button" id="SaveButton" class="btn btn-primary">Save & Review</button>
@@ -38,24 +39,29 @@
       <div class="sideBar">
           <div class="text-center" id="SidebarHeader">
               <h3>
-                  <img ng-click="secSwitchLeft()" class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30" />
+                  <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30" />
                   {{getCurPart().name}}
-                  <img ng-click="secSwitchRight()" class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30" />
+                  <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30" />
               </h3>
           </div>
           <div class="sideBarTable">
               <table class="table">
                 <tr class="sideBarItem" data-ng-repeat="option in getCurPart().options">
-                    <td>
-                        <img data-ng-src="{{option.image}}" height="113">
+                    <td class="sideBarItemLeft">
+                        <div class="colorPanelArrow" ng-class="{ 'colorPanelArrowOut': ! showColorPanel , 'colorPanelArrowIn': showColorPanel}"></div>
+                        <img class="colorOptionsIndicator" ng-show="option.colors" src="images/icons/color_option.png" alt="See color options" ng-click="closeAllColorPanels(); showColorPanel = ! showColorPanel;" />
+                        <img data-ng-src="{{option.image}}" height="100">
                     </td>
-                    <td>
+                    <td class="sideBarItemRight">
                         <h4><strong>{{option.name}}</strong></h4>
                         <h4>${{option.price}} | {{option.weight}}lbs</h4>
                         <div>
                             <div class="sideBarItem-Button text-center" data-ng-click="">Details</div>
                             <div class="sideBarItem-Button text-center" data-ng-click="">Add</div>
                         </div>
+                    </td>
+                    <td class="colorPanel" ng-class="{ 'colorPanelOut': ! showColorPanel , 'colorPanelIn': showColorPanel}">
+                      <div data-ng-repeat="color in option.colors" class="colorPanelItem" style="background-color: {{color.hex}}"></div>
                     </td>
                 </tr>
               </table>
