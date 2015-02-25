@@ -4,8 +4,7 @@
 <div id="ProgressSaveBar">
   <div class="progress">
     <div id="ProgressSec">
-      <span><img ng-click="item = toggleItem(item)" data-ng-src="{{((item && 'images/progress_bar/progress_bar_front_visited.png') || 'images/progress_bar/progress_bar_front_link.png')}}"></span>
-      <span ng-repeat="item in progs"><img id="pSec" ng-click="item = toggleItem(item)" data-ng-src="{{((item && 'images/progress_bar/progress_bar_visited.png') || 'images/progress_bar/progress_bar_link.png')}}"></span>
+      <span ng-repeat="item in progs"><img id="pSec" ng-click="secSwitchClick(item)" data-ng-src="{{getCurStatus1(item)}}"></span>
     </div>
   </div>
   <button type="button" id="SaveButton" class="btn btn-primary">Save & Review</button>
@@ -13,11 +12,11 @@
 
 <!-- Price & Weight Display -->
 <div class="display col-lg-3 col-lg-offset-9">
-  <p>
+
     <h4>
       <small>Price:</small> ${{getTotalPrice().toFixed(2)}} <small>Weight:</small> {{getTotalWeight()}}lbs
     </h4>
-  </p>
+
 </div>
 
 <!-- Main Body of Page -->

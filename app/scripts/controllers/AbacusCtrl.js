@@ -9,8 +9,8 @@
  */
 angular.module('abacuApp')
   .controller('AbacusCtrl', function ($scope) {
-    //Array representing progressbar
-    $scope.progs = progesssec;
+
+
 
     //Array representing progressbar
     $scope.progs = progSec;
@@ -56,7 +56,7 @@ angular.module('abacuApp')
             {
                 partID: 0,
                 optionID: 0,
-                colorName: "Red"
+                colorName: 'Red'
             }
         ]
     };
@@ -115,8 +115,7 @@ var progstatus = {
   VISITED: 'visited',
   UNVISITED: 'unvisited',
   CURRENT: 'current'
-}
-
+};
 
 
 var progSec=[
