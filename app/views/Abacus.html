@@ -4,8 +4,7 @@
 <div id="ProgressSaveBar">
   <div class="progress">
     <div id="ProgressSec">
-      <span><img ng-click="item = toggleItem(item)" data-ng-src="{{((item && 'images/progress_bar/progress_bar_front_visited.png') || 'images/progress_bar/progress_bar_front_link.png')}}"></span>
-      <span ng-repeat="item in progs"><img id="pSec" ng-click="item = toggleItem(item)" data-ng-src="{{((item && 'images/progress_bar/progress_bar_visited.png') || 'images/progress_bar/progress_bar_link.png')}}"></span>
+      <span ng-repeat="item in progs"><img id="pSec" ng-click="item.progstatus = 'current'" data-ng-src="{{getCurStatus1(item)}}"></span>
     </div>
   </div>
   <button type="button" id="SaveButton" class="btn btn-primary">Save & Review</button>
@@ -39,16 +38,16 @@
       <div class="sideBar">
           <div class="text-center" id="SidebarHeader">
               <h3>
-                  <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30" />
+                  <img ng-click="secSwitchLeft()" class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30" />
                   {{getCurPart().name}}
-                  <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30" />
+                  <img ng-click="secSwitchRight()" class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30" />
               </h3>
           </div>
           <div class="sideBarTable">
               <table class="table">
                 <tr class="sideBarItem" data-ng-repeat="option in getCurPart().options">
                     <td>
-                        <img data-ng-src="{{option.image}}" height="100">
+                        <img data-ng-src="{{option.image}}" height="113">
                     </td>
                     <td>
                         <h4><strong>{{option.name}}</strong></h4>

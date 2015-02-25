@@ -137,7 +137,7 @@
 }
 
 .sideBar {
-  
+
 }
 
 .sideBar .sideBarTable {
@@ -153,10 +153,11 @@
 .sideBarItem img {
     border-right: 1px solid #A7A9Ac;
     padding-right: 10px;
+    /*padding-top: 10px;*/
 }
 
 .sideBarItem .sideBarItem-Button {
-    border: 1px solid #939598;
+    border: 1px solid #A7A9Ac;
     display:inline-block;
     width: 50%;
     margin-right:-5px;

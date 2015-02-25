@@ -9,13 +9,14 @@
  */
 angular.module('abacuApp')
   .controller('AbacusCtrl', function ($scope) {
-    //Array representing progressbar 
-    $scope.progs = progesssec;
+    //object representing first section in progressbar
+    $scope.progsFirst = progSecFirst;
 
-    //Method that toggles a provided boolean value
-    $scope.toggleItem = function(item) {
-      return !item;
-    }
+    //Array representing progressbar
+    $scope.progs = progSec;
+
+    $scope.curPart = $scope.progs[0];
+
 
     //Calculated Total Weight and Price
     $scope.getTotalWeight = function () {
@@ -24,6 +25,29 @@ angular.module('abacuApp')
     $scope.getTotalPrice = function () {
         return 250.75;
     };
+
+    $scope.getCurStatus1 = function(item){
+      if(item.partID ===0) {
+        if (item.progstatus === "unvisited")
+          return ('images/progress_bar/progress_bar_front_link.png');
+        if (item.progstatus === "visited")
+          return ('images/progress_bar/progress_bar_front_visited.png');
+        if (item.progstatus === "current")
+          return ('images/progress_bar/progress_bar_front_clicked.png');
+      }
+      else {
+        if (item.progstatus === "unvisited")
+          return ('images/progress_bar/progress_bar_link.png');
+        if (item.progstatus === "visited")
+          return ('images/progress_bar/progress_bar_visited.png');
+        if (item.progstatus === "current")
+          return ('images/progress_bar/progress_bar_clicked.png');
+      }
+
+
+    };
+
+
 
     //The current wheelchair being customized by the user
     $scope.curWheelchair = {
@@ -36,9 +60,11 @@ angular.module('abacuApp')
             }
         ]
     };
-    
+
     //The current partID the user is customizing
-    $scope.curPartID = 0;
+    $scope.curPartID = function (currentSec){
+      return currentSec.partID;
+    };
 
     //The data used in the customization
     $scope.frameData = frameData;
@@ -47,27 +73,51 @@ angular.module('abacuApp')
     $scope.getCurPart = function () {
         for (var i = 0; i < $scope.frameData.parts.length; i++) {
             var curPart = $scope.frameData.parts[i];
-            if (curPart.partID === $scope.curPartID)
+            if (curPart.partID === $scope.curPartID($scope.curPart))
                 return curPart;
         }
         return null;
     };
-  });
 
-var progesssec={
-  1:false,
-  2:false,
-  3:false,
-  4:false,
-  5:false,
-  6:false,
-  7:false,
-  8:false,
-  9:false,
-  10:false,
-  11:false,
-  12:false
-};
+    $scope.secSwitchLeft = function (){
+      $scope.curPart.progstatus = "visited";
+      $scope.curPart = $scope.progs[($scope.curPart.partID)-1];
+      $scope.curPart.progstatus = "current";
+
+
+    };
+
+    $scope.secSwitchRight = function (){
+      $scope.curPart.progstatus = "visited";
+      $scope.curPart = $scope.progs[($scope.curPart.partID)+1];
+      $scope.curPart.progstatus = "current";
+    };
+
+
+  });
+var progstatus = {
+  VISITED: "visited",
+  UNVISITED: "unvisited",
+  CURRENT: "current"
+}
+
+var progSecFirst = {partID:0,progstatus:progstatus.UNVISITED};
+
+var progSec=[
+  {partID:0,progstatus:progstatus.CURRENT},
+  {partID:1,progstatus:progstatus.UNVISITED},
+  {partID:2,progstatus:progstatus.UNVISITED},
+  {partID:3,progstatus:progstatus.UNVISITED},
+  {partID:4,progstatus:progstatus.UNVISITED},
+  {partID:5,progstatus:progstatus.UNVISITED},
+  {partID:6,progstatus:progstatus.UNVISITED},
+  {partID:7,progstatus:progstatus.UNVISITED},
+  {partID:8,progstatus:progstatus.UNVISITED},
+  {partID:9,progstatus:progstatus.UNVISITED},
+  {partID:10,progstatus:progstatus.UNVISITED},
+  {partID:11,progstatus:progstatus.UNVISITED}
+
+];
 
 //The following is all dummy data for the sidebar used to test our data structure
 //This data should be replaced by database data for the final release
@@ -111,6 +161,83 @@ var frameData = {
                     price: 200,
                     weight: 45,
                     desc: "An ultra-extreme description",
+                    image: "images/d_panel_2.png",
+                    colors: []
+                }
+            ]
+        },
+
+
+        {
+            partID: 1,
+            name: "Wheels",
+            options: [
+                {
+                    optionID: 0,
+                    name: "Spinagy fdsajklciow fiowe ccwjio",
+                    price: 200,
+                    weight: 6,
+                    desc: "A description",
+                    image: "images/d_panel_1.png",
+                    colors: [
+                        {
+                            name: "Red",
+                            hex: 0xFF0000
+                        },
+                        {
+                            name: "Green",
+                            hex: 0x00FF00
+                        },
+                        {
+                            name: "Blue",
+                            hex: 0x0000FF
+                        }
+                    ]
+                },
+                {
+                    optionID: 1,
+                    name: "sWheel",
+                    price: 2000,
+                    weight: 4,
+                    desc: "An ultra-extreme light wheel",
+                    image: "images/d_panel_2.png",
+                    colors: []
+                }
+            ]
+        },
+
+      {
+            partID: 2,
+            name: "la la la",
+            options: [
+                {
+                    optionID: 0,
+                    name: "lala bom lala bom ",
+                    price: 200,
+                    weight: 6,
+                    desc: "A description",
+                    image: "images/d_panel_1.png",
+                    colors: [
+                        {
+                            name: "Red",
+                            hex: 0xFF0000
+                        },
+                        {
+                            name: "Green",
+                            hex: 0x00FF00
+                        },
+                        {
+                            name: "Blue",
+                            hex: 0x0000FF
+                        }
+                    ]
+                },
+                {
+                    optionID: 1,
+                    name: "sWheel",
+                    price: 2000,
+                    weight: 4,
+                    desc: "An ultra-extreme light wheel",
                     image: "images/d_panel_2.png",
                     colors: []
                 }
