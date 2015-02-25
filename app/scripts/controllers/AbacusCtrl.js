@@ -100,7 +100,7 @@ angular.module('abacuApp')
     }
 
 
-
+    //handle closing all color panels using jQuery (replace this with an angular way)
     $scope.closeAllColorPanels = function () {
       $(".colorPanel").each(function () {
         $(this).removeClass("colorPanelIn").addClass("colorPanelOut");
