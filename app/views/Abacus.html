@@ -4,7 +4,7 @@
 <div id="ProgressSaveBar">
   <div class="progress">
     <div id="ProgressSec">
-      <span ng-repeat="item in progs"><img id="pSec" ng-click="secSwitchClick(item)" data-ng-src="{{getCurStatus1(item)}}"></span>
+      <span ng-repeat="item in pages"><img id="pSec" ng-click="secSwitchClick(item)" data-ng-src="{{getProgBarImage(item)}}"></span>
     </div>
   </div>
   <button type="button" id="SaveButton" class="btn btn-primary">Save & Review</button>
@@ -12,11 +12,9 @@
 
 <!-- Price & Weight Display -->
 <div class="display col-lg-3 col-lg-offset-9">
-
     <h4>
       <small>Price:</small> ${{getTotalPrice().toFixed(2)}} <small>Weight:</small> {{getTotalWeight()}}lbs
     </h4>
-
 </div>
 
 <!-- Main Body of Page -->
@@ -29,6 +27,7 @@
 
   <!-- Sidebar -->
   <div class="sideBarWrapper">
+      <!-- Tabs -->
       <ul  class="nav nav-tabs nav-justified">
         <li role="presentation" class="active"><a ng-href="#/abacus">Customize</a></li>
         <li role="presentation" ><a ng-href="#/abacus">Measure</a></li>
@@ -38,9 +37,9 @@
       <div class="sideBar">
           <div class="text-center" id="SidebarHeader">
               <h3>
-                  <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30" />
+                  <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30" data-ng-click="secSwitchLeft()" data-ng-show="curPage.index > 0"/>
                   {{getCurPart().name}}
-                  <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30" />
+                  <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30" data-ng-click="secSwitchRight()" data-ng-show="curPage.index < pages.length - 1"/>
               </h3>
           </div>
           <div class="sideBarTable">
@@ -55,16 +54,25 @@
                         <h4><strong>{{option.name}}</strong></h4>
                         <h4>${{option.price}} | {{option.weight}}lbs</h4>
                         <div>
-                            <div class="sideBarItem-Button text-center" data-ng-click="">Details</div>
+                            <div class="sideBarItem-Button text-center" data-ng-click="showDetailPanel = !showDetailPanel">Details</div>
                             <div class="sideBarItem-Button text-center" data-ng-click="">Add</div>
                         </div>
                     </td>
                     <td class="colorPanel" ng-class="{ 'colorPanelOut': ! showColorPanel , 'colorPanelIn': showColorPanel}">
-                      <div data-ng-repeat="color in option.colors" class="colorPanelItem" style="background-color: {{color.hex}}"></div>
+                      <div data-ng-repeat="color in option.colors" class="colorPanelItem" data-ng-style="{'background-color': color.hex, 'height': (300 / option.colors.length), 'max-height':90}"></div>
+                    </td>
+                    <td class="detailPanel" ng-class="{ 'detailPanelOut': ! showDetailPanel , 'detailPanelIn': showDetailPanel}">
+                        <div class="text-center">
+                            <img data-ng-src="{{option.image}}" height="200" width="200" />
+                            <h4><strong>{{option.name}}</strong></h4>
+                            <h4>${{option.price}} | {{option.weight}}lbs</h4>
+                            <div class="sideBarItem-Button text-center" data-ng-click="">Add</div>
+                            <p>{{option.desc}}</p>
+                        </div>
                     </td>
                 </tr>
               </table>
-          </div>
+           </div>
         </div>
     </div>
 </div>

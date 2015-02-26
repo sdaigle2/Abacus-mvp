@@ -1,9 +1,7 @@
-
+/******Progress Bar and Save Button******/
 #ProgressSaveBar {
     height: 30px;
 }
-
-
 
 #ProgressSaveBar > .progress {
     height: inherit;
@@ -30,8 +28,6 @@
 
 }
 
-
-
 .btn .btn-primary{
   padding: 5px;
   margin:20px;
@@ -45,11 +41,9 @@
     border-radius: 0px;
     text-align: center;
     padding-bottom:2%;
-    /*padding-top: 1%;*/
-
-
 }
 
+/******Main Picture******/
 .mainpic img {
   /* height: 600px;*/
   margin-top: 3%;
@@ -57,7 +51,7 @@
 }
 
 
-
+/******Sidebar******/
 .nav-tabs.nav-justified > li.active,
 .nav-tabs.nav-justified > li {
   margin-right: 10px;
@@ -97,9 +91,6 @@
 }
 
 
-
-
-
 .sideBarWrapper {
   display: inline-block;
   clear: right;
@@ -136,6 +127,10 @@
   height: 30px;
 }
 
+.sidebar h3 img:hover {
+    cursor: pointer;
+}
+
 .sideBar .sideBarTable {
     overflow-y: auto;
     max-height: 500px;
@@ -144,6 +139,7 @@
 
 .sideBar .sideBarItemLeft {
   position: relative;
+  width: 120px;
 }
 
 .sideBar .sideBarItemLeft .colorOptionsIndicator {
@@ -153,7 +149,11 @@
   border: none;
 }
 
-.sideBarItem img {
+.sideBar .sideBarItemLeft .colorOptionsIndicator:hover {
+    cursor: pointer;
+}
+
+.sideBarItem .sideBarItemLeft img {
     border-right: 1px solid #A7A9Ac;
     padding-right: 10px;
 }
@@ -172,7 +172,7 @@
     cursor: pointer;
 }
 
-
+/****** Color Panel ******/
 .sideBar .colorPanelIn {
   left: -140px;
   opacity: 1;
@@ -187,7 +187,7 @@
   top: 55px;
   width: 140px;
   height: auto;
-  max-height: 500px;
+  max-height: 300px;
   overflow-y: auto;
   background-color: #D6D8D8;
   transition: 1s;
@@ -197,8 +197,8 @@
   width: 90px;
   height: 90px;
   margin: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 
@@ -220,5 +220,27 @@
   border-bottom: 15px solid transparent;
 
   border-left: 15px solid #D6D8D8;
+  transition: 1s;
+}
+
+/******Detail Panel******/
+.sideBar .detailPanelIn {
+  left: -250px;
+  opacity: 1;
+}
+.sideBar .detailPanelOut {
+  left: -270px;
+  opacity: 0;
+}
+
+.sideBar .detailPanel {
+  position: absolute;
+  top: 55px;
+  width: 250px;
+  height: auto;
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #D6D8D8;
   transition: 1s;
 }

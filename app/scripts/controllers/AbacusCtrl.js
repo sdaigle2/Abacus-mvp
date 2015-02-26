@@ -10,13 +10,10 @@
 angular.module('abacuApp')
   .controller('AbacusCtrl', function ($scope) {
 
+    //Array representing customization pages
+    $scope.pages = dummyPages;
 
-
-    //Array representing progressbar
-    $scope.progs = progSec;
-
-    $scope.curPart = $scope.progs[0];
-
+    $scope.curPage = $scope.pages[0];
 
     //Calculated Total Weight and Price
     $scope.getTotalWeight = function () {
@@ -25,28 +22,26 @@ angular.module('abacuApp')
     $scope.getTotalPrice = function () {
         return 250.75;
     };
-
-    $scope.getCurStatus1 = function(item){
-      if(item.partID ===0) {
-        if (item.progstatus === 'unvisited')
+      
+    //Returns the proper image for the progress bar segment based on visit status
+    $scope.getProgBarImage = function(item){
+      if(item.index ===0) {
+        if (item.visitstatus === 'unvisited')
           return ('images/progress_bar/progress_bar_front_link.png');
-        if (item.progstatus === 'visited')
+        if (item.visitstatus === 'visited')
           return ('images/progress_bar/progress_bar_front_visited.png');
-        if (item.progstatus === 'current')
+        if (item.visitstatus === 'current')
           return ('images/progress_bar/progress_bar_front_clicked.png');
       }
       else {
-        if (item.progstatus === 'unvisited')
+        if (item.visitstatus === 'unvisited')
           return ('images/progress_bar/progress_bar_link.png');
-        if (item.progstatus === 'visited')
+        if (item.visitstatus === 'visited')
           return ('images/progress_bar/progress_bar_visited.png');
-        if (item.progstatus === 'current')
+        if (item.visitstatus === 'current')
           return ('images/progress_bar/progress_bar_clicked.png');
       }
-
-
     };
-
 
 
     //The current wheelchair being customized by the user
@@ -61,42 +56,38 @@ angular.module('abacuApp')
         ]
     };
 
-    //The current partID the user is customizing
-    $scope.curPartID = function (currentSec){
-      return currentSec.partID;
-    };
-
     //The data used in the customization
-    $scope.frameData = frameData;
+    $scope.frameData = dummyFrameData;
 
     //Returns the current part based on curPartID
     $scope.getCurPart = function () {
         for (var i = 0; i < $scope.frameData.parts.length; i++) {
             var curPart = $scope.frameData.parts[i];
-            if (curPart.partID === $scope.curPartID($scope.curPart))
+            if (curPart.partID === $scope.curPage.partID)
                 return curPart;
         }
         return null;
     };
 
+    //Called by SideBarHeader left arrow OnClick
     $scope.secSwitchLeft = function (){
-      $scope.curPart.progstatus = 'visited';
-      $scope.curPart = $scope.progs[($scope.curPart.partID)-1];
-      $scope.curPart.progstatus = 'current';
-
-
+      $scope.curPage.visitstatus = visitstatus.VISITED;
+      $scope.curPage = $scope.pages[($scope.curPage.index)-1];
+      $scope.curPage.visitstatus = visitstatus.CURRENT;
     };
 
+    //Called by SideBarHeader right arrow OnClick
     $scope.secSwitchRight = function (){
-      $scope.curPart.progstatus = 'visited';
-      $scope.curPart = $scope.progs[($scope.curPart.partID)+1];
-      $scope.curPart.progstatus = 'current';
+      $scope.curPage.visitstatus = visitstatus.VISITED;
+      $scope.curPage = $scope.pages[($scope.curPage.index)+1];
+      $scope.curPage.visitstatus = visitstatus.CURRENT;
     };
 
+    //Called by progressbar section OnClick
     $scope.secSwitchClick = function(item){
-      $scope.curPart.progstatus = 'visited';
-      $scope.curPart = item;
-      $scope.curPart.progstatus = 'current';
+      $scope.curPage.visitstatus = visitstatus.VISITED;
+      $scope.curPage = item;
+      $scope.curPage.visitstatus = visitstatus.CURRENT;
     }
 
 
@@ -109,34 +100,33 @@ angular.module('abacuApp')
         $(this).removeClass("colorPanelArrowIn").addClass("colorPanelArrowOut");
       });
     }
-
   });
-var progstatus = {
+
+var visitstatus = {
   VISITED: 'visited',
   UNVISITED: 'unvisited',
   CURRENT: 'current'
 };
 
 
-var progSec=[
-  {partID:0,progstatus:progstatus.CURRENT},
-  {partID:1,progstatus:progstatus.UNVISITED},
-  {partID:2,progstatus:progstatus.UNVISITED},
-  {partID:3,progstatus:progstatus.UNVISITED},
-  {partID:4,progstatus:progstatus.UNVISITED},
-  {partID:5,progstatus:progstatus.UNVISITED},
-  {partID:6,progstatus:progstatus.UNVISITED},
-  {partID:7,progstatus:progstatus.UNVISITED},
-  {partID:8,progstatus:progstatus.UNVISITED},
-  {partID:9,progstatus:progstatus.UNVISITED},
-  {partID:10,progstatus:progstatus.UNVISITED},
-  {partID:11,progstatus:progstatus.UNVISITED}
-
+var dummyPages=[
+  { index: 0, partID: 0, visitstatus: visitstatus.CURRENT },
+  { index: 1, partID: 3, visitstatus: visitstatus.UNVISITED },
+  { index: 2, partID: 2, visitstatus: visitstatus.UNVISITED },
+  { index: 3, partID: 1, visitstatus: visitstatus.UNVISITED },
+  { index: 4, partID: 4, visitstatus: visitstatus.UNVISITED },
+  { index: 5, partID: 5, visitstatus: visitstatus.UNVISITED },
+  { index: 6, partID: 6, visitstatus: visitstatus.UNVISITED },
+  { index: 7, partID: 7, visitstatus: visitstatus.UNVISITED },
+  { index: 8, partID: 8, visitstatus: visitstatus.UNVISITED },
+  { index: 9, partID: 9, visitstatus: visitstatus.UNVISITED },
+  { index: 10, partID: 10, visitstatus: visitstatus.UNVISITED },
+  { index: 11, partID: 11, visitstatus: visitstatus.UNVISITED }
 ];
 
 //The following is all dummy data for the sidebar used to test our data structure
 //This data should be replaced by database data for the final release
-var frameData = {
+var dummyFrameData = {
     frameID: 0,
     basePrice: 400,
     baseWeight: 50,
@@ -167,6 +157,22 @@ var frameData = {
                         {
                             name: "Blue",
                             hex: "#075EDA"
+                        },
+                        {
+                            name: "Magenta",
+                            hex: "#FF00FF"
+                        },
+                        {
+                            name: "Yellow",
+                            hex: "#FFFF00"
+                        },
+                        {
+                            name: "Cyan",
+                            hex: "#00FFFF"
+                        },
+                        {
+                            name: "Black",
+                            hex: "#000000"
                         }
                     ]
                 },
@@ -175,7 +181,7 @@ var frameData = {
                     name: "Tilite Fork Ultra Extreme",
                     price: 200,
                     weight: 45,
-                    desc: "An ultra-extreme description",
+                    desc: "An ultra-extreme description.  This description is so long and awesome that no one who has read it has lived to tell the tale.  Something something Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam metus nisi, consectetur ac orci vitae, finibus pretium sem. Quisque ultrices nulla metus, at condimentum risus volutpat eget. Ut in auctor.",
                     image: "images/d_panel_2.png",
                   colors: [
                     {
@@ -193,11 +199,11 @@ var frameData = {
 
 
         {
-            partID: 1,
+            partID: 3,
             name: "Wheels",
             options: [
                 {
-                    optionID: 0,
+                    optionID: 2,
                     name: "Spinagy fdsajklciow fiowe ccwjio",
                     price: 200,
                     weight: 6,
@@ -219,7 +225,7 @@ var frameData = {
                     ]
                 },
                 {
-                    optionID: 1,
+                    optionID: 4,
                     name: "sWheel",
                     price: 2000,
                     weight: 4,
@@ -229,13 +235,12 @@ var frameData = {
                 }
             ]
         },
-
       {
             partID: 2,
             name: "la la la",
             options: [
                 {
-                    optionID: 0,
+                    optionID: 5,
                     name: "lala bom lala bom ",
                     price: 200,
                     weight: 6,
@@ -257,7 +262,7 @@ var frameData = {
                     ]
                 },
                 {
-                    optionID: 1,
+                    optionID: 6,
                     name: "sWheel",
                     price: 2000,
                     weight: 4,
