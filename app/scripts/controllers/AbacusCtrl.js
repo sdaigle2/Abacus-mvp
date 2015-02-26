@@ -26,19 +26,19 @@ angular.module('abacuApp')
     //Returns the proper image for the progress bar segment based on visit status
     $scope.getProgBarImage = function(item){
       if(item.index ===0) {
-        if (item.visitstatus === 'unvisited')
+        if (item.visitstatus === visitstatus.UNVISITED)
           return ('images/progress_bar/progress_bar_front_link.png');
-        if (item.visitstatus === 'visited')
+        if (item.visitstatus === visitstatus.VISITED)
           return ('images/progress_bar/progress_bar_front_visited.png');
-        if (item.visitstatus === 'current')
+        if (item.visitstatus === visitstatus.CURRENT)
           return ('images/progress_bar/progress_bar_front_clicked.png');
       }
       else {
-        if (item.visitstatus === 'unvisited')
+        if (item.visitstatus === visitstatus.UNVISITED)
           return ('images/progress_bar/progress_bar_link.png');
-        if (item.visitstatus === 'visited')
+        if (item.visitstatus === visitstatus.VISITED)
           return ('images/progress_bar/progress_bar_visited.png');
-        if (item.visitstatus === 'current')
+        if (item.visitstatus === visitstatus.CURRENT)
           return ('images/progress_bar/progress_bar_clicked.png');
       }
     };
