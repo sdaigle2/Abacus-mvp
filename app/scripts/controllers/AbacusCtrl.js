@@ -22,7 +22,7 @@ angular.module('abacuApp')
     $scope.getTotalPrice = function () {
         return 250.75;
     };
-      
+
     //Returns the proper image for the progress bar segment based on visit status
     $scope.getProgBarImage = function(item){
       if(item.index ===0) {
@@ -88,7 +88,7 @@ angular.module('abacuApp')
       $scope.curPage.visitstatus = visitstatus.VISITED;
       $scope.curPage = item;
       $scope.curPage.visitstatus = visitstatus.CURRENT;
-    }
+    };
 
 
     //handle closing all color panels using jQuery (replace this with an angular way)
