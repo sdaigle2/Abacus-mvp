@@ -178,10 +178,12 @@
 .sideBar .colorPanelIn {
   left: -140px;
   opacity: 1;
+  z-index: 200;
 }
 .sideBar .colorPanelOut {
   left: -160px;
   opacity: 0;
+  z-index: 0;
 }
 
 .sideBar .colorPanel {
@@ -229,10 +231,12 @@
 .sideBar .detailPanelIn {
   left: -250px;
   opacity: 1;
+  z-index: 200;
 }
 .sideBar .detailPanelOut {
   left: -270px;
   opacity: 0;
+  z-index: 0;
 }
 
 .sideBar .detailPanel {
@@ -245,4 +249,15 @@
   overflow-x: hidden;
   background-color: #D6D8D8;
   transition: 1s;
+}
+
+
+
+#offClickArea {
+  position: fixed;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 100%;
+  display: none;
 }

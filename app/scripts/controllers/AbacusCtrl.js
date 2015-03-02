@@ -95,27 +95,28 @@ angular.module('abacuApp')
 
     /* selectedOption functions */
 
+    $scope.selectedOptionTypes = {
+      COLOR: 'color',
+      DETAIL: 'detail'
+    };
+
     $scope.selectedOption = null;
+    $scope.selectedOptionType = null;
 
-    $scope.toggleOptionSelection = function(option) {
-      if ($scope.selectedOption == option) {
-        $scope.deselectOption()
-      }
-      else {
-        $scope.selectOption(option);
-      }
-    }
-
-    $scope.selectOption = function(option) {
+    $scope.selectOption = function(option, type) {
       $scope.selectedOption = option;
+      $scope.selectedOptionType = type;
+      $("#offClickArea").show();
     }
 
     $scope.deselectOption = function() {
       $scope.selectedOption = null;
+      $scope.selectedOptionType = null;
+      $("#offClickArea").hide();
     }
 
-    $scope.isOptionSelected = function(option) {
-      return $scope.selectedOption == option;
+    $scope.isOptionSelected = function(option, type) {
+      return ($scope.selectedOption == option && $scope.selectedOptionType == type);
     }
 
 
