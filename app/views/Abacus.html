@@ -11,10 +11,10 @@
 </div>
 
 <!-- Price & Weight Display -->
-<div class="display col-lg-3 col-lg-offset-9">
-    <h4>
-      <small>Price:</small> ${{getTotalPrice().toFixed(2)}} <small>Weight:</small> {{getTotalWeight()}}lbs
-    </h4>
+<div id="display">
+    <h3>
+      <small>Price:</small> ${{getTotalPrice().toFixed(2)}}&nbsp;&nbsp;&nbsp;<small>Weight:</small> {{getTotalWeight()}}lbs
+    </h3>
 </div>
 
 <!-- Main Body of Page -->
@@ -22,7 +22,7 @@
 
   <!-- Wheelchair Display and controls -->
   <div class="mainpic col-lg-8 col-md-8 "  >
-    <img src="images/mainpic.png" class="img-responsive">
+    <img src="images/mainpic.png" width="795" height="607" >
   </div>
 
   <!-- Sidebar -->
@@ -51,8 +51,8 @@
                         <img data-ng-src="{{option.image}}" height="100">
                     </td>
                     <td class="sideBarItemRight">
-                        <h4><strong>{{option.name}}</strong></h4>
-                        <h4>${{option.price}} | {{option.weight}}lbs</h4>
+                        <h4> {{option.name}}</h4>
+                        <h4><strong>${{option.price}} | {{option.weight}}lbs</strong></h4>
                         <div>
                             <div class="sideBarItem-Button text-center" data-ng-click="showDetailPanel = !showDetailPanel">Details</div>
                             <div class="sideBarItem-Button text-center" data-ng-click="">Add</div>

@@ -8,6 +8,7 @@ body {
   background-repeat: repeat-x;
 
   font-family: 'PT Sans', sans-serif;
+  /*font-family: 'Roboto', sans-serif;*/
 }
 
 .navbar {
@@ -16,11 +17,15 @@ body {
     border-radius: 0px;
     top:0px;
     position:relative;
-    height:50px;
+    height:39px;
 
 }
 .navbar .nav-pills li{
   padding-left: 10px;
+}
+
+.nav .navbar-nav .navbar-right{
+  margin: 0px;
 }
 .navbar .navbar-right li:last-child{
   padding-right: 10px;
@@ -30,18 +35,18 @@ body {
 .nav .navbar-nav > li > a {
     font-size: 1.2em;
     letter-spacing: 0.5px;
-    padding-top:15px;
-    padding-bottom:5px;
+    padding-top:10px;
+    padding-bottom:0px;
 }
 .navbar-brand {
-    padding-top:8px !important;
+    padding-top:4px !important;
     padding-bottom:0px !important;
-    height:49px;
+    height:39px;
     border-right: 1px solid grey;
 }
 
 .nav  {
-    min-height:50px !important;
+    min-height:40px !important;
 }
 
 /*Navbar icon positioning*/
