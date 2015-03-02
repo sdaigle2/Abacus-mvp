@@ -1,7 +1,9 @@
+
+
+
 /******Progress Bar and Save Button******/
 #ProgressSaveBar {
     height: 30px;
-
 }
 
 #ProgressSaveBar > .progress {
@@ -10,7 +12,6 @@
     border-radius: 0px;
     margin: 0px;
     display:inline-block;
-
 }
 
 #ProgressSaveBar > .btn {

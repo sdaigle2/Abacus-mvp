@@ -91,15 +91,34 @@ angular.module('abacuApp')
     };
 
 
-    //handle closing all color panels using jQuery (replace this with an angular way)
-    $scope.closeAllColorPanels = function () {
-      $(".colorPanel").each(function () {
-        $(this).removeClass("colorPanelIn").addClass("colorPanelOut");
-      });
-      $(".colorPanelArrow").each(function () {
-        $(this).removeClass("colorPanelArrowIn").addClass("colorPanelArrowOut");
-      });
+
+
+    /* selectedOption functions */
+
+    $scope.selectedOption = null;
+
+    $scope.toggleOptionSelection = function(option) {
+      if ($scope.selectedOption == option) {
+        $scope.deselectOption()
+      }
+      else {
+        $scope.selectOption(option);
+      }
     }
+
+    $scope.selectOption = function(option) {
+      $scope.selectedOption = option;
+    }
+
+    $scope.deselectOption = function() {
+      $scope.selectedOption = null;
+    }
+
+    $scope.isOptionSelected = function(option) {
+      return $scope.selectedOption == option;
+    }
+
+
   });
 
 var visitstatus = {

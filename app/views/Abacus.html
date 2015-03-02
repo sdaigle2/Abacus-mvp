@@ -18,7 +18,7 @@
 </div>
 
 <!-- Main Body of Page -->
-<div class="row">
+<div class="row" ng-click="">
 
   <!-- Wheelchair Display and controls -->
   <div class="mainpic col-lg-8 col-md-8 "  >
@@ -46,8 +46,8 @@
               <table class="table">
                 <tr class="sideBarItem" data-ng-repeat="option in getCurPart().options">
                     <td class="sideBarItemLeft">
-                        <div class="colorPanelArrow" ng-class="{ 'colorPanelArrowOut': ! showColorPanel , 'colorPanelArrowIn': showColorPanel}"></div>
-                        <img class="colorOptionsIndicator" ng-show="option.colors" src="images/icons/color_option.png" alt="See color options" ng-click="showColorPanel = ! showColorPanel" />
+                        <div class="colorPanelArrow" ng-class="{ 'colorPanelArrowOut': ! isOptionSelected(option) , 'colorPanelArrowIn': isOptionSelected(option)}"></div>
+                        <img class="colorOptionsIndicator" ng-show="option.colors" src="images/icons/color_option.png" alt="See color options" ng-click="toggleOptionSelection(option);" />
                         <img data-ng-src="{{option.image}}" height="100">
                     </td>
                     <td class="sideBarItemRight">
@@ -58,7 +58,7 @@
                             <div class="sideBarItem-Button text-center" data-ng-click="">Add</div>
                         </div>
                     </td>
-                    <td class="colorPanel" ng-class="{ 'colorPanelOut': ! showColorPanel , 'colorPanelIn': showColorPanel}">
+                    <td class="colorPanel" ng-class="{ 'colorPanelOut': ! isOptionSelected(option) , 'colorPanelIn': isOptionSelected(option)}">
                       <div data-ng-repeat="color in option.colors" class="colorPanelItem" data-ng-style="{'background-color': color.hex, 'height': (300 / option.colors.length), 'max-height':90}"></div>
                     </td>
                     <td class="detailPanel" ng-class="{ 'detailPanelOut': ! showDetailPanel , 'detailPanelIn': showDetailPanel}">
