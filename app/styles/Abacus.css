@@ -1,6 +1,7 @@
 /******Progress Bar and Save Button******/
 #ProgressSaveBar {
     height: 30px;
+
 }
 
 #ProgressSaveBar > .progress {

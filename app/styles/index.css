@@ -16,7 +16,7 @@ body {
     border-radius: 0px;
     top:0px;
     position:relative;
-    height:20px;
+    height:50px;
 
 }
 .navbar .nav-pills li{
@@ -27,23 +27,25 @@ body {
 }
 
 /*Change navbar height*/
-.navbar-nav > li > a {
-    padding-top:6px !important;
-    padding-bottom:5px !important;
+.nav .navbar-nav > li > a {
+    font-size: 1.2em;
+    letter-spacing: 0.5px;
+    padding-top:15px;
+    padding-bottom:5px;
 }
 .navbar-brand {
-    padding-top:0px !important;
+    padding-top:8px !important;
     padding-bottom:0px !important;
-    height:34px;
+    height:49px;
     border-right: 1px solid grey;
 }
 
-.navbar {
-    min-height:35px !important
+.nav  {
+    min-height:50px !important;
 }
 
 /*Navbar icon positioning*/
-.navbar-nav > li img {
+.nav .navbar-nav > li img {
     position:relative;
     top: -3px;
     left: -3px;
