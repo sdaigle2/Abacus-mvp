@@ -94,6 +94,10 @@
 
 
 .sideBarWrapper {
+  position: absolute;
+  top: 130px;
+  right: -20px;
+  z-index: 50;
   display: inline-block;
   clear: right;
   float: right;
@@ -183,7 +187,7 @@
 .sideBar .colorPanelOut {
   left: -160px;
   opacity: 0;
-  z-index: 0;
+  z-index: -100;
 }
 
 .sideBar .colorPanel {
@@ -236,7 +240,7 @@
 .sideBar .detailPanelOut {
   left: -270px;
   opacity: 0;
-  z-index: 0;
+  z-index: -100;
 }
 
 .sideBar .detailPanel {
