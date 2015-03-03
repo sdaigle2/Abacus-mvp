@@ -13,14 +13,25 @@ angular.module('abacuApp')
     //Array representing customization pages
     $scope.pages = dummyPages;
 
+    //The current part customization page
     $scope.curPage = $scope.pages[0];
 
     //Calculated Total Weight and Price
     $scope.getTotalWeight = function () {
-        return 150;
+        var totalWeight = $scope.frameData.baseWeight;
+        for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
+            var curPart = $scope.curWheelchair.parts[i];
+            totalWeight = totalWeight + getOption(curPart.optionID).weight;
+        }
+        return totalWeight;
     };
     $scope.getTotalPrice = function () {
-        return 250.75;
+        var totalPrice = $scope.frameData.basePrice;
+        for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
+            var curPart = $scope.curWheelchair.parts[i];
+            totalPrice += getOption(curPart.optionID).price;
+        }
+        return totalPrice;
     };
 
     //Returns the proper image for the progress bar segment based on visit status
@@ -52,6 +63,16 @@ angular.module('abacuApp')
                 partID: 0,
                 optionID: 0,
                 colorName: 'Red'
+            },
+            {
+                partID: 3,
+                optionID: 2,
+                colorName: 'Red'
+            },
+            {
+                partID: 2,
+                optionID: 6,
+                colorName: 'Red'
             }
         ]
     };
@@ -59,21 +80,53 @@ angular.module('abacuApp')
     //The data used in the customization
     $scope.frameData = dummyFrameData;
 
+
     //Returns the current part based on curPartID
     $scope.getCurPart = function () {
+        return getPart($scope.curPage.partID);
+    };
+
+    //Returns the current part in curWheelchair based on curPartID
+    $scope.getCurWheelchairPart = function () {
+        return getWheelchairPart($scope.curPage.partID);
+    };
+
+    function getPart(id) {
         for (var i = 0; i < $scope.frameData.parts.length; i++) {
             var curPart = $scope.frameData.parts[i];
-            if (curPart.partID === $scope.curPage.partID)
+            if (curPart.partID === id)
                 return curPart;
         }
         return null;
     };
+
+    function getWheelchairPart(id) {
+        for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
+            var curPart = $scope.curWheelchair.parts[i];
+            if (curPart.partID === id)
+                return curPart;
+        }
+        return null;
+    };
+
+    function getOption(id) {
+        for (var i = 0; i < $scope.frameData.parts.length; i++) {
+            var curPart = $scope.frameData.parts[i];
+            for (var j = 0; j < curPart.options.length; j++) {
+                var curOption = curPart.options[j];
+                if (curOption.optionID === id)
+                    return curOption;
+            }
+        }
+        return null;
+    }
 
     //Called by SideBarHeader left arrow OnClick
     $scope.secSwitchLeft = function (){
       $scope.curPage.visitstatus = visitstatus.VISITED;
       $scope.curPage = $scope.pages[($scope.curPage.index)-1];
       $scope.curPage.visitstatus = visitstatus.CURRENT;
+      $scope.closeAllPanels();
     };
 
     //Called by SideBarHeader right arrow OnClick
@@ -81,6 +134,7 @@ angular.module('abacuApp')
       $scope.curPage.visitstatus = visitstatus.VISITED;
       $scope.curPage = $scope.pages[($scope.curPage.index)+1];
       $scope.curPage.visitstatus = visitstatus.CURRENT;
+      $scope.closeAllPanels();
     };
 
     //Called by progressbar section OnClick
@@ -88,6 +142,7 @@ angular.module('abacuApp')
       $scope.curPage.visitstatus = visitstatus.VISITED;
       $scope.curPage = item;
       $scope.curPage.visitstatus = visitstatus.CURRENT;
+      $scope.closeAllPanels();
     };
 
 
@@ -104,29 +159,34 @@ angular.module('abacuApp')
         panelType: $scope.panelTypes.COLOR
     };
 
+    //Sets curPanel to the chosen panel
+    //Closes the panel if id and type match curPanel
     $scope.setPanel = function (id, type) {
-      if ($scope.isPanelSelected(id, type))
-          $scope.curPanel.panelID = -1;
-      else
-          $scope.curPanel.panelID = id;   
-      $scope.curPanel.panelType = type;
-    }
+        if ($scope.isPanelSelected(id, type))
+            $scope.curPanel.panelID = -1;
+        else
+            $scope.curPanel.panelID = id;
+        $scope.curPanel.panelType = type;
+    };
 
+    //Closes any open panel
     $scope.closeAllPanels = function () {
         $scope.setPanel(-1, $scope.panelTypes.COLOR);
-    }
+    };
 
-    $scope.isPanelSelected = function(id, type) {
-      return ($scope.curPanel.panelID === id && $scope.curPanel.panelType === type);
-    }
+    //Check if the panel with the given id and type is selected
+    $scope.isPanelSelected = function (id, type) {
+        return ($scope.curPanel.panelID === id && $scope.curPanel.panelType === type);
+    };
 
+    //Checks if a panel with the given ID is selected
     $scope.isPanelIDSelected = function (id) {
         return $scope.curPanel.panelID === id;
-    }
-
+    };
 
   });
 
+//The visitation status for pages/parts
 var visitstatus = {
   VISITED: 'visited',
   UNVISITED: 'unvisited',
@@ -229,7 +289,7 @@ var dummyFrameData = {
             options: [
                 {
                     optionID: 2,
-                    name: "Spinagy fdsajklciow fiowe ccwjio",
+                    name: "Super Ultra Spinning Wheels of Awesomeness Deluxe Alpha 3D",
                     price: 200,
                     weight: 6,
                     desc: "A description",
@@ -265,7 +325,7 @@ var dummyFrameData = {
             name: "la la la",
             options: [
                 {
-                    optionID: 5,
+                    optionID: 6,
                     name: "lala bom lala bom ",
                     price: 200,
                     weight: 6,
@@ -287,7 +347,7 @@ var dummyFrameData = {
                     ]
                 },
                 {
-                    optionID: 6,
+                    optionID: 5,
                     name: "sWheel",
                     price: 2000,
                     weight: 4,

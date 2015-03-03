@@ -201,6 +201,8 @@
   line-height: 19px;
   margin:5px 0px;
   height: 40px;
+  overflow-y: overlay;
+  overflow-wrap: normal;
 }
 
 .sideBarItem .sideBarItemRight .sideBarItem-Details {
@@ -225,19 +227,23 @@
 }
 
 .sideBarItem .sideBarItem-Button:hover {
-    border: 1px solid #60C2B1;
-    background-color: #60C2B1;
-    color: #FFFFFF;
+    background-color: #A7A9Ac;
     cursor: pointer;
 }
 
+.sideBarItem .sideBarItem-Button.selected {
+    border: 1px solid #60C2B1;
+    background-color: #60C2B1;
+    color: #FFFFFF;
+}
+
 /****** Color Panel ******/
-.sideBar .colorPanelIn {
+.sideBar .colorPanelShow {
   left: -140px;
   opacity: 1;
   z-index: -10;
 }
-.sideBar .colorPanelOut {
+.sideBar .colorPanelHidden {
   left: 0px;
   opacity: 0;
   z-index: -10;
@@ -264,11 +270,11 @@
 
 
 /******Panel Arrow******/
-.sideBar .panelArrowIn {
+.sideBar .panelArrowShow {
   opacity: 1;
 }
 
-.sideBar .panelArrowOut {
+.sideBar .panelArrowHidden {
   opacity: 0;
 }
 
@@ -286,12 +292,12 @@
 }
 
 /******Detail Panel******/
-.sideBar .detailPanelIn {
+.sideBar .detailPanelShow {
   left: -250px;
   opacity: 1;
   z-index: -10;
 }
-.sideBar .detailPanelOut {
+.sideBar .detailPanelHidden {
   left: 0px;
   opacity: 0;
   z-index: -10;
