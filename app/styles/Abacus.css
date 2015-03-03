@@ -45,6 +45,11 @@
 }
 
 /******Main Picture******/
+.mainpic{
+  display: inline-block;
+  float: left;
+}
+
 .mainpic img {
   /* height: 600px;*/
   margin-top: 50px;
@@ -106,13 +111,14 @@
 
 .sideBarWrapper {
   position: relative;
-  right: -5px;
+  right: -15px;
   z-index: 50;
   display: inline-block;
-  clear: right;
   float: right;
+  clear: right;
   width: 350px;
   margin-right: 20px;
+
 }
 
 .sideBar{
