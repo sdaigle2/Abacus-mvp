@@ -11,6 +11,16 @@ body {
   /*font-family: 'Roboto', sans-serif;*/
 }
 
+#FullPageContents {
+  min-width: 1200px;
+  /*overflow-x: scroll;*/
+}
+
+/*#appSpace {
+  min-width: 1200px;
+  overflow-x: scroll;
+}*/
+
 .navbar {
     background-color: #FFFFFF;
     margin-bottom: 0px;
@@ -18,8 +28,8 @@ body {
     top:0px;
     position:relative;
     height:39px;
-
 }
+
 .navbar .nav-pills li{
   padding-left: 10px;
 }

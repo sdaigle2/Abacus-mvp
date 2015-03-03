@@ -91,32 +91,37 @@ angular.module('abacuApp')
     };
 
 
-
-
-    /* selectedOption functions */
-
-    $scope.selectedOptionTypes = {
+    /*Panel functions */
+    $scope.panelTypes = {
       COLOR: 'color',
       DETAIL: 'detail'
     };
 
-    $scope.selectedOption = null;
-    $scope.selectedOptionType = null;
+    //Indicates the current panel
+    //ID = -1 indeicates no panel open
+    $scope.curPanel = {
+        panelID: -1,
+        panelType: $scope.panelTypes.COLOR
+    };
 
-    $scope.selectOption = function(option, type) {
-      $scope.selectedOption = option;
-      $scope.selectedOptionType = type;
-      $("#offClickArea").show();
+    $scope.setPanel = function (id, type) {
+      if ($scope.isPanelSelected(id, type))
+          $scope.curPanel.panelID = -1;
+      else
+          $scope.curPanel.panelID = id;   
+      $scope.curPanel.panelType = type;
     }
 
-    $scope.deselectOption = function() {
-      $scope.selectedOption = null;
-      $scope.selectedOptionType = null;
-      $("#offClickArea").hide();
+    $scope.closeAllPanels = function () {
+        $scope.setPanel(-1, $scope.panelTypes.COLOR);
     }
 
-    $scope.isOptionSelected = function(option, type) {
-      return ($scope.selectedOption == option && $scope.selectedOptionType == type);
+    $scope.isPanelSelected = function(id, type) {
+      return ($scope.curPanel.panelID === id && $scope.curPanel.panelType === type);
+    }
+
+    $scope.isPanelIDSelected = function (id) {
+        return $scope.curPanel.panelID === id;
     }
 
 
@@ -232,15 +237,15 @@ var dummyFrameData = {
                     colors: [
                         {
                             name: "Red",
-                            hex: 0xFF0000
+                            hex: "#FF0000"
                         },
                         {
                             name: "Green",
-                            hex: 0x00FF00
+                            hex: "#00FF00"
                         },
                         {
                             name: "Blue",
-                            hex: 0x0000FF
+                            hex: "#0000FF"
                         }
                     ]
                 },
@@ -269,15 +274,15 @@ var dummyFrameData = {
                     colors: [
                         {
                             name: "Red",
-                            hex: 0xFF0000
+                            hex: "#FF0000"
                         },
                         {
                             name: "Green",
-                            hex: 0x00FF00
+                            hex: "#00FF00"
                         },
                         {
                             name: "Blue",
-                            hex: 0x0000FF
+                            hex: "#0000FF"
                         }
                     ]
                 },
