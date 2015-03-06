@@ -128,8 +128,8 @@
   border-top: 1px solid #f1f2f2 ;
   border-radius: 0px;
 
-  height: 500px;
-  max-height: 500px;
+  height: 600px;
+  max-height: 600px;
 }
 
 .sideBar h3 {
@@ -158,7 +158,7 @@
 
 .sideBar .sideBarTable {
     overflow-y: auto;
-    max-height: 500px;
+    max-height: 600px;
     height: 100%;
 }
 
@@ -329,4 +329,26 @@
   background-color: rgba(0, 0, 0, 0);
   width: 100%;
   height: 100%;
+}
+
+/************Measurement part**********/
+#enterBox{
+  padding: 5px 20px;
+  background-color: #fec44f;
+}
+
+.sideBarTable #enterBox .btn-group .dropdown-toggle{
+  height: 25px;
+  line-height: 0.8;
+  margin-right: 7px;
+}
+
+#tipBox{
+  margin: 20px 0;
+  padding: 5px 10px;
+  border: 1px solid white;
+}
+
+#displayPic{
+  padding: 40px 55px;
 }
