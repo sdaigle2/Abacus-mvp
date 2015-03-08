@@ -332,7 +332,57 @@
 }
 
 /************Measurement part**********/
+.mainVid {
+  width: 790px;
+  margin: 20px;
+  padding-left: 40px;
+  /*display: inline-block;*/
+  float: left;
+}
+
+.mainVid .mainTop{
+  width: inherit;
+  height: 280px;
+  padding-right: 40px;
+}
+
+.mainVid .mainText{
+  width: 240px;
+  /*display: inline-block;*/
+  float: left;
+
+}
+
+.mainVid  iframe {
+  display: inline-block;
+  float: right;
+}
+
+.mainVid.mainLow{
+  width: inherit;
+  height: 350px;
+  margin: 60px 0px;
+  /*position: absolute;*/
+  /*bottom: 0px;*/
+}
+
+#videoScript{
+  width: 260px;
+  height: 260px;
+  overflow: auto;
+  float: left;
+}
+
+#mainAni{
+  height: 260px;
+  width: 400px;
+  border:1px solid black;
+  float: right;
+}
+
 #enterBox{
+  width: 800px;
+  height: 240px;
   padding: 5px 20px;
   background-color: #fec44f;
 }
