@@ -64,46 +64,46 @@
 
     <!-- CUSTOMIZE: Sidebar -->
 
-      <!--<div class="sideBar">-->
-          <!--<div class="text-center" id="SidebarHeader">-->
-              <!--<h3>-->
-                  <!--<img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30" data-ng-click="secSwitchLeft()" data-ng-show="curPage.index > 0"/>-->
-                  <!--{{getCurPart().name}}-->
-                  <!--<img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30" data-ng-click="secSwitchRight()" data-ng-show="curPage.index < pages.length - 1"/>-->
-              <!--</h3>-->
-          <!--</div>-->
-          <!--<div class="sideBarTable">-->
-              <!--<table class="table">-->
-                <!--<tr class="sideBarItem" data-ng-repeat="option in getCurPart().options">-->
-                    <!--<td class="sideBarItemLeft">-->
-                        <!--<div class="panelArrow" ng-class="{ 'panelArrowHidden': ! isPanelIDSelected(option.optionID) , 'panelArrowShow': isPanelIDSelected(option.optionID)}"></div>-->
-                        <!--<img class="colorOptionsIndicator" ng-show="option.colors" src="images/icons/color_option.png" alt="See color options" ng-click="setPanel(option.optionID, panelTypes.COLOR);" />-->
-                        <!--<img data-ng-src="{{option.image}}" height="100">-->
-                    <!--</td>-->
-                    <!--<td class="sideBarItemRight">-->
-                        <!--<h4 class="sideBarItem-Name"> {{option.name}}</h4>-->
-                        <!--<h4 class="sideBarItem-Details"><strong>${{option.price}} | {{option.weight}}lbs</strong></h4>-->
-                        <!--<div class="sideBarItem-ButtonRow">-->
-                            <!--<div class="sideBarItem-Button text-center" ng-class="{'selected': isPanelSelected(option.optionID, panelTypes.DETAIL)}" ng-click="setPanel(option.optionID, panelTypes.DETAIL);">Details</div>-->
-                            <!--<div class="sideBarItem-Button text-center" ng-class="{'selected': getCurWheelchairPart().optionID === option.optionID}" ng-click="getCurWheelchairPart().optionID = option.optionID;">Add</div>-->
-                        <!--</div>-->
-                    <!--</td>-->
-                    <!--<td class="colorPanel" ng-class="{ 'colorPanelHidden': ! isPanelSelected(option.optionID, panelTypes.COLOR) , 'colorPanelShow': isPanelSelected(option.optionID, panelTypes.COLOR)}">-->
-                        <!--<div data-ng-repeat="color in option.colors" class="colorPanelItem" data-ng-style="{'background-color': color.hex, 'height': (300 / option.colors.length), 'max-height':90}"></div>-->
-                    <!--</td>-->
-                    <!--<td class="detailPanel" ng-class="{ 'detailPanelHidden': ! isPanelSelected(option.optionID, panelTypes.DETAIL) , 'detailPanelShow': isPanelSelected(option.optionID, panelTypes.DETAIL)}">-->
-                        <!--<div class="text-center">-->
-                            <!--<img data-ng-src="{{option.image}}" height="200" width="200" />-->
-                            <!--<h4><strong>{{option.name}}</strong></h4>-->
-                            <!--<h4>${{option.price}} | {{option.weight}}lbs</h4>-->
-                            <!--<div class="sideBarItem-Button text-center" ng-class="{'selected': getCurWheelchairPart().optionID === option.optionID}" ng-click="getCurWheelchairPart().optionID = option.optionID;">Add</div>-->
-                            <!--<p>{{option.desc}}</p>-->
-                        <!--</div>-->
-                    <!--</td>-->
-                <!--</tr>-->
-              <!--</table>-->
-           <!--</div>-->
-        <!--</div>-->
+      <div class="sideBar">
+          <div class="text-center" id="SidebarHeader">
+              <h3>
+                  <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30" data-ng-click="secSwitchLeft()" data-ng-show="curPage.index > 0"/>
+                  {{getCurPart().name}}
+                  <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30" data-ng-click="secSwitchRight()" data-ng-show="curPage.index < pages.length - 1"/>
+              </h3>
+          </div>
+          <div class="sideBarTable">
+              <table class="table">
+                <tr class="sideBarItem" data-ng-repeat="option in getCurPart().options">
+                    <td class="sideBarItemLeft">
+                        <div class="panelArrow" ng-class="{ 'panelArrowHidden': ! isPanelIDSelected(option.optionID) , 'panelArrowShow': isPanelIDSelected(option.optionID)}"></div>
+                        <img class="colorOptionsIndicator" ng-show="option.colors" src="images/icons/color_option.png" alt="See color options" ng-click="setPanel(option.optionID, panelTypes.COLOR);" />
+                        <img data-ng-src="{{option.image}}" height="100">
+                    </td>
+                    <td class="sideBarItemRight">
+                        <h4 class="sideBarItem-Name"> {{option.name}}</h4>
+                        <h4 class="sideBarItem-Details"><strong>${{option.price}} | {{option.weight}}lbs</strong></h4>
+                        <div class="sideBarItem-ButtonRow">
+                            <div class="sideBarItem-Button text-center" ng-class="{'selected': isPanelSelected(option.optionID, panelTypes.DETAIL)}" ng-click="setPanel(option.optionID, panelTypes.DETAIL);">Details</div>
+                            <div class="sideBarItem-Button text-center" ng-class="{'selected': getCurWheelchairPart().optionID === option.optionID}" ng-click="getCurWheelchairPart().optionID = option.optionID;">Add</div>
+                        </div>
+                    </td>
+                    <td class="colorPanel" ng-class="{ 'colorPanelHidden': ! isPanelSelected(option.optionID, panelTypes.COLOR) , 'colorPanelShow': isPanelSelected(option.optionID, panelTypes.COLOR)}">
+                        <div data-ng-repeat="color in option.colors" class="colorPanelItem" data-ng-style="{'background-color': color.hex, 'height': (300 / option.colors.length), 'max-height':90}"></div>
+                    </td>
+                    <td class="detailPanel" ng-class="{ 'detailPanelHidden': ! isPanelSelected(option.optionID, panelTypes.DETAIL) , 'detailPanelShow': isPanelSelected(option.optionID, panelTypes.DETAIL)}">
+                        <div class="text-center">
+                            <img data-ng-src="{{option.image}}" height="200" width="200" />
+                            <h4><strong>{{option.name}}</strong></h4>
+                            <h4>${{option.price}} | {{option.weight}}lbs</h4>
+                            <div class="sideBarItem-Button text-center" ng-class="{'selected': getCurWheelchairPart().optionID === option.optionID}" ng-click="getCurWheelchairPart().optionID = option.optionID;">Add</div>
+                            <p>{{option.desc}}</p>
+                        </div>
+                    </td>
+                </tr>
+              </table>
+           </div>
+        </div>
     <!--------------------------------customize part end------------------------------->
 
 
