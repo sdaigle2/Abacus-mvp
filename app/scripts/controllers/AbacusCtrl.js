@@ -10,50 +10,20 @@
 angular.module('abacuApp')
   .controller('AbacusCtrl', function ($scope) {
 
-    //Array representing customization pages
-    $scope.pages = dummyPages;
+    /***********Variables**************/
+    $scope.frameData = dummyFrameData; //DATA PULLED FROM DATABASE
+    var pages = dummyPages; //Array representing customization pages
 
     //The current part customization page
-    $scope.curPage = $scope.pages[0];
-
-    //Calculated Total Weight and Price
-    $scope.getTotalWeight = function () {
-        var totalWeight = $scope.frameData.baseWeight;
-        for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
-            var curPart = $scope.curWheelchair.parts[i];
-            totalWeight = totalWeight + getOption(curPart.optionID).weight;
-        }
-        return totalWeight;
-    };
-    $scope.getTotalPrice = function () {
-        var totalPrice = $scope.frameData.basePrice;
-        for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
-            var curPart = $scope.curWheelchair.parts[i];
-            totalPrice += getOption(curPart.optionID).price;
-        }
-        return totalPrice;
+    curPage = {
+        page: [pages.customizePages[0], pages.measurePages[0]],
+        type: $scope.pageType.CUSTOMIZE
     };
 
-    //Returns the proper image for the progress bar segment based on visit status
-    $scope.getProgBarImage = function(item){
-      if(item.index ===0) {
-        if (item.visitstatus === visitstatus.UNVISITED)
-          return ('images/progress_bar/progress_bar_front_link.png');
-        if (item.visitstatus === visitstatus.VISITED)
-          return ('images/progress_bar/progress_bar_front_visited.png');
-        if (item.visitstatus === visitstatus.CURRENT)
-          return ('images/progress_bar/progress_bar_front_clicked.png');
-      }
-      else {
-        if (item.visitstatus === visitstatus.UNVISITED)
-          return ('images/progress_bar/progress_bar_link.png');
-        if (item.visitstatus === visitstatus.VISITED)
-          return ('images/progress_bar/progress_bar_visited.png');
-        if (item.visitstatus === visitstatus.CURRENT)
-          return ('images/progress_bar/progress_bar_clicked.png');
-      }
+    $scope.pageType = {
+        CUSTOMIZE: 0,
+        MEASURE: 1
     };
-
 
     //The current wheelchair being customized by the user
     $scope.curWheelchair = {
@@ -74,24 +44,66 @@ angular.module('abacuApp')
                 optionID: 6,
                 colorName: 'Red'
             }
+        ],
+        measures: [
+            {
+                measureID: 5,
+                measureOption: null
+            },
+            {
+                measureID: 1,
+                measureOption: null
+            }
         ]
     };
 
-    //The data used in the customization
-    $scope.frameData = dummyFrameData;
-
-
-    //Returns the current part based on curPartID
-    $scope.getCurPart = function () {
-        return getPart($scope.curPage.partID);
+    /****************Weight and Price******************/
+    //Calculated Total Weight and Price
+    $scope.getTotalWeight = function () {
+        var totalWeight = $scope.frameData.baseWeight;
+        for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
+            var curPart = $scope.curWheelchair.parts[i];
+            totalWeight = totalWeight + getOptionData(curPart.optionID).weight;
+        }
+        return totalWeight;
+    };
+    $scope.getTotalPrice = function () {
+        var totalPrice = $scope.frameData.basePrice;
+        for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
+            var curPart = $scope.curWheelchair.parts[i];
+            totalPrice += getOptionData(curPart.optionID).price;
+        }
+        return totalPrice;
     };
 
-    //Returns the current part in curWheelchair based on curPartID
-    $scope.getCurWheelchairPart = function () {
-        return getWheelchairPart($scope.curPage.partID);
+    /****************Page Functions******************/
+    $scope.getCurPages() = function () { 
+        if (curPage.type === $scope.pageType.CUSTOMIZE)
+            return pages.customizePages;
+        return pages.measurePages;
     };
+    $scope.getCustomizePages() = function () { return pages.customizePages; };
+    $scope.getMeasurePages() = function () { return pages.measurePages; };
 
-    function getPart(id) {
+    $scope.getCurPage() = function () { return curPage.page[curPage.type]; };
+    $scope.getCurCustomizePage() = function () { return curPage.page[$scope.pageType.CUSTOMIZE]; };
+    $scope.getCurMeasurePage() = function () { return curPage.page[$scope.pageType.MEASURE]; };
+
+    $scope.getCurPageType = function () { return curPage.type; };
+
+    //Returns the current part from FrameData based on curPage.page[CUSTOMIZE].ID
+    $scope.getCurPartData = function () { return getPartData(getCurCustomizePage().partID); };
+
+    //Returns the current part from curWheelchair based on curPage.page[CUSTOMIZE].ID
+    $scope.getCurWheelchairPart = function () { return getWheelchairPart($scope.curPage.partID); };
+
+    //Returns the current measure from FrameData based on curPage.page[MEASURE].ID
+    $scope.getCurMeasureData = function () { return getMeasureData(getCurMeasurePage().measureID); };
+
+    //Returns the current measure from curWheelchair based on curPage.page[MEASURE].ID
+    $scope.getCurWheelchairMeasure = function () { return getWheelchairMeasure(getCurMeasurePage().measureID); };
+
+    function getPartData(id) {
         for (var i = 0; i < $scope.frameData.parts.length; i++) {
             var curPart = $scope.frameData.parts[i];
             if (curPart.partID === id)
@@ -109,7 +121,7 @@ angular.module('abacuApp')
         return null;
     };
 
-    function getOption(id) {
+    function getOptionData(id) {
         for (var i = 0; i < $scope.frameData.parts.length; i++) {
             var curPart = $scope.frameData.parts[i];
             for (var j = 0; j < curPart.options.length; j++) {
@@ -121,6 +133,25 @@ angular.module('abacuApp')
         return null;
     }
 
+    function getMeasureData(id) {
+        for (var i = 0; i < $scope.frameData.measures.length; i++) {
+            var curMeas = $scope.frameData.measures[i];
+            if (curMeas.measureID === id)
+                return curMeas;
+        }
+        return null;
+    };
+
+    function getWheelchairMeasure(id) {
+        for (var i = 0; i < $scope.curWheelchair.measures.length; i++) {
+            var curMeas = $scope.curWheelchair.measures[i];
+            if (curMeas.measureID === id)
+                return curMeas;
+        }
+        return null;
+    };
+
+    /****************ProgressBar******************/
     //Called by SideBarHeader left arrow OnClick
     $scope.secSwitchLeft = function (){
       $scope.curPage.visitstatus = visitstatus.VISITED;
@@ -145,8 +176,27 @@ angular.module('abacuApp')
       $scope.closeAllPanels();
     };
 
+    //Returns the proper image for the progress bar segment based on visit status
+    $scope.getProgBarImage = function (item) {
+        if (item.index === 0) {
+            if (item.visitstatus === visitstatus.UNVISITED)
+                return ('images/progress_bar/progress_bar_front_link.png');
+            if (item.visitstatus === visitstatus.VISITED)
+                return ('images/progress_bar/progress_bar_front_visited.png');
+            if (item.visitstatus === visitstatus.CURRENT)
+                return ('images/progress_bar/progress_bar_front_clicked.png');
+        }
+        else {
+            if (item.visitstatus === visitstatus.UNVISITED)
+                return ('images/progress_bar/progress_bar_link.png');
+            if (item.visitstatus === visitstatus.VISITED)
+                return ('images/progress_bar/progress_bar_visited.png');
+            if (item.visitstatus === visitstatus.CURRENT)
+                return ('images/progress_bar/progress_bar_clicked.png');
+        }
+    };
 
-    /*Panel functions */
+    /*****************Panels*********************/
     $scope.panelTypes = {
       COLOR: 'color',
       DETAIL: 'detail'
@@ -186,6 +236,8 @@ angular.module('abacuApp')
 
   });
 
+/*********************Unscoped Variables Constants and Enums*******************************/
+
 //The visitation status for pages/parts
 var visitstatus = {
   VISITED: 'visited',
@@ -193,21 +245,32 @@ var visitstatus = {
   CURRENT: 'current'
 };
 
-
-var dummyPages=[
-  { index: 0, partID: 0, visitstatus: visitstatus.CURRENT },
-  { index: 1, partID: 3, visitstatus: visitstatus.UNVISITED },
-  { index: 2, partID: 2, visitstatus: visitstatus.UNVISITED },
-  { index: 3, partID: 1, visitstatus: visitstatus.UNVISITED },
-  { index: 4, partID: 4, visitstatus: visitstatus.UNVISITED },
-  { index: 5, partID: 5, visitstatus: visitstatus.UNVISITED },
-  { index: 6, partID: 6, visitstatus: visitstatus.UNVISITED },
-  { index: 7, partID: 7, visitstatus: visitstatus.UNVISITED },
-  { index: 8, partID: 8, visitstatus: visitstatus.UNVISITED },
-  { index: 9, partID: 9, visitstatus: visitstatus.UNVISITED },
-  { index: 10, partID: 10, visitstatus: visitstatus.UNVISITED },
-  { index: 11, partID: 11, visitstatus: visitstatus.UNVISITED }
-];
+//The following data is DUMMY DATA used to test our progressbar data structure
+//This data should be created on pageLoad based on FrameData
+var dummyPages = {
+    customizePages: [
+        { index: 0, partID: 0, visitstatus: visitstatus.CURRENT },
+        { index: 1, partID: 3, visitstatus: visitstatus.UNVISITED },
+        { index: 2, partID: 2, visitstatus: visitstatus.UNVISITED },
+        { index: 3, partID: 1, visitstatus: visitstatus.UNVISITED },
+        { index: 4, partID: 4, visitstatus: visitstatus.UNVISITED },
+        { index: 5, partID: 5, visitstatus: visitstatus.UNVISITED },
+        { index: 6, partID: 6, visitstatus: visitstatus.UNVISITED },
+        { index: 7, partID: 7, visitstatus: visitstatus.UNVISITED },
+        { index: 8, partID: 8, visitstatus: visitstatus.UNVISITED },
+        { index: 9, partID: 9, visitstatus: visitstatus.UNVISITED },
+        { index: 10, partID: 10, visitstatus: visitstatus.UNVISITED },
+        { index: 11, partID: 11, visitstatus: visitstatus.UNVISITED }
+    ],
+    measurePages: [
+        { index: 0, measureID: 1, visitstatus: visitstatus.UNVISITED },
+        { index: 1, measureID: 5, visitstatus: visitstatus.UNVISITED },
+        { index: 2, measureID: 2, visitstatus: visitstatus.UNVISITED },
+        { index: 3, measureID: 3, visitstatus: visitstatus.UNVISITED },
+        { index: 4, measureID: 4, visitstatus: visitstatus.UNVISITED },
+        { index: 5, measureID: 6, visitstatus: visitstatus.UNVISITED }
+    ]
+};
 
 //The following is all dummy data for the sidebar used to test our data structure
 //This data should be replaced by database data for the final release
@@ -356,6 +419,28 @@ var dummyFrameData = {
                     colors: []
                 }
             ]
+        }
+    ],
+    measures: [
+        {
+            measureID: 1,
+            name: "Rear Seat Height",
+            desc: "Distance from ground to back corner of seat",
+            measureOptions: ["12", "13", "14", "15", "16"],
+            tip: "Important fators to think about when measuring rear seat height are <b>body stability<\b> and <b>shoulder strain<\b>",
+            videoURL: "",
+            imageURLs: ["", ""],
+            chartURL: ""
+        },
+        {
+            measureID: 5,
+            name: "Wheel Radius",
+            desc: "The <b>radius<\b> of the <b>wheel<\b>",
+            measureOptions: ["100", "200", "500", "1000", "1E8"],
+            tip: "Don't set this to 0 or you'll just get a regular chair",
+            videoURL: "",
+            imageURLs: ["", ""],
+            chartURL: ""
         }
     ]
 };

@@ -6,10 +6,10 @@
 <div id="ProgressSaveBar">
   <div class="progress">
     <div id="ProgressSec">
-      <span ng-repeat="item in pages"><img id="pSec" ng-click="secSwitchClick(item)" data-ng-src="{{getProgBarImage(item)}}" ></span>
+      <span ng-repeat="item in getCurPages()"><img id="pSec" ng-click="secSwitchClick(item)" data-ng-src="{{getProgBarImage(item)}}" ></span>
     </div>
   </div>
-  <button type="button" id="SaveButton" class="btn btn-primary">Save & Review</button>
+  <button type="button" id="SaveButton" class="btn btn-primary" ng-click="alert('Not implemented yet');">Save & Review</button>
 </div>
 
 <!-- Price & Weight Display -->
@@ -19,11 +19,17 @@
     </h3>
 </div>
 
-<!-- Main Body of Page -->
-<div  ng-click="">
+<div ng-click="">
 
-  <!-------Measure part Video + script + animation----------->
-  <div class="mainVid">
+  <!-- Main Body of Page -->
+
+  <!-- CUSTOMIZE: Wheelchair Display and controls -->
+  <div id="main-custom" class="mainpic" data-ng-show="getCurPageType == pageType.CUSTOMIZE">
+    <img src="images/mainpic.png" width="795" height="607" >
+  </div>
+
+  <!-- MEASURE: Video + script + animation -->
+  <div id ="main-measure" class="mainVid" data-ng-show="getCurPageType == pageType.MEASURE">
     <div class="mainTop">
       <div class="mainText">
         <h1><strong>REAR SEAT HEIGHT</strong></h1>
@@ -45,16 +51,8 @@
         <h3>Animation here</h3>
       </div>
     </div>
-
-
-
   </div>
 
-
-  <!-- Wheelchair Display and controls -->
-  <!--<div class="mainpic "  >-->
-    <!--<img src="images/mainpic.png" width="795" height="607" >-->
-  <!--</div>-->
 
   <!-- Sidebar -->
   <div class="sideBarWrapper">
@@ -63,7 +61,8 @@
         <li role="presentation" ><a ng-href="#/abacus">Customize</a></li>
         <li role="presentation" class="active" ><a ng-href="#/abacus">Measure</a></li>
       </ul>
-    <!--------------------------customize part-------------------------------------->
+
+    <!-- CUSTOMIZE: Sidebar -->
 
       <!--<div class="sideBar">-->
           <!--<div class="text-center" id="SidebarHeader">-->
