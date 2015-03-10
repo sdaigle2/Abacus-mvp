@@ -24,12 +24,12 @@
   <!-- Main Body of Page -->
 
   <!-- CUSTOMIZE: Wheelchair Display and controls -->
-  <div id="main-custom" class="mainpic" data-ng-show="getCurPageType == pageType.CUSTOMIZE">
+  <div id="main-custom" class="mainpic" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
     <img src="images/mainpic.png" width="795" height="607" >
   </div>
 
   <!-- MEASURE: Video + script + animation -->
-  <div id ="main-measure" class="mainVid" data-ng-show="getCurPageType == pageType.MEASURE">
+  <div id ="main-measure" class="mainVid" data-ng-show="getCurPageType() == pageType.MEASURE">
     <div class="mainTop">
       <div class="mainText">
         <h1><strong>REAR SEAT HEIGHT</strong></h1>
@@ -58,23 +58,23 @@
   <div class="sideBarWrapper">
       <!-- Tabs -->
       <ul  class="nav nav-tabs nav-justified">
-        <li role="presentation" ><a ng-href="#/abacus">Customize</a></li>
-        <li role="presentation" class="active" ><a ng-href="#/abacus">Measure</a></li>
+          <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}"><a ng-href="#/abacus" data-ng-click="setCurPageType(pageType.CUSTOMIZE)">Customize</a></li>
+          <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.MEASURE}"><a ng-href="#/abacus" data-ng-click="setCurPageType(pageType.MEASURE)">Measure</a></li>
       </ul>
 
-    <!-- CUSTOMIZE: Sidebar -->
+      <!-- CUSTOMIZE: Sidebar -->
 
-      <div class="sideBar">
+      <div class="sideBar" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
           <div class="text-center" id="SidebarHeader">
               <h3>
-                  <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30" data-ng-click="secSwitchLeft()" data-ng-show="curPage.index > 0"/>
-                  {{getCurPart().name}}
-                  <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30" data-ng-click="secSwitchRight()" data-ng-show="curPage.index < pages.length - 1"/>
+                  <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30" data-ng-click="secSwitchLeft()" data-ng-show="getCurPage().index > 0"/>
+                  {{getCurPartData().name}}
+                  <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30" data-ng-click="secSwitchRight()" data-ng-show="getCurPage().index < getCurPages().length - 1"/>
               </h3>
           </div>
           <div class="sideBarTable">
               <table class="table">
-                <tr class="sideBarItem" data-ng-repeat="option in getCurPart().options">
+                <tr class="sideBarItem" data-ng-repeat="option in getCurPartData().options">
                     <td class="sideBarItemLeft">
                         <div class="panelArrow" ng-class="{ 'panelArrowHidden': ! isPanelIDSelected(option.optionID) , 'panelArrowShow': isPanelIDSelected(option.optionID)}"></div>
                         <img class="colorOptionsIndicator" ng-show="option.colors" src="images/icons/color_option.png" alt="See color options" ng-click="setPanel(option.optionID, panelTypes.COLOR);" />
@@ -104,14 +104,10 @@
               </table>
            </div>
         </div>
-    <!--------------------------------customize part end------------------------------->
 
+    <!-- MEASURE: Sidebar--> <!-- THIS NEEDS TO BE ANGULARIZED -->
 
-
-
-    <!-----------------------------------------------measure part------------------------------------->
-
-      <div class="sideBar">
+      <div class="sideBar" data-ng-show="getCurPageType() == pageType.MEASURE">
         <div class="text-center" id="SidebarHeader">
           <h3>
             <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30" data-ng-click="secSwitchLeft()" data-ng-show="curPage.index > 0"/>
@@ -139,14 +135,11 @@
               <h5> Important factors to think about when measuring rear sear height are <strong>body stability</strong> and <strong>shoulder strain</strong></h5>
             </div>
           </div>
-
           <div id="displayPic">
             <img src="images/pangding.jpg" width="250" height="250">
           </div>
-
         </div>
       </div>
-    <!-----------------------------------------------measure part end------------------------------------->
     </div>
 </div>
 

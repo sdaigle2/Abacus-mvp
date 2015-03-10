@@ -14,15 +14,15 @@ angular.module('abacuApp')
     $scope.frameData = dummyFrameData; //DATA PULLED FROM DATABASE
     var pages = dummyPages; //Array representing customization pages
 
-    //The current part customization page
-    curPage = {
-        page: [pages.customizePages[0], pages.measurePages[0]],
-        type: $scope.pageType.CUSTOMIZE
-    };
-
     $scope.pageType = {
         CUSTOMIZE: 0,
         MEASURE: 1
+    };
+
+    //The current part customization page
+    var curPage = {
+        page: [pages.customizePages[0], pages.measurePages[0]],
+        type: $scope.pageType.CUSTOMIZE
     };
 
     //The current wheelchair being customized by the user
@@ -77,31 +77,31 @@ angular.module('abacuApp')
     };
 
     /****************Page Functions******************/
-    $scope.getCurPages() = function () { 
+    $scope.getCurPages = function () { 
         if (curPage.type === $scope.pageType.CUSTOMIZE)
             return pages.customizePages;
         return pages.measurePages;
     };
-    $scope.getCustomizePages() = function () { return pages.customizePages; };
-    $scope.getMeasurePages() = function () { return pages.measurePages; };
+    $scope.getCustomizePages = function () { return pages.customizePages; };
+    $scope.getMeasurePages = function () { return pages.measurePages; };
 
-    $scope.getCurPage() = function () { return curPage.page[curPage.type]; };
-    $scope.getCurCustomizePage() = function () { return curPage.page[$scope.pageType.CUSTOMIZE]; };
-    $scope.getCurMeasurePage() = function () { return curPage.page[$scope.pageType.MEASURE]; };
+    $scope.getCurPage = function () { return curPage.page[curPage.type]; };
+    $scope.getCurCustomizePage = function () { return curPage.page[$scope.pageType.CUSTOMIZE]; };
+    $scope.getCurMeasurePage = function () { return curPage.page[$scope.pageType.MEASURE]; };
 
     $scope.getCurPageType = function () { return curPage.type; };
 
     //Returns the current part from FrameData based on curPage.page[CUSTOMIZE].ID
-    $scope.getCurPartData = function () { return getPartData(getCurCustomizePage().partID); };
+    $scope.getCurPartData = function () { return getPartData($scope.getCurCustomizePage().partID); };
 
     //Returns the current part from curWheelchair based on curPage.page[CUSTOMIZE].ID
-    $scope.getCurWheelchairPart = function () { return getWheelchairPart($scope.curPage.partID); };
+    $scope.getCurWheelchairPart = function () { return getWheelchairPart($scope.getCurCustomizePage().partID); };
 
     //Returns the current measure from FrameData based on curPage.page[MEASURE].ID
-    $scope.getCurMeasureData = function () { return getMeasureData(getCurMeasurePage().measureID); };
+    $scope.getCurMeasureData = function () { return getMeasureData($scope.getCurMeasurePage().measureID); };
 
     //Returns the current measure from curWheelchair based on curPage.page[MEASURE].ID
-    $scope.getCurWheelchairMeasure = function () { return getWheelchairMeasure(getCurMeasurePage().measureID); };
+    $scope.getCurWheelchairMeasure = function () { return getWheelchairMeasure($scope.getCurMeasurePage().measureID); };
 
     function getPartData(id) {
         for (var i = 0; i < $scope.frameData.parts.length; i++) {
@@ -151,28 +151,32 @@ angular.module('abacuApp')
         return null;
     };
 
+    $scope.setCurPageType = function (newType) {
+        curPage.type = newType;
+    };
+
     /****************ProgressBar******************/
     //Called by SideBarHeader left arrow OnClick
     $scope.secSwitchLeft = function (){
-      $scope.curPage.visitstatus = visitstatus.VISITED;
-      $scope.curPage = $scope.pages[($scope.curPage.index)-1];
-      $scope.curPage.visitstatus = visitstatus.CURRENT;
+      //$scope.getCurPage().visitstatus = visitstatus.VISITED;
+      //curPage = $scope.pages[($scope.curPage.index)-1];
+      //curPage.visitstatus = visitstatus.CURRENT;
       $scope.closeAllPanels();
     };
 
     //Called by SideBarHeader right arrow OnClick
     $scope.secSwitchRight = function (){
-      $scope.curPage.visitstatus = visitstatus.VISITED;
-      $scope.curPage = $scope.pages[($scope.curPage.index)+1];
-      $scope.curPage.visitstatus = visitstatus.CURRENT;
+      //$scope.curPage.visitstatus = visitstatus.VISITED;
+      //$scope.curPage = $scope.pages[($scope.curPage.index)+1];
+      //$scope.curPage.visitstatus = visitstatus.CURRENT;
       $scope.closeAllPanels();
     };
 
     //Called by progressbar section OnClick
     $scope.secSwitchClick = function(item){
-      $scope.curPage.visitstatus = visitstatus.VISITED;
-      $scope.curPage = item;
-      $scope.curPage.visitstatus = visitstatus.CURRENT;
+      //$scope.curPage.visitstatus = visitstatus.VISITED;
+      //$scope.curPage = item;
+      //$scope.curPage.visitstatus = visitstatus.CURRENT;
       $scope.closeAllPanels();
     };
 
