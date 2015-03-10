@@ -103,6 +103,12 @@ angular.module('abacuApp')
     //Returns the current measure from curWheelchair based on curPage.page[MEASURE].ID
     $scope.getCurWheelchairMeasure = function () { return getWheelchairMeasure($scope.getCurMeasurePage().measureID); };
 
+    $scope.setCurPageType = function (newType) { curPage.type = newType; };
+
+    $scope.setCurPage = function (newIndex) { curPage.page[curPage.type] = $scope.getCurPages()[newIndex]; };
+    $scope.setCurCustomizePage = function (newIndex) { curPage.page[$scope.pageType.CUSTOMIZE] = pages.customizePages[newIndex]; };
+    $scope.setCurMeasurePage = function (newIndex) { curPage.page[$scope.pageType.MEASURE] = pages.measurePages[newIndex]; };
+
     function getPartData(id) {
         for (var i = 0; i < $scope.frameData.parts.length; i++) {
             var curPart = $scope.frameData.parts[i];
@@ -151,15 +157,11 @@ angular.module('abacuApp')
         return null;
     };
 
-    $scope.setCurPageType = function (newType) {
-        curPage.type = newType;
-    };
-
     /****************ProgressBar******************/
     //Called by SideBarHeader left arrow OnClick
     $scope.secSwitchLeft = function (){
       //$scope.getCurPage().visitstatus = visitstatus.VISITED;
-      //curPage = $scope.pages[($scope.curPage.index)-1];
+      $scope.setCurPage($scope.getCurPage().index - 1);
       //curPage.visitstatus = visitstatus.CURRENT;
       $scope.closeAllPanels();
     };
@@ -167,7 +169,7 @@ angular.module('abacuApp')
     //Called by SideBarHeader right arrow OnClick
     $scope.secSwitchRight = function (){
       //$scope.curPage.visitstatus = visitstatus.VISITED;
-      //$scope.curPage = $scope.pages[($scope.curPage.index)+1];
+      $scope.setCurPage($scope.getCurPage().index + 1);
       //$scope.curPage.visitstatus = visitstatus.CURRENT;
       $scope.closeAllPanels();
     };
@@ -175,7 +177,7 @@ angular.module('abacuApp')
     //Called by progressbar section OnClick
     $scope.secSwitchClick = function(item){
       //$scope.curPage.visitstatus = visitstatus.VISITED;
-      //$scope.curPage = item;
+      $scope.setCurPage(item.index);
       //$scope.curPage.visitstatus = visitstatus.CURRENT;
       $scope.closeAllPanels();
     };
