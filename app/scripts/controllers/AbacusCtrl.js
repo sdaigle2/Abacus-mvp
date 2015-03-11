@@ -271,7 +271,7 @@ var dummyPages = {
         { index: 11, partID: 11, visitstatus: visitstatus.UNVISITED }
     ],
     measurePages: [
-        { index: 0, measureID: 1, visitstatus: visitstatus.UNVISITED },
+        { index: 0, measureID: 1, visitstatus: visitstatus.CURRENT },
         { index: 1, measureID: 5, visitstatus: visitstatus.UNVISITED },
         { index: 2, measureID: 2, visitstatus: visitstatus.UNVISITED },
         { index: 3, measureID: 3, visitstatus: visitstatus.UNVISITED },
