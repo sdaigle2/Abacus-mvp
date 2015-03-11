@@ -21,8 +21,8 @@ angular.module('abacuApp')
 
     //The current part customization page
     var curPage = {
-        page: [pages.customizePages[0], pages.measurePages[0]],
-        type: $scope.pageType.CUSTOMIZE
+        page: [pages.customizePages[0], pages.measurePages[0]], //has a current page for each page type
+        type: $scope.pageType.CUSTOMIZE //keeps track of which page type we are currently looking at
     };
 
     //The current wheelchair being customized by the user
@@ -158,46 +158,46 @@ angular.module('abacuApp')
     };
 
     /****************ProgressBar******************/
-    //Called by SideBarHeader left arrow OnClick
+    //Called by SideBarHeader left arrow OnClick (works similar to secSwitchClick)
     $scope.secSwitchLeft = function (){
-      //$scope.getCurPage().visitstatus = visitstatus.VISITED;
+      $scope.getCurPage().visitstatus = visitstatus.VISITED;
       $scope.setCurPage($scope.getCurPage().index - 1);
-      //curPage.visitstatus = visitstatus.CURRENT;
+      $scope.getCurPage().visitstatus = visitstatus.CURRENT;
       $scope.closeAllPanels();
     };
 
-    //Called by SideBarHeader right arrow OnClick
+    //Called by SideBarHeader right arrow OnClick (works similar to secSwitchClick)
     $scope.secSwitchRight = function (){
-      //$scope.curPage.visitstatus = visitstatus.VISITED;
+      $scope.getCurPage().visitstatus = visitstatus.VISITED;
       $scope.setCurPage($scope.getCurPage().index + 1);
-      //$scope.curPage.visitstatus = visitstatus.CURRENT;
+      $scope.getCurPage().visitstatus = visitstatus.CURRENT;
       $scope.closeAllPanels();
     };
 
     //Called by progressbar section OnClick
-    $scope.secSwitchClick = function(item){
-      //$scope.curPage.visitstatus = visitstatus.VISITED;
-      $scope.setCurPage(item.index);
-      //$scope.curPage.visitstatus = visitstatus.CURRENT;
-      $scope.closeAllPanels();
+    $scope.secSwitchClick = function(page){
+      $scope.getCurPage().visitstatus = visitstatus.VISITED; //set current page to visit status: visited
+      $scope.setCurPage(page.index); //set new current page
+      $scope.getCurPage().visitstatus = visitstatus.CURRENT; //set new current page to visit status : current
+      $scope.closeAllPanels(); //close any panels we may have opened
     };
 
     //Returns the proper image for the progress bar segment based on visit status
-    $scope.getProgBarImage = function (item) {
-        if (item.index === 0) {
-            if (item.visitstatus === visitstatus.UNVISITED)
+    $scope.getProgBarImage = function (page) {
+        if (page.index === 0) {
+            if (page.visitstatus === visitstatus.UNVISITED)
                 return ('images/progress_bar/progress_bar_front_link.png');
-            if (item.visitstatus === visitstatus.VISITED)
+            if (page.visitstatus === visitstatus.VISITED)
                 return ('images/progress_bar/progress_bar_front_visited.png');
-            if (item.visitstatus === visitstatus.CURRENT)
+            if (page.visitstatus === visitstatus.CURRENT)
                 return ('images/progress_bar/progress_bar_front_clicked.png');
         }
         else {
-            if (item.visitstatus === visitstatus.UNVISITED)
+            if (page.visitstatus === visitstatus.UNVISITED)
                 return ('images/progress_bar/progress_bar_link.png');
-            if (item.visitstatus === visitstatus.VISITED)
+            if (page.visitstatus === visitstatus.VISITED)
                 return ('images/progress_bar/progress_bar_visited.png');
-            if (item.visitstatus === visitstatus.CURRENT)
+            if (page.visitstatus === visitstatus.CURRENT)
                 return ('images/progress_bar/progress_bar_clicked.png');
         }
     };
