@@ -77,7 +77,7 @@ angular.module('abacuApp')
     };
 
     /****************Page Functions******************/
-    $scope.getCurPages = function () { 
+    $scope.getCurPages = function () {
         if (curPage.type === $scope.pageType.CUSTOMIZE)
             return pages.customizePages;
         return pages.measurePages;
@@ -203,13 +203,15 @@ angular.module('abacuApp')
     };
 
     /*****************Panels*********************/
+
+    //Enumerated type for which panel to show for a given panelID
     $scope.panelTypes = {
       COLOR: 'color',
       DETAIL: 'detail'
     };
 
     //Indicates the current panel
-    //ID = -1 indeicates no panel open
+    //ID = -1 indicates no panel open
     $scope.curPanel = {
         panelID: -1,
         panelType: $scope.panelTypes.COLOR
