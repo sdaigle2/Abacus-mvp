@@ -33,10 +33,6 @@
 
 
 /******************Save Button********************/
-.btn .btn-primary{
-  padding: 5px;
-  margin:20px;
-}
 
 #SaveButton {
     width:10%;
@@ -396,6 +392,15 @@
   margin-bottom: 15px;
 }
 
+.sideBar .colorPanel .colorPanelItem:hover {
+  cursor: pointer;
+}
+
+.sideBar .colorPanel .colorPanelItem.active {
+  -webkit-box-shadow: 0px 0px 23px 9px rgba(230,194,16,1);
+  -moz-box-shadow: 0px 0px 23px 9px rgba(230,194,16,1);
+  box-shadow: 0px 0px 23px 9px rgba(230,194,16,1);
+}
 
 /****************************Detail Panel*****************************/
 .sideBar .detailPanelShow {
