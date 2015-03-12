@@ -19,36 +19,34 @@
   </h3>
 </div>
 
-<div ng-click="">
+<div class="main">
 
   <!-- Main Body of Page -->
 
   <!-- CUSTOMIZE: Wheelchair Display and controls -->
-  <div id="main-custom" class="mainpic" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
+  <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
     <img src="images/mainpic.png" width="795" height="607" >
   </div>
 
-  <!-- MEASURE: Video + script + animation -->
-  <div id ="main-measure" class="mainVid" data-ng-show="getCurPageType() == pageType.MEASURE">
-    <div class="mainTop">
-      <div class="mainText">
-        <h1><strong>REAR SEAT HEIGHT</strong></h1>
-        <h4>--Distance from the ground up to back corner of your seat</h4>
+  <!-- MEASURE: Video + gif + details -->
+  <div id ="main-measure" class="main-measure" data-ng-show="getCurPageType() == pageType.MEASURE">
+    <div class="main-measure-top">
+      <div class="main-measure-title">
+        <h1><strong>{{getCurMeasureData().name}}</strong></h1>
+        <h4 data-ng-bind-html="getCurMeasureData().desc"></h4>
       </div>
 
-      <iframe  height="230" width="408"
-               src="https://www.youtube.com/embed/Leekuekq0hs" frameborder="0" allowfullscreen>
+      <iframe class="main-measure-video"
+              data-ng-src="{{getCurMeasureData().videoURL}}" frameborder="0" allowfullscreen>
       </iframe>
     </div>
 
-    <div class="mainLow">
-      <div id="videoScript">
-        <h4>
-          This is a container for the script of the video. This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video. This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.
-        </h4>
+    <div class="main-measure-bottom">
+      <div class="main-measure-gif">
+        <img data-ng-src="{{getCurMeasureData().gifURL}}"/>
       </div>
-      <div id="mainAni">
-        <h3>Animation here</h3>
+      <div class="main-measure-details">
+        <h4>{{getCurMeasureData().details}}</h4>
       </div>
     </div>
   </div>
@@ -58,8 +56,8 @@
   <div class="sideBarWrapper">
     <!-- Tabs -->
     <ul  class="nav nav-tabs nav-justified">
-      <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}"><a ng-href="#/abacus" data-ng-click="setCurPageType(pageType.CUSTOMIZE)">Customize</a></li>
-      <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.MEASURE}"><a ng-href="#/abacus" data-ng-click="setCurPageType(pageType.MEASURE)">Measure</a></li>
+      <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}"><a ng-href="#/abacus" data-ng-click="switchPageType(pageType.CUSTOMIZE)">Customize</a></li>
+      <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.MEASURE}"><a ng-href="#/abacus" data-ng-click="switchPageType(pageType.MEASURE)">Measure</a></li>
     </ul>
 
     <!-- CUSTOMIZE: Sidebar -->
@@ -115,8 +113,8 @@
           <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30" data-ng-click="secSwitchRight()" data-ng-show="getCurPage().index < getCurPages().length - 1"/>
         </h3>
       </div>
-      <div class="sideBarTable">
-        <div id="enterBox">
+      <div class="sideBar-measure">
+        <div class="sideBar-measure-top text-center">
           <h4>Choose your measurement</h4>
           <div class="btn-group">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -130,13 +128,13 @@
             </ul>
           </div>
           <span style="font-size: 1.3em">inches</span>
-          <div id="tipBox">
-            <h4><strong><span class="glyphicon glyphicon-exclamation-sign"></span> &nbsp;&nbsp;TIP</strong></h4>
-            <h5> Important factors to think about when measuring rear sear height are <strong>body stability</strong> and <strong>shoulder strain</strong></h5>
-          </div>
+            <div class="sideBar-measure-tip text-left" data-ng-show="getCurMeasureData().tip">
+                <h4><strong><span class="glyphicon glyphicon-exclamation-sign"></span> &nbsp;&nbsp;TIP</strong></h4>
+                <h5 data-ng-bind-html="getCurMeasureData().tip"></h5>
+            </div>
         </div>
-        <div id="displayPic">
-          <img src="images/pangding.jpg" width="250" height="250">
+        <div class="sideBar-measure-bottom">
+          <img src="images/pangding.jpg" width="350" height="300">
         </div>
       </div>
     </div>

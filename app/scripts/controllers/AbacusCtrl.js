@@ -202,6 +202,12 @@ angular.module('abacuApp')
         }
     };
 
+    /*****************Sidebar Tabs***************/
+    $scope.switchPageType = function (newPageType) {
+        $scope.setCurPageType(newPageType);
+        $scope.getCurPage().visitstatus = visitstatus.CURRENT;
+    };
+
     /*****************Panels*********************/
 
     //Enumerated type for which panel to show for a given panelID
@@ -435,20 +441,22 @@ var dummyFrameData = {
             name: "Rear Seat Height",
             desc: "Distance from ground to back corner of seat",
             measureOptions: ["12", "13", "14", "15", "16"],
-            tip: "Important fators to think about when measuring rear seat height are <b>body stability<\b> and <b>shoulder strain<\b>",
-            videoURL: "",
+            tip: "Important fators to think about when measuring rear seat height are <strong>body stability</strong> and <strong>shoulder strain</strong>",
+            videoURL: "https://www.youtube.com/embed/pcY2bR7MPVo",
             imageURLs: ["", ""],
-            chartURL: ""
+            gifURL: "",
+            details: "Here are some helpful details"
         },
         {
             measureID: 5,
             name: "Wheel Radius",
-            desc: "The <b>radius<\b> of the <b>wheel<\b>",
+            desc: "The <strong>radius</strong> of the <strong>wheel</strong>",
             measureOptions: ["100", "200", "500", "1000", "1E8"],
             tip: "Don't set this to 0 or you'll just get a regular chair",
-            videoURL: "",
+            videoURL: "https://www.youtube.com/embed/HCp3_jaYOZ4",
             imageURLs: ["", ""],
-            chartURL: ""
+            gifURL: "",
+            details: "This set of details is not helpful in the slightest"
         }
     ]
 };

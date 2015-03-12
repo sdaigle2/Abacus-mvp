@@ -1,4 +1,6 @@
-/******Progress Bar and Save Button******/
+/*************************************************Top Bar*****************************************/
+
+/******************Progress Bar******************/
 #ProgressSaveBar {
   position: relative;
   height: 30px;
@@ -29,6 +31,8 @@
 
 }
 
+
+/******************Save Button********************/
 .btn .btn-primary{
   padding: 5px;
   margin:20px;
@@ -44,20 +48,7 @@
     padding-bottom:2%;
 }
 
-/******Main Picture******/
-.mainpic{
-  display: inline-block;
-  float: left;
-}
-
-.mainpic img {
-  /* height: 600px;*/
-  margin-top: 50px;
-  margin-left: 7%;
-}
-
-
-/****** display weight and price ****/
+/******************* Price & Weight Display *****************/
 #display{
   float: right;
   clear: right;
@@ -65,7 +56,69 @@
 
 }
 
-/******Sidebar******/
+/*************************************************Main*****************************************/
+
+/*************************Main-Custom******************************/
+.main-custom{
+  display: inline-block;
+  float: left;
+}
+
+.main-custom img {
+  /* height: 600px;*/
+  margin-top: 50px;
+  margin-left: 7%;
+}
+
+/*************************Main-Measure******************************/
+.main-measure {
+  width: 850px;
+  margin: 20px;
+  padding-left: 40px;
+  float: left;
+}
+
+.main-measure .main-measure-top{
+  width: inherit;
+  height: 350px;
+  padding-right: 40px;
+}
+
+.main-measure .main-measure-title{
+  width: 240px;
+  float: left;
+}
+
+.main-measure .main-measure-video {
+  display: inline-block;
+  float: right;
+  height: 325px;
+  max-height: 325px;
+  width: 500px;
+  max-width: 500px;
+}
+
+.main-measure .main-measure-bottom {
+  width: inherit;
+  height: 350px;
+  margin: 60px 0px;
+}
+
+.main-measure .main-measure-details {
+  width: 260px;
+  height: 260px;
+  overflow: auto;
+  float: right;
+}
+
+.main-measure .main-measure-gif {
+  height: 260px;
+  width: 400px;
+  border:1px solid black;
+  float: left;
+}
+
+/******************************************************Sidebar*******************************************/
 .nav-tabs.nav-justified > li.active,
 .nav-tabs.nav-justified > li {
   margin-right: 10px;
@@ -117,6 +170,7 @@
   float: right;
   clear: right;
   width: 350px;
+  max-width: 350px;
   margin-right: 20px;
 
 }
@@ -156,6 +210,8 @@
     cursor: pointer;
 }
 
+
+/****************SideBar-Custom********************/
 .sideBar .sideBarTable {
     overflow-y: auto;
     max-height: 600px;
@@ -243,7 +299,73 @@
     color: #FFFFFF;
 }
 
-/****** Color Panel ******/
+/*****************SideBar-Measure********************/
+
+.sideBar .sideBar-measure {
+    overflow-y: auto;
+    max-height: 600px;
+    height: 100%;
+    max-width:350px;
+}
+
+.sideBar-measure-top {
+  /*height: 240px;*/
+  padding: 5px 20px;
+  background-color: #fec44f;
+}
+
+.sideBarTable #enterBox .btn-group .dropdown-toggle{
+  height: 25px;
+  line-height: 0.8;
+  margin-right: 7px;
+}
+
+.sideBar-measure-tip {
+  margin: 20px 0;
+  padding: 5px 10px;
+  border: 1px solid white;
+  max-width: 300px;
+}
+
+.sideBar-measure-bottom {
+    padding: 10px 0px;
+}
+
+
+
+/*******************************************Panels*********************************************/
+
+#offClickArea {
+  position: fixed;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 100%;
+}
+
+/**********************Panel Arrow***************************/
+.sideBar .panelArrowShow {
+  opacity: 1;
+}
+
+.sideBar .panelArrowHidden {
+  opacity: 0;
+}
+
+.sideBar .panelArrow {
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+
+  border-left: 15px solid #D6D8D8;
+  transition: 1s;
+}
+
+/*************** Color Panel ************************/
 .sideBar .colorPanelShow {
   left: -140px;
   opacity: 1;
@@ -275,29 +397,7 @@
 }
 
 
-/******Panel Arrow******/
-.sideBar .panelArrowShow {
-  opacity: 1;
-}
-
-.sideBar .panelArrowHidden {
-  opacity: 0;
-}
-
-.sideBar .panelArrow {
-  position: absolute;
-  top: 10px;
-  left: 0px;
-  width: 0;
-  height: 0;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-
-  border-left: 15px solid #D6D8D8;
-  transition: 1s;
-}
-
-/******Detail Panel******/
+/****************************Detail Panel*****************************/
 .sideBar .detailPanelShow {
   left: -250px;
   opacity: 1;
@@ -321,85 +421,3 @@
   transition: 1s;
 }
 
-
-
-#offClickArea {
-  position: fixed;
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0);
-  width: 100%;
-  height: 100%;
-}
-
-/************Measurement part**********/
-.mainVid {
-  width: 790px;
-  margin: 20px;
-  padding-left: 40px;
-  /*display: inline-block;*/
-  float: left;
-}
-
-.mainVid .mainTop{
-  width: inherit;
-  height: 280px;
-  padding-right: 40px;
-}
-
-.mainVid .mainText{
-  width: 240px;
-  /*display: inline-block;*/
-  float: left;
-
-}
-
-.mainVid  iframe {
-  display: inline-block;
-  float: right;
-  border: solid 1px #000000;
-}
-
-.mainVid.mainLow{
-  width: inherit;
-  height: 350px;
-  margin: 60px 0px;
-  /*position: absolute;*/
-  /*bottom: 0px;*/
-}
-
-#videoScript{
-  width: 260px;
-  height: 260px;
-  overflow: auto;
-  float: left;
-}
-
-#mainAni{
-  height: 260px;
-  width: 400px;
-  border:1px solid black;
-  float: right;
-}
-
-#enterBox{
-  width: 800px;
-  height: 240px;
-  padding: 5px 20px;
-  background-color: #fec44f;
-}
-
-.sideBarTable #enterBox .btn-group .dropdown-toggle{
-  height: 25px;
-  line-height: 0.8;
-  margin-right: 7px;
-}
-
-#tipBox{
-  margin: 20px 0;
-  padding: 5px 10px;
-  border: 1px solid white;
-}
-
-#displayPic{
-  padding: 40px 55px;
-}
