@@ -3,6 +3,7 @@
   position: relative;
   height: 30px;
   top: -2px;
+  width: 100%;
 }
 
 #ProgressSaveBar > .progress {
@@ -42,6 +43,12 @@
     border-radius: 0px;
     text-align: center;
     padding-bottom:2%;
+}
+
+#FullPageContents {
+  width: 1200px;
+  /*overflow-x: scroll;*/
+  margin: 0 auto;
 }
 
 /******Main Picture******/
