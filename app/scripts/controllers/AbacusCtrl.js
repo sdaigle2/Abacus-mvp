@@ -436,8 +436,9 @@ var dummyFrameData = {
             name: "Rear Seat Height",
             desc: "Distance from ground to back corner of seat",
             measureOptions: ["12", "13", "14", "15", "16"],
-            tip: "Important fators to think about when measuring rear seat height are <b>body stability<\b> and <b>shoulder strain<\b>",
-            videoURL: "",
+            tip: "Important fators to think about when measuring rear seat height are <strong>body stability</strong>> and <b>shoulder strain</b>",
+            videoURL: "https://www.youtube.com/embed/Leekuekq0hs",
+            summary: "This is a container for the script of the video. This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video. This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.",
             imageURLs: ["", ""],
             chartURL: ""
         },
@@ -448,6 +449,7 @@ var dummyFrameData = {
             measureOptions: ["100", "200", "500", "1000", "1E8"],
             tip: "Don't set this to 0 or you'll just get a regular chair",
             videoURL: "",
+            summary: "This is a container for the script of the video. This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video. This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.",
             imageURLs: ["", ""],
             chartURL: ""
         }
