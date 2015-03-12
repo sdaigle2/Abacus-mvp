@@ -1,13 +1,13 @@
 /*************************************************Top Bar*****************************************/
 
 /******************Progress Bar******************/
-#ProgressSaveBar {
+#progressSaveBar {
   position: relative;
   height: 30px;
   top: -2px;
 }
 
-#ProgressSaveBar > .progress {
+#progressSaveBar > .progressBar {
     height: inherit;
     width: 90%;
     border-radius: 0px;
@@ -15,20 +15,10 @@
     display:inline-block;
 }
 
-#ProgressSaveBar > .btn {
-    width: 10%;
-    max-height: 30px;
-    height: 30px;
-    padding: 1px;
-    float: right;
-    font-size: 14px;
-}
-
-#ProgressSec  #pSec {
+.progressBar  .progress-segment {
   margin-left: -18px;
   position: relative;
   left: -5px;
-
 }
 
 
@@ -37,11 +27,14 @@
 #SaveButton {
     width:10%;
     height: 3%;
+    max-height: 30px;
     background-color:#000;
     border-color: #000;
     border-radius: 0px;
     text-align: center;
     padding-bottom:2%;
+    float: right;
+    font-size: 14px;
 }
 
 /******************* Price & Weight Display *****************/

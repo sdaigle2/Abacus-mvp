@@ -1,15 +1,13 @@
-<link href="styles/Abacus.css" rel="stylesheet" />
+<link href="styles/abacus.css" rel="stylesheet" />
 
 <div id="offClickArea" ng-click="closeAllPanels()" ng-show="getCurPanelID() != -1"></div>
 
 <!-- Progress Bar and Save Button-->
-<div id="ProgressSaveBar">
-  <div class="progress">
-    <div id="ProgressSec">
-      <span ng-repeat="item in getCurPages()">
-        <img id="pSec" ng-click="secSwitchClick(item)" data-ng-src="{{getProgBarImage(item)}}" >
-      </span>
-    </div>
+<div id="progressSaveBar">
+  <div class="progressBar">
+    <span ng-repeat="page in getCurPages()">
+      <img class="progress-segment" ng-click="secSwitchClick(page)" data-ng-src="{{getProgBarImage(page)}}" >
+    </span>
   </div>
   <button type="button" id="SaveButton" class="btn btn-primary" data-ng-click="saveDesign()">Save & Review</button>
 </div>
@@ -21,10 +19,8 @@
   </h3>
 </div>
 
+<!-- Main Body of Page -->
 <div class="main">
-
-  <!-- Main Body of Page -->
-
   <!-- CUSTOMIZE: Wheelchair Display and controls -->
   <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
     <img src="images/mainpic.png" width="795" height="607" >
