@@ -17,7 +17,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $sceDelegateProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -38,4 +38,11 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+
+    //Allow Youtube URLs to load
+    $sceDelegateProvider.resourceUrlWhitelist([
+        'self',
+        "https://www.youtube.com/embed/**",
+        "http://www.youtube.com/embed/**"
+    ]);
   });

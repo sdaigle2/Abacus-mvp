@@ -1,12 +1,13 @@
-/******Progress Bar and Save Button******/
-#ProgressSaveBar {
+/*************************************************Top Bar*****************************************/
+
+/******************Progress Bar******************/
+#progressSaveBar {
   position: relative;
   height: 30px;
   top: -2px;
-  width: 100%;
 }
 
-#ProgressSaveBar > .progress {
+#progressSaveBar > .progressBar {
     height: inherit;
     width: 90%;
     border-radius: 0px;
@@ -14,57 +15,29 @@
     display:inline-block;
 }
 
-#ProgressSaveBar > .btn {
-    width: 10%;
-    max-height: 30px;
-    height: 30px;
-    padding: 1px;
-    float: right;
-    font-size: 14px;
-}
-
-#ProgressSec  #pSec {
+.progressBar  .progress-segment {
   margin-left: -18px;
   position: relative;
   left: -5px;
-
 }
 
-.btn .btn-primary{
-  padding: 5px;
-  margin:20px;
-}
+
+/******************Save Button********************/
 
 #SaveButton {
     width:10%;
     height: 3%;
+    max-height: 30px;
     background-color:#000;
     border-color: #000;
     border-radius: 0px;
     text-align: center;
     padding-bottom:2%;
+    float: right;
+    font-size: 14px;
 }
 
-#FullPageContents {
-  width: 1200px;
-  /*overflow-x: scroll;*/
-  margin: 0 auto;
-}
-
-/******Main Picture******/
-.mainpic{
-  display: inline-block;
-  float: left;
-}
-
-.mainpic img {
-  /* height: 600px;*/
-  margin-top: 50px;
-  margin-left: 7%;
-}
-
-
-/****** display weight and price ****/
+/******************* Price & Weight Display *****************/
 #display{
   float: right;
   clear: right;
@@ -72,7 +45,69 @@
 
 }
 
-/******Sidebar******/
+/*************************************************Main*****************************************/
+
+/*************************Main-Custom******************************/
+.main-custom{
+  display: inline-block;
+  float: left;
+}
+
+.main-custom img {
+  /* height: 600px;*/
+  margin-top: 50px;
+  margin-left: 7%;
+}
+
+/*************************Main-Measure******************************/
+.main-measure {
+  width: 850px;
+  margin: 20px;
+  padding-left: 40px;
+  float: left;
+}
+
+.main-measure .main-measure-top{
+  width: inherit;
+  height: 350px;
+  padding-right: 40px;
+}
+
+.main-measure .main-measure-title{
+  width: 240px;
+  float: left;
+}
+
+.main-measure .main-measure-video {
+  display: inline-block;
+  float: right;
+  height: 325px;
+  max-height: 325px;
+  width: 500px;
+  max-width: 500px;
+}
+
+.main-measure .main-measure-bottom {
+  width: inherit;
+  height: 350px;
+  margin: 60px 0px;
+}
+
+.main-measure .main-measure-details {
+  width: 260px;
+  height: 260px;
+  overflow: auto;
+  float: right;
+}
+
+.main-measure .main-measure-gif {
+  height: 260px;
+  width: 400px;
+  border:1px solid black;
+  float: left;
+}
+
+/******************************************************Sidebar*******************************************/
 .nav-tabs.nav-justified > li.active,
 .nav-tabs.nav-justified > li {
   margin-right: 10px;
@@ -124,6 +159,7 @@
   float: right;
   clear: right;
   width: 350px;
+  max-width: 350px;
   margin-right: 20px;
 
 }
@@ -139,37 +175,39 @@
   max-height: 600px;
 }
 
-.sideBar h3 {
+.sideBar-header h3 {
   font-size: 1.6em;
   font-weight: 700;
   letter-spacing: 0.4px;
 }
 
-.sideBar h3 img.leftButton {
+.sideBar-header h3 img.leftButton {
   float: left;
   margin-top: -5px;
   width: 30px;
   height: 30px;
 }
 
-.sideBar h3 img.rightButton {
+.sideBar-header h3 img.rightButton {
   float: right;
   margin-top: -5px;
   width: 30px;
   height: 30px;
 }
 
-.sidebar h3 img:hover {
+.sideBar-header h3 img:hover {
     cursor: pointer;
 }
 
-.sideBar .sideBarTable {
+
+/****************SideBar-Custom********************/
+.sideBar .sideBar-custom {
     overflow-y: auto;
     max-height: 600px;
     height: 100%;
 }
 
-.sideBar .sideBarItem {
+.sideBar-custom-item {
     height: 120px;
     max-height: 120px;
     margin: 5px 0px;
@@ -177,37 +215,37 @@
     border-bottom: solid 1px #bbb;
 }
 
-.sideBar .sideBarItem > td {
+.sideBar-custom-item > td {
     border: none;
 }
 
-.sideBar .sideBarItemLeft {
+.sideBar-custom-item .sideBar-custom-item-left {
   position: relative;
   width: 120px;
 }
 
-.sideBar .sideBarItemLeft .colorOptionsIndicator {
+.sideBar-custom-item-left .colorOptionsIndicator {
   position: absolute;
   top: 10px;
   left: 10px;
   border: none;
 }
 
-.sideBar .sideBarItemLeft .colorOptionsIndicator:hover {
+.sideBar-custom-item-left .colorOptionsIndicator:hover {
     cursor: pointer;
 }
 
-.sideBarItem .sideBarItemLeft img {
+.sideBar-custom-item-left img {
     border-right: 1px solid #A7A9Ac;
     padding-right: 10px;
 }
 
-.sideBarItem .sideBarItemRight {
+.sideBar-custom-item .sideBar-custom-item-right {
     height: 120px;
     padding: 5px 0px;
 }
 
-.sideBarItem .sideBarItemRight .sideBarItem-Name {
+.sideBar-custom-item-right .sideBar-custom-item-name {
   font-size: 16px;
   font-family: "Roboto", sans-serif;
   letter-spacing: 0.4px;
@@ -218,7 +256,7 @@
   overflow-wrap: normal;
 }
 
-.sideBarItem .sideBarItemRight .sideBarItem-Details {
+.sideBar-custom-item-right .sideBar-custom-item-details {
   font-size: 16px;
   font-family: "Roboto", sans-serif;
   letter-spacing: 0.4px;
@@ -227,30 +265,96 @@
   height: 25px;
 }
 
-.sideBarItem .sideBarItem-ButtonRow {
+.sideBar-custom-item-right .sideBar-custom-item-buttonRow {
     height:25px;
 }
 
 
-.sideBarItem .sideBarItem-Button {
+.sideBar-custom-item-button {
     border: 1px solid #A7A9Ac;
     display:inline-block;
     width: 50%;
     margin-right:-5px;
 }
 
-.sideBarItem .sideBarItem-Button:hover {
+.sideBar-custom-item-button:hover {
     background-color: #A7A9Ac;
     cursor: pointer;
 }
 
-.sideBarItem .sideBarItem-Button.selected {
+.sideBar-custom-item-button.selected {
     border: 1px solid #60C2B1;
     background-color: #60C2B1;
     color: #FFFFFF;
 }
 
-/****** Color Panel ******/
+/*****************SideBar-Measure********************/
+
+.sideBar .sideBar-measure {
+    overflow-y: auto;
+    max-height: 600px;
+    height: 100%;
+    max-width:350px;
+}
+
+.sideBar-measure-top {
+  /*height: 240px;*/
+  padding: 5px 20px;
+  background-color: #fec44f;
+}
+
+.sideBar-measure-top .btn-group .dropdown-toggle{
+  height: 25px;
+  line-height: 0.8;
+  margin-right: 7px;
+}
+
+.sideBar-measure-tip {
+  margin: 20px 0;
+  padding: 5px 10px;
+  border: 1px solid white;
+  max-width: 300px;
+}
+
+.sideBar-measure-bottom {
+    padding: 10px 0px;
+}
+
+
+
+/*******************************************Panels*********************************************/
+
+#offClickArea {
+  position: fixed;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  height: 100%;
+}
+
+/**********************Panel Arrow***************************/
+.sideBar .panelArrowShow {
+  opacity: 1;
+}
+
+.sideBar .panelArrowHidden {
+  opacity: 0;
+}
+
+.sideBar .panelArrow {
+  position: absolute;
+  top: 10px;
+  left: 0px;
+  width: 0;
+  height: 0;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+
+  border-left: 15px solid #D6D8D8;
+  transition: 1s;
+}
+
+/*************** Color Panel ************************/
 .sideBar .colorPanelShow {
   left: -140px;
   opacity: 1;
@@ -281,30 +385,17 @@
   margin-bottom: 15px;
 }
 
-
-/******Panel Arrow******/
-.sideBar .panelArrowShow {
-  opacity: 1;
+.sideBar .colorPanel .colorPanelItem:hover {
+  cursor: pointer;
 }
 
-.sideBar .panelArrowHidden {
-  opacity: 0;
+.sideBar .colorPanel .colorPanelItem.active {
+  -webkit-box-shadow: 0px 0px 23px 9px rgba(230,194,16,1);
+  -moz-box-shadow: 0px 0px 23px 9px rgba(230,194,16,1);
+  box-shadow: 0px 0px 23px 9px rgba(230,194,16,1);
 }
 
-.sideBar .panelArrow {
-  position: absolute;
-  top: 10px;
-  left: 0px;
-  width: 0;
-  height: 0;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
-
-  border-left: 15px solid #D6D8D8;
-  transition: 1s;
-}
-
-/******Detail Panel******/
+/****************************Detail Panel*****************************/
 .sideBar .detailPanelShow {
   left: -250px;
   opacity: 1;
@@ -328,85 +419,3 @@
   transition: 1s;
 }
 
-
-
-#offClickArea {
-  position: fixed;
-  z-index: 2;
-  background-color: rgba(0, 0, 0, 0);
-  width: 100%;
-  height: 100%;
-}
-
-/************Measurement part**********/
-.mainVid {
-  width: 790px;
-  margin: 20px;
-  padding-left: 40px;
-  /*display: inline-block;*/
-  float: left;
-}
-
-.mainVid .mainTop{
-  width: inherit;
-  height: 280px;
-  padding-right: 40px;
-}
-
-.mainVid .mainText{
-  width: 240px;
-  /*display: inline-block;*/
-  float: left;
-
-}
-
-.mainVid  iframe {
-  display: inline-block;
-  float: right;
-  border: solid 1px #000000;
-}
-
-.mainVid.mainLow{
-  width: inherit;
-  height: 350px;
-  margin: 60px 0px;
-  /*position: absolute;*/
-  /*bottom: 0px;*/
-}
-
-#videoScript{
-  width: 260px;
-  height: 260px;
-  overflow: auto;
-  float: left;
-}
-
-#mainAni{
-  height: 260px;
-  width: 400px;
-  border:1px solid black;
-  float: right;
-}
-
-#enterBox{
-  width: 800px;
-  height: 240px;
-  padding: 5px 20px;
-  background-color: #fec44f;
-}
-
-.sideBarTable #enterBox .btn-group .dropdown-toggle{
-  height: 25px;
-  line-height: 0.8;
-  margin-right: 7px;
-}
-
-#tipBox{
-  margin: 20px 0;
-  padding: 5px 10px;
-  border: 1px solid white;
-}
-
-#displayPic{
-  padding: 40px 55px;
-}

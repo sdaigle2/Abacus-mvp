@@ -1,4 +1,4 @@
-﻿'use strict';
+﻿﻿'use strict';
 
 /**
  * @ngdoc function
@@ -109,7 +109,6 @@ angular.module('abacuApp')
     $scope.setCurCustomizePage = function (newIndex) { curPage.page[$scope.pageType.CUSTOMIZE] = pages.customizePages[newIndex]; };
     $scope.setCurMeasurePage = function (newIndex) { curPage.page[$scope.pageType.MEASURE] = pages.measurePages[newIndex]; };
 
-
     function getPartData(id) {
         for (var i = 0; i < $scope.frameData.parts.length; i++) {
             var curPart = $scope.frameData.parts[i];
@@ -203,6 +202,38 @@ angular.module('abacuApp')
         }
     };
 
+    /*****************Sidebar Tabs***************/
+    $scope.switchPageType = function (newPageType) {
+        $scope.setCurPageType(newPageType);
+        $scope.getCurPage().visitstatus = visitstatus.CURRENT;
+    };
+
+    /*****************Building CurWheelchair*****/
+
+    $scope.setCurOption = function (newOptionID) {
+        setOptionForPart($scope.getCurPartData().partID, newOptionID);
+    };
+
+    function setOptionForPart(partID, newOptionID) {
+        var part = getWheelchairPart(partID);
+        if (part.optionID !== newOptionID) {
+            part.optionID = newOptionID;
+            var colorOptions = (getOptionData(newOptionID)).colors;
+            part.colorName = (colorOptions != null && colorOptions.length > 0) ? colorOptions[0].name : null;
+        };
+    };
+
+    $scope.setCurOptionColor = function (newColorName) {
+        if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID)
+            setColorForPartOption($scope.getCurWheelchairPart().partID, $scope.getCurWheelchairPart().optionID, newColorName);
+    };
+
+    function setColorForPartOption(partID, optionID, newColorName) {
+        var part = getWheelchairPart(partID);
+        var optionData = getOptionData(optionID);
+        part.colorName = newColorName;
+    };
+
     /*****************Panels*********************/
 
     //Enumerated type for which panel to show for a given panelID
@@ -213,7 +244,7 @@ angular.module('abacuApp')
 
     //Indicates the current panel
     //ID = -1 indicates no panel open
-    $scope.curPanel = {
+    var curPanel = {
         panelID: -1,
         panelType: $scope.panelTypes.COLOR
     };
@@ -222,10 +253,10 @@ angular.module('abacuApp')
     //Closes the panel if id and type match curPanel
     $scope.setPanel = function (id, type) {
         if ($scope.isPanelSelected(id, type))
-            $scope.curPanel.panelID = -1;
+            curPanel.panelID = -1;
         else
-            $scope.curPanel.panelID = id;
-        $scope.curPanel.panelType = type;
+            curPanel.panelID = id;
+        curPanel.panelType = type;
     };
 
     //Closes any open panel
@@ -235,12 +266,20 @@ angular.module('abacuApp')
 
     //Check if the panel with the given id and type is selected
     $scope.isPanelSelected = function (id, type) {
-        return ($scope.curPanel.panelID === id && $scope.curPanel.panelType === type);
+        return (curPanel.panelID === id && curPanel.panelType === type);
     };
 
     //Checks if a panel with the given ID is selected
     $scope.isPanelIDSelected = function (id) {
-        return $scope.curPanel.panelID === id;
+        return curPanel.panelID === id;
+    };
+
+    $scope.getCurPanelID = function () { return curPanel.panelID; };
+
+    /*******************Saving***********************/
+    $scope.saveDesign = function () {
+        alert(JSON.stringify($scope.curWheelchair.parts));
+        alert(JSON.stringify($scope.curWheelchair.measures));
     };
 
   });
@@ -436,22 +475,22 @@ var dummyFrameData = {
             name: "Rear Seat Height",
             desc: "Distance from ground to back corner of seat",
             measureOptions: ["12", "13", "14", "15", "16"],
-            tip: "Important fators to think about when measuring rear seat height are <strong>body stability</strong>> and <b>shoulder strain</b>",
-            videoURL: "https://www.youtube.com/embed/Leekuekq0hs",
-            summary: "This is a container for the script of the video. This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video. This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.",
+            tip: "Important fators to think about when measuring rear seat height are <strong>body stability</strong> and <strong>shoulder strain</strong>",
+            videoURL: "https://www.youtube.com/embed/pcY2bR7MPVo",
             imageURLs: ["", ""],
-            chartURL: ""
+            gifURL: "",
+            details: "Here are some helpful details"
         },
         {
             measureID: 5,
             name: "Wheel Radius",
-            desc: "The <b>radius<\b> of the <b>wheel<\b>",
+            desc: "The <strong>radius</strong> of the <strong>wheel</strong>",
             measureOptions: ["100", "200", "500", "1000", "1E8"],
             tip: "Don't set this to 0 or you'll just get a regular chair",
-            videoURL: "",
-            summary: "This is a container for the script of the video. This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video. This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.This is a container for the script of the video.",
+            videoURL: "https://www.youtube.com/embed/HCp3_jaYOZ4",
             imageURLs: ["", ""],
-            chartURL: ""
+            gifURL: "",
+            details: "This set of details is not helpful in the slightest: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula, erat at sollicitudin gravida, diam lacus maximus sem, non viverra eros nisi et quam. Nulla ornare eleifend mattis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris metus justo, hendrerit id lorem in, rhoncus tincidunt risus. Maecenas consequat mollis ligula ac ornare. Sed laoreet ipsum eget quam ornare sagittis. Suspendisse fermentum ultrices justo eu egestas. Vivamus egestas semper nibh, vitae malesuada turpis lacinia ac. Nam condimentum ornare interdum. Phasellus sed euismod ligula. Vivamus volutpat nulla a diam consequat eleifend. Morbi semper magna at odio ultrices condimentum. Phasellus porttitor dictum pretium."
         }
     ]
 };
