@@ -77,18 +77,21 @@ angular.module('abacuApp')
     };
 
     /*******************Wheelchair Preview***********************/
-    var angle = angleType.FRONTRIGHT
+    var angle = angleType.FRONT;
 
     $scope.getPreviewZIndex = function (part) {
-      return getPartData(part.partID).options.zIndex;
+      var option = getOptionData(part.optionID);
+      return option.zIndex[angle];
     }
 
     $scope.getPreviewImage = function (part) {
-      var option = getPartData(part.partID).options[part.optionID];
+      var option = getOptionData(part.optionID);
+      if (option == null) {return "";}
       if (option.colors != null && option.colors.length > 0) {
-        return ""
+        var color = $scope.getColorByName(part.optionID, part.colorName);
+        return color.image[angle];
       }
-      return option.image[0]
+      return option.image[angle];
     }
 
     /****************Page Functions******************/
@@ -172,6 +175,15 @@ angular.module('abacuApp')
       return null;
     };
 
+    $scope.getColorByName = function(optionID, colorName) {
+      var option = getOptionData(optionID);
+      for (var i=0; i<option.colors.length; i++) {
+        if (option.colors[i].name == colorName) {
+          return option.colors[i]
+        }
+      }
+    }
+
     /****************ProgressBar******************/
       //Called by SideBarHeader left arrow OnClick (works similar to secSwitchClick)
     $scope.secSwitchLeft = function (){
@@ -249,9 +261,10 @@ angular.module('abacuApp')
       part.colorName = newColorName;
     };
 
-    //returns the thumbnail part image for the sidebar
+    //returns the thumbnail part option image for the sidebar
     $scope.getPartThumbImage = function (part) {
-        return getPartData(part.partID).image
+        var option = getOptionData(part.optionID);
+        return option.thumbImage; //TODO: THUMBIMAGE NEEDS TO BE ADDED TO THE JSON FILE
     }
 
     /*****************Panels*********************/

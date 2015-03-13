@@ -23,7 +23,7 @@
 <div class="main">
   <!-- CUSTOMIZE: Wheelchair Display and controls -->
   <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE" style="position:relative;">
-    <img ng-repeat="part in curWheelchair.parts" ng-src="{{getPreviewImage(part)}}" width="795" height="607" style="position: absolute; top: 0px; left: 0px" >
+    <img ng-repeat="part in curWheelchair.parts" ng-src="{{getPreviewImage(part)}}" width="795" height="607" style="position: absolute; top: 0px; left: 0px; z-index: {{getPreviewZIndex(part)}};" >
   </div>
 
   <!-- MEASURE: Video + gif + details -->
