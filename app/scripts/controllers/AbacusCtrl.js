@@ -1,4 +1,4 @@
-﻿﻿'use strict';
+﻿'use strict';
 
 /**
  * @ngdoc function
@@ -332,7 +332,7 @@ var dummyFrameData = {
     parts: [
         {
             partID: 0,
-            name: "Caster-Fork",
+            name: "Frame",
             options: [
                 {
                     optionID: 0,
@@ -340,55 +340,110 @@ var dummyFrameData = {
                     price: 20,
                     weight: 4,
                     desc: "A description",
-                    image: "images/d_panel_1.png",
+                    image: null,
+                    zIndex:[1,2,3,4,5],
                     colors: [
                         {
                             name: "Red",
-                            hex: "#E7331A"
+                            hex: "#E7331A",
+                            image:[
+                              "images/chairPic/Frame1_Back.png",
+                              "images/chairPic/Frame1_BackRight.png",
+                              "images/chairPic/Frame1_Right.png",
+                              "images/chairPic/Frame1_FrontRight.png",
+                              "images/chairPic/Frame1_Front.png",
+                            ]
                         },
                         {
                             name: "Green",
-                            hex: "#2CA635"
+                            hex: "#2CA635",
+                            image:[
+                              "images/chairPic/Frame2_Back.png",
+                              "images/chairPic/Frame2_BackRight.png",
+                              "images/chairPic/Frame2_Right.png",
+                              "images/chairPic/Frame2_FrontRight.png",
+                              "images/chairPic/Frame2_Front.png",
+                            ]
                         },
                         {
                             name: "Blue",
-                            hex: "#075EDA"
+                            hex: "#075EDA",
+                            image:[
+                              "images/chairPic/Frame3_Back.png",
+                              "images/chairPic/Frame3_BackRight.png",
+                              "images/chairPic/Frame3_Right.png",
+                              "images/chairPic/Frame3_FrontRight.png",
+                              "images/chairPic/Frame3_Front.png",
+                            ]
+
                         },
                         {
                             name: "Magenta",
-                            hex: "#FF00FF"
+                            hex: "#FF00FF",
+                            image:[
+                              "images/chairPic/Frame4_Back.png",
+                              "images/chairPic/Frame4_BackRight.png",
+                              "images/chairPic/Frame4_Right.png",
+                              "images/chairPic/Frame4_FrontRight.png",
+                              "images/chairPic/Frame4_Front.png",
+                            ]
+                        },
+                        {
+                            name: "Magenta",
+                            hex: "#FF00FF",
+                            image:[
+                              "images/chairPic/Frame5_Back.png",
+                              "images/chairPic/Frame5_BackRight.png",
+                              "images/chairPic/Frame5_Right.png",
+                              "images/chairPic/Frame5_FrontRight.png",
+                              "images/chairPic/Frame5_Front.png",
+                            ]
+                        },{
+                            name: "Magenta",
+                            hex: "#FF00FF",
+                            image:[
+                              "images/chairPic/Frame6_Back.png",
+                              "images/chairPic/Frame6_BackRight.png",
+                              "images/chairPic/Frame6_Right.png",
+                              "images/chairPic/Frame6_FrontRight.png",
+                              "images/chairPic/Frame6_Front.png",
+                            ]
+                        },
+                        {
+                            name: "Magenta",
+                            hex: "#FF00FF",
+                            image:[
+                              "images/chairPic/Frame7_Back.png",
+                              "images/chairPic/Frame7_BackRight.png",
+                              "images/chairPic/Frame7_Right.png",
+                              "images/chairPic/Frame7_FrontRight.png",
+                              "images/chairPic/Frame7_Front.png",
+                            ]
+                        },
+                        {
+                            name: "Magenta",
+                            hex: "#FF00FF",
+                            image:[
+                              "images/chairPic/Frame8_Back.png",
+                              "images/chairPic/Frame8_BackRight.png",
+                              "images/chairPic/Frame8_Right.png",
+                              "images/chairPic/Frame8_FrontRight.png",
+                              "images/chairPic/Frame8_Front.png",
+                            ]
                         },
                         {
                             name: "Yellow",
-                            hex: "#FFFF00"
-                        },
-                        {
-                            name: "Cyan",
-                            hex: "#00FFFF"
-                        },
-                        {
-                            name: "Black",
-                            hex: "#000000"
+                            hex: "#FFFF00",
+                            image:[
+                              "images/chairPic/Frame9_Back.png",
+                              "images/chairPic/Frame9_BackRight.png",
+                              "images/chairPic/Frame9_Right.png",
+                              "images/chairPic/Frame9_FrontRight.png",
+                              "images/chairPic/Frame9_Front.png",
+                            ]
                         }
+
                     ]
-                },
-                {
-                    optionID: 1,
-                    name: "Tilite Fork Ultra Extreme",
-                    price: 200,
-                    weight: 45,
-                    desc: "An ultra-extreme description.  This description is so long and awesome that no one who has read it has lived to tell the tale.  Something something Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam metus nisi, consectetur ac orci vitae, finibus pretium sem. Quisque ultrices nulla metus, at condimentum risus volutpat eget. Ut in auctor.",
-                    image: "images/d_panel_2.png",
-                  colors: [
-                    {
-                      name: "Red",
-                      hex: "#E7331A"
-                    },
-                    {
-                      name: "Green",
-                      hex: "#2CA635"
-                    }
-                  ]
                 }
             ]
         },
@@ -396,7 +451,7 @@ var dummyFrameData = {
 
         {
             partID: 3,
-            name: "Wheels",
+            name: "Back Rest",
             options: [
                 {
                     optionID: 2,
@@ -404,21 +459,16 @@ var dummyFrameData = {
                     price: 200,
                     weight: 6,
                     desc: "A description",
-                    image: "images/d_panel_1.png",
-                    colors: [
-                        {
-                            name: "Red",
-                            hex: "#FF0000"
-                        },
-                        {
-                            name: "Green",
-                            hex: "#00FF00"
-                        },
-                        {
-                            name: "Blue",
-                            hex: "#0000FF"
-                        }
-                    ]
+                    image: [
+                      "images/chairPic/SeatBack1_Back.png",
+                      "images/chairPic/SeatBack1_BackRight.png",
+                      "images/chairPic/SeatBack1_Right.png",
+                      "images/chairPic/SeatBack1_FrontRight.png",
+                      "images/chairPic/SeatBack1_Front.png",
+                    ],
+                    zIndex:[1,2,3,4,5],
+
+                    colors: null
                 },
                 {
                     optionID: 4,
@@ -426,8 +476,31 @@ var dummyFrameData = {
                     price: 2000,
                     weight: 4,
                     desc: "An ultra-extreme light wheel",
-                    image: "images/d_panel_2.png",
-                    colors: []
+                    image: [
+                      "images/chairPic/SeatBack2_Back.png",
+                      "images/chairPic/SeatBack2_BackRight.png",
+                      "images/chairPic/SeatBack2_Right.png",
+                      "images/chairPic/SeatBack2_FrontRight.png",
+                      "images/chairPic/SeatBack2_Front.png",
+                    ],
+                    zIndex:[1,2,3,4,5],
+                    color:null
+                },
+                {
+                    optionID: 5,
+                    name: "sWheel",
+                    price: 4000,
+                    weight: 4,
+                    desc: "An ultra-extreme light wheel",
+                    image: [
+                      "images/chairPic/SeatBack3_Back.png",
+                      "images/chairPic/SeatBack3_BackRight.png",
+                      "images/chairPic/SeatBack3_Right.png",
+                      "images/chairPic/SeatBack3_FrontRight.png",
+                      "images/chairPic/SeatBack3_Front.png",
+                    ],
+                    zIndex:[1,2,3,4,5],
+                    color:null
                 }
             ]
         },
