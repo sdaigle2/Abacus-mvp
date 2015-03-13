@@ -80,15 +80,15 @@ angular.module('abacuApp')
     var angle = angleType.FRONTRIGHT
 
     $scope.getPreviewZIndex = function (part) {
-      return getPartData(part).options.zIndex
+      return getPartData(part.partID).options.zIndex;
     }
 
     $scope.getPreviewImage = function (part) {
-      var options = getPartData(part).options
-      if (options.colors != null && options.colors.length > 0) {
-        return options.colors.image[angle]
+      var option = getPartData(part.partID).options[part.optionID];
+      if (option.colors != null && option.colors.length > 0) {
+        return ""
       }
-      return options.image
+      return option.image[0]
     }
 
     /****************Page Functions******************/
@@ -251,7 +251,7 @@ angular.module('abacuApp')
 
     //returns the thumbnail part image for the sidebar
     $scope.getPartThumbImage = function (part) {
-        return getPartData(part).image
+        return getPartData(part.partID).image
     }
 
     /*****************Panels*********************/
