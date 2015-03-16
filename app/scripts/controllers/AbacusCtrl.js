@@ -10,6 +10,300 @@
 angular.module('abacuApp')
   .controller('AbacusCtrl', function ($scope) {
 
+    /*********************Unscoped Variables Constants and Enums*******************************/
+
+    //The visitation status for pages/parts
+    var visitstatus = {
+      VISITED: 'visited',
+      UNVISITED: 'unvisited',
+      CURRENT: 'current'
+    };
+
+    //The angle type of the wheelchair image
+    var angleType = {
+      BACK : 0,
+      BACKRIGHT : 1,
+      RIGHT : 2,
+      FRONT : 3,
+      FRONTRIGHT : 4
+
+    };
+
+    //The following data is DUMMY DATA used to test our progressbar data structure
+    //This data should be created on pageLoad based on FrameData
+    var dummyPages = {
+      customizePages: [
+        { index: 0, partID: 0, visitstatus: visitstatus.CURRENT },
+        { index: 1, partID: 3, visitstatus: visitstatus.UNVISITED },
+        { index: 2, partID: 2, visitstatus: visitstatus.UNVISITED },
+        { index: 3, partID: 1, visitstatus: visitstatus.UNVISITED },
+        { index: 4, partID: 4, visitstatus: visitstatus.UNVISITED },
+        { index: 5, partID: 5, visitstatus: visitstatus.UNVISITED },
+        { index: 6, partID: 6, visitstatus: visitstatus.UNVISITED },
+        { index: 7, partID: 7, visitstatus: visitstatus.UNVISITED },
+        { index: 8, partID: 8, visitstatus: visitstatus.UNVISITED },
+        { index: 9, partID: 9, visitstatus: visitstatus.UNVISITED },
+        { index: 10, partID: 10, visitstatus: visitstatus.UNVISITED },
+        { index: 11, partID: 11, visitstatus: visitstatus.UNVISITED }
+      ],
+      measurePages: [
+        { index: 0, measureID: 1, visitstatus: visitstatus.CURRENT },
+        { index: 1, measureID: 5, visitstatus: visitstatus.UNVISITED },
+        { index: 2, measureID: 2, visitstatus: visitstatus.UNVISITED },
+        { index: 3, measureID: 3, visitstatus: visitstatus.UNVISITED },
+        { index: 4, measureID: 4, visitstatus: visitstatus.UNVISITED },
+        { index: 5, measureID: 6, visitstatus: visitstatus.UNVISITED }
+      ]
+    };
+
+    //The following is all dummy data for the sidebar used to test our data structure
+    //This data should be replaced by database data for the final release
+    var dummyFrameData = {
+      frameID: 0,
+      basePrice: 400,
+      baseWeight: 50,
+      name: 'tiArrow Standard',
+      desc: 'The standard frame produced by tiArrow.',
+      image: '',
+      parts: [
+        {
+          partID: 0,
+          name: 'Frame',
+          options: [
+            {
+              optionID: 0,
+              name: 'Tilite Slipstream Single-Sided Fork',
+              price: 20,
+              weight: 4,
+              desc: 'A description',
+              image: null,
+              zIndex:[1,2,3,4,5],
+              colors: [
+                {
+                  name: 'Red',
+                  hex: '#E7331A',
+                  image:[
+                    'images/chairPic/Frame1_Back.png',
+                    'images/chairPic/Frame1_BackRight.png',
+                    'images/chairPic/Frame1_Right.png',
+                    'images/chairPic/Frame1_FrontRight.png',
+                    'images/chairPic/Frame1_Front.png',
+                  ]
+                },
+                {
+                  name: 'Green',
+                  hex: '#2CA635',
+                  image:[
+                    'images/chairPic/Frame2_Back.png',
+                    'images/chairPic/Frame2_BackRight.png',
+                    'images/chairPic/Frame2_Right.png',
+                    'images/chairPic/Frame2_FrontRight.png',
+                    'images/chairPic/Frame2_Front.png',
+                  ]
+                },
+                {
+                  name: 'Blue',
+                  hex: '#075EDA',
+                  image:[
+                    'images/chairPic/Frame3_Back.png',
+                    'images/chairPic/Frame3_BackRight.png',
+                    'images/chairPic/Frame3_Right.png',
+                    'images/chairPic/Frame3_FrontRight.png',
+                    'images/chairPic/Frame3_Front.png',
+                  ]
+
+                },
+                {
+                  name: 'Magenta',
+                  hex: '#FF00FF',
+                  image:[
+                    'images/chairPic/Frame4_Back.png',
+                    'images/chairPic/Frame4_BackRight.png',
+                    'images/chairPic/Frame4_Right.png',
+                    'images/chairPic/Frame4_FrontRight.png',
+                    'images/chairPic/Frame4_Front.png',
+                  ]
+                },
+                {
+                  name: 'Magenta',
+                  hex: '#FF00FF',
+                  image:[
+                    'images/chairPic/Frame5_Back.png',
+                    'images/chairPic/Frame5_BackRight.png',
+                    'images/chairPic/Frame5_Right.png',
+                    'images/chairPic/Frame5_FrontRight.png',
+                    'images/chairPic/Frame5_Front.png',
+                  ]
+                },{
+                  name: 'Magenta',
+                  hex: '#FF00FF',
+                  image:[
+                    'images/chairPic/Frame6_Back.png',
+                    'images/chairPic/Frame6_BackRight.png',
+                    'images/chairPic/Frame6_Right.png',
+                    'images/chairPic/Frame6_FrontRight.png',
+                    'images/chairPic/Frame6_Front.png',
+                  ]
+                },
+                {
+                  name: 'Magenta',
+                  hex: '#FF00FF',
+                  image:[
+                    'images/chairPic/Frame7_Back.png',
+                    'images/chairPic/Frame7_BackRight.png',
+                    'images/chairPic/Frame7_Right.png',
+                    'images/chairPic/Frame7_FrontRight.png',
+                    'images/chairPic/Frame7_Front.png',
+                  ]
+                },
+                {
+                  name: 'Magenta',
+                  hex: '#FF00FF',
+                  image:[
+                    'images/chairPic/Frame8_Back.png',
+                    'images/chairPic/Frame8_BackRight.png',
+                    'images/chairPic/Frame8_Right.png',
+                    'images/chairPic/Frame8_FrontRight.png',
+                    'images/chairPic/Frame8_Front.png',
+                  ]
+                },
+                {
+                  name: 'Yellow',
+                  hex: '#FFFF00',
+                  image:[
+                    'images/chairPic/Frame9_Back.png',
+                    'images/chairPic/Frame9_BackRight.png',
+                    'images/chairPic/Frame9_Right.png',
+                    'images/chairPic/Frame9_FrontRight.png',
+                    'images/chairPic/Frame9_Front.png',
+                  ]
+                }
+
+              ]
+            }
+          ]
+        },
+
+
+        {
+          partID: 3,
+          name: 'Back Rest',
+          options: [
+            {
+              optionID: 2,
+              name: 'Super Ultra Spinning Wheels of Awesomeness Deluxe Alpha 3D',
+              price: 200,
+              weight: 6,
+              desc: 'A description',
+              image: [
+                'images/chairPic/SeatBack1_Back.png',
+                'images/chairPic/SeatBack1_BackRight.png',
+                'images/chairPic/SeatBack1_Right.png',
+                'images/chairPic/SeatBack1_FrontRight.png',
+                'images/chairPic/SeatBack1_Front.png',
+              ],
+              zIndex:[1,2,3,4,5],
+
+              colors: null
+            },
+            {
+              optionID: 4,
+              name: 'sWheel',
+              price: 2000,
+              weight: 4,
+              desc: 'An ultra-extreme light wheel',
+              image: [
+                'images/chairPic/SeatBack2_Back.png',
+                'images/chairPic/SeatBack2_BackRight.png',
+                'images/chairPic/SeatBack2_Right.png',
+                'images/chairPic/SeatBack2_FrontRight.png',
+                'images/chairPic/SeatBack2_Front.png',
+              ],
+              zIndex:[1,2,3,4,5],
+              color:null
+            },
+            {
+              optionID: 5,
+              name: 'sWheel',
+              price: 4000,
+              weight: 4,
+              desc: 'An ultra-extreme light wheel',
+              image: [
+                'images/chairPic/SeatBack3_Back.png',
+                'images/chairPic/SeatBack3_BackRight.png',
+                'images/chairPic/SeatBack3_Right.png',
+                'images/chairPic/SeatBack3_FrontRight.png',
+                'images/chairPic/SeatBack3_Front.png',
+              ],
+              zIndex:[1,2,3,4,5],
+              color:null
+            }
+          ]
+        },
+        {
+          partID: 2,
+          name: 'la la la',
+          options: [
+            {
+              optionID: 6,
+              name: 'lala bom lala bom ',
+              price: 200,
+              weight: 6,
+              desc: 'A description',
+              image: 'images/d_panel_1.png',
+              colors: [
+                {
+                  name: 'Red',
+                  hex: '#FF0000'
+                },
+                {
+                  name: 'Green',
+                  hex: '#00FF00'
+                },
+                {
+                  name: 'Blue',
+                  hex: '#0000FF'
+                }
+              ]
+            },
+            {
+              optionID: 5,
+              name: 'sWheel',
+              price: 2000,
+              weight: 4,
+              desc: 'An ultra-extreme light wheel',
+              image: 'images/d_panel_2.png',
+              colors: []
+            }
+          ]
+        }
+      ],
+      measures: [
+        {
+          measureID: 1,
+          name: 'Rear Seat Height',
+          desc: 'Distance from ground to back corner of seat',
+          measureOptions: ['12', '13', '14', '15', '16'],
+          tip: 'Important fators to think about when measuring rear seat height are <strong>body stability</strong> and <strong>shoulder strain</strong>',
+          videoURL: 'https://www.youtube.com/embed/pcY2bR7MPVo',
+          imageURLs: ['rear-seat-height1.jpg', 'rear-seat-height2.jpg', 'rear-seat-height3.jpg'],
+          gifURL: '',
+          details: 'Here are some helpful details'
+        },
+        {
+          measureID: 5,
+          name: 'Wheel Radius',
+          desc: 'The <strong>radius</strong> of the <strong>wheel</strong>',
+          measureOptions: ['100', '200', '500', '1000', '1E8'],
+          tip: 'Don\'t set this to 0 or you\'ll just get a regular chair',
+          videoURL: 'https://www.youtube.com/embed/HCp3_jaYOZ4',
+          imageURLs: ['rear-seat-height2.jpg', 'rear-seat-height1.jpg'],
+          gifURL: '',
+          details: 'This set of details is not helpful in the slightest: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula, erat at sollicitudin gravida, diam lacus maximus sem, non viverra eros nisi et quam. Nulla ornare eleifend mattis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris metus justo, hendrerit id lorem in, rhoncus tincidunt risus. Maecenas consequat mollis ligula ac ornare. Sed laoreet ipsum eget quam ornare sagittis. Suspendisse fermentum ultrices justo eu egestas. Vivamus egestas semper nibh, vitae malesuada turpis lacinia ac. Nam condimentum ornare interdum. Phasellus sed euismod ligula. Vivamus volutpat nulla a diam consequat eleifend. Morbi semper magna at odio ultrices condimentum. Phasellus porttitor dictum pretium.'
+        }
+      ]
+    };
+
     /***********Variables**************/
     $scope.frameData = dummyFrameData; //DATA PULLED FROM DATABASE
     var pages = dummyPages; //Array representing customization page
@@ -82,22 +376,23 @@ angular.module('abacuApp')
     $scope.getPreviewZIndex = function (part) {
       var option = getOptionData(part.optionID);
       return option.zIndex[angle];
-    }
+    };
 
     $scope.getPreviewImage = function (part) {
       var option = getOptionData(part.optionID);
-      if (option == null) {return "";}
-      if (option.colors != null && option.colors.length > 0) {
+      if (option === null) {return '';}
+      if (option.colors !== null && option.colors.length > 0) {
         var color = $scope.getColorByName(part.optionID, part.colorName);
         return color.image[angle];
       }
       return option.image[angle];
-    }
+    };
 
     /****************Page Functions******************/
     $scope.getCurPages = function () {
-      if (curPage.type === $scope.pageType.CUSTOMIZE)
+      if (curPage.type === $scope.pageType.CUSTOMIZE) {
         return pages.customizePages;
+      }
       return pages.measurePages;
     };
     $scope.getCustomizePages = function () { return pages.customizePages; };
@@ -130,28 +425,31 @@ angular.module('abacuApp')
     function getPartData(id) {
       for (var i = 0; i < $scope.frameData.parts.length; i++) {
         var curPart = $scope.frameData.parts[i];
-        if (curPart.partID === id)
+        if (curPart.partID === id) {
           return curPart;
+        }
       }
       return null;
-    };
+    }
 
     function getWheelchairPart(id) {
       for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
         var curPart = $scope.curWheelchair.parts[i];
-        if (curPart.partID === id)
+        if (curPart.partID === id) {
           return curPart;
+        }
       }
       return null;
-    };
+    }
 
     function getOptionData(id) {
       for (var i = 0; i < $scope.frameData.parts.length; i++) {
         var curPart = $scope.frameData.parts[i];
         for (var j = 0; j < curPart.options.length; j++) {
           var curOption = curPart.options[j];
-          if (curOption.optionID === id)
+          if (curOption.optionID === id) {
             return curOption;
+          }
         }
       }
       return null;
@@ -160,29 +458,31 @@ angular.module('abacuApp')
     function getMeasureData(id) {
       for (var i = 0; i < $scope.frameData.measures.length; i++) {
         var curMeas = $scope.frameData.measures[i];
-        if (curMeas.measureID === id)
+        if (curMeas.measureID === id) {
           return curMeas;
+        }
       }
       return null;
-    };
+    }
 
     function getWheelchairMeasure(id) {
       for (var i = 0; i < $scope.curWheelchair.measures.length; i++) {
         var curMeas = $scope.curWheelchair.measures[i];
-        if (curMeas.measureID === id)
+        if (curMeas.measureID === id) {
           return curMeas;
+        }
       }
       return null;
-    };
+    }
 
     $scope.getColorByName = function(optionID, colorName) {
       var option = getOptionData(optionID);
       for (var i=0; i<option.colors.length; i++) {
-        if (option.colors[i].name == colorName) {
-          return option.colors[i]
+        if (option.colors[i].name === colorName) {
+          return option.colors[i];
         }
       }
-    }
+    };
 
 
     /****************Measure Images****************/
@@ -190,11 +490,11 @@ angular.module('abacuApp')
 
     $scope.resetSelectedMeasureImageIndex = function () {
       $scope.selectedMeasureImageIndex = 0;
-    }
+    };
 
     $scope.setSelectedMeasureImageIndex = function (imageIndex) {
       $scope.selectedMeasureImageIndex = imageIndex;
-    }
+    };
 
     $scope.hasNextSelectedMeasureImageIndex = function () {
       var len = $scope.getCurMeasureData().imageURLS.length;
@@ -202,26 +502,26 @@ angular.module('abacuApp')
         return false;
       }
       return true;
-    }
+    };
 
     $scope.hasPrevSelectedMeasureImageIndex = function () {
       if ($scope.selectedMeasureImageIndex - 1 < 0) {
         return false;
       }
       return true;
-    }
+    };
 
     $scope.setNextSelectedMeasureImageIndex = function () {
       if ($scope.hasNextSelectedMeasureImageIndex()) {
         $scope.selectedMeasureImageIndex += 1;
       }
-    }
+    };
 
     $scope.setPrevSelectedMeasureImageIndex = function () {
       if ($scope.hasPrevSelectedMeasureImageIndex()) {
         $scope.selectedMeasureImageIndex -= 1;
       }
-    }
+    };
 
 
     /****************ProgressBar******************/
@@ -231,8 +531,8 @@ angular.module('abacuApp')
       $scope.setCurPage($scope.getCurPage().index - 1);
       $scope.getCurPage().visitstatus = visitstatus.CURRENT;
       $scope.closeAllPanels();
-      if ($scope.getCurPageType() == $scope.pageType.MEASURE) {
-        $scope.resetSelectedMeasureImageIndex()
+      if ($scope.getCurPageType() === $scope.pageType.MEASURE) {
+        $scope.resetSelectedMeasureImageIndex();
       }
     };
 
@@ -242,8 +542,8 @@ angular.module('abacuApp')
       $scope.setCurPage($scope.getCurPage().index + 1);
       $scope.getCurPage().visitstatus = visitstatus.CURRENT;
       $scope.closeAllPanels();
-      if ($scope.getCurPageType() == $scope.pageType.MEASURE) {
-        $scope.resetSelectedMeasureImageIndex()
+      if ($scope.getCurPageType() === $scope.pageType.MEASURE) {
+        $scope.resetSelectedMeasureImageIndex();
       }
     };
 
@@ -253,28 +553,34 @@ angular.module('abacuApp')
       $scope.setCurPage(page.index); //set new current page
       $scope.getCurPage().visitstatus = visitstatus.CURRENT; //set new current page to visit status : current
       $scope.closeAllPanels(); //close any panels we may have opened
-      if ($scope.getCurPageType() == $scope.pageType.MEASURE) { //resets the selected image in the measure panel
-        $scope.resetSelectedMeasureImageIndex()
+      if ($scope.getCurPageType() === $scope.pageType.MEASURE) { //resets the selected image in the measure panel
+        $scope.resetSelectedMeasureImageIndex();
       }
     };
 
     //Returns the proper image for the progress bar segment based on visit status
     $scope.getProgBarImage = function (page) {
       if (page.index === 0) {
-        if (page.visitstatus === visitstatus.UNVISITED)
+        if (page.visitstatus === visitstatus.UNVISITED) {
           return ('images/progress_bar/progress_bar_front_link.png');
-        if (page.visitstatus === visitstatus.VISITED)
+        }
+        if (page.visitstatus === visitstatus.VISITED) {
           return ('images/progress_bar/progress_bar_front_visited.png');
-        if (page.visitstatus === visitstatus.CURRENT)
+        }
+        if (page.visitstatus === visitstatus.CURRENT) {
           return ('images/progress_bar/progress_bar_front_clicked.png');
+        }
       }
       else {
-        if (page.visitstatus === visitstatus.UNVISITED)
+        if (page.visitstatus === visitstatus.UNVISITED) {
           return ('images/progress_bar/progress_bar_link.png');
-        if (page.visitstatus === visitstatus.VISITED)
+        }
+        if (page.visitstatus === visitstatus.VISITED) {
           return ('images/progress_bar/progress_bar_visited.png');
-        if (page.visitstatus === visitstatus.CURRENT)
+        }
+        if (page.visitstatus === visitstatus.CURRENT){
           return ('images/progress_bar/progress_bar_clicked.png');
+        }
       }
     };
 
@@ -295,26 +601,27 @@ angular.module('abacuApp')
       if (part.optionID !== newOptionID) {
         part.optionID = newOptionID;
         var colorOptions = (getOptionData(newOptionID)).colors;
-        part.colorName = (colorOptions != null && colorOptions.length > 0) ? colorOptions[0].name : null;
-      };
-    };
+        part.colorName = (colorOptions !== null && colorOptions.length > 0) ? colorOptions[0].name : null;
+      }
+    }
 
     $scope.setCurOptionColor = function (newColorName) {
-      if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID)
+      if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
         setColorForPartOption($scope.getCurWheelchairPart().partID, $scope.getCurWheelchairPart().optionID, newColorName);
+      }
     };
 
     function setColorForPartOption(partID, optionID, newColorName) {
       var part = getWheelchairPart(partID);
-      var optionData = getOptionData(optionID);
+      //var optionData = getOptionData(optionID);
       part.colorName = newColorName;
-    };
+    }
 
     //returns the thumbnail part option image for the sidebar
     $scope.getPartThumbImage = function (part) {
-        var option = getOptionData(part.optionID);
-        return option.thumbImage; //TODO: THUMBIMAGE NEEDS TO BE ADDED TO THE JSON FILE
-    }
+      var option = getOptionData(part.optionID);
+      return option.thumbImage; //TODO: THUMBIMAGE NEEDS TO BE ADDED TO THE JSON FILE
+    };
 
     /*****************Panels*********************/
 
@@ -334,10 +641,12 @@ angular.module('abacuApp')
     //Sets curPanel to the chosen panel
     //Closes the panel if id and type match curPanel
     $scope.setPanel = function (id, type) {
-      if ($scope.isPanelSelected(id, type))
+      if ($scope.isPanelSelected(id, type)) {
         curPanel.panelID = -1;
-      else
+      }
+      else {
         curPanel.panelID = id;
+      }
       curPanel.panelType = type;
     };
 
@@ -360,302 +669,8 @@ angular.module('abacuApp')
 
     /*******************Saving***********************/
     $scope.saveDesign = function () {
-      alert(JSON.stringify($scope.curWheelchair.parts));
-      alert(JSON.stringify($scope.curWheelchair.measures));
+      window.alert(JSON.stringify($scope.curWheelchair.parts));
+      window.alert(JSON.stringify($scope.curWheelchair.measures));
     };
 
   });
-
-/*********************Unscoped Variables Constants and Enums*******************************/
-
-//The visitation status for pages/parts
-var visitstatus = {
-  VISITED: 'visited',
-  UNVISITED: 'unvisited',
-  CURRENT: 'current'
-};
-
-//The angle type of the wheelchair image
-var angleType = {
-  BACK : 0,
-  BACKRIGHT : 1,
-  RIGHT : 2,
-  FRONT : 3,
-  FRONTRIGHT : 4
-
-}
-
-//The following data is DUMMY DATA used to test our progressbar data structure
-//This data should be created on pageLoad based on FrameData
-var dummyPages = {
-  customizePages: [
-    { index: 0, partID: 0, visitstatus: visitstatus.CURRENT },
-    { index: 1, partID: 3, visitstatus: visitstatus.UNVISITED },
-    { index: 2, partID: 2, visitstatus: visitstatus.UNVISITED },
-    { index: 3, partID: 1, visitstatus: visitstatus.UNVISITED },
-    { index: 4, partID: 4, visitstatus: visitstatus.UNVISITED },
-    { index: 5, partID: 5, visitstatus: visitstatus.UNVISITED },
-    { index: 6, partID: 6, visitstatus: visitstatus.UNVISITED },
-    { index: 7, partID: 7, visitstatus: visitstatus.UNVISITED },
-    { index: 8, partID: 8, visitstatus: visitstatus.UNVISITED },
-    { index: 9, partID: 9, visitstatus: visitstatus.UNVISITED },
-    { index: 10, partID: 10, visitstatus: visitstatus.UNVISITED },
-    { index: 11, partID: 11, visitstatus: visitstatus.UNVISITED }
-  ],
-  measurePages: [
-    { index: 0, measureID: 1, visitstatus: visitstatus.CURRENT },
-    { index: 1, measureID: 5, visitstatus: visitstatus.UNVISITED },
-    { index: 2, measureID: 2, visitstatus: visitstatus.UNVISITED },
-    { index: 3, measureID: 3, visitstatus: visitstatus.UNVISITED },
-    { index: 4, measureID: 4, visitstatus: visitstatus.UNVISITED },
-    { index: 5, measureID: 6, visitstatus: visitstatus.UNVISITED }
-  ]
-};
-
-//The following is all dummy data for the sidebar used to test our data structure
-//This data should be replaced by database data for the final release
-var dummyFrameData = {
-  frameID: 0,
-  basePrice: 400,
-  baseWeight: 50,
-  name: "tiArrow Standard",
-  desc: "The standard frame produced by tiArrow.",
-  image: "",
-  parts: [
-    {
-      partID: 0,
-      name: "Frame",
-      options: [
-        {
-          optionID: 0,
-          name: "Tilite Slipstream Single-Sided Fork",
-          price: 20,
-          weight: 4,
-          desc: "A description",
-          image: null,
-          zIndex:[1,2,3,4,5],
-          colors: [
-            {
-              name: "Red",
-              hex: "#E7331A",
-              image:[
-                "images/chairPic/Frame1_Back.png",
-                "images/chairPic/Frame1_BackRight.png",
-                "images/chairPic/Frame1_Right.png",
-                "images/chairPic/Frame1_FrontRight.png",
-                "images/chairPic/Frame1_Front.png",
-              ]
-            },
-            {
-              name: "Green",
-              hex: "#2CA635",
-              image:[
-                "images/chairPic/Frame2_Back.png",
-                "images/chairPic/Frame2_BackRight.png",
-                "images/chairPic/Frame2_Right.png",
-                "images/chairPic/Frame2_FrontRight.png",
-                "images/chairPic/Frame2_Front.png",
-              ]
-            },
-            {
-              name: "Blue",
-              hex: "#075EDA",
-              image:[
-                "images/chairPic/Frame3_Back.png",
-                "images/chairPic/Frame3_BackRight.png",
-                "images/chairPic/Frame3_Right.png",
-                "images/chairPic/Frame3_FrontRight.png",
-                "images/chairPic/Frame3_Front.png",
-              ]
-
-            },
-            {
-              name: "Magenta",
-              hex: "#FF00FF",
-              image:[
-                "images/chairPic/Frame4_Back.png",
-                "images/chairPic/Frame4_BackRight.png",
-                "images/chairPic/Frame4_Right.png",
-                "images/chairPic/Frame4_FrontRight.png",
-                "images/chairPic/Frame4_Front.png",
-              ]
-            },
-            {
-              name: "Magenta",
-              hex: "#FF00FF",
-              image:[
-                "images/chairPic/Frame5_Back.png",
-                "images/chairPic/Frame5_BackRight.png",
-                "images/chairPic/Frame5_Right.png",
-                "images/chairPic/Frame5_FrontRight.png",
-                "images/chairPic/Frame5_Front.png",
-              ]
-            },{
-              name: "Magenta",
-              hex: "#FF00FF",
-              image:[
-                "images/chairPic/Frame6_Back.png",
-                "images/chairPic/Frame6_BackRight.png",
-                "images/chairPic/Frame6_Right.png",
-                "images/chairPic/Frame6_FrontRight.png",
-                "images/chairPic/Frame6_Front.png",
-              ]
-            },
-            {
-              name: "Magenta",
-              hex: "#FF00FF",
-              image:[
-                "images/chairPic/Frame7_Back.png",
-                "images/chairPic/Frame7_BackRight.png",
-                "images/chairPic/Frame7_Right.png",
-                "images/chairPic/Frame7_FrontRight.png",
-                "images/chairPic/Frame7_Front.png",
-              ]
-            },
-            {
-              name: "Magenta",
-              hex: "#FF00FF",
-              image:[
-                "images/chairPic/Frame8_Back.png",
-                "images/chairPic/Frame8_BackRight.png",
-                "images/chairPic/Frame8_Right.png",
-                "images/chairPic/Frame8_FrontRight.png",
-                "images/chairPic/Frame8_Front.png",
-              ]
-            },
-            {
-              name: "Yellow",
-              hex: "#FFFF00",
-              image:[
-                "images/chairPic/Frame9_Back.png",
-                "images/chairPic/Frame9_BackRight.png",
-                "images/chairPic/Frame9_Right.png",
-                "images/chairPic/Frame9_FrontRight.png",
-                "images/chairPic/Frame9_Front.png",
-              ]
-            }
-
-          ]
-        }
-      ]
-    },
-
-
-    {
-      partID: 3,
-      name: "Back Rest",
-      options: [
-        {
-          optionID: 2,
-          name: "Super Ultra Spinning Wheels of Awesomeness Deluxe Alpha 3D",
-          price: 200,
-          weight: 6,
-          desc: "A description",
-          image: [
-            "images/chairPic/SeatBack1_Back.png",
-            "images/chairPic/SeatBack1_BackRight.png",
-            "images/chairPic/SeatBack1_Right.png",
-            "images/chairPic/SeatBack1_FrontRight.png",
-            "images/chairPic/SeatBack1_Front.png",
-          ],
-          zIndex:[1,2,3,4,5],
-
-          colors: null
-        },
-        {
-          optionID: 4,
-          name: "sWheel",
-          price: 2000,
-          weight: 4,
-          desc: "An ultra-extreme light wheel",
-          image: [
-            "images/chairPic/SeatBack2_Back.png",
-            "images/chairPic/SeatBack2_BackRight.png",
-            "images/chairPic/SeatBack2_Right.png",
-            "images/chairPic/SeatBack2_FrontRight.png",
-            "images/chairPic/SeatBack2_Front.png",
-          ],
-          zIndex:[1,2,3,4,5],
-          color:null
-        },
-        {
-          optionID: 5,
-          name: "sWheel",
-          price: 4000,
-          weight: 4,
-          desc: "An ultra-extreme light wheel",
-          image: [
-            "images/chairPic/SeatBack3_Back.png",
-            "images/chairPic/SeatBack3_BackRight.png",
-            "images/chairPic/SeatBack3_Right.png",
-            "images/chairPic/SeatBack3_FrontRight.png",
-            "images/chairPic/SeatBack3_Front.png",
-          ],
-          zIndex:[1,2,3,4,5],
-          color:null
-        }
-      ]
-    },
-    {
-      partID: 2,
-      name: "la la la",
-      options: [
-        {
-          optionID: 6,
-          name: "lala bom lala bom ",
-          price: 200,
-          weight: 6,
-          desc: "A description",
-          image: "images/d_panel_1.png",
-          colors: [
-            {
-              name: "Red",
-              hex: "#FF0000"
-            },
-            {
-              name: "Green",
-              hex: "#00FF00"
-            },
-            {
-              name: "Blue",
-              hex: "#0000FF"
-            }
-          ]
-        },
-        {
-          optionID: 5,
-          name: "sWheel",
-          price: 2000,
-          weight: 4,
-          desc: "An ultra-extreme light wheel",
-          image: "images/d_panel_2.png",
-          colors: []
-        }
-      ]
-    }
-  ],
-  measures: [
-    {
-      measureID: 1,
-      name: "Rear Seat Height",
-      desc: "Distance from ground to back corner of seat",
-      measureOptions: ["12", "13", "14", "15", "16"],
-      tip: "Important fators to think about when measuring rear seat height are <strong>body stability</strong> and <strong>shoulder strain</strong>",
-      videoURL: "https://www.youtube.com/embed/pcY2bR7MPVo",
-      imageURLs: ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
-      gifURL: "",
-      details: "Here are some helpful details"
-    },
-    {
-      measureID: 5,
-      name: "Wheel Radius",
-      desc: "The <strong>radius</strong> of the <strong>wheel</strong>",
-      measureOptions: ["100", "200", "500", "1000", "1E8"],
-      tip: "Don't set this to 0 or you'll just get a regular chair",
-      videoURL: "https://www.youtube.com/embed/HCp3_jaYOZ4",
-      imageURLs: ["rear-seat-height2.jpg", "rear-seat-height1.jpg"],
-      gifURL: "",
-      details: "This set of details is not helpful in the slightest: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula, erat at sollicitudin gravida, diam lacus maximus sem, non viverra eros nisi et quam. Nulla ornare eleifend mattis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris metus justo, hendrerit id lorem in, rhoncus tincidunt risus. Maecenas consequat mollis ligula ac ornare. Sed laoreet ipsum eget quam ornare sagittis. Suspendisse fermentum ultrices justo eu egestas. Vivamus egestas semper nibh, vitae malesuada turpis lacinia ac. Nam condimentum ornare interdum. Phasellus sed euismod ligula. Vivamus volutpat nulla a diam consequat eleifend. Morbi semper magna at odio ultrices condimentum. Phasellus porttitor dictum pretium."
-    }
-  ]
-};

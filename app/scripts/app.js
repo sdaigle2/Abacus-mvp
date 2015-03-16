@@ -42,7 +42,7 @@ angular
     //Allow Youtube URLs to load
     $sceDelegateProvider.resourceUrlWhitelist([
         'self',
-        "https://www.youtube.com/embed/**",
-        "http://www.youtube.com/embed/**"
+        'https://www.youtube.com/embed/**',
+        'http://www.youtube.com/embed/**'
     ]);
   });

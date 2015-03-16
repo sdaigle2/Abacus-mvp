@@ -9,5 +9,8 @@
  */
 angular.module('abacuApp')
   .controller('AccountCtrl', function ($scope) {
-      
+    //defined to stop jsHint from whining
+    $scope.nothing = function () {
+
+    };
   });

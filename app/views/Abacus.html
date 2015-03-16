@@ -150,6 +150,12 @@
           </div>
         </div>
         <div class="sideBar-measure-bottom">
+          <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
+               data-ng-click="setPrevSelectedMeasureImageIndex()"
+               data-ng-show="hasPrevSelectedMeasureImageIndex()"/>
+          <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
+               data-ng-click="setNextSelectedMeasureImageIndex()"
+               data-ng-show="hasNextSelectedMeasureImageIndex()"/>
           <img ng-show="selectedMeasureImageIndex == $index" ng-repeat="image in getCurMeasureData().imageURLs" ng-src="images/measure/{{image}}" width="350" height="340">
           <div class="dots">
             <i ng-repeat="image in getCurMeasureData().imageURLs"

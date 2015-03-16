@@ -340,6 +340,17 @@
 
 .sideBar-measure-bottom {
   background-color: #FFF;
+  position: relative;
+}
+.sideBar-measure-bottom .leftButton {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.sideBar-measure-bottom .rightButton {
+  position: absolute;
+  top: 0px;
+  right: 0px;
 }
 
 .sideBar-measure-bottom .dots {
