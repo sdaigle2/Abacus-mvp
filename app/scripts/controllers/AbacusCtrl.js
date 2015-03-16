@@ -497,7 +497,7 @@ angular.module('abacuApp')
     };
 
     $scope.hasNextSelectedMeasureImageIndex = function () {
-      var len = $scope.getCurMeasureData().imageURLS.length;
+      var len = $scope.getCurMeasureData().imageURLs.length;
       if ($scope.selectedMeasureImageIndex + 1 >= len) {
         return false;
       }

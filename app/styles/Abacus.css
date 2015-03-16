@@ -344,13 +344,15 @@
 }
 .sideBar-measure-bottom .leftButton {
   position: absolute;
-  top: 0px;
+  top: 20px;
   left: 0px;
+  cursor: pointer;
 }
 .sideBar-measure-bottom .rightButton {
   position: absolute;
-  top: 0px;
+  top: 20px;
   right: 0px;
+  cursor: pointer;
 }
 
 .sideBar-measure-bottom .dots {
