@@ -3,12 +3,20 @@ body {
   padding-top: 0px;
   padding-bottom: 20px;
   line-height: 0;
-
-  background-image: url("../images/AbacusBG.png");
-  background-repeat: repeat-x;
+  background-color: #FFF;
 
   font-family: 'PT Sans', sans-serif;
   /*font-family: 'Roboto', sans-serif;*/
+}
+
+#backgrounder {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  height: 475px;
+  width: 100%;
+  z-index: -500;
+  background-color: #EAEAEA;
 }
 
 

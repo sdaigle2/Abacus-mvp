@@ -1,3 +1,4 @@
+
 /*************************************************Top Bar*****************************************/
 
 /******************Progress Bar******************/
@@ -314,10 +315,25 @@
   padding: 5px 10px;
   border: 1px solid white;
   max-width: 300px;
+  min-height: 130px;
 }
 
 .sideBar-measure-bottom {
-    padding: 10px 0px;
+  background-color: #FFF;
+}
+
+.sideBar-measure-bottom .dots {
+  width: 100%;
+  text-align: center;
+}
+.sideBar-measure-bottom .dots i {
+  padding: 0px 2px;
+  cursor: pointer;
+  color: #808285;
+}
+.sideBar-measure-bottom .dots i:hover {
+  color: #000;
+  transition: .5s;
 }
 
 

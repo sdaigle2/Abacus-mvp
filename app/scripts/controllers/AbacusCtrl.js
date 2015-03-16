@@ -184,6 +184,46 @@ angular.module('abacuApp')
       }
     }
 
+
+    /****************Measure Images****************/
+    $scope.selectedMeasureImageIndex = 0;
+
+    $scope.resetSelectedMeasureImageIndex = function () {
+      $scope.selectedMeasureImageIndex = 0;
+    }
+
+    $scope.setSelectedMeasureImageIndex = function (imageIndex) {
+      $scope.selectedMeasureImageIndex = imageIndex;
+    }
+
+    $scope.hasNextSelectedMeasureImageIndex = function () {
+      var len = $scope.getCurMeasureData().imageURLS.length;
+      if ($scope.selectedMeasureImageIndex + 1 >= len) {
+        return false;
+      }
+      return true;
+    }
+
+    $scope.hasPrevSelectedMeasureImageIndex = function () {
+      if ($scope.selectedMeasureImageIndex - 1 < 0) {
+        return false;
+      }
+      return true;
+    }
+
+    $scope.setNextSelectedMeasureImageIndex = function () {
+      if ($scope.hasNextSelectedMeasureImageIndex()) {
+        $scope.selectedMeasureImageIndex += 1;
+      }
+    }
+
+    $scope.setPrevSelectedMeasureImageIndex = function () {
+      if ($scope.hasPrevSelectedMeasureImageIndex()) {
+        $scope.selectedMeasureImageIndex -= 1;
+      }
+    }
+
+
     /****************ProgressBar******************/
       //Called by SideBarHeader left arrow OnClick (works similar to secSwitchClick)
     $scope.secSwitchLeft = function (){
@@ -191,6 +231,9 @@ angular.module('abacuApp')
       $scope.setCurPage($scope.getCurPage().index - 1);
       $scope.getCurPage().visitstatus = visitstatus.CURRENT;
       $scope.closeAllPanels();
+      if ($scope.getCurPageType() == $scope.pageType.MEASURE) {
+        $scope.resetSelectedMeasureImageIndex()
+      }
     };
 
     //Called by SideBarHeader right arrow OnClick (works similar to secSwitchClick)
@@ -199,6 +242,9 @@ angular.module('abacuApp')
       $scope.setCurPage($scope.getCurPage().index + 1);
       $scope.getCurPage().visitstatus = visitstatus.CURRENT;
       $scope.closeAllPanels();
+      if ($scope.getCurPageType() == $scope.pageType.MEASURE) {
+        $scope.resetSelectedMeasureImageIndex()
+      }
     };
 
     //Called by progressbar section OnClick
@@ -207,6 +253,9 @@ angular.module('abacuApp')
       $scope.setCurPage(page.index); //set new current page
       $scope.getCurPage().visitstatus = visitstatus.CURRENT; //set new current page to visit status : current
       $scope.closeAllPanels(); //close any panels we may have opened
+      if ($scope.getCurPageType() == $scope.pageType.MEASURE) { //resets the selected image in the measure panel
+        $scope.resetSelectedMeasureImageIndex()
+      }
     };
 
     //Returns the proper image for the progress bar segment based on visit status
@@ -593,7 +642,7 @@ var dummyFrameData = {
       measureOptions: ["12", "13", "14", "15", "16"],
       tip: "Important fators to think about when measuring rear seat height are <strong>body stability</strong> and <strong>shoulder strain</strong>",
       videoURL: "https://www.youtube.com/embed/pcY2bR7MPVo",
-      imageURLs: ["", ""],
+      imageURLs: ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
       gifURL: "",
       details: "Here are some helpful details"
     },
@@ -604,7 +653,7 @@ var dummyFrameData = {
       measureOptions: ["100", "200", "500", "1000", "1E8"],
       tip: "Don't set this to 0 or you'll just get a regular chair",
       videoURL: "https://www.youtube.com/embed/HCp3_jaYOZ4",
-      imageURLs: ["", ""],
+      imageURLs: ["rear-seat-height2.jpg", "rear-seat-height1.jpg"],
       gifURL: "",
       details: "This set of details is not helpful in the slightest: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula, erat at sollicitudin gravida, diam lacus maximus sem, non viverra eros nisi et quam. Nulla ornare eleifend mattis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris metus justo, hendrerit id lorem in, rhoncus tincidunt risus. Maecenas consequat mollis ligula ac ornare. Sed laoreet ipsum eget quam ornare sagittis. Suspendisse fermentum ultrices justo eu egestas. Vivamus egestas semper nibh, vitae malesuada turpis lacinia ac. Nam condimentum ornare interdum. Phasellus sed euismod ligula. Vivamus volutpat nulla a diam consequat eleifend. Morbi semper magna at odio ultrices condimentum. Phasellus porttitor dictum pretium."
     }
