@@ -77,6 +77,26 @@
 .main-measure .main-measure-title{
   width: 240px;
   float: left;
+  text-align: right;
+}
+.main-measure .main-measure-title h1{
+  clear: right;
+  float: right;
+  text-transform: uppercase;
+}
+.main-measure .main-measure-title h4{
+  clear: right;
+  float: right;
+  line-height: 1.2;
+}
+.main-measure .main-measure-title .divider {
+  width: 30%;
+  clear: right;
+  float: right;
+  height: 1px;
+  background-color: #000;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .main-measure .main-measure-video {
