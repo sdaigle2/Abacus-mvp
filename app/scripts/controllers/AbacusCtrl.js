@@ -1,4 +1,6 @@
-﻿'use strict';
+﻿// jshint unused:false
+/* globals frameDataFromDB, $ */
+'use strict';
 
 /**
  * @ngdoc function
@@ -513,6 +515,28 @@ angular.module('abacuApp')
     $scope.saveDesign = function () {
       window.alert(JSON.stringify($scope.curWheelchair.parts));
       window.alert(JSON.stringify($scope.curWheelchair.measures));
+    };
+
+    /*****************General Use Functions*********************/
+
+      //trims a string with an ellipsis if it is longer than len
+    $scope.ellipsisFormat = function(str, len) {
+      if (str.length > len) {
+        return str.substring(0,len) + '...';
+      }
+      else {
+        return str;
+      }
+    };
+
+    //returns the full string for the title, but only if necessary   ( similar to ellipsisFormat() )
+    $scope.titleForEllipsis = function(str, len) {
+      if (str.length > len) {
+        return str
+      }
+      else {
+        return '';
+      }
     };
 
   });

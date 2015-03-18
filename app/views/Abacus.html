@@ -91,7 +91,7 @@
               <img data-ng-src="{{option.thumbnailURL}}" height="100" width="100">
             </td>
             <td class="sideBar-custom-item-right">
-              <h4 class="sideBar-custom-item-name"> {{option.name}}</h4>
+              <h4 class="sideBar-custom-item-name" title="{{titleForEllipsis(option.name, 45)}}"> {{ellipsisFormat(option.name, 45)}}</h4>
               <h4 class="sideBar-custom-item-details">
                 <strong>${{option.price}} | {{option.weight}}lbs</strong>
               </h4>

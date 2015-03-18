@@ -1,3 +1,5 @@
+/* globals $ */
+'use strict';
 
 /*
   *** dbLoader.js ***
@@ -6,11 +8,11 @@
 */
 var frameDataFromDB;
 
-$.getJSON("data/frameData.json")
+$.getJSON('data/frameData.json')
   .done(function( json ) {
     frameDataFromDB = json;
   })
   .fail(function( jqxhr, textStatus, error ) {
-    var err = textStatus + ", " + error;
-    console.log( "Request Failed: " + err );
+    var err = textStatus + ', ' + error;
+    console.log( 'Request Failed: ' + err );
   });
