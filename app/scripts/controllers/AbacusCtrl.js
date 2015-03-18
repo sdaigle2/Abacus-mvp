@@ -12,6 +12,8 @@
 angular.module('abacuApp')
   .controller('AbacusCtrl', function ($scope) {
 
+
+
     /*********************Unscoped Variables Constants and Enums*******************************/
 
     //The visitation status for pages/parts
@@ -68,27 +70,28 @@ angular.module('abacuApp')
     function curWheelChairGenerator (){
       for (var i = 0; i < $scope.frameData.parts.length; i++ ){
         var page = {index:i, partID: $scope.frameData.parts[i].partID, visitstatus:visitstatus.UNVISITED};
-        dummyPages.customizePgaes.push(page);
+        dummyPages.customizePages.push(page);
       }
 
       for (var j = 0; j < $scope.frameData.measures.length; j++){
         var page1 = {index:j, partID: $scope.frameData.measures[j].measureID, visitstatus:visitstatus.UNVISITED};
         dummyPages.measurePages.push(page1);
       }
-      pages.customizePgaes[0].visitstatus = visitstatus.CURRENT;
-      pages.measurePages[0].visitstatus = visitstatus.CURRENT;
+      dummyPages.customizePages[0].visitstatus = visitstatus.CURRENT;
+      dummyPages.measurePages[0].visitstatus = visitstatus.CURRENT;
 
 
     }
 
 
+    $scope.frameData = frameDataFromDB; // all of our data about the frame (from dbLoad.js)
 
     curWheelChairGenerator();
     console.log(JSON.stringify(dummyPages));
     /***********Variables**************/
 
 
-    $scope.frameData = frameDataFromDB; // all of our data about the frame (from dbLoad.js)
+
     var pages = dummyPages; //Array representing customization page
 
     $scope.pageType = {
