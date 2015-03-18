@@ -23,7 +23,10 @@
 <div class="main">
   <!-- CUSTOMIZE: Wheelchair Display and controls -->
   <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE" style="position:relative;">
-    <img ng-repeat="part in curWheelchair.parts" ng-src="{{getPreviewImage(part)}}" width="795" height="607" style="position: absolute; top: 0px; left: 0px; z-index: {{getPreviewZIndex(part)}};" >
+    <img class="main-custom-wheelchairDisplay"
+         ng-repeat="imgURL in getCurWheelchairImages()" 
+         ng-src="{{imgURL.url}}" 
+         ng-style="{'z-index': $index }" />
   </div>
 
   <!-- MEASURE: Video + gif + details -->
@@ -85,7 +88,7 @@
               <img class="colorOptionsIndicator" ng-show="option.colors"
                    src="images/icons/color_option.png" alt="See color options"
                    ng-click="setPanel(option.optionID, panelTypes.COLOR);" />
-              <img data-ng-src="{{option.image}}" height="100">
+              <img data-ng-src="{{option.thumbnailURL}}" height="100">
             </td>
             <td class="sideBar-custom-item-right">
               <h4 class="sideBar-custom-item-name"> {{option.name}}</h4>
@@ -101,16 +104,16 @@
                      ng-click="setCurOption(option.optionID);">Add</div>
               </div>
             </td>
-            <td class="colorPanel" ng-class="{ 'colorPanelHidden': ! isPanelSelected(option.optionID, panelTypes.COLOR) , 'colorPanelShow': isPanelSelected(option.optionID, panelTypes.COLOR)}">
+            <td class="panel colorPanel" ng-class="{ 'colorPanelHidden': ! isPanelSelected(option.optionID, panelTypes.COLOR) , 'colorPanelShow': isPanelSelected(option.optionID, panelTypes.COLOR)}">
               <div data-ng-repeat="color in option.colors" class="colorPanelItem"
-                   data-ng-class="{'active': (color.name === getCurWheelchairPart().colorName) && (getCurWheelchairPart().optionID === getCurPanelID())}"
-                   data-ng-style="{'background-color': color.hex, 'height': (300 / option.colors.length), 'max-height':90}"
-                   data-ng-click="setCurOptionColor(color.name)">
+                   data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
+                   data-ng-style="{'background-color': color.hex, 'height': (250 / option.colors.length), 'max-height':90}"
+                   data-ng-click="setCurOptionColor(color.colorID)">
               </div>
             </td>
-            <td class="detailPanel" ng-class="{ 'detailPanelHidden': ! isPanelSelected(option.optionID, panelTypes.DETAIL) , 'detailPanelShow': isPanelSelected(option.optionID, panelTypes.DETAIL)}">
+            <td class="panel detailPanel" ng-class="{ 'detailPanelHidden': ! isPanelSelected(option.optionID, panelTypes.DETAIL) , 'detailPanelShow': isPanelSelected(option.optionID, panelTypes.DETAIL)}">
               <div class="text-center">
-                <img data-ng-src="{{option.image}}" height="200" width="200" />
+                <img data-ng-src="{{option.thumbnailURL}}" height="200" width="200" />
                 <h4><strong>{{option.name}}</strong></h4>
                 <h4>${{option.price}} | {{option.weight}}lbs</h4>
                 <div class="sideBar-custom-item-button text-center"
@@ -151,11 +154,9 @@
         </div>
         <div class="sideBar-measure-bottom">
           <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
-               data-ng-click="setPrevSelectedMeasureImageIndex()"
-               data-ng-show="hasPrevSelectedMeasureImageIndex()"/>
+               data-ng-click="setPrevSelectedMeasureImageIndex()"/>
           <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
-               data-ng-click="setNextSelectedMeasureImageIndex()"
-               data-ng-show="hasNextSelectedMeasureImageIndex()"/>
+               data-ng-click="setNextSelectedMeasureImageIndex()"/>
           <img ng-show="selectedMeasureImageIndex == $index" ng-repeat="image in getCurMeasureData().imageURLs" ng-src="images/measure/{{image}}" width="350" height="340">
           <div class="dots">
             <i ng-repeat="image in getCurMeasureData().imageURLs"

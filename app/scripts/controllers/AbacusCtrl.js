@@ -26,7 +26,6 @@ angular.module('abacuApp')
       RIGHT : 2,
       FRONT : 3,
       FRONTRIGHT : 4
-
     };
 
     //The following data is DUMMY DATA used to test our progressbar data structure
@@ -64,146 +63,63 @@ angular.module('abacuApp')
       baseWeight: 50,
       name: 'tiArrow Standard',
       desc: 'The standard frame produced by tiArrow.',
-      image: '',
       parts: [
         {
           partID: 0,
-          name: 'Frame',
+          name: 'Frame Style',
+          numSubImages: 1,
+          zRank: [[1, 2, 3, 4, 5]],
           options: [
             {
               optionID: 0,
-              name: 'Tilite Slipstream Single-Sided Fork',
+              name: 'Heavy Duty',
               price: 20,
               weight: 4,
-              desc: 'A description',
-              image: null,
-              zIndex:[1,2,3,4,5],
+              desc: 'For Fattys',
+              thumbnailURL: "images/d_panel_1.png",
               colors: [
                 {
+                  colorID: 0,
                   name: 'Red',
-                  hex: '#E7331A',
-                  image:[
-                    'images/chairPic/Frame1_Back.png',
-                    'images/chairPic/Frame1_BackRight.png',
-                    'images/chairPic/Frame1_Right.png',
-                    'images/chairPic/Frame1_FrontRight.png',
-                    'images/chairPic/Frame1_Front.png',
-                  ]
+                  hex: '#E7331A'
                 },
                 {
+                  colorID: 1,
                   name: 'Green',
-                  hex: '#2CA635',
-                  image:[
-                    'images/chairPic/Frame2_Back.png',
-                    'images/chairPic/Frame2_BackRight.png',
-                    'images/chairPic/Frame2_Right.png',
-                    'images/chairPic/Frame2_FrontRight.png',
-                    'images/chairPic/Frame2_Front.png',
-                  ]
+                  hex: '#2CA635'
                 },
                 {
+                  colorID: 2,
                   name: 'Blue',
-                  hex: '#075EDA',
-                  image:[
-                    'images/chairPic/Frame3_Back.png',
-                    'images/chairPic/Frame3_BackRight.png',
-                    'images/chairPic/Frame3_Right.png',
-                    'images/chairPic/Frame3_FrontRight.png',
-                    'images/chairPic/Frame3_Front.png',
-                  ]
-
+                  hex: '#075EDA'
                 },
                 {
+                  colorID: 3,
                   name: 'Magenta',
-                  hex: '#FF00FF',
-                  image:[
-                    'images/chairPic/Frame4_Back.png',
-                    'images/chairPic/Frame4_BackRight.png',
-                    'images/chairPic/Frame4_Right.png',
-                    'images/chairPic/Frame4_FrontRight.png',
-                    'images/chairPic/Frame4_Front.png',
-                  ]
+                  hex: '#FF00FF'
                 },
                 {
-                  name: 'Magenta',
-                  hex: '#FF00FF',
-                  image:[
-                    'images/chairPic/Frame5_Back.png',
-                    'images/chairPic/Frame5_BackRight.png',
-                    'images/chairPic/Frame5_Right.png',
-                    'images/chairPic/Frame5_FrontRight.png',
-                    'images/chairPic/Frame5_Front.png',
-                  ]
-                },{
-                  name: 'Magenta',
-                  hex: '#FF00FF',
-                  image:[
-                    'images/chairPic/Frame6_Back.png',
-                    'images/chairPic/Frame6_BackRight.png',
-                    'images/chairPic/Frame6_Right.png',
-                    'images/chairPic/Frame6_FrontRight.png',
-                    'images/chairPic/Frame6_Front.png',
-                  ]
-                },
-                {
-                  name: 'Magenta',
-                  hex: '#FF00FF',
-                  image:[
-                    'images/chairPic/Frame7_Back.png',
-                    'images/chairPic/Frame7_BackRight.png',
-                    'images/chairPic/Frame7_Right.png',
-                    'images/chairPic/Frame7_FrontRight.png',
-                    'images/chairPic/Frame7_Front.png',
-                  ]
-                },
-                {
-                  name: 'Magenta',
-                  hex: '#FF00FF',
-                  image:[
-                    'images/chairPic/Frame8_Back.png',
-                    'images/chairPic/Frame8_BackRight.png',
-                    'images/chairPic/Frame8_Right.png',
-                    'images/chairPic/Frame8_FrontRight.png',
-                    'images/chairPic/Frame8_Front.png',
-                  ]
-                },
-                {
+                  colorID: 4,
                   name: 'Yellow',
-                  hex: '#FFFF00',
-                  image:[
-                    'images/chairPic/Frame9_Back.png',
-                    'images/chairPic/Frame9_BackRight.png',
-                    'images/chairPic/Frame9_Right.png',
-                    'images/chairPic/Frame9_FrontRight.png',
-                    'images/chairPic/Frame9_Front.png',
-                  ]
+                  hex: '#FFFF00'
                 }
-
               ]
             }
           ]
         },
-
-
         {
           partID: 3,
-          name: 'Back Rest',
+          name: 'Wheels',
+          numSubImages: 2,
+          zRank: [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
           options: [
             {
               optionID: 2,
               name: 'Super Ultra Spinning Wheels of Awesomeness Deluxe Alpha 3D',
               price: 200,
               weight: 6,
-              desc: 'A description',
-              image: [
-                'images/chairPic/SeatBack1_Back.png',
-                'images/chairPic/SeatBack1_BackRight.png',
-                'images/chairPic/SeatBack1_Right.png',
-                'images/chairPic/SeatBack1_FrontRight.png',
-                'images/chairPic/SeatBack1_Front.png',
-              ],
-              zIndex:[1,2,3,4,5],
-
+              desc: 'Crazy Extremetastic',
+              thumbnailURL: "images/d_panel_1.png",
               colors: null
             },
             {
@@ -212,68 +128,17 @@ angular.module('abacuApp')
               price: 2000,
               weight: 4,
               desc: 'An ultra-extreme light wheel',
-              image: [
-                'images/chairPic/SeatBack2_Back.png',
-                'images/chairPic/SeatBack2_BackRight.png',
-                'images/chairPic/SeatBack2_Right.png',
-                'images/chairPic/SeatBack2_FrontRight.png',
-                'images/chairPic/SeatBack2_Front.png',
-              ],
-              zIndex:[1,2,3,4,5],
-              color:null
+              thumbnailURL: "images/d_panel_1.png",
+              colors: null
             },
             {
               optionID: 5,
-              name: 'sWheel',
+              name: 'Expensive sWheel',
               price: 4000,
               weight: 4,
-              desc: 'An ultra-extreme light wheel',
-              image: [
-                'images/chairPic/SeatBack3_Back.png',
-                'images/chairPic/SeatBack3_BackRight.png',
-                'images/chairPic/SeatBack3_Right.png',
-                'images/chairPic/SeatBack3_FrontRight.png',
-                'images/chairPic/SeatBack3_Front.png',
-              ],
-              zIndex:[1,2,3,4,5],
-              color:null
-            }
-          ]
-        },
-        {
-          partID: 2,
-          name: 'la la la',
-          options: [
-            {
-              optionID: 6,
-              name: 'lala bom lala bom ',
-              price: 200,
-              weight: 6,
-              desc: 'A description',
-              image: 'images/d_panel_1.png',
-              colors: [
-                {
-                  name: 'Red',
-                  hex: '#FF0000'
-                },
-                {
-                  name: 'Green',
-                  hex: '#00FF00'
-                },
-                {
-                  name: 'Blue',
-                  hex: '#0000FF'
-                }
-              ]
-            },
-            {
-              optionID: 5,
-              name: 'sWheel',
-              price: 2000,
-              weight: 4,
-              desc: 'An ultra-extreme light wheel',
-              image: 'images/d_panel_2.png',
-              colors: []
+              desc: 'The same as the normal sWheel - but more expensive.  You wouldn\'t want to look like a plebian now would you?',
+              thumbnailURL: "images/d_panel_1.png",
+              colors: null
             }
           ]
         }
@@ -326,17 +191,12 @@ angular.module('abacuApp')
         {
           partID: 0,
           optionID: 0,
-          colorName: 'Red'
+          colorID: 0
         },
         {
           partID: 3,
           optionID: 2,
-          colorName: 'Red'
-        },
-        {
-          partID: 2,
-          optionID: 6,
-          colorName: 'Red'
+          colorID: 0
         }
       ],
       measures: [
@@ -370,22 +230,105 @@ angular.module('abacuApp')
       return totalPrice;
     };
 
-    /*******************Wheelchair Preview***********************/
+    /*******************Wheelchair Preview & Rotation***********************/
     var angle = angleType.FRONT;
 
-    $scope.getPreviewZIndex = function (part) {
-      var option = getOptionData(part.optionID);
-      return option.zIndex[angle];
+    //Returns the angle as a String
+    function getAngleName(angle) {
+        switch (angle) {
+            case angleType.FRONT:
+                return "Front";
+            case angleType.FRONTRIGHT:
+                return "FrontRight";
+            case angleType.RIGHT:
+                return "Right";
+            case angleType.BACK:
+                return "Back";
+            case angleType.BACKRIGHT:
+                return "BackRight";
+            default:
+                return "";
+        }
     };
 
-    $scope.getPreviewImage = function (part) {
-      var option = getOptionData(part.optionID);
-      if (option === null) {return '';}
-      if (option.colors !== null && option.colors.length > 0) {
-        var color = $scope.getColorByName(part.optionID, part.colorName);
-        return color.image[angle];
-      }
-      return option.image[angle];
+    var baseURL = "images/chairPic/";
+    var imageType = ".png";
+
+    //Generates a URL for the given part based on the frame, partID,
+    //OptionID, ColorID, SubImageIndex, and Angle
+    function getPartPreviewImageURL(curWheelchairPart, subImageIndex) {
+        var frameIDString = ""+$scope.frameData.frameID;
+        var partIDString = "" + curWheelchairPart.partID;
+
+        var optionIDString =     curWheelchairPart.optionID;
+        var colorString    = "_" + curWheelchairPart.colorID;
+        var subIndString   = "_" + subImageIndex;
+        var angleString    = "_" + getAngleName(angle);
+
+        var partURL = baseURL + "frame" + frameIDString + "/";
+        partURL += "Part" + partIDString + "/";
+        partURL += optionIDString + colorString + subIndString + angleString + imageType;
+        return partURL;
+
+        //FrameID = 0
+        //PartID = 1
+        //OptionID = 2
+        //ColorID = 3
+        //SubImageIndex = 4
+        //Angle = FRONT
+        //    CREATES
+        //"baseURL/frame0/part1/2_3_4_Front.png"
+    };
+
+    //Keeps track of previous memory of image for Angular's sake
+    var oldImgs = null;
+
+    //Returns an array of imagesURLs to be displayed
+    //stacked from first to last (Ascending z-index order)
+    $scope.getCurWheelchairImages = function () {
+        var imgs = [];
+
+        //Generate array of images with zRank's
+        for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
+            var curPart = $scope.curWheelchair.parts[i];
+            var curPartData = getPartData(curPart.partID);
+            var numSubImages = curPartData.numSubImages;
+            for (var j = 0; j < numSubImages; j++) {
+                imgs.push({
+                    url: getPartPreviewImageURL(curPart, j),
+                    zRank: curPartData.zRank[j][angle]
+                });
+            }
+        }
+
+        //Sort array by zRanks
+        imgs.sort(function (a, b) {
+            return (a.zRank - b.zRank);
+        });
+
+        //Keep old values for Angular's $digest 
+        //since img is not the same memory address as oldImg, Angular continuously reloads img until it crashes
+        //If img doesn't change, simply reload the old memory for Angular
+        if (imgsUnchanged(imgs, oldImgs)) {
+            imgs = oldImgs;
+        }
+        oldImgs = imgs;
+
+        return imgs;
+    };
+
+    //Check if the contents of newImgs are equal to oldImgs
+    function imgsUnchanged(newImgs, oldImgs) {
+        if (newImgs === null || oldImgs === null)
+            return false;
+        if (newImgs.length !== oldImgs.length)
+            return false;
+        for (var i = 0; i < newImgs.length; i++)
+        {
+            if (newImgs[i].url !== oldImgs[i].url)
+                return false;
+        }
+        return true;
     };
 
     /****************Page Functions******************/
@@ -475,7 +418,7 @@ angular.module('abacuApp')
       return null;
     }
 
-    $scope.getColorByName = function(optionID, colorName) {
+    function getColorByName (optionID, colorName) {
       var option = getOptionData(optionID);
       for (var i=0; i<option.colors.length; i++) {
         if (option.colors[i].name === colorName) {
@@ -484,8 +427,16 @@ angular.module('abacuApp')
       }
     };
 
+    function getColorByID(optionID, colorID) {
+        var option = getOptionData(optionID);
+        for (var i = 0; i < option.colors.length; i++) {
+            if (option.colors[i].colorID === colorID) {
+                return option.colors[i];
+            }
+        }
+    };
 
-    /****************Measure Images****************/
+    /****************Measure Carousel****************/
     $scope.selectedMeasureImageIndex = 0;
 
     $scope.resetSelectedMeasureImageIndex = function () {
@@ -496,30 +447,28 @@ angular.module('abacuApp')
       $scope.selectedMeasureImageIndex = imageIndex;
     };
 
-    $scope.hasNextSelectedMeasureImageIndex = function () {
+    function hasNextSelectedMeasureImageIndex () {
       var len = $scope.getCurMeasureData().imageURLs.length;
-      if ($scope.selectedMeasureImageIndex + 1 >= len) {
-        return false;
-      }
-      return true;
+      return ($scope.selectedMeasureImageIndex + 1 < len);
     };
 
-    $scope.hasPrevSelectedMeasureImageIndex = function () {
-      if ($scope.selectedMeasureImageIndex - 1 < 0) {
-        return false;
-      }
-      return true;
+    function hasPrevSelectedMeasureImageIndex () {
+        return ($scope.selectedMeasureImageIndex - 1 >= 0);
     };
 
     $scope.setNextSelectedMeasureImageIndex = function () {
-      if ($scope.hasNextSelectedMeasureImageIndex()) {
+      if (hasNextSelectedMeasureImageIndex()) {
         $scope.selectedMeasureImageIndex += 1;
+      } else {
+        $scope.selectedMeasureImageIndex = 0;
       }
     };
 
     $scope.setPrevSelectedMeasureImageIndex = function () {
-      if ($scope.hasPrevSelectedMeasureImageIndex()) {
+      if (hasPrevSelectedMeasureImageIndex()) {
         $scope.selectedMeasureImageIndex -= 1;
+      } else {
+        $scope.selectedMeasureImageIndex = $scope.getCurMeasureData().imageURLs.length-1;
       }
     };
 
@@ -601,20 +550,19 @@ angular.module('abacuApp')
       if (part.optionID !== newOptionID) {
         part.optionID = newOptionID;
         var colorOptions = (getOptionData(newOptionID)).colors;
-        part.colorName = (colorOptions !== null && colorOptions.length > 0) ? colorOptions[0].name : null;
+        part.colorID = (colorOptions !== null && colorOptions.length > 0) ? colorOptions[0].colorID : 0;
       }
     }
 
-    $scope.setCurOptionColor = function (newColorName) {
+    $scope.setCurOptionColor = function (newColorID) {
       if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
-        setColorForPartOption($scope.getCurWheelchairPart().partID, $scope.getCurWheelchairPart().optionID, newColorName);
+        setColorForPartOption($scope.getCurWheelchairPart().partID, newColorID);
       }
     };
 
-    function setColorForPartOption(partID, optionID, newColorName) {
+    function setColorForPartOption(partID, newColorID) {
       var part = getWheelchairPart(partID);
-      //var optionData = getOptionData(optionID);
-      part.colorName = newColorName;
+      part.colorID = newColorID;
     }
 
     //returns the thumbnail part option image for the sidebar
