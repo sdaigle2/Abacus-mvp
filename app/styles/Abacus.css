@@ -59,8 +59,8 @@
   margin-left: 7%;
   width: 795px;
   height: 607px;
-  position: absolute; 
-  top: 0px; 
+  position: absolute;
+  top: 0px;
   left: 0px;
 }
 
@@ -384,13 +384,14 @@
   height: 100%;
 }
 
-.sideBar .panel {
+.sideBar .panel { /* so that the panel won't visibly fade out upon load */
     z-index: -10 !important;
 }
 
 /**********************Panel Arrow***************************/
 .sideBar .panelArrowShow {
   opacity: 1;
+  z-index: 50 !important; /* so that the panelArrow will be visible when we want to see it */
 }
 
 .sideBar .panelArrowHidden {
@@ -403,6 +404,7 @@
   left: 0px;
   width: 0;
   height: 0;
+  z-index: -10; /* so that the panelArrow won't visibly fade out upon load */
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
 

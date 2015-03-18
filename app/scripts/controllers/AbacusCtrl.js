@@ -235,20 +235,20 @@ angular.module('abacuApp')
 
     //Returns the angle as a String
     function getAngleName(angle) {
-        switch (angle) {
-            case angleType.FRONT:
-                return "Front";
-            case angleType.FRONTRIGHT:
-                return "FrontRight";
-            case angleType.RIGHT:
-                return "Right";
-            case angleType.BACK:
-                return "Back";
-            case angleType.BACKRIGHT:
-                return "BackRight";
-            default:
-                return "";
-        }
+      switch (angle) {
+        case angleType.FRONT:
+          return "Front";
+        case angleType.FRONTRIGHT:
+          return "FrontRight";
+        case angleType.RIGHT:
+          return "Right";
+        case angleType.BACK:
+          return "Back";
+        case angleType.BACKRIGHT:
+          return "BackRight";
+        default:
+          return "";
+      }
     };
 
     var baseURL = "images/chairPic/";
@@ -257,27 +257,27 @@ angular.module('abacuApp')
     //Generates a URL for the given part based on the frame, partID,
     //OptionID, ColorID, SubImageIndex, and Angle
     function getPartPreviewImageURL(curWheelchairPart, subImageIndex) {
-        var frameIDString = ""+$scope.frameData.frameID;
-        var partIDString = "" + curWheelchairPart.partID;
+      var frameIDString = ""+$scope.frameData.frameID;
+      var partIDString = "" + curWheelchairPart.partID;
 
-        var optionIDString =     curWheelchairPart.optionID;
-        var colorString    = "_" + curWheelchairPart.colorID;
-        var subIndString   = "_" + subImageIndex;
-        var angleString    = "_" + getAngleName(angle);
+      var optionIDString =     curWheelchairPart.optionID;
+      var colorString    = "_" + curWheelchairPart.colorID;
+      var subIndString   = "_" + subImageIndex;
+      var angleString    = "_" + getAngleName(angle);
 
-        var partURL = baseURL + "frame" + frameIDString + "/";
-        partURL += "Part" + partIDString + "/";
-        partURL += optionIDString + colorString + subIndString + angleString + imageType;
-        return partURL;
+      var partURL = baseURL + "frame" + frameIDString + "/";
+      partURL += "Part" + partIDString + "/";
+      partURL += optionIDString + colorString + subIndString + angleString + imageType;
+      return partURL;
 
-        //FrameID = 0
-        //PartID = 1
-        //OptionID = 2
-        //ColorID = 3
-        //SubImageIndex = 4
-        //Angle = FRONT
-        //    CREATES
-        //"baseURL/frame0/part1/2_3_4_Front.png"
+      //FrameID = 0
+      //PartID = 1
+      //OptionID = 2
+      //ColorID = 3
+      //SubImageIndex = 4
+      //Angle = FRONT
+      //    CREATES
+      //"baseURL/frame0/part1/2_3_4_Front.png"
     };
 
     //Keeps track of previous memory of image for Angular's sake
@@ -286,49 +286,51 @@ angular.module('abacuApp')
     //Returns an array of imagesURLs to be displayed
     //stacked from first to last (Ascending z-index order)
     $scope.getCurWheelchairImages = function () {
-        var imgs = [];
+      var imgs = [];
 
-        //Generate array of images with zRank's
-        for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
-            var curPart = $scope.curWheelchair.parts[i];
-            var curPartData = getPartData(curPart.partID);
-            var numSubImages = curPartData.numSubImages;
-            for (var j = 0; j < numSubImages; j++) {
-                imgs.push({
-                    url: getPartPreviewImageURL(curPart, j),
-                    zRank: curPartData.zRank[j][angle]
-                });
-            }
+      //Generate array of images with zRank's
+      for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
+        var curPart = $scope.curWheelchair.parts[i];
+        var curPartData = getPartData(curPart.partID);
+        var numSubImages = curPartData.numSubImages;
+        for (var j = 0; j < numSubImages; j++) {
+          imgs.push({
+            url: getPartPreviewImageURL(curPart, j),
+            zRank: curPartData.zRank[j][angle]
+          });
         }
 
-        //Sort array by zRanks
-        imgs.sort(function (a, b) {
-            return (a.zRank - b.zRank);
-        });
 
-        //Keep old values for Angular's $digest 
-        //since img is not the same memory address as oldImg, Angular continuously reloads img until it crashes
-        //If img doesn't change, simply reload the old memory for Angular
-        if (imgsUnchanged(imgs, oldImgs)) {
-            imgs = oldImgs;
-        }
-        oldImgs = imgs;
+      }
 
-        return imgs;
+      //Sort array by zRanks
+      imgs.sort(function (a, b) {
+        return (a.zRank - b.zRank);
+      });
+
+      //Keep old values for Angular's $digest
+      //since img is not the same memory address as oldImg, Angular continuously reloads img until it crashes
+      //If img doesn't change, simply reload the old memory for Angular
+      if (imgsUnchanged(imgs, oldImgs)) {
+        imgs = oldImgs;
+      }
+      oldImgs = imgs;
+
+      return imgs;
     };
 
-    //Check if the contents of newImgs are equal to oldImgs
+//Check if the contents of newImgs are equal to oldImgs
     function imgsUnchanged(newImgs, oldImgs) {
-        if (newImgs === null || oldImgs === null)
-            return false;
-        if (newImgs.length !== oldImgs.length)
-            return false;
-        for (var i = 0; i < newImgs.length; i++)
-        {
-            if (newImgs[i].url !== oldImgs[i].url)
-                return false;
-        }
-        return true;
+      if (newImgs === null || oldImgs === null)
+        return false;
+      if (newImgs.length !== oldImgs.length)
+        return false;
+      for (var i = 0; i < newImgs.length; i++)
+      {
+        if (newImgs[i].url !== oldImgs[i].url)
+          return false;
+      }
+      return true;
     };
 
     /****************Page Functions******************/
@@ -347,16 +349,16 @@ angular.module('abacuApp')
 
     $scope.getCurPageType = function () { return curPage.type; };
 
-    //Returns the current part from FrameData based on curPage.page[CUSTOMIZE].ID
+//Returns the current part from FrameData based on curPage.page[CUSTOMIZE].ID
     $scope.getCurPartData = function () { return getPartData($scope.getCurCustomizePage().partID); };
 
-    //Returns the current part from curWheelchair based on curPage.page[CUSTOMIZE].ID
+//Returns the current part from curWheelchair based on curPage.page[CUSTOMIZE].ID
     $scope.getCurWheelchairPart = function () { return getWheelchairPart($scope.getCurCustomizePage().partID); };
 
-    //Returns the current measure from FrameData based on curPage.page[MEASURE].ID
+//Returns the current measure from FrameData based on curPage.page[MEASURE].ID
     $scope.getCurMeasureData = function () { return getMeasureData($scope.getCurMeasurePage().measureID); };
 
-    //Returns the current measure from curWheelchair based on curPage.page[MEASURE].ID
+//Returns the current measure from curWheelchair based on curPage.page[MEASURE].ID
     $scope.getCurWheelchairMeasure = function () { return getWheelchairMeasure($scope.getCurMeasurePage().measureID); };
 
     $scope.setCurPageType = function (newType) { curPage.type = newType; };
@@ -428,12 +430,12 @@ angular.module('abacuApp')
     };
 
     function getColorByID(optionID, colorID) {
-        var option = getOptionData(optionID);
-        for (var i = 0; i < option.colors.length; i++) {
-            if (option.colors[i].colorID === colorID) {
-                return option.colors[i];
-            }
+      var option = getOptionData(optionID);
+      for (var i = 0; i < option.colors.length; i++) {
+        if (option.colors[i].colorID === colorID) {
+          return option.colors[i];
         }
+      }
     };
 
     /****************Measure Carousel****************/
@@ -453,7 +455,7 @@ angular.module('abacuApp')
     };
 
     function hasPrevSelectedMeasureImageIndex () {
-        return ($scope.selectedMeasureImageIndex - 1 >= 0);
+      return ($scope.selectedMeasureImageIndex - 1 >= 0);
     };
 
     $scope.setNextSelectedMeasureImageIndex = function () {
@@ -485,7 +487,7 @@ angular.module('abacuApp')
       }
     };
 
-    //Called by SideBarHeader right arrow OnClick (works similar to secSwitchClick)
+//Called by SideBarHeader right arrow OnClick (works similar to secSwitchClick)
     $scope.secSwitchRight = function (){
       $scope.getCurPage().visitstatus = visitstatus.VISITED;
       $scope.setCurPage($scope.getCurPage().index + 1);
@@ -496,7 +498,7 @@ angular.module('abacuApp')
       }
     };
 
-    //Called by progressbar section OnClick
+//Called by progressbar section OnClick
     $scope.secSwitchClick = function(page){
       $scope.getCurPage().visitstatus = visitstatus.VISITED; //set current page to visit status: visited
       $scope.setCurPage(page.index); //set new current page
@@ -507,7 +509,7 @@ angular.module('abacuApp')
       }
     };
 
-    //Returns the proper image for the progress bar segment based on visit status
+//Returns the proper image for the progress bar segment based on visit status
     $scope.getProgBarImage = function (page) {
       if (page.index === 0) {
         if (page.visitstatus === visitstatus.UNVISITED) {
@@ -565,7 +567,7 @@ angular.module('abacuApp')
       part.colorID = newColorID;
     }
 
-    //returns the thumbnail part option image for the sidebar
+//returns the thumbnail part option image for the sidebar
     $scope.getPartThumbImage = function (part) {
       var option = getOptionData(part.optionID);
       return option.thumbImage; //TODO: THUMBIMAGE NEEDS TO BE ADDED TO THE JSON FILE
@@ -579,15 +581,15 @@ angular.module('abacuApp')
       DETAIL: 'detail'
     };
 
-    //Indicates the current panel
-    //ID = -1 indicates no panel open
+//Indicates the current panel
+//ID = -1 indicates no panel open
     var curPanel = {
       panelID: -1,
       panelType: $scope.panelTypes.COLOR
     };
 
-    //Sets curPanel to the chosen panel
-    //Closes the panel if id and type match curPanel
+//Sets curPanel to the chosen panel
+//Closes the panel if id and type match curPanel
     $scope.setPanel = function (id, type) {
       if ($scope.isPanelSelected(id, type)) {
         curPanel.panelID = -1;
@@ -598,17 +600,17 @@ angular.module('abacuApp')
       curPanel.panelType = type;
     };
 
-    //Closes any open panel
+//Closes any open panel
     $scope.closeAllPanels = function () {
       $scope.setPanel(-1, $scope.panelTypes.COLOR);
     };
 
-    //Check if the panel with the given id and type is selected
+//Check if the panel with the given id and type is selected
     $scope.isPanelSelected = function (id, type) {
       return (curPanel.panelID === id && curPanel.panelType === type);
     };
 
-    //Checks if a panel with the given ID is selected
+//Checks if a panel with the given ID is selected
     $scope.isPanelIDSelected = function (id) {
       return curPanel.panelID === id;
     };

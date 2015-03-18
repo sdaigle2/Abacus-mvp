@@ -24,8 +24,8 @@
   <!-- CUSTOMIZE: Wheelchair Display and controls -->
   <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE" style="position:relative;">
     <img class="main-custom-wheelchairDisplay"
-         ng-repeat="imgURL in getCurWheelchairImages()" 
-         ng-src="{{imgURL.url}}" 
+         ng-repeat="imgURL in getCurWheelchairImages()"
+         ng-src="{{imgURL.url}}"
          ng-style="{'z-index': $index }" />
   </div>
 
@@ -88,7 +88,7 @@
               <img class="colorOptionsIndicator" ng-show="option.colors"
                    src="images/icons/color_option.png" alt="See color options"
                    ng-click="setPanel(option.optionID, panelTypes.COLOR);" />
-              <img data-ng-src="{{option.thumbnailURL}}" height="100">
+              <img data-ng-src="{{option.thumbnailURL}}" height="100" width="100">
             </td>
             <td class="sideBar-custom-item-right">
               <h4 class="sideBar-custom-item-name"> {{option.name}}</h4>
