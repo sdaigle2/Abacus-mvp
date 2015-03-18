@@ -276,7 +276,7 @@
   line-height: 19px;
   margin:5px 0px;
   height: 40px;
-  overflow-y: overlay;
+  overflow: hidden ;
   overflow-wrap: normal;
 }
 

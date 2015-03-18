@@ -32,32 +32,59 @@ angular.module('abacuApp')
 
     //The following data is DUMMY DATA used to test our progressbar data structure
     //This data should be created on pageLoad based on FrameData
+    //var dummyPages = {
+    //  customizePages: [
+    //    { index: 0, partID: 0, visitstatus: visitstatus.CURRENT },
+    //    { index: 1, partID: 3, visitstatus: visitstatus.UNVISITED },
+    //    { index: 2, partID: 2, visitstatus: visitstatus.UNVISITED },
+    //    { index: 3, partID: 1, visitstatus: visitstatus.UNVISITED },
+    //    { index: 4, partID: 4, visitstatus: visitstatus.UNVISITED },
+    //    { index: 5, partID: 5, visitstatus: visitstatus.UNVISITED },
+    //    { index: 6, partID: 6, visitstatus: visitstatus.UNVISITED },
+    //    { index: 7, partID: 7, visitstatus: visitstatus.UNVISITED },
+    //    { index: 8, partID: 8, visitstatus: visitstatus.UNVISITED },
+    //    { index: 9, partID: 9, visitstatus: visitstatus.UNVISITED },
+    //    { index: 10, partID: 10, visitstatus: visitstatus.UNVISITED },
+    //    { index: 11, partID: 11, visitstatus: visitstatus.UNVISITED }
+    //  ],
+    //  measurePages: [
+    //    { index: 0, measureID: 1, visitstatus: visitstatus.CURRENT },
+    //    { index: 1, measureID: 5, visitstatus: visitstatus.UNVISITED },
+    //    { index: 2, measureID: 2, visitstatus: visitstatus.UNVISITED },
+    //    { index: 3, measureID: 3, visitstatus: visitstatus.UNVISITED },
+    //    { index: 4, measureID: 4, visitstatus: visitstatus.UNVISITED },
+    //    { index: 5, measureID: 6, visitstatus: visitstatus.UNVISITED }
+    //  ]
+    //};
     var dummyPages = {
       customizePages: [
-        { index: 0, partID: 0, visitstatus: visitstatus.CURRENT },
-        { index: 1, partID: 3, visitstatus: visitstatus.UNVISITED },
-        { index: 2, partID: 2, visitstatus: visitstatus.UNVISITED },
-        { index: 3, partID: 1, visitstatus: visitstatus.UNVISITED },
-        { index: 4, partID: 4, visitstatus: visitstatus.UNVISITED },
-        { index: 5, partID: 5, visitstatus: visitstatus.UNVISITED },
-        { index: 6, partID: 6, visitstatus: visitstatus.UNVISITED },
-        { index: 7, partID: 7, visitstatus: visitstatus.UNVISITED },
-        { index: 8, partID: 8, visitstatus: visitstatus.UNVISITED },
-        { index: 9, partID: 9, visitstatus: visitstatus.UNVISITED },
-        { index: 10, partID: 10, visitstatus: visitstatus.UNVISITED },
-        { index: 11, partID: 11, visitstatus: visitstatus.UNVISITED }
       ],
       measurePages: [
-        { index: 0, measureID: 1, visitstatus: visitstatus.CURRENT },
-        { index: 1, measureID: 5, visitstatus: visitstatus.UNVISITED },
-        { index: 2, measureID: 2, visitstatus: visitstatus.UNVISITED },
-        { index: 3, measureID: 3, visitstatus: visitstatus.UNVISITED },
-        { index: 4, measureID: 4, visitstatus: visitstatus.UNVISITED },
-        { index: 5, measureID: 6, visitstatus: visitstatus.UNVISITED }
       ]
     };
 
 
+
+    function curWheelChairGenerator (){
+      for (var i = 0; i < $scope.frameData.parts.length; i++ ){
+        var page = {index:i, partID: $scope.frameData.parts[i].partID, visitstatus:visitstatus.UNVISITED};
+        dummyPages.customizePgaes.push(page);
+      }
+
+      for (var j = 0; j < $scope.frameData.measures.length; j++){
+        var page1 = {index:j, partID: $scope.frameData.measures[j].measureID, visitstatus:visitstatus.UNVISITED};
+        dummyPages.measurePages.push(page1);
+      }
+      pages.customizePgaes[0].visitstatus = visitstatus.CURRENT;
+      pages.measurePages[0].visitstatus = visitstatus.CURRENT;
+
+
+    }
+
+
+
+    curWheelChairGenerator();
+    console.log(JSON.stringify(dummyPages));
     /***********Variables**************/
 
 
@@ -101,6 +128,12 @@ angular.module('abacuApp')
         }
       ]
     };
+
+
+
+
+
+
 
     /****************Weight and Price******************/
       //Calculated Total Weight and Price
@@ -532,7 +565,7 @@ angular.module('abacuApp')
     //returns the full string for the title, but only if necessary   ( similar to ellipsisFormat() )
     $scope.titleForEllipsis = function(str, len) {
       if (str.length > len) {
-        return str
+        return str;
       }
       else {
         return '';
