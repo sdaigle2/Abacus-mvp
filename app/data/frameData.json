@@ -1,0 +1,142 @@
+{
+  "frameID": 0,
+  "basePrice": 400,
+  "baseWeight": 50,
+  "name": "tiArrow Standard",
+  "desc": "The standard frame produced by tiArrow.",
+  "parts": [
+    {
+      "partID": 0,
+      "name": "Frame style",
+      "numSubImages": 2,
+      "zRank": [[1,2,3,4,5],[1,2,3,4,5]],
+      "options": [
+        {
+          "optionID": 0,
+          "name": "Tilite Slipstream Single-Sided Fork",
+          "price": 20.0,
+          "weight": 4,
+          "desc": "A description",
+          "thumbnailURL" : "images/d_panel_1.png",
+          "colors": [
+            {
+              "colorID": 0,
+              "name": "Red",
+              "hex": "#E7331A"
+            },
+            {
+              "colorID": 1,
+              "name": "Green",
+              "hex": "#2CA635"
+            },
+            {
+              "colorID": 2,
+              "name": "Blue",
+              "hex": "#075EDA"
+            },
+            {
+              "colorID": 3,
+              "name": "Magenta",
+              "hex": "#FF00FF"
+            },
+            {
+              "colorID": 4,
+              "name": "Magenta",
+              "hex": "#FF00FF"
+
+            },{
+              "colorID": 5,
+              "name": "Magenta",
+              "hex": "#FF00FF"
+            },
+            {
+              "colorID": 6,
+              "name": "Magenta",
+              "hex": "#FF00FF"
+
+            },
+            {
+              "colorID": 7,
+              "name": "Magenta",
+              "hex": "#FF00FF"
+            },
+            {
+              "colorID": 8,
+              "name": "Yellow",
+              "hex": "#FFFF00"
+            }
+
+          ]
+        }
+      ]
+    },
+
+
+    {
+      "partID": 3,
+      "name": "Back Rest",
+
+      "numSubImages": 1,
+      "zRank":[[1,2,3,4,5]],
+      "options": [
+        {
+          "optionID": 2,
+          "name": "Super Ultra Spinning Wheels of Awesomeness Deluxe Alpha 3D",
+          "price": 200,
+          "weight": 6,
+          "desc": "A description",
+
+          "thumbnailURL": "images/d_panel_1.png",
+          "colors": null
+        },
+        {
+          "optionID": 4,
+          "name": "sWheel",
+          "price": 2000,
+          "weight": 4,
+          "desc": "An ultra-extreme light wheel",
+
+          "thumbnailURL": "images/d_panel_1.png",
+          "colors":null
+        },
+        {
+          "optionID": 5,
+          "name": "sWheel",
+          "price": 4000,
+          "weight": 4,
+          "desc": "An ultra-extreme light wheel",
+
+          "thumbnailURL": "images/d_panel_1.png",
+          "colors":null
+        }
+      ]
+    }
+  ],
+  "measures": [
+    {
+      "measureID": 1,
+      "name": "Rear Seat Height",
+      "desc": "Distance from ground to back corner of seat",
+      "measureOptions": ["12", "13", "14", "15", "16"],
+      "tip": "Important fators to think about when measuring rear seat height are <strong>body stability</strong> and <strong>shoulder strain</strong>",
+      "videoURL": "https://www.youtube.com/embed/pcY2bR7MPVo",
+      "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
+      "gifURL": "",
+      "details": "Here are some helpful details"
+    },
+    {
+      "measureID": 5,
+      "name": "Wheel Radius",
+      "desc": "The <strong>radius</strong> of the <strong>wheel</strong>",
+      "measureOptions": ["100", "200", "500", "1000", "1E8"],
+      "tip": "Don't set this to 0 or you\"ll just get a regular chair",
+      "videoURL": "https://www.youtube.com/embed/HCp3_jaYOZ4",
+      "imageURLs": ["rear-seat-height2.jpg", "rear-seat-height1.jpg"],
+      "gifURL": "",
+      "details": "This set of details is not helpful in the slightest: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula, erat at sollicitudin gravida, diam lacus maximus sem, non viverra eros nisi et quam. Nulla ornare eleifend mattis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris metus justo, hendrerit id lorem in, rhoncus tincidunt risus. Maecenas consequat mollis ligula ac ornare. Sed laoreet ipsum eget quam ornare sagittis. Suspendisse fermentum ultrices justo eu egestas. Vivamus egestas semper nibh, vitae malesuada turpis lacinia ac. Nam condimentum ornare interdum. Phasellus sed euismod ligula. Vivamus volutpat nulla a diam consequat eleifend. Morbi semper magna at odio ultrices condimentum. Phasellus porttitor dictum pretium."
+    }
+  ]
+}
+
+
+

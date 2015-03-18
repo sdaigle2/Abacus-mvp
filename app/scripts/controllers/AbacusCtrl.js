@@ -55,122 +55,11 @@ angular.module('abacuApp')
       ]
     };
 
-    //The following is all dummy data for the sidebar used to test our data structure
-    //This data should be replaced by database data for the final release
-    var dummyFrameData = {
-      frameID: 0,
-      basePrice: 400,
-      baseWeight: 50,
-      name: 'tiArrow Standard',
-      desc: 'The standard frame produced by tiArrow.',
-      parts: [
-        {
-          partID: 0,
-          name: 'Frame Style',
-          numSubImages: 1,
-          zRank: [[1, 2, 3, 4, 5]],
-          options: [
-            {
-              optionID: 0,
-              name: 'Heavy Duty',
-              price: 20,
-              weight: 4,
-              desc: 'For Fattys',
-              thumbnailURL: "images/d_panel_1.png",
-              colors: [
-                {
-                  colorID: 0,
-                  name: 'Red',
-                  hex: '#E7331A'
-                },
-                {
-                  colorID: 1,
-                  name: 'Green',
-                  hex: '#2CA635'
-                },
-                {
-                  colorID: 2,
-                  name: 'Blue',
-                  hex: '#075EDA'
-                },
-                {
-                  colorID: 3,
-                  name: 'Magenta',
-                  hex: '#FF00FF'
-                },
-                {
-                  colorID: 4,
-                  name: 'Yellow',
-                  hex: '#FFFF00'
-                }
-              ]
-            }
-          ]
-        },
-        {
-          partID: 3,
-          name: 'Wheels',
-          numSubImages: 2,
-          zRank: [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5]],
-          options: [
-            {
-              optionID: 2,
-              name: 'Super Ultra Spinning Wheels of Awesomeness Deluxe Alpha 3D',
-              price: 200,
-              weight: 6,
-              desc: 'Crazy Extremetastic',
-              thumbnailURL: "images/d_panel_1.png",
-              colors: null
-            },
-            {
-              optionID: 4,
-              name: 'sWheel',
-              price: 2000,
-              weight: 4,
-              desc: 'An ultra-extreme light wheel',
-              thumbnailURL: "images/d_panel_1.png",
-              colors: null
-            },
-            {
-              optionID: 5,
-              name: 'Expensive sWheel',
-              price: 4000,
-              weight: 4,
-              desc: 'The same as the normal sWheel - but more expensive.  You wouldn\'t want to look like a plebian now would you?',
-              thumbnailURL: "images/d_panel_1.png",
-              colors: null
-            }
-          ]
-        }
-      ],
-      measures: [
-        {
-          measureID: 1,
-          name: 'Rear Seat Height',
-          desc: 'Distance from ground to back corner of seat',
-          measureOptions: ['12', '13', '14', '15', '16'],
-          tip: 'Important fators to think about when measuring rear seat height are <strong>body stability</strong> and <strong>shoulder strain</strong>',
-          videoURL: 'https://www.youtube.com/embed/pcY2bR7MPVo',
-          imageURLs: ['rear-seat-height1.jpg', 'rear-seat-height2.jpg', 'rear-seat-height3.jpg'],
-          gifURL: '',
-          details: 'Here are some helpful details'
-        },
-        {
-          measureID: 5,
-          name: 'Wheel Radius',
-          desc: 'The <strong>radius</strong> of the <strong>wheel</strong>',
-          measureOptions: ['100', '200', '500', '1000', '1E8'],
-          tip: 'Don\'t set this to 0 or you\'ll just get a regular chair',
-          videoURL: 'https://www.youtube.com/embed/HCp3_jaYOZ4',
-          imageURLs: ['rear-seat-height2.jpg', 'rear-seat-height1.jpg'],
-          gifURL: '',
-          details: 'This set of details is not helpful in the slightest: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula, erat at sollicitudin gravida, diam lacus maximus sem, non viverra eros nisi et quam. Nulla ornare eleifend mattis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris metus justo, hendrerit id lorem in, rhoncus tincidunt risus. Maecenas consequat mollis ligula ac ornare. Sed laoreet ipsum eget quam ornare sagittis. Suspendisse fermentum ultrices justo eu egestas. Vivamus egestas semper nibh, vitae malesuada turpis lacinia ac. Nam condimentum ornare interdum. Phasellus sed euismod ligula. Vivamus volutpat nulla a diam consequat eleifend. Morbi semper magna at odio ultrices condimentum. Phasellus porttitor dictum pretium.'
-        }
-      ]
-    };
 
     /***********Variables**************/
-    $scope.frameData = dummyFrameData; //DATA PULLED FROM DATABASE
+
+
+    $scope.frameData = frameDataFromDB; // all of our data about the frame (from dbLoad.js)
     var pages = dummyPages; //Array representing customization page
 
     $scope.pageType = {
@@ -237,36 +126,36 @@ angular.module('abacuApp')
     function getAngleName(angle) {
       switch (angle) {
         case angleType.FRONT:
-          return "Front";
+          return 'Front';
         case angleType.FRONTRIGHT:
-          return "FrontRight";
+          return 'FrontRight';
         case angleType.RIGHT:
-          return "Right";
+          return 'Right';
         case angleType.BACK:
-          return "Back";
+          return 'Back';
         case angleType.BACKRIGHT:
-          return "BackRight";
+          return 'BackRight';
         default:
-          return "";
+          return '';
       }
-    };
+    }
 
-    var baseURL = "images/chairPic/";
-    var imageType = ".png";
+    var baseURL = 'images/chairPic/';
+    var imageType = '.png';
 
     //Generates a URL for the given part based on the frame, partID,
     //OptionID, ColorID, SubImageIndex, and Angle
     function getPartPreviewImageURL(curWheelchairPart, subImageIndex) {
-      var frameIDString = ""+$scope.frameData.frameID;
-      var partIDString = "" + curWheelchairPart.partID;
+      var frameIDString = ''+$scope.frameData.frameID;
+      var partIDString = '' + curWheelchairPart.partID;
 
       var optionIDString =     curWheelchairPart.optionID;
-      var colorString    = "_" + curWheelchairPart.colorID;
-      var subIndString   = "_" + subImageIndex;
-      var angleString    = "_" + getAngleName(angle);
+      var colorString    = '_' + curWheelchairPart.colorID;
+      var subIndString   = '_' + subImageIndex;
+      var angleString    = '_' + getAngleName(angle);
 
-      var partURL = baseURL + "frame" + frameIDString + "/";
-      partURL += "Part" + partIDString + "/";
+      var partURL = baseURL + 'frame' + frameIDString + '/';
+      partURL += 'Part' + partIDString + '/';
       partURL += optionIDString + colorString + subIndString + angleString + imageType;
       return partURL;
 
@@ -277,8 +166,8 @@ angular.module('abacuApp')
       //SubImageIndex = 4
       //Angle = FRONT
       //    CREATES
-      //"baseURL/frame0/part1/2_3_4_Front.png"
-    };
+      //'baseURL/frame0/part1/2_3_4_Front.png'
+    }
 
     //Keeps track of previous memory of image for Angular's sake
     var oldImgs = null;
@@ -321,17 +210,20 @@ angular.module('abacuApp')
 
 //Check if the contents of newImgs are equal to oldImgs
     function imgsUnchanged(newImgs, oldImgs) {
-      if (newImgs === null || oldImgs === null)
+      if (newImgs === null || oldImgs === null) {
         return false;
-      if (newImgs.length !== oldImgs.length)
+      }
+      if (newImgs.length !== oldImgs.length) {
         return false;
+      }
       for (var i = 0; i < newImgs.length; i++)
       {
-        if (newImgs[i].url !== oldImgs[i].url)
+        if (newImgs[i].url !== oldImgs[i].url) {
           return false;
+        }
       }
       return true;
-    };
+    }
 
     /****************Page Functions******************/
     $scope.getCurPages = function () {
@@ -427,7 +319,7 @@ angular.module('abacuApp')
           return option.colors[i];
         }
       }
-    };
+    }
 
     function getColorByID(optionID, colorID) {
       var option = getOptionData(optionID);
@@ -436,7 +328,7 @@ angular.module('abacuApp')
           return option.colors[i];
         }
       }
-    };
+    }
 
     /****************Measure Carousel****************/
     $scope.selectedMeasureImageIndex = 0;
@@ -452,11 +344,11 @@ angular.module('abacuApp')
     function hasNextSelectedMeasureImageIndex () {
       var len = $scope.getCurMeasureData().imageURLs.length;
       return ($scope.selectedMeasureImageIndex + 1 < len);
-    };
+    }
 
     function hasPrevSelectedMeasureImageIndex () {
       return ($scope.selectedMeasureImageIndex - 1 >= 0);
-    };
+    }
 
     $scope.setNextSelectedMeasureImageIndex = function () {
       if (hasNextSelectedMeasureImageIndex()) {
