@@ -12,11 +12,17 @@
 angular.module('abacuApp')
   .controller('AbacusCtrl', function ($scope) {
 
+    /*********************Constants***************************/
 
+    //The base of the URL used to retrieve wheelchair preview images
+    var previewBaseURL = 'images/chairPic/';
 
-    /*********************Unscoped Variables Constants and Enums*******************************/
+    //The filetype used for the wheelchair preview images
+    var previewImageType = '.png';
 
-    //The visitation status for pages/parts
+    /*********************Enums*******************************/
+
+    //The visitation status for pages (parts/measures)
     var visitstatus = {
       VISITED: 'visited',
       UNVISITED: 'unvisited',
@@ -32,126 +38,102 @@ angular.module('abacuApp')
       FRONTRIGHT : 4
     };
 
-    //The following data is DUMMY DATA used to test our progressbar data structure
-    //This data should be created on pageLoad based on FrameData
-    //var dummyPages = {
-    //  customizePages: [
-    //    { index: 0, partID: 0, visitstatus: visitstatus.CURRENT },
-    //    { index: 1, partID: 3, visitstatus: visitstatus.UNVISITED },
-    //    { index: 2, partID: 2, visitstatus: visitstatus.UNVISITED },
-    //    { index: 3, partID: 1, visitstatus: visitstatus.UNVISITED },
-    //    { index: 4, partID: 4, visitstatus: visitstatus.UNVISITED },
-    //    { index: 5, partID: 5, visitstatus: visitstatus.UNVISITED },
-    //    { index: 6, partID: 6, visitstatus: visitstatus.UNVISITED },
-    //    { index: 7, partID: 7, visitstatus: visitstatus.UNVISITED },
-    //    { index: 8, partID: 8, visitstatus: visitstatus.UNVISITED },
-    //    { index: 9, partID: 9, visitstatus: visitstatus.UNVISITED },
-    //    { index: 10, partID: 10, visitstatus: visitstatus.UNVISITED },
-    //    { index: 11, partID: 11, visitstatus: visitstatus.UNVISITED }
-    //  ],
-    //  measurePages: [
-    //    { index: 0, measureID: 1, visitstatus: visitstatus.CURRENT },
-    //    { index: 1, measureID: 5, visitstatus: visitstatus.UNVISITED },
-    //    { index: 2, measureID: 2, visitstatus: visitstatus.UNVISITED },
-    //    { index: 3, measureID: 3, visitstatus: visitstatus.UNVISITED },
-    //    { index: 4, measureID: 4, visitstatus: visitstatus.UNVISITED },
-    //    { index: 5, measureID: 6, visitstatus: visitstatus.UNVISITED }
-    //  ]
-    //};
-    var dummyPages = {
-      customizePages: [
-      ],
-      measurePages: [
-      ]
+    $scope.pageType = {
+        CUSTOMIZE: 0,
+        MEASURE: 1
     };
 
+    $scope.panelTypes = {
+      COLOR: 'color',
+      DETAIL: 'detail'
+    };
 
+    /**********************Main Variables****************************/
 
-    function curWheelChairGenerator (){
-      for (var i = 0; i < $scope.frameData.parts.length; i++ ){
-        var page = {index:i, partID: $scope.frameData.parts[i].partID, visitstatus:visitstatus.UNVISITED};
-        dummyPages.customizePages.push(page);
-      }
+    //All the data about the current frame
+    $scope.frameData = null;
 
-      for (var j = 0; j < $scope.frameData.measures.length; j++){
-        var page1 = {index:j, partID: $scope.frameData.measures[j].measureID, visitstatus:visitstatus.UNVISITED};
-        dummyPages.measurePages.push(page1);
-      }
-      dummyPages.customizePages[0].visitstatus = visitstatus.CURRENT;
-      dummyPages.measurePages[0].visitstatus = visitstatus.CURRENT;
-
-
-    }
-
-
-    $scope.frameData = frameDataFromDB; // all of our data about the frame (from dbLoad.js)
-
-    curWheelChairGenerator();
-    console.log(JSON.stringify(dummyPages));
-    /***********Variables**************/
-
-
-
-    var pages = dummyPages; //Array representing customization page
-
-    $scope.pageType = {
-      CUSTOMIZE: 0,
-      MEASURE: 1
+    //Arrays that store information about the pages
+    var pages = {
+      customizePages: [],
+      measurePages: []
     };
 
     //The current part customization page
     var curPage = {
-      page: [pages.customizePages[0], pages.measurePages[0]], //has a current page for each page type
+      page: [null, null], //has a current page for each page type
       type: $scope.pageType.CUSTOMIZE //keeps track of which page type we are currently looking at
     };
 
     //The current wheelchair being customized by the user
-    $scope.curWheelchair = {
+    var curWheelchair = {
       frameID: 0,
-      parts: [
-        {
-          partID: 0,
-          optionID: 0,
-          colorID: 0
-        },
-        {
-          partID: 3,
-          optionID: 2,
-          colorID: 0
-        }
-      ],
-      measures: [
-        {
-          measureID: 5,
+      parts: [],
+      measures: []
+    };
+
+    /***************************Initialization****************************/
+
+    //Generates the page arrays inside of pages
+    function generatePages (){
+      for (var i = 0; i < $scope.frameData.parts.length; i++ ){
+        var page = {index:i, partID: $scope.frameData.parts[i].partID, visitstatus:visitstatus.UNVISITED};
+        pages.customizePages.push(page);
+      }
+
+      for (var j = 0; j < $scope.frameData.measures.length; j++){
+        var page1 = {index:j, measureID: $scope.frameData.measures[j].measureID, visitstatus:visitstatus.UNVISITED};
+        pages.measurePages.push(page1);
+      }
+      pages.customizePages[0].visitstatus = visitstatus.CURRENT;
+      pages.measurePages[0].visitstatus = visitstatus.CURRENT;
+
+      curPage.page[$scope.pageType.CUSTOMIZE] = pages.customizePages[0];
+      curPage.page[$scope.pageType.MEASURE] = pages.measurePages[0];
+    }
+
+    //Generates the initial curWheelchair
+    function generateCurWheelchair() {
+      curWheelchair.frameID = $scope.frameData.frameID;
+      for (var i = 0; i < $scope.frameData.parts.length; i++) {
+        var curPart = $scope.frameData.parts[i];
+        curWheelchair.parts.push({
+          partID: curPart.partID,
+          optionID: curPart.defaultOptionID,
+          colorID: getOptionData(curPart.defaultOptionID).defaultColorID
+        });
+      }
+      for (var i = 0; i < $scope.frameData.measures.length; i++) {
+        curWheelchair.measures.push({
+          measureID: $scope.frameData.measures[i].measureID,
           measureOption: null
-        },
-        {
-          measureID: 1,
-          measureOption: null
-        }
-      ]
+        });
+      }
     };
 
 
+    function init() {
+      $scope.frameData = frameDataFromDB; // all of our data about the frame (from dbLoad.js)
+      generatePages();
+      generateCurWheelchair();
+    };
 
-
-
-
+    init(); //Initialize the page
 
     /****************Weight and Price******************/
       //Calculated Total Weight and Price
     $scope.getTotalWeight = function () {
       var totalWeight = $scope.frameData.baseWeight;
-      for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
-        var curPart = $scope.curWheelchair.parts[i];
+      for (var i = 0; i < curWheelchair.parts.length; i++) {
+        var curPart = curWheelchair.parts[i];
         totalWeight = totalWeight + getOptionData(curPart.optionID).weight;
       }
       return totalWeight;
     };
     $scope.getTotalPrice = function () {
       var totalPrice = $scope.frameData.basePrice;
-      for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
-        var curPart = $scope.curWheelchair.parts[i];
+      for (var i = 0; i < curWheelchair.parts.length; i++) {
+        var curPart = curWheelchair.parts[i];
         totalPrice += getOptionData(curPart.optionID).price;
       }
       return totalPrice;
@@ -178,9 +160,6 @@ angular.module('abacuApp')
       }
     }
 
-    var baseURL = 'images/chairPic/';
-    var imageType = '.png';
-
     //Generates a URL for the given part based on the frame, partID,
     //OptionID, ColorID, SubImageIndex, and Angle
     function getPartPreviewImageURL(curWheelchairPart, subImageIndex) {
@@ -192,9 +171,9 @@ angular.module('abacuApp')
       var subIndString   = '_' + subImageIndex;
       var angleString    = '_' + getAngleName(angle);
 
-      var partURL = baseURL + 'frame' + frameIDString + '/';
+      var partURL = previewBaseURL + 'frame' + frameIDString + '/';
       partURL += 'Part' + partIDString + '/';
-      partURL += optionIDString + colorString + subIndString + angleString + imageType;
+      partURL += optionIDString + colorString + subIndString + angleString + previewImageType;
       return partURL;
 
       //FrameID = 0
@@ -216,8 +195,8 @@ angular.module('abacuApp')
       var imgs = [];
 
       //Generate array of images with zRank's
-      for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
-        var curPart = $scope.curWheelchair.parts[i];
+      for (var i = 0; i < curWheelchair.parts.length; i++) {
+        var curPart = curWheelchair.parts[i];
         var curPartData = getPartData(curPart.partID);
         var numSubImages = curPartData.numSubImages;
         for (var j = 0; j < numSubImages; j++) {
@@ -246,7 +225,7 @@ angular.module('abacuApp')
       return imgs;
     };
 
-//Check if the contents of newImgs are equal to oldImgs
+    //Check if the contents of newImgs are equal to oldImgs
     function imgsUnchanged(newImgs, oldImgs) {
       if (newImgs === null || oldImgs === null) {
         return false;
@@ -279,10 +258,10 @@ angular.module('abacuApp')
 
     $scope.getCurPageType = function () { return curPage.type; };
 
-//Returns the current part from FrameData based on curPage.page[CUSTOMIZE].ID
+    //Returns the current part from FrameData based on curPage.page[CUSTOMIZE].ID
     $scope.getCurPartData = function () { return getPartData($scope.getCurCustomizePage().partID); };
 
-//Returns the current part from curWheelchair based on curPage.page[CUSTOMIZE].ID
+    //Returns the current part from curWheelchair based on curPage.page[CUSTOMIZE].ID
     $scope.getCurWheelchairPart = function () { return getWheelchairPart($scope.getCurCustomizePage().partID); };
 
 //Returns the current measure from FrameData based on curPage.page[MEASURE].ID
@@ -308,8 +287,8 @@ angular.module('abacuApp')
     }
 
     function getWheelchairPart(id) {
-      for (var i = 0; i < $scope.curWheelchair.parts.length; i++) {
-        var curPart = $scope.curWheelchair.parts[i];
+      for (var i = 0; i < curWheelchair.parts.length; i++) {
+        var curPart = curWheelchair.parts[i];
         if (curPart.partID === id) {
           return curPart;
         }
@@ -341,8 +320,8 @@ angular.module('abacuApp')
     }
 
     function getWheelchairMeasure(id) {
-      for (var i = 0; i < $scope.curWheelchair.measures.length; i++) {
-        var curMeas = $scope.curWheelchair.measures[i];
+      for (var i = 0; i < curWheelchair.measures.length; i++) {
+        var curMeas = curWheelchair.measures[i];
         if (curMeas.measureID === id) {
           return curMeas;
         }
@@ -465,6 +444,25 @@ angular.module('abacuApp')
       }
     };
 
+    //Causes a progressBar segment's tooltip to be visible
+    $scope.progressSegmentHoverIn = function () {
+      this.showProgressSegmentTooltip = true;
+    };
+
+    //Causes a progressBar segment's tooltip to be invisible
+    $scope.progressSegmentHoverOut = function () {
+      this.showProgressSegmentTooltip = false;
+    };
+
+    //Determine the text for each tooltip to display
+    $scope.getProgressBarSegmentTooltipText = function (page) {
+      if (curPage.type === $scope.pageType.CUSTOMIZE)
+        return getPartData(page.partID).name;
+      else if (curPage.type === $scope.pageType.MEASURE)
+        return getMeasureData(page.measureID).name;
+      return "ERROR: Invalid page type";
+    };
+
     /*****************Sidebar Tabs***************/
     $scope.switchPageType = function (newPageType) {
       $scope.setCurPageType(newPageType);
@@ -497,19 +495,7 @@ angular.module('abacuApp')
       part.colorID = newColorID;
     }
 
-//returns the thumbnail part option image for the sidebar
-    $scope.getPartThumbImage = function (part) {
-      var option = getOptionData(part.optionID);
-      return option.thumbImage; //TODO: THUMBIMAGE NEEDS TO BE ADDED TO THE JSON FILE
-    };
-
     /*****************Panels*********************/
-
-      //Enumerated type for which panel to show for a given panelID
-    $scope.panelTypes = {
-      COLOR: 'color',
-      DETAIL: 'detail'
-    };
 
 //Indicates the current panel
 //ID = -1 indicates no panel open
@@ -549,8 +535,8 @@ angular.module('abacuApp')
 
     /*******************Saving***********************/
     $scope.saveDesign = function () {
-      window.alert(JSON.stringify($scope.curWheelchair.parts));
-      window.alert(JSON.stringify($scope.curWheelchair.measures));
+      window.alert(JSON.stringify(curWheelchair.parts));
+      window.alert(JSON.stringify(curWheelchair.measures));
     };
 
     /*****************General Use Functions*********************/
@@ -576,3 +562,61 @@ angular.module('abacuApp')
     };
 
   });
+
+
+//pages example:
+
+//var pages = {
+//  customizePages: [
+//    { index: 0, partID: 0, visitstatus: visitstatus.CURRENT },
+//    { index: 1, partID: 3, visitstatus: visitstatus.UNVISITED },
+//    { index: 2, partID: 2, visitstatus: visitstatus.UNVISITED },
+//    { index: 3, partID: 1, visitstatus: visitstatus.UNVISITED },
+//    { index: 4, partID: 4, visitstatus: visitstatus.UNVISITED },
+//    { index: 5, partID: 5, visitstatus: visitstatus.UNVISITED },
+//    { index: 6, partID: 6, visitstatus: visitstatus.UNVISITED },
+//    { index: 7, partID: 7, visitstatus: visitstatus.UNVISITED },
+//    { index: 8, partID: 8, visitstatus: visitstatus.UNVISITED },
+//    { index: 9, partID: 9, visitstatus: visitstatus.UNVISITED },
+//    { index: 10, partID: 10, visitstatus: visitstatus.UNVISITED },
+//    { index: 11, partID: 11, visitstatus: visitstatus.UNVISITED }
+//  ],
+//  measurePages: [
+//    { index: 0, measureID: 1, visitstatus: visitstatus.CURRENT },
+//    { index: 1, measureID: 5, visitstatus: visitstatus.UNVISITED },
+//    { index: 2, measureID: 2, visitstatus: visitstatus.UNVISITED },
+//    { index: 3, measureID: 3, visitstatus: visitstatus.UNVISITED },
+//    { index: 4, measureID: 4, visitstatus: visitstatus.UNVISITED },
+//    { index: 5, measureID: 6, visitstatus: visitstatus.UNVISITED }
+//  ]
+//};
+
+//CurWheelchair Example:
+
+/*
+curWheelchair = {
+      frameID: 0,
+      parts: [
+        {
+          partID: 0,
+          optionID: 0,
+          colorID: 0
+        },
+        {
+          partID: 3,
+          optionID: 2,
+          colorID: 0
+        }
+      ],
+      measures: [
+        {
+          measureID: 5,
+          measureOption: null
+        },
+        {
+          measureID: 1,
+          measureOption: null
+        }
+      ]
+    };
+*/

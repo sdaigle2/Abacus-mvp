@@ -16,10 +16,32 @@
     display:inline-block;
 }
 
-.progressBar  .progress-segment {
+.progressBar .progress-segment {
+  display: inline-block;
+}
+
+.progress-segment .progress-segment-arrow {
   margin-left: -18px;
   position: relative;
-  left: -5px;
+  display: block;
+  left: 18px;
+}
+
+.progress-segment .progress-segment-arrow:hover {
+  cursor: pointer;
+}
+
+.progress-segment .progress-segment-tooltip {
+  position:absolute;
+  background-color:#000000;
+  color: #FFFFFF;
+  border-radius: 3px;
+  padding: 11px 5px;
+  top: 35px;
+}
+
+.progressBar .progress-segment-tooltip:hover {
+  cursor: default;
 }
 
 
@@ -151,7 +173,7 @@
 .nav-tabs.nav-justified > li > a:hover,
 .nav-tabs.nav-justified > li > a:focus {
   color: #FFFFFF;
-  cursor: default;
+  cursor: pointer;
   background-color: #bcbec0;
   border: none;
   border-radius: 20px 20px 0px 0px;

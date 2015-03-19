@@ -5,8 +5,10 @@
 <!-- Progress Bar and Save Button-->
 <div id="progressSaveBar">
   <div class="progressBar">
-    <span ng-repeat="page in getCurPages()">
-      <img class="progress-segment" ng-click="secSwitchClick(page)" data-ng-src="{{getProgBarImage(page)}}" >
+    <span class="progress-segment" ng-repeat="page in getCurPages()" ng-mouseover="progressSegmentHoverIn()" ng-mouseleave="progressSegmentHoverOut()">
+      <img class="progress-segment-arrow" ng-click="secSwitchClick(page)" data-ng-src="{{getProgBarImage(page)}}">
+      <span class="progress-segment-tooltip"
+            ng-show="showProgressSegmentTooltip">{{getProgressBarSegmentTooltipText(page)}}</span>
     </span>
   </div>
   <button type="button" id="SaveButton" class="btn btn-primary" data-ng-click="saveDesign()">Save & Review</button>

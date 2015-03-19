@@ -10,6 +10,7 @@
       "name": "Frame style",
       "numSubImages": 2,
       "zRank": [[1,2,3,4,5],[1,2,3,4,5]],
+			"defaultOptionID": 0,
       "options": [
         {
           "optionID": 0,
@@ -18,6 +19,7 @@
           "weight": 4,
           "desc": "A description",
           "thumbnailURL" : "images/d_panel_1.png",
+					"defaultColorID": 5,
           "colors": [
             {
               "colorID": 0,
@@ -70,14 +72,12 @@
         }
       ]
     },
-
-
     {
       "partID": 3,
       "name": "Back Rest",
-
       "numSubImages": 1,
       "zRank":[[1,2,3,4,5]],
+			"defaultOptionID": 4,
       "options": [
         {
           "optionID": 2,
@@ -85,8 +85,8 @@
           "price": 200,
           "weight": 6,
           "desc": "A description",
-
           "thumbnailURL": "images/d_panel_1.png",
+					"defaultColorID": 0,
           "colors": null
         },
         {
@@ -95,8 +95,8 @@
           "price": 2000,
           "weight": 4,
           "desc": "An ultra-extreme light wheel",
-
           "thumbnailURL": "images/d_panel_1.png",
+					"defaultColorID": 0,
           "colors":null
         },
         {
@@ -105,8 +105,8 @@
           "price": 4000,
           "weight": 4,
           "desc": "An ultra-extreme light wheel",
-
           "thumbnailURL": "images/d_panel_1.png",
+					"defaultColorID": 0,
           "colors":null
         }
       ]
