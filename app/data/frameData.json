@@ -1,142 +1,472 @@
 {
-  "frameID": 0,
-  "basePrice": 400,
-  "baseWeight": 50,
-  "name": "tiArrow Standard",
-  "desc": "The standard frame produced by tiArrow.",
+  "manufacturer": "Ti Arrow",
+  "name": "CKF",
+  "desc": "Ti Arrow's Standard Rigid Frame Wheelchair made from Titanium",
+  "basePrice": 2995,
+  "baseWeight": 5.5,
+  "frameID": 1,
   "parts": [
     {
-      "partID": 0,
-      "name": "Frame style",
-      "numSubImages": 2,
-      "zRank": [[1,2,3,4,5],[1,2,3,4,5]],
-			"defaultOptionID": 0,
+      "name": "Frame Style",
+      "partID": 1,
+      "numSubImages": 1,
+      "zRank": [[10,7,6,7,10]],
+      "defaultOptionID": 2,
       "options": [
         {
-          "optionID": 0,
-          "name": "Tilite Slipstream Single-Sided Fork",
-          "price": 20.0,
-          "weight": 4,
-          "desc": "A description",
-          "thumbnailURL" : "images/d_panel_1.png",
-					"defaultColorID": 5,
+          "name": "Titanium - Unpainted",
+          "optionID": 1,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "Titanium is a strong, beautiful material for a wheelchair frame",
+          "weight": 0,
+          "price": 0
+        },
+        {
+          "name": "Magnesium - Painted",
+          "optionID": 2,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "Magnesium is even lighter than Titanium, and it can be painted to any color you want!",
+          "weight": -0.1,
+          "price": 100,
+          "defaultColorID": 3,
           "colors": [
             {
-              "colorID": 0,
-              "name": "Red",
-              "hex": "#E7331A"
-            },
-            {
-              "colorID": 1,
-              "name": "Green",
-              "hex": "#2CA635"
-            },
-            {
+              "name": "Black",
               "colorID": 2,
-              "name": "Blue",
-              "hex": "#075EDA"
+              "hex": "#000000"
             },
             {
+              "name": "Gun Metal Gray",
               "colorID": 3,
-              "name": "Magenta",
-              "hex": "#FF00FF"
+              "hex": "#404040"
             },
             {
+              "name": "White",
               "colorID": 4,
-              "name": "Magenta",
-              "hex": "#FF00FF"
-
-            },{
+              "hex": "#FFFFFF"
+            },
+            {
+              "name": "Blue",
               "colorID": 5,
-              "name": "Magenta",
-              "hex": "#FF00FF"
+              "hex": "#1900FF"
             },
             {
+              "name": "Red",
               "colorID": 6,
-              "name": "Magenta",
-              "hex": "#FF00FF"
-
+              "hex": "#FF0000"
             },
             {
-              "colorID": 7,
-              "name": "Magenta",
-              "hex": "#FF00FF"
-            },
-            {
-              "colorID": 8,
               "name": "Yellow",
-              "hex": "#FFFF00"
+              "colorID": 7,
+              "hex": "#FFFB00"
+            },
+            {
+              "name": "Purple",
+              "colorID": 8,
+              "hex": "#D400FF"
+            },
+            {
+              "name": "Pink",
+              "colorID": 9,
+              "hex": "#FF00D9"
+            },
+            {
+              "name": "Other (specify)",
+              "colorID": 10,
+              "hex": "#858585"
             }
-
           ]
         }
       ]
     },
     {
-      "partID": 3,
-      "name": "Back Rest",
+      "name": "Accent Color",
+      "partID": 2,
       "numSubImages": 1,
-      "zRank":[[1,2,3,4,5]],
-			"defaultOptionID": 4,
+      "zRank": [[9,6,5,6,9]],
+      "defaultOptionID": 1,
       "options": [
         {
+          "name": "Anodized Aluminum Brackets",
+          "optionID": 1,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "These brackets hold the camber tube to the frame.",
+          "weight": 0,
+          "price": 0,
+          "defaultColorID": 2,
+          "colors": [
+            {
+              "name": "Black - Anodized",
+              "colorID": 1,
+              "hex": "#000000"
+            },
+            {
+              "name": "Red - Anodized",
+              "colorID": 2,
+              "hex": "#FF0000"
+            },
+            {
+              "name": "Yellow - Anodized",
+              "colorID": 3,
+              "hex": "#FFFB00"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Back Rest",
+      "partID": 3,
+      "numSubImages": 1,
+      "zRank": [[11,8,7,8,11]],
+      "defaultOptionID": 1,
+      "options": [
+        {
+          "name": "Carbon Fiber",
+          "optionID": 1,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "A super light and stiff backrest.",
+          "weight": 0,
+          "price": 0
+        },
+        {
+          "name": "Plastic",
           "optionID": 2,
-          "name": "Super Ultra Spinning Wheels of Awesomeness Deluxe Alpha 3D",
-          "price": 200,
-          "weight": 6,
-          "desc": "A description",
           "thumbnailURL": "images/d_panel_1.png",
-					"defaultColorID": 0,
-          "colors": null
+          "desc": "Nothing beats the simplicity and ease of maintenance of a plastic seat back.",
+          "weight": 0.1,
+          "price": 0
         },
         {
-          "optionID": 4,
-          "name": "sWheel",
-          "price": 2000,
-          "weight": 4,
-          "desc": "An ultra-extreme light wheel",
+          "name": "Upholstery",
+          "optionID": 3,
           "thumbnailURL": "images/d_panel_1.png",
-					"defaultColorID": 0,
-          "colors":null
+          "desc": "A clasic fabric sling is the lightest option.",
+          "weight": -0.07,
+          "price": 0
+        }
+      ]
+    },
+    {
+      "name": "Wheel Rim",
+      "partID": 4,
+      "numSubImages": 2,
+      "zRank": [[5,2,2,5,6],[6,9,9,9,5]],
+      "defaultOptionID": 1,
+      "options": [
+        {
+          "name": "DT Swiss Wheel Rim",
+          "optionID": 1,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "The DT Swiss Wheel Rim is the lightest and most stiff option out there.",
+          "defaultColorID": 2,
+          "colors": [
+            {
+              "name": "Black",
+              "colorID": 1,
+              "zRank": "Black",
+              "weight": 0,
+              "price": 0
+            },
+            {
+              "name": "White",
+              "colorID": 2,
+              "zRank": "White",
+              "weight": 0,
+              "price": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hand Rims",
+      "partID": 5,
+      "numSubImages": 2,
+      "zRank": [[1,1,1,3,4],[2,13,11,11,3]],
+      "defaultOptionID": 1,
+      "options": [
+        {
+          "name": "Titanium",
+          "optionID": 1,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "Titanium is strong and light, but easily dented",
+          "weight": 0,
+          "price": 0
         },
         {
-          "optionID": 5,
-          "name": "sWheel",
-          "price": 4000,
-          "weight": 4,
-          "desc": "An ultra-extreme light wheel",
+          "name": "Black Anodized Aluminum",
+          "optionID": 2,
           "thumbnailURL": "images/d_panel_1.png",
-					"defaultColorID": 0,
-          "colors":null
+          "desc": "The aluminum hand rim is more dent resistant and slightly heavier.",
+          "weight": 0.1,
+          "price": 0
+        },
+        {
+          "name": "Q-Grip from Out-front",
+          "optionID": 3,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "The Q-Grip hand rim is great for those with low hand dexterity",
+          "weight": 0.2,
+          "price": 300
+        }
+      ]
+    },
+    {
+      "name": "Tire",
+      "partID": 6,
+      "numSubImages": 2,
+      "zRank": [[3,3,3,4,8],[4,10,10,10,7]],
+      "defaultOptionID": 1,
+      "options": [
+        {
+          "name": "Rightrun",
+          "optionID": 1,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "Rightrun tires offer style and lightness.",
+          "defaultColorID": 4,
+          "colors": [
+            {
+              "name": "Gray",
+              "colorID": 1,
+              "hex": "#404040",
+              "weight": 0.09,
+              "price": 0
+            },
+            {
+              "name": "Blue",
+              "colorID": 2,
+              "hex": "#1900FF"
+            },
+            {
+              "name": "Yellow",
+              "colorID": 3,
+              "hex": "#FFFB00"
+            },
+            {
+              "name": "Red",
+              "colorID": 4,
+              "hex": "#FF0000"
+            }
+          ]
+        },
+        {
+          "name": "Schwalbe Low Tread",
+          "optionID": 2,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "Schwalbe makes an excelent tire",
+          "weight": 0,
+          "price": 0
+        }
+      ]
+    },
+    {
+      "name": "Inner Tube",
+      "partID": 7,
+      "numSubImages": 1,
+      "defaultOptionID": 1,
+      "options": [
+        {
+          "name": "Extra light",
+          "optionID": 1,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "The lightest weight innertube around!",
+          "price": 0
+        },
+        {
+          "name": "Standard",
+          "optionID": 2,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "The standard tire is more puncture resistant, but slightly heavier",
+          "weight": 0.033,
+          "price": 0
+        }
+      ]
+    },
+    {
+      "name": "Caster Style",
+      "partID": 8,
+      "numSubImages": 2,
+      "zRank": [[7,4,4,1,2],[8,5,8,2,1]],
+      "defaultOptionID": 1,
+      "options": [
+        {
+          "name": "Aluminum",
+          "optionID": 1,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "Standard monofork caster",
+          "weight": 0,
+          "price": 0
+        },
+        {
+          "name": "Softroller",
+          "optionID": 2,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "The Softroller offers some bounce to your ride.",
+          "weight": 0,
+          "price": 0
+        }
+      ]
+    },
+    {
+      "name": "Brakes (No Images for Now)",
+      "partID": 9,
+      "numSubImages": 1,
+      "defaultOptionID": 1,
+      "options": [
+        {
+          "name": "Out-Front Brakes",
+          "optionID": 1,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "Tried and true standard brakes",
+          "weight": 0.1,
+          "price": 50
+        },
+        {
+          "name": "Single Hand Operating Brakes",
+          "optionID": 2,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "Compact, reliable, and opperable with just one hand.",
+          "weight": 0,
+          "price": 0
+        },
+        {
+          "name": "No Brakes",
+          "optionID": 3,
+          "thumbnailURL": "images/d_panel_1.png",
+          "desc": "Cutting weight? Live life on the edge with no wheel locksÖ you rebel you.",
+          "weight": -0.2,
+          "price": -50
         }
       ]
     }
   ],
   "measures": [
     {
+      "name": "Weight Capacity",
+      "desc": "Description goes here",
+      "details": "Details go here",
+      "tip": "Tip Goes here",
       "measureID": 1,
-      "name": "Rear Seat Height",
-      "desc": "Distance from ground to back corner of seat",
-      "measureOptions": ["12", "13", "14", "15", "16"],
-      "tip": "Important fators to think about when measuring rear seat height are <strong>body stability</strong> and <strong>shoulder strain</strong>",
-      "videoURL": "https://www.youtube.com/embed/pcY2bR7MPVo",
-      "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
-      "gifURL": "",
-      "details": "Here are some helpful details"
-    },
-    {
-      "measureID": 5,
-      "name": "Wheel Radius",
-      "desc": "The <strong>radius</strong> of the <strong>wheel</strong>",
-      "measureOptions": ["100", "200", "500", "1000", "1E8"],
-      "tip": "Don't set this to 0 or you\"ll just get a regular chair",
-      "videoURL": "https://www.youtube.com/embed/HCp3_jaYOZ4",
-      "imageURLs": ["rear-seat-height2.jpg", "rear-seat-height1.jpg"],
-      "gifURL": "",
-      "details": "This set of details is not helpful in the slightest: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula, erat at sollicitudin gravida, diam lacus maximus sem, non viverra eros nisi et quam. Nulla ornare eleifend mattis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris metus justo, hendrerit id lorem in, rhoncus tincidunt risus. Maecenas consequat mollis ligula ac ornare. Sed laoreet ipsum eget quam ornare sagittis. Suspendisse fermentum ultrices justo eu egestas. Vivamus egestas semper nibh, vitae malesuada turpis lacinia ac. Nam condimentum ornare interdum. Phasellus sed euismod ligula. Vivamus volutpat nulla a diam consequat eleifend. Morbi semper magna at odio ultrices condimentum. Phasellus porttitor dictum pretium."
-    }
-  ]
-}
-
-
-
+      "units": ["string","string"],
+      "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+      "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1]",
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+        "measureOptions": [["<70 kg", "71-95 kg", "96-115 kg"],["<150 lbs", "150 - 210 lbs", "210 - 250 lbs"]],
+        "weights": ["-0.1", "0", "0.1"],
+        "prices": ["-0.1", "0", "0.1"]
+      },
+        {
+          "name": "Seat Width",
+          "desc": "Description goes here",
+          "details": "Details go here",
+          "tip": "Tip Goes here",
+          "measureID": 2,
+          "units": ["cm","in"],
+          "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+          "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1]",
+            "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+            "measureOptions": [["35", "37", "39", "41"],["13.8", "14.6", "15.4", "16.1"]],
+            "weights": ["0", "0.1", "0.2", "0.3"],
+            "prices": ["0", "0.1", "0.2", "0.3"]
+          },
+            {
+              "name": "Caster Size",
+              "desc": "Description goes here",
+              "details": "Details go here",
+              "tip": "Tip Goes here",
+              "measureID": 3,
+              "units": ["cm","in"],
+              "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+              "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1]",
+                "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+                "measureOptions": [["10.16", "12.7"],["4", "5"]],
+                "weights": ["0", "0.2"],
+                "prices": ["0", "0.2"]
+              },
+                {
+                  "name": "Rear Wheel Size",
+                  "desc": "Description goes here",
+                  "details": "Details go here",
+                  "tip": "Tip Goes here",
+                  "measureID": 4,
+                  "units": ["string"],
+                  "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+                  "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1]",
+                    "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+                    "measureOptions": [["24", "25" , "26" ],["24", "25", "26"]],
+                    "weights": ["-0.06", "0", "0.06"],
+                    "prices": ["-0.06", "0", "0.06"]
+                  },
+                    {
+                      "name": "Back Rest Height (cm)",
+                      "desc": "Description goes here",
+                      "details": "Details go here",
+                      "tip": "Tip Goes here",
+                      "measureID": 5,
+                      "units": ["cm","in"],
+                      "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+                      "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1]",
+                        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+                        "measureOptions": [["24", "26", "28", "30", "32", "34"],["9.4", "10.2", "11", "11.8", "12.6", "13.4"]],
+                        "weights": ["-0.1", "-0.05", "0", "0.05", "0.1", "0.15"],
+                        "prices": ["-0.1", "-0.05", "0", "0.05", "0.1", "0.15"]
+                      },
+                        {
+                          "name": "Seat Depth - Adjustable (cm)",
+                          "desc": "Description goes here",
+                          "details": "Details go here",
+                          "tip": "Tip Goes here",
+                          "measureID": 6,
+                          "units": ["cm","in"],
+                          "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+                          "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1]",
+                            "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+                            "measureOptions": [["40", "41", "42", "43", "44"],["15.7", "16.1", "16.5", "16.9", "17.3"]],
+                            "weights": ["-0.1", "-0.05", "0", "0.05", "0.1"],
+                            "prices": ["-0.1", "-0.05", "0", "0.05", "0.1"]
+                          },
+                            {
+                              "name": "Foot Rest Height - Adjustable (cm)",
+                              "desc": "Description goes here",
+                              "details": "Details go here",
+                              "tip": "Tip Goes here",
+                              "measureID": 7,
+                              "units": ["cm","in"],
+                              "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+                              "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1]",
+                                "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+                                "measureOptions": [["5", "7", "9", "11", "13"],["2", "2.8", "3.5", "4.3", "5.1"]],
+                                "weights": ["-0.1", "-0.05", "0", "0.05", "0.1"],
+                                "prices": ["-0.1", "-0.05", "0", "0.05", "0.1"]
+                              },
+                                {
+                                  "name": "Side Guard Height",
+                                  "desc": "Description goes here",
+                                  "details": "Details go here",
+                                  "tip": "Tip Goes here",
+                                  "measureID": 8,
+                                  "units": ["cm","in"],
+                                  "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+                                  "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1]",
+                                    "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+                                    "measureOptions": [["-6", "-4", "-2", "0", "2", "4", "6"],["-2.4", "-1.6", "-0.8", "0", "0.8", "1.6", "2.4"]],
+                                    "weights": ["-0.15", "-0.1", "-0.05", "0", "0.05", "0.1", "0.15"],
+                                    "prices": ["-0.15", "-0.1", "-0.05", "0", "0.05", "0.1", "0.15"]
+                                  },
+                                    {
+                                      "name": "Side Guard Length",
+                                      "desc": "Description goes here",
+                                      "details": "Details go here",
+                                      "tip": "Tip Goes here",
+                                      "measureID": 9,
+                                      "units": ["cm","in"],
+                                      "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+                                      "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1]",
+                                        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+                                        "measureOptions": [["-6", "-4", "-2", "0", "2", "4", "6"],["-2.4", "-1.6", "-0.8", "0", "0.8", "1.6", "2.4"]],
+                                        "weights": ["-0.15", "-0.1", "-0.05", "0", "0.05", "0.1", "0.15"],
+                                        "prices": ["-0.15", "-0.1", "-0.05", "0", "0.05", "0.1", "0.15"]
+                                      }
+                                      ]
+                                    }

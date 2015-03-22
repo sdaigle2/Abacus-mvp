@@ -103,20 +103,20 @@ angular.module('abacuApp')
           colorID: getOptionData(curPart.defaultOptionID).defaultColorID
         });
       }
-      for (var i = 0; i < $scope.frameData.measures.length; i++) {
+      for (var j = 0; j < $scope.frameData.measures.length; j++) {
         curWheelchair.measures.push({
-          measureID: $scope.frameData.measures[i].measureID,
+          measureID: $scope.frameData.measures[j].measureID,
           measureOption: null
         });
       }
-    };
+    }
 
 
     function init() {
       $scope.frameData = frameDataFromDB; // all of our data about the frame (from dbLoad.js)
       generatePages();
       generateCurWheelchair();
-    };
+    }
 
     init(); //Initialize the page
 
@@ -172,8 +172,12 @@ angular.module('abacuApp')
       var angleString    = '_' + getAngleName(angle);
 
       var partURL = previewBaseURL + 'frame' + frameIDString + '/';
-      partURL += 'Part' + partIDString + '/';
+      partURL += 'part' + partIDString + '/';
       partURL += optionIDString + colorString + subIndString + angleString + previewImageType;
+      console.log(partURL);
+      console.log(JSON.stringify(curWheelchairPart));
+
+
       return partURL;
 
       //FrameID = 0
@@ -183,7 +187,7 @@ angular.module('abacuApp')
       //SubImageIndex = 4
       //Angle = FRONT
       //    CREATES
-      //'baseURL/frame0/part1/2_3_4_Front.png'
+      //'baseURL/frame1/part1/2_3_4_Front.png'
     }
 
     //Keeps track of previous memory of image for Angular's sake
@@ -456,11 +460,11 @@ angular.module('abacuApp')
 
     //Determine the text for each tooltip to display
     $scope.getProgressBarSegmentTooltipText = function (page) {
-      if (curPage.type === $scope.pageType.CUSTOMIZE)
-        return getPartData(page.partID).name;
-      else if (curPage.type === $scope.pageType.MEASURE)
-        return getMeasureData(page.measureID).name;
-      return "ERROR: Invalid page type";
+      if (curPage.type === $scope.pageType.CUSTOMIZE){
+        return getPartData(page.partID).name;}
+      else if (curPage.type === $scope.pageType.MEASURE){
+        return getMeasureData(page.measureID).name;}
+      return 'ERROR: Invalid page type';
     };
 
     /*****************Sidebar Tabs***************/
