@@ -100,8 +100,12 @@ angular.module('abacuApp')
         curWheelchair.parts.push({
           partID: curPart.partID,
           optionID: curPart.defaultOptionID,
-          colorID: getOptionData(curPart.defaultOptionID).defaultColorID
+          colorID: getOptionData(curPart.defaultOptionID, curPart).defaultColorID
         });
+        console.log("partID: " + curPart.partID);
+        console.log("defaultOptionID: " + curPart.defaultOptionID);
+        console.log("defaultColorID: " + getOptionData(curPart.defaultOptionID, curPart).defaultColorID);
+        console.log(JSON.stringify(getOptionData(curPart.defaultOptionID,curPart)));
       }
       for (var j = 0; j < $scope.frameData.measures.length; j++) {
         curWheelchair.measures.push({
@@ -109,6 +113,7 @@ angular.module('abacuApp')
           measureOption: null
         });
       }
+      console.log(JSON.stringify(curWheelchair));
     }
 
 
@@ -126,7 +131,7 @@ angular.module('abacuApp')
       var totalWeight = $scope.frameData.baseWeight;
       for (var i = 0; i < curWheelchair.parts.length; i++) {
         var curPart = curWheelchair.parts[i];
-        totalWeight = totalWeight + getOptionData(curPart.optionID).weight;
+        totalWeight = totalWeight + getOptionData(curPart.optionID, curPart).weight;
       }
       return totalWeight;
     };
@@ -134,7 +139,7 @@ angular.module('abacuApp')
       var totalPrice = $scope.frameData.basePrice;
       for (var i = 0; i < curWheelchair.parts.length; i++) {
         var curPart = curWheelchair.parts[i];
-        totalPrice += getOptionData(curPart.optionID).price;
+        totalPrice += getOptionData(curPart.optionID, curPart).price;
       }
       return totalPrice;
     };
@@ -174,8 +179,8 @@ angular.module('abacuApp')
       var partURL = previewBaseURL + 'frame' + frameIDString + '/';
       partURL += 'part' + partIDString + '/';
       partURL += optionIDString + colorString + subIndString + angleString + previewImageType;
-      console.log(partURL);
-      console.log(JSON.stringify(curWheelchairPart));
+      //console.log(partURL);
+      //console.log(JSON.stringify(curWheelchairPart));
 
 
       return partURL;
@@ -205,7 +210,7 @@ angular.module('abacuApp')
         var numSubImages = curPartData.numSubImages;
         for (var j = 0; j < numSubImages; j++) {
           imgs.push({
-            url: getPartPreviewImageURL(curPart, j),
+            URL: getPartPreviewImageURL(curPart, j),
             zRank: curPartData.zRank[j][angle]
           });
         }
@@ -300,16 +305,15 @@ angular.module('abacuApp')
       return null;
     }
 
-    function getOptionData(id) {
-      for (var i = 0; i < $scope.frameData.parts.length; i++) {
-        var curPart = $scope.frameData.parts[i];
-        for (var j = 0; j < curPart.options.length; j++) {
-          var curOption = curPart.options[j];
-          if (curOption.optionID === id) {
-            return curOption;
-          }
+    function getOptionData(id, curPart) {
+
+      for (var j = 0; j < curPart.options.length; j++) {
+        var curOption = curPart.options[j];
+        if (curOption.optionID === id) {
+          return curOption;
         }
       }
+
       return null;
     }
 
@@ -333,8 +337,8 @@ angular.module('abacuApp')
       return null;
     }
 
-    function getColorByName (optionID, colorName) {
-      var option = getOptionData(optionID);
+    function getColorByName (optionID, colorName, curPart) {
+      var option = getOptionData(optionID, curPart);
       for (var i=0; i<option.colors.length; i++) {
         if (option.colors[i].name === colorName) {
           return option.colors[i];
@@ -342,8 +346,8 @@ angular.module('abacuApp')
       }
     }
 
-    function getColorByID(optionID, colorID) {
-      var option = getOptionData(optionID);
+    function getColorByID(optionID, colorID, curPart) {
+      var option = getOptionData(optionID, curPart);
       for (var i = 0; i < option.colors.length; i++) {
         if (option.colors[i].colorID === colorID) {
           return option.colors[i];
@@ -483,7 +487,7 @@ angular.module('abacuApp')
       var part = getWheelchairPart(partID);
       if (part.optionID !== newOptionID) {
         part.optionID = newOptionID;
-        var colorOptions = (getOptionData(newOptionID)).colors;
+        var colorOptions = (getOptionData(newOptionID,part)).colors;
         part.colorID = (colorOptions !== null && colorOptions.length > 0) ? colorOptions[0].colorID : 0;
       }
     }
