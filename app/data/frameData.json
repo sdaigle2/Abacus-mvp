@@ -271,7 +271,7 @@
     {
       "name": "Inner Tube",
       "partID": 7,
-      "numSubImages": 1,
+      "numSubImages": 0,
       "defaultOptionID": 1,
       "options": [
         {
@@ -324,7 +324,7 @@
     {
       "name": "Brakes (No Images for Now)",
       "partID": 9,
-      "numSubImages": 1,
+      "numSubImages": 0,
       "defaultOptionID": 1,
       "options": [
         {

@@ -102,10 +102,10 @@ angular.module('abacuApp')
           optionID: curPart.defaultOptionID,
           colorID: getOptionData(curPart.defaultOptionID, curPart).defaultColorID
         });
-        console.log("partID: " + curPart.partID);
-        console.log("defaultOptionID: " + curPart.defaultOptionID);
-        console.log("defaultColorID: " + getOptionData(curPart.defaultOptionID, curPart).defaultColorID);
-        console.log(JSON.stringify(getOptionData(curPart.defaultOptionID,curPart)));
+        //console.log("partID: " + curPart.partID);
+        //console.log("defaultOptionID: " + curPart.defaultOptionID);
+        //console.log("defaultColorID: " + getOptionData(curPart.defaultOptionID, curPart).defaultColorID);
+        //console.log(JSON.stringify(getOptionData(curPart.defaultOptionID,curPart)));
       }
       for (var j = 0; j < $scope.frameData.measures.length; j++) {
         curWheelchair.measures.push({
@@ -113,7 +113,7 @@ angular.module('abacuApp')
           measureOption: null
         });
       }
-      console.log(JSON.stringify(curWheelchair));
+      //console.log(JSON.stringify(curWheelchair));
     }
 
 
@@ -137,9 +137,13 @@ angular.module('abacuApp')
     };
     $scope.getTotalPrice = function () {
       var totalPrice = $scope.frameData.basePrice;
+      //console.log("from get total price: " + JSON.stringify(curWheelchair.parts));
       for (var i = 0; i < curWheelchair.parts.length; i++) {
+        console.log(i);
         var curPart = curWheelchair.parts[i];
+        //console.log("individual price: " + curPart.optionID);
         totalPrice += getOptionData(curPart.optionID, curPart).price;
+
       }
       return totalPrice;
     };
@@ -197,27 +201,31 @@ angular.module('abacuApp')
 
     //Keeps track of previous memory of image for Angular's sake
     var oldImgs = null;
-
+    $scope.imgimg = [{"URL":"images/chairPic/frame1/part8/1_0_0_Front.png","zRank":1},{"URL":"images/chairPic/frame1/part8/1_0_1_Front.png","zRank":2},{"URL":"images/chairPic/frame1/part5/1_0_0_Front.png","zRank":3},{"URL":"images/chairPic/frame1/part6/1_4_0_Front.png","zRank":4},{"URL":"images/chairPic/frame1/part4/1_2_0_Front.png","zRank":5},{"URL":"images/chairPic/frame1/part2/1_2_0_Front.png","zRank":6},{"URL":"images/chairPic/frame1/part1/2_4_0_Front.png","zRank":7},{"URL":"images/chairPic/frame1/part3/1_0_0_Front.png","zRank":8},{"URL":"images/chairPic/frame1/part4/1_2_1_Front.png","zRank":9},{"URL":"images/chairPic/frame1/part6/1_4_1_Front.png","zRank":10},{"URL":"images/chairPic/frame1/part5/1_0_1_Front.png","zRank":11}];
     //Returns an array of imagesURLs to be displayed
     //stacked from first to last (Ascending z-index order)
     $scope.getCurWheelchairImages = function () {
       var imgs = [];
-
+      console.log(JSON.stringify(curWheelchair));
       //Generate array of images with zRank's
       for (var i = 0; i < curWheelchair.parts.length; i++) {
         var curPart = curWheelchair.parts[i];
         var curPartData = getPartData(curPart.partID);
         var numSubImages = curPartData.numSubImages;
+        //console.log(JSON.stringify(curPartData));
         for (var j = 0; j < numSubImages; j++) {
+          //console.log("num of sub images: " + numSubImages);
           imgs.push({
             URL: getPartPreviewImageURL(curPart, j),
             zRank: curPartData.zRank[j][angle]
           });
+          //console.log(getPartPreviewImageURL(curPart, j));
+          //console.log("Z rank : " + curPartData.zRank[j][angle]);
+          //console.log(JSON.stringify(imgs));
         }
 
-
       }
-
+      console.log("I am here");
       //Sort array by zRanks
       imgs.sort(function (a, b) {
         return (a.zRank - b.zRank);
@@ -230,7 +238,7 @@ angular.module('abacuApp')
         imgs = oldImgs;
       }
       oldImgs = imgs;
-
+      console.log("img array: " + JSON.stringify(imgs));
       return imgs;
     };
 
