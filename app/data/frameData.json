@@ -164,13 +164,13 @@
           "thumbnailURL": "images/d_panel_1.png",
           "desc": "The DT Swiss Wheel Rim is the lightest and most stiff option out there.",
           "defaultColorID": 2,
+          "weight": 0,
+          "price": 0,
           "colors": [
             {
               "name": "Black",
               "colorID": 1,
-              "zRank": "Black",
-              "weight": 0,
-              "price": 0
+              "zRank": "Black"
             },
             {
               "name": "White",
@@ -232,13 +232,14 @@
           "thumbnailURL": "images/d_panel_1.png",
           "desc": "Rightrun tires offer style and lightness.",
           "defaultColorID": 4,
+          "weight": 0.09,
+          "price": 0,
           "colors": [
             {
               "name": "Gray",
               "colorID": 1,
-              "hex": "#404040",
-              "weight": 0.09,
-              "price": 0
+              "hex": "#404040"
+
             },
             {
               "name": "Blue",

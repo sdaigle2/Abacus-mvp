@@ -26,7 +26,7 @@
   <!-- CUSTOMIZE: Wheelchair Display and controls -->
   <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE" style="position:relative;">
     <img class="main-custom-wheelchairDisplay"
-         ng-repeat="imgURL in imgimg"
+         ng-repeat="imgURL in getCurWheelchairImages() track by $index"
          ng-src="{{imgURL.URL}}"
          ng-style="{'z-index': $index }" />
     {{imgURL.URL}}
