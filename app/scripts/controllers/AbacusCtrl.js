@@ -225,6 +225,8 @@ angular.module('abacuApp')
         imgs = oldImgs;
       }
       oldImgs = imgs;
+
+      console.log(JSON.stringify(imgs));
       return imgs;
     };
 
@@ -482,13 +484,17 @@ angular.module('abacuApp')
     };
 
     function setOptionForPart(partID, newOptionID) {
+      console.log("partID: " + partID);
       var part = getWheelchairPart(partID);
+      console.log("part before change: "+JSON.stringify(curWheelchair));
       if (part.optionID !== newOptionID) {
         part.optionID = newOptionID;
+        console.log("changed optionID:" + part.optionID);
 
 
         //var colorOptions = (getOptionData(newOptionID,getPartData(partID))).colors;
         part.colorID = getOptionData(newOptionID, getPartData(partID)).defaultColorID;
+        console.log("part after change: "+JSON.stringify(curWheelchair));
       }
     }
 
