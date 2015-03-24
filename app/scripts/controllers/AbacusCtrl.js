@@ -218,7 +218,6 @@ angular.module('abacuApp')
       imgs.sort(function (a, b) {
         return (a.zRank - b.zRank);
       });
-
       //Keep old values for Angular's $digest
       //since img is not the same memory address as oldImg, Angular continuously reloads img until it crashes
       //If img doesn't change, simply reload the old memory for Angular
@@ -483,16 +482,13 @@ angular.module('abacuApp')
     };
 
     function setOptionForPart(partID, newOptionID) {
-      console.log("partID: " + partID);
       var part = getWheelchairPart(partID);
-      console.log("part before change: "+JSON.stringify(curWheelchair));
       if (part.optionID !== newOptionID) {
         part.optionID = newOptionID;
-        console.log("changed optionID:" + part.optionID);
-        console.log("part after change: "+JSON.stringify(curWheelchair));
 
-        var colorOptions = (getOptionData(newOptionID,part)).colors;
-        part.colorID = (colorOptions !== null && colorOptions.length > 0) ? colorOptions[0].colorID : 0;
+
+        //var colorOptions = (getOptionData(newOptionID,getPartData(partID))).colors;
+        part.colorID = getOptionData(newOptionID, getPartData(partID)).defaultColorID;
       }
     }
 
