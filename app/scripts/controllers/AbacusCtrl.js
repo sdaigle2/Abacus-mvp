@@ -1,4 +1,4 @@
-﻿﻿// jshint unused:false
+﻿// jshint unused:false
 /* globals frameDataFromDB, $ */
 'use strict';
 
@@ -47,6 +47,8 @@ angular.module('abacuApp')
       COLOR: 'color',
       DETAIL: 'detail'
     };
+
+    $scope.loadImgs = [];
 
     /**********************Main Variables****************************/
 
@@ -120,6 +122,7 @@ angular.module('abacuApp')
       $scope.frameData = frameDataFromDB; // all of our data about the frame (from dbLoad.js)
       generatePages();
       generateCurWheelchair();
+      $scope.loadImgs = getCurWheelchairImages();
     }
 
     init(); //Initialize the page
@@ -179,7 +182,7 @@ angular.module('abacuApp')
 
       var partURL = previewBaseURL + 'frame' + frameIDString + '/';
       partURL += 'part' + partIDString + '/';
-      partURL += optionIDString + colorString + subIndString + angleString + previewImageType;
+      partURL += optionIDString + colorString + subIndString + "_Front" + previewImageType;
 
 
 
@@ -199,7 +202,7 @@ angular.module('abacuApp')
     var oldImgs = null;
     //Returns an array of imagesURLs to be displayed
     //stacked from first to last (Ascending z-index order)
-    $scope.getCurWheelchairImages = function () {
+    function getCurWheelchairImages (){
       var imgs = [];
       //Generate array of images with zRank's
       for (var i = 0; i < curWheelchair.parts.length; i++) {
@@ -221,10 +224,10 @@ angular.module('abacuApp')
       //Keep old values for Angular's $digest
       //since img is not the same memory address as oldImg, Angular continuously reloads img until it crashes
       //If img doesn't change, simply reload the old memory for Angular
-      if (imgsUnchanged(imgs, oldImgs)) {
-        imgs = oldImgs;
-      }
-      oldImgs = imgs;
+      //if (imgsUnchanged(imgs, oldImgs)) {
+      //  imgs = oldImgs;
+      //}
+      //oldImgs = imgs;
 
       console.log(JSON.stringify(imgs));
       return imgs;
@@ -480,7 +483,7 @@ angular.module('abacuApp')
     $scope.setCurOption = function (newOptionID) {
       console.log("new Option ID : " + newOptionID);
       setOptionForPart($scope.getCurPartData().partID, newOptionID);
-      $scope.getCurWheelchairImages();
+      $scope.loadImgs = getCurWheelchairImages();
     };
 
     function setOptionForPart(partID, newOptionID) {
@@ -501,6 +504,8 @@ angular.module('abacuApp')
     $scope.setCurOptionColor = function (newColorID) {
       if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
         setColorForPartOption($scope.getCurWheelchairPart().partID, newColorID);
+        $scope.loadImgs = getCurWheelchairImages();
+
       }
     };
 
