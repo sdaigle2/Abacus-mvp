@@ -50,6 +50,9 @@ angular.module('abacuApp')
 
     $scope.loadImgs = [];
 
+    var angle = 1;
+
+
     /**********************Main Variables****************************/
 
     //All the data about the current frame
@@ -149,20 +152,19 @@ angular.module('abacuApp')
     };
 
     /*******************Wheelchair Preview & Rotation***********************/
-    var angle = angleType.RIGHT;
 
     //Returns the angle as a String
     function getAngleName(angle) {
       switch (angle) {
-        case angleType.FRONT:
+        case 0:
           return 'Front';
-        case angleType.FRONTRIGHT:
+        case 1:
           return 'FrontRight';
-        case angleType.RIGHT:
+        case 2:
           return 'Right';
-        case angleType.BACK:
+        case 3:
           return 'Back';
-        case angleType.BACKRIGHT:
+        case 4:
           return 'BackRight';
         default:
           return '';
@@ -179,10 +181,10 @@ angular.module('abacuApp')
       var colorString    = '_' + curWheelchairPart.colorID;
       var subIndString   = '_' + subImageIndex;
       var angleString    = '_' + getAngleName(angle);
-
+      console.log (getAngleName(angle));
       var partURL = previewBaseURL + 'frame' + frameIDString + '/';
       partURL += 'part' + partIDString + '/';
-      partURL += optionIDString + colorString + subIndString + "_Front" + previewImageType;
+      partURL += optionIDString + colorString + subIndString + angleString + previewImageType;
 
 
 
@@ -214,9 +216,12 @@ angular.module('abacuApp')
             URL: getPartPreviewImageURL(curPart, j),
             zRank: curPartData.zRank[j][angle]
           });
+          console.log(angle);
+          //console.log(JSON.stringify(curPartData.zRank[j][angle]));
         }
 
       }
+      //console.log(JSON.stringify(imgs.zRank));
       //Sort array by zRanks
       imgs.sort(function (a, b) {
         return (a.zRank - b.zRank);
@@ -229,7 +234,7 @@ angular.module('abacuApp')
       //}
       //oldImgs = imgs;
 
-      console.log(JSON.stringify(imgs));
+
       return imgs;
     };
 
