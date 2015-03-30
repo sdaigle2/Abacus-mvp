@@ -145,6 +145,7 @@ angular.module('abacuApp')
       for (var i = 0; i < curWheelchair.parts.length; i++) {
 
         var curPart = curWheelchair.parts[i];
+        console.log(JSON.stringify(curWheelchair));
 
           totalPrice += curPart.price;
       }
@@ -181,7 +182,6 @@ angular.module('abacuApp')
       var colorString    = '_' + curWheelchairPart.colorID;
       var subIndString   = '_' + subImageIndex;
       var angleString    = '_' + getAngleName(angle);
-      console.log (getAngleName(angle));
       var partURL = previewBaseURL + 'frame' + frameIDString + '/';
       partURL += 'part' + partIDString + '/';
       partURL += optionIDString + colorString + subIndString + angleString + previewImageType;
@@ -216,7 +216,6 @@ angular.module('abacuApp')
             URL: getPartPreviewImageURL(curPart, j),
             zRank: curPartData.zRank[j][angle]
           });
-          console.log(angle);
           //console.log(JSON.stringify(curPartData.zRank[j][angle]));
         }
 
@@ -236,7 +235,7 @@ angular.module('abacuApp')
 
 
       return imgs;
-    };
+    }
 
     //Check if the contents of newImgs are equal to oldImgs
     function imgsUnchanged(newImgs, oldImgs) {
@@ -486,23 +485,20 @@ angular.module('abacuApp')
     /*****************Building CurWheelchair*****/
 
     $scope.setCurOption = function (newOptionID) {
-      console.log("new Option ID : " + newOptionID);
       setOptionForPart($scope.getCurPartData().partID, newOptionID);
       $scope.loadImgs = getCurWheelchairImages();
     };
 
     function setOptionForPart(partID, newOptionID) {
-      console.log("partID: " + partID);
       var part = getWheelchairPart(partID);
-      console.log("part before change: "+JSON.stringify(curWheelchair));
       if (part.optionID !== newOptionID) {
         part.optionID = newOptionID;
-        console.log("changed optionID:" + part.optionID);
 
 
         //var colorOptions = (getOptionData(newOptionID,getPartData(partID))).colors;
         part.colorID = getOptionData(newOptionID, getPartData(partID)).defaultColorID;
-        console.log("part after change: "+JSON.stringify(curWheelchair));
+        part.price = getOptionData(newOptionID, getPartData(partID)).price;
+        part.weight = getOptionData(newOptionID, getPartData(partID)).weight;
       }
     }
 
