@@ -1,1 +1,55 @@
 /*Shopping Cart page CSS*/
+
+
+/*************************
+**** Cart Background *****
+**************************/
+
+.cartBackground {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  background-color: #FFF;
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+}
+
+
+/*************************
+****** Cart Heading ******
+**************************/
+
+.cartHeading {
+  clear: left;
+  float: left;
+  width: 70%;
+  margin-top: 30px;
+}
+
+
+.cartHeading h1 {
+  clear: left;
+  float: left;
+  text-transform: uppercase;
+}
+
+.cartHeading .backButton {
+  margin-top: 30px;
+  clear: right;
+  float: right;
+  font-weight: bold;
+}
+
+
+/*************************
+****** Cart Sidebar ******
+**************************/
+
+.cartSidebar {
+  clear: right;
+  float: right;
+  width: 30%;
+  margin-top: 30px;
+  background-color: #EAEAE8;
+}

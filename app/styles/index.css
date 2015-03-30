@@ -16,7 +16,7 @@ body {
   top: 0px;
   height: 475px;
   width: 100%;
-  z-index: -500;
+  z-index: -5000;
   background-color: #EAEAEA;
 }
 
