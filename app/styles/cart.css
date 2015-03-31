@@ -21,10 +21,13 @@
 **************************/
 
 .cartHeading {
+  border-bottom: 2px solid #000000;
   clear: left;
   float: left;
-  width: 70%;
+  margin-right: 0;
   margin-top: 30px;
+  padding-right: 25px;
+  width: 80%;
 }
 
 
@@ -35,21 +38,127 @@
 }
 
 .cartHeading .backButton {
-  margin-top: 30px;
+  margin-top: 50px;
   clear: right;
   float: right;
   font-weight: bold;
 }
 
+/*************************
+****** Cart Item List ****
+**************************/
+
+.cartItems {
+  float: left;
+  clear: left;
+  width: 80%;
+  padding-left: 10px;
+}
+
+.cartItemsTable {
+  width: 80%;
+  position: relative;
+  left: 20px;
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
+.cartItem {
+  border-bottom: solid 1px #BBBBBB;
+}
+
+.cartItem td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.cartItemThumb {
+
+}
+
+.cartItemDetailDisplay {
+  height: 50%;
+  min-height: 50px;
+}
+
+.cartItemName {
+  float: left;
+}
+
+.cartItemPrice {
+  float: right;
+}
+
+.cartItemButtons {
+  height: 50%;
+  min-height: 50px;
+}
+
+.cartItemButton {
+  border: 1px solid #60C2B1;
+  background-color: #60C2B1;
+  display:inline-block;
+  color: #000000;
+}
+
+.cartItemButton:hover {
+  background-color: #A7A9Ac;
+  cursor: pointer;
+}
 
 /*************************
 ****** Cart Sidebar ******
 **************************/
 
 .cartSidebar {
+  background-color: #eaeae8;
   clear: right;
   float: right;
-  width: 30%;
-  margin-top: 30px;
-  background-color: #EAEAE8;
+  height: 100%;
+  margin-top: -103px;
+  padding-left: 15px;
+  padding-top: 100px;
+  position: relative;
+  width: 20%;
+}
+
+.cartSidebarHeading {
+  font-size: 25px;
+  border-bottom: solid 2px #AAAAAA;
+  padding-bottom: 13px;
+  margin-bottom: 3px;
+}
+
+.cartSidebarSubtotals {
+  width: 100%;
+}
+
+.cartSidebarSubtotals td {
+  padding: 7px;
+}
+
+.cartSidebarLabel {
+  color: #9f9f9f;
+}
+
+.cartSidebarValue {
+  text-align: right;
+}
+
+.cartSidebarSubtotals tfoot {
+  border-top: solid 2px #AAAAAA;
+}
+
+.checkoutButton {
+  width: 90%;
+  border: 1px solid #60C2B1;
+  background-color: #60C2B1;
+  display:inline-block;
+  color: #FFFFFF;
+  height: 40px;
+}
+
+.checkoutButton:hover {
+  background-color: #A7A9Ac;
+  cursor: pointer;
 }

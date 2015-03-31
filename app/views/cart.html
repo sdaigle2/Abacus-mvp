@@ -1,63 +1,73 @@
 ﻿<link href="styles/cart.css" rel="stylesheet" />
 
-
+<!-- Background -->
 <div class="cartBackground"></div>
 
+<!-- Heading -->
 <div class="cartHeading">
-    <h1>Shopping Cart</h1>
-    <div class="backButton">&lt;&lt; Continue Shopping</div>
+    <h1><strong>Shopping Cart</strong></h1>
+    <div class="backButton">&lt;&lt; Design More Wheelchairs</div>
 </div>
 
-<div class="cartItems">
-
-  <div class="cartItem">
-
-    <div class="cartItemThumb">
-      <img src=""/>
-    </div>
-
-    <div class="cartItemName">
-      Name of this wheelchair
-    </div>
-
-    <div class="cartItemPrice">
-      $1234.56
-    </div>
-
-    <div class="cartItemButtons">
-      <div class="cartItemDetailsButton"></div>
-      <div class="cartItemEditButton"></div>
-      <div class="cartItemRemoveButton"></div>
-    </div>
-
-  </div>
-
+<!-- Cart Items -->
+<div class="cartItems text-center">
+  <table class="cartItemsTable">
+    <tbody>
+      <tr class="cartItem" data-ng-repeat="w in wheelchairs">
+        <td class="cartItemThumb">
+          <img data-ng-src="{{w.imgURL}}" height="100" width="100" /> <!--NOTE: Replace this with generated image ~ abacus-->
+        </td>
+        <td class="cartItemDetails">
+          <div class="cartItemDetailDisplay">
+            <div class="cartItemName">
+              {{w.title}}
+            </div>
+            <div class="cartItemPrice">
+              ${{w.calcPrice}}
+            </div>
+          </div>
+          <div class="cartItemButtons">
+            <button class="cartItemDetailsButton cartItemButton"
+                    data-ng-click="seeWheelchairDetails($index)">See Details <i class="fa fa-caret-down"></i></button>
+            <button class="cartItemEditButton cartItemButton"
+                    data-ng-click="editWheelchair($index)">Edit</button>
+            <button class="cartItemRemoveButton cartItemButton"
+                    data-ng-click="removeWheelchair($index)">Remove</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
+    
+
+<!-- Sidebar -->
 <div class="cartSidebar">
-
-  <div class="cartSidebarHeading">Summary</div>
-
-  <div class="cartSidebarSubtotals">
-
-    <div class="cartSidebarLabel">Subtotal:</div>
-    <div class="cartSidebarValue">$1234.56</div>
-
-    <div class="cartSidebarLabel">Estimated Shipping:</div>
-    <div class="cartSidebarValue">$----</div>
-
-    <div class="cartSidebarLabel">Tax:</div>
-    <div class="cartSidebarValue">$----</div>
+  <div class="cartSidebarHeading"><strong>Summary</strong></div>
+  <table class="cartSidebarSubtotals">
+    <tbody>
+      <tr>
+        <td class="cartSidebarLabel">Subtotal:</td>
+        <td class="cartSidebarValue">${{calculateSubtotal().toFixed(2)}}</td>
+      </tr>
+      <tr>
+        <td class="cartSidebarLabel">Estimated Shipping:</td>
+        <td class="cartSidebarValue">${{calculateShippingFee().toFixed(2)}}</td>
+      </tr>
+      <tr>
+        <td class="cartSidebarLabel">Tax:</td>
+        <td class="cartSidebarValue">${{calculateTax().toFixed(2)}}</td>
+      </tr>
+    </tbody>
+    <tfoot class="cartSidebarTotal">
+      <tr>
+        <td class="cartSidebarLabel">Total:</td>
+        <td class="cartSidebarValue">${{calculateTotalPrice().toFixed(2)}}</td>
+      </tr>
+    </tfoot>    
+  </table>
+  <div class="text-center">
+    <button class="checkoutButton">Check Out</button> 
   </div>
-
-  <div class="cartSidebarTotal">
-    <div class="cartSidebarLabel">Total:</div>
-    <div class="cartSidebarValue">$----.--</div>
-  </div>
-
-  <div class="cartSidebarButtons">
-    <div class="sendButton">Send to Manufacturer</div>
-    <div class="saveButton">Save to My Computer</div>
-  </div>
-
 </div>

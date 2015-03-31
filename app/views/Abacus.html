@@ -23,10 +23,15 @@
 
 <!-- Main Body of Page -->
 <div class="main">
+
   <!-- CUSTOMIZE: Wheelchair Display and controls -->
   <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE" style="position:relative;">
+    <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
+         data-ng-click="rotatePreview(-1)" />
+    <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
+         data-ng-click="rotatePreview(1)" />
     <img class="main-custom-wheelchairDisplay"
-         ng-repeat="imgURL in loadImgs"
+         ng-repeat="imgURL in previewImgs"
          ng-src="{{imgURL.URL}}"
          ng-style="{'z-index': $index }" />
   </div>
@@ -129,7 +134,7 @@
       </div>
     </div>
 
-    <!-- MEASURE: Sidebar--> <!-- THIS NEEDS TO BE ANGULARIZED -->
+    <!-- MEASURE: Sidebar-->
 
     <div class="sideBar" data-ng-show="getCurPageType() == pageType.MEASURE">
       <div class="sideBar-header text-center">
