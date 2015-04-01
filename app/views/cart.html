@@ -6,7 +6,7 @@
 <!-- Heading -->
 <div class="cartHeading">
     <h1><strong>Shopping Cart</strong></h1>
-    <div class="backButton">&lt;&lt; Design More Wheelchairs</div>
+   <a ng-href="#/abacus"><div class="backButton">&lt;&lt; Design More Wheelchairs</div></a>
 </div>
 
 <!-- Cart Items -->
@@ -40,7 +40,7 @@
   </table>
 </div>
 
-    
+
 
 <!-- Sidebar -->
 <div class="cartSidebar">
@@ -65,9 +65,9 @@
         <td class="cartSidebarLabel">Total:</td>
         <td class="cartSidebarValue">${{calculateTotalPrice().toFixed(2)}}</td>
       </tr>
-    </tfoot>    
+    </tfoot>
   </table>
   <div class="text-center">
-    <button class="checkoutButton">Check Out</button> 
+    <button class="checkoutButton">Check Out</button>
   </div>
 </div>

@@ -1,3 +1,5 @@
+// jshint unused:false
+/* globals frameDataFromDB, cartDataFromDB, $ */
 'use strict';
 
 /**
@@ -22,6 +24,13 @@ angular.module('abacuApp')
     };
 
     $scope.editWheelchair = function (index) {
+
+      //TODO load this as our current wheelchair
+
+
+      //TODO redirect user back to the design area
+
+
       alert("editWheelchair(" + index + ")");
     };
 

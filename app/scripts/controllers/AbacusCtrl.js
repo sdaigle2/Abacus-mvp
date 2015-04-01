@@ -1,5 +1,5 @@
 ﻿// jshint unused:false
-/* globals frameDataFromDB, $ */
+/* globals frameDataFromDB, cartDataFromDB $ */
 'use strict';
 
 /**
@@ -68,6 +68,10 @@ angular.module('abacuApp')
 
     //The current wheelchair being customized by the user
     var curWheelchair = {
+      title: 'My Wheelchair',
+      calcPrice: -1, //calculated ONLY when added to the cart
+      calcWeight: -1, //calculated ONLY when added to the cart
+      imgURL: '', //calculated ONLY when added to the cart
       frameID: 0,
       parts: [],
       measures: []
@@ -574,6 +578,20 @@ angular.module('abacuApp')
       //window.alert(JSON.stringify(curWheelchair.measures));
       var r = confirm("Go to cart?");
       if (r == true) {
+
+        //calculate necessities
+        curWheelchair.calcPrice = $scope.getTotalPrice();
+        curWheelchair.calcWeight = $scope.getTotalWeight();
+        curWheelchair.imgURL = 'images/mainpic.png'; //TODO needs to actually represent the wheelchair
+
+        //add wheelchair to the cart
+        //TODO: Something more database-y
+        cartDataFromDB.splice(cartDataFromDB.length-1, 0, curWheelchair);
+
+        //clear the current wheelchair
+        curWheelchair = null;
+
+        //redirect user to the cart
         $location.path('cart');
       }
     };

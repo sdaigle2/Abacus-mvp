@@ -37,11 +37,12 @@
   text-transform: uppercase;
 }
 
-.cartHeading .backButton {
+.cartHeading a .backButton {
   margin-top: 50px;
   clear: right;
   float: right;
   font-weight: bold;
+  color: #000;
 }
 
 /*************************
