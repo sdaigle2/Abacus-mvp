@@ -1,5 +1,5 @@
 ﻿// jshint unused:false
-/* globals frameDataFromDB, cartDataFromDB $ */
+/* globals frameDataFromDB, cartDataFromDB, curWheelchair, $ */
 'use strict';
 
 /**
@@ -10,7 +10,7 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', function ($scope, $location) {
+  .controller('AbacusCtrl', function ($scope, $location, sharedVars) {
 
     /*********************Constants***************************/
 
@@ -40,8 +40,8 @@ angular.module('abacuApp')
     };
 
     $scope.pageType = {
-        CUSTOMIZE: 0,
-        MEASURE: 1
+      CUSTOMIZE: 0,
+      MEASURE: 1
     };
 
     $scope.panelTypes = {
@@ -51,7 +51,7 @@ angular.module('abacuApp')
 
     /**********************Main Variables****************************/
 
-    //All the data about the current frame
+      //All the data about the current frame
     $scope.frameData = null;
 
     //Arrays that store information about the pages
@@ -66,16 +66,18 @@ angular.module('abacuApp')
       type: $scope.pageType.CUSTOMIZE //keeps track of which page type we are currently looking at
     };
 
-    //The current wheelchair being customized by the user
-    var curWheelchair = {
-      title: 'My Wheelchair',
-      calcPrice: -1, //calculated ONLY when added to the cart
-      calcWeight: -1, //calculated ONLY when added to the cart
-      imgURL: '', //calculated ONLY when added to the cart
-      frameID: 0,
-      parts: [],
-      measures: []
-    };
+    /* THIS IS NOW BEING READ IN FROM OUR "DATABASE"
+     //The current wheelchair being customized by the user
+     var curWheelchair = {
+     title: 'My Wheelchair',
+     calcPrice: -1, //calculated ONLY when added to the cart
+     calcWeight: -1, //calculated ONLY when added to the cart
+     imgURL: '', //calculated ONLY when added to the cart
+     frameID: 0,
+     parts: [],
+     measures: []
+     };
+     */
 
     //The images used to generate the full wheelchair image
     $scope.previewImgs = [];
@@ -105,32 +107,64 @@ angular.module('abacuApp')
 
     }
 
+    //resets current wheelchair to default
+    function resetCurWheelchair() {
+      curWheelchair = {
+        "title": "My Wheelchair",
+        "calcPrice": -1,
+        "calcWeight": -1,
+        "imgURL": "",
+        "frameID": 0,
+        "parts": [],
+        "measures": []
+      };
+    }
+
     //Generates the initial curWheelchair
-    function generateCurWheelchair() {
-      curWheelchair.frameID = $scope.frameData.frameID;
-      for (var i = 0; i < $scope.frameData.parts.length; i++) {
-        var curPart = $scope.frameData.parts[i];
-        curWheelchair.parts.push({
-          partID: curPart.partID,
-          optionID: curPart.defaultOptionID,
-          colorID: getOptionData(curPart.defaultOptionID, curPart).defaultColorID,
-          weight: getOptionData(curPart.defaultOptionID, curPart).weight,
-          price: getOptionData(curPart.defaultOptionID, curPart).price
-        });
+      //if curWheelChairCartIndex is -1, it generates a new chair
+      //otherwise it grabs the wheelchair from the cart
+    function generateCurWheelchair(curWheelChairCartIndex) {
+
+      //if we have no current wheelchair index, generate a new chair
+      if (curWheelChairCartIndex == -1) {
+        resetCurWheelchair();
+        curWheelchair.frameID = $scope.frameData.frameID;
+        for (var i = 0; i < $scope.frameData.parts.length; i++) {
+          var curPart = $scope.frameData.parts[i];
+          curWheelchair.parts.push({
+            partID: curPart.partID,
+            optionID: curPart.defaultOptionID,
+            colorID: getOptionData(curPart.defaultOptionID, curPart).defaultColorID,
+            weight: getOptionData(curPart.defaultOptionID, curPart).weight,
+            price: getOptionData(curPart.defaultOptionID, curPart).price
+          });
+        }
+        for (var j = 0; j < $scope.frameData.measures.length; j++) {
+          curWheelchair.measures.push({
+            measureID: $scope.frameData.measures[j].measureID,
+            measureOption: null
+          });
+        }
+        //window.alert("new wheelchair: " + JSON.stringify(curWheelchair));
       }
-      for (var j = 0; j < $scope.frameData.measures.length; j++) {
-        curWheelchair.measures.push({
-          measureID: $scope.frameData.measures[j].measureID,
-          measureOption: null
-        });
+
+      //if we have a current wheelchair index, grab it from our cart
+      else {
+        curWheelchair = cartDataFromDB[curWheelChairCartIndex];
+        //window.alert("editing wheelchair: " + JSON.stringify(curWheelchair));
       }
+
     }
 
     //Initialize the page - called on pageLoad
     function init() {
       $scope.frameData = frameDataFromDB; // all of our data about the frame (from dbLoad.js)
+
+      $scope.curWheelChairCartIndex = sharedVars.getCurWheelChairCartIndex();
+      sharedVars.setCurWheelChairCartIndex(-1); //reset it
+
       generatePages();
-      generateCurWheelchair();
+      generateCurWheelchair($scope.curWheelChairCartIndex);
       refreshPreviewImage();
     }
 
@@ -572,7 +606,7 @@ angular.module('abacuApp')
 
     /*******************Saving***********************/
 
-    //Temporary function that returns curWheelchair Data and sends to cart
+      //Temporary function that returns curWheelchair Data and sends to cart
     $scope.saveDesign = function () {
       //window.alert(JSON.stringify(curWheelchair.parts));
       //window.alert(JSON.stringify(curWheelchair.measures));
@@ -584,12 +618,14 @@ angular.module('abacuApp')
         curWheelchair.calcWeight = $scope.getTotalWeight();
         curWheelchair.imgURL = 'images/mainpic.png'; //TODO needs to actually represent the wheelchair
 
-        //add wheelchair to the cart
-        //TODO: Something more database-y
-        cartDataFromDB.splice(cartDataFromDB.length-1, 0, curWheelchair);
-
-        //clear the current wheelchair
-        curWheelchair = null;
+        if ($scope.curWheelChairCartIndex == -1) {
+          //add wheelchair to the cart
+          cartDataFromDB.splice(cartDataFromDB.length - 1, 0, curWheelchair); //TODO: Something more database-y
+        }
+        else {
+          //overwrite wheelchair in the cart
+          cartDataFromDB[$scope.curWheelChairCartIndex] = curWheelchair;
+        }
 
         //redirect user to the cart
         $location.path('cart');
@@ -651,29 +687,29 @@ angular.module('abacuApp')
 //CurWheelchair Example:
 
 /*
-curWheelchair = {
-      frameID: 0,
-      parts: [
-        {
-          partID: 0,
-          optionID: 0,
-          colorID: 0
-        },
-        {
-          partID: 3,
-          optionID: 2,
-          colorID: 0
-        }
-      ],
-      measures: [
-        {
-          measureID: 5,
-          measureOption: null
-        },
-        {
-          measureID: 1,
-          measureOption: null
-        }
-      ]
-    };
-*/
+ curWheelchair = {
+ frameID: 0,
+ parts: [
+ {
+ partID: 0,
+ optionID: 0,
+ colorID: 0
+ },
+ {
+ partID: 3,
+ optionID: 2,
+ colorID: 0
+ }
+ ],
+ measures: [
+ {
+ measureID: 5,
+ measureOption: null
+ },
+ {
+ measureID: 1,
+ measureOption: null
+ }
+ ]
+ };
+ */

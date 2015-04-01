@@ -1,5 +1,5 @@
 // jshint unused:false
-/* globals frameDataFromDB, cartDataFromDB, $ */
+/* globals frameDataFromDB, cartDataFromDB, curWheelchair, $ */
 'use strict';
 
 /**
@@ -10,7 +10,7 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('CartCtrl', function ($scope) {
+  .controller('CartCtrl', function ($scope, $location, sharedVars) {
 
     var SHIP_FEE_PER_WHEELCHAIR = 15;
     var TAX_RATE = 0.20;
@@ -24,19 +24,12 @@ angular.module('abacuApp')
     };
 
     $scope.editWheelchair = function (index) {
-
-      //TODO load this as our current wheelchair
-
-
-      //TODO redirect user back to the design area
-
-
-      alert("editWheelchair(" + index + ")");
+      sharedVars.setCurWheelChairCartIndex(index);
+      $location.path('abacus');
     };
 
     $scope.removeWheelchair = function (index) {
-      //TODO: Something more database-y
-      $scope.wheelchairs.splice(index, 1);
+      $scope.wheelchairs.splice(index, 1); //TODO: Something more database-y
     };
 
     /********************SIDEBAR CALCULATIONS************************/

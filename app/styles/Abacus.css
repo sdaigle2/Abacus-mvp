@@ -9,11 +9,11 @@
 }
 
 #progressSaveBar > .progressBar {
-    height: inherit;
-    width: 90%;
-    border-radius: 0px;
-    margin: 0px;
-    display:inline-block;
+  height: inherit;
+  width: 90%;
+  border-radius: 0px;
+  margin: 0px;
+  display:inline-block;
 }
 
 .progressBar .progress-segment {
@@ -48,16 +48,16 @@
 /******************Save Button********************/
 
 #SaveButton {
-    width:10%;
-    height: 3%;
-    max-height: 30px;
-    background-color:#000;
-    border-color: #000;
-    border-radius: 0px;
-    text-align: center;
-    padding-bottom:2%;
-    float: right;
-    font-size: 14px;
+  width:10%;
+  height: 3%;
+  max-height: 30px;
+  background-color:#000;
+  border-color: #000;
+  border-radius: 0px;
+  text-align: center;
+  padding-bottom:2%;
+  float: right;
+  font-size: 14px;
 }
 
 /******************* Price & Weight Display *****************/
@@ -243,27 +243,27 @@
 }
 
 .sideBar-header h3 img:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 
 /****************SideBar-Custom********************/
 .sideBar .sideBar-custom {
-    overflow-y: auto;
-    max-height: 600px;
-    height: 100%;
+  overflow-y: auto;
+  max-height: 600px;
+  height: 100%;
 }
 
 .sideBar-custom-item {
-    height: 120px;
-    max-height: 120px;
-    margin: 5px 0px;
-    border-top: solid 1px #bbb;
-    border-bottom: solid 1px #bbb;
+  height: 120px;
+  max-height: 120px;
+  margin: 5px 0px;
+  border-top: solid 1px #bbb;
+  border-bottom: solid 1px #bbb;
 }
 
 .sideBar-custom-item > td {
-    border: none;
+  border: none;
 }
 
 .sideBar-custom-item .sideBar-custom-item-left {
@@ -279,17 +279,17 @@
 }
 
 .sideBar-custom-item-left .colorOptionsIndicator:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .sideBar-custom-item-left img {
-    border-right: 1px solid #A7A9Ac;
-    padding-right: 10px;
+  border-right: 1px solid #A7A9Ac;
+  padding-right: 10px;
 }
 
 .sideBar-custom-item .sideBar-custom-item-right {
-    height: 120px;
-    padding: 5px 0px;
+  height: 120px;
+  padding: 5px 0px;
 }
 
 .sideBar-custom-item-right .sideBar-custom-item-name {
@@ -313,35 +313,35 @@
 }
 
 .sideBar-custom-item-right .sideBar-custom-item-buttonRow {
-    height:25px;
+  height:25px;
 }
 
 
 .sideBar-custom-item-button {
-    border: 1px solid #A7A9Ac;
-    display:inline-block;
-    width: 50%;
-    margin-right:-5px;
+  border: 1px solid #A7A9Ac;
+  display:inline-block;
+  width: 50%;
+  margin-right:-5px;
 }
 
 .sideBar-custom-item-button:hover {
-    background-color: #A7A9Ac;
-    cursor: pointer;
+  background-color: #A7A9Ac;
+  cursor: pointer;
 }
 
 .sideBar-custom-item-button.selected {
-    border: 1px solid #60C2B1;
-    background-color: #60C2B1;
-    color: #FFFFFF;
+  border: 1px solid #60C2B1;
+  background-color: #60C2B1;
+  color: #FFFFFF;
 }
 
 /*****************SideBar-Measure********************/
 
 .sideBar .sideBar-measure {
-    overflow-y: auto;
-    max-height: 600px;
-    height: 100%;
-    max-width:350px;
+  overflow-y: auto;
+  max-height: 600px;
+  height: 100%;
+  max-width:350px;
 }
 
 .sideBar-measure-top {
@@ -408,7 +408,7 @@
 }
 
 .sideBar .panel { /* so that the panel won't visibly fade out upon load */
-    z-index: -10 !important;
+  z-index: -10 !important;
 }
 
 /**********************Panel Arrow***************************/

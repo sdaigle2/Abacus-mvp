@@ -32,8 +32,8 @@ angular
         controller: 'AccountCtrl'
       })
       .when('/about', {
-          templateUrl: 'views/about.html',
-          controller: 'AboutCtrl'
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl'
       })
       .when('/cart', {
         templateUrl: 'views/cart.html',
@@ -45,8 +45,20 @@ angular
 
     //Allow Youtube URLs to load
     $sceDelegateProvider.resourceUrlWhitelist([
-        'self',
-        'https://www.youtube.com/embed/**',
-        'http://www.youtube.com/embed/**'
+      'self',
+      'https://www.youtube.com/embed/**',
+      'http://www.youtube.com/embed/**'
     ]);
+  })
+  .service('sharedVars', function () {
+    var curWheelChairCartIndex = -1;
+
+    return {
+      getCurWheelChairCartIndex: function () {
+        return curWheelChairCartIndex;
+      },
+      setCurWheelChairCartIndex: function(value) {
+        curWheelChairCartIndex = value;
+      }
+    }
   });

@@ -28,3 +28,14 @@ $.getJSON('data/cartData.json')
     var err = textStatus + ', ' + error;
     console.log( 'Request Failed: ' + err );
   });
+
+//get current wheelchair data
+var curWheelchair;
+$.getJSON('data/currentWheelchairData.json')
+  .done(function( json ) {
+    curWheelchair = json;
+  })
+  .fail(function( jqxhr, textStatus, error ) {
+    var err = textStatus + ', ' + error;
+    console.log( 'Request Failed: ' + err );
+  });
