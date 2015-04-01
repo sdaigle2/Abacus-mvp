@@ -335,6 +335,12 @@
   color: #FFFFFF;
 }
 
+.sideBar-custom-item-button.detailsSelected {
+  border: 1px solid #515355;
+  background-color: #515355;
+  color: #FFFFFF;
+}
+
 /*****************SideBar-Measure********************/
 
 .sideBar .sideBar-measure {

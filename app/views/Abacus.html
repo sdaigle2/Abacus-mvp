@@ -104,10 +104,10 @@
               </h4>
               <div class="sideBar-custom-item-buttonRow">
                 <div class="sideBar-custom-item-button text-center"
-                     ng-class="{'selected': isPanelSelected(option.optionID, panelTypes.DETAIL)}"
+                     ng-class="{'detailsSelected': isPanelSelected(option.optionID, panelTypes.DETAIL)}"
                      ng-click="setPanel(option.optionID, panelTypes.DETAIL);">Details</div>
-                <div class="sideBar-custom-item-button text-center"
-                     ng-class="{'selected': getCurWheelchairPart().optionID === option.optionID}"
+                <div class="sideBar-custom-item-button text-center selected" ng-if="getCurWheelchairPart().optionID === option.optionID">Selected</div>
+                <div class="sideBar-custom-item-button text-center" ng-if="getCurWheelchairPart().optionID !== option.optionID"
                      ng-click="setCurOption(option.optionID);">Add</div>
               </div>
             </td>
@@ -115,7 +115,7 @@
               <div data-ng-repeat="color in option.colors" class="colorPanelItem"
                    data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
                    data-ng-style="{'background-color': color.hex, 'height': (250 / option.colors.length), 'max-height':90}"
-                   data-ng-click="setCurOptionColor(color.colorID)">
+                   data-ng-click="setCurOption(option.optionID); setCurOptionColor(color.colorID);">
               </div>
             </td>
             <td class="panel detailPanel" ng-class="{ 'detailPanelHidden': ! isPanelSelected(option.optionID, panelTypes.DETAIL) , 'detailPanelShow': isPanelSelected(option.optionID, panelTypes.DETAIL)}">
@@ -123,8 +123,8 @@
                 <img data-ng-src="{{option.thumbnailURL}}" height="200" width="200" />
                 <h4><strong>{{option.name}}</strong></h4>
                 <h4>${{option.price}} | {{option.weight}}lbs</h4>
-                <div class="sideBar-custom-item-button text-center"
-                     ng-class="{'selected': getCurWheelchairPart().optionID === option.optionID}"
+                <div class="sideBar-custom-item-button text-center selected" ng-if="getCurWheelchairPart().optionID === option.optionID">Selected</div>
+                <div class="sideBar-custom-item-button text-center" ng-if="getCurWheelchairPart().optionID !== option.optionID"
                      ng-click="setCurOption(option.optionID);">Add</div>
                 <p>{{option.desc}}</p>
               </div>
