@@ -1,0 +1,60 @@
+[
+  {
+    "title" : "Drew's wheelchair 7000",
+    "calcPrice" : 5753.33,
+    "calcWeight" : 45.2,
+    "imgURL": "images/d_panel_1.png",
+    "frameID": 0,
+    "parts": [
+      {
+        "partID": 0,
+        "optionID": 0,
+        "colorID": 0
+      },
+      {
+        "partID": 3,
+        "optionID": 2,
+        "colorID": 0
+      }
+    ],
+    "measures": [
+      {
+        "measureID": 5,
+        "measureOption": null
+      },
+      {
+        "measureID": 1,
+        "measureOption": null
+      }
+    ]
+  },
+  {
+    "title" : "Drew's wheelchair 8000",
+    "calcPrice" : 5753.33,
+    "calcWeight" : 45.2,
+    "imgURL": "images/d_panel_2.png",
+    "frameID": 0,
+    "parts": [
+      {
+        "partID": 0,
+        "optionID": 0,
+        "colorID": 0
+      },
+      {
+        "partID": 3,
+        "optionID": 2,
+        "colorID": 0
+      }
+    ],
+    "measures": [
+      {
+        "measureID": 5,
+        "measureOption": null
+      },
+      {
+        "measureID": 1,
+        "measureOption": null
+      }
+    ]
+  }
+]
