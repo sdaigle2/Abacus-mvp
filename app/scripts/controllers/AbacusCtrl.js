@@ -150,7 +150,7 @@ angular.module('abacuApp')
 
       //if we have a current wheelchair index, grab it from our cart
       else {
-        curWheelchair = cartDataFromDB[curWheelChairCartIndex];
+        curWheelchair = JSON.parse(JSON.stringify(cartDataFromDB[curWheelChairCartIndex])); //deep copy so that user can manually save the wheelchair
         //window.alert("editing wheelchair: " + JSON.stringify(curWheelchair));
       }
 

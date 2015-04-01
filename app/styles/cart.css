@@ -49,6 +49,10 @@
 ****** Cart Item List ****
 **************************/
 
+.emptyCartMessage {
+  margin-top: 30px;
+}
+
 .cartItems {
   float: left;
   clear: left;

@@ -11,8 +11,12 @@
 
 <!-- Cart Items -->
 <div class="cartItems text-center">
+  <div class="emptyCartMessage" ng-show="wheelchairs.length == 0">
+    no items in cart
+  </div>
   <table class="cartItemsTable">
     <tbody>
+
     <tr class="cartItem" data-ng-repeat="w in wheelchairs">
       <td class="cartItemThumb">
         <img data-ng-src="{{w.imgURL}}" height="100" width="100" /> <!--NOTE: Replace this with generated image ~ abacus-->
