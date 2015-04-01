@@ -1,5 +1,5 @@
 // jshint unused:false
-/* globals frameDataFromDB, cartDataFromDB, curWheelchair, $ */
+/* globals frameDataFromDB:true, cartDataFromDB:true, curWheelchair:true, $ */
 'use strict';
 
 /**
@@ -20,7 +20,7 @@ angular.module('abacuApp')
     /********************CART ITEM BUTTONS******************************/
 
     $scope.seeWheelchairDetails = function (index) {
-      alert("seeWheelchairDetails("+index+")");
+      window.alert('seeWheelchairDetails('+index+')');
     };
 
     $scope.editWheelchair = function (index) {
@@ -35,8 +35,9 @@ angular.module('abacuApp')
     /********************SIDEBAR CALCULATIONS************************/
     $scope.calculateSubtotal = function () {
       var total = 0;
-      for (var i = 0; i < $scope.wheelchairs.length; i++)
+      for (var i = 0; i < $scope.wheelchairs.length; i++) {
         total += $scope.wheelchairs[i].calcPrice;
+      }
       return total;
     };
 

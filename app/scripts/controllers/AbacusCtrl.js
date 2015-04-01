@@ -1,5 +1,5 @@
 ﻿// jshint unused:false
-/* globals frameDataFromDB, cartDataFromDB, curWheelchair, $ */
+/* globals frameDataFromDB:true, cartDataFromDB:true, curWheelchair:true, $ */
 'use strict';
 
 /**
@@ -110,23 +110,23 @@ angular.module('abacuApp')
     //resets current wheelchair to default
     function resetCurWheelchair() {
       curWheelchair = {
-        "title": "My Wheelchair",
-        "calcPrice": -1,
-        "calcWeight": -1,
-        "imgURL": "",
-        "frameID": 0,
-        "parts": [],
-        "measures": []
+        'title': 'My Wheelchair',
+        'calcPrice': -1,
+        'calcWeight': -1,
+        'imgURL': '',
+        'frameID': 0,
+        'parts': [],
+        'measures': []
       };
     }
 
     //Generates the initial curWheelchair
-      //if curWheelChairCartIndex is -1, it generates a new chair
-      //otherwise it grabs the wheelchair from the cart
+    //if curWheelChairCartIndex is -1, it generates a new chair
+    //otherwise it grabs the wheelchair from the cart
     function generateCurWheelchair(curWheelChairCartIndex) {
 
       //if we have no current wheelchair index, generate a new chair
-      if (curWheelChairCartIndex == -1) {
+      if (curWheelChairCartIndex === -1) {
         resetCurWheelchair();
         curWheelchair.frameID = $scope.frameData.frameID;
         for (var i = 0; i < $scope.frameData.parts.length; i++) {
@@ -293,15 +293,17 @@ angular.module('abacuApp')
     //Updates the preview image array after a value is changed
     function refreshPreviewImage() {
       $scope.previewImgs = getCurWheelchairImages();
-    };
+    }
 
     //Changes curAngle based on dir (dir = +-1)
     $scope.rotatePreview = function (dir) {
       curAngle = curAngle + dir;
-      if (curAngle < 0)
+      if (curAngle < 0) {
         curAngle = angleType.numAngles - 1;
-      if (curAngle >= angleType.numAngles)
+      }
+      if (curAngle >= angleType.numAngles) {
         curAngle = 0;
+      }
       refreshPreviewImage();
     };
 
@@ -610,15 +612,15 @@ angular.module('abacuApp')
     $scope.saveDesign = function () {
       //window.alert(JSON.stringify(curWheelchair.parts));
       //window.alert(JSON.stringify(curWheelchair.measures));
-      var r = confirm("Go to cart?");
-      if (r == true) {
+      var r = window.confirm('Add to cart?');
+      if (r === true) {
 
         //calculate necessities
         curWheelchair.calcPrice = $scope.getTotalPrice();
         curWheelchair.calcWeight = $scope.getTotalWeight();
         curWheelchair.imgURL = 'images/mainpic.png'; //TODO needs to actually represent the wheelchair
 
-        if ($scope.curWheelChairCartIndex == -1) {
+        if ($scope.curWheelChairCartIndex === -1) {
           //add wheelchair to the cart
           cartDataFromDB.splice(cartDataFromDB.length - 1, 0, curWheelchair); //TODO: Something more database-y
         }
