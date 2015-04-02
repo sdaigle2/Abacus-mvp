@@ -3,85 +3,87 @@
 <!-- Background -->
 <div class="cartBackground"></div>
 
-<!-- Heading -->
-<div class="cartHeading">
-  <h1><strong>Shopping Cart</strong></h1>
-  <a ng-href="#/abacus"><div class="backButton">&lt;&lt; Design More Wheelchairs</div></a>
-</div>
-
-<!-- Cart Items -->
-<div class="cartItems text-center">
-  <div class="emptyCartMessage" ng-show="wheelchairs.length == 0">
-    No items in cart
+<div class="text-center cartBody">
+  <!-- Heading -->
+  <div class="cartHeading">
+    <h1><strong>Shopping Cart</strong></h1>
+    <a ng-href="#/abacus"><div class="backButton">&lt;&lt; Design More Wheelchairs</div></a>
   </div>
-  <table class="cartItemsTable">
-    <tbody>
-    <tr class="cartItem" data-ng-repeat="w in wheelchairs">
-      <td class="cartItemThumb">
-        <img data-ng-src="{{w.imgURL}}" height="100" width="100" style="position: relative; top:0px;"/> <!--NOTE: Replace this with generated image ~ abacus-->
-      </td>
-      <td class="cartItemDetails">
-        <div>
-          <div class="cartItemDetailDisplay">
-            <div class="cartItemName">
-              {{w.title}}
+
+  <!-- Cart Items -->
+  <div class="cartItems">
+    <div class="emptyCartMessage" ng-show="wheelchairs.length == 0">
+      No items in cart
+    </div>
+    <table class="cartItemsTable">
+      <tbody>
+        <tr class="cartItem" data-ng-repeat="w in wheelchairs">
+          <td class="cartItemThumb">
+            <img data-ng-src="{{w.imgURL}}" height="100" width="100" style="position: relative; top:0px;" /> <!--NOTE: Replace this with generated image ~ abacus-->
+          </td>
+          <td class="cartItemDetails">
+            <div>
+              <div class="cartItemDetailDisplay">
+                <div class="cartItemName">
+                  {{w.title}}
+                </div>
+                <div class="cartItemPrice">
+                  ${{w.calcPrice.toFixed(2)}}
+                </div>
+              </div>
+              <div class="cartItemButtons">
+                <button class="cartItemDetailsButton cartItemButton"
+                        data-ng-click="seeWheelchairDetails($index)">
+                  See Details <i class="fa fa-caret-down"
+                                 data-ng-class="{'fa-caret-down':curDetailPanel != $index , 'fa-caret-up':curDetailPanel == $index}"></i>
+                </button>
+                <button class="cartItemEditButton cartItemButton"
+                        data-ng-click="editWheelchair($index)">
+                  Edit
+                </button>
+                <button class="cartItemRemoveButton cartItemButton"
+                        data-ng-click="removeWheelchair($index)">
+                  Remove
+                </button>
+              </div>
             </div>
-            <div class="cartItemPrice">
-              ${{w.calcPrice}}
+            <div data-ng-show="curDetailPanel == $index">
+              <table class="detailTable">
+                <thead>
+                  <tr>
+                    <td>Part</td>
+                    <td>Option Chosen</td>
+                    <td>Color</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-ng-repeat="p in w.parts">
+                    <td>{{getPartDetails(p).partName}}</td>
+                    <td>{{getPartDetails(p).optionName}}</td>
+                    <td>{{getPartDetails(p).colorName}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="detailTable">
+                <thead>
+                  <tr>
+                    <td>Measurement</td>
+                    <td>Selection</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-ng-repeat="m in w.measures">
+                    <td>{{getMeasureDetails(m).measName}}</td>
+                    <td>{{getMeasureDetails(m).measOption}} {{getMeasureDetails(m).measUnit}}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-          </div>
-          <div class="cartItemButtons">
-            <button class="cartItemDetailsButton cartItemButton"
-                    data-ng-click="seeWheelchairDetails($index)">
-              See Details <i class="fa fa-caret-down"
-                             data-ng-class="{'fa-caret-down':curDetailPanel != $index , 'fa-caret-up':curDetailPanel == $index}"></i>
-            </button>
-            <button class="cartItemEditButton cartItemButton"
-                    data-ng-click="editWheelchair($index)">
-              Edit
-            </button>
-            <button class="cartItemRemoveButton cartItemButton"
-                    data-ng-click="removeWheelchair($index)">
-              Remove
-            </button>
-          </div>
-        </div>
-        <div data-ng-show="curDetailPanel == $index">
-          <table class="detailTable">
-            <thead>
-              <tr>
-                <td>Part</td>
-                <td>Option Chosen</td>
-                <td>Color</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr data-ng-repeat="p in w.parts">
-                <td>{{getPartDetails(p).partName}}</td>
-                <td>{{getPartDetails(p).optionName}}</td>
-                <td>{{getPartDetails(p).colorName}}</td>
-              </tr>
-            </tbody>
-          </table>
-          <table class="detailTable">
-            <thead>
-              <tr>
-                <td>Measurement</td>
-                <td>Selection</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr data-ng-repeat="m in w.measures">
-                <td>{{getMeasureDetails(m).measName}}</td>
-                <td>{{getMeasureDetails(m).measOption}} {{getMeasureDetails(m).measUnit}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 
 
