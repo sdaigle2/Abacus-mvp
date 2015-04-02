@@ -112,6 +112,24 @@
 }
 
 /*************************
+****** Detail Table ******
+**************************/
+
+.detailTable {
+  margin-bottom: 3px;
+}
+
+.detailTable td {
+  border: solid 1px black;
+  padding: 2px;
+}
+
+.detailTable thead td{
+  background-color: gray;
+  font-size: large;
+}
+
+/*************************
 ****** Cart Sidebar ******
 **************************/
 
@@ -161,6 +179,10 @@
   display:inline-block;
   color: #FFFFFF;
   height: 40px;
+}
+
+.checkoutButton.inactive {
+  background-color: #A7A9Ac;
 }
 
 .checkoutButton:hover {
