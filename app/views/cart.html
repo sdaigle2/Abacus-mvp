@@ -12,7 +12,7 @@
 <!-- Cart Items -->
 <div class="cartItems text-center">
   <div class="emptyCartMessage" ng-show="wheelchairs.length == 0">
-    no items in cart
+    No items in cart
   </div>
   <table class="cartItemsTable">
     <tbody>
@@ -72,6 +72,8 @@
     </tfoot>
   </table>
   <div class="text-center">
-    <button class="checkoutButton">Check Out</button>
+    <button class="checkoutButton" 
+            data-ng-enabled="wheelchairs.length > 0"
+            data-ng-click="checkOut()">Check Out</button>
   </div>
 </div>

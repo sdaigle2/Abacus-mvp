@@ -17,8 +17,9 @@
 <!-- Price & Weight Display -->
 <div id="display">
   <h3>
-    <small>Price:</small> ${{getTotalPrice().toFixed(2)}}&nbsp;&nbsp;&nbsp;<small>Weight:</small> {{getTotalWeight().toFixed(2)}}lbs
+    <small>Price:</small> ${{getTotalPrice().toFixed(2)}}&nbsp;&nbsp;&nbsp;<small>Weight:</small> {{(getTotalWeight() * getWeightFactor(curUnitSys)).toFixed(2)}} {{getCurUnitSysWeightName()}}
   </h3>
+  <button class="btn btn-xs btn-info" data-ng-click="toggleUnitSystem()">Toggle Unit System</button>
 </div>
 
 <!-- Main Body of Page -->
@@ -100,7 +101,7 @@
             <td class="sideBar-custom-item-right">
               <h4 class="sideBar-custom-item-name" title="{{titleForEllipsis(option.name, 45)}}"> {{ellipsisFormat(option.name, 45)}}</h4>
               <h4 class="sideBar-custom-item-details">
-                <strong>${{option.price}} | {{option.weight}}lbs</strong>
+                <strong>${{option.price.toFixed(2)}} | {{(option.weight * getWeightFactor(curUnitSys)).toFixed(2)}} {{getCurUnitSysWeightName()}}</strong>
               </h4>
               <div class="sideBar-custom-item-buttonRow">
                 <div class="sideBar-custom-item-button text-center"
@@ -151,9 +152,9 @@
       <div class="sideBar-measure">
         <div class="sideBar-measure-top text-center">
           <h4>Choose your measurement</h4>
-          <select data-ng-model="getCurWheelchairMeasure().measureOption"
-                  data-ng-options="mo for mo in getCurMeasureData().measureOptions" />
-          <span style="font-size: 1.3em">inches</span>
+          <select data-ng-model="getCurWheelchairMeasure().measureOptionIndex"
+                  data-ng-options="idx as mo for (idx, mo) in getCurMeasureData().measureOptions[curUnitSys]" />
+          <span style="font-size: 1.3em">{{getCurMeasureData().units[curUnitSys]}}</span>
           <div class="sideBar-measure-tip text-left" data-ng-show="getCurMeasureData().tip">
             <h4><strong><span class="glyphicon glyphicon-exclamation-sign"></span> &nbsp;&nbsp;TIP</strong></h4>
             <h5 data-ng-bind-html="getCurMeasureData().tip"></h5>

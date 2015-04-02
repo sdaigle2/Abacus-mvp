@@ -53,4 +53,10 @@ angular.module('abacuApp')
       return $scope.calculateSubtotal() + $scope.calculateShippingFee() + $scope.calculateTax();
     };
 
+    /*********************CHECK OUT***********************************/
+
+    $scope.checkOut = function () {
+
+    };
+
   });
