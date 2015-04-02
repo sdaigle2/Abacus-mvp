@@ -450,20 +450,18 @@ angular.module('abacuApp')
       return null;
     }
 
-    function getColorByName (optionID, colorName, curPart) {
-      var option = getOptionData(optionID, curPart);
-      for (var i=0; i<option.colors.length; i++) {
-        if (option.colors[i].name === colorName) {
-          return option.colors[i];
+    function getColorByName (colorName, curOption) {
+      for (var i=0; i< curOption.colors.length; i++) {
+        if (curOption.colors[i].name === colorName) {
+          return curOption.colors[i];
         }
       }
     }
 
-    function getColorByID(optionID, colorID, curPart) {
-      var option = getOptionData(optionID, curPart);
-      for (var i = 0; i < option.colors.length; i++) {
-        if (option.colors[i].colorID === colorID) {
-          return option.colors[i];
+    function getColorByID(colorID, curOption) {
+      for (var i = 0; i < curOption.colors.length; i++) {
+        if (curOption.colors[i].colorID === colorID) {
+          return curOption.colors[i];
         }
       }
     }

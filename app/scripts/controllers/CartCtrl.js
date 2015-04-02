@@ -79,7 +79,7 @@ angular.module('abacuApp')
       var option = getOptionData(wheelchairPart.optionID, part);
       var colorName = "";
       if (option.colors.length > 0)
-        colorName = getColorByID(wheelchairPart.optionID, wheelchairPart.colorID, part).name;
+        colorName = getColorByID(wheelchairPart.colorID, option).name;
       return {
         partName: part.name,
         optionName: option.name,
@@ -134,11 +134,10 @@ angular.module('abacuApp')
       return null;
     }
 
-    function getColorByID(optionID, colorID, curPart) {
-      var option = getOptionData(optionID, curPart);
-      for (var i = 0; i < option.colors.length; i++) {
-        if (option.colors[i].colorID === colorID) {
-          return option.colors[i];
+    function getColorByID(colorID, curOption) {
+      for (var i = 0; i < curOption.colors.length; i++) {
+        if (curOption.colors[i].colorID === colorID) {
+          return curOption.colors[i];
         }
       }
     }
