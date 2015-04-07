@@ -64,8 +64,53 @@
 #display{
   float: right;
   clear: right;
-  margin-right: 20px;
+  margin-right: 5px;
+  width: 350px;
+  line-height: 1;
+  height: 60px;
+  border: solid 1px gray;
+}
 
+.display-frame {
+  background-color: #60C2B1;
+  display: inline-block;
+  color: white;
+  position: relative;
+  width: 75%;
+  height: 50%;
+  vertical-align: middle;
+}
+
+.display-frame h4 {
+  position:  relative;
+  left: 5px;
+  top: -5px;
+}
+
+.display-toggle {
+  position: relative;
+  display: inline-block;
+  float: right;
+  width: 25%;
+  height: 100%;
+  border: solid 1px gray;
+}
+
+.display-toggle h6 {
+  margin-bottom: 5px;
+}
+
+.display-totals {
+  position: relative;
+  display: inline-block;
+  width: 75%;
+  height: 50%;
+}
+
+.display-totals h4 {
+  position: relative;
+  top: -5px;
+  font-size: 17px;
 }
 
 /*************************************************Main*****************************************/
@@ -175,9 +220,10 @@
   color: #FFFFFF;
   cursor: pointer;
   background-color: #bcbec0;
-  border: none;
-  /*border-radius: 20px 20px 0px 0px;*/
-  border-bottom-color: transparent;
+  border-bottom: solid 3px #bcbec0;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
 }
 
 
@@ -188,10 +234,10 @@
   color: #000000;
   cursor: default;
   background-color: #f1f2f2;
-  border: none;
-  /*border-radius: 20px 20px 0px 0px;*/
-  border-bottom-color: transparent;
-  border-bottom: solid 1px yellow;
+  border-bottom: solid 3px #60C2B1;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
   /*-webkit-box-shadow: 0px -2px 3px 2px #999999;*/
   /*-moz-box-shadow:    0px -2px 3px 2px #999999;*/
   /*box-shadow:         0px -2px 3px 2px #999999;*/

@@ -8,13 +8,13 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('MainCtrl', function ($scope) {
+  .controller('MainCtrl', function ($scope, $location) {
     
     $scope.frames = dummyFramesData; //TODO: You know the drill here - replace with actual data later
 
     $scope.selectFrame = function (frameID) {
-      //Send user to abacus with chosen frame
-      alert("Not implemented - selectFrame("+frameID+")");
+      //TODO: Send user to abacus with chosen frame
+      $location.path('abacus');
     };
 
   });
