@@ -1,25 +1,27 @@
 <link href="styles/main.css" rel="stylesheet" />
 
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
-</div>
-
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+<div class="container">
+  <div class="row frame-header-row">
+    <div class="frame-header">
+      <strong>Frames</strong>
+    </div>
+  </div>
+  <div class="col-lg-4 frame-item" 
+       data-ng-repeat="f in frames" 
+       data-ng-mouseenter="hoverItem = f.frameID"
+       data-ng-mouseleave="hoverItem = -1">
+    <div class="frame-item-title"><strong>{{f.name}}</strong></div>
+    <div class="text-center">
+      <div class="frame-item-image">
+        <img height="200" width="200"
+             src="{{f.imageURL}}" />
+      </div>
+      <div class="frame-item-desc"
+           data-ng-show="hoverItem == f.frameID">{{f.desc}}</div>
+      <div class="frame-item-button"
+           data-ng-click="selectFrame(f.frameID)">
+        <strong>Select this frame >></strong>
+      </div>
+    </div>   
+  </div>
 </div>
