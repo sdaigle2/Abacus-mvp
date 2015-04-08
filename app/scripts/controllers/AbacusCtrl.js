@@ -1,4 +1,4 @@
-﻿// jshint unused:false
+﻿﻿// jshint unused:false
 /* globals frameDataFromDB:true, cartDataFromDB:true, curWheelchair:true, $ */
 'use strict';
 
@@ -91,7 +91,6 @@ angular.module('abacuApp')
     var curAngle = angleType.FRONTRIGHT;
 
     //The current measurement system being used
-    //TODO: If unitSys setting added to account - default this value to it
     $scope.curUnitSys = $scope.unitSys.IMPERIAL;
 
     /***************************Initialization****************************/
@@ -214,15 +213,12 @@ angular.module('abacuApp')
     /*******************Unit Systems ****************************/
 
     //Toggles the user's unit system between Metric and Imperial
-    $scope.unitSysList = [
-      {
-        name: "Metric",
-        enumVal: $scope.unitSys.METRIC
-      },
-      {
-        name: "Imperial",
-        enumVal: $scope.unitSys.IMPERIAL
-      }];
+    $scope.toggleUnitSystem = function () {
+      if ($scope.curUnitSys == $scope.unitSys.METRIC)
+        $scope.curUnitSys = $scope.unitSys.IMPERIAL;
+      else
+        $scope.curUnitSys = $scope.unitSys.METRIC;
+    };
 
     //Returns the appropriate weight unit name
     $scope.getCurUnitSysWeightName = function () {
