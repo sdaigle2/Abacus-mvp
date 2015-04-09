@@ -187,7 +187,7 @@
 
 .checkoutButton {
   width: 90%;
-  border: 1px solid #60C2B1;
+  border: none;
   background-color: #60C2B1;
   display:inline-block;
   color: #FFFFFF;

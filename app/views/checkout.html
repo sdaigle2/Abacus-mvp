@@ -3,7 +3,7 @@
 <div class="checkout text-center">
   <div class="checkout-header">
     <h2><strong>Checkout</strong></h2>
-    <h5><< Go Back to Shopping Cart</h5>
+    <h5 data-ng-click="returnToCart()"><< Go Back to Shopping Cart</h5>
   </div>
   <div class="checkout-body">
     <div class="checkout-left text-center">
@@ -13,10 +13,15 @@
         <input type="email" data-ng-model="loginForm.email" />
         <div class="checkout-well-label"><strong>Password</strong></div>
         <input type="password" data-ng-model="loginForm.pass" />
-        <div>Forgot your Password?</div>
-        <div><strong>REGISTER >></strong></div>
+        <div class="checkout-well-extras">
+          <div class="checkout-well-pass"
+               data-ng-click="recoverPassword()">Forgot your Password?</div>
+          <div class="checkout-well-reg"
+               data-ng-click="register()"><strong>REGISTER >></strong></div>
+        </div>
       </div>
-      <div class="checkout-button">
+      <div class="checkout-button"
+           data-ng-click="loginAsUser()">
         <strong>Member Checkout >></strong>
       </div>
     </div>
@@ -24,7 +29,8 @@
       <div class="checkout-well">
         <div class="checkout-well-title"><strong>GUESTS</strong></div>
       </div>
-      <div class="checkout-button">
+      <div class="checkout-button"
+           data-ng-click="loginAsGuest()">
         <strong>Guest Checkout >></strong>
       </div>
     </div>
