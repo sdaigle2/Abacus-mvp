@@ -16,12 +16,12 @@
 
 <!-- Price & Weight Display -->
 <div id="display">
-  <div class="display-frame"><h4>{{frameData.name}}</h4></div>
   <div class="display-toggle text-center">
     <h6>Select Units</h6>
     <select data-ng-model="curUnitSys"
             data-ng-options="sys.enumVal as sys.name for sys in unitSysList" />
   </div> 
+  <div class="display-frame"><h4>{{frameData.name}}</h4></div>
   <div class="display-totals text-center">
     <h4>
       <small>PRICE:</small> ${{getTotalPrice().toFixed(2)}}&nbsp;&nbsp;&nbsp;<small>WEIGHT:</small> {{(getTotalWeight() * getWeightFactor(curUnitSys)).toFixed(2)}} {{getCurUnitSysWeightName()}}
@@ -99,7 +99,7 @@
         <table class="table">
           <tr class="sideBar-custom-item" 
               data-ng-repeat="option in getCurPartData().options"
-              data-ng-style="(getCurWheelchairPart().optionID === option.optionID && option.colors.length > 0) && {'border-left': 'solid 2px #777777'}" > <!--TODO: Load in color -->
+              data-ng-style="(getCurWheelchairPart().optionID === option.optionID && option.colors.length > 0) && {'border-left': 'solid 4px ' + getColorByID(getCurWheelchairPart().colorID, option).hex }" >
             <td class="sideBar-custom-item-left">
               <div class="panelArrow" ng-class="{ 'panelArrowHidden': ! isPanelIDSelected(option.optionID) , 'panelArrowShow': isPanelIDSelected(option.optionID)}"></div>
               <img class="colorOptionsIndicator" ng-show="option.colors"

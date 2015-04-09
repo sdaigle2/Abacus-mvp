@@ -402,6 +402,8 @@ angular.module('abacuApp')
     $scope.setCurCustomizePage = function (newIndex) { curPage.page[$scope.pageType.CUSTOMIZE] = pages.customizePages[newIndex]; };
     $scope.setCurMeasurePage = function (newIndex) { curPage.page[$scope.pageType.MEASURE] = pages.measurePages[newIndex]; };
 
+
+
     function getPartData(id) {
       for (var i = 0; i < $scope.frameData.parts.length; i++) {
         var curPart = $scope.frameData.parts[i];
@@ -462,7 +464,7 @@ angular.module('abacuApp')
       }
     }
 
-    function getColorByID(colorID, curOption) {
+    $scope.getColorByID = function(colorID, curOption) {
       for (var i = 0; i < curOption.colors.length; i++) {
         if (curOption.colors[i].colorID === colorID) {
           return curOption.colors[i];
