@@ -43,6 +43,10 @@ angular
         templateUrl: 'views/checkout.html',
         controller: 'CheckoutCtrl'
       })
+      .when('/info', {
+        templateUrl: 'views/info.html',
+        controller: 'InfoCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

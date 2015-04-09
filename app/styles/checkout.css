@@ -17,6 +17,11 @@
   cursor: pointer;
 }
 
+.checkout-body {
+  width: 90%;
+  margin: 0 auto;
+}
+
 .checkout-left {
   width: 50%;
   margin: 0;
@@ -81,7 +86,6 @@
   color: white;
   display:inline-block;
   width: 40%;
-  margin-right:-5px;
   height: 40px;
   padding-top: 10px;
   font-size: 20px;

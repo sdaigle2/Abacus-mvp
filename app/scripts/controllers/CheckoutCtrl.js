@@ -32,13 +32,13 @@ angular.module('abacuApp')
       //loginForm.email should be verified as an email address by the HTML - it should be null if not an email
 
       alert(JSON.stringify($scope.loginForm));
-      //$location.path('/info');
+      $location.path('/info');
     };
 
     //Log in the user as a guest
     $scope.loginAsGuest = function () {
       //TODO: Mark user as a guest?
-      //$location.path('/info');
+      $location.path('/info');
     };
 
     //Launch password recovery

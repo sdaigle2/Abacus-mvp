@@ -68,6 +68,12 @@ angular.module('abacuApp')
       }
 
       //TODO: Checkout stuff
+
+      //If not logged in
+      $location.path('/checkout');
+
+      //If logged in
+      //$location.path('/info');
     };
 
     /********************DETAIL PANEL*********************************/
