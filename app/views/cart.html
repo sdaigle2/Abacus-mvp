@@ -5,20 +5,20 @@
 
 <div class="appBody">
 
-<div class="text-center cartBody">
-  <!-- Heading -->
-  <div class="cartHeading">
-    <h1><strong>SHOPPING CART</strong></h1>
-    <a ng-href="#/abacus"><div class="backButton">&lt;&lt; Design More Wheelchairs</div></a>
-  </div>
-
-  <!-- Cart Items -->
-  <div class="cartItems">
-    <div class="emptyCartMessage" ng-show="wheelchairs.length == 0">
-      No items in cart
+  <div class="text-center cartBody">
+    <!-- Heading -->
+    <div class="cartHeading">
+      <h1><strong>SHOPPING CART</strong></h1>
+      <a ng-href="#/abacus"><div class="backButton">&lt;&lt; Design More Wheelchairs</div></a>
     </div>
-    <table class="cartItemsTable">
-      <tbody>
+
+    <!-- Cart Items -->
+    <div class="cartItems">
+      <div class="emptyCartMessage" ng-show="wheelchairs.length == 0">
+        No items in cart
+      </div>
+      <table class="cartItemsTable">
+        <tbody>
         <tr class="cartItem" data-ng-repeat="w in wheelchairs">
           <td class="cartItemThumb">
             <img data-ng-src="{{w.imgURL}}" height="100" width="100" style="position: relative; top:0px;" /> <!--NOTE: Replace this with generated image ~ abacus-->
@@ -53,74 +53,74 @@
             <div data-ng-show="curDetailPanel == $index">
               <table class="detailTable">
                 <thead>
-                  <tr>
-                    <td>Part</td>
-                    <td>Option Chosen</td>
-                    <td>Color</td>
-                  </tr>
+                <tr>
+                  <td>Part</td>
+                  <td>Option Chosen</td>
+                  <td>Color</td>
+                </tr>
                 </thead>
                 <tbody>
-                  <tr data-ng-repeat="p in w.parts">
-                    <td>{{getPartDetails(p).partName}}</td>
-                    <td>{{getPartDetails(p).optionName}}</td>
-                    <td>{{getPartDetails(p).colorName}}</td>
-                  </tr>
+                <tr data-ng-repeat="p in w.parts">
+                  <td>{{getPartDetails(p).partName}}</td>
+                  <td>{{getPartDetails(p).optionName}}</td>
+                  <td>{{getPartDetails(p).colorName}}</td>
+                </tr>
                 </tbody>
               </table>
               <table class="detailTable">
                 <thead>
-                  <tr>
-                    <td>Measurement</td>
-                    <td>Selection</td>
-                  </tr>
+                <tr>
+                  <td>Measurement</td>
+                  <td>Selection</td>
+                </tr>
                 </thead>
                 <tbody>
-                  <tr data-ng-repeat="m in w.measures">
-                    <td>{{getMeasureDetails(m).measName}}</td>
-                    <td>{{getMeasureDetails(m).measOption}} {{getMeasureDetails(m).measUnit}}</td>
-                  </tr>
+                <tr data-ng-repeat="m in w.measures">
+                  <td>{{getMeasureDetails(m).measName}}</td>
+                  <td>{{getMeasureDetails(m).measOption}} {{getMeasureDetails(m).measUnit}}</td>
+                </tr>
                 </tbody>
               </table>
             </div>
           </td>
         </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+  <!-- Sidebar -->
+  <div class="cartSidebar">
+    <div class="cartSidebarHeading"><strong>Summary</strong></div>
+    <table class="cartSidebarSubtotals">
+      <tbody>
+      <tr>
+        <td class="cartSidebarLabel">Subtotal:</td>
+        <td class="cartSidebarValue">${{calculateSubtotal().toFixed(2)}}</td>
+      </tr>
+      <tr>
+        <td class="cartSidebarLabel">Estimated Shipping:</td>
+        <td class="cartSidebarValue">${{calculateShippingFee().toFixed(2)}}</td>
+      </tr>
+      <tr>
+        <td class="cartSidebarLabel">Tax:</td>
+        <td class="cartSidebarValue">${{calculateTax().toFixed(2)}}</td>
+      </tr>
       </tbody>
+      <tfoot class="cartSidebarTotal">
+      <tr>
+        <td class="cartSidebarLabel">Total:</td>
+        <td class="cartSidebarValue">${{calculateTotalPrice().toFixed(2)}}</td>
+      </tr>
+      </tfoot>
     </table>
+    <div class="text-center">
+      <button class="checkoutButton"
+              data-ng-class="{ 'inactive' : wheelchairs.length == 0}"
+              data-ng-click="checkOut()">Check Out</button>
+    </div>
   </div>
+
 </div>
-
-
-
-<!-- Sidebar -->
-<div class="cartSidebar">
-  <div class="cartSidebarHeading"><strong>Summary</strong></div>
-  <table class="cartSidebarSubtotals">
-    <tbody>
-    <tr>
-      <td class="cartSidebarLabel">Subtotal:</td>
-      <td class="cartSidebarValue">${{calculateSubtotal().toFixed(2)}}</td>
-    </tr>
-    <tr>
-      <td class="cartSidebarLabel">Estimated Shipping:</td>
-      <td class="cartSidebarValue">${{calculateShippingFee().toFixed(2)}}</td>
-    </tr>
-    <tr>
-      <td class="cartSidebarLabel">Tax:</td>
-      <td class="cartSidebarValue">${{calculateTax().toFixed(2)}}</td>
-    </tr>
-    </tbody>
-    <tfoot class="cartSidebarTotal">
-    <tr>
-      <td class="cartSidebarLabel">Total:</td>
-      <td class="cartSidebarValue">${{calculateTotalPrice().toFixed(2)}}</td>
-    </tr>
-    </tfoot>
-  </table>
-  <div class="text-center">
-    <button class="checkoutButton"
-            data-ng-class="{ 'inactive' : wheelchairs.length == 0}"
-            data-ng-click="checkOut()">Check Out</button>
-  </div>
-</div>
-
-  </div>
