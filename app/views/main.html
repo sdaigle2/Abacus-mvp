@@ -14,14 +14,15 @@
         <div class="frame-item-image">
           <div class="img" data-ng-mouseenter="hoverItem = f.frameID"
                data-ng-mouseleave="hoverItem = -1">
-            <div data-ng-show="hoverItem == f.frameID" class="hoverBackground"></div>
-            <img height="200" width="200"
-                 src="{{f.imageURL}}" />
+
+            <img src="{{f.imageURL}}" />
               <div class="frame-item-desc"
-                   data-ng-show="hoverItem == f.frameID">
-                <p class="frame-item-title"><strong>{{f.name}}</strong></p>
-                <hr></hr>
-                <p>{{f.desc}}</p>
+                   data-ng-class="{ 'frame-item-desc-show' : panelSelected(hoverItem,f.frameID) , 'frame-item-desc-hide' : !panelSelected(hoverItem,f.frameID)}">
+                <div  class="hoverBackground frame-item-panel">
+                  <p class="frame-item-title"><strong>{{f.name}}</strong></p>
+                  <hr></hr>
+                  <p>{{f.desc}}</p>
+                </div>
               </div>
           </div>
         </div>
