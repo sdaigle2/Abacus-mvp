@@ -1,27 +1,38 @@
 <link href="styles/main.css" rel="stylesheet" />
 
-<div class="container">
-  <div class="row frame-header-row">
-    <div class="frame-header">
-      <strong>Frames</strong>
+<div id="background">
+  <div class="wrapper">
+    <div class=" frame-header-row">
+      <div class="frame-header">
+        <strong>Frames</strong>
+      </div>
     </div>
-  </div>
-  <div class="col-lg-4 frame-item" 
-       data-ng-repeat="f in frames" 
-       data-ng-mouseenter="hoverItem = f.frameID"
-       data-ng-mouseleave="hoverItem = -1">
-    <div class="frame-item-title"><strong>{{f.name}}</strong></div>
-    <div class="text-center">
-      <div class="frame-item-image">
-        <img height="200" width="200"
-             src="{{f.imageURL}}" />
+
+    <div class="mainDisplay">
+      <div class="frame-item text-center"
+           data-ng-repeat="f in frames">
+        <div class="frame-item-image">
+          <div class="img" data-ng-mouseenter="hoverItem = f.frameID"
+               data-ng-mouseleave="hoverItem = -1">
+            <div data-ng-show="hoverItem == f.frameID" class="hoverBackground"></div>
+            <img height="200" width="200"
+                 src="{{f.imageURL}}" />
+              <div class="frame-item-desc"
+                   data-ng-show="hoverItem == f.frameID">
+                <p class="frame-item-title"><strong>{{f.name}}</strong></p>
+                <hr></hr>
+                <p>{{f.desc}}</p>
+              </div>
+          </div>
+        </div>
+
+
+          <div class="frame-item-button"
+               data-ng-click="selectFrame(f.frameID)">
+            <strong>Select this frame >></strong>
+          </div>
+
       </div>
-      <div class="frame-item-desc"
-           data-ng-show="hoverItem == f.frameID">{{f.desc}}</div>
-      <div class="frame-item-button"
-           data-ng-click="selectFrame(f.frameID)">
-        <strong>Select this frame >></strong>
-      </div>
-    </div>   
+    </div>
   </div>
 </div>

@@ -9,7 +9,7 @@
  */
 angular.module('abacuApp')
   .controller('MainCtrl', function ($scope, $location) {
-    
+
     $scope.frames = dummyFramesData; //TODO: You know the drill here - replace with actual data later
 
     $scope.selectFrame = function (frameID) {
@@ -38,25 +38,7 @@ var dummyFramesData = [
     name: "Intelliwheelchair",
     desc: "Better than anything our \"competition\" makes",
     basePrice: 1999,
-    baseWeight: 30,    
-    imageURL: "images/mainpic.png"
-  },
-  {
-    frameID: 3,
-    manufacturer: "Sony",
-    name: "Playstation 4",
-    desc: "This isn\'t a wheelchair, but you should still buy it",
-    basePrice: 499,
-    baseWeight: 10,
-    imageURL: "images/pangding.jpg"
-  },
-  {
-    frameID: 4,
-    manufacturer: "Intelliwheels",
-    name: "Pogo Stick",
-    desc: "A fun toy for children",
-    basePrice: 20,
-    baseWeight: 3,
+    baseWeight: 30,
     imageURL: "images/mainpic.png"
   }
 ];

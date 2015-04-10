@@ -1,3 +1,14 @@
+#background{
+  background-color: white;
+}
+
+.wrapper{
+  margin: 0 auto;
+  width: 1280px;
+}
+
+
+
 .frame-header-row {
   min-height:80px;
   margin-bottom: 30px;
@@ -12,27 +23,66 @@
   clear: left;
 }
 
+/******main display part*****/
 
+.wrapper .mainDisplay{
+  wdith: 1000px;
+  margin: 100px auto 0px;
+}
 
 .frame-item {
-  padding: 10px;
+  padding: 10px 30px 10px;
   min-height: 300px;
   line-height: 1;
+  display: inline-block;
+  width: 500px;
+}
+
+.frame-item:first-of-type{
+  border-right:solid 1px gray;
 }
 
 .frame-item-title {
+  text-align: center;
   font-size: 22px;
 }
 
 .frame-item-image {
+  position: relative;
   padding: 5px 0px;
-  border-bottom: solid 1px gray;
+}
+
+
+.frame-item-image .img{
+  position: relative;
+  margin: 0 auto;
+  width: 325px;
+  z-index: 1;
+}
+
+.frame-item-image hr{
+  width: 60%;
 }
 
 .frame-item-desc {
+  position: absolute;
+  top: 0;
+  left: 0;
   text-align: left;
+  padding: 0 30px;
   margin: 3px 0px;
+  z-index: 3;
 }
+
+.frame-item-image .img .hoverBackground{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #60C2B1;
+  opacity: 0.9;
+  z-index:2;
+}
+
 
 .frame-item-button {
   width: 70%;
@@ -41,9 +91,10 @@
   display:inline-block;
   color: #FFFFFF;
   height: 40px;
-  margin-top: 5px;
+  margin-top: 40px;
   padding-top: 12px;
   font-size: 15px;
+  text-align: center;
 }
 
 .frame-item-button:hover {
