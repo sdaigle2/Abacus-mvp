@@ -28,6 +28,8 @@ body {
 
 
 .mainNavbar  {
+  margin: 0;
+  padding: 0;
   background-color: #1C1B1A;
   position:relative;
   width: 100%;
@@ -37,24 +39,33 @@ body {
 }
 
 .mainNavbar-header {
+  margin: 0;
+  padding: 0;
   clear: right;
   float: left;
   margin-left: 5px;
-  border-right: 1px solid #777;
   padding-right: 5px;
   height: 100%;
+  border-right: 1px solid #777;
 }
 
 .mainNavbar-left {
+  margin: 0;
+  padding: 0;
   float: left;
+  margin-left: 20px;
   list-style: none;
+
 }
 .mainNavbar .mainNavbar-left > li {
+  margin: 0;
+  padding: 0;
   float: left;
-  margin-right: 15px;
+  margin-right: 20px;
   padding-top: 10px;
   margin-top: 10px;
   height: 20px;
+
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: 20px 20px;
