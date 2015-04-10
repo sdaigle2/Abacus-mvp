@@ -14,13 +14,15 @@
   <button type="button" id="SaveButton" class="btn btn-primary" data-ng-click="saveDesign()">Save & Review</button>
 </div>
 
+<div class="appBody">
+
 <!-- Price & Weight Display -->
 <div id="display">
   <div class="display-toggle text-center">
     <h6>Select Units</h6>
     <select data-ng-model="curUnitSys"
             data-ng-options="sys.enumVal as sys.name for sys in unitSysList" />
-  </div> 
+  </div>
   <div class="display-frame"><h4>{{frameData.name}}</h4></div>
   <div class="display-totals text-center">
     <h4>
@@ -97,7 +99,7 @@
       </div>
       <div class="sideBar-custom">
         <table class="table">
-          <tr class="sideBar-custom-item" 
+          <tr class="sideBar-custom-item"
               data-ng-repeat="option in getCurPartData().options"
               data-ng-style="(getCurWheelchairPart().optionID === option.optionID && option.colors.length > 0) && {'border-left': 'solid 4px ' + getColorByID(getCurWheelchairPart().colorID, option).hex }" >
             <td class="sideBar-custom-item-left">
@@ -188,3 +190,4 @@
 </div>
 
 
+  </div>

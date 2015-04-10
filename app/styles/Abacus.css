@@ -5,7 +5,7 @@
 #progressSaveBar {
   position: relative;
   height: 30px;
-  top: -2px;
+  top: 0px;
 }
 
 #progressSaveBar > .progressBar {
@@ -38,6 +38,7 @@
   border-radius: 3px;
   padding: 11px 5px;
   top: 35px;
+  z-index: 100;
 }
 
 .progressBar .progress-segment-tooltip:hover {
@@ -119,6 +120,10 @@
 .main-custom{
   display: inline-block;
   float: left;
+}
+
+.main-custom .leftButton, .main-custom .rightButton {
+  cursor: pointer;
 }
 
 .main-custom .main-custom-wheelchairDisplay {

@@ -18,7 +18,7 @@
 .cartBody {
   float: left;
   clear: left;
-  width: 80%;
+  width: 68%;
 }
 
 /*************************
@@ -34,7 +34,7 @@
   margin-top: 30px;
   padding-right: 25px;
   padding-left: 10px;
-  width: 80%;
+  width: 100%;
 }
 
 
@@ -64,7 +64,7 @@
   position: relative;
   float: left;
   clear: left;
-  width: 80%;
+  width: 100%;
   padding-left: 10px;
   max-height: 450px;
   min-height: 200px;
@@ -150,12 +150,12 @@
   background-color: #eaeae8;
   clear: right;
   float: right;
-  height: 100%;
-  margin-top: -103px;
+  margin-top: 103px;
   padding-left: 15px;
   padding-top: 100px;
+  padding-bottom: 100px;
   position: relative;
-  width: 20%;
+  width: 30%;
 }
 
 .cartSidebarHeading {
