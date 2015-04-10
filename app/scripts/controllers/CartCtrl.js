@@ -19,8 +19,14 @@ angular.module('abacuApp')
 
     /********************CART ITEM BUTTONS******************************/
 
+    //The index of the cart whose detail panel is open, -1 = None
+    $scope.curDetailPanel = -1;
+
     $scope.seeWheelchairDetails = function (index) {
-      window.alert('seeWheelchairDetails('+index+')');
+      if ($scope.curDetailPanel == index)
+        $scope.curDetailPanel = -1;
+      else
+        $scope.curDetailPanel = index;
     };
 
     $scope.editWheelchair = function (index) {
@@ -52,5 +58,94 @@ angular.module('abacuApp')
     $scope.calculateTotalPrice = function () {
       return $scope.calculateSubtotal() + $scope.calculateShippingFee() + $scope.calculateTax();
     };
+
+    /*********************CHECK OUT***********************************/
+
+    $scope.checkOut = function () {
+      if ($scope.wheelchairs.length == 0) {
+        alert("Your cart is empty");
+        return;
+      }
+
+      //TODO: Checkout stuff
+
+      //If not logged in
+      $location.path('/checkout');
+
+      //If logged in
+      //$location.path('/info');
+    };
+
+    /********************DETAIL PANEL*********************************/
+
+    $scope.frameData = frameDataFromDB;
+
+    $scope.getPartDetails = function (wheelchairPart) {
+      var part = getPartData(wheelchairPart.partID);
+      var option = getOptionData(wheelchairPart.optionID, part);
+      var colorName = "";
+      if (option.colors.length > 0)
+        colorName = getColorByID(wheelchairPart.colorID, option).name;
+      return {
+        partName: part.name,
+        optionName: option.name,
+        colorName: colorName
+      };
+    };
+
+    $scope.getMeasureDetails = function (wheelchairMeasure) {
+      var meas = getMeasureData(wheelchairMeasure.measureID);
+      var measOption = "NOT SELECTED";
+      var measUnits = "";
+      if (wheelchairMeasure.measureOptionIndex != -1) {
+        measOption = meas.measureOptions[0][wheelchairMeasure.measureOptionIndex];  //TODO: Set up imperial/metric toggle
+        measUnits = meas.units[0];
+      }
+      return {
+        measName: meas.name,
+        measOption: measOption,
+        measUnit: measUnits
+      }
+    };
+
+    function getPartData(id) {
+      for (var i = 0; i < $scope.frameData.parts.length; i++) {
+        var curPart = $scope.frameData.parts[i];
+        if (curPart.partID === id) {
+          return curPart;
+        }
+      }
+      return null;
+    }
+
+    function getOptionData(id, curPart) {
+
+      for (var j = 0; j < curPart.options.length; j++) {
+        var curOption = curPart.options[j];
+        if (curOption.optionID === id) {
+          return curOption;
+        }
+      }
+
+      return null;
+    }
+
+    function getMeasureData(id) {
+      for (var i = 0; i < $scope.frameData.measures.length; i++) {
+        var curMeas = $scope.frameData.measures[i];
+        if (curMeas.measureID === id) {
+          return curMeas;
+        }
+      }
+      return null;
+    }
+
+    function getColorByID(colorID, curOption) {
+      for (var i = 0; i < curOption.colors.length; i++) {
+        if (curOption.colors[i].colorID === colorID) {
+          return curOption.colors[i];
+        }
+      }
+    }
 
   });

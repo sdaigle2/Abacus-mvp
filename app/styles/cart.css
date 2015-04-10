@@ -15,18 +15,25 @@
   z-index: -100;
 }
 
+.cartBody {
+  float: left;
+  clear: left;
+  width: 80%;
+}
 
 /*************************
 ****** Cart Heading ******
 **************************/
 
 .cartHeading {
+  position: relative;
   border-bottom: 2px solid #000000;
   clear: left;
   float: left;
   margin-right: 0;
   margin-top: 30px;
   padding-right: 25px;
+  padding-left: 10px;
   width: 68%;
 }
 
@@ -54,18 +61,20 @@
 }
 
 .cartItems {
+  position: relative;
   float: left;
   clear: left;
   width: 68%;
   padding-left: 10px;
+  max-height: 450px;
+  min-height: 200px;
+  overflow-y: auto;
 }
 
 .cartItemsTable {
   width: 80%;
   position: relative;
   left: 20px;
-  max-height: 600px;
-  overflow-y: scroll;
 }
 
 .cartItem {
@@ -78,7 +87,11 @@
 }
 
 .cartItemThumb {
-
+  min-width: 100px;
+  max-width: 100px;
+  width: 100px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .cartItemDetailDisplay {
@@ -109,6 +122,24 @@
 .cartItemButton:hover {
   background-color: #A7A9Ac;
   cursor: pointer;
+}
+
+/*************************
+****** Detail Table ******
+**************************/
+
+.detailTable {
+  margin-bottom: 3px;
+}
+
+.detailTable td {
+  border: solid 1px black;
+  padding: 2px;
+}
+
+.detailTable thead td{
+  background-color: gray;
+  font-size: large;
 }
 
 /*************************
@@ -156,11 +187,15 @@
 
 .checkoutButton {
   width: 90%;
-  border: 1px solid #60C2B1;
+  border: none;
   background-color: #60C2B1;
   display:inline-block;
   color: #FFFFFF;
   height: 40px;
+}
+
+.checkoutButton.inactive {
+  background-color: #A7A9Ac;
 }
 
 .checkoutButton:hover {

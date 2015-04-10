@@ -1,4 +1,4 @@
-﻿// jshint unused:false
+﻿﻿// jshint unused:false
 /* globals frameDataFromDB:true, cartDataFromDB:true, curWheelchair:true, $ */
 'use strict';
 
@@ -49,9 +49,14 @@ angular.module('abacuApp')
       DETAIL: 'detail'
     };
 
+    $scope.unitSys = {
+      METRIC: 0,
+      IMPERIAL: 1
+    };
+
     /**********************Main Variables****************************/
 
-      //All the data about the current frame
+    //All the data about the current frame
     $scope.frameData = null;
 
     //Arrays that store information about the pages
@@ -85,6 +90,9 @@ angular.module('abacuApp')
     //The current angle the wheelchair is being viewed from
     var curAngle = angleType.FRONTRIGHT;
 
+    //The current measurement system being used
+    $scope.curUnitSys = $scope.unitSys.IMPERIAL;
+
     /***************************Initialization****************************/
 
     //Generates the page arrays inside of pages
@@ -108,6 +116,7 @@ angular.module('abacuApp')
     }
 
     //resets current wheelchair to default
+    //TODO: This needs to recreate the parts and measures arrays
     function resetCurWheelchair() {
       curWheelchair = {
         'title': 'My Wheelchair',
@@ -142,7 +151,7 @@ angular.module('abacuApp')
         for (var j = 0; j < $scope.frameData.measures.length; j++) {
           curWheelchair.measures.push({
             measureID: $scope.frameData.measures[j].measureID,
-            measureOption: null
+            measureOptionIndex: -1
           });
         }
         //window.alert("new wheelchair: " + JSON.stringify(curWheelchair));
@@ -171,22 +180,68 @@ angular.module('abacuApp')
     init(); //Initialize the page
 
     /****************Weight and Price******************/
-      //Calculated Total Weight and Price
+
+    //Calculated Total Weight and Price
     $scope.getTotalWeight = function () {
       var totalWeight = $scope.frameData.baseWeight;
       for (var i = 0; i < curWheelchair.parts.length; i++) {
         var curPart = curWheelchair.parts[i];
-        totalWeight = totalWeight + curPart.weight;
+        totalWeight += curPart.weight;
+      }
+      for (var i = 0; i < curWheelchair.measures.length; i++) {
+        var curMeas = getMeasureData(curWheelchair.measures[i].measureID);
+        if (curWheelchair.measures[i].measureOptionIndex != -1)
+          totalWeight += curMeas.weights[curWheelchair.measures[i].measureOptionIndex];
       }
       return totalWeight;
     };
+
     $scope.getTotalPrice = function () {
       var totalPrice = $scope.frameData.basePrice;
       for (var i = 0; i < curWheelchair.parts.length; i++) {
         var curPart = curWheelchair.parts[i];
         totalPrice += curPart.price;
       }
+      for (var i = 0; i < curWheelchair.measures.length; i++) {
+        var curMeas = getMeasureData(curWheelchair.measures[i].measureID);
+        if (curWheelchair.measures[i].measureOptionIndex != -1)
+          totalPrice += curMeas.prices[curWheelchair.measures[i].measureOptionIndex];
+      }
       return totalPrice;
+    };
+
+    /*******************Unit Systems ****************************/
+
+    //Toggles the user's unit system between Metric and Imperial
+    $scope.toggleUnitSystem = function () {
+      if ($scope.curUnitSys == $scope.unitSys.METRIC)
+        $scope.curUnitSys = $scope.unitSys.IMPERIAL;
+      else
+        $scope.curUnitSys = $scope.unitSys.METRIC;
+    };
+
+    //Returns the appropriate weight unit name
+    $scope.getCurUnitSysWeightName = function () {
+      switch ($scope.curUnitSys) {
+        case $scope.unitSys.IMPERIAL:
+          return 'lbs';
+        case $scope.unitSys.METRIC:
+          return 'kg';
+        default:
+          return 'weight units';
+      };
+    };
+
+    //Returns the factor used to convert from lbs to given weight unit
+    $scope.getWeightFactor = function (unitSys) {
+      switch (unitSys) {
+        case $scope.unitSys.IMPERIAL:
+          return 1;
+        case $scope.unitSys.METRIC:
+          return 0.453592;
+        default:
+          return 1;
+      };
     };
 
     /*******************Wheelchair Preview & Rotation***********************/
@@ -343,6 +398,8 @@ angular.module('abacuApp')
     $scope.setCurCustomizePage = function (newIndex) { curPage.page[$scope.pageType.CUSTOMIZE] = pages.customizePages[newIndex]; };
     $scope.setCurMeasurePage = function (newIndex) { curPage.page[$scope.pageType.MEASURE] = pages.measurePages[newIndex]; };
 
+
+
     function getPartData(id) {
       for (var i = 0; i < $scope.frameData.parts.length; i++) {
         var curPart = $scope.frameData.parts[i];
@@ -395,20 +452,18 @@ angular.module('abacuApp')
       return null;
     }
 
-    function getColorByName (optionID, colorName, curPart) {
-      var option = getOptionData(optionID, curPart);
-      for (var i=0; i<option.colors.length; i++) {
-        if (option.colors[i].name === colorName) {
-          return option.colors[i];
+    function getColorByName (colorName, curOption) {
+      for (var i=0; i< curOption.colors.length; i++) {
+        if (curOption.colors[i].name === colorName) {
+          return curOption.colors[i];
         }
       }
     }
 
-    function getColorByID(optionID, colorID, curPart) {
-      var option = getOptionData(optionID, curPart);
-      for (var i = 0; i < option.colors.length; i++) {
-        if (option.colors[i].colorID === colorID) {
-          return option.colors[i];
+    $scope.getColorByID = function(colorID, curOption) {
+      for (var i = 0; i < curOption.colors.length; i++) {
+        if (curOption.colors[i].colorID === colorID) {
+          return curOption.colors[i];
         }
       }
     }
@@ -608,12 +663,18 @@ angular.module('abacuApp')
 
     /*******************Saving***********************/
 
-      //Temporary function that returns curWheelchair Data and sends to cart
+    //Temporary/Dummy function that returns curWheelchair Data and sends to cart
     $scope.saveDesign = function () {
-      //window.alert(JSON.stringify(curWheelchair.parts));
-      //window.alert(JSON.stringify(curWheelchair.measures));
+      //TODO: Don't allow a design to be purchaseable unless (measureOptionIndex != -1) for all curWheelchair.measure
+
+      window.alert(JSON.stringify(curWheelchair.parts));
+      window.alert(JSON.stringify(curWheelchair.measures));
       var r = window.confirm('Add to cart?');
       if (r === true) {
+
+        var wTitle = prompt("Design Name:", "My Wheelchair");
+        if (wTitle == null) wTitle = "My Wheelchair";
+        curWheelchair.title = wTitle;
 
         //calculate necessities
         curWheelchair.calcPrice = $scope.getTotalPrice();
@@ -636,7 +697,7 @@ angular.module('abacuApp')
 
     /*****************General Use Functions*********************/
 
-      //trims a string with an ellipsis if it is longer than len
+    //trims a string with an ellipsis if it is longer than len
     $scope.ellipsisFormat = function(str, len) {
       if (str.length > len) {
         return str.substring(0,len) + '...';
