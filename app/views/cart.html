@@ -3,75 +3,79 @@
 <!-- Background -->
 <div class="cartBackground"></div>
 
-<!-- Heading -->
-<div class="cartHeading">
-  <h1><strong>Shopping Cart</strong></h1>
-  <a ng-href="#/abacus"><div class="backButton">&lt;&lt; Design More Wheelchairs</div></a>
-</div>
+<div class="appBody">
 
-<!-- Cart Items -->
-<div class="cartItems text-center">
-  <div class="emptyCartMessage" ng-show="wheelchairs.length == 0">
-    no items in cart
+  <!-- Heading -->
+  <div class="cartHeading">
+    <h1><strong>Shopping Cart</strong></h1>
+    <a ng-href="#/abacus"><div class="backButton">&lt;&lt; Design More Wheelchairs</div></a>
   </div>
-  <table class="cartItemsTable">
-    <tbody>
 
-    <tr class="cartItem" data-ng-repeat="w in wheelchairs">
-      <td class="cartItemThumb">
-        <img data-ng-src="{{w.imgURL}}" height="100" width="100" /> <!--NOTE: Replace this with generated image ~ abacus-->
-      </td>
-      <td class="cartItemDetails">
-        <div class="cartItemDetailDisplay">
-          <div class="cartItemName">
-            {{w.title}}
+  <!-- Cart Items -->
+  <div class="cartItems text-center">
+    <div class="emptyCartMessage" ng-show="wheelchairs.length == 0">
+      no items in cart
+    </div>
+    <table class="cartItemsTable">
+      <tbody>
+
+      <tr class="cartItem" data-ng-repeat="w in wheelchairs">
+        <td class="cartItemThumb">
+          <img data-ng-src="{{w.imgURL}}" height="100" width="100" /> <!--NOTE: Replace this with generated image ~ abacus-->
+        </td>
+        <td class="cartItemDetails">
+          <div class="cartItemDetailDisplay">
+            <div class="cartItemName">
+              {{w.title}}
+            </div>
+            <div class="cartItemPrice">
+              ${{w.calcPrice}}
+            </div>
           </div>
-          <div class="cartItemPrice">
-            ${{w.calcPrice}}
+          <div class="cartItemButtons">
+            <button class="cartItemDetailsButton cartItemButton"
+                    data-ng-click="seeWheelchairDetails($index)">See Details <i class="fa fa-caret-down"></i></button>
+            <button class="cartItemEditButton cartItemButton"
+                    data-ng-click="editWheelchair($index)">Edit</button>
+            <button class="cartItemRemoveButton cartItemButton"
+                    data-ng-click="removeWheelchair($index)">Remove</button>
           </div>
-        </div>
-        <div class="cartItemButtons">
-          <button class="cartItemDetailsButton cartItemButton"
-                  data-ng-click="seeWheelchairDetails($index)">See Details <i class="fa fa-caret-down"></i></button>
-          <button class="cartItemEditButton cartItemButton"
-                  data-ng-click="editWheelchair($index)">Edit</button>
-          <button class="cartItemRemoveButton cartItemButton"
-                  data-ng-click="removeWheelchair($index)">Remove</button>
-        </div>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
-
-
-
-<!-- Sidebar -->
-<div class="cartSidebar">
-  <div class="cartSidebarHeading"><strong>Summary</strong></div>
-  <table class="cartSidebarSubtotals">
-    <tbody>
-    <tr>
-      <td class="cartSidebarLabel">Subtotal:</td>
-      <td class="cartSidebarValue">${{calculateSubtotal().toFixed(2)}}</td>
-    </tr>
-    <tr>
-      <td class="cartSidebarLabel">Estimated Shipping:</td>
-      <td class="cartSidebarValue">${{calculateShippingFee().toFixed(2)}}</td>
-    </tr>
-    <tr>
-      <td class="cartSidebarLabel">Tax:</td>
-      <td class="cartSidebarValue">${{calculateTax().toFixed(2)}}</td>
-    </tr>
-    </tbody>
-    <tfoot class="cartSidebarTotal">
-    <tr>
-      <td class="cartSidebarLabel">Total:</td>
-      <td class="cartSidebarValue">${{calculateTotalPrice().toFixed(2)}}</td>
-    </tr>
-    </tfoot>
-  </table>
-  <div class="text-center">
-    <button class="checkoutButton">Check Out</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
+
+
+
+  <!-- Sidebar -->
+  <div class="cartSidebar">
+    <div class="cartSidebarHeading"><strong>Summary</strong></div>
+    <table class="cartSidebarSubtotals">
+      <tbody>
+      <tr>
+        <td class="cartSidebarLabel">Subtotal:</td>
+        <td class="cartSidebarValue">${{calculateSubtotal().toFixed(2)}}</td>
+      </tr>
+      <tr>
+        <td class="cartSidebarLabel">Estimated Shipping:</td>
+        <td class="cartSidebarValue">${{calculateShippingFee().toFixed(2)}}</td>
+      </tr>
+      <tr>
+        <td class="cartSidebarLabel">Tax:</td>
+        <td class="cartSidebarValue">${{calculateTax().toFixed(2)}}</td>
+      </tr>
+      </tbody>
+      <tfoot class="cartSidebarTotal">
+      <tr>
+        <td class="cartSidebarLabel">Total:</td>
+        <td class="cartSidebarValue">${{calculateTotalPrice().toFixed(2)}}</td>
+      </tr>
+      </tfoot>
+    </table>
+    <div class="text-center">
+      <button class="checkoutButton">Check Out</button>
+    </div>
+  </div>
+
 </div>

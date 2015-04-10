@@ -1,0 +1,112 @@
+
+
+.mainNavbar {
+  background-color: #FFFFFF;
+  margin-bottom: 0px;
+  border-radius: 0px;
+  top:0px;
+  position:relative;
+  height:39px;
+  width: 100%;
+}
+
+.mainNavbar-default {
+  clear: left;
+  float: left;
+}
+
+.mainNavbar-header {
+  clear: left;
+  float: left;
+}
+
+.mainNavbar .mainNavbar-nav.mainNavbar-nav-left {
+  float: left;
+  margin-top: 10px;
+  margin-bottom: -8px;
+  margin-left: 10px;
+}
+
+.mainNavbar .mainNavbar-nav.mainNavbar-nav-right {
+  float: right;
+  margin-top: 10px;
+  margin-bottom: -8px;
+  margin-left: 10px;
+}
+
+.mainNavbar .mainNavbar-nav li {
+  float: left;
+  margin-right: 20px;
+}
+
+.mainNavbar .mainNav-pills li{
+  padding-left: 10px;
+}
+
+.mainNavbar .mainNavbar-right li:last-child{
+  padding-right: 10px;
+}
+
+/*Change navbar height*/
+.mainNav .mainNavbar-nav > li > a {
+  font-size: 1.2em;
+  letter-spacing: 0.5px;
+  padding-top:10px;
+  padding-bottom:0px;
+  text-decoration: none;
+}
+.mainNavbar-brand {
+  padding-top:4px !important;
+  padding-bottom:0px !important;
+  height:39px;
+  border-right: 1px solid grey;
+}
+
+.mainNav  {
+  min-height:40px !important;
+}
+
+/*Navbar icon positioning*/
+.mainNav .mainNavbar-nav > li img {
+  position:relative;
+  top: -3px;
+  left: -3px;
+}
+
+/* The following modified from http://stackoverflow.com/questions/18529274/change-navbar-color-in-twitter-bootstrap-3 */
+.mainNavbar-default .mainNavbar-nav > li > a {
+  color: #000;
+  font-family:inherit;
+}
+.mainNavbar-default .mainNavbar-nav > li > a:hover,
+.mainNavbar-default .mainNavbar-nav > li > a:focus {
+  color: #777;
+}
+.mainNavbar-default .mainNavbar-nav > .active > a,
+.mainNavbar-default .mainNavbar-nav > .active > a:hover,
+.mainNavbar-default .mainNavbar-nav > .active > a:focus {
+  color: #00A89C;
+  background-color: #FFF;
+}
+.mainNavbar-default .mainNavbar-nav > .open > a,
+.mainNavbar-default .mainNavbar-nav > .open > a:hover,
+.mainNavbar-default .mainNavbar-nav > .open > a:focus {
+  color: #00A89C;
+  background-color: #FFF;
+}
+/* caret */
+.mainNavbar-default .mainNavbar-nav > .dropdown > a .caret {
+  border-top-color: #000;
+  border-bottom-color: #000;
+}
+.mainNavbar-default .mainNavbar-nav > .dropdown > a:hover .caret,
+.mainNavbar-default .mainNavbar-nav > .dropdown > a:focus .caret {
+  border-top-color: #777;
+  border-bottom-color: #777;
+}
+.mainNavbar-default .mainNavbar-nav > .open > a .caret,
+.mainNavbar-default .mainNavbar-nav > .open > a:hover .caret,
+.mainNavbar-default .mainNavbar-nav > .open > a:focus .caret {
+  border-top-color: #00A89C;
+  border-bottom-color: #00A89C;
+}

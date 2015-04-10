@@ -30,13 +30,16 @@
 <![endif]-->
 <div >
   <div >
-    <div class=" nav navbar navbar-default" data-ng-controller="HeaderController">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">
+
+
+    <div class="mainNavbar" data-ng-controller="HeaderController">
+
+      <div class="mainNavbar-header">
+        <a class="mainNavbar-brand" href="#">
           <img alt="Brand" src="images/tiarrow_logo.png" width="100" height="30">
         </a>
       </div>
-      <ul class="nav navbar-nav">
+      <ul class="mainNavbar-left">
         <li ng-class="{ active: isActive('/')}">
           <a ng-href="#/"><span><img data-ng-src="{{isActive('/') && 'images/icons/on_frames.png' || 'images/icons/frames.png'}}" /></span>FRAMES</a>
         </li>
@@ -50,63 +53,63 @@
           <a ng-href="#/about"><span><img data-ng-src="{{isActive('/about') && 'images/icons/on_about_us.png' || 'images/icons/about_us.png'}}" /></span>ABOUT US </a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a ng-href="#/contact">LOG IN</a></li>
-        <li><a ng-href="#/contact">SIGN OUT</a></li>
+      <ul class="mainNavbar-right">
         <li><a ng-href="#/cart">MY CART</a></li>
+        <li><a ng-href="#/contact">SIGN OUT</a></li>
+        <li><a ng-href="#/contact">LOG IN</a></li>
       </ul>
+
     </div>
+
+    <div id="appContainer" ng-view=""></div> <!-- Angular App -->
   </div>
 
-  <div   ng-view=""></div> <!-- Angular App -->
-</div>
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+  </script>
+
+  <!-- build:js(.) scripts/oldieshim.js -->
+  <!--[if lt IE 9]>
+  <script src="bower_components/es5-shim/es5-shim.js"></script>
+  <script src="bower_components/json3/lib/json3.js"></script>
+  <![endif]-->
+  <!-- endbuild -->
+
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
 
 
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  <!--database loaders-->
+  <script src="scripts/dbLoad.js"></script>
 
-  ga('create', 'UA-XXXXX-X');
-  ga('send', 'pageview');
-</script>
-
-<!-- build:js(.) scripts/oldieshim.js -->
-<!--[if lt IE 9]>
-<script src="bower_components/es5-shim/es5-shim.js"></script>
-<script src="bower_components/json3/lib/json3.js"></script>
-<![endif]-->
-<!-- endbuild -->
-
-<!-- build:js(.) scripts/vendor.js -->
-<!-- bower:js -->
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-touch/angular-touch.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
-<!-- endbower -->
-<!-- endbuild -->
-
-
-<!--database loaders-->
-<script src="scripts/dbLoad.js"></script>
-
-<!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers/MainCtrl.js"></script>
-<script src="scripts/controllers/AboutCtrl.js"></script>
-<script src="scripts/controllers/AbacusCtrl.js"></script>
-<script src="scripts/controllers/AccountCtrl.js"></script>
-<script src="scripts/controllers/CartCtrl.js"></script>
-<script src="scripts/controllers/HeaderController.js"></script>
-<!-- endbuild -->
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/controllers/MainCtrl.js"></script>
+  <script src="scripts/controllers/AboutCtrl.js"></script>
+  <script src="scripts/controllers/AbacusCtrl.js"></script>
+  <script src="scripts/controllers/AccountCtrl.js"></script>
+  <script src="scripts/controllers/CartCtrl.js"></script>
+  <script src="scripts/controllers/HeaderController.js"></script>
+  <!-- endbuild -->
 
 </body>
 </html>
