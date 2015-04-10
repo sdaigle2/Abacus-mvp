@@ -52,6 +52,7 @@
   width:10%;
   height: 3%;
   max-height: 30px;
+  margin-top: -30px;
   background-color:#777;
   border-radius: 0px;
   border: none;
