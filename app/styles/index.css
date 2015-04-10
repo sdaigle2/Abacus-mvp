@@ -47,13 +47,14 @@ body {
 .mainNavbar .mainNavbar-left > li {
   float: left;
   margin-right: 15px;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 .mainNavbar .mainNavbar-left > li > a {
  text-decoration: none;
 }
 .mainNavbar .mainNavbar-left > li > a img {
   margin-right: 5px;
+  margin-top: -5px;
 }
 
 .mainNavbar-right {
@@ -64,7 +65,7 @@ body {
 .mainNavbar .mainNavbar-right > li {
   float: right;
   margin-right: 15px;
-  margin-top: 18px;
+  margin-top: 22px;
 }
 .mainNavbar .mainNavbar-right > li > a {
   text-decoration: none;
