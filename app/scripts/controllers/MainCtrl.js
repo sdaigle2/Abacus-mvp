@@ -30,7 +30,7 @@ var dummyFramesData = [
     desc: "Ti Arrow's Standard Rigid Frame Wheelchair made from Titanium",
     basePrice: 2995,
     baseWeight: 45,
-    imageURL: "images/d_panel_2.png"
+    imageURL: "images/mainpic.png"
   },
   {
     frameID: 2,
@@ -39,7 +39,7 @@ var dummyFramesData = [
     desc: "Better than anything our \"competition\" makes",
     basePrice: 1999,
     baseWeight: 30,    
-    imageURL: "images/d_panel_1.png"
+    imageURL: "images/mainpic.png"
   },
   {
     frameID: 3,
@@ -57,6 +57,6 @@ var dummyFramesData = [
     desc: "A fun toy for children",
     basePrice: 20,
     baseWeight: 3,
-    imageURL: "images/d_panel_4.png"
+    imageURL: "images/mainpic.png"
   }
 ];

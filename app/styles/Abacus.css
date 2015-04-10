@@ -89,7 +89,7 @@
 
 .display-toggle {
   position: relative;
-  display: inline-block;
+  display: block;
   float: right;
   width: 25%;
   height: 100%;

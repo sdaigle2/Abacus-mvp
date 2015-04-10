@@ -1,0 +1,38 @@
+﻿<link href="styles/checkout.css" rel="stylesheet" />
+
+<div class="checkout text-center">
+  <div class="checkout-header">
+    <h2><strong>CHECK OUT</strong></h2>
+    <h5 data-ng-click="returnToCart()"><< Go Back to Shopping Cart</h5>
+  </div>
+  <div class="checkout-body">
+    <div class="checkout-left">
+      <div class="checkout-well">
+        <div class="checkout-well-title"><strong>LOG IN</strong></div>
+        <div class="checkout-well-label"><strong>Email Address</strong></div>
+        <input type="email" data-ng-model="loginForm.email" />
+        <div class="checkout-well-label"><strong>Password</strong></div>
+        <input type="password" data-ng-model="loginForm.pass" />
+        <div class="checkout-well-extras">
+          <div class="checkout-well-pass"
+               data-ng-click="recoverPassword()">Forgot your Password?</div>
+          <div class="checkout-well-reg"
+               data-ng-click="register()"><strong>REGISTER >></strong></div>
+        </div>
+      </div>
+      <div class="checkout-button"
+           data-ng-click="loginAsUser()">
+        <strong>Member Checkout >></strong>
+      </div>
+    </div>
+    <div class="checkout-right">
+      <div class="checkout-well">
+        <div class="checkout-well-title"><strong>GUESTS</strong></div>
+      </div>
+      <div class="checkout-button"
+           data-ng-click="loginAsGuest()">
+        <strong>Guest Checkout >></strong>
+      </div>
+    </div>
+  </div>
+</div>

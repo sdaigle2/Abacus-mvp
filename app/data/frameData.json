@@ -175,14 +175,12 @@
             {
               "name": "Black",
               "colorID": 1,
-              "zRank": "Black"
+              "hex": "#000000"
             },
             {
               "name": "White",
               "colorID": 2,
-              "zRank": "White",
-              "weight": 0,
-              "price": 0
+              "hex": "#FFFFFF"
             }
           ]
         }

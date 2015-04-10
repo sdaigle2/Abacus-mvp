@@ -1,0 +1,43 @@
+﻿<link href="styles/info.css" rel="stylesheet" />
+
+<div class="info text-center">
+  <div class="info-header">
+    <h2><strong>YOUR INFO</strong></h2>
+    <h5 data-ng-click="returnToCart()"><< Go Back to Shopping Cart</h5>
+  </div>
+  <div class="info-body">
+    <div class="info-left">
+      <div class="info-form">
+        <div class="info-form-header">Contact Information</div>
+        <div class="info-form-label"><strong>First Name</strong></div>
+        <input type="text" data-ng-model="contactForm.fName" />
+        <div class="info-form-label"><strong>Last Name</strong></div>
+        <input type="text" data-ng-model="contactForm.lName" />
+        <div class="info-form-label"><strong>Email Address</strong></div>
+        <input type="email" data-ng-model="contactForm.email" />
+        <div class="info-form-label"><strong>Phone Number</strong></div>
+        <input type="text" data-ng-model="contactForm.phone" />
+      </div>
+      <div class="info-form">
+        <div class="info-form-header">Shipping Address</div>
+        <div class="info-form-label"><strong>Street Address</strong></div>
+        <input type="text" data-ng-model="shippingForm.addr" />
+        <div class="info-form-label"><strong>Street Address 2</strong></div>
+        <input type="text" data-ng-model="shippingForm.addr2" />
+        <div class="info-form-label"><strong>City</strong></div>
+        <input type="text" data-ng-model="shippingForm.city" />
+        <div class="info-form-label"><strong>State</strong></div>
+        <input type="text" data-ng-model="shippingForm.state" />
+      </div>
+    </div>
+    <div class="info-right">
+      <div class="info-progressbar">PROGRESS BAR HERE</div>
+      <div class="info-buttonrow">
+        <div class="info-button info-button-light"
+             data-ng-click="back()"><strong>< GO BACK</strong></div>
+        <div class="info-button"
+             data-ng-click="next()"><strong>PAYMENT ></strong></div>
+      </div>
+    </div>
+  </div>
+</div>
