@@ -17,6 +17,17 @@ angular.module('abacuApp')
       $location.path('abacus');
     };
 
+    $scope.panelSelected = function (hoverItem ,frameID){
+      if(hoverItem === frameID){
+        console.log('true');
+        return true;
+      }
+      else{
+        console.log('false');
+        return false;
+      }
+    }
+
   });
 
 
@@ -30,7 +41,7 @@ var dummyFramesData = [
     desc: "Ti Arrow's Standard Rigid Frame Wheelchair made from Titanium",
     basePrice: 2995,
     baseWeight: 45,
-    imageURL: "images/mainpic.png"
+    imageURL: "images/frame_page_img/frame1_frame_page.png"
   },
   {
     frameID: 2,
@@ -39,6 +50,6 @@ var dummyFramesData = [
     desc: "Better than anything our \"competition\" makes",
     basePrice: 1999,
     baseWeight: 30,
-    imageURL: "images/mainpic.png"
+    imageURL: "images/frame_page_img/frame2_frame_page.png"
   }
 ];
