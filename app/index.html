@@ -40,22 +40,15 @@
         </a>
       </div>
       <ul class="mainNavbar-left">
-        <li ng-class="{ active: isActive('/')}">
-          <a ng-href="#/"><span><img data-ng-src="{{isActive('/') && 'images/icons/on_frames.png' || 'images/icons/frames.png'}}" /></span>FRAMES</a>
+        <li class="frameNavButton" ng-class="{ active: isActive('/')}">
+          <a ng-href="#/"><span>FRAMES</a>
         </li>
-        <li ng-class="{ active: isActive('/abacus')}">
-          <a ng-href="#/abacus"><span><img data-ng-src="{{isActive('/abacus') && 'images/icons/on_abacus.png' || 'images/icons/abacus.png'}}" /></span>ABACUS</a>
-        </li>
-        <li ng-class="{ active: isActive('/account')}">
-          <a ng-href="#/account"><span><img data-ng-src="{{isActive('/account') && 'images/icons/on_my_account.png' || 'images/icons/my_account.png'}}" /></span>MY ACCOUNT <span class="caret"></span></a>
-        </li>
-        <li ng-class="{ active: isActive('/about')}">
-          <a ng-href="#/about"><span><img data-ng-src="{{isActive('/about') && 'images/icons/on_about_us.png' || 'images/icons/about_us.png'}}" /></span>ABOUT US </a>
+        <li class="aboutNavButton" ng-class="{ active: isActive('/about')}">
+          <a ng-href="#/about">ABOUT US </a>
         </li>
       </ul>
       <ul class="mainNavbar-right">
-        <li><a ng-href="#/cart">MY CART</a></li>
-        <li><a ng-href="#/contact">SIGN OUT</a></li>
+        <li class="cartButton"><a ng-href="#/cart"><img src="images/icons/cart.png" width="50" alt="cart"/></a></li>
         <li><a ng-href="#/contact">LOG IN</a></li>
       </ul>
 
