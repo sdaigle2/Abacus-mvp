@@ -212,13 +212,15 @@ angular.module('abacuApp')
 
     /*******************Unit Systems ****************************/
 
-    //Toggles the user's unit system between Metric and Imperial
-    $scope.toggleUnitSystem = function () {
-      if ($scope.curUnitSys == $scope.unitSys.METRIC)
-        $scope.curUnitSys = $scope.unitSys.IMPERIAL;
-      else
-        $scope.curUnitSys = $scope.unitSys.METRIC;
-    };
+    $scope.unitSysList = [
+      {
+        name: "Metric",
+        enumVal: $scope.unitSys.METRIC
+      },
+      {
+        name: "Imperial",
+        enumVal: $scope.unitSys.IMPERIAL
+      }];
 
     //Returns the appropriate weight unit name
     $scope.getCurUnitSysWeightName = function () {
