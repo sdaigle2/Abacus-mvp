@@ -1,5 +1,7 @@
 ﻿.info {
-  line-height: 1;
+  line-height: normal;
+  width: 1280px;
+  margin: 0 auto;
 }
 
 .info-header {
@@ -18,7 +20,7 @@
 }
 
 .info-body {
-  width: 90%;
+  width: 80%;
   margin: 0 auto;
 }
 
@@ -30,10 +32,33 @@
 }
 
 .info-right {
-  width: 30%;
-  margin: 0;
+  width: 25%;
+  /*margin-top: 22px;*/
+  margin-left: 20px;
   float: left;
+  position: relative;
 }
+
+.info-right .progress-bar-lable{
+  word-spacing: 48px;
+  margin-bottom: 10px;
+}
+
+.info-right .info-progressbar .progress{
+  height: 7px;
+  /*border-radius: 0px;*/
+}
+
+.info-right .info-progressbar .progress .progress-bar{
+  background-color: #60C2B1;
+}
+
+.info-right .info-progressbar img {
+  position: absolute;
+  left: 25px;
+  top: 18px;
+}
+
 
 .info-form {
   margin-bottom: 15px;
@@ -54,8 +79,10 @@
 .info-form>input {
   margin-left: 20px;
   margin-bottom: 15px;
-  width: 50%;
+  width: 40%;
 }
+
+
 
 .info-button {
   margin-top: 20px;
@@ -65,7 +92,7 @@
   width: 40%;
   height: 40px;
   padding-top: 10px;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .info-button.info-button-light {

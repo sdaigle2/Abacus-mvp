@@ -10,15 +10,7 @@ body {
   min-width: 1300px;
 }
 
-#backgrounder {
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  height: 475px;
-  width: 100%;
-  z-index: -5000;
-  background-color: #EAEAEA;
-}
+
 
 
 

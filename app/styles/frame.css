@@ -1,6 +1,4 @@
-#background{
-  background-color: white;
-}
+
 
 .wrapper{
   margin: 0 auto;
@@ -43,6 +41,7 @@
 }
 
 .frame-item-title {
+  padding-top: 20px;
   text-align: center;
   font-size: 22px;
 }
@@ -75,7 +74,7 @@
 .img .frame-item-desc {
   position: absolute;
   width: 100%;
-  transition: 1s;
+  transition: 0.2s;
 }
 .img .frame-item-desc-hide{
   top: -400px;

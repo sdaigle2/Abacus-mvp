@@ -1,0 +1,38 @@
+<link href="../styles/frame.css" rel="stylesheet" />
+
+
+<div class="wrapper">
+  <div class=" frame-header-row">
+    <div class="frame-header">
+      <strong>Frames</strong>
+    </div>
+  </div>
+
+  <div class="mainDisplay">
+    <div class="frame-item text-center"
+         data-ng-repeat="f in frames">
+      <div class="frame-item-image">
+        <div class="img" data-ng-mouseenter="hoverItem = f.frameID"
+             data-ng-mouseleave="hoverItem = -1">
+
+          <img src="{{f.imageURL}}" />
+            <div class="frame-item-desc"
+                 data-ng-class="{ 'frame-item-desc-show' : panelSelected(hoverItem,f.frameID) , 'frame-item-desc-hide' : !panelSelected(hoverItem,f.frameID)}">
+              <div  class="hoverBackground frame-item-panel">
+                <p class="frame-item-title"><strong>{{f.name}}</strong></p>
+                <hr></hr>
+                <p>{{f.desc}}</p>
+              </div>
+            </div>
+        </div>
+      </div>
+
+
+        <div class="frame-item-button"
+             data-ng-click="selectFrame(f.frameID)">
+          <strong>Select this frame >></strong>
+        </div>
+
+    </div>
+  </div>
+</div>
