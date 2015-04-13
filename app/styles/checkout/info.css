@@ -6,7 +6,7 @@
 
 .info-header {
   width: 90%;
-  margin: 0 auto;
+  margin: 50px auto 0;
   border-bottom: solid 2px black;
   text-align: left;
   margin-bottom: 40px;
@@ -39,14 +39,22 @@
   position: relative;
 }
 
-.info-right .progress-bar-lable{
+.info-right .progress-bar-label{
   word-spacing: 48px;
+  margin-bottom: 10px;
+}
+
+.info-right .progress-bar-label-text{
+  position: absolute;
+  top: 11px;
+  word-spacing: 20px;
   margin-bottom: 10px;
 }
 
 .info-right .info-progressbar .progress{
   height: 7px;
   /*border-radius: 0px;*/
+  background-color: #e6e7e8;
 }
 
 .info-right .info-progressbar .progress .progress-bar{
