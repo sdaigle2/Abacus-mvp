@@ -12,26 +12,198 @@
   <!--- SIDEBAR --->
   <div class="settingsSidebar">
     <ul class="settingsSidebarOptions">
-      <li class="settingsSidebarOption" id="settingsSidebarAccountOption"><i class="fa fa-user"></i> My Account</li>
-      <li class="settingsSidebarOption" id="settingsSidebarOrdersOption"><i class="fa fa-list"></i> My Orders</li>
-      <li class="settingsSidebarOption" id="settingsSidebarMeasurementsOption"><i class="fa fa-wrench"></i> My Measurements</li>
+
+      <li class="settingsSidebarOption" id="settingsSidebarAccountOption" ng-click="setContentSection(ContentSection.ACCOUNT)" ng-class="{ 'active' : getContentSection() === ContentSection.ACCOUNT}">
+        <i class="fa fa-user"></i> MY ACCOUNT
+      </li>
+      <li class="settingsSidebarOptionDivider"></li>
+
+      <li class="settingsSidebarOption" id="settingsSidebarOrdersOption" ng-click="setContentSection(ContentSection.ORDERS)" ng-class="{ 'active' : getContentSection() === ContentSection.ORDERS}">
+        <i class="fa fa-list"></i> MY ORDERS
+      </li>
+      <li class="settingsSidebarOptionDivider"></li>
+
+      <li class="settingsSidebarOption" id="settingsSidebarMeasurementsOption" ng-click="setContentSection(ContentSection.MEASUREMENTS)" ng-class="{ 'active' : getContentSection() === ContentSection.MEASUREMENTS}">
+        <i class="fa fa-wrench"></i> MY MEASUREMENTS
+      </li>
+      <li class="settingsSidebarOptionDivider"></li>
+
     </ul>
-    <ul class="settingsSidebarButtons">
-      <li class="settingsSidebarButton" id="settingsSidebarEditButton">EDIT &gt;&gt;</li>
-      <li class="settingsSidebarButton" id="settingsSidebarSaveButton">SAVE &gt;&gt;</li>
-    </ul>
+    <div class="settingsSidebarButtons">
+      <button class="settingsSidebarButton" id="settingsSidebarEditButton">EDIT &gt;&gt;</button>
+      <button class="settingsSidebarButton" id="settingsSidebarSaveButton">SAVE &gt;&gt;</button>
+    </div>
   </div>
 
-  <!--- CONTENT --->
-  <div class="settingsContent" id="settingsAccountContent">
+  <!--- CONTENT SECTIONS --->
 
-    <div class="settingsContent-contactInformation">
-      <form action="" id="settingsContentForm-contactInformation">
-        <div class="settingsContentSectionTitle">Contact Information</div>
+  <div class="settingsContentWrapper">
 
-      </form>
+    <div class="settingsContent" id="settingsAccountContent" ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ACCOUNT}">
+
+      <div class="settingsContentInputSection">
+        <form action="" id="settingsContentForm-contact">
+          <div class="settingsContentSectionTitle">Contact Information</div>
+          <ul>
+            <li>
+              <label for="settingsContentInput-contact-firstName">First Name</label>
+              <input id="settingsContentInput-contact-firstName" name="firstName" type="text" value="" />
+            </li>
+            <li>
+              <label for="settingsContentInput-contact-lastName">Last Name</label>
+              <input id="settingsContentInput-contact-lastName" name="lastName" type="text" value="" />
+            </li>
+            <li>
+              <label for="settingsContentInput-contact-email">Email Address</label>
+              <input id="settingsContentInput-contact-email" name="email" type="text" value="" />
+            </li>
+            <li>
+              <label for="settingsContentInput-contact-password">Password</label>
+              <input id="settingsContentInput-contact-password" name="password" type="password" value="" />
+            </li>
+            <li>
+              <label for="settingsContentInput-contact-passwordConfirm">Confirm Password</label>
+              <input id="settingsContentInput-contact-passwordConfirm" name="passwordConfirm" type="password" value="" />
+            </li>
+          </ul>
+        </form>
+      </div>
+
+      <div class="settingsContentInputSection">
+        <form action="" id="settingsContentForm-shipping">
+          <div class="settingsContentSectionTitle">Shipping Address</div>
+          <ul>
+            <li>
+              <label for="settingsContentInput-shipping-streetAddress">Street Address</label>
+              <input id="settingsContentInput-shipping-streetAddress" name="streetAddress" type="text" value="" />
+            </li>
+            <li>
+              <label for="settingsContentInput-shipping-streetAddress2">Street Address 2</label>
+              <input id="settingsContentInput-shipping-streetAddress2" name="streetAddress2" type="text" value="" />
+            </li>
+            <li>
+              <label for="settingsContentInput-shipping-city">City</label>
+              <input id="settingsContentInput-shipping-city" name="city" type="text" value="" />
+            </li>
+            <li>
+              <label for="settingsContentInput-shipping-state">State</label>
+              <input id="settingsContentInput-shipping-state" name="state" type="text" value="" />
+            </li>
+            <li>
+              <label for="settingsContentInput-shipping-zip">Zip Code</label>
+              <input id="settingsContentInput-shipping-zip" name="zip" type="text" value="" />
+            </li>
+          </ul>
+        </form>
+      </div>
+
     </div>
 
-  </div>
+
+    <div class="settingsContent" id="settingsOrdersContent" ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ORDERS}">
+
+      <ul id="settingsOrdersContentItems">
+
+        <li class="settingsOrdersContentItem"><!-- REPEAT THIS -->
+          <img class="settingsOrdersContentItem-image" src="../images/mainpic.png" alt="Wheelchair"/>
+          <div class="settingsOrdersContentItemMid">
+            <div class="settingsOrdersContentItem-name">Name of this wheelchair</div>
+            <div class="settingsOrdersContentItem-date">Order Placed: Dec 24, 2014</div>
+            <button class="settingsOrdersContentItem-detailsButton">View Order Details <i class="fa fa-arrow-circle-down"></i></button>
+          </div>
+          <div class="settingsOrdersContentItem-cost">$1234.56</div>
+        </li>
+
+        <li class="settingsOrdersContentItem">
+          <img class="settingsOrdersContentItem-image" src="../images/mainpic.png" alt="Wheelchair"/>
+          <div class="settingsOrdersContentItemMid">
+            <div class="settingsOrdersContentItem-name">Name of this wheelchair</div>
+            <div class="settingsOrdersContentItem-date">Order Placed: Dec 24, 2014</div>
+            <button class="settingsOrdersContentItem-detailsButton">View Order Details <i class="fa fa-arrow-circle-down"></i></button>
+          </div>
+          <div class="settingsOrdersContentItem-cost">$1234.56</div>
+        </li>
+
+        <li class="settingsOrdersContentItem">
+          <img class="settingsOrdersContentItem-image" src="../images/mainpic.png" alt="Wheelchair"/>
+          <div class="settingsOrdersContentItemMid">
+            <div class="settingsOrdersContentItem-name">Name of this wheelchair</div>
+            <div class="settingsOrdersContentItem-date">Order Placed: Dec 24, 2014</div>
+            <button class="settingsOrdersContentItem-detailsButton">View Order Details <i class="fa fa-arrow-circle-down"></i></button>
+          </div>
+          <div class="settingsOrdersContentItem-cost">$1234.56</div>
+        </li>
+
+      </ul>
+
+    </div>
+
+
+    <div class="settingsContent" id="settingsMeasurementsContent" ng-class="{'showSettingsContent' : getContentSection() === ContentSection.MEASUREMENTS}">
+
+      <div class="settingsContentInputSection">
+        <form action="" id="settingsContentForm-measurements">
+          <div class="settingsContentSectionTitle">My Measurements</div>
+          <ul>
+            <li>
+              <label for="settingsContentInput-measurements-rearSeatHeight">Rear Seat Height <i class="fa fa-arrow-circle-right" title="Learn More"></i></label>
+              <select id="settingsContentInput-measurements-rearSeatHeight" name="rearSeatHeight">
+                <option value="">--</option>
+                <option value="">--</option>
+                <option value="">--</option>
+              </select>
+            </li>
+            <li>
+              <label for="settingsContentInput-measurements-rearSeatWidth">Rear Seat Width <i class="fa fa-arrow-circle-right" title="Learn More"></i></label>
+              <select id="settingsContentInput-measurements-rearSeatWidth" name="rearSeatWidth">
+                <option value="">--</option>
+                <option value="">--</option>
+                <option value="">--</option>
+              </select>
+            </li>
+            <li>
+              <label for="settingsContentInput-measurements-foldingBackrestHeight">Folding Backrest Height <i class="fa fa-arrow-circle-right" title="Learn More"></i></label>
+              <select id="settingsContentInput-measurements-foldingBackrestHeight" name="foldingBackrestHeight">
+                <option value="">--</option>
+                <option value="">--</option>
+                <option value="">--</option>
+              </select>
+            </li>
+            <li>
+              <label for="settingsContentInput-measurements-axelPosition">Axel Position <i class="fa fa-arrow-circle-right" title="Learn More"></i></label>
+              <select id="settingsContentInput-measurements-axelPosition" name="axelPosition">
+                <option value="">--</option>
+                <option value="">--</option>
+                <option value="">--</option>
+              </select>
+            </li>
+            <li>
+              <label for="settingsContentInput-measurements-seatDepth">Seat Depth <i class="fa fa-arrow-circle-right" title="Learn More"></i></label>
+              <select id="settingsContentInput-measurements-seatDepth" name="seatDepth">
+                <option value="">--</option>
+                <option value="">--</option>
+                <option value="">--</option>
+              </select>
+            </li>
+          </ul>
+        </form>
+      </div>
+
+      <div class="settingsContentInputMoreInfoSection"><!-- REPEAT THIS -->
+        <div class="settingsContentSectionTitle">Rear Seat Height</div>
+        <div class="settingsContentSectionDescription">Distance from the ground up to back corner of your seat</div>
+        <div class="settingsContentSectionGraphic">
+          <img src="../images/measure/rear-seat-height1.jpg" width="350" height="340">
+          <div class="dots">
+            <i class="fa fa-circle-o"></i><!-- REPEAT THIS -->
+            <i class="fa fa-circle-o"></i>
+            <i class="fa fa-circle-o"></i>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- END settingsContentWrapper -->
 
 </div>
