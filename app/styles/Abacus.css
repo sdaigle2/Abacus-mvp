@@ -81,7 +81,8 @@
   width: 350px;
   line-height: 1;
   height: 60px;
-  border: solid 1px gray;
+  border: 1px solid #ddd;
+  border-bottom: hidden;
 }
 
 .display-frame {
@@ -106,7 +107,12 @@
   float: right;
   width: 25%;
   height: 100%;
-  border: solid 1px gray;
+  border-left: solid 1px #ddd;
+  border-radius: 0px;
+}
+
+.display-toggle select{
+  border-radius: 0px;
 }
 
 .display-toggle h6 {
@@ -220,6 +226,8 @@
 .nav-tabs.nav-justified > li.active,
 .nav-tabs.nav-justified > li {
   margin-right: 10px;
+  position: relative;
+  top: -8px;
   line-height: 1.42857143;
   /*border: 1px solid transparent;*/
   border-radius: 20px 20px 0px 0px;
@@ -227,6 +235,7 @@
   font-weight: 400;
   /*text-transform: uppercase;*/
   letter-spacing: 0.6px;
+  padding: 8px 0;
 
 }
 
@@ -237,10 +246,11 @@
   color: #FFFFFF;
   cursor: pointer;
   background-color: #bcbec0;
-  border-bottom: solid 3px #bcbec0;
+  border-bottom: solid 4px #bcbec0;
   box-sizing:border-box;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
+  padding: 8px 0;
 }
 
 
@@ -251,7 +261,7 @@
   color: #000000;
   cursor: default;
   background-color: #f1f2f2;
-  border-bottom: solid 3px #60C2B1;
+  border-bottom: solid 4px #60C2B1;
   box-sizing:border-box;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
@@ -277,13 +287,14 @@
 .sideBar{
   position: relative;
   background-color: #f1f2f2;
-
+  top: -14px;
   border-top: 1px solid #f1f2f2 ;
   border-radius: 0px;
 
   height: 600px;
   max-height: 600px;
 }
+
 
 .sideBar-header h3 {
   font-size: 1.6em;
