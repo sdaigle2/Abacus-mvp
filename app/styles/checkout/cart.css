@@ -5,15 +5,7 @@
 **** Cart Background *****
 **************************/
 
-.cartBackground {
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  background-color: #FFF;
-  width: 100%;
-  height: 100%;
-  z-index: -100;
-}
+
 
 .cartBody {
   float: left;
@@ -150,23 +142,28 @@
   background-color: #eaeae8;
   clear: right;
   float: right;
-  margin-top: 103px;
   padding-left: 15px;
   padding-top: 100px;
   padding-bottom: 100px;
   position: relative;
   width: 30%;
+  height: 100%;
 }
 
 .cartSidebarHeading {
   font-size: 25px;
   border-bottom: solid 2px #AAAAAA;
-  padding-bottom: 13px;
+  padding-bottom: 24px;
   margin-bottom: 3px;
+  position: relative;
+  top: -25px;
 }
 
 .cartSidebarSubtotals {
   width: 100%;
+  position: relative;
+  top: -19px;
+  line-height: 2;
 }
 
 .cartSidebarSubtotals td {
@@ -190,6 +187,7 @@
   border: none;
   background-color: #60C2B1;
   display:inline-block;
+  font-size: 1.5em;
   color: #FFFFFF;
   height: 40px;
 }
@@ -199,6 +197,6 @@
 }
 
 .checkoutButton:hover {
-  background-color: #A7A9Ac;
+  background-color: #60C2B1;
   cursor: pointer;
 }
