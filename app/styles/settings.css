@@ -78,6 +78,15 @@
   height: 40px;
   margin-top: 20px;
   color: #fff;
+  opacity: 0;
+}
+.settingsSidebarButtons.showSettingsSidebarButtons {
+  opacity: 1;
+  transition: .3s;
+}
+.settingsSidebarButtons.hideSettingsSidebarButtons {
+  opacity: 0;
+  transition: .3s;
 }
 
 .settingsSidebarButton {
@@ -88,6 +97,7 @@
   background-color: rgba(158, 159, 158, 1);
   border: none;
 }
+
 .settingsSidebarButton.active, .settingsSidebarButton:hover {
   background-color: rgba(11, 158, 144, 1);
   transition: .5s;
@@ -131,6 +141,7 @@
 
 
 
+
 /*************************
 ***** ACCOUNT SECTION ****
 **************************/
@@ -168,11 +179,13 @@
 
 
 
+
+
 /*************************
 ***** ORDERS SECTION *****
 **************************/
 
-#settingsOrdersContent .settingsOrdersContentItems {
+#settingsOrdersContent #settingsOrdersContentItems {
   clear: left;
   float: left;
   width: 100%;
@@ -185,6 +198,7 @@
   clear: left;
   float: left;
   height: auto;
+  margin-bottom: 20px;
   border-bottom: 1px solid rgba(182, 184, 182, 1);
 }
 
@@ -240,6 +254,88 @@
 }
 
 
+
+
+
+/***************************
+*** MEASUREMENTS SECTION ***
+****************************/
+
+#settingsMeasurementsContent .settingsContentInputSection {
+  clear: left;
+  float: left;
+  width: 100%;
+  margin: 20px 0 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+#settingsMeasurementsContent .settingsContentSectionTitle {
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgba(138, 139, 138, 1);
+  border-bottom: 2px solid rgba(138, 139, 138, 1);
+}
+
+#settingsMeasurementsContent .settingsContentInputSection ul {
+  margin: 0 0 0 30px;
+  padding: 0;
+  list-style: none;
+}
+
+#settingsMeasurementsContent .settingsContentInputSection label {
+  color: rgba(26, 25, 25, 1);
+  font-weight: normal;
+  display: block;
+  cursor: pointer;
+  transition: .5s;
+}
+#settingsMeasurementsContent .settingsContentInputSection label:hover {
+  color: rgba(11, 158, 144, 1);
+}
+
+#settingsMeasurementsContent .settingsContentInputSection select {
+  width: 200px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(182, 184, 182, 1);
+  outline: none;
+}
+
+#settingsMeasurementsContent .settingsContentInputMoreInfoSection {
+  position: absolute;
+  top: 100px;
+  right: 50px;
+  width: 400px;
+  opacity: 0;
+  z-index: 0;
+}
+#settingsMeasurementsContent .settingsContentInputMoreInfoSection.active {
+  right: 100px;
+  opacity: 1;
+  z-index: 500;
+  transition: .5s;
+}
+
+#settingsMeasurementsContent .settingsContentInputMoreInfoSection .settingsContentSectionTitle {
+  border: none;
+  margin: 0 0 5px 0;
+  padding: 0;
+  color: rgba(28, 27, 26, 1);
+}
+
+#settingsMeasurementsContent .settingsContentInputMoreInfoSection .settingsContentSectionGraphic {
+  text-align: center;
+}
+
+#settingsMeasurementsContent .settingsContentInputMoreInfoSection .settingsContentSectionGraphic img {
+  margin: 20px 0 20px 0;
+}
+
+#settingsMeasurementsContent .settingsContentInputMoreInfoSection .settingsContentSectionGraphic .dots {
+  margin: 0 0 20px 0;
+}
 
 
 

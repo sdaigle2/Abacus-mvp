@@ -14,22 +14,23 @@
     <ul class="settingsSidebarOptions">
 
       <li class="settingsSidebarOption" id="settingsSidebarAccountOption" ng-click="setContentSection(ContentSection.ACCOUNT)" ng-class="{ 'active' : getContentSection() === ContentSection.ACCOUNT}">
-        <i class="fa fa-user"></i> MY ACCOUNT
+        <i class="fa fa-user"></i>&nbsp; MY ACCOUNT
       </li>
       <li class="settingsSidebarOptionDivider"></li>
 
       <li class="settingsSidebarOption" id="settingsSidebarOrdersOption" ng-click="setContentSection(ContentSection.ORDERS)" ng-class="{ 'active' : getContentSection() === ContentSection.ORDERS}">
-        <i class="fa fa-list"></i> MY ORDERS
+        <i class="fa fa-list"></i>&nbsp; MY ORDERS
       </li>
       <li class="settingsSidebarOptionDivider"></li>
 
       <li class="settingsSidebarOption" id="settingsSidebarMeasurementsOption" ng-click="setContentSection(ContentSection.MEASUREMENTS)" ng-class="{ 'active' : getContentSection() === ContentSection.MEASUREMENTS}">
-        <i class="fa fa-wrench"></i> MY MEASUREMENTS
+        <i class="fa fa-wrench"></i>&nbsp; MY MEASUREMENTS
       </li>
       <li class="settingsSidebarOptionDivider"></li>
 
     </ul>
-    <div class="settingsSidebarButtons">
+    <div class="settingsSidebarButtons"
+         ng-class="{'showSettingsSidebarButtons' : getContentSection() !== ContentSection.ORDERS, 'hideSettingsSidebarButtons' : getContentSection() === ContentSection.ORDERS}">
       <button class="settingsSidebarButton" id="settingsSidebarEditButton">EDIT &gt;&gt;</button>
       <button class="settingsSidebarButton" id="settingsSidebarSaveButton">SAVE &gt;&gt;</button>
     </div>
@@ -146,7 +147,9 @@
           <div class="settingsContentSectionTitle">My Measurements</div>
           <ul>
             <li>
-              <label for="settingsContentInput-measurements-rearSeatHeight">Rear Seat Height <i class="fa fa-arrow-circle-right" title="Learn More"></i></label>
+              <label for="settingsContentInput-measurements-rearSeatHeight" ng-click="setMeasurementHelpSection(MeasurementHelpSection.REAR_SEAT_HEIGHT)">
+                Rear Seat Height <i class="fa fa-arrow-circle-right" title="Learn More"></i>
+              </label>
               <select id="settingsContentInput-measurements-rearSeatHeight" name="rearSeatHeight">
                 <option value="">--</option>
                 <option value="">--</option>
@@ -154,7 +157,9 @@
               </select>
             </li>
             <li>
-              <label for="settingsContentInput-measurements-rearSeatWidth">Rear Seat Width <i class="fa fa-arrow-circle-right" title="Learn More"></i></label>
+              <label for="settingsContentInput-measurements-rearSeatWidth" ng-click="setMeasurementHelpSection(MeasurementHelpSection.REAR_SEAT_WIDTH)">
+                Rear Seat Width <i class="fa fa-arrow-circle-right" title="Learn More"></i>
+              </label>
               <select id="settingsContentInput-measurements-rearSeatWidth" name="rearSeatWidth">
                 <option value="">--</option>
                 <option value="">--</option>
@@ -162,7 +167,9 @@
               </select>
             </li>
             <li>
-              <label for="settingsContentInput-measurements-foldingBackrestHeight">Folding Backrest Height <i class="fa fa-arrow-circle-right" title="Learn More"></i></label>
+              <label for="settingsContentInput-measurements-foldingBackrestHeight" ng-click="setMeasurementHelpSection(MeasurementHelpSection.FOLDING_BACKREST_HEIGHT)">
+                Folding Backrest Height <i class="fa fa-arrow-circle-right" title="Learn More"></i>
+              </label>
               <select id="settingsContentInput-measurements-foldingBackrestHeight" name="foldingBackrestHeight">
                 <option value="">--</option>
                 <option value="">--</option>
@@ -170,7 +177,9 @@
               </select>
             </li>
             <li>
-              <label for="settingsContentInput-measurements-axelPosition">Axel Position <i class="fa fa-arrow-circle-right" title="Learn More"></i></label>
+              <label for="settingsContentInput-measurements-axelPosition" ng-click="setMeasurementHelpSection(MeasurementHelpSection.AXEL_POSITION)">
+                Axel Position <i class="fa fa-arrow-circle-right" title="Learn More"></i>
+              </label>
               <select id="settingsContentInput-measurements-axelPosition" name="axelPosition">
                 <option value="">--</option>
                 <option value="">--</option>
@@ -178,7 +187,9 @@
               </select>
             </li>
             <li>
-              <label for="settingsContentInput-measurements-seatDepth">Seat Depth <i class="fa fa-arrow-circle-right" title="Learn More"></i></label>
+              <label for="settingsContentInput-measurements-seatDepth" ng-click="setMeasurementHelpSection(MeasurementHelpSection.SEAT_DEPTH)">
+                Seat Depth <i class="fa fa-arrow-circle-right" title="Learn More"></i>
+              </label>
               <select id="settingsContentInput-measurements-seatDepth" name="seatDepth">
                 <option value="">--</option>
                 <option value="">--</option>
@@ -189,7 +200,8 @@
         </form>
       </div>
 
-      <div class="settingsContentInputMoreInfoSection"><!-- REPEAT THIS -->
+
+      <div class="settingsContentInputMoreInfoSection" ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.REAR_SEAT_HEIGHT}"><!-- REPEAT THIS -->
         <div class="settingsContentSectionTitle">Rear Seat Height</div>
         <div class="settingsContentSectionDescription">Distance from the ground up to back corner of your seat</div>
         <div class="settingsContentSectionGraphic">
@@ -201,6 +213,21 @@
           </div>
         </div>
       </div>
+
+      <div class="settingsContentInputMoreInfoSection" ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.REAR_SEAT_WIDTH}"><!-- REPEAT THIS -->
+        <div class="settingsContentSectionTitle">Rear Seat Width</div>
+        <div class="settingsContentSectionDescription">Distance from something to something</div>
+        <div class="settingsContentSectionGraphic">
+          <img src="../images/measure/rear-seat-height1.jpg" width="350" height="340">
+          <div class="dots">
+            <i class="fa fa-circle-o"></i><!-- REPEAT THIS -->
+            <i class="fa fa-circle-o"></i>
+            <i class="fa fa-circle-o"></i>
+          </div>
+        </div>
+      </div>
+
+
 
     </div>
 

@@ -13,14 +13,27 @@ angular.module('abacuApp')
   .controller('SettingsCtrl', function ($scope, $location, sharedVars) {
 
 
+
     $scope.ContentSection = {
       ACCOUNT : 'account',
       ORDERS : 'orders',
       MEASUREMENTS : 'measurements'
     };
 
+    $scope.MeasurementHelpSection = {
+      NONE : '',
+      REAR_SEAT_HEIGHT : 'account',
+      REAR_SEAT_WIDTH : 'orders',
+      FOLDING_BACKREST_HEIGHT : 'foldingBackrestHeight',
+      AXEL_POSITION : 'axelPosition',
+      SEAT_DEPTH : 'seatDepth'
+    };
+
+
 
     $scope.contentSection = $scope.ContentSection.ACCOUNT;
+    $scope.measurementHelpSection = $scope.MeasurementHelpSection.NONE;
+
 
 
     $scope.getContentSection = function () {
@@ -28,8 +41,27 @@ angular.module('abacuApp')
     };
 
     $scope.setContentSection = function (contentSection) {
+      $scope.resetMeasurementHelpSection();
       $scope.contentSection = contentSection;
     };
+
+    $scope.resetContentSection = function() {
+      $scope.contentSection = $scope.ContentSection.ACCOUNT;
+    }
+
+
+
+    $scope.getMeasurementHelpSection = function () {
+      return $scope.measurementHelpSection;
+    };
+
+    $scope.setMeasurementHelpSection = function (measurementHelpSection) {
+      $scope.measurementHelpSection = measurementHelpSection;
+    };
+
+    $scope.resetMeasurementHelpSection = function () {
+      $scope.measurementHelpSection = $scope.MeasurementHelpSection.NONE;
+    }
 
 
 
