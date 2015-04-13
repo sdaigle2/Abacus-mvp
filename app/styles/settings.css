@@ -1,0 +1,77 @@
+
+/*************************
+********* HEADER *********
+**************************/
+
+.settingsHeader {
+  position: relative;
+  clear: left;
+  float: left;
+  height: 40px;
+  width: 100%;
+  margin-top: 60px;
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 2px solid #686968;
+  background-color: rgba(255, 51, 62, 0.2);
+}
+
+
+
+
+/*************************
+********* SIDEBAR ********
+**************************/
+
+.settingsSidebar {
+  clear: left;
+  float: left;
+  width: 20%;
+  background-color: rgba(40, 128, 60, 0.2);
+}
+
+.settingsSidebar ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.settingsSidebarOptions {
+  clear: left;
+  float: left;
+  width: 100%;
+  border-left: 2px solid #686968;
+  border-right: 5px solid #686968;
+}
+
+.settingsSidebarOption {
+  clear: left;
+  float: left;
+  width: 100%;
+  height: 60px;
+  padding-top: 20px;
+  text-align: center;
+  border-bottom: 2px solid #686968;
+  cursor: pointer;
+}
+.settingsSidebarOption:hover {
+  background-color: rgba(234, 234, 232, 1);
+}
+
+
+
+
+
+
+/*************************
+**** CONTENT SECTIONS ****
+**************************/
+
+.settingsContent {
+  clear: right;
+  float: right;
+  width: 70%;
+  margin-right: 5%;
+  background-color: rgba(100, 0, 200, 0.2);
+  line-height: 1;
+}

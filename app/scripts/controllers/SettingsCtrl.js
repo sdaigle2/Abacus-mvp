@@ -13,6 +13,24 @@ angular.module('abacuApp')
   .controller('SettingsCtrl', function ($scope, $location, sharedVars) {
 
 
+    $scope.ContentSection = {
+      ACCOUNT : 'account',
+      ORDERS : 'orders',
+      MEASUREMENTS : 'measurements'
+    };
+
+
+    $scope.contentSection = $scope.ContentSection.ACCOUNT;
+
+
+    $scope.getContentSection = function () {
+      return $scope.contentSection;
+    };
+
+    $scope.setContentSection = function (contentSection) {
+      $scope.contentSection = contentSection;
+    };
+
 
 
   });
