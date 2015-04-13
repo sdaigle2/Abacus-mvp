@@ -12,6 +12,10 @@ body {
 
 
 
+.preload {
+  display: none;
+}
+
 
 
 
@@ -20,48 +24,39 @@ body {
 
 
 .mainNavbar  {
+  position:relative;
+  z-index: 500;
   margin: 0;
   padding: 0;
-  background-color: #1C1B1A;
-  position:relative;
   width: 100%;
   height: 40px;
+  background-color: #1C1B1A;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.8);
-  z-index: 500;
 }
 
 .mainNavbar-header {
-  margin: 0;
-  padding: 0;
-  clear: right;
   float: left;
-  margin-left: 5px;
-  padding-right: 5px;
   height: 100%;
+  margin: 0 0 0 5px;
+  padding: 3px 5px 0 0;
   border-right: 1px solid #777;
 }
 
 .mainNavbar-left {
-  margin: 0;
-  padding: 0;
   float: left;
-  margin-left: 20px;
+  margin: 0 0 0 20px;
+  padding: 0;
   list-style: none;
 
 }
 .mainNavbar .mainNavbar-left > li {
-  margin: 0;
-  padding: 0;
   float: left;
-  margin-right: 20px;
-  padding-top: 10px;
-  margin-top: 10px;
   height: 20px;
-
+  margin: 10px 20px 0 0;
+  padding: 10px 0 0 25px;
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: 20px 20px;
-  padding-left: 25px;
   cursor: pointer;
 }
 
@@ -94,22 +89,25 @@ body {
 .mainNavbar-right {
   clear: right;
   float: right;
+  margin: -22px 0 0 0;
+  padding: 0;
   list-style: none;
-  margin-top: -22px;
 }
 .mainNavbar .mainNavbar-right > li {
   float: right;
-  margin-right: 15px;
-  margin-top: 42px;
+  margin: 42px 15px 0 0;
+  padding: 0;
 }
 .mainNavbar .mainNavbar-right > li > a {
+  margin: 0;
+  padding: 0;
   text-decoration: none;
 }
 .mainNavbar .mainNavbar-right .cartButton {
-  border-left: 1px solid #777;
-  padding-left: 5px;
-  margin-top: 22px;
   height: 100%;
+  margin: 22px 0 0 0;
+  padding: 0 0 0 5px;
+  border-left: 1px solid #777;
 }
 
 

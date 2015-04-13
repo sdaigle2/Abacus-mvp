@@ -47,6 +47,10 @@ angular
         templateUrl: '../views/checkout/info.html',
         controller: 'InfoCtrl'
       })
+      .when('/settings', {
+        templateUrl: 'views/settings.html',
+        controller: 'SettingsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
