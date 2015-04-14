@@ -48,7 +48,7 @@ angular.module('abacuApp')
     $scope.next = function () {
       //TODO: Verify inputs
 
-      //$location.path('/payment');
+      $location.path('/payment');
     };
 
   });
