@@ -1,0 +1,119 @@
+﻿<link href="../../styles/checkout/order.css" rel="stylesheet" />
+
+<div class="order text-center">
+  <!--HEADER-->
+  <div class="order-header">
+    <h2><strong>{{display[curStage].title}}</strong></h2>
+    <h5 data-ng-click="returnToCart()"><< Go Back to Shopping Cart</h5>
+  </div>
+
+  <!--BODY-->
+  <div class="order-body">
+
+
+    <!--MAIN-->
+
+    <!--MAIN-INFO-->
+    <div class="order-left" data-ng-if="curStage === stages.INFO">
+      <div class="order-form">
+        <div class="order-form-header">Contact Information</div>
+        <div class="order-form-label"><strong>First Name</strong></div>
+        <input type="text" data-ng-model="contactForm.fName" />
+        <div class="order-form-label"><strong>Last Name</strong></div>
+        <input type="text" data-ng-model="contactForm.lName" />
+        <div class="order-form-label"><strong>Email Address</strong></div>
+        <input type="email" data-ng-model="contactForm.email" />
+        <div class="order-form-label"><strong>Phone Number</strong></div>
+        <input type="text" data-ng-model="contactForm.phone" />
+      </div>
+      <div class="order-form">
+        <div class="order-form-header">Shipping Address</div>
+        <div class="order-form-label"><strong>Street Address</strong></div>
+        <input type="text" data-ng-model="shippingForm.addr" />
+        <div class="order-form-label"><strong>Street Address 2</strong></div>
+        <input type="text" data-ng-model="shippingForm.addr2" />
+        <div class="order-form-label"><strong>City</strong></div>
+        <input type="text" data-ng-model="shippingForm.city" />
+        <div class="order-form-label"><strong>State</strong></div>
+        <input type="text" data-ng-model="shippingForm.zipcode" />
+        <div class="order-form-label"><strong>Zipcode</strong></div>
+        <input type="text" data-ng-model="shippingForm.zipcode" />
+      </div>
+    </div>
+
+    <!--MAIN-PAYMENT-->
+    <div class="order-left" data-ng-if="curStage === stages.PAYMENT">
+      <div class="order-form">
+        <div class="order-form-header">Choose your payment method</div>
+        <!--TODO: Radio Buttons-->
+      </div>
+      <div class="order-form">
+        <div class="order-form-header"></div>
+        <!--TODO: Data Displays-->
+      </div>
+    </div>
+
+    <!--MAIN-CONFIRM-->
+    <div class="order-left" data-ng-if="curStage === stages.CONFIRM">
+      <div class="order-form">
+        <div class="order-form-header">Contact Information</div>
+        <!--TODO: Data Displays-->
+      </div>
+      <div class="order-form">
+        <div class="order-form-header">Shipping Address</div>
+        <!--TODO: Data Displays-->
+      </div>
+      <div class="order-form">
+        <div class="order-form-header">Your Wheelchair - Details</div>
+        <!--TODO: Data Displays-->
+      </div>
+      <div class="order-form">
+        <div class="order-form-header">Terms & Conditions</div>
+        <!--TODO: Data Displays-->
+      </div>
+    </div>
+
+    <!--MAIN-COMPLETE-->
+    <div class="order-left" data-ng-if="curStage === stages.COMPLETE">
+      <div class="order-form">
+        <!--TODO: Data Displays-->
+      </div>  
+    </div>
+
+
+    <!--SIDEBAR-->
+    <div class="order-right">
+      <div class="progress-bar-label">
+        <span data-ng-style="(curStage === stages.INFO) && {'color':'#000'}">1 </span>
+        <span data-ng-style="(curStage === stages.PAYMENT) && {'color':'#000'}">2 </span>
+        <span data-ng-style="(curStage === stages.CONFIRM) && {'color':'#000'}">3 </span>
+        <span data-ng-style="(curStage === stages.COMPLETE) && {'color':'#000'}">4</span>
+      </div>
+      <div class="order-progressbar">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" 
+               aria-valuenow="{{25 * (curStage+1)}}" aria-valuemin="0" aria-valuemax="100" 
+               data-ng-style="{'width': (25*(curStage+1)) + '%' }">
+            <span class="sr-only">60% Complete</span>
+          </div>
+        </div>
+        <img width="28" height="auto" src="images/checkout/progress_bar_image.png"
+             data-ng-style="{'left': 25+(70*curStage) + 'px' }">
+      </div>
+      <div class="progress-bar-label-text">
+        <span data-ng-style="(curStage === stages.INFO) && {'color':'#000'}">info </span>
+        <span data-ng-style="(curStage === stages.PAYMENT) && {'color':'#000'}">payment </span>
+        <span data-ng-style="(curStage === stages.CONFIRM) && {'color':'#000'}">confirm </span>
+        <span data-ng-style="(curStage === stages.COMPLETE) && {'color':'#000'}">complete</span>
+      </div>
+      <div class="order-buttonrow">
+        <div class="order-button order-button-light"
+             data-ng-if="curStage !== stages.COMPLETE"
+             data-ng-click="back()"><strong>< GO BACK</strong></div>
+        <div class="order-button"
+             data-ng-style="(curStage === stages.COMPLETE) && {'width': '80%'}"
+             data-ng-click="next()"><strong>{{display[curStage].button}}</strong></div>
+      </div>
+    </div>
+  </div>
+</div>

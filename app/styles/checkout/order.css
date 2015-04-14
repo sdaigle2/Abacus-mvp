@@ -1,10 +1,11 @@
-﻿.info {
+﻿.order {
   line-height: normal;
   width: 1280px;
   margin: 0 auto;
 }
 
-.info-header {
+/**************************HEADER****************************/
+.order-header {
   width: 90%;
   margin: 50px auto 0;
   border-bottom: solid 2px black;
@@ -12,26 +13,55 @@
   margin-bottom: 40px;
 }
 
-.info-header>h5 {
+.order-header>h5 {
   float: right;
   position: relative;
   top: -35px;
   cursor: pointer;
 }
 
-.info-body {
+
+/****************************BODY****************************************/
+.order-body {
   width: 80%;
   margin: 0 auto;
 }
 
-.info-left {
+.order-left {
   width: 70%;
   margin: 0;
   float: left;
   text-align: left;
 }
 
-.info-right {
+
+/*************************BODY-LEFT (Main)******************************/
+.order-form {
+  margin-bottom: 15px;
+}
+
+.order-form-header {
+  color: #999999;
+  font-size: 20px;
+  border-bottom: solid 1px grey;
+  margin-bottom: 15px;
+}
+
+.order-form-label {
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+.order-form>input {
+  margin-left: 20px;
+  margin-bottom: 15px;
+  width: 40%;
+}
+
+
+/*****************************BODY-RIGHT (Sidebar)***********************************/
+
+.order-right {
   width: 28%;
   /*margin-top: 22px;*/
   margin-left: 20px;
@@ -39,13 +69,13 @@
   position: relative;
 }
 
-.info-right .progress-bar-label{
+.order-right .progress-bar-label{
   word-spacing: 60px;
   margin-bottom: 10px;
   color: #999999;
 }
 
-.info-right .progress-bar-label-text{
+.order-right .progress-bar-label-text{
   position: absolute;
   top: 43px;
   left: 25px;
@@ -55,48 +85,23 @@
   text-align: center;
 }
 
-.info-right .info-progressbar .progress{
+.order-right .order-progressbar .progress{
   height: 7px;
   /*border-radius: 0px;*/
   background-color: #e6e7e8;
 }
 
-.info-right .info-progressbar .progress .progress-bar{
+.order-right .order-progressbar .progress .progress-bar{
   background-color: #60C2B1;
 }
 
-.info-right .info-progressbar img {
+.order-right .order-progressbar img {
   position: absolute;
   left: 25px;
-  top: 13px;
+  top: 15px;
 }
 
-
-.info-form {
-  margin-bottom: 15px;
-}
-
-.info-form-header {
-  color: #999999;
-  font-size: 20px;
-  border-bottom: solid 1px grey;
-  margin-bottom: 15px;
-}
-
-.info-form-label {
-  margin-left: 20px;
-  margin-bottom: 5px;
-}
-
-.info-form>input {
-  margin-left: 20px;
-  margin-bottom: 15px;
-  width: 40%;
-}
-
-
-
-.info-button {
+.order-button {
   margin-top: 20px;
   background-color: #60C2B1;
   color: white;
@@ -107,11 +112,11 @@
   font-size: 15px;
 }
 
-.info-button.info-button-light {
+.order-button.order-button-light {
   background-color: #97ccc3;
 }
 
-.info-button:hover {
+.order-button:hover {
   background-color: #A7A9Ac;
   cursor: pointer;
 }

@@ -43,13 +43,9 @@ angular
         templateUrl: '../views/checkout/checkout.html',
         controller: 'CheckoutCtrl'
       })
-      .when('/info', {
-        templateUrl: '../views/checkout/info.html',
-        controller: 'InfoCtrl'
-      })
-      .when('/payment', {
-        templateUrl: 'views/checkout/payment.html',
-        controller: 'PaymentCtrl'
+      .when('/order', {
+        templateUrl: '../views/checkout/order.html',
+        controller: 'OrderCtrl'
       })
       .when('/settings', {
         templateUrl: 'views/settings.html',
