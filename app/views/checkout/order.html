@@ -52,9 +52,9 @@
         <strong>Pay in advance</strong> 
         <br />
       </div>
-      <div class="order-form">
+      <div class="order-form" data-ng-show="payForm.method === payMethods.ADVANCE">
         <div class="order-form-header"></div>
-        <!--TODO: Angularize-->
+        <!--TODO: Angularize, Pull from DB, or keep static? -->
         <table class="order-form-table">
           <tbody>
             <tr>
@@ -77,8 +77,18 @@
         </table>
         <br />
         <div class="order-form-label">For International transfers please use the following data:</div>
-        <div class="order-form-label"><strong>IBAN</strong></div>
-        <div class="order-form-label"><strong>BIC</strong></div> <!--TODO: Replace with table?-->
+        <table class="order-form-table">
+          <tbody>
+            <tr>
+              <td><strong>IBAN</strong></td>
+              <td>67789027453</td>
+            </tr>
+            <tr>
+              <td><strong>BIC</strong></td>
+              <td>09728453784695</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -136,24 +146,19 @@
       </div>
       <div class="order-form">
         <div class="order-form-header">Your Wheelchair - Details</div>
-        <!--TODO: Data Displays-->
+        <!--TODO: Format Table Appropriately-->
         <table class="order-form-table">
           <tbody>
-            <tr>
-              <td><strong></strong></td>
-              <td></td>
+            <tr data-ng-repeat="p in wheelchairs[0].parts">
+              <td><strong>{{getPartDetails(p).partName}}</strong></td>
+              <td>{{getPartDetails(p).optionName}}</td>
+              <td>{{getPartDetails(p).colorName}}</td>
+              <td>${{getPartDetails(p).price.toFixed(2)}}</td>
             </tr>
-            <tr>
-              <td><strong></strong></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><strong></strong></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><strong></strong></td>
-              <td></td>
+            <tr data-ng-repeat="m in wheelchairs[0].measures">
+              <td><strong>{{getMeasureDetails(m).measName}}</strong></td>
+              <td>{{getMeasureDetails(m).measOption}} {{getMeasureDetails(m).measUnit}}</td>
+              <td>${{getMeasureDetails(m).measPrice.toFixed(2)}}</td> <!--TODO: Negative Prices-->
             </tr>
           </tbody>
         </table>
@@ -183,7 +188,11 @@ and remember to watch your future clothing decisions.
     <!--MAIN-COMPLETE-->
     <div class="order-left" data-ng-if="curStage === stages.COMPLETE">
       <div class="order-form">
-        <!--TODO: Data Displays-->
+        <div class="order-form-label"><strong>Your order number is: {{orderNum}}</strong></div>
+        <br />
+        <div class="order-form-label">Thank you for your order!</div>
+        <div class="order-form-label">Your order has been sent to the manufacturer.</div>
+        <div class="order-form-label">You will receive an invoice email shortly.</div>
       </div>  
     </div>
 

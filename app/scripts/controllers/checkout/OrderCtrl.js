@@ -4,9 +4,9 @@
 
 /**
  * @ngdoc function
- * @name abacuApp.controller:InfoCtrl
+ * @name abacuApp.controller:OrderCtrl
  * @description
- * # InfoCtrl
+ * # OrderCtrl
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
@@ -91,6 +91,11 @@ angular.module('abacuApp')
       }
     };
 
+    //Return the user to their cart
+    $scope.returnToCart = function () {
+      $location.path('/cart');
+    };
+
     /*************************** INFO ******************************/
 
     //Model for the contact form
@@ -108,11 +113,6 @@ angular.module('abacuApp')
       city: "",
       state: "",
       zip: ""
-    };
-
-    //Return the user to their cart
-    $scope.returnToCart = function () {
-      $location.path('/cart');
     };
 
     /**************************** PAYMENT ******************************/
@@ -136,7 +136,86 @@ angular.module('abacuApp')
     };
 
 
+    $scope.wheelchairs = cartDataFromDB; //TODO: curWheelchair?
+    $scope.frameData = frameDataFromDB;
+
+    //Get data for curWheelchair.Part object
+    $scope.getPartDetails = function (wheelchairPart) {
+      var part = getPartData(wheelchairPart.partID);
+      var option = getOptionData(wheelchairPart.optionID, part);
+      var colorName = "";
+      if (option.colors.length > 0)
+        colorName = getColorByID(wheelchairPart.colorID, option).name;
+      return {
+        partName: part.name,
+        optionName: option.name,
+        colorName: colorName,
+        price: option.price
+      };
+    };
+
+    //Get data for curWheelchair.Measure object
+    $scope.getMeasureDetails = function (wheelchairMeasure) {
+      var meas = getMeasureData(wheelchairMeasure.measureID);
+      var measOption = "NOT SELECTED";
+      var measUnits = "";
+      var measPrice = 0;
+      if (wheelchairMeasure.measureOptionIndex != -1) {
+        measOption = meas.measureOptions[0][wheelchairMeasure.measureOptionIndex];  //TODO: Set up imperial/metric toggle
+        measUnits = meas.units[0];
+        measPrice = meas.prices[wheelchairMeasure.measureOptionIndex];
+      }
+      return {
+        measName: meas.name,
+        measOption: measOption,
+        measUnit: measUnits,
+        measPrice: measPrice
+      }
+    };
+
+    function getPartData(id) {
+      for (var i = 0; i < $scope.frameData.parts.length; i++) {
+        var curPart = $scope.frameData.parts[i];
+        if (curPart.partID === id) {
+          return curPart;
+        }
+      }
+      return null;
+    }
+
+    function getOptionData(id, curPart) {
+
+      for (var j = 0; j < curPart.options.length; j++) {
+        var curOption = curPart.options[j];
+        if (curOption.optionID === id) {
+          return curOption;
+        }
+      }
+
+      return null;
+    }
+
+    function getMeasureData(id) {
+      for (var i = 0; i < $scope.frameData.measures.length; i++) {
+        var curMeas = $scope.frameData.measures[i];
+        if (curMeas.measureID === id) {
+          return curMeas;
+        }
+      }
+      return null;
+    }
+
+    function getColorByID(colorID, curOption) {
+      for (var i = 0; i < curOption.colors.length; i++) {
+        if (curOption.colors[i].colorID === colorID) {
+          return curOption.colors[i];
+        }
+      }
+    };
+
     /**************************** COMPLETE *****************************/
 
+    //The Number assigned to the user's order
+    $scope.orderNum = "0000";
 
   });
