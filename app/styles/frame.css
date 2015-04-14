@@ -57,7 +57,7 @@
   margin: 0 auto;
   width: 83%;
   z-index: 1;
-  overflow-y:hidden;
+  overflow:hidden;
 }
 
 .frame-item-image hr{
