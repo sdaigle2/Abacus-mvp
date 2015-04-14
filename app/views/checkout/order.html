@@ -18,35 +18,40 @@
       <div class="order-form">
         <div class="order-form-header">Contact Information</div>
         <div class="order-form-label"><strong>First Name</strong></div>
-        <input type="text" data-ng-model="contactForm.fName" />
+        <input class="text-input" type="text" data-ng-model="contactForm.fName" />
         <div class="order-form-label"><strong>Last Name</strong></div>
-        <input type="text" data-ng-model="contactForm.lName" />
+        <input class="text-input" type="text" data-ng-model="contactForm.lName" />
         <div class="order-form-label"><strong>Email Address</strong></div>
-        <input type="email" data-ng-model="contactForm.email" />
+        <input class="text-input" type="email" data-ng-model="contactForm.email" />
         <div class="order-form-label"><strong>Phone Number</strong></div>
-        <input type="text" data-ng-model="contactForm.phone" />
+        <input class="text-input" type="text" data-ng-model="contactForm.phone" />
       </div>
       <div class="order-form">
         <div class="order-form-header">Shipping Address</div>
         <div class="order-form-label"><strong>Street Address</strong></div>
-        <input type="text" data-ng-model="shippingForm.addr" />
+        <input class="text-input" type="text" data-ng-model="shippingForm.addr" />
         <div class="order-form-label"><strong>Street Address 2</strong></div>
-        <input type="text" data-ng-model="shippingForm.addr2" />
+        <input class="text-input" type="text" data-ng-model="shippingForm.addr2" />
         <div class="order-form-label"><strong>City</strong></div>
-        <input type="text" data-ng-model="shippingForm.city" />
+        <input class="text-input" type="text" data-ng-model="shippingForm.city" />
         <div class="order-form-label"><strong>State</strong></div>
-        <input type="text" data-ng-model="shippingForm.zipcode" />
+        <input class="text-input" type="text" data-ng-model="shippingForm.state" />
         <div class="order-form-label"><strong>Zipcode</strong></div>
-        <input type="text" data-ng-model="shippingForm.zipcode" />
+        <input class="text-input" type="text" data-ng-model="shippingForm.zipcode" />
       </div>
     </div>
 
     <!--MAIN-PAYMENT-->
     <div class="order-left" data-ng-if="curStage === stages.PAYMENT">
-      <div class="order-form">
+      <form class="order-form">
         <div class="order-form-header">Choose your payment method</div>
-        <!--TODO: Radio Buttons-->
-      </div>
+        <input type="radio" data-ng-model="payForm.method" data-ng-value="payMethods.PAYPAL"/>
+        <img width="50" height="50" src="../../images/icons/paypal_logo.gif" />
+        <br />
+        <input type="radio" data-ng-model="payForm.method" data-ng-value="payMethods.ADVANCE"/>
+        <strong>Pay in advance</strong> 
+        <br />
+      </form>
       <div class="order-form">
         <div class="order-form-header"></div>
         <!--TODO: Data Displays-->

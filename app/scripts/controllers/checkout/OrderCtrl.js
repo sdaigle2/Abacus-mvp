@@ -41,7 +41,7 @@ angular.module('abacuApp')
       }
     ]
 
-    /*************************** ALL STAGES ************************/
+    /*************************** SIDEBAR BUTTONS ************************/
 
     //Return to the previous stage of checkout
     $scope.back = function () {
@@ -69,10 +69,13 @@ angular.module('abacuApp')
       switch ($scope.curStage) {
         case $scope.stages.INFO:
           //TODO: Verify inputs to contactForm and shippingForm
+          alert(JSON.stringify($scope.contactForm));
+          alert(JSON.stringify($scope.shippingForm));
+
           $scope.curStage++;
           break;
         case $scope.stages.PAYMENT:
-          //TODO: Verify inputs to ...
+          alert(JSON.stringify($scope.payForm.method));
           $scope.curStage++;
           break;
         case $scope.stages.CONFIRM:
@@ -109,5 +112,24 @@ angular.module('abacuApp')
     $scope.returnToCart = function () {
       $location.path('/cart');
     };
+
+    /**************************** PAYMENT ******************************/
+
+    //Payment Method radio buttons
+    $scope.payMethods = {
+      PAYPAL: 'paypal',
+      ADVANCE: 'advance'
+    };
+
+    //User's choice of payment method
+    $scope.payForm = {
+      method: $scope.payMethods.ADVANCE
+    };
+
+    /**************************** CONFIRM ******************************/
+
+
+    /**************************** COMPLETE *****************************/
+
 
   });
