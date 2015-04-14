@@ -37,13 +37,13 @@
         <div class="order-form-label"><strong>State</strong></div>
         <input class="text-input" type="text" data-ng-model="shippingForm.state" />
         <div class="order-form-label"><strong>Zipcode</strong></div>
-        <input class="text-input" type="text" data-ng-model="shippingForm.zipcode" />
+        <input class="text-input" type="text" data-ng-model="shippingForm.zip" />
       </div>
     </div>
 
     <!--MAIN-PAYMENT-->
     <div class="order-left" data-ng-if="curStage === stages.PAYMENT">
-      <form class="order-form">
+      <div class="order-form">
         <div class="order-form-header">Choose your payment method</div>
         <input type="radio" data-ng-model="payForm.method" data-ng-value="payMethods.PAYPAL"/>
         <img width="50" height="50" src="../../images/icons/paypal_logo.gif" />
@@ -51,10 +51,34 @@
         <input type="radio" data-ng-model="payForm.method" data-ng-value="payMethods.ADVANCE"/>
         <strong>Pay in advance</strong> 
         <br />
-      </form>
+      </div>
       <div class="order-form">
         <div class="order-form-header"></div>
-        <!--TODO: Data Displays-->
+        <!--TODO: Angularize-->
+        <table class="order-form-table">
+          <tbody>
+            <tr>
+              <td><strong>Account Holder</strong></td>
+              <td>Abacus</td>
+            </tr>
+            <tr>
+              <td><strong>Account Number</strong></td>
+              <td>1234567890</td>
+            </tr>
+            <tr>
+              <td><strong>BLZ</strong></td>
+              <td>123456</td>
+            </tr>
+            <tr>
+              <td><strong>Bank Name</strong></td>
+              <td>Chase Bank</td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <div class="order-form-label">For International transfers please use the following data:</div>
+        <div class="order-form-label"><strong>IBAN</strong></div>
+        <div class="order-form-label"><strong>BIC</strong></div> <!--TODO: Replace with table?-->
       </div>
     </div>
 
@@ -62,19 +86,97 @@
     <div class="order-left" data-ng-if="curStage === stages.CONFIRM">
       <div class="order-form">
         <div class="order-form-header">Contact Information</div>
-        <!--TODO: Data Displays-->
+        <table class="order-form-table">
+          <tbody>
+            <tr>
+              <td><strong>First Name</strong></td>
+              <td>{{contactForm.fName}}</td>
+            </tr>
+            <tr>
+              <td><strong>Last Name</strong></td>
+              <td>{{contactForm.lName}}</td>
+            </tr>
+            <tr>
+              <td><strong>Email</strong></td>
+              <td>{{contactForm.email}}</td>
+            </tr>
+            <tr>
+              <td><strong>Phone Number</strong></td>
+              <td>{{contactForm.phone}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="order-form">
         <div class="order-form-header">Shipping Address</div>
-        <!--TODO: Data Displays-->
+        <table class="order-form-table">
+          <tbody>
+            <tr>
+              <td><strong>Street Address</strong></td>
+              <td>{{shippingForm.addr}}</td>
+            </tr>
+            <tr>
+              <td><strong>Street Address 2</strong></td>
+              <td>{{shippingForm.addr2}}</td>
+            </tr>
+            <tr>
+              <td><strong>City</strong></td>
+              <td>{{shippingForm.city}}</td>
+            </tr>
+            <tr>
+              <td><strong>State</strong></td>
+              <td>{{shippingForm.state}}</td>
+            </tr>
+            <tr>
+              <td><strong>Zipcode</strong></td>
+              <td>{{shippingForm.zip}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="order-form">
         <div class="order-form-header">Your Wheelchair - Details</div>
         <!--TODO: Data Displays-->
+        <table class="order-form-table">
+          <tbody>
+            <tr>
+              <td><strong></strong></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><strong></strong></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><strong></strong></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><strong></strong></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="order-form">
         <div class="order-form-header">Terms & Conditions</div>
-        <!--TODO: Data Displays-->
+        <div class="order-form-label">You must agree to Abacus Terms and Conditions before completing your order:</div>
+        <div class="order-form-well">
+By agreeing to the following terms and conditions, you (hereby referred to as WHEELCHAIREE) give up the
+following rights to Intelliwheels (hereby referred to as WHEELCHAIRER):<br />
+1) WHEELCHAIREE agrees that all information provided on this page has been verified, and any mistakes
+contained on this page are not the fault of WHEELCHAIRER.  Any problems and inconvieniences caused by
+these errors are the fault of WHEELCHAIREE.<br />
+2) Any sock worn on WHEELCHAIREE's left foot while using the product must not be brown.  WHEELCHAIREE
+agrees to follow this rule, with punishments for being caught include up to 3 years of imprisonment, as
+well as being stalked and harassed on social media for up to 6 months.<br />
+3) Reading this paragraph voids all future complaints WHEELCHAIREE may have with regards to this agreement.  This
+includes all provisions outlined in sections 2.<br />
+Thank you for deciding to purchase a wheelchair through the Intelliwheels Abacus system.  Have a nice day
+and remember to watch your future clothing decisions.
+        </div>
+        <input type="checkbox" data-ng-model="termsForm.hasReadTerms" />
+        <strong>I have read and agree to the Terms and Conditions</strong>
       </div>
     </div>
 
@@ -99,11 +201,10 @@
           <div class="progress-bar" role="progressbar" 
                aria-valuenow="{{25 * (curStage+1)}}" aria-valuemin="0" aria-valuemax="100" 
                data-ng-style="{'width': (25*(curStage+1)) + '%' }">
-            <span class="sr-only">60% Complete</span>
           </div>
         </div>
         <img width="28" height="auto" src="images/checkout/progress_bar_image.png"
-             data-ng-style="{'left': 25+(70*curStage) + 'px' }">
+             data-ng-style="{'left': 23+(71*curStage) + 'px' }">
       </div>
       <div class="progress-bar-label-text">
         <span data-ng-style="(curStage === stages.INFO) && {'color':'#000'}">info </span>

@@ -22,20 +22,21 @@ angular.module('abacuApp')
 
     $scope.curStage = $scope.stages.INFO;
 
+
     $scope.display = [
-      {
+      { //INFO
         title: "YOUR INFO",
         button: "PAYMENT >"
       },
-      {
+      { //PAYMENT
         title: "PAYMENT",
         button: "CONFIRM >"
       },
-      {
+      { //CONFIRM
         title: "ORDER CONFIRMATION",
         button: "COMPLETE >"
       },
-      {
+      { //COMPLETE
         title: "COMPLETE",
         button: "GO TO MY ORDER >>"
       }
@@ -58,9 +59,6 @@ angular.module('abacuApp')
         case $scope.stages.COMPLETE:
           $scope.curStage--;
           break;
-        default:
-          alert("What did you do to trigger this?");
-          break;
       }
     };
 
@@ -79,8 +77,11 @@ angular.module('abacuApp')
           $scope.curStage++;
           break;
         case $scope.stages.CONFIRM:
+          if (!$scope.termsForm.hasReadTerms) {
+            alert("You must accept the Terms and Conditions to continue");
+            return;
+          }
           //TODO: Send the order
-          //TODO: Verify if read terms & conditions
           $scope.curStage++;
           break;
         case $scope.stages.COMPLETE:
@@ -105,7 +106,8 @@ angular.module('abacuApp')
       addr: "",
       addr2: "",
       city: "",
-      state: ""
+      state: "",
+      zip: ""
     };
 
     //Return the user to their cart
@@ -127,6 +129,11 @@ angular.module('abacuApp')
     };
 
     /**************************** CONFIRM ******************************/
+
+    //T&C Checkbox model
+    $scope.termsForm = {
+      hasReadTerms: false
+    };
 
 
     /**************************** COMPLETE *****************************/

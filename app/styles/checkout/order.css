@@ -61,6 +61,23 @@
   width: 40%;
 }
 
+.order-form-table {
+  margin-left: 20px;
+}
+
+.order-form-table td {
+  padding: 4px 10px 4px 0px;
+}
+
+.order-form-well {
+  margin-left: 20px;
+  padding: 4px;
+  border: solid 1px #999999;
+  background-color: #CCCCCC;
+  margin-bottom: 10px;
+  overflow-y: scroll;
+  max-height: 100px;
+}
 
 /*****************************BODY-RIGHT (Sidebar)***********************************/
 
@@ -100,8 +117,8 @@
 
 .order-right .order-progressbar img {
   position: absolute;
-  left: 25px;
-  top: 15px;
+  left: 23px;
+  top: 16px;
 }
 
 .order-button {
