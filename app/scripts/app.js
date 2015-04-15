@@ -8,6 +8,7 @@
  *
  * Main module of the application.
  */
+
 angular
   .module('abacuApp', [
     'ngAnimate',
@@ -46,10 +47,6 @@ angular
       .when('/info', {
         templateUrl: '../views/checkout/info.html',
         controller: 'InfoCtrl'
-      })
-      .when('/payment', {
-        templateUrl: 'views/checkout/payment.html',
-        controller: 'PaymentCtrl'
       })
       .when('/settings', {
         templateUrl: 'views/settings.html',
