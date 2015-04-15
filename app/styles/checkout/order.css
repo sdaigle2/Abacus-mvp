@@ -1,0 +1,142 @@
+﻿.order {
+  line-height: normal;
+  width: 1280px;
+  margin: 0 auto;
+}
+
+/**************************HEADER****************************/
+.order-header {
+  width: 90%;
+  margin: 50px auto 0;
+  border-bottom: solid 2px black;
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.order-header>h5 {
+  float: right;
+  position: relative;
+  top: -35px;
+  cursor: pointer;
+}
+
+
+/****************************BODY****************************************/
+.order-body {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.order-left {
+  width: 70%;
+  margin: 0;
+  float: left;
+  text-align: left;
+}
+
+
+/*************************BODY-LEFT (Main)******************************/
+.order-form {
+  margin-bottom: 15px;
+}
+
+.order-form-header {
+  color: #999999;
+  font-size: 20px;
+  border-bottom: solid 1px grey;
+  margin-bottom: 15px;
+}
+
+.order-form-label {
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+
+.order-form>input {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.order-form .text-input {
+  width: 40%;
+}
+
+.order-form-table {
+  margin-left: 20px;
+}
+
+.order-form-table td {
+  padding: 4px 10px 4px 0px;
+}
+
+.order-form-well {
+  margin-left: 20px;
+  padding: 4px;
+  border: solid 1px #999999;
+  background-color: #CCCCCC;
+  margin-bottom: 10px;
+  overflow-y: scroll;
+  max-height: 100px;
+}
+
+/*****************************BODY-RIGHT (Sidebar)***********************************/
+
+.order-right {
+  width: 28%;
+  /*margin-top: 22px;*/
+  margin-left: 20px;
+  float: left;
+  position: relative;
+}
+
+.order-right .progress-bar-label{
+  word-spacing: 60px;
+  margin-bottom: 10px;
+  color: #999999;
+}
+
+.order-right .progress-bar-label-text{
+  position: absolute;
+  top: 43px;
+  left: 25px;
+  word-spacing: 24px;
+  margin-bottom: 10px;
+  color: #999999;
+  text-align: center;
+}
+
+.order-right .order-progressbar .progress{
+  height: 7px;
+  /*border-radius: 0px;*/
+  background-color: #e6e7e8;
+}
+
+.order-right .order-progressbar .progress .progress-bar{
+  background-color: #60C2B1;
+}
+
+.order-right .order-progressbar img {
+  position: absolute;
+  left: 23px;
+  top: 16px;
+}
+
+.order-button {
+  margin-top: 20px;
+  background-color: #60C2B1;
+  color: white;
+  display:inline-block;
+  width: 40%;
+  height: 40px;
+  padding-top: 10px;
+  font-size: 15px;
+}
+
+.order-button.order-button-light {
+  background-color: #97ccc3;
+}
+
+.order-button:hover {
+  background-color: #A7A9Ac;
+  cursor: pointer;
+}

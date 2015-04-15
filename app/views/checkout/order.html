@@ -1,0 +1,234 @@
+﻿<link href="../../styles/checkout/order.css" rel="stylesheet" />
+
+<div class="order text-center">
+  <!--HEADER-->
+  <div class="order-header">
+    <h2><strong>{{display[curStage].title}}</strong></h2>
+    <h5 data-ng-click="returnToCart()"><< Go Back to Shopping Cart</h5>
+  </div>
+
+  <!--BODY-->
+  <div class="order-body">
+
+
+    <!--MAIN-->
+
+    <!--MAIN-INFO-->
+    <div class="order-left" data-ng-if="curStage === stages.INFO">
+      <div class="order-form">
+        <div class="order-form-header">Contact Information</div>
+        <div class="order-form-label"><strong>First Name</strong></div>
+        <input class="text-input" type="text" data-ng-model="contactForm.fName" />
+        <div class="order-form-label"><strong>Last Name</strong></div>
+        <input class="text-input" type="text" data-ng-model="contactForm.lName" />
+        <div class="order-form-label"><strong>Email Address</strong></div>
+        <input class="text-input" type="email" data-ng-model="contactForm.email" />
+        <div class="order-form-label"><strong>Phone Number</strong></div>
+        <input class="text-input" type="text" data-ng-model="contactForm.phone" />
+      </div>
+      <div class="order-form">
+        <div class="order-form-header">Shipping Address</div>
+        <div class="order-form-label"><strong>Street Address</strong></div>
+        <input class="text-input" type="text" data-ng-model="shippingForm.addr" />
+        <div class="order-form-label"><strong>Street Address 2</strong></div>
+        <input class="text-input" type="text" data-ng-model="shippingForm.addr2" />
+        <div class="order-form-label"><strong>City</strong></div>
+        <input class="text-input" type="text" data-ng-model="shippingForm.city" />
+        <div class="order-form-label"><strong>State</strong></div>
+        <input class="text-input" type="text" data-ng-model="shippingForm.state" />
+        <div class="order-form-label"><strong>Zipcode</strong></div>
+        <input class="text-input" type="text" data-ng-model="shippingForm.zip" />
+      </div>
+    </div>
+
+    <!--MAIN-PAYMENT-->
+    <div class="order-left" data-ng-if="curStage === stages.PAYMENT">
+      <div class="order-form">
+        <div class="order-form-header">Choose your payment method</div>
+        <input type="radio" data-ng-model="payForm.method" data-ng-value="payMethods.PAYPAL"/>
+        <img width="50" height="50" src="../../images/icons/paypal_logo.gif" />
+        <br />
+        <input type="radio" data-ng-model="payForm.method" data-ng-value="payMethods.ADVANCE"/>
+        <strong>Pay in advance</strong> 
+        <br />
+      </div>
+      <div class="order-form" data-ng-show="payForm.method === payMethods.ADVANCE">
+        <div class="order-form-header"></div>
+        <!--TODO: Angularize, Pull from DB, or keep static? -->
+        <table class="order-form-table">
+          <tbody>
+            <tr>
+              <td><strong>Account Holder</strong></td>
+              <td>Abacus</td>
+            </tr>
+            <tr>
+              <td><strong>Account Number</strong></td>
+              <td>1234567890</td>
+            </tr>
+            <tr>
+              <td><strong>BLZ</strong></td>
+              <td>123456</td>
+            </tr>
+            <tr>
+              <td><strong>Bank Name</strong></td>
+              <td>Chase Bank</td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <div class="order-form-label">For International transfers please use the following data:</div>
+        <table class="order-form-table">
+          <tbody>
+            <tr>
+              <td><strong>IBAN</strong></td>
+              <td>67789027453</td>
+            </tr>
+            <tr>
+              <td><strong>BIC</strong></td>
+              <td>09728453784695</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!--MAIN-CONFIRM-->
+    <div class="order-left" data-ng-if="curStage === stages.CONFIRM">
+      <div class="order-form">
+        <div class="order-form-header">Contact Information</div>
+        <table class="order-form-table">
+          <tbody>
+            <tr>
+              <td><strong>First Name</strong></td>
+              <td>{{contactForm.fName}}</td>
+            </tr>
+            <tr>
+              <td><strong>Last Name</strong></td>
+              <td>{{contactForm.lName}}</td>
+            </tr>
+            <tr>
+              <td><strong>Email</strong></td>
+              <td>{{contactForm.email}}</td>
+            </tr>
+            <tr>
+              <td><strong>Phone Number</strong></td>
+              <td>{{contactForm.phone}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="order-form">
+        <div class="order-form-header">Shipping Address</div>
+        <table class="order-form-table">
+          <tbody>
+            <tr>
+              <td><strong>Street Address</strong></td>
+              <td>{{shippingForm.addr}}</td>
+            </tr>
+            <tr>
+              <td><strong>Street Address 2</strong></td>
+              <td>{{shippingForm.addr2}}</td>
+            </tr>
+            <tr>
+              <td><strong>City</strong></td>
+              <td>{{shippingForm.city}}</td>
+            </tr>
+            <tr>
+              <td><strong>State</strong></td>
+              <td>{{shippingForm.state}}</td>
+            </tr>
+            <tr>
+              <td><strong>Zipcode</strong></td>
+              <td>{{shippingForm.zip}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="order-form">
+        <div class="order-form-header">Your Wheelchair - Details</div>
+        <!--TODO: Format Table Appropriately-->
+        <table class="order-form-table">
+          <tbody>
+            <tr data-ng-repeat="p in wheelchairs[0].parts">
+              <td><strong>{{getPartDetails(p).partName}}</strong></td>
+              <td>{{getPartDetails(p).optionName}}</td>
+              <td>{{getPartDetails(p).colorName}}</td>
+              <td>${{getPartDetails(p).price.toFixed(2)}}</td>
+            </tr>
+            <tr data-ng-repeat="m in wheelchairs[0].measures">
+              <td><strong>{{getMeasureDetails(m).measName}}</strong></td>
+              <td>{{getMeasureDetails(m).measOption}} {{getMeasureDetails(m).measUnit}}</td>
+              <td>${{getMeasureDetails(m).measPrice.toFixed(2)}}</td> <!--TODO: Negative Prices-->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="order-form">
+        <div class="order-form-header">Terms & Conditions</div>
+        <div class="order-form-label">You must agree to Abacus Terms and Conditions before completing your order:</div>
+        <div class="order-form-well">
+By agreeing to the following terms and conditions, you (hereby referred to as WHEELCHAIREE) give up the
+following rights to Intelliwheels (hereby referred to as WHEELCHAIRER):<br />
+1) WHEELCHAIREE agrees that all information provided on this page has been verified, and any mistakes
+contained on this page are not the fault of WHEELCHAIRER.  Any problems and inconvieniences caused by
+these errors are the fault of WHEELCHAIREE.<br />
+2) Any sock worn on WHEELCHAIREE's left foot while using the product must not be brown.  WHEELCHAIREE
+agrees to follow this rule, with punishments for being caught include up to 3 years of imprisonment, as
+well as being stalked and harassed on social media for up to 6 months.<br />
+3) Reading this paragraph voids all future complaints WHEELCHAIREE may have with regards to this agreement.  This
+includes all provisions outlined in sections 2.<br />
+Thank you for deciding to purchase a wheelchair through the Intelliwheels Abacus system.  Have a nice day
+and remember to watch your future clothing decisions.
+        </div>
+        <input type="checkbox" data-ng-model="termsForm.hasReadTerms" />
+        <strong>I have read and agree to the Terms and Conditions</strong>
+      </div>
+    </div>
+
+    <!--MAIN-COMPLETE-->
+    <div class="order-left" data-ng-if="curStage === stages.COMPLETE">
+      <div class="order-form">
+        <div class="order-form-label"><strong>Your order number is: {{orderNum}}</strong></div>
+        <br />
+        <div class="order-form-label">Thank you for your order!</div>
+        <div class="order-form-label">Your order has been sent to the manufacturer.</div>
+        <div class="order-form-label">You will receive an invoice email shortly.</div>
+      </div>  
+    </div>
+
+
+    <!--SIDEBAR-->
+    <div class="order-right">
+      <div class="progress-bar-label">
+        <span data-ng-style="(curStage === stages.INFO) && {'color':'#000'}">1 </span>
+        <span data-ng-style="(curStage === stages.PAYMENT) && {'color':'#000'}">2 </span>
+        <span data-ng-style="(curStage === stages.CONFIRM) && {'color':'#000'}">3 </span>
+        <span data-ng-style="(curStage === stages.COMPLETE) && {'color':'#000'}">4</span>
+      </div>
+      <div class="order-progressbar">
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" 
+               aria-valuenow="{{25 * (curStage+1)}}" aria-valuemin="0" aria-valuemax="100" 
+               data-ng-style="{'width': (25*(curStage+1)) + '%' }">
+          </div>
+        </div>
+        <img width="28" height="auto" src="images/checkout/progress_bar_image.png"
+             data-ng-style="{'left': 23+(71*curStage) + 'px' }">
+      </div>
+      <div class="progress-bar-label-text">
+        <span data-ng-style="(curStage === stages.INFO) && {'color':'#000'}">info </span>
+        <span data-ng-style="(curStage === stages.PAYMENT) && {'color':'#000'}">payment </span>
+        <span data-ng-style="(curStage === stages.CONFIRM) && {'color':'#000'}">confirm </span>
+        <span data-ng-style="(curStage === stages.COMPLETE) && {'color':'#000'}">complete</span>
+      </div>
+      <div class="order-buttonrow">
+        <div class="order-button order-button-light"
+             data-ng-if="curStage !== stages.COMPLETE"
+             data-ng-click="back()"><strong>< GO BACK</strong></div>
+        <div class="order-button"
+             data-ng-style="(curStage === stages.COMPLETE) && {'width': '80%'}"
+             data-ng-click="next()"><strong>{{display[curStage].button}}</strong></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -68,6 +68,7 @@ angular.module('abacuApp')
       }
 
       //TODO: Checkout stuff
+      //TODO: Verify all measurements for wheelchairs selected
 
       //If not logged in
       $location.path('/checkout');
@@ -80,6 +81,7 @@ angular.module('abacuApp')
 
     $scope.frameData = frameDataFromDB;
 
+    //Get data for curWheelchair.Part object
     $scope.getPartDetails = function (wheelchairPart) {
       var part = getPartData(wheelchairPart.partID);
       var option = getOptionData(wheelchairPart.optionID, part);
@@ -89,10 +91,12 @@ angular.module('abacuApp')
       return {
         partName: part.name,
         optionName: option.name,
-        colorName: colorName
+        colorName: colorName,
+        price: option.price
       };
     };
 
+    //Get data for curWheelchair.Measure object
     $scope.getMeasureDetails = function (wheelchairMeasure) {
       var meas = getMeasureData(wheelchairMeasure.measureID);
       var measOption = "NOT SELECTED";
@@ -147,5 +151,4 @@ angular.module('abacuApp')
         }
       }
     }
-
   });

@@ -58,7 +58,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-ng-repeat="p in w.parts">
+                <tr data-ng-repeat="p in w.parts"> <!--TODO: Way to reduce function calls?-->
                   <td>{{getPartDetails(p).partName}}</td>
                   <td>{{getPartDetails(p).optionName}}</td>
                   <td>{{getPartDetails(p).colorName}}</td>
@@ -73,7 +73,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-ng-repeat="m in w.measures">
+                <tr data-ng-repeat="m in w.measures"> <!--TODO: Way to reduce function calls?-->
                   <td>{{getMeasureDetails(m).measName}}</td>
                   <td>{{getMeasureDetails(m).measOption}} {{getMeasureDetails(m).measUnit}}</td>
                 </tr>
