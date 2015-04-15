@@ -98,6 +98,8 @@ body {
   margin: 42px 15px 0 0;
   padding: 0;
 }
+
+
 .mainNavbar .mainNavbar-right > li > a {
   margin: 0;
   padding: 0;
@@ -109,6 +111,7 @@ body {
   padding: 0 0 0 5px;
   border-left: 1px solid #777;
 }
+
 
 
 /* nav bar left colors */
@@ -141,12 +144,66 @@ body {
 }
 .mainNavbar .mainNavbar-right > li:hover,
 .mainNavbar .mainNavbar-right > li:focus {
+  text-decoration: none;
   color: #00A89C;
 }
 .mainNavbar .mainNavbar-right > .active > a,
 .mainNavbar .mainNavbar-right > .active > a:hover,
 .mainNavbar .mainNavbar-right > .active > a:focus {
   color: #00A89C;
+  text-decoration: none;
+
+}
+
+/*login session*/
+
+.login{
+  position: relative;
+  height: 30px;
+
+}
+
+.login .window{
+  color: #000000;
+  background-color: white;
+  width: 240px;
+  position: absolute;
+  top: 20px;
+  left: -158px;
+  line-height: 1.3;
+  border: 1px solid black;
+  padding: 20px 20px 30px;
+  z-index: 10000;
+}
+
+.login input{
+  width: 100%;
+  border: 1px solid grey;
+  margin-bottom: 10px;
+}
+
+.login .window span{
+  font-size: 0.8em;
+}
+
+.login .window span:first-of-type{
+  color: grey;
+  font-style: oblique;
+  float: left;
+}
+.login .window span:last-of-type{
+  float: right;
+}
+
+.login .window .login-button{
+  color: white;
+  text-align: center;
+  padding-top: 8px;
+  width: 100%;
+  height: 36px;
+  background-color: #00A89C;
+  font-size: 1em;
+  margin-top: 26px;
 }
 
 

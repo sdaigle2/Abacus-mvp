@@ -19,11 +19,9 @@ angular.module('abacuApp')
 
     $scope.panelSelected = function (hoverItem ,frameID){
       if(hoverItem === frameID){
-        console.log('true');
         return true;
       }
       else{
-        console.log('false');
         return false;
       }
     }
