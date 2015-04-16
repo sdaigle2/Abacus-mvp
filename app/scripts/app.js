@@ -21,7 +21,7 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: '../views/frame.html',
-        controller: 'MainCtrl'
+        controller: 'FrameCtrl'
       })
       .when('/abacus', {
         templateUrl: 'views/abacus.html',

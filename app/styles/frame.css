@@ -84,8 +84,9 @@
 }
 
 .frame-item-image .img .hoverBackground{
-  width: 100%;
-  height: 380px;
+  width: 95%;
+  left: 9px;
+  height: 390px;
   background-color: #60C2B1;
   opacity: 0.9;
   z-index:2;

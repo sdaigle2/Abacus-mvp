@@ -2,15 +2,15 @@
 
 /**
  * @ngdoc function
- * @name abacuApp.controller:MainCtrl
+ * @name abacuApp.controller:FrameCtrl
  * @description
- * # MainCtrl
+ * # FrameCtrl
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('MainCtrl', function ($scope, $location) {
+  .controller('FrameCtrl', function ($scope, $location) {
 
-    $scope.frames = dummyFramesData; //TODO: You know the drill here - replace with actual data later
+    $scope.frames = dummyFramesData; //TODO: Replace with actual data
 
     $scope.selectFrame = function (frameID) {
       //TODO: Send user to abacus with chosen frame
@@ -18,12 +18,7 @@ angular.module('abacuApp')
     };
 
     $scope.panelSelected = function (hoverItem ,frameID){
-      if(hoverItem === frameID){
-        return true;
-      }
-      else{
-        return false;
-      }
+      return (hoverItem === frameID);
     }
 
   });

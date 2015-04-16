@@ -1,0 +1,14 @@
+Abacus Issues
+
+List any issues/future complications/questions here
+If answered or resolved, please write in resolution - especially if it hasn't been implemented yet
+
+--------------------------------------------------------------------------------------------------
+
+Should 'Frames' display the base price and base weight?
+
+What is the plan for checking out multiple wheelchairs?
+-Only allow one
+-Multiple orders (go through order process multiple times)
+-Set up 'Order' and 'Invoice' to handle multiple
+-What is TiArrow expecting from this?  Can they accept multiple?
