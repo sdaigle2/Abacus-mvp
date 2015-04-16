@@ -47,6 +47,10 @@ angular
         templateUrl: '../views/checkout/order.html',
         controller: 'OrderCtrl'
       })
+      .when('/invoice', {
+        templateUrl: '../views/checkout/invoice.html',
+        controller: 'InvoiceCtrl'
+      })
       .when('/settings', {
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl'

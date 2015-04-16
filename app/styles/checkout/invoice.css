@@ -1,0 +1,21 @@
+.wrapper{
+  margin: 0 auto;
+  padding: 50px;
+}
+
+table{
+  width: 1000px;
+  margin: 0 auto;
+}
+
+
+
+table .topEntity td{
+  width: 33%;
+  padding: 24px 0px 24px;
+}
+table  .detail{
+  border-bottom: 1px solid black;
+}
+
+
