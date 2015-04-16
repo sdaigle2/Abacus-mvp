@@ -99,6 +99,11 @@
   float: right;
 }
 
+.cartItemWeight {
+  float: right;
+  margin-right: 25px;
+}
+
 .cartItemButtons {
   height: 50%;
   min-height: 50px;

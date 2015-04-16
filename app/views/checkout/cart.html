@@ -19,7 +19,7 @@
         <tbody>
         <tr class="cartItem" data-ng-repeat="w in wheelchairs">
           <td class="cartItemThumb">
-            <img data-ng-src="{{w.imgURL}}" height="100" width="100" style="position: relative; top:0px;" /> <!--NOTE: Replace this with generated image ~ abacus-->
+            <img data-ng-src="{{w.imgURL}}" height="100" width="100" style="position: relative; top:0px;" /> <!--TODO: Replace this with generated image ~ abacus-->
           </td>
           <td class="cartItemDetails">
             <div>
@@ -29,6 +29,9 @@
                 </div>
                 <div class="cartItemPrice">
                   ${{w.calcPrice.toFixed(2)}}
+                </div>
+                <div class="cartItemWeight">
+                  {{w.calcWeight.toFixed(2)}} lbs <!--TODO: Metric/Imperial toggle?-->
                 </div>
               </div>
               <div class="cartItemButtons">

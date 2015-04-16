@@ -145,41 +145,68 @@
         </table>
       </div>
       <div class="order-form">
-        <div class="order-form-header">Your Wheelchair - Details</div>
-        <!--TODO: Format Table Appropriately-->
+        <div class="order-form-header">Wheelchair Details</div>
         <table class="order-form-table">
-          <tbody>
-            <tr data-ng-repeat="p in wheelchairs[0].parts">
+          <tbody class="table-section" data-ng-repeat="w in wheelchairs">
+            <tr class="table-seperator"></tr>
+            <tr class="table-title-row">
+              <td style="font-size: 20px"><strong>{{w.title}}</strong></td>
+              <td></td>
+              <td>{{frameData.name}}</td>
+              <td style="text-align:right;">${{frameData.basePrice.toFixed(2)}}</td>
+            </tr>
+            <tr data-ng-repeat="p in w.parts">
               <td><strong>{{getPartDetails(p).partName}}</strong></td>
               <td>{{getPartDetails(p).optionName}}</td>
               <td>{{getPartDetails(p).colorName}}</td>
-              <td>{{getPartDetails(p).priceString}}</td>
+              <td style="text-align:right;">{{getPartDetails(p).priceString}}</td>
             </tr>
-            <tr data-ng-repeat="m in wheelchairs[0].measures">
+            <tr data-ng-repeat="m in w.measures">
               <td><strong>{{getMeasureDetails(m).name}}</strong></td>
               <td>{{getMeasureDetails(m).option}}</td>
-              <td>{{getMeasureDetails(m).price}}</td>
+              <td></td>
+              <td style="text-align:right;">{{getMeasureDetails(m).price}}</td>
+            </tr>
+            <tr class="table-price-row">
+              <td></td>
+              <td></td>
+              <td></td>
+              <td style="text-align:right;"><strong>${{w.calcPrice.toFixed(2)}}</strong></td>
             </tr>
           </tbody>
+          <tfoot>
+            <tr class="table-seperator"></tr>
+            <tr>
+              <td><strong>Subtotal</strong></td>
+              <td></td>
+              <td></td>
+              <td style="text-align:right;"><strong>$xxxx.xx</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Shipping Fee</strong></td>
+              <td></td>
+              <td></td>
+              <td style="text-align:right;"><strong>$xxxx.xx</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Tax</strong></td>
+              <td></td>
+              <td></td>
+              <td style="text-align:right;"><strong>$xxxx.xx</strong></td>
+            </tr>
+            <tr style="border-top:solid 1px #DDDDDD;">
+              <td><strong>Total</strong></td>
+              <td></td>
+              <td></td>
+              <td style="text-align:right;"><strong>$xxxx.xx</strong></td>
+            </tr>
+          </tfoot>
         </table>
       </div>
       <div class="order-form">
         <div class="order-form-header">Terms & Conditions</div>
         <div class="order-form-label">You must agree to Abacus Terms and Conditions before completing your order:</div>
-        <div class="order-form-well">
-By agreeing to the following terms and conditions, you (hereby referred to as WHEELCHAIREE) give up the
-following rights to Intelliwheels (hereby referred to as WHEELCHAIRER):<br />
-1) WHEELCHAIREE agrees that all information provided on this page has been verified, and any mistakes
-contained on this page are not the fault of WHEELCHAIRER.  Any problems and inconvieniences caused by
-these errors are the fault of WHEELCHAIREE.<br />
-2) Any sock worn on WHEELCHAIREE's left foot while using the product must not be brown.  WHEELCHAIREE
-agrees to follow this rule, with punishments for being caught include up to 3 years of imprisonment, as
-well as being stalked and harassed on social media for up to 6 months.<br />
-3) Reading this paragraph voids all future complaints WHEELCHAIREE may have with regards to this agreement.  This
-includes all provisions outlined in sections 2.<br />
-Thank you for deciding to purchase a wheelchair through the Intelliwheels Abacus system.  Have a nice day
-and remember to watch your future clothing decisions.
-        </div>
+        <div class="order-form-well" data-ng-bind-html="termsAndConditionsHTML" />
         <input type="checkbox" data-ng-model="termsForm.hasReadTerms" />
         <strong>I have read and agree to the Terms and Conditions</strong>
       </div>

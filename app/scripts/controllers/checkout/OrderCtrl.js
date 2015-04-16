@@ -147,14 +147,12 @@ angular.module('abacuApp')
       if (option.colors.length > 0)
         colorName = getColorByID(wheelchairPart.colorID, option).name;
       var priceString = (option.price < 0) ? "-$" : "$";
-      priceString += Math.abs(option.price.toFixed(2));
-      var weightString = option.weight.toFixed(2) + " " + "lbs"; //TODO: Set up imperial/metric toggle
+      priceString += Math.abs(option.price).toFixed(2);
       return {
         partName: part.name,
         optionName: option.name,
         colorName: colorName,
-        priceString: priceString,
-        weightString: weightString
+        priceString: priceString
       };
     };
 
@@ -164,18 +162,15 @@ angular.module('abacuApp')
       var meas = getMeasureData(wheelchairMeasure.measureID);
       var measOption = "NOT SELECTED";
       var measPrice = "$0.00";
-      var measWeight = "0.00 lbs";
       if (wheelchairMeasure.measureOptionIndex != -1) {
         measOption = meas.measureOptions[1][i];  //TODO: Set up imperial/metric toggle
         measOption += " " + meas.units[1]; //Here too
-        measPrice = ((meas.prices[i] < 0) ? "-$" : "$") + Math.abs(meas.prices[i].toFixed(2));
-        measWeight = meas.weights[i].toFixed(2) + " " + "lbs"; //And here
+        measPrice = ((meas.prices[i] < 0) ? "-$" : "$") + Math.abs(meas.prices[i]).toFixed(2);
       }
       return {
         name: meas.name,
         option: measOption,
-        price: measPrice,
-        weight: measWeight
+        price: measPrice
       }
     };
 
@@ -219,9 +214,25 @@ angular.module('abacuApp')
       }
     };
 
+    $scope.termsAndConditionsHTML = termsAndConditionsHTML;
+
     /**************************** COMPLETE *****************************/
 
     //The Number assigned to the user's order
     $scope.orderNum = "0000";
 
   });
+
+
+var termsAndConditionsHTML = "By agreeing to the following terms and conditions, you (hereby referred to as WHEELCHAIREE) give up the \
+following rights to Intelliwheels (hereby referred to as WHEELCHAIRER):<br /> \
+1) WHEELCHAIREE agrees that all information provided on this page has been verified, and any mistakes \
+contained on this page are not the fault of WHEELCHAIRER.  Any problems and inconvieniences caused by \
+these errors are the fault of WHEELCHAIREE.<br /> \
+2) Any sock worn on WHEELCHAIREE's left foot while using the product must not be brown.  WHEELCHAIREE \
+agrees to follow this rule, with punishments for being caught include up to 3 years of imprisonment, as \
+well as being stalked and harassed on social media for up to 6 months.<br /> \
+3) Reading this paragraph voids all future complaints WHEELCHAIREE may have with regards to this agreement.  This \
+includes all provisions outlined in sections 2.<br /> \
+Thank you for deciding to purchase a wheelchair through the Intelliwheels Abacus system.  Have a nice day \
+and remember to watch your future clothing decisions.";

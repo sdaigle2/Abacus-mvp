@@ -69,6 +69,18 @@
   padding: 4px 10px 4px 0px;
 }
 
+.order-form-table .table-seperator {
+  height: 20px;
+}
+
+.order-form-table .table-title-row {
+  border-bottom: solid 1px #DDDDDD;
+}
+
+.order-form-table .table-price-row {
+  border-top: solid 1px #DDDDDD;
+}
+
 .order-form-well {
   margin-left: 20px;
   padding: 4px;
