@@ -153,12 +153,12 @@
               <td><strong>{{getPartDetails(p).partName}}</strong></td>
               <td>{{getPartDetails(p).optionName}}</td>
               <td>{{getPartDetails(p).colorName}}</td>
-              <td>${{getPartDetails(p).price.toFixed(2)}}</td>
+              <td>{{getPartDetails(p).priceString}}</td>
             </tr>
             <tr data-ng-repeat="m in wheelchairs[0].measures">
-              <td><strong>{{getMeasureDetails(m).measName}}</strong></td>
-              <td>{{getMeasureDetails(m).measOption}} {{getMeasureDetails(m).measUnit}}</td>
-              <td>${{getMeasureDetails(m).measPrice.toFixed(2)}}</td> <!--TODO: Negative Prices-->
+              <td><strong>{{getMeasureDetails(m).name}}</strong></td>
+              <td>{{getMeasureDetails(m).option}}</td>
+              <td>{{getMeasureDetails(m).price}}</td>
             </tr>
           </tbody>
         </table>

@@ -7,8 +7,18 @@ If answered or resolved, please write in resolution - especially if it hasn't be
 
 Should 'Frames' display the base price and base weight?
 
+
+
 What is the plan for checking out multiple wheelchairs?
 -Only allow one
 -Multiple orders (go through order process multiple times)
 -Set up 'Order' and 'Invoice' to handle multiple
 -What is TiArrow expecting from this?  Can they accept multiple?
+
+
+
+Current Terms & Conditions are fake - we can't forget to replace them
+
+
+
+Ability to order multiple of same wheelchair? (Add multiplier to cart rather than recreating many times)

@@ -146,30 +146,36 @@ angular.module('abacuApp')
       var colorName = "";
       if (option.colors.length > 0)
         colorName = getColorByID(wheelchairPart.colorID, option).name;
+      var priceString = (option.price < 0) ? "-$" : "$";
+      priceString += Math.abs(option.price.toFixed(2));
+      var weightString = option.weight.toFixed(2) + " " + "lbs"; //TODO: Set up imperial/metric toggle
       return {
         partName: part.name,
         optionName: option.name,
         colorName: colorName,
-        price: option.price
+        priceString: priceString,
+        weightString: weightString
       };
     };
 
     //Get data for curWheelchair.Measure object
     $scope.getMeasureDetails = function (wheelchairMeasure) {
+      var i = wheelchairMeasure.measureOptionIndex;
       var meas = getMeasureData(wheelchairMeasure.measureID);
       var measOption = "NOT SELECTED";
-      var measUnits = "";
-      var measPrice = 0;
+      var measPrice = "$0.00";
+      var measWeight = "0.00 lbs";
       if (wheelchairMeasure.measureOptionIndex != -1) {
-        measOption = meas.measureOptions[0][wheelchairMeasure.measureOptionIndex];  //TODO: Set up imperial/metric toggle
-        measUnits = meas.units[0];
-        measPrice = meas.prices[wheelchairMeasure.measureOptionIndex];
+        measOption = meas.measureOptions[0][i];  //TODO: Set up imperial/metric toggle
+        measOption += " " + meas.units[0]; //Here too
+        measPrice = ((meas.price[i] < 0) ? "-$" : "$") + Math.abs(meas.price[i].toFixed(2));
+        measWeight = meas.weight[i].toFixed(2) + " " + "lbs"; //And here
       }
       return {
-        measName: meas.name,
-        measOption: measOption,
-        measUnit: measUnits,
-        measPrice: measPrice
+        name: meas.name,
+        option: measOption,
+        price: measPrice,
+        weight: measWeight
       }
     };
 
