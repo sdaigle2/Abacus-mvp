@@ -34,10 +34,15 @@
   line-height: 1;
   display: inline-block;
   width: 500px;
+  margin-bottom: 40px;
 }
 
-.frame-item:first-of-type{
-  border-right:solid 1px gray;
+.frame-item.right-border {
+  border-right: solid 1px gray;
+}
+
+.frame-item.bottom-border {
+  /*border-bottom: solid 1px gray;*/
 }
 
 .frame-item-title {

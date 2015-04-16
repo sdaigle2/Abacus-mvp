@@ -5,7 +5,7 @@
   "basePrice": 2995,
   "baseWeight": 5.5,
   "frameID": 1,
-	"imageURL": "images/d_panel_2.png",
+	"imageURL": "images/frame_page_img/frame1_frame_page.png",
   "parts": [
     {
       "name": "Frame Style",

@@ -11,8 +11,10 @@
  */
 angular.module('abacuApp')
   .controller('InvoiceCtrl', function ($scope, $location, sharedVars) {
+
     $scope.wheelchairs = cartDataFromDB; //TODO: curWheelchair?
     $scope.frameData = frameDataFromDB;
+
 
     //Get data for curWheelchair.Part object
     $scope.getPartDetails = function (wheelchairPart) {
@@ -96,34 +98,7 @@ angular.module('abacuApp')
 
     /****************Weight and Price******************/
 
-      //Calculated Total Weight and Price
-    $scope.getTotalWeight = function () {
-      var totalWeight = $scope.frameData.baseWeight;
-      for (var i = 0; i < $scope.wheelchairs.parts.length; i++) {
-        var curPart = $scope.wheelchairs.parts[i];
-        totalWeight += curPart.weight;
-      }
-      for (var i = 0; i < $scope.wheelchairs.measures.length; i++) {
-        var curMeas = getMeasureData($scope.wheelchairs.measures[i].measureID);
-        if ($scope.wheelchairs.measures[i].measureOptionIndex != -1)
-          totalWeight += curMeas.weights[$scope.wheelchairs.measures[i].measureOptionIndex];
-      }
-      return totalWeight;
-    };
-
-    $scope.getTotalPrice = function () {
-      var totalPrice = $scope.frameData.basePrice;
-      for (var i = 0; i < $scope.wheelchairs.parts.length; i++) {
-        var curPart = $scope.wheelchairs.parts[i];
-        totalPrice += curPart.price;
-      }
-      for (var i = 0; i < $scope.wheelchairs.measures.length; i++) {
-        var cuwheelchairsMeas = getMeasureData($scope.wheelchairs.measures[i].measureID);
-        if ($scope.wheelchairs.measures[i].measureOptionIndex != -1)
-          totalPrice += curMeas.prices[$scope.wheelchairs.measures[i].measureOptionIndex];
-      }
-      return totalPrice;
-    };
+    //$scope.wheelchairs has calcWeight and calcPrice attributes
 
     //total price with sale tax, shipping, other
     $scope.TotalPrice = function (){

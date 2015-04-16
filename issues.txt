@@ -7,7 +7,7 @@ If answered or resolved, please write in resolution - especially if it hasn't be
 
 Should 'Frames' display the base price and base weight?
 
-
+--------------------------------------------------------------------------------------------------
 
 What is the plan for checking out multiple wheelchairs?
 -Only allow one
@@ -15,10 +15,28 @@ What is the plan for checking out multiple wheelchairs?
 -Set up 'Order' and 'Invoice' to handle multiple
 -What is TiArrow expecting from this?  Can they accept multiple?
 
+Plan: Multiple chairs at once, all in one order.  TiArrow can handle it.
+Need design decision for invoice and order
 
+--------------------------------------------------------------------------------------------------
 
 Current Terms & Conditions are fake - we can't forget to replace them
 
-
+--------------------------------------------------------------------------------------------------
 
 Ability to order multiple of same wheelchair? (Add multiplier to cart rather than recreating many times)
+
+--------------------------------------------------------------------------------------------------
+
+Stop users from manually switching pages via URL?
+-Also what about 'back' and 'forward'?
+
+--------------------------------------------------------------------------------------------------
+
+How will the current cart system respond when the site is live?
+-Is cartData.json unique per user?
+-Can we turn the cart into a sharedVar to guarantee functionality (as well as improve load times)?
+
+--------------------------------------------------------------------------------------------------
+
+Cart wheelchair images borrowed from frame page

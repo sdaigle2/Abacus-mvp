@@ -669,19 +669,20 @@ angular.module('abacuApp')
     $scope.saveDesign = function () {
       //TODO: Don't allow a design to be purchaseable unless (measureOptionIndex != -1) for all curWheelchair.measure
 
-      window.alert(JSON.stringify(curWheelchair.parts));
-      window.alert(JSON.stringify(curWheelchair.measures));
       var r = window.confirm('Add to cart?');
       if (r === true) {
 
         var wTitle = prompt("Design Name:", "My Wheelchair");
         if (wTitle == null) wTitle = "My Wheelchair";
         curWheelchair.title = wTitle;
+        //TODO: Prompt for saving design to database (if logged in)
 
         //calculate necessities
         curWheelchair.calcPrice = $scope.getTotalPrice();
         curWheelchair.calcWeight = $scope.getTotalWeight();
-        curWheelchair.imgURL = 'images/mainpic.png'; //TODO needs to actually represent the wheelchair
+        curWheelchair.imgURL = $scope.frameData.imageURL; //TODO needs to actually represent the wheelchair
+
+        alert(JSON.stringify(curWheelchair));
 
         if ($scope.curWheelChairCartIndex === -1) {
           //add wheelchair to the cart
