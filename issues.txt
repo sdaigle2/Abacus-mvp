@@ -7,6 +7,8 @@ If answered or resolved, please write in resolution - especially if it hasn't be
 
 Should 'Frames' display the base price and base weight?
 
+Set this up - need to decide later
+
 --------------------------------------------------------------------------------------------------
 
 What is the plan for checking out multiple wheelchairs?
@@ -40,3 +42,8 @@ How will the current cart system respond when the site is live?
 --------------------------------------------------------------------------------------------------
 
 Cart wheelchair images borrowed from frame page
+
+--------------------------------------------------------------------------------------------------
+
+frameData.json is only a single frame object - should it be an array of frames?
+-If we change this, need to accomodate code around change (ie point abacus.frameData to correct frame in array)
