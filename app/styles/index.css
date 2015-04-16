@@ -10,14 +10,9 @@ body {
   min-width: 1280px;
 }
 
-
-
 .preload {
   display: none;
 }
-
-
-
 
 
 /* nav bar */
@@ -204,6 +199,14 @@ body {
   background-color: #00A89C;
   font-size: 1em;
   margin-top: 26px;
+}
+
+.login .login-button:hover {
+  cursor: pointer;
+}
+
+.login .login-optionrow span:hover {
+  cursor: pointer;
 }
 
 

@@ -6,9 +6,28 @@
 
 angular.module('abacuApp')
   .controller('HeaderController', function($scope, $location){
+
     $scope.isActive = function (viewLocation) {
         return viewLocation === $location.path();
     };
 
+    $scope.loginModel = {
+      email: "",
+      password: ""
+    };
 
+    $scope.recoverPassword = function () {
+      //TODO: Password recovery system
+      alert("Password Recovery coming soon");
+    };
+
+    $scope.register = function () {
+      //TODO: Registration system
+      alert("Registration coming soon");
+    };
+
+    $scope.login = function () {
+      //TODO: Login system
+      alert(JSON.stringify($scope.loginModel));
+    };
 });

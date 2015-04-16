@@ -56,14 +56,16 @@
         <li class="cartButton"><a ng-href="#/cart"><img src="images/icons/cart.png" width="50" alt="cart"/></a></li>
         <li>
           <div ng-mouseover="windowPop = true" ng-mouseleave="windowPop = false" class="login">
-            <div  >LOG IN</div>
-            <div   ng-show="windowPop" class="window">
+            <div>LOG IN</div>
+            <div ng-show="windowPop" class="window">
               <p>EMAIL ADDRESS</p>
-              <input type="text"/>
+              <input type="text" data-ng-model="loginModel.email"/>
               <p>PASSWORD</p>
-              <input type="text"/>
-              <div><span>Forget password</span> <span>Register >></span></div>
-              <div class="login-button">
+              <input type="password" data-ng-model="loginModel.password"/>
+              <div class="login-optionrow">
+                <span data-ng-click="recoverPassword()">Forgot password</span> <span data-ng-click="register()">Register >></span>
+              </div>
+              <div class="login-button" data-ng-click="login()">
                 <p><strong>LOG IN >></strong></p>
               </div>
             </div>
