@@ -166,10 +166,10 @@ angular.module('abacuApp')
       var measPrice = "$0.00";
       var measWeight = "0.00 lbs";
       if (wheelchairMeasure.measureOptionIndex != -1) {
-        measOption = meas.measureOptions[0][i];  //TODO: Set up imperial/metric toggle
-        measOption += " " + meas.units[0]; //Here too
-        measPrice = ((meas.price[i] < 0) ? "-$" : "$") + Math.abs(meas.price[i].toFixed(2));
-        measWeight = meas.weight[i].toFixed(2) + " " + "lbs"; //And here
+        measOption = meas.measureOptions[1][i];  //TODO: Set up imperial/metric toggle
+        measOption += " " + meas.units[1]; //Here too
+        measPrice = ((meas.prices[i] < 0) ? "-$" : "$") + Math.abs(meas.prices[i].toFixed(2));
+        measWeight = meas.weights[i].toFixed(2) + " " + "lbs"; //And here
       }
       return {
         name: meas.name,
