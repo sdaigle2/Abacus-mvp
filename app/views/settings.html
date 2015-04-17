@@ -155,7 +155,9 @@
           <div class="settingsContentSectionTitle">My Measurements</div>
           <ul>
             <li>
-              <label for="settingsContentInput-measurements-rearSeatHeight" ng-click="setMeasurementHelpSection(MeasurementHelpSection.REAR_SEAT_HEIGHT)">
+              <label for="settingsContentInput-measurements-rearSeatHeight"
+                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.REAR_SEAT_HEIGHT)"
+                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.REAR_SEAT_HEIGHT}">
                 Rear Seat Height <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
               <select id="settingsContentInput-measurements-rearSeatHeight" name="rearSeatHeight">
@@ -165,7 +167,9 @@
               </select>
             </li>
             <li>
-              <label for="settingsContentInput-measurements-rearSeatWidth" ng-click="setMeasurementHelpSection(MeasurementHelpSection.REAR_SEAT_WIDTH)">
+              <label for="settingsContentInput-measurements-rearSeatWidth"
+                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.REAR_SEAT_WIDTH)"
+                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.REAR_SEAT_WIDTH}">
                 Rear Seat Width <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
               <select id="settingsContentInput-measurements-rearSeatWidth" name="rearSeatWidth">
@@ -175,7 +179,9 @@
               </select>
             </li>
             <li>
-              <label for="settingsContentInput-measurements-foldingBackrestHeight" ng-click="setMeasurementHelpSection(MeasurementHelpSection.FOLDING_BACKREST_HEIGHT)">
+              <label for="settingsContentInput-measurements-foldingBackrestHeight"
+                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.FOLDING_BACKREST_HEIGHT)"
+                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.FOLDING_BACKREST_HEIGHT}">
                 Folding Backrest Height <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
               <select id="settingsContentInput-measurements-foldingBackrestHeight" name="foldingBackrestHeight">
@@ -185,7 +191,9 @@
               </select>
             </li>
             <li>
-              <label for="settingsContentInput-measurements-axelPosition" ng-click="setMeasurementHelpSection(MeasurementHelpSection.AXEL_POSITION)">
+              <label for="settingsContentInput-measurements-axelPosition"
+                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.AXEL_POSITION)"
+                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.AXEL_POSITION}">
                 Axel Position <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
               <select id="settingsContentInput-measurements-axelPosition" name="axelPosition">
@@ -195,7 +203,9 @@
               </select>
             </li>
             <li>
-              <label for="settingsContentInput-measurements-seatDepth" ng-click="setMeasurementHelpSection(MeasurementHelpSection.SEAT_DEPTH)">
+              <label for="settingsContentInput-measurements-seatDepth"
+                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.SEAT_DEPTH)"
+                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.SEAT_DEPTH}">
                 Seat Depth <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
               <select id="settingsContentInput-measurements-seatDepth" name="seatDepth">

@@ -22,8 +22,8 @@ angular.module('abacuApp')
 
     $scope.MeasurementHelpSection = {
       NONE : '',
-      REAR_SEAT_HEIGHT : 'account',
-      REAR_SEAT_WIDTH : 'orders',
+      REAR_SEAT_HEIGHT : 'rearSeatHeight',
+      REAR_SEAT_WIDTH : 'rearSeatWidth',
       FOLDING_BACKREST_HEIGHT : 'foldingBackrestHeight',
       AXEL_POSITION : 'axelPosition',
       SEAT_DEPTH : 'seatDepth'
@@ -32,7 +32,7 @@ angular.module('abacuApp')
 
 
     $scope.contentSection = $scope.ContentSection.ACCOUNT;
-    $scope.measurementHelpSection = $scope.MeasurementHelpSection.NONE;
+    $scope.measurementHelpSection = $scope.MeasurementHelpSection.REAR_SEAT_HEIGHT;
 
 
 
@@ -60,7 +60,7 @@ angular.module('abacuApp')
     };
 
     $scope.resetMeasurementHelpSection = function () {
-      $scope.measurementHelpSection = $scope.MeasurementHelpSection.NONE;
+      $scope.measurementHelpSection = $scope.MeasurementHelpSection.REAR_SEAT_HEIGHT;
     }
 
 
