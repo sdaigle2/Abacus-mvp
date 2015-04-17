@@ -84,13 +84,13 @@ body {
 .mainNavbar-right {
   clear: right;
   float: right;
-  margin: -22px 0 0 0;
+  margin: 0 0 0 0;
   padding: 0;
   list-style: none;
 }
 .mainNavbar .mainNavbar-right > li {
   float: right;
-  margin: 42px 15px 0 0;
+  margin: 0 0 0 0;
   padding: 0;
 }
 
@@ -102,9 +102,14 @@ body {
 }
 .mainNavbar .mainNavbar-right .cartButton {
   height: 100%;
-  margin: 22px 0 0 0;
+  margin: 0;
   padding: 0 0 0 5px;
   border-left: 1px solid #777;
+}
+.mainNavbar .mainNavbar-right .loginButton {
+  height: 100%;
+  margin: 0 0 0 0;
+  padding: 0 10px 0 0;
 }
 
 
@@ -154,8 +159,14 @@ body {
 
 .login{
   position: relative;
-  height: 30px;
+  height: 100%;
+  margin: 0 0 0 0;
+  padding: 0;
+  cursor: pointer;
+}
 
+.login .loginText{
+  padding: 20px 0 0 0;
 }
 
 .login .window{
@@ -163,7 +174,7 @@ body {
   background-color: white;
   width: 240px;
   position: absolute;
-  top: 20px;
+  top: 40px;
   left: -158px;
   line-height: 1.3;
   border: 1px solid black;
