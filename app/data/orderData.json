@@ -1,0 +1,19 @@
+{
+  "contactForm": {
+    fName: "",
+    lName: "",
+    email: "",
+    phone: ""
+  },
+  "shippingForm": {
+    addr: "",
+    addr2: "",
+    city: "",
+    state: "",
+    zip: ""
+  },
+  "paymentMethods": {
+    PAYPAL: "PAYPAL",
+    ADVANCE: "advence"
+  }
+}

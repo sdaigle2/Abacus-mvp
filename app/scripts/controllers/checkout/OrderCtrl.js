@@ -10,7 +10,7 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('OrderCtrl', function ($scope, $location, sharedVars) {
+  .controller('OrderCtrl',  function ($scope, $location,$http) {
 
     /*************************** CONTROL VARIABLES *************************/
     $scope.stages = {
@@ -18,7 +18,7 @@ angular.module('abacuApp')
       PAYMENT: 1,
       CONFIRM: 2,
       COMPLETE: 3
-    }
+    };
 
     $scope.curStage = $scope.stages.INFO;
 
@@ -40,7 +40,25 @@ angular.module('abacuApp')
         title: "COMPLETE",
         button: "GO TO MY ORDER >>"
       }
-    ]
+    ];
+
+    //database action
+    //orderFactory.all()
+    //  .success(function(data){
+    //    $scope.info = data;
+    //    console.log(JSON.stringify(data ));
+    //  })
+    //  .error(function(error) {
+    //  console.log(error || "Request failed");
+    //  });
+    $http({method:"GET", url:"data/orderData.json"})
+      .success(function(data){
+        $scope.info = data;
+        console.log(JSON.stringify(data ));
+      })
+      .error(function(error) {
+      console.log(error || "Request failed");
+      });
 
     /*************************** SIDEBAR BUTTONS ************************/
 
@@ -97,6 +115,8 @@ angular.module('abacuApp')
     };
 
     /*************************** INFO ******************************/
+
+
 
     //Model for the contact form
     $scope.contactForm = {
