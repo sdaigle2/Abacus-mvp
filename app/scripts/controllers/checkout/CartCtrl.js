@@ -67,8 +67,7 @@ angular.module('abacuApp')
         return;
       }
 
-      //TODO: Checkout stuff
-      //TODO: Verify all measurements for wheelchairs selected
+      //TODO: Verify all measurements for wheelchairs selected!!!
 
       //If not logged in
       $location.path('/checkout');
