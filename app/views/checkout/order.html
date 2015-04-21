@@ -4,7 +4,8 @@
   <!--HEADER-->
   <div class="order-header">
     <h2><strong>{{display[curStage].title}}</strong></h2>
-    <h5 data-ng-click="returnToCart()"><< Go Back to Shopping Cart</h5>
+    <h5 data-ng-click="returnToCart()"
+        data-ng-hide="curStage == stages.COMPLETE"><< Go Back to Shopping Cart</h5>
   </div>
 
   <!--BODY-->
