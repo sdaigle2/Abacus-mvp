@@ -13,10 +13,10 @@ angular.module('abacuApp')
   .factory('orderFactory', ['$http', function ($http){
     return{
       all: function(){
-        return $http({method:"GET", url:"data/orderData"});
+        return $http({method:"GET", url:"data/orderData.json"});
       },
       create: function(info){
-        return $http({method:"POST", url:"data/orderData", data:info});
+        return $http({method:"POST", url:"data/orderData.json", data:info});
       }
     };
   }]);

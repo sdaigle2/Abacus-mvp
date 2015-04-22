@@ -76,13 +76,4 @@ angular
     };
   });
 
-  //.factory('orderFactory', function ($http){
-  //  return{
-  //    all: function(){
-  //      return $http({method:"GET", url:"data/orderData"});
-  //    },
-  //    create: function(info){
-  //      return $http({method:"POST", url:"data/orderData", data:info});
-  //    }
-  //  };
-  //});
+

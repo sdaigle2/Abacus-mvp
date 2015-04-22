@@ -10,7 +10,7 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('OrderCtrl',  function ($scope, $location,$http) {
+  .controller('OrderCtrl',  function ($scope, $location,orderFactory) {
 
     /*************************** CONTROL VARIABLES *************************/
     $scope.stages = {
@@ -43,22 +43,17 @@ angular.module('abacuApp')
     ];
 
     //database action
-    //orderFactory.all()
-    //  .success(function(data){
-    //    $scope.info = data;
-    //    console.log(JSON.stringify(data ));
-    //  })
-    //  .error(function(error) {
-    //  console.log(error || "Request failed");
-    //  });
-    $http({method:"GET", url:"data/orderData.json"})
+    orderFactory.all()
       .success(function(data){
         $scope.info = data;
         console.log(JSON.stringify(data ));
       })
-      .error(function(error) {
-      console.log(error || "Request failed");
+      .error(function(data) {
+      console.log("Request failed: " + data);
       });
+
+
+
 
     /*************************** SIDEBAR BUTTONS ************************/
 
