@@ -27,10 +27,6 @@ angular
         templateUrl: 'views/abacus.html',
         controller: 'AbacusCtrl'
       })
-      .when('/account', {
-        templateUrl: 'views/account.html',
-        controller: 'AccountCtrl'
-      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'

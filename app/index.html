@@ -54,9 +54,9 @@
       </ul>
       <ul class="mainNavbar-right">
         <li class="cartButton"><a ng-href="#/cart"><img src="images/icons/cart.png" width="50" alt="cart"/></a></li>
-        <li>
+        <li class="loginButton">
           <div ng-mouseover="windowPop = true" ng-mouseleave="windowPop = false" class="login">
-            <div>LOG IN</div>
+            <div class="loginText">LOG IN</div>
             <div ng-show="windowPop" class="window">
               <p>EMAIL ADDRESS</p>
               <input type="text" data-ng-model="loginModel.email"/>
@@ -123,7 +123,6 @@
   <script src="scripts/controllers/FrameCtrl.js"></script>
   <script src="scripts/controllers/AboutCtrl.js"></script>
   <script src="scripts/controllers/AbacusCtrl.js"></script>
-  <script src="scripts/controllers/AccountCtrl.js"></script>
   <script src="scripts/controllers/checkout/CartCtrl.js"></script>
   <script src="scripts/controllers/checkout/CheckoutCtrl.js"></script>
   <script src="scripts/controllers/checkout/OrderCtrl.js"></script>

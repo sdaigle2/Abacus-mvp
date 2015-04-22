@@ -292,9 +292,6 @@ angular.module('abacuApp')
       //'baseURL/frame1/part1/2_3_4_Front.png'
     }
 
-    //Keeps track of previous memory of image for Angular's sake
-    var oldImgs = null;
-
     //Returns an array of imagesURLs to be displayed
     //stacked from first to last (Ascending z-index order)
     function getCurWheelchairImages (){
@@ -309,42 +306,15 @@ angular.module('abacuApp')
             URL: getPartPreviewImageURL(curPart, j),
             zRank: curPartData.zRank[j][curAngle]
           });
-          //console.log(JSON.stringify(curPartData.zRank[j][angle]));
         }
-
       }
-      //console.log(JSON.stringify(imgs.zRank));
+
       //Sort array by zRanks
       imgs.sort(function (a, b) {
         return (a.zRank - b.zRank);
       });
-      //Keep old values for Angular's $digest
-      //since img is not the same memory address as oldImg, Angular continuously reloads img until it crashes
-      //If img doesn't change, simply reload the old memory for Angular
-      //if (imgsUnchanged(imgs, oldImgs)) {
-      //  imgs = oldImgs;
-      //}
-      //oldImgs = imgs;
-
 
       return imgs;
-    }
-
-    //Check if the contents of newImgs are equal to oldImgs
-    function imgsUnchanged(newImgs, oldImgs) {
-      if (newImgs === null || oldImgs === null) {
-        return false;
-      }
-      if (newImgs.length !== oldImgs.length) {
-        return false;
-      }
-      for (var i = 0; i < newImgs.length; i++)
-      {
-        if (newImgs[i].url !== oldImgs[i].url) {
-          return false;
-        }
-      }
-      return true;
     }
 
     //Updates the preview image array after a value is changed
@@ -400,7 +370,7 @@ angular.module('abacuApp')
     $scope.setCurCustomizePage = function (newIndex) { curPage.page[$scope.pageType.CUSTOMIZE] = pages.customizePages[newIndex]; };
     $scope.setCurMeasurePage = function (newIndex) { curPage.page[$scope.pageType.MEASURE] = pages.measurePages[newIndex]; };
 
-
+    /**************** Frame Data Functions ******************/
 
     function getPartData(id) {
       for (var i = 0; i < $scope.frameData.parts.length; i++) {
@@ -667,8 +637,6 @@ angular.module('abacuApp')
 
     //Temporary/Dummy function that returns curWheelchair Data and sends to cart
     $scope.saveDesign = function () {
-      //TODO: Don't allow a design to be purchaseable unless (measureOptionIndex != -1) for all curWheelchair.measure
-
       var r = window.confirm('Add to cart?');
       if (r === true) {
 

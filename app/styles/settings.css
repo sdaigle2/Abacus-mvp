@@ -292,7 +292,8 @@
   cursor: pointer;
   transition: .5s;
 }
-#settingsMeasurementsContent .settingsContentInputSection label:hover {
+#settingsMeasurementsContent .settingsContentInputSection label:hover,
+#settingsMeasurementsContent .settingsContentInputSection label.active {
   color: rgba(11, 158, 144, 1);
 }
 

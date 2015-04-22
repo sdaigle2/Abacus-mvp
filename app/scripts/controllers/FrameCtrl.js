@@ -44,32 +44,5 @@ var dummyFramesData = [
     basePrice: 1999,
     baseWeight: 30,
     imageURL: "images/frame_page_img/frame2_frame_page.png"
-  },
-  {
-    frameID: 3,
-    manufacturer: "Intelliwheels",
-    name: "Intelliwheelchair",
-    desc: "Better than anything our \"competition\" makes",
-    basePrice: 1999,
-    baseWeight: 30,
-    imageURL: "images/frame_page_img/frame2_frame_page.png"
-  },
-  {
-    frameID: 4,
-    manufacturer: "Intelliwheels",
-    name: "Intelliwheelchair",
-    desc: "Better than anything our \"competition\" makes",
-    basePrice: 1999,
-    baseWeight: 30,
-    imageURL: "images/frame_page_img/frame2_frame_page.png"
-  },
-  {
-    frameID: 5,
-    manufacturer: "Intelliwheels",
-    name: "Intelliwheelchair",
-    desc: "Better than anything our \"competition\" makes",
-    basePrice: 1999,
-    baseWeight: 30,
-    imageURL: "images/frame_page_img/frame2_frame_page.png"
   }
 ];

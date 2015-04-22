@@ -13,17 +13,23 @@
   <div class="settingsSidebar">
     <ul class="settingsSidebarOptions">
 
-      <li class="settingsSidebarOption" id="settingsSidebarAccountOption" ng-click="setContentSection(ContentSection.ACCOUNT)" ng-class="{ 'active' : getContentSection() === ContentSection.ACCOUNT}">
+      <li class="settingsSidebarOption" id="settingsSidebarAccountOption" 
+          ng-click="setContentSection(ContentSection.ACCOUNT)" 
+          ng-class="{ 'active' : getContentSection() === ContentSection.ACCOUNT}">
         <i class="fa fa-user"></i>&nbsp; MY ACCOUNT
       </li>
       <li class="settingsSidebarOptionDivider"></li>
 
-      <li class="settingsSidebarOption" id="settingsSidebarOrdersOption" ng-click="setContentSection(ContentSection.ORDERS)" ng-class="{ 'active' : getContentSection() === ContentSection.ORDERS}">
+      <li class="settingsSidebarOption" id="settingsSidebarOrdersOption" 
+          ng-click="setContentSection(ContentSection.ORDERS)" 
+          ng-class="{ 'active' : getContentSection() === ContentSection.ORDERS}">
         <i class="fa fa-list"></i>&nbsp; MY ORDERS
       </li>
       <li class="settingsSidebarOptionDivider"></li>
 
-      <li class="settingsSidebarOption" id="settingsSidebarMeasurementsOption" ng-click="setContentSection(ContentSection.MEASUREMENTS)" ng-class="{ 'active' : getContentSection() === ContentSection.MEASUREMENTS}">
+      <li class="settingsSidebarOption" id="settingsSidebarMeasurementsOption" 
+          ng-click="setContentSection(ContentSection.MEASUREMENTS)" 
+          ng-class="{ 'active' : getContentSection() === ContentSection.MEASUREMENTS}">
         <i class="fa fa-wrench"></i>&nbsp; MY MEASUREMENTS
       </li>
       <li class="settingsSidebarOptionDivider"></li>
@@ -40,7 +46,10 @@
 
   <div class="settingsContentWrapper">
 
-    <div class="settingsContent" id="settingsAccountContent" ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ACCOUNT}">
+    <!-- MY ACCOUNT -->
+
+    <div class="settingsContent" id="settingsAccountContent" 
+         ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ACCOUNT}">
 
       <div class="settingsContentInputSection">
         <form action="" id="settingsContentForm-contact">
@@ -48,15 +57,15 @@
           <ul>
             <li>
               <label for="settingsContentInput-contact-firstName">First Name</label>
-              <input id="settingsContentInput-contact-firstName" name="firstName" type="text" value="" />
+              <input id="settingsContentInput-contact-firstName" name="firstName" type="text" data-ng-model="accountModel.fName" />
             </li>
             <li>
               <label for="settingsContentInput-contact-lastName">Last Name</label>
-              <input id="settingsContentInput-contact-lastName" name="lastName" type="text" value="" />
+              <input id="settingsContentInput-contact-lastName" name="lastName" type="text" data-ng-model="accountModel.lName" />
             </li>
             <li>
               <label for="settingsContentInput-contact-email">Email Address</label>
-              <input id="settingsContentInput-contact-email" name="email" type="text" value="" />
+              <input id="settingsContentInput-contact-email" name="email" type="text" data-ng-model="accountModel.email" />
             </li>
           </ul>
         </form>
@@ -68,23 +77,23 @@
           <ul>
             <li>
               <label for="settingsContentInput-shipping-streetAddress">Street Address</label>
-              <input id="settingsContentInput-shipping-streetAddress" name="streetAddress" type="text" value="" />
+              <input id="settingsContentInput-shipping-streetAddress" name="streetAddress" type="text" data-ng-model="accountModel.addr" />
             </li>
             <li>
               <label for="settingsContentInput-shipping-streetAddress2">Street Address 2</label>
-              <input id="settingsContentInput-shipping-streetAddress2" name="streetAddress2" type="text" value="" />
+              <input id="settingsContentInput-shipping-streetAddress2" name="streetAddress2" type="text" data-ng-model="accountModel.addr2" />
             </li>
             <li>
               <label for="settingsContentInput-shipping-city">City</label>
-              <input id="settingsContentInput-shipping-city" name="city" type="text" value="" />
+              <input id="settingsContentInput-shipping-city" name="city" type="text" data-ng-model="accountModel.city" />
             </li>
             <li>
               <label for="settingsContentInput-shipping-state">State</label>
-              <input id="settingsContentInput-shipping-state" name="state" type="text" value="" />
+              <input id="settingsContentInput-shipping-state" name="state" type="text" data-ng-model="accountModel.state" />
             </li>
             <li>
               <label for="settingsContentInput-shipping-zip">Zip Code</label>
-              <input id="settingsContentInput-shipping-zip" name="zip" type="text" value="" />
+              <input id="settingsContentInput-shipping-zip" name="zip" type="text" data-ng-model="accountModel.zip" />
             </li>
           </ul>
         </form>
@@ -96,11 +105,11 @@
           <ul>
             <li>
               <label for="settingsContentInput-password-password">New Password</label>
-              <input id="settingsContentInput-password-password" name="password" type="password" value="" />
+              <input id="settingsContentInput-password-password" name="password" type="password" data-ng-model="accountModel.newPass1" />
             </li>
             <li>
               <label for="settingsContentInput-password-passwordConfirm">Confirm New Password</label>
-              <input id="settingsContentInput-password-passwordConfirm" name="passwordConfirm" type="password" value="" />
+              <input id="settingsContentInput-password-passwordConfirm" name="passwordConfirm" type="password" data-ng-model="accountModel.newPass2" />
             </li>
           </ul>
         </form>
@@ -108,54 +117,37 @@
 
     </div>
 
+    <!-- MY ORDERS -->
 
-    <div class="settingsContent" id="settingsOrdersContent" ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ORDERS}">
-
+    <div class="settingsContent" id="settingsOrdersContent" 
+         ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ORDERS}">
       <ul id="settingsOrdersContentItems">
-
-        <li class="settingsOrdersContentItem"><!-- REPEAT THIS -->
+        <li class="settingsOrdersContentItem" data-ng-repeat="o in orders">
           <img class="settingsOrdersContentItem-image" src="../images/mainpic.png" alt="Wheelchair"/>
           <div class="settingsOrdersContentItemMid">
-            <div class="settingsOrdersContentItem-name">Name of this wheelchair</div>
-            <div class="settingsOrdersContentItem-date">Order Placed: Dec 24, 2014</div>
-            <button class="settingsOrdersContentItem-detailsButton">View Order Details <i class="fa fa-arrow-circle-down"></i></button>
+            <div class="settingsOrdersContentItem-name">{{o.orderNum}}</div>
+            <div class="settingsOrdersContentItem-date">Order Placed: {{o.datePlaced.toLocaleDateString()}}</div>
+            <button class="settingsOrdersContentItem-detailsButton"
+                    data-ng-click="openOrderDetails($index)">View Order Details <i class="fa fa-arrow-circle-down"></i></button>
           </div>
-          <div class="settingsOrdersContentItem-cost">$1234.56</div>
+          <div class="settingsOrdersContentItem-cost">${{o.cart.totalPrice.toFixed(2)}}</div>
         </li>
-
-        <li class="settingsOrdersContentItem">
-          <img class="settingsOrdersContentItem-image" src="../images/mainpic.png" alt="Wheelchair"/>
-          <div class="settingsOrdersContentItemMid">
-            <div class="settingsOrdersContentItem-name">Name of this wheelchair</div>
-            <div class="settingsOrdersContentItem-date">Order Placed: Dec 24, 2014</div>
-            <button class="settingsOrdersContentItem-detailsButton">View Order Details <i class="fa fa-arrow-circle-down"></i></button>
-          </div>
-          <div class="settingsOrdersContentItem-cost">$1234.56</div>
-        </li>
-
-        <li class="settingsOrdersContentItem">
-          <img class="settingsOrdersContentItem-image" src="../images/mainpic.png" alt="Wheelchair"/>
-          <div class="settingsOrdersContentItemMid">
-            <div class="settingsOrdersContentItem-name">Name of this wheelchair</div>
-            <div class="settingsOrdersContentItem-date">Order Placed: Dec 24, 2014</div>
-            <button class="settingsOrdersContentItem-detailsButton">View Order Details <i class="fa fa-arrow-circle-down"></i></button>
-          </div>
-          <div class="settingsOrdersContentItem-cost">$1234.56</div>
-        </li>
-
       </ul>
-
     </div>
 
+    <!-- MY MEASUREMENTS -->
 
-    <div class="settingsContent" id="settingsMeasurementsContent" ng-class="{'showSettingsContent' : getContentSection() === ContentSection.MEASUREMENTS}">
+    <div class="settingsContent" id="settingsMeasurementsContent" 
+         ng-class="{'showSettingsContent' : getContentSection() === ContentSection.MEASUREMENTS}">
 
       <div class="settingsContentInputSection">
         <form action="" id="settingsContentForm-measurements">
           <div class="settingsContentSectionTitle">My Measurements</div>
           <ul>
-            <li>
-              <label for="settingsContentInput-measurements-rearSeatHeight" ng-click="setMeasurementHelpSection(MeasurementHelpSection.REAR_SEAT_HEIGHT)">
+            <li> <!-- TODO: Angularize (ng-repeat) using $scope.measOptions -->
+              <label for="settingsContentInput-measurements-rearSeatHeight"
+                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.REAR_SEAT_HEIGHT)"
+                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.REAR_SEAT_HEIGHT}">
                 Rear Seat Height <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
               <select id="settingsContentInput-measurements-rearSeatHeight" name="rearSeatHeight">
@@ -165,7 +157,9 @@
               </select>
             </li>
             <li>
-              <label for="settingsContentInput-measurements-rearSeatWidth" ng-click="setMeasurementHelpSection(MeasurementHelpSection.REAR_SEAT_WIDTH)">
+              <label for="settingsContentInput-measurements-rearSeatWidth"
+                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.REAR_SEAT_WIDTH)"
+                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.REAR_SEAT_WIDTH}">
                 Rear Seat Width <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
               <select id="settingsContentInput-measurements-rearSeatWidth" name="rearSeatWidth">
@@ -175,7 +169,9 @@
               </select>
             </li>
             <li>
-              <label for="settingsContentInput-measurements-foldingBackrestHeight" ng-click="setMeasurementHelpSection(MeasurementHelpSection.FOLDING_BACKREST_HEIGHT)">
+              <label for="settingsContentInput-measurements-foldingBackrestHeight"
+                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.FOLDING_BACKREST_HEIGHT)"
+                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.FOLDING_BACKREST_HEIGHT}">
                 Folding Backrest Height <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
               <select id="settingsContentInput-measurements-foldingBackrestHeight" name="foldingBackrestHeight">
@@ -185,7 +181,9 @@
               </select>
             </li>
             <li>
-              <label for="settingsContentInput-measurements-axelPosition" ng-click="setMeasurementHelpSection(MeasurementHelpSection.AXEL_POSITION)">
+              <label for="settingsContentInput-measurements-axelPosition"
+                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.AXEL_POSITION)"
+                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.AXEL_POSITION}">
                 Axel Position <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
               <select id="settingsContentInput-measurements-axelPosition" name="axelPosition">
@@ -195,7 +193,9 @@
               </select>
             </li>
             <li>
-              <label for="settingsContentInput-measurements-seatDepth" ng-click="setMeasurementHelpSection(MeasurementHelpSection.SEAT_DEPTH)">
+              <label for="settingsContentInput-measurements-seatDepth"
+                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.SEAT_DEPTH)"
+                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.SEAT_DEPTH}">
                 Seat Depth <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
               <select id="settingsContentInput-measurements-seatDepth" name="seatDepth">
@@ -208,8 +208,11 @@
         </form>
       </div>
 
+      <!-- MEASUREMENT INFO -->
 
-      <div class="settingsContentInputMoreInfoSection" ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.REAR_SEAT_HEIGHT}"><!-- REPEAT THIS -->
+      <!-- TODO: Angularize using $scope.measOptions -->
+      <div class="settingsContentInputMoreInfoSection" 
+           ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.REAR_SEAT_HEIGHT}"><!-- REPEAT THIS -->
         <div class="settingsContentSectionTitle">Rear Seat Height</div>
         <div class="settingsContentSectionDescription">Distance from the ground up to back corner of your seat</div>
         <div class="settingsContentSectionGraphic">
@@ -222,7 +225,8 @@
         </div>
       </div>
 
-      <div class="settingsContentInputMoreInfoSection" ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.REAR_SEAT_WIDTH}"><!-- REPEAT THIS -->
+      <div class="settingsContentInputMoreInfoSection" 
+           ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.REAR_SEAT_WIDTH}"><!-- REPEAT THIS -->
         <div class="settingsContentSectionTitle">Rear Seat Width</div>
         <div class="settingsContentSectionDescription">Distance from something to something</div>
         <div class="settingsContentSectionGraphic">

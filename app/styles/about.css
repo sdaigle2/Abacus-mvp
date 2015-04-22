@@ -1,1 +1,9 @@
 ﻿/*About Us page CSS*/
+
+.aboutUsDiv {
+  line-height: 1;
+}
+
+.aboutUsDiv li {
+  font-size: 20px;
+}
