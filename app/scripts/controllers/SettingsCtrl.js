@@ -20,8 +20,7 @@ angular.module('abacuApp')
     };
 
     //Categories inside the 'My Measurements' Section
-    $scope.MeasurementHelpSection = {
-      NONE : '',
+    $scope.MeasurementTypes = {
       REAR_SEAT_HEIGHT : 'rearSeatHeight',
       REAR_SEAT_WIDTH : 'rearSeatWidth',
       FOLDING_BACKREST_HEIGHT : 'foldingBackrestHeight',
@@ -31,8 +30,34 @@ angular.module('abacuApp')
 
     //Navigational values
     var contentSection = $scope.ContentSection.ACCOUNT;
-    var measurementHelpSection = $scope.MeasurementHelpSection.REAR_SEAT_HEIGHT;
+    var curMeasureType = $scope.MeasurementTypes.REAR_SEAT_HEIGHT;
 
+    /***************** SIDEBAR BUTTONS ***************************************/
+
+    $scope.edit = function () {
+      switch (contentSection) {
+        case $scope.ContentSection.ACCOUNT:
+          //TODO: 
+        case $scope.ContentSection.ORDERS:
+          return;
+        case $scope.ContentSection.MEASUREMENTS:
+          //TODO: 
+          break;
+      }
+    };
+
+
+    $scope.save = function () {
+      switch (contentSection) {
+        case $scope.ContentSection.ACCOUNT:
+          //TODO: 
+        case $scope.ContentSection.ORDERS:
+          return;
+        case $scope.ContentSection.MEASUREMENTS:
+          //TODO: 
+          break;
+      }
+    };
 
     /***************** CONTENT SECTION SWITCHING *****************************/
     $scope.getContentSection = function () {
@@ -40,7 +65,7 @@ angular.module('abacuApp')
     };
 
     $scope.setContentSection = function (newContentSection) {
-      $scope.resetMeasurementHelpSection();
+      $scope.resetMeasurementType();
       contentSection = newContentSection;
     };
 
@@ -49,16 +74,21 @@ angular.module('abacuApp')
     }
 
     /***************** MEASUREMENT HELP SWITCHING *****************************/
-    $scope.getMeasurementHelpSection = function () {
-      return measurementHelpSection;
+    $scope.getMeasurementType = function () {
+      return curMeasureType;
     };
 
-    $scope.setMeasurementHelpSection = function (newMeasurementHelpSection) {
-      measurementHelpSection = newMeasurementHelpSection;
+    $scope.setMeasurementType = function (newMeasureType) {
+      if (curMeasureType === newMeasureType)
+        curMeasureType = '';
+      else {
+        curMeasureType = newMeasureType;
+        $scope.imgIndex = 0;
+      }
     };
 
-    $scope.resetMeasurementHelpSection = function () {
-      measurementHelpSection = $scope.MeasurementHelpSection.REAR_SEAT_HEIGHT;
+    $scope.resetMeasurementType = function () {
+      curMeasureType = "";
     }
 
     /***************** MY ACCOUNT *********************************************/
@@ -104,36 +134,46 @@ angular.module('abacuApp')
     /***************** MY MEASURES *********************************************/
 
     //Options for each measure - Can be called using $scope.measOptions['rearSeatHeight'] to take advantage of enum
-    $scope.measOptions = {
+    $scope.measDisplay = {
       rearSeatHeight: {
         name: "Rear Seat Height",
         options: ["1", "2", "3"],
+        optionSelected: null,
         desc: "Distance from the ground up to back corner of your seat",
-        imgURLs: []
+        imgURLs: ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+        imgIndex: 0
       },
       rearSeatWidth: {
-        name: "Rear Seat Height",
-        options: ["1", "2", "3"],
-        desc: "Distance from the ground up to back corner of your seat",
-        imgURLs: []
+        name: "Rear Seat Width",
+        options: ["A", "B", "C"],
+        optionSelected: null,
+        desc: "The distance between armrests at the back of the seat",
+        imgURLs: ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+        imgIndex: 0
       },
       foldingBackrestHeight: {
-        name: "Rear Seat Height",
-        options: ["1", "2", "3"],
-        desc: "Distance from the ground up to back corner of your seat",
-        imgURLs: []
+        name: "Folding Backrest Height",
+        options: ["Do", "Re", "Mi"],
+        optionSelected: null,
+        desc: "Distance from the seat to the top of the backrest",
+        imgURLs: ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+        imgIndex: 0
       },
       axelPosition: {
-        name: "Rear Seat Height",
-        options: ["1", "2", "3"],
-        desc: "Distance from the ground up to back corner of your seat",
-        imgURLs: []
+        name: "Axel Position",
+        options: ["Uno", "Dos", "Tres"],
+        optionSelected: null,
+        desc: "The position of the axel",
+        imgURLs: ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+        imgIndex: 0
       },
       seatDepth: {
-        name: "Rear Seat Height",
-        options: ["1", "2", "3"],
-        desc: "Distance from the ground up to back corner of your seat",
-        imgURLs: []
+        name: "Seat Depth",
+        options: ["I", "II", "III"],
+        optionSelected: null,
+        desc: "Distance from the back of the seat to the front",
+        imgURLs: ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+        imgIndex: 0
       }
     };
 

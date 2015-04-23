@@ -35,11 +35,17 @@
       <li class="settingsSidebarOptionDivider"></li>
 
     </ul>
+
     <div class="settingsSidebarButtons"
          ng-class="{'showSettingsSidebarButtons' : getContentSection() !== ContentSection.ORDERS, 'hideSettingsSidebarButtons' : getContentSection() === ContentSection.ORDERS}">
-      <button class="settingsSidebarButton" id="settingsSidebarEditButton">EDIT &gt;&gt;</button>
-      <button class="settingsSidebarButton" id="settingsSidebarSaveButton">SAVE &gt;&gt;</button>
+      <button class="settingsSidebarButton" 
+              id="settingsSidebarEditButton"
+              data-ng-click="edit()">EDIT &gt;&gt;</button>
+      <button class="settingsSidebarButton" 
+              id="settingsSidebarSaveButton"
+              data-ng-click="save()">SAVE &gt;&gt;</button>
     </div>
+
   </div>
 
   <!--- CONTENT SECTIONS --->
@@ -140,106 +146,40 @@
     <div class="settingsContent" id="settingsMeasurementsContent" 
          ng-class="{'showSettingsContent' : getContentSection() === ContentSection.MEASUREMENTS}">
 
+      <!-- MEASURE SELECTORS -->
+
       <div class="settingsContentInputSection">
         <form action="" id="settingsContentForm-measurements">
           <div class="settingsContentSectionTitle">My Measurements</div>
           <ul>
-            <li> <!-- TODO: Angularize (ng-repeat) using $scope.measOptions -->
-              <label for="settingsContentInput-measurements-rearSeatHeight"
-                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.REAR_SEAT_HEIGHT)"
-                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.REAR_SEAT_HEIGHT}">
-                Rear Seat Height <i class="fa fa-arrow-circle-right" title="Learn More"></i>
+            <li data-ng-repeat="(m, val) in MeasurementTypes"> <!-- TODO: Angularize (ng-repeat) using $scope.measOptions -->
+              <label ng-click="setMeasurementType(val)"
+                     ng-class="{'active' : getMeasurementType() === val}">
+                {{measDisplay[val].name}} <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
-              <select id="settingsContentInput-measurements-rearSeatHeight" name="rearSeatHeight">
-                <option value="">--</option>
-                <option value="">--</option>
-                <option value="">--</option>
-              </select>
-            </li>
-            <li>
-              <label for="settingsContentInput-measurements-rearSeatWidth"
-                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.REAR_SEAT_WIDTH)"
-                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.REAR_SEAT_WIDTH}">
-                Rear Seat Width <i class="fa fa-arrow-circle-right" title="Learn More"></i>
-              </label>
-              <select id="settingsContentInput-measurements-rearSeatWidth" name="rearSeatWidth">
-                <option value="">--</option>
-                <option value="">--</option>
-                <option value="">--</option>
-              </select>
-            </li>
-            <li>
-              <label for="settingsContentInput-measurements-foldingBackrestHeight"
-                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.FOLDING_BACKREST_HEIGHT)"
-                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.FOLDING_BACKREST_HEIGHT}">
-                Folding Backrest Height <i class="fa fa-arrow-circle-right" title="Learn More"></i>
-              </label>
-              <select id="settingsContentInput-measurements-foldingBackrestHeight" name="foldingBackrestHeight">
-                <option value="">--</option>
-                <option value="">--</option>
-                <option value="">--</option>
-              </select>
-            </li>
-            <li>
-              <label for="settingsContentInput-measurements-axelPosition"
-                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.AXEL_POSITION)"
-                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.AXEL_POSITION}">
-                Axel Position <i class="fa fa-arrow-circle-right" title="Learn More"></i>
-              </label>
-              <select id="settingsContentInput-measurements-axelPosition" name="axelPosition">
-                <option value="">--</option>
-                <option value="">--</option>
-                <option value="">--</option>
-              </select>
-            </li>
-            <li>
-              <label for="settingsContentInput-measurements-seatDepth"
-                     ng-click="setMeasurementHelpSection(MeasurementHelpSection.SEAT_DEPTH)"
-                     ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.SEAT_DEPTH}">
-                Seat Depth <i class="fa fa-arrow-circle-right" title="Learn More"></i>
-              </label>
-              <select id="settingsContentInput-measurements-seatDepth" name="seatDepth">
-                <option value="">--</option>
-                <option value="">--</option>
-                <option value="">--</option>
-              </select>
-            </li>
+              <select data-ng-options="o for o in measDisplay[val].options" data-ng-model="measDisplay[val].optionSelected"></select>
+            </li>           
           </ul>
         </form>
       </div>
 
       <!-- MEASUREMENT INFO -->
 
-      <!-- TODO: Angularize using $scope.measOptions -->
       <div class="settingsContentInputMoreInfoSection" 
-           ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.REAR_SEAT_HEIGHT}"><!-- REPEAT THIS -->
-        <div class="settingsContentSectionTitle">Rear Seat Height</div>
-        <div class="settingsContentSectionDescription">Distance from the ground up to back corner of your seat</div>
+           ng-repeat="(m, val) in MeasurementTypes"
+           ng-class="{'active' : getMeasurementType() === val}">
+        <div class="settingsContentSectionTitle">{{measDisplay[val].name}}</div>
+        <div class="settingsContentSectionDescription">{{measDisplay[val].desc}}</div>
         <div class="settingsContentSectionGraphic">
-          <img src="/images/measure/rear-seat-height1.jpg" width="350" height="340">
+          <img ng-src="{{measDisplay[val].imgURLs[measDisplay[val].imgIndex]}}" width="350" height="340">
           <div class="dots">
-            <i class="fa fa-circle-o"></i><!-- REPEAT THIS -->
-            <i class="fa fa-circle-o"></i>
-            <i class="fa fa-circle-o"></i>
+            <i class="fa fa-circle-o"
+               data-ng-class="{'fa-circle': measDisplay[val].imgIndex === $index}"
+               data-ng-repeat="i in measDisplay[val].imgURLs"
+               data-ng-click="measDisplay[val].imgIndex = $index"></i>
           </div>
         </div>
       </div>
-
-      <div class="settingsContentInputMoreInfoSection" 
-           ng-class="{'active' : getMeasurementHelpSection() === MeasurementHelpSection.REAR_SEAT_WIDTH}"><!-- REPEAT THIS -->
-        <div class="settingsContentSectionTitle">Rear Seat Width</div>
-        <div class="settingsContentSectionDescription">Distance from something to something</div>
-        <div class="settingsContentSectionGraphic">
-          <img src="/images/measure/rear-seat-height1.jpg" width="350" height="340">
-          <div class="dots">
-            <i class="fa fa-circle-o"></i><!-- REPEAT THIS -->
-            <i class="fa fa-circle-o"></i>
-            <i class="fa fa-circle-o"></i>
-          </div>
-        </div>
-      </div>
-
-
 
     </div>
 
