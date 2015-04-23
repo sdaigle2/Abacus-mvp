@@ -21,10 +21,10 @@
                data-ng-class="{ 'frame-item-desc-show' : panelSelected(hoverItem,f.frameID) , 'frame-item-desc-hide' : !panelSelected(hoverItem,f.frameID)}">
             <div class="hoverBackground frame-item-panel">
               <p class="frame-item-title"><strong>{{f.name}}</strong></p>
-              <hr></hr>
-              <p>{{f.desc}}</p>
-              <p>${{f.basePrice.toFixed(2)}}</p>
-              <p>{{f.baseWeight}} lbs</p> <!--TODO: Imperial Metric toggle?-->
+              <br />
+              <p class="frame-item-description">{{f.desc}}</p>
+              <p class="frame-item-price">${{f.basePrice.toFixed(2)}}</p>
+              <p class="frame-item-weight">{{f.baseWeight}} lbs</p> <!--TODO: Imperial Metric toggle?-->
             </div>
           </div>
         </div>

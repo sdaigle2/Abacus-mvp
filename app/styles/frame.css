@@ -51,6 +51,19 @@
   font-size: 22px;
 }
 
+.frame-item-description {
+  font-size: 20px;
+}
+
+.frame-item-price {
+  font-size: 17px;
+  margin-top: 200px;
+}
+
+.frame-item-weight {
+  font-size: 17px;
+}
+
 .frame-item-image {
   position: relative;
   padding: 5px 0px;
