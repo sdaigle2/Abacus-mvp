@@ -188,10 +188,11 @@ angular.module('abacuApp')
         var curPart = curWheelchair.parts[i];
         totalWeight += curPart.weight;
       }
-      for (var i = 0; i < curWheelchair.measures.length; i++) {
-        var curMeas = getMeasureData(curWheelchair.measures[i].measureID);
-        if (curWheelchair.measures[i].measureOptionIndex != -1)
-          totalWeight += curMeas.weights[curWheelchair.measures[i].measureOptionIndex];
+      for (var j = 0; j < curWheelchair.measures.length; j++) {
+        var curMeas = getMeasureData(curWheelchair.measures[j].measureID);
+        if (curWheelchair.measures[j].measureOptionIndex !== -1) {
+          totalWeight += curMeas.weights[curWheelchair.measures[j].measureOptionIndex];
+        }
       }
       return totalWeight;
     };
@@ -202,10 +203,11 @@ angular.module('abacuApp')
         var curPart = curWheelchair.parts[i];
         totalPrice += curPart.price;
       }
-      for (var i = 0; i < curWheelchair.measures.length; i++) {
-        var curMeas = getMeasureData(curWheelchair.measures[i].measureID);
-        if (curWheelchair.measures[i].measureOptionIndex != -1)
-          totalPrice += curMeas.prices[curWheelchair.measures[i].measureOptionIndex];
+      for (var j = 0; j < curWheelchair.measures.length; j++) {
+        var curMeas = getMeasureData(curWheelchair.measures[j].measureID);
+        if (curWheelchair.measures[j].measureOptionIndex !== -1) {
+          totalPrice += curMeas.prices[curWheelchair.measures[j].measureOptionIndex];
+        }
       }
       return totalPrice;
     };
@@ -214,11 +216,11 @@ angular.module('abacuApp')
 
     $scope.unitSysList = [
       {
-        name: "Metric",
+        name: 'Metric',
         enumVal: $scope.unitSys.METRIC
       },
       {
-        name: "Imperial",
+        name: 'Imperial',
         enumVal: $scope.unitSys.IMPERIAL
       }];
 
@@ -231,7 +233,7 @@ angular.module('abacuApp')
           return 'kg';
         default:
           return 'weight units';
-      };
+      }
     };
 
     //Returns the factor used to convert from lbs to given weight unit
@@ -243,7 +245,7 @@ angular.module('abacuApp')
           return 0.453592;
         default:
           return 1;
-      };
+      }
     };
 
     /*******************Wheelchair Preview & Rotation***********************/
@@ -432,13 +434,13 @@ angular.module('abacuApp')
       }
     }
 
-    $scope.getColorByID = function(colorID, curOption) {
+    $scope.getColorByID = function (colorID, curOption) {
       for (var i = 0; i < curOption.colors.length; i++) {
         if (curOption.colors[i].colorID === colorID) {
           return curOption.colors[i];
         }
       }
-    }
+    };
 
     /****************Measure Carousel****************/
     $scope.selectedMeasureImageIndex = 0;
@@ -640,8 +642,8 @@ angular.module('abacuApp')
       var r = window.confirm('Add to cart?');
       if (r === true) {
 
-        var wTitle = prompt("Design Name:", "My Wheelchair");
-        if (wTitle == null) wTitle = "My Wheelchair";
+        var wTitle = prompt('Design Name:', 'My Wheelchair');
+        if (wTitle == null) wTitle = 'My Wheelchair';
         curWheelchair.title = wTitle;
         //TODO: Prompt for saving design to database (if logged in)
 

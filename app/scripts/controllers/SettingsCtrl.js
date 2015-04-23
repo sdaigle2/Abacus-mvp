@@ -69,9 +69,9 @@ angular.module('abacuApp')
       contentSection = newContentSection;
     };
 
-    $scope.resetContentSection = function() {
+    $scope.resetContentSection = function () {
       contentSection = $scope.ContentSection.ACCOUNT;
-    }
+    };
 
     /***************** MEASUREMENT HELP SWITCHING *****************************/
     $scope.getMeasurementType = function () {
@@ -79,8 +79,9 @@ angular.module('abacuApp')
     };
 
     $scope.setMeasurementType = function (newMeasureType) {
-      if (curMeasureType === newMeasureType)
+      if (curMeasureType === newMeasureType) {
         curMeasureType = '';
+      }
       else {
         curMeasureType = newMeasureType;
         $scope.imgIndex = 0;
@@ -88,30 +89,30 @@ angular.module('abacuApp')
     };
 
     $scope.resetMeasurementType = function () {
-      curMeasureType = "";
-    }
+      curMeasureType = '';
+    };
 
     /***************** MY ACCOUNT *********************************************/
 
     //Model for the 'My Account' inputs
     $scope.accountModel = {
-      fName: "",
-      lName: "",
-      email: "",
-      addr: "",
-      addr2: "",
-      city: "",
-      state: "",
-      zip: "",
-      newPass1: "",
-      newPass2: ""
+      fName: '',
+      lName: '',
+      email: '',
+      addr: '',
+      addr2: '',
+      city: '',
+      state: '',
+      zip: '',
+      newPass1: '',
+      newPass2: ''
     };
 
     /***************** MY ORDERS **********************************************/
 
     //Array of orders
     $scope.orders = [{
-      orderNum: "0000",
+      orderNum: '0000',
       datePlaced: new Date(2015, 1, 15, 7, 30, 0, 0),
       cart: {
         //Various cart fields
@@ -119,7 +120,7 @@ angular.module('abacuApp')
       }
     },
     {
-      orderNum: "0001",
+      orderNum: '0001',
       datePlaced: new Date(2015, 1, 15, 8, 15, 0, 0),
       cart: {
         //Various cart fields
@@ -136,43 +137,43 @@ angular.module('abacuApp')
     //Options for each measure - Can be called using $scope.measOptions['rearSeatHeight'] to take advantage of enum
     $scope.measDisplay = {
       rearSeatHeight: {
-        name: "Rear Seat Height",
-        options: ["1", "2", "3"],
+        name: 'Rear Seat Height',
+        options: ['1', '2', '3'],
         optionSelected: null,
-        desc: "Distance from the ground up to back corner of your seat",
-        imgURLs: ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+        desc: 'Distance from the ground up to back corner of your seat',
+        imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
       },
       rearSeatWidth: {
-        name: "Rear Seat Width",
-        options: ["A", "B", "C"],
+        name: 'Rear Seat Width',
+        options: ['A', 'B', 'C'],
         optionSelected: null,
-        desc: "The distance between armrests at the back of the seat",
-        imgURLs: ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+        desc: 'The distance between armrests at the back of the seat',
+        imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
       },
       foldingBackrestHeight: {
-        name: "Folding Backrest Height",
-        options: ["Do", "Re", "Mi"],
+        name: 'Folding Backrest Height',
+        options: ['Do', 'Re', 'Mi'],
         optionSelected: null,
-        desc: "Distance from the seat to the top of the backrest",
-        imgURLs: ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+        desc: 'Distance from the seat to the top of the backrest',
+        imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
       },
       axelPosition: {
-        name: "Axel Position",
-        options: ["Uno", "Dos", "Tres"],
+        name: 'Axel Position',
+        options: ['Uno', 'Dos', 'Tres'],
         optionSelected: null,
-        desc: "The position of the axel",
-        imgURLs: ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+        desc: 'The position of the axel',
+        imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
       },
       seatDepth: {
-        name: "Seat Depth",
-        options: ["I", "II", "III"],
+        name: 'Seat Depth',
+        options: ['I', 'II', 'III'],
         optionSelected: null,
-        desc: "Distance from the back of the seat to the front",
-        imgURLs: ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+        desc: 'Distance from the back of the seat to the front',
+        imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
       }
     };
