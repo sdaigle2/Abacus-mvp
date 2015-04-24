@@ -11,7 +11,7 @@
  */
 angular.module('abacuApp')
   .factory('orderFactory', ['$http', 'userService', function ($http,userService){
-   userService.all()
+    userService.all()
     .success(function(data){
       var user = data;
       console.log(JSON.stringify(data ));

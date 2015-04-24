@@ -4,8 +4,8 @@ angular.module('abacuApp')
   .factory('Frame', [function () {
 
     //##########################  Constructor  #########################
-    function Frame ( id ) {
-      this.id = id;
+    function Frame ( _id ) {
+      var id = _id;
       this.manufacturer;
       this.name;
       this.desc;
@@ -25,7 +25,7 @@ angular.module('abacuApp')
             var frameData = data;
 
             for (var frameIndex = 0; frameIndex < frameData.length; frameIndex++) {
-              if (frameData[frameIndex].frameID === this.id) {
+              if (frameData[frameIndex].frameID === id) {
                 this.manufacturer = frameData[frameIndex]["manufacturer"];
                 this.name = frameData[frameIndex]["name"];
                 this.desc = frameData[frameIndex]["desc"];
@@ -34,7 +34,7 @@ angular.module('abacuApp')
                 this.imageURL = frameData[frameIndex]["imageURL"];
                 this.parts = [];
 
-                for (var partIndex=0; partIndex < frameData[i]["parts"].length; partIndex++) {
+                for (var partIndex=0; partIndex < frameData[frameIndex]["parts"].length; partIndex++) {
                   var partID = frameData[frameIndex]["parts"][partIndex]["id"];
                   this.parts[partIndex] = new Part(partID);
 
