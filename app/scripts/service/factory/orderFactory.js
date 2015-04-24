@@ -10,7 +10,17 @@
  * Service of the abacuApp
  */
 angular.module('abacuApp')
-  .factory('orderFactory', ['$http', function ($http){
+  .factory('orderFactory', ['$http', 'userService', function ($http,userService){
+   userService.all()
+    .success(function(data){
+      var user = data;
+      console.log(JSON.stringify(data ));
+    })
+    .error(function(data) {
+      console.log("Request failed: " + data);
+    });
+
+
     return{
       all: function(){
         return $http({method:"GET", url:"data/orderData.json"});

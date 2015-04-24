@@ -10,7 +10,7 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('OrderCtrl',  function ($scope, $location,orderFactory) {
+  .controller('OrderCtrl',  function ($scope, $location,orderFactory,userService) {
 
     /*************************** CONTROL VARIABLES *************************/
     $scope.stages = {
@@ -51,6 +51,16 @@ angular.module('abacuApp')
       .error(function(data) {
       console.log("Request failed: " + data);
       });
+
+    $scope.user = userService.all()
+      .success(function(data){
+        $scope.user = data;
+        console.log(JSON.stringify(data ));
+      })
+      .error(function(data) {
+          console.log("Request failed: " + data);
+      });
+
 
 
 

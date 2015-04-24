@@ -1,17 +1,5 @@
 {
-  "contactForm": {
-    "fName": "",
-    "lName": "",
-    "email": "",
-    "phone": ""
-  },
-  "shippingForm": {
-    "addr": "",
-    "addr2": "",
-    "city": "",
-    "state": "",
-    "zip": ""
-  },
+  "orderNumber": 0,
   "paymentMethods": {
     "PAYPAL": "PAYPAL",
     "ADVANCE": "advence"
