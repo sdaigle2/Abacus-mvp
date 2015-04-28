@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Weight Capacity",
+    "desc": "Description goes here",
+    "details": "Details go here",
+    "tip": "Tip Goes here",
+    "measureID": 45,
+    "units": ["kg","lbs"],
+    "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+    "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
+    "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
+  },
+  {
+    "name": "Seat Width",
+    "desc": "Description goes here",
+    "details": "Details go here",
+    "tip": "Tip Goes here",
+    "measureID": 46,
+    "units": ["cm","inches"],
+    "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+    "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
+    "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
+  },
+  {
+    "name": "Caster Size",
+    "desc": "Description goes here",
+    "details": "Details go here",
+    "tip": "Tip Goes here",
+    "measureID": 47,
+    "units": ["cm","inches"],
+    "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+    "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
+    "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
+  },
+  {
+    "name": "Rear Wheel Size",
+    "desc": "Description goes here",
+    "details": "Details go here",
+    "tip": "Tip Goes here",
+    "measureID": 48,
+    "units": ["cm", "inches"],
+    "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+    "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
+    "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
+
+  },
+  {
+    "name": "Back Rest Height (cm)",
+    "desc": "Description goes here",
+    "details": "Details go here",
+    "tip": "Tip Goes here",
+    "measureID": 49,
+    "units": ["cm","inches"],
+    "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+    "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
+    "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
+  },
+  {
+    "name": "Seat Depth - Adjustable (cm)",
+    "desc": "Description goes here",
+    "details": "Details go here",
+    "tip": "Tip Goes here",
+    "measureID": 50,
+    "units": ["cm","inches"],
+    "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+    "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
+    "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
+  },
+  {
+    "name": "Foot Rest Height - Adjustable (cm)",
+    "desc": "Description goes here",
+    "details": "Details go here",
+    "tip": "Tip Goes here",
+    "measureID": 51,
+    "units": ["cm","inches"],
+    "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+    "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
+    "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
+  },
+  {
+    "name": "Side Guard Height",
+    "desc": "Description goes here",
+    "details": "Details go here",
+    "tip": "Tip Goes here",
+    "measureID": 52,
+    "units": ["cm","inches"],
+    "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+    "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
+    "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
+  },
+  {
+    "name": "Side Guard Length",
+    "desc": "Description goes here",
+    "details": "Details go here",
+    "tip": "Tip Goes here",
+    "measureID": 53,
+    "units": ["cm","inches"],
+    "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+    "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
+    "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
+  }
+]

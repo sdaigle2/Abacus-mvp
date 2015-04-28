@@ -9,73 +9,65 @@
   "parts": [
     {
       "name": "Frame Style",
-      "partID": 1,
+      "partID": 2,
       "numSubImages": 1,
       "zRank": [[10,7,6,7,10]],
-      "defaultOptionID": 2,
+      "defaultOptionID": 3,
       "options": [
         {
-          "name": "Titanium - Unpainted",
-          "optionID": 1,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "Titanium is a strong, beautiful material for a wheelchair frame",
-          "weight": 0,
+          "optionID": 3,
           "price": 0,
           "defaultColorID": 0,
 					"colors": []
         },
         {
-          "name": "Magnesium - Painted",
-          "optionID": 2,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "Magnesium is even lighter than Titanium, and it can be painted to any color you want!",
-          "weight": -0.1,
+          "optionID": 4,
           "price": 100,
-          "defaultColorID": 4,
+          "defaultColorID": 5,
           "colors": [
             {
               "name": "Black",
-              "colorID": 2,
+              "colorID": 5,
               "hex": "#000000"
             },
             {
               "name": "Gun Metal Gray",
-              "colorID": 3,
+              "colorID": 6,
               "hex": "#404040"
             },
             {
               "name": "White",
-              "colorID": 4,
+              "colorID": 7,
               "hex": "#FFFFFF"
             },
             {
               "name": "Blue",
-              "colorID": 5,
+              "colorID": 8,
               "hex": "#1900FF"
             },
             {
               "name": "Red",
-              "colorID": 6,
+              "colorID": 9,
               "hex": "#FF0000"
             },
             {
               "name": "Yellow",
-              "colorID": 7,
+              "colorID": 10,
               "hex": "#FFFB00"
             },
             {
               "name": "Purple",
-              "colorID": 8,
+              "colorID": 11,
               "hex": "#D400FF"
             },
             {
               "name": "Pink",
-              "colorID": 9,
+              "colorID": 12,
               "hex": "#FF00D9"
             },
             {
               "name": "Other (specify)",
-              "colorID": 10,
+              "colorID": 13,
               "hex": "#858585"
             }
           ]
@@ -84,33 +76,29 @@
     },
     {
       "name": "Accent Color",
-      "partID": 2,
+      "partID": 14,
       "numSubImages": 1,
       "zRank": [[9,6,5,6,9]],
-      "defaultOptionID": 1,
+      "defaultOptionID": 15,
       "options": [
         {
-          "name": "Anodized Aluminum Brackets",
-          "optionID": 1,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "These brackets hold the camber tube to the frame.",
-          "weight": 0,
+          "optionID": 15,
           "price": 0,
-          "defaultColorID": 2,
+          "defaultColorID": 16,
           "colors": [
             {
               "name": "Black - Anodized",
-              "colorID": 1,
+              "colorID": 16,
               "hex": "#000000"
             },
             {
               "name": "Red - Anodized",
-              "colorID": 2,
+              "colorID": 17,
               "hex": "#FF0000"
             },
             {
               "name": "Yellow - Anodized",
-              "colorID": 3,
+              "colorID": 18,
               "hex": "#FFFB00"
             }
           ]
@@ -119,37 +107,25 @@
     },
     {
       "name": "Back Rest",
-      "partID": 3,
+      "partID": 19,
       "numSubImages": 1,
       "zRank": [[11,8,7,8,11]],
-      "defaultOptionID": 1,
+      "defaultOptionID": 20,
       "options": [
         {
-          "name": "Carbon Fiber",
-          "optionID": 1,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "A super light and stiff backrest.",
-          "weight": 0,
+          "optionID": 20,
           "price": 0,
           "defaultColorID": 0,
 					"colors": []
         },
         {
-          "name": "Plastic",
-          "optionID": 2,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "Nothing beats the simplicity and ease of maintenance of a plastic seat back.",
-          "weight": 0.1,
+          "optionID": 21,
           "price": 0,
           "defaultColorID": 0,
 					"colors": []
         },
         {
-          "name": "Upholstery",
-          "optionID": 3,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "A clasic fabric sling is the lightest option.",
-          "weight": -0.07,
+          "optionID": 22,
           "price": 0,
           "defaultColorID": 0,
 					"colors": []
@@ -158,28 +134,24 @@
     },
     {
       "name": "Wheel Rim",
-      "partID": 4,
+      "partID": 23,
       "numSubImages": 2,
       "zRank": [[5,2,2,5,6],[6,9,9,9,5]],
-      "defaultOptionID": 1,
+      "defaultOptionID": 24,
       "options": [
         {
-          "name": "DT Swiss Wheel Rim",
-          "optionID": 1,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "The DT Swiss Wheel Rim is the lightest and most stiff option out there.",
-          "defaultColorID": 2,
-          "weight": 0,
+          "optionID": 24,
+          "defaultColorID": 25,
           "price": 0,
           "colors": [
             {
               "name": "Black",
-              "colorID": 1,
+              "colorID": 25,
               "hex": "#000000"
             },
             {
               "name": "White",
-              "colorID": 2,
+              "colorID": 26,
               "hex": "#FFFFFF"
             }
           ]
@@ -188,37 +160,25 @@
     },
     {
       "name": "Hand Rims",
-      "partID": 5,
+      "partID": 27,
       "numSubImages": 2,
       "zRank": [[1,1,1,3,4],[2,13,11,11,3]],
-      "defaultOptionID": 1,
+      "defaultOptionID": 28,
       "options": [
         {
-          "name": "Titanium",
-          "optionID": 1,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "Titanium is strong and light, but easily dented",
-          "weight": 0,
+          "optionID": 28,
           "price": 0,
           "defaultColorID": 0,
 					"colors": []
         },
         {
-          "name": "Black Anodized Aluminum",
-          "optionID": 2,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "The aluminum hand rim is more dent resistant and slightly heavier.",
-          "weight": 0.1,
+          "optionID": 29,
           "price": 0,
           "defaultColorID": 0,
 					"colors": []
         },
         {
-          "name": "Q-Grip from Out-front",
-          "optionID": 3,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "The Q-Grip hand rim is great for those with low hand dexterity",
-          "weight": 0.2,
+          "optionID": 30,
           "price": 300,
           "defaultColorID": 0,
 					"colors": []
@@ -227,49 +187,41 @@
     },
     {
       "name": "Tire",
-      "partID": 6,
+      "partID": 31,
       "numSubImages": 2,
       "zRank": [[3,3,3,4,8],[4,10,10,10,7]],
-      "defaultOptionID": 1,
+      "defaultOptionID": 32,
       "options": [
         {
-          "name": "Rightrun",
-          "optionID": 1,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "Rightrun tires offer style and lightness.",
-          "defaultColorID": 4,
-          "weight": 0.09,
+          "optionID": 32,
+          "defaultColorID": 33,
           "price": 0,
           "colors": [
             {
               "name": "Gray",
-              "colorID": 1,
+              "colorID": 33,
               "hex": "#404040"
 
             },
             {
               "name": "Blue",
-              "colorID": 2,
+              "colorID": 34,
               "hex": "#1900FF"
             },
             {
               "name": "Yellow",
-              "colorID": 3,
+              "colorID": 35,
               "hex": "#FFFB00"
             },
             {
               "name": "Red",
-              "colorID": 4,
+              "colorID": 36,
               "hex": "#FF0000"
             }
           ]
         },
         {
-          "name": "Schwalbe Low Tread",
-          "optionID": 2,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "Schwalbe makes an excelent tire",
-          "weight": 0,
+          "optionID": 33,
           "price": 0,
           "defaultColorID": 0,
 					"colors": []
@@ -278,26 +230,18 @@
     },
     {
       "name": "Inner Tube",
-      "partID": 7,
+      "partID": 34,
       "numSubImages": 0,
-      "defaultOptionID": 1,
+      "defaultOptionID": 35,
       "options": [
         {
-          "name": "Extra light",
-          "optionID": 1,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "The lightest weight innertube around!",
-          "weight": 0,
+          "optionID": 36,
           "price": 0,
           "defaultColorID": 0,
 					"colors": []
         },
         {
-          "name": "Standard",
-          "optionID": 2,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "The standard tire is more puncture resistant, but slightly heavier",
-          "weight": 0.033,
+          "optionID": 37,
           "price": 0,
           "defaultColorID": 0,
 					"colors": []
@@ -306,27 +250,19 @@
     },
     {
       "name": "Caster Style",
-      "partID": 8,
+      "partID": 38,
       "numSubImages": 2,
       "zRank": [[7,4,4,1,2],[8,5,8,2,1]],
-      "defaultOptionID": 1,
+      "defaultOptionID": 39,
       "options": [
         {
-          "name": "Aluminum",
-          "optionID": 1,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "Standard monofork caster",
-          "weight": 0,
+          "optionID": 39,
           "price": 0,
           "defaultColorID": 0,
 					"colors": []
         },
         {
-          "name": "Softroller",
-          "optionID": 2,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "The Softroller offers some bounce to your ride.",
-          "weight": 0,
+          "optionID": 40,
           "price": 0,
           "defaultColorID": 0,
 					"colors": []
@@ -335,33 +271,25 @@
     },
     {
       "name": "Brakes (No Images for Now)",
-      "partID": 9,
+      "partID": 41,
       "numSubImages": 0,
-      "defaultOptionID": 1,
+      "defaultOptionID": 42,
       "options": [
         {
-          "name": "Out-Front Brakes",
-          "optionID": 1,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "Tried and true standard brakes",
-          "weight": 0.1,
+          "optionID": 42,
           "price": 50,
           "defaultColorID": 0,
 					"colors": []
         },
         {
-          "name": "Single Hand Operating Brakes",
-          "optionID": 2,
-          "thumbnailURL": "images/d_panel_1.png",
-          "desc": "Compact, reliable, and opperable with just one hand.",
-          "weight": 0,
+          "optionID": 43,
           "price": 0,
           "defaultColorID": 0,
 					"colors": []
         },
         {
           "name": "No Brakes",
-          "optionID": 3,
+          "optionID": 44,
           "thumbnailURL": "images/d_panel_1.png",
           "desc": "Cutting weight? Live life on the edge with no wheel locksÖ you rebel you.",
           "weight": -0.2,
@@ -374,127 +302,51 @@
   ],
   "measures": [
     {
-      "name": "Weight Capacity",
-      "desc": "Description goes here",
-      "details": "Details go here",
-      "tip": "Tip Goes here",
-      "measureID": 1,
-      "units": ["kg","lbs"],
-      "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-      "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
-      "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
       "measureOptions": [["<70", "71-95", "96-115"],["<150", "150-210", "210-250"]],
       "weights": [-0.1, 0, 0.1],
       "prices": [-0.1, 0, 0.1]
     },
     {
-      "name": "Seat Width",
-      "desc": "Description goes here",
-      "details": "Details go here",
-      "tip": "Tip Goes here",
-      "measureID": 2,
-      "units": ["cm","inches"],
-      "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-      "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
-      "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+
       "measureOptions": [["35", "37", "39", "41"],["13.8", "14.6", "15.4", "16.1"]],
       "weights": [0, 0.1, 0.2, 0.3],
       "prices": [0, 0.1, 0.2, 0.3]
     },
     {
-      "name": "Caster Size",
-      "desc": "Description goes here",
-      "details": "Details go here",
-      "tip": "Tip Goes here",
-      "measureID": 3,
-      "units": ["cm","inches"],
-      "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-      "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
-      "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+
       "measureOptions": [["10.16", "12.7"],["4", "5"]],
       "weights": [0, 0.2],
       "prices": [0, 0.2]
     },
     {
-      "name": "Rear Wheel Size",
-      "desc": "Description goes here",
-      "details": "Details go here",
-      "tip": "Tip Goes here",
-      "measureID": 4,
-      "units": ["cm", "inches"],
-      "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-      "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
-      "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+
       "measureOptions": [["24", "25" , "26" ],["24", "25", "26"]],
       "weights": [-0.06, 0, 0.06],
       "prices": [-0.06, 0, 0.06]
     },
     {
-      "name": "Back Rest Height (cm)",
-      "desc": "Description goes here",
-      "details": "Details go here",
-      "tip": "Tip Goes here",
-      "measureID": 5,
-      "units": ["cm","inches"],
-      "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-      "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
-      "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
       "measureOptions": [["24", "26", "28", "30", "32", "34"],["9.4", "10.2", "11", "11.8", "12.6", "13.4"]],
       "weights": [-0.1, -0.05, 0, 0.05, 0.1, 0.15],
       "prices": [-0.1, -0.05, 0, 0.05, 0.1, 0.15]
     },
     {
-      "name": "Seat Depth - Adjustable (cm)",
-      "desc": "Description goes here",
-      "details": "Details go here",
-      "tip": "Tip Goes here",
-      "measureID": 6,
-      "units": ["cm","inches"],
-      "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-      "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
-      "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+
       "measureOptions": [["40", "41", "42", "43", "44"],["15.7", "16.1", "16.5", "16.9", "17.3"]],
       "weights": [-0.1, -0.05, 0, 0.05, 0.1],
       "prices": [-0.1, -0.05, 0, 0.05, 0.1]
     },
     {
-      "name": "Foot Rest Height - Adjustable (cm)",
-      "desc": "Description goes here",
-      "details": "Details go here",
-      "tip": "Tip Goes here",
-      "measureID": 7,
-      "units": ["cm","inches"],
-      "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-      "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
-      "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+
       "measureOptions": [["5", "7", "9", "11", "13"],["2", "2.8", "3.5", "4.3", "5.1"]],
       "weights": [-0.1, -0.05, 0, 0.05, 0.1],
       "prices": [-0.1, -0.05, 0, 0.05, 0.1]
     },
     {
-      "name": "Side Guard Height",
-      "desc": "Description goes here",
-      "details": "Details go here",
-      "tip": "Tip Goes here",
-      "measureID": 8,
-      "units": ["cm","inches"],
-      "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-      "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
-      "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
       "measureOptions": [["-6", "-4", "-2", "0", "2", "4", "6"],["-2.4", "-1.6", "-0.8", "0", "0.8", "1.6", "2.4"]],
       "weights": [-0.15, -0.1, -0.05, 0, 0.05, 0.1, 0.15],
       "prices": [-0.15, -0.1, -0.05, 0, 0.05, 0.1, 0.15]
     },
     {
-      "name": "Side Guard Length",
-      "desc": "Description goes here",
-      "details": "Details go here",
-      "tip": "Tip Goes here",
-      "measureID": 9,
-      "units": ["cm","inches"],
-      "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-      "imageURLs": ["rear-seat-height1.jpg", "rear-seat-height2.jpg", "rear-seat-height3.jpg"],
-      "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
       "measureOptions": [["-6", "-4", "-2", "0", "2", "4", "6"],["-2.4", "-1.6", "-0.8", "0", "0.8", "1.6", "2.4"]],
       "weights": [-0.15, -0.1, -0.05, 0, 0.05, 0.1, 0.15],
       "prices": [-0.15, -0.1, -0.05, 0, 0.05, 0.1, 0.15]
