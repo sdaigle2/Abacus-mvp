@@ -1,56 +1,34 @@
+'use strict';
+
 angular.module('abacuApp')
-  .factory('part', ['$http', 'option', function ($http, option) {
+  .factory('Part', ['Option', function (Option) {
 
     //##########################  Constructor  #########################
-    function part(_id) {
-      this.id = _id;
-      this.name;
-      this.numSubImages;
-      this.zRank = [[]];
-      this.defaultOptionID;
+    function Part(partData) {
+
+      this.partID          = partData.partID;
+      this.name            = partData.name;
+      this.numSubImages    = partData.numSubImages;
+      this.zRank           = partData.zRank;
+      this.defaultOptionID = partData.defaultOptionID;
+
       this.options = [];
 
-    }
+      for (var i = 0; i < partData.options.length; i++)
+        this.options.push(new Option(partData.options[i]));
+
+    };
 
 
     /************instance functions**************/
 
-    part.prototype = {
-      load: function(){
-        http.get('/data/partData.json')
-          .success(function(data){
-            var partData = data;
-            for(var partIndex = 0 ; partIndex < partData.length; partIndex++){
-              if(parData.partID = id){
-                this.name = partData[partIndex].name;
-                this.numSubImages = partData[partIndex].numSubImages;
-                this.zRank = partData[partIndex].zRank;
-                this.defaultOptionID = partData[partIndex].defaultOptionID;
-                this.options = [];
+    Part.prototype = {
 
-                for (var optionIndex = 0; optionIndex < partData[partIndex]; optionIndex++){
-                  var optionID = partData[partIndex].optionIndex.id;
-                  this.option[optionIndex] = new option(optionID);
-                }
-              }
-            }
-          })
-          .error(function(data){
-            console.log(data + "option request failed")
-          });
-      },
+    };
 
 
-      getOptionData: function(id){
-        for (var j = 0; j < this.options.length; j++) {
-          if (this.options[j].optionID === id) {
-            return this.option[j];
-          }
-        }
-        return null;
-      },
 
 
-    }
-
+    //Don't touch this
+    return (Part);
   }]);

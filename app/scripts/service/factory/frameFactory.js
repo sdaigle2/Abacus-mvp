@@ -1,90 +1,35 @@
 'use strict';
 
 angular.module('abacuApp')
-  .factory('Frame', [function () {
+  .factory('Frame', ['Part', 'Measure', function (Part, Measure) {
 
     //##########################  Constructor  #########################
-    function Frame ( _id ) {
-      var id = _id;
-      this.manufacturer;
-      this.name;
-      this.desc;
-      this.basePrice;
-      this.baseWeight;
-      this.imageURL;
-      this.parts;
-    }
+    function Frame(frameData) {
+
+      this.frameID      = frameData.frameID;
+      this.manufacturer = frameData.manufacturer;
+      this.name         = frameData.name;
+      this.desc         = frameData.desc;
+      this.basePrice    = frameData.basePrice;
+      this.baseWeight   = frameData.baseWeight;
+      this.imageURL     = frameData.imageURL;
+
+      this.parts = [];
+      this.measures = [];
+
+      for (var i = 0; i < frameData.parts.length; i++)
+        this.parts.push(new Part(frameData.parts[i]));
+
+      for (var i = 0; i < frameData.measures.length; i++)
+        this.measures.push(new Measure(frameData.measures[i]));
+    };
 
     //#######################  Instance methods  ##########################
     Frame.prototype = {
 
-      // load from database
-      load : function () {
-        $http.get('/data/frameData.json').
-          success(function(data) {
-            var frameData = data;
-
-            for (var frameIndex = 0; frameIndex < frameData.length; frameIndex++) {
-              if (frameData[frameIndex].frameID === id) {
-                this.manufacturer = frameData[frameIndex]["manufacturer"];
-                this.name = frameData[frameIndex]["name"];
-                this.desc = frameData[frameIndex]["desc"];
-                this.basePrice = frameData[frameIndex]["basePrice"];
-                this.baseWeight = frameData[frameIndex]["baseWeight"];
-                this.imageURL = frameData[frameIndex]["imageURL"];
-                this.parts = [];
-
-                for (var partIndex=0; partIndex < frameData[frameIndex]["parts"].length; partIndex++) {
-                  var partID = frameData[frameIndex]["parts"][partIndex]["id"];
-                  this.parts[partIndex] = new Part(partID);
-
-                }
-
-              }
-            }
-
-          }).
-          error(function() {
-            throw "Error Loading Frame from Database";
-          });
-      },
-
-
-      // save to database
-      save : function () {
-
-
-
-      },
-
-
-
-
-      //Calculate Total Weight
-      getTotalWeight: function () {
-        //TODO: Replace function once FrameData Service created
-        return 0;
-      },
-
-      //Calculate total Price
-      getTotalPrice: function () {
-        //TODO: Replace function once FrameData Service created
-        return 0;
-      },
-
-      //Returns true if all measurements have a selected option
-      allMeasuresSet: function () {
-        for (var i = 0; i < this.measures.length; i++) {
-          if (this.measures[i].measureOptionIndex === -1) {
-            return false;
-          }
-        }
-        return true;
+      getFrameID: function () {
+        return this.frameID;
       }
-
-      //TODO: Get/Sets
-
-      //TODO: Image generation
 
     };
 
@@ -94,18 +39,8 @@ angular.module('abacuApp')
 
 
     //Don't touch this
-    return (Wheelchair);
+    return (Frame);
   }]);
 
 
-
-/*
- curWheelchair = {
- frameID
- parts[] = {partID, optionID, colorID}
- measures[] = {measureID, measureOptionIndex}
- }
-
-
- */
 

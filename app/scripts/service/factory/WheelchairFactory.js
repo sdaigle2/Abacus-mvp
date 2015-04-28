@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 angular.module('abacuApp')
-  .factory('Wheelchair', [function () {
+  .factory('Wheelchair', ['FrameData', function (FrameData) {
 
     //##########################  Constructor  #########################
     function Wheelchair ( frameID ) {
