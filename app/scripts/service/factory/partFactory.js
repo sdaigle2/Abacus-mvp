@@ -24,6 +24,44 @@ angular.module('abacuApp')
 
     Part.prototype = {
 
+      getID: function () { return this.partID; },
+      getName: function () { return this.name; },
+      getNumSubImages: function () { return this.numSubImages; },
+      getZRank: function () { return this.zRank; },
+      getDefaultOptionID: function () { return this.defaultOptionID; },
+      getOptions: function () { return this.options; },
+      getNumOptions: function () { return this.options.length; },
+
+      getOption: function (opID) {
+        for (var i = 0; i < this.options.length; i++)
+          if (this.options[i].getID() === opID)
+            return this.options[i];
+        return null;
+      },
+
+      getOptionByIndex: function (index) {
+        if (index >= 0 && index < this.options.length)
+          return this.options[index];
+        return null;
+      },
+
+      getOptionByName: function (oName) {
+        for (var i = 0; i < this.options.length; i++)
+          if (this.options[i].getName() === oName)
+            return this.options[i];
+        return null;
+      },
+
+      getDefaultOption: function () {
+        return this.getOption(this.defaultOptionID); //TODO: does this work? If not - how can we do this?
+      },
+
+      getZRankForAngle: function (angle) {
+        if (angle >= 0 && angle < zRank.length)
+          return this.zRank[angle];
+        return 0;
+      }
+
     };
 
 

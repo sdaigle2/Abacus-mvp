@@ -9,7 +9,27 @@ angular.module('abacuApp')
       this.optionID = optionData.optionID;
       this.price = optionData.price;
 
-      //TODO: load remaining option data from optionData.json using optionID
+      this.name = '';
+      this.thumbnailURL = '';
+      this.desc = '';
+      this.weight = 0;
+
+      $.getJSON('data/optionData.json')
+        .done(function (json) {
+          for (var i = 0; i < json.length; i++) {
+            var curOp = json[i];
+            if (curOp.optionID === this.optionID) {
+              this.name = curOp.name;
+              this.thumbnailURL = curOp.thumbnailURL;
+              this.desc = curOp.desc;
+              this.weight = curOp.weight;
+            }
+          }
+        })
+        .fail(function (jqxhr, textStatus, error) {
+          var err = textStatus + ', ' + error;
+          console.log('Request Failed: ' + err);
+        });
 
       this.colors = [];
 
@@ -23,6 +43,33 @@ angular.module('abacuApp')
 
     Option.prototype = {
 
+      getID: function () { return this.optionID; },
+      getName: function () { return this.name; },
+      getPrice: function () { return this.price; },
+      getWeight: function () { return this.weight; },
+      getThumbnailURL: function () { return this.thumbnailURL; },
+      getColors: function () { return this.colors; },
+      getNumColors: function () { return this.colors.length; },
+
+      getColor: function (colID) {
+        for (var i = 0; i < this.colors.length; i++)
+          if (this.colors[i].getID() === colID)
+            return this.colors[i];
+        return null;
+      },
+
+      getColorByName: function (colName) {
+        for (var i = 0; i < this.colors.length; i++)
+          if (this.colors[i].getName() === colName)
+            return this.colors[i];
+        return null;
+      },
+
+      getColorByIndex: function (index) {
+        if (index >= 0 && index < this.colors.length)
+          return this.colors[i];
+        return null;
+      }
     };
 
 

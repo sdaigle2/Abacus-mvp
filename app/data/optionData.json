@@ -1,10 +1,10 @@
 [
   {
-  "name": "Titanium - Unpainted",
-  "optionID": 3,
-  "thumbnailURL": "images/d_panel_1.png",
-  "desc": "Titanium is a strong, beautiful material for a wheelchair frame",
-  "weight": 0
+		"name": "Titanium - Unpainted",
+		"optionID": 3,
+		"thumbnailURL": "images/d_panel_1.png",
+		"desc": "Titanium is a strong, beautiful material for a wheelchair frame",
+		"weight": 0
   },
   {
     "name": "Magnesium - Painted",
@@ -133,5 +133,4 @@
     "desc": "Cutting weight? Live life on the edge with no wheel locksÖ you rebel you.",
     "weight": -0.2
   }
-
 ]

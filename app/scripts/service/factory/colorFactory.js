@@ -17,17 +17,9 @@ angular.module('abacuApp')
 
     Color.prototype = {
 
-      getColorID: function () {
-        return this.colorID;
-      },
-
-      getName: function () {
-        return this.name;
-      },
-
-      getHexString: function () {
-        return this.hex;
-      },
+      getID: function () { return this.colorID; },
+      getName: function () { return this.name; },
+      getHexString: function () { return this.hex; },
 
       getHexValue: function () {
         return parseInt(this.hex.replace('#', '0x'));
