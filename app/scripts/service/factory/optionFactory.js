@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 angular.module('abacuApp')
-  .factory('Option', ['Color', function (Color) {
+  .factory('Option', ['Color', 'syncJSON', function (Color, syncJSON) {
 
     //##########################  Constructor  #########################
     function Option(optionData) {
@@ -14,22 +14,16 @@ angular.module('abacuApp')
       this.desc = '';
       this.weight = 0;
 
-      $.getJSON('data/optionData.json')
-        .done(function (json) {
-          for (var i = 0; i < json.length; i++) {
-            var curOp = json[i];
-            if (curOp.optionID === this.optionID) {
-              this.name = curOp.name;
-              this.thumbnailURL = curOp.thumbnailURL;
-              this.desc = curOp.desc;
-              this.weight = curOp.weight;
-            }
-          }
-        })
-        .fail(function (jqxhr, textStatus, error) {
-          var err = textStatus + ', ' + error;
-          console.log('Request Failed: ' + err);
-        });
+      var json = syncJSON.loadJSON('data/optionData.json')
+      for (var i = 0; i < json.length; i++) {
+        var curOp = json[i];
+        if (curOp.optionID === this.optionID) {
+          this.name = curOp.name;
+          this.thumbnailURL = curOp.thumbnailURL;
+          this.desc = curOp.desc;
+          this.weight = curOp.weight;
+        }
+      }
 
       this.colors = [];
 

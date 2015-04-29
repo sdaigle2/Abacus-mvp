@@ -10,63 +10,46 @@
  * Service of the abacuApp
  */
 angular.module('abacuApp')
-  .service('FrameData', ['Frame', function (Frame) {
+  .service('FrameData', ['Frame', 'syncJSON', function (Frame, syncJSON) {
 
-    //Initialize the frameData (pull from JSON)
-    function initializeFrames () {
-      $.getJSON('data/frameDataNew.json')
-        .done(function (json) {
-          var frameData = json;
-          var myFrames = [];
+    var frames = [];
+    var frameData = syncJSON.loadJSON('data/frameDataNew.json');
+    for (var i = 0; i < frameData.length; i++) {
+      frames.push(new Frame(frameData[i]));
+    }
 
-          for (var i = 0; i < frameData.length; i++) {
-            myFrames.push(new Frame(frameData[i]));
+    return {
+
+      getFrame: function (fID) {
+        for (var i = 0; i < frames.length; i++) {
+          var curFrame = frames[i];
+          if (curFrame.getID() === fID) {
+            return curFrame;
           }
-
-          alert("MyFrames: " + JSON.stringify(myFrames));
-
-          return myFrames;
-        })
-        .fail(function (jqxhr, textStatus, error) {
-          var err = textStatus + ', ' + error;
-          console.log('Request Failed: ' + err);
-          return null;
-        });
-    };
-
-    //An array of Frame objects
-    this.frames = initializeFrames();
-
-    //Get the Frame with the given ID
-    this.getFrame = function (fID) {
-      for (var i = 0; i < this.frames.length; i++) {
-        var curFrame = this.frames[i];
-        if (curFrame.getID() === fID) {
-          return curFrame;
         }
-      }
-      return null;
-    };
+        return null;
+      },
 
-    //Get the frame with the given name
-    this.getFrameByName = function (fName) {
-      for (var i = 0; i < this.frames.length; i++) {
-        var curFrame = this.frames[i];
-        if (curFrame.getName() === fName) {
-          return curFrame;
+      getFrameByName: function (fName) {
+        for (var i = 0; i < this.frames.length; i++) {
+          var curFrame = frames[i];
+          if (curFrame.getName() === fName) {
+            return curFrame;
+          }
         }
-      }
-      return null;
+        return null;
+      },
+
+      getFrameByIndex: function (index) {
+        if (index >= 0 && index < frames.length)
+          return frames[index];
+        return null;
+      },
+
+      getNumFrames: function () { return frames.length; }
+
     };
 
-    this.getFrameByIndex = function (index) {
-      if (index >= 0 && index < this.frames.length)
-        return this.frames[index];
-      return null;
-    };
-
-    //Get the number of frames currently being tracked
-    this.getNumFrames = function () { return this.frames.length; };
 
   }]);
 

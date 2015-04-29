@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 angular.module('abacuApp')
-  .factory('Measure', [function () {
+  .factory('Measure', ['syncJSON', function (syncJSON) {
 
     //##########################  Constructor  #########################
     function Measure(measureData) {
@@ -18,27 +18,21 @@ angular.module('abacuApp')
       this.imageURLs = [];
       this.gifURL = '';
 
-      $.getJSON('data/measureData.json')
-        .done(function (json) {
-          for (var i = 0; i < json.length; i++) {
-            var curMes = json[i];
-            if (curMes.measureID === this.measureID) {
-              this.name = curMes.name;
-              this.desc = curMes.desc;
-              this.details = curMes.details;
-              this.tip = curMes.tip;
-              this.units = curMes.units;
-              this.videoURL = curMes.videoURL;
-              this.imageURLs = curMes.imageURLs;
-              this.gifURL = curMes.gifURL;
-            }
-          }
-        })
-        .fail(function (jqxhr, textStatus, error) {
-          var err = textStatus + ', ' + error;
-          console.log('Request Failed: ' + err);
-        });
-
+      var json = syncJSON.loadJSON('data/measureData.json');
+      for (var i = 0; i < json.length; i++) {
+        var curMes = json[i];
+        if (curMes.measureID === this.measureID) {
+          this.name = curMes.name;
+          this.desc = curMes.desc;
+          this.details = curMes.details;
+          this.tip = curMes.tip;
+          this.units = curMes.units;
+          this.videoURL = curMes.videoURL;
+          this.imageURLs = curMes.imageURLs;
+          this.gifURL = curMes.gifURL;
+          break;
+        }
+      }
     };
 
 

@@ -8,14 +8,14 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('FrameCtrl', function ($scope, $location, FrameData) {
+  .controller('FrameCtrl', ['$scope', '$location', 'FrameData', function ($scope, $location, FrameData) {
 
     $scope.frames = dummyFramesData; //TODO: Replace with actual data
 
     $scope.selectFrame = function (frameID) {
       //TODO: Send user to abacus with chosen frame
 
-      alert("FrameData: " + JSON.stringify(FrameData)); //TEST
+      alert(JSON.stringify(FrameData.getFrame(1)));
 
       $location.path('abacus');
     };
@@ -24,7 +24,7 @@ angular.module('abacuApp')
       return (hoverItem === frameID);
     }
 
-  });
+  }]);
 
 
 
