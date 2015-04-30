@@ -8,6 +8,8 @@ angular.module('abacuApp')
 
       this.measureID = measureData.measureID;
       this.measureOptions = measureData.measureOptions;
+      this.weights = measureData.weights;
+      this.prices = measureData.prices;
 
       this.name = '';
       this.desc = '';
@@ -46,6 +48,8 @@ angular.module('abacuApp')
       getDesc: function () { return this.desc; },
       getDetails: function () { return this.details; },
       getTip: function () { return this.tip; },
+      getWeights: function () { return this.weights; },
+      getPrices: function () { return this.prices; },
       getUnits: function (system) { return this.units[system]; },
       getVideoURL: function () { return this.videoURL; },
       getGifURL: function () { return this.gifURL; },
@@ -58,6 +62,18 @@ angular.module('abacuApp')
           return this.measureOptions[index];
         }
         return '';
+      },
+
+      getWeight: function (index) {
+        if (index >= 0 && index < this.weights.length)
+          return this.weights[index];
+        return 0;
+      },
+
+      getPrice: function (index) {
+        if (index >= 0 && index < this.prices.length)
+          return this.prices[index];
+        return 0;
       }
 
     };

@@ -32,10 +32,29 @@ angular.module('abacuApp')
       getOptions: function () { return this.options; },
       getNumOptions: function () { return this.options.length; },
 
+      getOption: function (opID) {
+        for (var i = 0; i < this.options.length; i++)
+          if (this.options[i].getID() === opID)
+            return this.options[i];
+        return null;
+      },
+
+      getOptionByIndex: function (index) {
+        if (index >= 0 && index < this.options.length)
+          return this.options[index];
+        return null;
+      },
+
+      getOptionByName: function (oName) {
+        for (var i = 0; i < this.options.length; i++)
+          if (this.options[i].getName() === oName)
+            return this.options[i];
+        return null;
+      },
 
 
       getDefaultOption: function () {
-        return this.getOption(this.defaultOptionID); //TODO: does this work? If not - how can we do this?
+        return this.getOption(this.defaultOptionID);
       },
 
       getZRankForAngle: function (angle) {

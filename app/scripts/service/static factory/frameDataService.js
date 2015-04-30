@@ -20,6 +20,10 @@ angular.module('abacuApp')
 
     return {
 
+      getFrames: function () {
+        return frames;
+      },
+
       getFrame: function (fID) {
         for (var i = 0; i < frames.length; i++) {
           var curFrame = frames[i];

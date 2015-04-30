@@ -10,12 +10,25 @@
 angular.module('abacuApp')
   .controller('FrameCtrl', ['$scope', '$location', 'FrameData', function ($scope, $location, FrameData) {
 
-    $scope.frames = dummyFramesData; //TODO: Replace with actual data
+    $scope.frames = [];
+
+    function initialize() {
+      for (var i = 0; i < FrameData.getNumFrames(); i++) {
+        var f = FrameData.getFrameByIndex(i);
+        $scope.frames.push({
+          frameID: f.getID(),
+          manufacturer: f.getManufacturer(),
+          name: f.getName(),
+          desc: f.getDesc(),
+          basePrice: f.getBasePrice(),
+          baseWeight: f.getBaseWeight(),
+          imageURL: f.getImageURL()
+        });
+      }
+    };
 
     $scope.selectFrame = function (frameID) {
       //TODO: Send user to abacus with chosen frame
-
-      alert(JSON.stringify(FrameData.getFrame(1)));
 
       $location.path('abacus');
     };
@@ -24,12 +37,14 @@ angular.module('abacuApp')
       return (hoverItem === frameID);
     }
 
+    initialize();
+
   }]);
 
 
 
 
-var dummyFramesData = [
+/*var dummyFramesData = [
   {
     frameID: 1,
     manufacturer: "Ti Arrow",
@@ -48,4 +63,4 @@ var dummyFramesData = [
     baseWeight: 30,
     imageURL: "images/frame_page_img/frame2_frame_page.png"
   }
-];
+];*/

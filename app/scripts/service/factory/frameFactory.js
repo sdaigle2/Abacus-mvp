@@ -81,15 +81,15 @@ angular.module('abacuApp')
 
       //Silly extra functions
       getPartOption: function (partID, optionID) {
-        return this.getPart(partID).getOption(optionID); //TODO: Does this work?
+        return this.getPart(partID).getOption(optionID);
       },
 
       getPartOptionColor: function (partID, optionID, colorID) {
-        return this.getOption(partID, optionID).getColor(colorID); //TODO: Does this work?
+        return this.getPartOption(partID, optionID).getColor(colorID);
       },
 
       getMeasureOption: function (measureID, optionIndex) {
-        return this.getMeasure(measureID).getOption(optionIndex); //TODO: Does this work?
+        return this.getMeasure(measureID).getOption(optionIndex);
       }
     };
 

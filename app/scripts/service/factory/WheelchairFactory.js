@@ -1,71 +1,167 @@
 ﻿'use strict';
 
 angular.module('abacuApp')
-  .factory('Wheelchair', ['FrameData', 'option' function (FrameData, option ) {
+  .factory('Wheelchair', ['FrameData', function (FrameData) {
 
     //##########################  Constructor  #########################
-    var curFrame = FrameData.getFrame(frameID);
-    function Wheelchair ( frameID, title ) {
-      //TODO: how to verify if we are build a new design or we are loading the old ones according to current cart index?
+
+    function Wheelchair(frameID) {
       this.frameID = frameID;
       this.parts = [];
       this.measures = [];
-      this.title = title;
-      this.calcPrice = -1;
-      this.calcWeight = -1;
-      for (var i = 0; i < curFrame.parts.length; i++){
-        var curPart = curFrame.parts[i];
+      this.title = "My Custom Wheelchair";
+
+      var frame = FrameData.getFrame(frameID);
+      var parts = frame.getParts();
+      var meas = frame.getMeasures();
+
+      for (var i = 0; i < parts.length; i++) {
+        var p = parts[i];
         this.parts.push({
-          partID: curPart.partID,
-          optionID: curPart.defaultOptionID,
-          colorID: option.getoption(curPart.defaultOptionID).defaultColorID,
-          weight: option.getoption(curPart.defaultOptionID).weight,
-          price: option.getoption(curPart.defaultOptionID).price
+          partID: p.getID(),
+          optionID: p.getDefaultOptionID(),
+          colorID: p.getDefaultOption().getDefaultColorID()
         });
       }
 
-      for (var j=0; j < curFrame.measures.length; i++){
+      for (var j = 0; j < meas.length; j++) {
+        var m = meas[j];
         this.measures.push({
-          measureID: curFrame.measures[j].measureID,
+          measureID: m.getID(),
           measureOptionIndex: -1
         })
       }
-    }
+    };
 
     //#######################  Instance methods  ##########################
     Wheelchair.prototype = {
-      resetCurWheelchair:function(){
 
+      //GETS
+      getFrameID: function () { return this.frameID; },
+      getTitle: function () { return this.title; },
+      getParts: function () { return this.parts; },
+      getMeasures: function () { return this.measures; },
+      getNumParts: function () { return this.parts.length; },
+      getNumMeasures: function () { return this.measures.length; },
+
+      getPart: function (pID) {
+        for (var i = 0; i < this.parts.length; i++)
+          if (this.parts[i].partID === pID)
+            return this.parts
+        return null;
       },
+
+      getPartByIndex: function (index) {
+        if (index >= 0 && index <= this.parts.length)
+          return this.parts[index];
+        return null;
+      },
+
+      getOptionIDForPart: function (pID) {
+        var p = this.getPart(pID);
+        if (p !== null)
+          return p.optionID;
+        return -1;
+      },
+
+      getColorIDForPart: function (pID) {
+        var p = this.getPart(pID);
+        if (p !== null)
+          return p.colorID;
+        return -1;
+      },
+
+      getMeasure: function (mID) {
+        for (var i = 0; i < this.measures.length; i++)
+          if (this.measures[i].measureID === mID)
+            return this.measures[i];
+        return null;
+      },
+
+      getMeasureByIndex: function (index) {
+        if (index >= 0 && index < this.measures.length)
+          return this.measures[index];
+        return null;
+      },
+
+      getOptionIndexForMeasure: function (mID) {
+        var m = getMeasure(mID);
+        if (m !== null)
+          return m.measureOptionIndex;
+        return -1;
+      },
+
+
+      //SETS
+      setOptionForPart: function (pID, oID) {
+        var p = this.getPart(pID);
+        if (p !== null) {
+          var o = FrameData.getFrame(this.frameID).getPartOption(pID, oID);
+          p.optionID = oID;
+          p.colorID = o.getDefaultColorID();
+        }        
+      },
+
+      setColorForPart: function (pID, cID) {
+        var p = this.getPart(pID);
+        if (p !== null) {
+          p.colorID = cID;
+        }
+      },
+
+      setOptionAndColorForPart: function (pID, oID, cID) {
+        var p = this.getPart(pID);
+        if (p !== null) {
+          p.optionID = oID;
+          p.colorID = cID;
+        }
+      },
+
+      setOptionIndexForMeasure: function (mID, index) {
+        var m = this.getMeasure(mID);
+        if (m !== null)
+          m.measureOptionIndex = index;
+      },
+
 
       //Calculate Total Weight
       getTotalWeight: function () {
-        var totalWeight = curFrame.baseWeight;
+        var frame = FrameData.getFrame(this.frameID);
+        var totalWeight = frame.getBaseWeight();
         for (var i = 0; i < this.parts.length; i++) {
-          totalWeight += this.parts[i].price;
+          var p = frame.getPart(this.parts[i].partID);
+          var o = p.getOption(this.parts[i].optionID);
+          totalWeight += o.getWeight();
         }
-        for (var j = 0; j < this.parts.length; j++) {
+        for (var j = 0; j < this.measures.length; j++) {
           if (this.measures[j].measureOptionIndex !== -1) {
-            totalWeight += this.measures.weight[this.measures[j].measureOptionIndex];
+            var m = frame.getMeasure(this.measures[j].measureID)
+            totalWeight += m.getWeight(this.measures[j].measureOptionIndex);
           }
         }
 
         return totalWeight;
       },
-        //Calculate total Price
+
+      //Calculate total Price
       getTotalPrice: function () {
-        var totalPrice = curFrame.basePrice;
-        for (var i = 0; i < this.parts.length; i++){
-          totalPrice += this.parts[i].price;
+        var frame = FrameData.getFrame(this.frameID);
+        var totalPrice = frame.getBasePrice();
+        for (var i = 0; i < this.parts.length; i++) {
+          var p = frame.getPart(this.parts[i].partID);
+          var o = p.getOption(this.parts[i].optionID);
+          totalPrice += o.getPrice();
         }
-        for (var j = 0; j < this.parts.length; j++){
-          if(this.measures[j].measureOptionIndex !== -1){
-            totalPrice += this.measures.price[this.measures[j].measureOptionIndex];
+        for (var j = 0; j < this.measures.length; j++) {
+          if (this.measures[j].measureOptionIndex !== -1) {
+            var m = frame.getMeasure(this.measures[j].measureID)
+            totalPrice += m.getPrice(this.measures[j].measureOptionIndex);
           }
         }
 
         return totalPrice;
       },
+
 
       //Returns true if all measurements have a selected option
       allMeasuresSet: function () {
@@ -75,18 +171,13 @@ angular.module('abacuApp')
           }
         }
         return true;
-      }
+      },
 
-      //TODO: Get/Sets
+
 
       //TODO: Image generation
 
     };
-
-    //################## Static Methods  #########################
-
-
-
 
     //Don't touch this
     return (Wheelchair);
