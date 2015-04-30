@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 angular.module('abacuApp')
-  .factory('Wheelchair', ['FrameData', function (FrameData) {
+  .factory('Wheelchair', ['FrameData', 'PreviewImgae', function (FrameData, PreviewImage) {
 
     //##########################  Constructor  #########################
 
@@ -31,6 +31,8 @@ angular.module('abacuApp')
           measureOptionIndex: -1
         })
       }
+
+      this.previewImageGenerator = new PreviewImage("chairPics", this.parts);
     };
 
     //#######################  Instance methods  ##########################
@@ -47,7 +49,7 @@ angular.module('abacuApp')
       getPart: function (pID) {
         for (var i = 0; i < this.parts.length; i++)
           if (this.parts[i].partID === pID)
-            return this.parts
+            return this.parts[i];
         return null;
       },
 
@@ -99,6 +101,7 @@ angular.module('abacuApp')
           var o = FrameData.getFrame(this.frameID).getPartOption(pID, oID);
           p.optionID = oID;
           p.colorID = o.getDefaultColorID();
+          this.previewImageGenerator.setOptionForPart(pID, oID);
         }        
       },
 
@@ -106,6 +109,7 @@ angular.module('abacuApp')
         var p = this.getPart(pID);
         if (p !== null) {
           p.colorID = cID;
+          this.previewImageGenerator.setColorForPart(pID, cID);
         }
       },
 
@@ -114,6 +118,7 @@ angular.module('abacuApp')
         if (p !== null) {
           p.optionID = oID;
           p.colorID = cID;
+          this.previewImageGenerator.setOptionAndColorForPart(pID, oID, cID);
         }
       },
 
@@ -173,9 +178,6 @@ angular.module('abacuApp')
         return true;
       },
 
-
-
-      //TODO: Image generation
 
     };
 

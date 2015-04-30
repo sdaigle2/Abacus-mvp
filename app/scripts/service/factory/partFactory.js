@@ -27,7 +27,7 @@ angular.module('abacuApp')
       getID: function () { return this.partID; },
       getName: function () { return this.name; },
       getNumSubImages: function () { return this.numSubImages; },
-      getZRank: function () { return this.zRank; },
+      getZRanks: function () { return this.zRank; },
       getDefaultOptionID: function () { return this.defaultOptionID; },
       getOptions: function () { return this.options; },
       getNumOptions: function () { return this.options.length; },
@@ -57,9 +57,10 @@ angular.module('abacuApp')
         return this.getOption(this.defaultOptionID);
       },
 
-      getZRankForAngle: function (angle) {
-        if (angle >= 0 && angle < zRank.length)
-          return this.zRank[angle];
+      getZRank: function (subImageIndex, angle) {
+        if (subImageIndex >= 0 && subImageIndex < zRank.length)
+          if (angle >= 0 && angle < zRank[subImageIndex].length)
+            return this.zRank[subImageIndex][angle];
         return 0;
       }
 
