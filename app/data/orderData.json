@@ -1,9 +1,9 @@
 {
   "orderID": 0,
-  "payMethods": "",
+  "payMethod": "advance",
   "subtotal":0,
   "tax":0,
-  "shipping":"",
+  "shipping": null,
   "total":0,
   "wheelchair":[]
 }

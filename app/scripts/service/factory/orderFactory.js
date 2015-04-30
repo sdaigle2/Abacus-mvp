@@ -10,7 +10,7 @@
  * Service of the abacuApp
  */
 angular.module('abacuApp')
-  .factory('orderFactory', ['$http', function ($http){
+  .factory('Order', ['$http', function ($http){
 
 
 

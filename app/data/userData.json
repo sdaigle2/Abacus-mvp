@@ -1,19 +1,38 @@
-{
-  "contactForm": {
-    "fName": "",
-    "lName": "",
-    "email": "",
-    "phone": ""
-  },
-  "shippingForm": {
-    "addr": "",
-    "addr2": "",
-    "city": "",
-    "state": "",
-    "zip": ""
-  },
-  "orders":[],
-  "measures":[],
-  "wheelchair":[],
-  "curEditWheelchair":""
-}
+[
+	{
+		"ID": 0,
+		"fName": "Test",
+		"lName": "User",
+		"email": "test@fakeemail.com",
+		"phone": "18889991111"
+		"addr": "123 Fake Street",
+		"addr2": "Apt 721",
+		"city": "Champaign",
+		"state": "Illinois",
+		"zip": "61820"
+		"orders":["0001","2375","3991"],
+		"measures":[{
+			"measureID": 45,
+			"measureOptionIndex": 2
+		}],
+		"designedWheelchairs":[],
+	},
+	{
+		"ID": 1,
+		"fName": "Nodda",
+		"lName": "Realperson",
+		"email": "nigerianroyalty@5camm3r5.net",
+		"phone": "180077732021"
+		"addr": "992 Quiet Bay Circle",
+		"addr2": "",
+		"city": "New York",
+		"state": "New York",
+		"zip": "12345"
+		"orders":["0042","8201","9672"],
+		"measures":[{
+			"measureID": 45,
+			"measureOptionIndex": 2
+		}],
+		"designedWheelchairs":[],
+	}
+]
