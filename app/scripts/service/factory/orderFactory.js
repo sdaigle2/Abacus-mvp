@@ -10,7 +10,7 @@
  * Service of the abacuApp
  */
 angular.module('abacuApp')
-  .factory('orderFactory', ['$http', 'userFactory', function ($http){
+  .factory('orderFactory', ['$http', function ($http){
 
 
 
@@ -18,7 +18,7 @@ angular.module('abacuApp')
       all: function(){
         return $http({method:"GET", url:"data/orderData.json"});
       },
-      create: function(info){
+      post: function(info){
         return $http({method:"POST", url:"data/orderData.json", data:info});
       }
     };

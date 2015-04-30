@@ -1,7 +1,9 @@
 {
-  "orderNumber": 0,
-  "payMethods": {
-    "PAYPAL": "PAYPAL",
-    "ADVANCE": "advence"
-  }
+  "orderID": 0,
+  "payMethods": "",
+  "subtotal":0,
+  "tax":0,
+  "shipping":"",
+  "total":0,
+  "wheelchair":[]
 }

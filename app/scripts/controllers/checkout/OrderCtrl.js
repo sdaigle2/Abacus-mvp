@@ -10,7 +10,7 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('OrderCtrl',  function ($scope, $location,orderFactory,userFactory) {
+  .controller('OrderCtrl',  function ($scope, $location,userFactory) {
 
     /*************************** CONTROL VARIABLES *************************/
     $scope.stages = {
@@ -43,10 +43,7 @@ angular.module('abacuApp')
     ];
 
     //TODO: $scope.user is not available
-    userFactory.all()
-      .then(function(data){
-        $scope.userinfo = data;
-      });
+
 
 
     userFactory.all()
@@ -59,18 +56,8 @@ angular.module('abacuApp')
       });
 
 
-    orderFactory.all()
-      .success(function(data){
-        //order info
-        $scope.info = data;
-        console.log(JSON.stringify($scope.info ));
-      })
-      .error(function(data) {
-        console.log("Request failed: " + data);
-      });
 
 
-    console.log(JSON.stringify($scope.info ));
 
 
 
@@ -134,23 +121,22 @@ angular.module('abacuApp')
 
 
     //Model for the contact form
-    //$scope.contactForm = {
-    //  fName: "",
-    //  lName: "",
-    //  email: "",
-    //  phone: ""
-    //};
+    $scope.contactForm = {
+      fName: "",
+      lName: "",
+      email: "",
+      phone: ""
+    };
 
     //Model for the shipping form
-    //$scope.shippingForm = {
-    //  addr: "",
-    //  addr2: "",
-    //  city: "",
-    //  state: "",
-    //  zip: ""
-    //};
+    $scope.shippingForm = {
+      addr: "",
+      addr2: "",
+      city: "",
+      state: "",
+      zip: ""
+    };
 
-    //database action
 
 
 
@@ -158,23 +144,23 @@ angular.module('abacuApp')
     /**************************** PAYMENT ******************************/
 
     //Payment Method radio buttons
-    //$scope.payMethods = {
-    //  PAYPAL: 'paypal',
-    //  ADVANCE: 'advance'
-    //};
+    $scope.payMethods = {
+      PAYPAL: 'paypal',
+      ADVANCE: 'advance'
+    };
     //
     ////User's choice of payment method
-    //$scope.payForm = {
-    //  method: $scope.payMethods.ADVANCE
-    //};
+    $scope.payForm = {
+      method: $scope.payMethods.ADVANCE
+    };
 
 
 
     ////User's choice of payment method
 
-    $scope.payForm = {
-      method: $scope.info.payMethods.ADVANCE
-    }
+    //$scope.payForm = {
+    //  method: $scope.info.payMethods.ADVANCE
+    //}
 
     /**************************** CONFIRM ******************************/
 

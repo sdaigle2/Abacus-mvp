@@ -11,5 +11,9 @@
     "city": "",
     "state": "",
     "zip": ""
-  }
+  },
+  "orders":[],
+  "measures":[],
+  "wheelchair":[],
+  "curEditWheelchair":""
 }
