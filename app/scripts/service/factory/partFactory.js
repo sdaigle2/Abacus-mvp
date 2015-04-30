@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('abacuApp')
-  .factory('Part', ['Option', function (Option) {
+  .factory('Part', ['Option', 'syncJSON', function (Option, syncJSON) {
 
     //##########################  Constructor  #########################
     function Part(partData) {
@@ -14,8 +14,9 @@ angular.module('abacuApp')
 
       this.options = [];
 
+      var optionJSON = syncJSON.loadJSON('data/optionData.json');
       for (var i = 0; i < partData.options.length; i++)
-        this.options.push(new Option(partData.options[i]));
+        this.options.push(new Option(partData.options[i], optionJSON));
 
     };
 

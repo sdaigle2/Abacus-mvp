@@ -1,16 +1,17 @@
-﻿// jshint unused:false
-/* globals frameDataFromDB:true, cartDataFromDB:true, curWheelchair:true, $ */
-'use strict';
+﻿'use strict';
 
 /**
  * @ngdoc function
- * @name abacuApp.static factory:userService
+ * @name abacuApp.static factory:syncJSON
  * @description
- * # userService
+ * # syncJSON
  * Service of the abacuApp
  */
 angular.module('abacuApp')
   .service('syncJSON', [function () {
+
+    //Use this service to load in JSON synchronously
+    //You should only do this when instantiating a service/factory
 
     return {
       // Load JSON text from server hosted file and return JSON parsed object

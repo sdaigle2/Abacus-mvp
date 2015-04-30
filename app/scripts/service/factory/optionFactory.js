@@ -1,10 +1,10 @@
 ﻿'use strict';
 
 angular.module('abacuApp')
-  .factory('Option', ['Color', 'syncJSON', function (Color, syncJSON) {
+  .factory('Option', ['Color', function (Color) {
 
     //##########################  Constructor  #########################
-    function Option(optionData) {
+    function Option(optionData, optionJSON) {
 
       this.optionID = optionData.optionID;
       this.price = optionData.price;
@@ -15,9 +15,8 @@ angular.module('abacuApp')
       this.weight = 0;
       this.defaultColorID = optionData.defaultColorID;
 
-      var json = syncJSON.loadJSON('data/optionData.json')
-      for (var i = 0; i < json.length; i++) {
-        var curOp = json[i];
+      for (var i = 0; i < optionJSON.length; i++) {
+        var curOp = optionJSON[i];
         if (curOp.optionID === this.optionID) {
           this.name = curOp.name;
           this.thumbnailURL = curOp.thumbnailURL;

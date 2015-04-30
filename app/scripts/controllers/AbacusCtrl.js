@@ -10,7 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', function ($scope, $location, sharedVars) {
+  .controller('AbacusCtrl', ['$scope', '$location', 'sharedVars', 'FrameData',
+    function ($scope, $location, sharedVars, FrameData) {
 
     /*********************Constants***************************/
 
@@ -690,7 +691,7 @@ angular.module('abacuApp')
       }
     };
 
-  });
+  }]);
 
 
 //pages example:

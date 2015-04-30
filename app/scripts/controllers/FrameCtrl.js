@@ -30,6 +30,8 @@ angular.module('abacuApp')
     $scope.selectFrame = function (frameID) {
       //TODO: Send user to abacus with chosen frame
 
+      alert("FrameData test: " + JSON.stringify(FrameData.getFrame(frameID))); //Test alert please ignore
+
       $location.path('abacus');
     };
 

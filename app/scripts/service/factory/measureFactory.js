@@ -1,10 +1,10 @@
 ﻿'use strict';
 
 angular.module('abacuApp')
-  .factory('Measure', ['syncJSON', function (syncJSON) {
+  .factory('Measure', [function () {
 
     //##########################  Constructor  #########################
-    function Measure(measureData) {
+    function Measure(measureData, jsonData) {
 
       this.measureID = measureData.measureID;
       this.measureOptions = measureData.measureOptions;
@@ -20,9 +20,8 @@ angular.module('abacuApp')
       this.imageURLs = [];
       this.gifURL = '';
 
-      var json = syncJSON.loadJSON('data/measureData.json');
-      for (var i = 0; i < json.length; i++) {
-        var curMes = json[i];
+      for (var i = 0; i < jsonData.length; i++) {
+        var curMes = jsonData[i];
         if (curMes.measureID === this.measureID) {
           this.name = curMes.name;
           this.desc = curMes.desc;
