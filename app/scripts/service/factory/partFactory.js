@@ -62,6 +62,11 @@ angular.module('abacuApp')
           if (angle >= 0 && angle < zRank[subImageIndex].length)
             return this.zRank[subImageIndex][angle];
         return 0;
+      },
+
+      //Silly function
+      getOptionColor: function (oID, cID) {
+        return this.getOption(oID).getColor(cID);
       }
 
     };

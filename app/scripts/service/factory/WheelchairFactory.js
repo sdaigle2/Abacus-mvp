@@ -93,6 +93,10 @@ angular.module('abacuApp')
         return -1;
       },
 
+      getPreviewImages: function () {
+        return this.previewImageGenerator.getImages();
+      },
+
 
       //SETS
       setOptionForPart: function (pID, oID) {

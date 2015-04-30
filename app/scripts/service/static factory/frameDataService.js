@@ -50,7 +50,36 @@ angular.module('abacuApp')
         return null;
       },
 
-      getNumFrames: function () { return frames.length; }
+      getNumFrames: function () { return frames.length; },
+
+      //Silly functions
+      getFramePart: function (fID, pID) {
+        return this.getFrame(fID).getPart(pID);
+      },
+
+      getFramePartOption: function (fID, pID, oID) {
+        return this.getFramePart(fID, pID).getOption(oID);
+        //     this.getFrame(fID).getPartOption(pID, oID);
+        //     this.getFrame(fID).getPart(pID).getOption(oID);
+      },
+
+      getFramePartOptionColor: function (fID, pID, oID, cID) {
+        return this.getFramePartOption(fID, pID, oID).getColor(cID);
+        //     this.getFramePart(fID, pID).getOptionColor(oID, cID);
+        //     this.getFramePart(fID, pID).getOption(oID).getColor(cID);
+        //     this.getFrame(fID).getPartOptionColor(pID, oID, cID);
+        //     this.getFrame(fID).getPartOption(pID, oID).getColor(cID);
+        //     this.getFrame(fID).getPart(pID).getOptionColor(oID, cID);
+        //     this.getFrame(fID).getPart(pID).getOption(oID).getColor(cID);
+      },
+
+      getFrameMeasure: function (fID, mID) {
+        return this.getFrame(fID).getMeasure(mID);
+      },
+
+      getFrameMeasureOption: function (fID, mID, oIndex) {
+        return this.getFrame(fID).getMeasureOption(mID, oIndex);
+      }
 
     };
 
