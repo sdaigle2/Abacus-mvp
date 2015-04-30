@@ -10,7 +10,7 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('OrderCtrl',  function ($scope, $location,orderFactory,userService) {
+  .controller('OrderCtrl',  function ($scope, $location,orderFactory,userFactory) {
 
     /*************************** CONTROL VARIABLES *************************/
     $scope.stages = {
@@ -42,24 +42,35 @@ angular.module('abacuApp')
       }
     ];
 
-    //database action
-    orderFactory.all()
-      .success(function(data){
-        $scope.info = data;
-        console.log(JSON.stringify(data ));
-      })
-      .error(function(data) {
-      console.log("Request failed: " + data);
+    //TODO: $scope.user is not available
+    userFactory.all()
+      .then(function(data){
+        $scope.userinfo = data;
       });
 
-    $scope.user = userService.all()
+
+    userFactory.all()
       .success(function(data){
         $scope.user = data;
-        console.log(JSON.stringify(data ));
+        console.log(JSON.stringify($scope.user ));
       })
       .error(function(data) {
-          console.log("Request failed: " + data);
+        console.log("Request failed: " + data);
       });
+
+
+    orderFactory.all()
+      .success(function(data){
+        //order info
+        $scope.info = data;
+        console.log(JSON.stringify($scope.info ));
+      })
+      .error(function(data) {
+        console.log("Request failed: " + data);
+      });
+
+
+    console.log(JSON.stringify($scope.info ));
 
 
 
@@ -122,36 +133,48 @@ angular.module('abacuApp')
     /*************************** INFO ******************************/
 
 
-
     //Model for the contact form
-    $scope.contactForm = {
-      fName: "",
-      lName: "",
-      email: "",
-      phone: ""
-    };
+    //$scope.contactForm = {
+    //  fName: "",
+    //  lName: "",
+    //  email: "",
+    //  phone: ""
+    //};
 
     //Model for the shipping form
-    $scope.shippingForm = {
-      addr: "",
-      addr2: "",
-      city: "",
-      state: "",
-      zip: ""
-    };
+    //$scope.shippingForm = {
+    //  addr: "",
+    //  addr2: "",
+    //  city: "",
+    //  state: "",
+    //  zip: ""
+    //};
+
+    //database action
+
+
+
 
     /**************************** PAYMENT ******************************/
 
     //Payment Method radio buttons
-    $scope.payMethods = {
-      PAYPAL: 'paypal',
-      ADVANCE: 'advance'
-    };
+    //$scope.payMethods = {
+    //  PAYPAL: 'paypal',
+    //  ADVANCE: 'advance'
+    //};
+    //
+    ////User's choice of payment method
+    //$scope.payForm = {
+    //  method: $scope.payMethods.ADVANCE
+    //};
 
-    //User's choice of payment method
+
+
+    ////User's choice of payment method
+
     $scope.payForm = {
-      method: $scope.payMethods.ADVANCE
-    };
+      method: $scope.info.payMethods.ADVANCE
+    }
 
     /**************************** CONFIRM ******************************/
 

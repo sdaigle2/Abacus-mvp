@@ -45,6 +45,26 @@ angular.module('abacuApp')
       getColors: function () { return this.colors; },
       getNumColors: function () { return this.colors.length; },
 
+      getOption: function (opID) {
+        for (var i = 0; i < this.options.length; i++)
+          if (this.options[i].getID() === opID)
+            return this.options[i];
+        return null;
+      },
+
+      getOptionByIndex: function (index) {
+        if (index >= 0 && index < this.options.length)
+          return this.options[index];
+        return null;
+      },
+
+      getOptionByName: function (oName) {
+        for (var i = 0; i < this.options.length; i++)
+          if (this.options[i].getName() === oName)
+            return this.options[i];
+        return null;
+      },
+
       getColor: function (colID) {
         for (var i = 0; i < this.colors.length; i++)
           if (this.colors[i].getID() === colID)

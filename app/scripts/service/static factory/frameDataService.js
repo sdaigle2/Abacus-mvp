@@ -4,7 +4,7 @@
 
 /**
  * @ngdoc function
- * @name abacuApp.service:frameDataService
+ * @name abacuApp.static factory:frameDataService
  * @description
  * # frameDataService
  * Service of the abacuApp

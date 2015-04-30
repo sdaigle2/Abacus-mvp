@@ -1,6 +1,6 @@
 {
   "orderNumber": 0,
-  "paymentMethods": {
+  "payMethods": {
     "PAYPAL": "PAYPAL",
     "ADVANCE": "advence"
   }

@@ -4,7 +4,7 @@
 
 /**
  * @ngdoc function
- * @name abacuApp.service:userService
+ * @name abacuApp.static factory:userService
  * @description
  * # userService
  * Service of the abacuApp
@@ -19,7 +19,7 @@ angular.module('abacuApp')
           var json = loadTextFileAjaxSync(filePath, "application/json");
           // Parse json
           return JSON.parse(json);
-        }   
+        }
     };
 
     // Load text with Ajax synchronously: takes path to file and optional MIME type
