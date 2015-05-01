@@ -329,24 +329,20 @@ angular.module('abacuApp')
     $scope.getCurPageType = function () { return curPage.type; };
 
     ////Returns the current part from FrameData based on curPage.page[CUSTOMIZE].ID
-    ////mark: updated to be used with factories. same as getCurWheelchairPart() though, what is the difference??
-      //$scope.getCurPartData = function () {  return getPartData($scope.getCurCustomizePage().partID); };
+    ////mark: updated to be used with factories
       $scope.getCurPartData = function () { return $scope.frameData.getPart($scope.getCurCustomizePage().partID) };
     //
     ////Returns the current part from curWheelchair based on curPage.page[CUSTOMIZE].ID
-    ////mark: updated to be used with factories. same as getCurPartData() though, what is the difference??
-      //$scope.getCurWheelchairPart = function () { return getWheelchairPart($scope.getCurCustomizePage().partID); };
-      $scope.getCurWheelchairPart = function () { return $scope.frameData.getPart($scope.getCurCustomizePage().partID) };
+    ////mark: updated to be used with factories.
+      $scope.getCurWheelchairPart = function () { return User.getcurEditWheelchair().getPart($scope.getCurCustomizePage().partID); };
     //
     ////Returns the current measure from FrameData based on curPage.page[MEASURE].ID
-    ////mark: updated to be used with factories. same as getCurWheelchairMeasure() though, what is the difference??
-      //$scope.getCurMeasureData = function () { return getMeasureData($scope.getCurMeasurePage().measureID); };
+    ////mark: updated to be used with factories.
       $scope.getCurMeasureData = function () { return $scope.frameData.getMeasure($scope.getCurMeasurePage().measureID) };
     //
     ////Returns the current measure from curWheelchair based on curPage.page[MEASURE].ID
-    ////mark: updated to be used with factories. same as getCurMeasureData() though, what is the difference??
-      //$scope.getCurWheelchairMeasure = function () { return getWheelchairMeasure($scope.getCurMeasurePage().measureID); };
-      $scope.getCurWheelchairMeasure = function () { return $scope.frameData.getMeasure($scope.getCurMeasurePage().measureID) };
+    ////mark: updated to be used with factories.
+      $scope.getCurWheelchairMeasure = function () { return User.getcurEditWheelchair().getMeasure($scope.getCurMeasurePage().measureID); };
 
     $scope.setCurPageType = function (newType) { curPage.type = newType; };
 
