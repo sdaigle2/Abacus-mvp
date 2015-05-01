@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 angular.module('abacuApp')
-  .factory('PreviewImage', ['Angles', function (Angles) {
+  .factory('previewImage', ['Angles', function (Angles) {
 
     //##########################  Constructor  #########################
     function PreviewImage( urlFolder, frameID, partData ) {

@@ -10,7 +10,7 @@
  * Service of the abacuApp
  */
 angular.module('abacuApp')
-  .service('UserData', ['$http', 'Order', 'Wheelchair', function ($http, Order, Wheelchair) {
+  .service('User', ['$http', 'Order', 'Wheelchair', function ($http, Order, Wheelchair) {
 
     var fName = "";
     var lName = "";
@@ -53,7 +53,7 @@ angular.module('abacuApp')
 
 
     return {
-      
+
       //Attempt to login as the given username with the given password
       //If successful - should load in appropriate user data
       login: function (username, password) {
@@ -63,10 +63,21 @@ angular.module('abacuApp')
         //TODO: Write remainder of function
       },
 
+      //match the functionality of generate CurWheelchair in AbacusCtrl
+      generateCurWheelchair: function(frameID){
+        if (curEditWheelchairIndex === -1){
+          this.createNewWheelchair(frameID);
+        }
+        else {
+          this.setEditWheelchair(curEditWheelchairIndex);
+        }
+      },
+
       //Create a new wheelchair object of given frame type and set edit pointer to it
       createNewWheelchair: function (frameID) {
-        designedWheelchairs.push(new Wheelchair(frameID));
-        curEditWheelchairIndex = designedWheelchairs.length - 1;
+        if (curEditWheelchairIndex === -1)
+          designedWheelchairs.push(new Wheelchair(frameID));
+          curEditWheelchairIndex = designedWheelchairs.length - 1;
       },
 
       //Set the given wheelchair index to be edited
@@ -82,11 +93,11 @@ angular.module('abacuApp')
 
       getDesignedWheelchairs: function () { return designedWheelchairs; },
 
-      getWheelchair: function (index) { 
+      getWheelchair: function (index) {
         if (index >= 0 && index < designedWheelchairs.length)
           return designedWheelchairs[index];
         return null;
-      }, 
+      },
 
       getcurEditWheelchair: function () { return getWheelchair(curEditWheelchairIndex); }
 

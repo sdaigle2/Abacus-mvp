@@ -9,6 +9,10 @@ angular.module('abacuApp')
       this.frameID = frameID;
       this.parts = [];
       this.measures = [];
+      this.name = [];
+      this.desc = "";
+      this.basePrice = 0;
+      this.baseWeight = 0;
       this.title = "My Custom Wheelchair";
 
       var frame = FrameData.getFrame(frameID);
@@ -31,7 +35,10 @@ angular.module('abacuApp')
           measureOptionIndex: -1
         })
       }
-
+      this.name = frame.name;
+      this.desc = frame.desc;
+      this.basePrice = frame.basePrice;
+      this.baseWeight = frame.baseWeight;
       this.previewImageGenerator = new PreviewImage("chairPics", this.parts);
     };
 
@@ -106,7 +113,7 @@ angular.module('abacuApp')
           p.optionID = oID;
           p.colorID = o.getDefaultColorID();
           this.previewImageGenerator.setOptionForPart(pID, oID);
-        }        
+        }
       },
 
       setColorForPart: function (pID, cID) {
@@ -130,6 +137,13 @@ angular.module('abacuApp')
         var m = this.getMeasure(mID);
         if (m !== null)
           m.measureOptionIndex = index;
+      },
+
+      resetWheelchair: function(){
+        this.frameID = 0;
+        this.parts = [];
+        this.measures = [];
+        this.title = "My Custom Wheelchair";
       },
 
 
@@ -180,7 +194,7 @@ angular.module('abacuApp')
           }
         }
         return true;
-      },
+      }
 
 
     };

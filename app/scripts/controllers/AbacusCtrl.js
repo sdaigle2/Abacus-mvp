@@ -10,8 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', ['$scope', '$location', 'sharedVars', 'FrameData',
-    function ($scope, $location, sharedVars, FrameData) {
+  .controller('AbacusCtrl', ['$scope', '$location', 'sharedVars', 'FrameData', 'User', 'previewImage', 'Wheelchair',
+    function ($scope, $location, sharedVars, FrameData, User, previewImage, Wheelchair) {
 
     /*********************Constants***************************/
 
@@ -31,14 +31,8 @@ angular.module('abacuApp')
     };
 
     //The angle type of the wheelchair image
-    var angleType = {
-      numAngles: 5, //The number of angle options (change this if more added/removed)
-      BACK : 0,
-      BACKRIGHT : 1,
-      RIGHT: 2,
-      FRONTRIGHT : 3,
-      FRONT : 4
-    };
+    //replace: angleService
+
 
     $scope.pageType = {
       CUSTOMIZE: 0,
@@ -72,18 +66,7 @@ angular.module('abacuApp')
       type: $scope.pageType.CUSTOMIZE //keeps track of which page type we are currently looking at
     };
 
-    /* THIS IS NOW BEING READ IN FROM OUR "DATABASE"
-     //The current wheelchair being customized by the user
-     var curWheelchair = {
-     title: 'My Wheelchair',
-     calcPrice: -1, //calculated ONLY when added to the cart
-     calcWeight: -1, //calculated ONLY when added to the cart
-     imgURL: '', //calculated ONLY when added to the cart
-     frameID: 0,
-     parts: [],
-     measures: []
-     };
-     */
+
 
     //The images used to generate the full wheelchair image
     $scope.previewImgs = [];
@@ -118,6 +101,8 @@ angular.module('abacuApp')
 
     //resets current wheelchair to default
     //TODO: This needs to recreate the parts and measures arrays
+
+      //mark:  missing
     function resetCurWheelchair() {
       curWheelchair = {
         'title': 'My Wheelchair',
@@ -133,6 +118,8 @@ angular.module('abacuApp')
     //Generates the initial curWheelchair
     //if curWheelChairCartIndex is -1, it generates a new chair
     //otherwise it grabs the wheelchair from the cart
+
+    //mark:   userService: generateCurWheelchair
     function generateCurWheelchair(curWheelChairCartIndex) {
 
       //if we have no current wheelchair index, generate a new chair
@@ -159,6 +146,7 @@ angular.module('abacuApp')
       }
 
       //if we have a current wheelchair index, grab it from our cart
+
       else {
         curWheelchair = JSON.parse(JSON.stringify(cartDataFromDB[curWheelChairCartIndex])); //deep copy so that user can manually save the wheelchair
         //window.alert("editing wheelchair: " + JSON.stringify(curWheelchair));
@@ -168,13 +156,15 @@ angular.module('abacuApp')
 
     //Initialize the page - called on pageLoad
     function init() {
-      $scope.frameData = frameDataFromDB; // all of our data about the frame (from dbLoad.js)
 
-      $scope.curWheelChairCartIndex = sharedVars.getCurWheelChairCartIndex();
-      sharedVars.setCurWheelChairCartIndex(-1); //reset it
+      //mark: Framedata.getframebyIndex
+      $scope.frameData = User.getcurEditWheelchair(); // all of our data about the frame (from dbLoad.js)
+
+
+      User.curEditWheelchairIndex = -1; //reset it
 
       generatePages();
-      generateCurWheelchair($scope.curWheelChairCartIndex);
+      //TODO replace with previewImgFactory function later
       refreshPreviewImage();
     }
 
@@ -183,34 +173,15 @@ angular.module('abacuApp')
     /****************Weight and Price******************/
 
     //Calculated Total Weight and Price
+
+    //mark: wheelchairFactory.getTotalWeight
     $scope.getTotalWeight = function () {
-      var totalWeight = $scope.frameData.baseWeight;
-      for (var i = 0; i < curWheelchair.parts.length; i++) {
-        var curPart = curWheelchair.parts[i];
-        totalWeight += curPart.weight;
-      }
-      for (var j = 0; j < curWheelchair.measures.length; j++) {
-        var curMeas = getMeasureData(curWheelchair.measures[j].measureID);
-        if (curWheelchair.measures[j].measureOptionIndex !== -1) {
-          totalWeight += curMeas.weights[curWheelchair.measures[j].measureOptionIndex];
-        }
-      }
-      return totalWeight;
+     frameData.getTotalWeight();
     };
 
-    $scope.getTotalPrice = function () {
-      var totalPrice = $scope.frameData.basePrice;
-      for (var i = 0; i < curWheelchair.parts.length; i++) {
-        var curPart = curWheelchair.parts[i];
-        totalPrice += curPart.price;
-      }
-      for (var j = 0; j < curWheelchair.measures.length; j++) {
-        var curMeas = getMeasureData(curWheelchair.measures[j].measureID);
-        if (curWheelchair.measures[j].measureOptionIndex !== -1) {
-          totalPrice += curMeas.prices[curWheelchair.measures[j].measureOptionIndex];
-        }
-      }
-      return totalPrice;
+      //mark: wheelchairFactory.getTotalPrice
+      $scope.getTotalPrice = function () {
+      frameData.getTotalPrice();
     };
 
     /*******************Unit Systems ****************************/
@@ -252,6 +223,8 @@ angular.module('abacuApp')
     /*******************Wheelchair Preview & Rotation***********************/
 
     //Returns the angle as a String
+
+    //mark cancelout :: replace angleService
     function getAngleName(angle) {
       switch (angle) {
         case angleType.FRONT:
@@ -355,17 +328,21 @@ angular.module('abacuApp')
 
     $scope.getCurPageType = function () { return curPage.type; };
 
-    //Returns the current part from FrameData based on curPage.page[CUSTOMIZE].ID
-    $scope.getCurPartData = function () {  return getPartData($scope.getCurCustomizePage().partID); };
-
-    //Returns the current part from curWheelchair based on curPage.page[CUSTOMIZE].ID
-    $scope.getCurWheelchairPart = function () { return getWheelchairPart($scope.getCurCustomizePage().partID); };
-
-    //Returns the current measure from FrameData based on curPage.page[MEASURE].ID
-    $scope.getCurMeasureData = function () { return getMeasureData($scope.getCurMeasurePage().measureID); };
-
-    //Returns the current measure from curWheelchair based on curPage.page[MEASURE].ID
-    $scope.getCurWheelchairMeasure = function () { return getWheelchairMeasure($scope.getCurMeasurePage().measureID); };
+    ////Returns the current part from FrameData based on curPage.page[CUSTOMIZE].ID
+    ////mark cancel:: replace: partFactory
+      $scope.getCurPartData = function () {  return getPartData($scope.getCurCustomizePage().partID); };
+    //
+    ////Returns the current part from curWheelchair based on curPage.page[CUSTOMIZE].ID
+    ////mark cancel:: replace: partFactory
+      $scope.getCurWheelchairPart = function () { return getWheelchairPart($scope.getCurCustomizePage().partID); };
+    //
+    ////Returns the current measure from FrameData based on curPage.page[MEASURE].ID
+    ////mark cancel:: replace: partFactory
+      $scope.getCurMeasureData = function () { return getMeasureData($scope.getCurMeasurePage().measureID); };
+    //
+    ////Returns the current measure from curWheelchair based on curPage.page[MEASURE].ID
+    ////mark cancel:: replace: partFactory
+      $scope.getCurWheelchairMeasure = function () { return getWheelchairMeasure($scope.getCurMeasurePage().measureID); };
 
     $scope.setCurPageType = function (newType) { curPage.type = newType; };
 
@@ -375,73 +352,73 @@ angular.module('abacuApp')
 
     /**************** Frame Data Functions ******************/
 
-    function getPartData(id) {
-      for (var i = 0; i < $scope.frameData.parts.length; i++) {
-        var curPart = $scope.frameData.parts[i];
-        if (curPart.partID === id) {
-          return curPart;
-        }
-      }
-      return null;
-    }
-
-    function getWheelchairPart(id) {
-      for (var i = 0; i < curWheelchair.parts.length; i++) {
-        var curPart = curWheelchair.parts[i];
-        if (curPart.partID === id) {
-          return curPart;
-        }
-      }
-      return null;
-    }
-
-    function getOptionData(id, curPart) {
-
-      for (var j = 0; j < curPart.options.length; j++) {
-        var curOption = curPart.options[j];
-        if (curOption.optionID === id) {
-          return curOption;
-        }
-      }
-
-      return null;
-    }
-
-    function getMeasureData(id) {
-      for (var i = 0; i < $scope.frameData.measures.length; i++) {
-        var curMeas = $scope.frameData.measures[i];
-        if (curMeas.measureID === id) {
-          return curMeas;
-        }
-      }
-      return null;
-    }
-
-    function getWheelchairMeasure(id) {
-      for (var i = 0; i < curWheelchair.measures.length; i++) {
-        var curMeas = curWheelchair.measures[i];
-        if (curMeas.measureID === id) {
-          return curMeas;
-        }
-      }
-      return null;
-    }
-
-    function getColorByName (colorName, curOption) {
-      for (var i=0; i< curOption.colors.length; i++) {
-        if (curOption.colors[i].name === colorName) {
-          return curOption.colors[i];
-        }
-      }
-    }
-
-    $scope.getColorByID = function (colorID, curOption) {
-      for (var i = 0; i < curOption.colors.length; i++) {
-        if (curOption.colors[i].colorID === colorID) {
-          return curOption.colors[i];
-        }
-      }
-    };
+    //function getPartData(id) {
+    //  for (var i = 0; i < $scope.frameData.parts.length; i++) {
+    //    var curPart = $scope.frameData.parts[i];
+    //    if (curPart.partID === id) {
+    //      return curPart;
+    //    }
+    //  }
+    //  return null;
+    //}
+    //
+    //function getWheelchairPart(id) {
+    //  for (var i = 0; i < curWheelchair.parts.length; i++) {
+    //    var curPart = curWheelchair.parts[i];
+    //    if (curPart.partID === id) {
+    //      return curPart;
+    //    }
+    //  }
+    //  return null;
+    //}
+    //
+    //function getOptionData(id, curPart) {
+    //
+    //  for (var j = 0; j < curPart.options.length; j++) {
+    //    var curOption = curPart.options[j];
+    //    if (curOption.optionID === id) {
+    //      return curOption;
+    //    }
+    //  }
+    //
+    //  return null;
+    //}
+    //
+    //function getMeasureData(id) {
+    //  for (var i = 0; i < $scope.frameData.measures.length; i++) {
+    //    var curMeas = $scope.frameData.measures[i];
+    //    if (curMeas.measureID === id) {
+    //      return curMeas;
+    //    }
+    //  }
+    //  return null;
+    //}
+    //
+    //function getWheelchairMeasure(id) {
+    //  for (var i = 0; i < curWheelchair.measures.length; i++) {
+    //    var curMeas = curWheelchair.measures[i];
+    //    if (curMeas.measureID === id) {
+    //      return curMeas;
+    //    }
+    //  }
+    //  return null;
+    //}
+    //
+    //function getColorByName (colorName, curOption) {
+    //  for (var i=0; i< curOption.colors.length; i++) {
+    //    if (curOption.colors[i].name === colorName) {
+    //      return curOption.colors[i];
+    //    }
+    //  }
+    //}
+    //
+    //$scope.getColorByID = function (colorID, curOption) {
+    //  for (var i = 0; i < curOption.colors.length; i++) {
+    //    if (curOption.colors[i].colorID === colorID) {
+    //      return curOption.colors[i];
+    //    }
+    //  }
+    //};
 
     /****************Measure Carousel****************/
     $scope.selectedMeasureImageIndex = 0;
@@ -566,6 +543,7 @@ angular.module('abacuApp')
     };
 
     /*****************Building CurWheelchair*****/
+      //mark: replace previewImageFactory: setOptionForPart
 
     $scope.setCurOption = function (newOptionID) {
       setOptionForPart($scope.getCurPartData().partID, newOptionID);
