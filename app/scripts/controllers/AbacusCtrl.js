@@ -158,7 +158,7 @@ angular.module('abacuApp')
     function init() {
 
       //mark: Framedata.getframebyIndex
-      $scope.frameData = User.getcurEditWheelchair(); // all of our data about the frame (from dbLoad.js)
+      $scope.frameData = FrameData.getFrame(User.getcurEditWheelchair().getFrameID()); // all of our data about the frame (from dbLoad.js)
 
 
       User.curEditWheelchairIndex = -1; //reset it
@@ -546,35 +546,36 @@ angular.module('abacuApp')
       //mark: replace previewImageFactory: setOptionForPart
 
     $scope.setCurOption = function (newOptionID) {
-      setOptionForPart($scope.getCurPartData().partID, newOptionID);
+      User.getcurEditWheelchair().setOptionForPart($scope.getCurPartData().partID, newOptionID);
       refreshPreviewImage();
     };
 
-    function setOptionForPart(partID, newOptionID) {
-      var part = getWheelchairPart(partID);
-      if (part.optionID !== newOptionID) {
-        part.optionID = newOptionID;
-
-
-        //var colorOptions = (getOptionData(newOptionID,getPartData(partID))).colors;
-        part.colorID = getOptionData(newOptionID, getPartData(partID)).defaultColorID;
-        part.price = getOptionData(newOptionID, getPartData(partID)).price;
-        part.weight = getOptionData(newOptionID, getPartData(partID)).weight;
-      }
-    }
+    //  //mark replace: wheelchairFactory: setOptionForPart
+    //function setOptionForPart(partID, newOptionID) {
+    //  var part = getWheelchairPart(partID);
+    //  if (part.optionID !== newOptionID) {
+    //    part.optionID = newOptionID;
+    //
+    //
+    //    //var colorOptions = (getOptionData(newOptionID,getPartData(partID))).colors;
+    //    part.colorID = getOptionData(newOptionID, getPartData(partID)).defaultColorID;
+    //    part.price = getOptionData(newOptionID, getPartData(partID)).price;
+    //    part.weight = getOptionData(newOptionID, getPartData(partID)).weight;
+    //  }
+    //}
 
     $scope.setCurOptionColor = function (newColorID) {
       if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
-        setColorForPartOption($scope.getCurWheelchairPart().partID, newColorID);
+        User.getcurEditWheelchair().setColorForPart($scope.getCurWheelchairPart().partID, newColorID);
         refreshPreviewImage();
 
       }
     };
 
-    function setColorForPartOption(partID, newColorID) {
-      var part = getWheelchairPart(partID);
-      part.colorID = newColorID;
-    }
+    //function setColorForPartOption(partID, newColorID) {
+    //  var part = getWheelchairPart(partID);
+    //  part.colorID = newColorID;
+    //}
 
     /*****************Panels*********************/
 
@@ -615,6 +616,22 @@ angular.module('abacuApp')
     $scope.getCurPanelID = function () { return curPanel.panelID; };
 
     /*******************Saving***********************/
+
+
+
+
+    //to be continued on Monday!!!!!!
+
+
+
+
+
+
+
+
+
+
+
 
     //Temporary/Dummy function that returns curWheelchair Data and sends to cart
     $scope.saveDesign = function () {
