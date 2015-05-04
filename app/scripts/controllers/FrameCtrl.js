@@ -8,7 +8,7 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('FrameCtrl', ['$scope', '$location', 'FrameData', 'user', function ($scope, $location, FrameData, user) {
+  .controller('FrameCtrl', ['$scope', '$location', 'FrameData','User', function ($scope, $location, FrameData, User) {
 
     $scope.frames = [];
 
@@ -31,8 +31,8 @@ angular.module('abacuApp')
       //TODO: Send user to abacus with chosen frame
 
       alert("FrameData test: " + JSON.stringify(FrameData.getFrame(frameID))); //Test alert please ignore
-
-      user.createNewWheelchair(frameID);
+      //
+      User.createNewWheelchair(frameID);
       $location.path('abacus');
     };
 

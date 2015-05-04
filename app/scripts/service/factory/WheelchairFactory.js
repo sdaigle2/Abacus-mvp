@@ -13,6 +13,8 @@ angular.module('abacuApp')
       this.desc = "";
       this.basePrice = 0;
       this.baseWeight = 0;
+      this.calcPrice = 0;
+      this.calcWeight = 0;
       this.title = "My Custom Wheelchair";
 
       var frame = FrameData.getFrame(frameID);

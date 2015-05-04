@@ -639,25 +639,26 @@ angular.module('abacuApp')
       if (r === true) {
 
         var wTitle = prompt('Design Name:', 'My Wheelchair');
-        if (wTitle == null) wTitle = 'My Wheelchair';
-        curWheelchair.title = wTitle;
+        if (wTitle == null) User.getcurEditWheelchair().title = 'My Wheelchair';
+        User.getcurEditWheelchair().title = wTitle;
         //TODO: Prompt for saving design to database (if logged in)
 
         //calculate necessities
-        curWheelchair.calcPrice = $scope.getTotalPrice();
-        curWheelchair.calcWeight = $scope.getTotalWeight();
+        User.getcurEditWheelchair().calcPrice = User.getcurEditWheelchair().getTotalPrice();
+        User.getcurEditWheelchair().calcWeight = User.getcurEditWheelchair().getTotalWeight();
         curWheelchair.imgURL = $scope.frameData.imageURL; //TODO needs to actually represent the wheelchair
 
         alert(JSON.stringify(curWheelchair));
 
-        if ($scope.curWheelChairCartIndex === -1) {
-          //add wheelchair to the cart
-          cartDataFromDB.splice(cartDataFromDB.length - 1, 0, curWheelchair); //TODO: Something more database-y
-        }
-        else {
-          //overwrite wheelchair in the cart
-          cartDataFromDB[$scope.curWheelChairCartIndex] = curWheelchair;
-        }
+        //TODO: questtion: Do we need to update the curWCindex here?
+        //if ($scope.curWheelChairCartIndex === -1) {
+        //  //add wheelchair to the cart
+        //  cartDataFromDB.splice(cartDataFromDB.length - 1, 0, curWheelchair); //TODO: Something more database-y
+        //}
+        //else {
+        //  //overwrite wheelchair in the cart
+        //  cartDataFromDB[$scope.curWheelChairCartIndex] = curWheelchair;
+        //}
 
         //redirect user to the cart
         $location.path('cart');
