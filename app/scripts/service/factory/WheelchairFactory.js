@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 angular.module('abacuApp')
-  .factory('Wheelchair', ['FrameData', 'PreviewImgae', function (FrameData, PreviewImage) {
+  .factory('Wheelchair', ['FrameData', 'previewImage', function (FrameData, previewImage) {
 
     //##########################  Constructor  #########################
 
@@ -23,6 +23,9 @@ angular.module('abacuApp')
 
       for (var i = 0; i < parts.length; i++) {
         var p = parts[i];
+        console.log("part: " + JSON.stringify(p));
+        console.log("optionID:" + p.defaultOptionID);
+
         this.parts.push({
           partID: p.getID(),
           optionID: p.getDefaultOptionID(),
@@ -41,7 +44,7 @@ angular.module('abacuApp')
       this.desc = frame.desc;
       this.basePrice = frame.basePrice;
       this.baseWeight = frame.baseWeight;
-      this.previewImageGenerator = new PreviewImage("chairPics", this.parts);
+      this.previewImageGenerator = new previewImage("chairPics",this.frameID, this.parts);
     };
 
     //#######################  Instance methods  ##########################

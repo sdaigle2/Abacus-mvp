@@ -102,7 +102,7 @@ angular.module('abacuApp')
     //resets current wheelchair to default
     //TODO: This needs to recreate the parts and measures arrays
 
-      //mark:  missing
+      //mark:  function missing in the wheelchairFactory
     function resetCurWheelchair() {
       curWheelchair = {
         'title': 'My Wheelchair',
@@ -158,7 +158,7 @@ angular.module('abacuApp')
     function init() {
 
       //mark: Framedata.getframebyIndex
-      $scope.frameData = FrameData.getFrame(User.getcurEditWheelchair().getFrameID()); // all of our data about the frame (from dbLoad.js)
+      $scope.frameData = FrameData.getFrame(User.getcurEditWheelchair().getFrameID());
 
 
       User.curEditWheelchairIndex = -1; //reset it
@@ -176,12 +176,12 @@ angular.module('abacuApp')
 
     //mark: wheelchairFactory.getTotalWeight
     $scope.getTotalWeight = function () {
-     frameData.getTotalWeight();
+      User.getcurEditWheelchair().getTotalWeight();
     };
 
       //mark: wheelchairFactory.getTotalPrice
       $scope.getTotalPrice = function () {
-      frameData.getTotalPrice();
+        User.getcurEditWheelchair().getTotalPrice();
     };
 
     /*******************Unit Systems ****************************/

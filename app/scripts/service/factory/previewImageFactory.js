@@ -13,6 +13,7 @@ angular.module('abacuApp')
       this.lastAngle = -1;
       this.images = [];
 
+
       for (var i = 0; i < partData.length; i++) {
         this.parts.push({
           partID: partData[i].partID,

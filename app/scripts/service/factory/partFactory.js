@@ -34,9 +34,14 @@ angular.module('abacuApp')
       getNumOptions: function () { return this.options.length; },
 
       getOption: function (opID) {
-        for (var i = 0; i < this.options.length; i++)
-          if (this.options[i].getID() === opID)
+        for (var i = 0; i < this.options.length; i++){
+          console.log("optionsID inside: " + this.options[i].getID());
+          if (this.options[i].getID() === opID) {
+            console.log("retrun option:" + JSON.stringify(this.options[i]));
             return this.options[i];
+            break;
+            }
+          }
         return null;
       },
 
