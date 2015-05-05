@@ -10,8 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', ['$scope', '$location', 'sharedVars', 'FrameData', 'User', 'Wheelchair', 'Angles',
-    function ($scope, $location, sharedVars, FrameData, User, Wheelchair, Angles) {
+  .controller('AbacusCtrl', ['$scope', '$location', 'FrameData', 'User', 'Wheelchair', 'Angles', 'Units',
+    function ($scope, $location, FrameData, User, Wheelchair, Angles, Units) {
 
     /*********************Enums*******************************/
 
@@ -32,11 +32,6 @@ angular.module('abacuApp')
       DETAIL: 'detail'
     };
 
-    $scope.unitSys = {
-      METRIC: 0,
-      IMPERIAL: 1
-    };
-
     /**********************Main Variables****************************/
 
     //All the data about the current frame (loaded by init)
@@ -55,13 +50,13 @@ angular.module('abacuApp')
     };
 
     //The images used to generate the full wheelchair image
-    $scope.previewImgs = [];
+    //$scope.previewImgs = [];
 
     //The current angle the wheelchair is being viewed from
     var curAngle = Angles.angleType.FRONTRIGHT;
 
     //The current measurement system being used
-    $scope.curUnitSys = $scope.unitSys.IMPERIAL;
+    $scope.curUnitSys = User.getUnitSys();
 
     /***************************Initialization****************************/
 
@@ -94,13 +89,13 @@ angular.module('abacuApp')
     function init() {
 
       //redirect if we have no wheelchair to edit
-      if (User.getcurEditWheelchair() === null) {
+      if (User.getCurEditWheelchair() === null) {
         $location.path('frame');
       }
 
-      $scope.frameData = FrameData.getFrame(User.getcurEditWheelchair().getFrameID());
+      $scope.frameData = FrameData.getFrame(User.getCurEditWheelchair().getFrameID());
       generatePages();
-      refreshPreviewImage();
+      //refreshPreviewImage();
     }
 
     init(); //Initialize the page
@@ -111,12 +106,12 @@ angular.module('abacuApp')
 
     //mark: wheelchairFactory.getTotalWeight
     $scope.getTotalWeight = function () {
-      User.getcurEditWheelchair().getTotalWeight();
+      User.getCurEditWheelchair().getTotalWeight();
     };
 
     //mark: wheelchairFactory.getTotalPrice
     $scope.getTotalPrice = function () {
-      User.getcurEditWheelchair().getTotalPrice();
+      User.getCurEditWheelchair().getTotalPrice();
     };
 
     /*******************Unit Systems ****************************/
@@ -124,35 +119,21 @@ angular.module('abacuApp')
     $scope.unitSysList = [
       {
         name: 'Metric',
-        enumVal: $scope.unitSys.METRIC
+        enumVal: Units.unitSys.METRIC
       },
       {
         name: 'Imperial',
-        enumVal: $scope.unitSys.IMPERIAL
+        enumVal: Units.unitSys.IMPERIAL
       }];
 
     //Returns the appropriate weight unit name
     $scope.getCurUnitSysWeightName = function () {
-      switch ($scope.curUnitSys) {
-        case $scope.unitSys.IMPERIAL:
-          return 'lbs';
-        case $scope.unitSys.METRIC:
-          return 'kg';
-        default:
-          return 'weight units';
-      }
+      return Units.getWeightName($scope.curUnitSys);
     };
 
     //Returns the factor used to convert from lbs to given weight unit
-    $scope.getWeightFactor = function (unitSys) {
-      switch (unitSys) {
-        case $scope.unitSys.IMPERIAL:
-          return 1;
-        case $scope.unitSys.METRIC:
-          return 0.453592;
-        default:
-          return 1;
-      }
+    $scope.getCurUnitSysWeightFactor = function () {
+      return Units.getWeightFactor($scope.curUnitSys);;
     };
 
     /*******************Wheelchair Preview & Rotation***********************/
@@ -179,7 +160,7 @@ angular.module('abacuApp')
 
     //Generates a URL for the given part based on the frame, partID,
     //OptionID, ColorID, SubImageIndex, and Angle
-    function getPartPreviewImageURL(curWheelchairPart, subImageIndex) {
+    /*function getPartPreviewImageURL(curWheelchairPart, subImageIndex) {
       var frameIDString = ''+$scope.frameData.frameID;
       var partIDString = '' + curWheelchairPart.partID;
 
@@ -230,8 +211,15 @@ angular.module('abacuApp')
 
     //Updates the preview image array after a value is changed
     function refreshPreviewImage() {
-      $scope.previewImgs = User.getcurEditWheelchair().getPreviewImages();
-    }
+      $scope.previewImgs = User.getCurEditWheelchair().getPreviewImages();
+    }*/
+
+
+    //Returns an array of images for User.getCurEditWheelchair() sorted by zRank
+    $scope.getPreviewImages = function () {
+      return User.getCurEditWheelchair().getPreviewImages();
+    };
+
 
     //Changes curAngle based on dir (dir = +-1)
     $scope.rotatePreview = function (dir) {
@@ -242,7 +230,7 @@ angular.module('abacuApp')
       if (curAngle >= Angles.numAngles) {
         curAngle = 0;
       }
-      refreshPreviewImage();
+      //refreshPreviewImage();
     };
 
     /****************Page Functions******************/
@@ -269,7 +257,7 @@ angular.module('abacuApp')
     //
     ////Returns the current part from curWheelchair based on curPage.page[CUSTOMIZE].ID
     ////mark: updated to be used with factories.
-      $scope.getCurWheelchairPart = function () { return User.getcurEditWheelchair().getPart($scope.getCurCustomizePage().partID); };
+      $scope.getCurWheelchairPart = function () { return User.getCurEditWheelchair().getPart($scope.getCurCustomizePage().partID); };
     //
     ////Returns the current measure from FrameData based on curPage.page[MEASURE].ID
     ////mark: updated to be used with factories.
@@ -277,7 +265,7 @@ angular.module('abacuApp')
     //
     ////Returns the current measure from curWheelchair based on curPage.page[MEASURE].ID
     ////mark: updated to be used with factories.
-      $scope.getCurWheelchairMeasure = function () { return User.getcurEditWheelchair().getMeasure($scope.getCurMeasurePage().measureID); };
+      $scope.getCurWheelchairMeasure = function () { return User.getCurEditWheelchair().getMeasure($scope.getCurMeasurePage().measureID); };
 
     $scope.setCurPageType = function (newType) { curPage.type = newType; };
 
@@ -465,10 +453,10 @@ angular.module('abacuApp')
     //Determine the text for each tooltip to display
     $scope.getProgressBarSegmentTooltipText = function (page) {
       if (curPage.type === $scope.pageType.CUSTOMIZE){
-        console.log(JSON.stringify(User.getcurEditWheelchair().getPart(page.partID)));
-        return User.getcurEditWheelchair().getPart(page.partID).name;}
+        console.log(JSON.stringify(User.getCurEditWheelchair().getPart(page.partID)));
+        return User.getCurEditWheelchair().getPart(page.partID).name;}
       else if (curPage.type === $scope.pageType.MEASURE){
-        return User.getcurEditWheelchair().getMeasure(page.partID).name;}
+        return User.getCurEditWheelchair().getMeasure(page.partID).name;}
       return 'ERROR: Invalid page type';
     };
 
@@ -482,8 +470,8 @@ angular.module('abacuApp')
       //mark: replace previewImageFactory: setOptionForPart
 
     $scope.setCurOption = function (newOptionID) {
-      User.getcurEditWheelchair().setOptionForPart($scope.getCurPartData().partID, newOptionID);
-      refreshPreviewImage();
+      User.getCurEditWheelchair().setOptionForPart($scope.getCurPartData().partID, newOptionID);
+      //refreshPreviewImage();
     };
 
     //  //mark replace: wheelchairFactory: setOptionForPart
@@ -502,8 +490,8 @@ angular.module('abacuApp')
 
     $scope.setCurOptionColor = function (newColorID) {
       if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
-        User.getcurEditWheelchair().setColorForPart($scope.getCurWheelchairPart().partID, newColorID);
-        refreshPreviewImage();
+        User.getCurEditWheelchair().setColorForPart($scope.getCurWheelchairPart().partID, newColorID);
+        //refreshPreviewImage();
 
       }
     };
@@ -575,13 +563,11 @@ angular.module('abacuApp')
       if (r === true) {
 
         var wTitle = prompt('Design Name:', 'My Wheelchair');
-        if (wTitle == null) User.getcurEditWheelchair().title = 'My Wheelchair';
-        User.getcurEditWheelchair().title = wTitle;
+        if (wTitle == null) User.getCurEditWheelchair().title = 'My Wheelchair';
+        User.getCurEditWheelchair().title = wTitle;
         //TODO: Prompt for saving design to database (if logged in)
 
         //calculate necessities
-        User.getcurEditWheelchair().calcPrice = User.getcurEditWheelchair().getTotalPrice();
-        User.getcurEditWheelchair().calcWeight = User.getcurEditWheelchair().getTotalWeight();
         curWheelchair.imgURL = $scope.frameData.imageURL; //TODO needs to actually represent the wheelchair
 
         alert(JSON.stringify(curWheelchair));

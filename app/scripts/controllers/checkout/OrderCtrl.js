@@ -137,7 +137,7 @@ angular.module('abacuApp')
       hasReadTerms: false
     };
 
-    $scope.wheelchairs = User.getCurOrder().getWheelchairs();
+    //$scope.wheelchairs = User.getCurOrder().getWheelchairs();
 
     //TODO: Verify $scope.wheelchairs is correct
     //TODO: Fix HTML to display correct data

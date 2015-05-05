@@ -10,7 +10,7 @@
  * Service of the abacuApp
  */
 angular.module('abacuApp')
-  .service('User', ['$http', 'Order', 'Wheelchair', function ($http, Order, Wheelchair) {
+  .service('User', ['$http', 'Order', 'Wheelchair', 'Units',  function ($http, Order, Wheelchair, Units) {
 
     var userID = -1; //-1 means not logged in
 
@@ -30,6 +30,8 @@ angular.module('abacuApp')
     var designedWheelchairs = [];
 
     var curEditWheelchairIndex = -1;
+
+    var unitSys = Units.unitSys.IMPERIAL;
 
     //*********functions************//
 
@@ -89,9 +91,13 @@ angular.module('abacuApp')
           state: state,
           zip: zip
         };
-      }
+      },
 
       //TODO: get/sets
+
+      getUnitSys: function () { return unitSys; },
+
+
     };
 
   }]);

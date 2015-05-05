@@ -27,7 +27,7 @@
       <div class="display-frame"><h4>{{frameData.name}}</h4></div>
       <div class="display-totals text-center">
         <h4>
-          <small>PRICE:</small> ${{getTotalPrice().toFixed(2)}}&nbsp;&nbsp;&nbsp;<small>WEIGHT:</small> {{(getTotalWeight() * getWeightFactor(curUnitSys)).toFixed(2)}} {{getCurUnitSysWeightName()}}
+          <small>PRICE:</small> ${{getTotalPrice().toFixed(2)}}&nbsp;&nbsp;&nbsp;<small>WEIGHT:</small> {{(getTotalWeight() * getCurUnitSysWeightFactor()).toFixed(2)}} {{getCurUnitSysWeightName()}}
         </h4>
       </div>
     </div>
@@ -44,8 +44,8 @@
                data-ng-click="rotatePreview(1)" />
         </div>
         <img class="main-custom-wheelchairDisplay"
-             ng-repeat="imgURL in previewImgs"
-             ng-src="{{imgURL.URL}}"
+             ng-repeat="img in getPreviewImages()"
+             ng-src="{{img.URL}}"
              ng-style="{'z-index': $index }" />
       </div>
 
@@ -115,7 +115,7 @@
                 <td class="sideBar-custom-item-right">
                   <h4 class="sideBar-custom-item-name" title="{{titleForEllipsis(option.name, 45)}}"> {{ellipsisFormat(option.name, 45)}}</h4>
                   <h4 class="sideBar-custom-item-details">
-                    <strong>${{option.price.toFixed(2)}} | {{(option.weight * getWeightFactor(curUnitSys)).toFixed(2)}} {{getCurUnitSysWeightName()}}</strong>
+                    <strong>${{option.price.toFixed(2)}} | {{(option.weight * getCurUnitSysWeightFactor()).toFixed(2)}} {{getCurUnitSysWeightName()}}</strong>
                   </h4>
                   <div class="sideBar-custom-item-buttonRow">
                     <div class="sideBar-custom-item-button text-center"

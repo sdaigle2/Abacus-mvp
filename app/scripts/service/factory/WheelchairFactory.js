@@ -9,13 +9,10 @@ angular.module('abacuApp')
       this.frameID = frameID;
       this.parts = [];
       this.measures = [];
-      this.name = [];
-      this.desc = "";
+      this.desc = '';
       this.basePrice = 0;
       this.baseWeight = 0;
-      this.calcPrice = 0;
-      this.calcWeight = 0;
-      this.title = "My Custom Wheelchair";
+      this.title = 'My Custom Wheelchair';
 
       var frame = FrameData.getFrame(frameID);
       var parts = frame.getParts();
@@ -52,7 +49,7 @@ angular.module('abacuApp')
 
       //GETS
       getFrameID: function () { return this.frameID; },
-      getName: function() {return this.name},
+      getName: function () { return this.name; },
       getTitle: function () { return this.title; },
       getParts: function () { return this.parts; },
       getMeasures: function () { return this.measures; },
@@ -145,14 +142,6 @@ angular.module('abacuApp')
           m.measureOptionIndex = index;
       },
 
-      resetWheelchair: function(){
-        this.frameID = 0;
-        this.parts = [];
-        this.measures = [];
-        this.title = "My Custom Wheelchair";
-      },
-
-
       //Calculate Total Weight
       getTotalWeight: function () {
         var frame = FrameData.getFrame(this.frameID);
@@ -168,7 +157,6 @@ angular.module('abacuApp')
             totalWeight += m.getWeight(this.measures[j].measureOptionIndex);
           }
         }
-
         return totalWeight;
       },
 
