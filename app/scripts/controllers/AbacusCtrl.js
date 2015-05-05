@@ -68,16 +68,16 @@ angular.module('abacuApp')
     //Generates the page arrays inside of pages
     function generatePages (){
 
-      //part pages generation
+      //part customization pages generation
       for (var i = 0; i < $scope.frameData.parts.length; i++ ){
-        var page = {index:i, partID: $scope.frameData.parts[i].partID, visitstatus:visitstatus.UNVISITED};
-        pages.customizePages.push(page);
+        var pPage = {index:i, partID: $scope.frameData.parts[i].partID, visitstatus:visitstatus.UNVISITED};
+        pages.customizePages.push(pPage);
       }
 
       //measure pages generation
       for (var j = 0; j < $scope.frameData.measures.length; j++){
-        var page1 = {index:j, measureID: $scope.frameData.measures[j].measureID, visitstatus:visitstatus.UNVISITED};
-        pages.measurePages.push(page1);
+        var mPage = {index:j, measureID: $scope.frameData.measures[j].measureID, visitstatus:visitstatus.UNVISITED};
+        pages.measurePages.push(mPage);
       }
 
       //reset visit statuses
@@ -88,11 +88,16 @@ angular.module('abacuApp')
       curPage.page[$scope.pageType.CUSTOMIZE] = pages.customizePages[0];
       curPage.page[$scope.pageType.MEASURE] = pages.measurePages[0];
 
-
     }
 
     //Initialize the page - called on pageLoad
     function init() {
+
+      //redirect if we have no wheelchair to edit
+      if (User.getcurEditWheelchair() === null) {
+        $location.path('frame');
+      }
+
       $scope.frameData = FrameData.getFrame(User.getcurEditWheelchair().getFrameID());
       generatePages();
       refreshPreviewImage();
@@ -225,7 +230,7 @@ angular.module('abacuApp')
 
     //Updates the preview image array after a value is changed
     function refreshPreviewImage() {
-      $scope.previewImgs = previewImage.getImages();
+      $scope.previewImgs = User.getcurEditWheelchair().getPreviewImages();
     }
 
     //Changes curAngle based on dir (dir = +-1)
