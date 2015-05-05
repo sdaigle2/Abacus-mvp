@@ -10,7 +10,8 @@
  * Service of the abacuApp
  */
 angular.module('abacuApp')
-  .service('User', ['$http', '$location', 'Order', 'Wheelchair', 'Units',  function ($http, $location, Order, Wheelchair, Units) {
+  .service('User', ['$http', '$location', 'Order', 'Wheelchair', 'Units', 'Costs',
+    function ($http, $location, Order, Wheelchair, Units, Costs) {
 
     var orders = [];
     //var measures = []; //TODO: Implement this later (Settings->MyMeasurements)
@@ -110,9 +111,44 @@ angular.module('abacuApp')
 
       /******************************MY ORDERS*******************************/
 
-      getOrders: function () { return orders; },
+      getAllOrders: function () { return orders; },
       getNumOrders: function () { return orders.length; },
 
+      getSentOrders: function () {
+        var sentOrders = orders;
+        if (sentOrders.length > 0) {
+          var lastOrder = sentOrders[sentOrders.length - 1];
+          if (!lastOrder.hasBeenSent())
+            sentOrders.splice(sentOrders.length - 1, 1);
+        }
+        return sentOrders;
+      },
+
+      createNewOrder: function () {
+        if (orders.length > 0) {
+          var lastOrder = orders[orders.length - 1];
+          if (!lastOrder.hasBeenSent())
+            orders.splice(orders.length - 1, 1);
+        }
+
+        var newOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE);
+        orders.push(newOrder);
+      },
+
+      getCurEditOrder: function () {
+        if (orders.length > 0) {
+          var lastOrder = orders[orders.length - 1];
+          if (!lastOrder.hasBeenSent())
+            return lastOrder;
+        }
+        this.createNewOrder();
+        return orders[orders.length - 1];
+      },
+
+      sendCurEditOrder: function () {
+        var editOrder = this.getCurEditOrder();
+        editOrder.send(this.getUserDataAsObject());
+      },
 
       //Returns User's name and address info as an object
       getUserDataAsObject: function () {

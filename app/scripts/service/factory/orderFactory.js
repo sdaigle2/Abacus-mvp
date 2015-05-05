@@ -12,12 +12,13 @@
 angular.module('abacuApp')
   .factory('Order', [function (){
 
-    function Order(taxRate, shippingFee, userData) {
+    function Order(taxRate, shippingFee) {
       this.wheelchairs = [];
       this.payMethod = 'advance';
       this.orderNum = 'OrderNumNotSet';
       this.taxRate = taxRate;
       this.shippingFee = shippingFee;
+      this.sent = false;
     };
 
     Order.prototype = {
@@ -39,6 +40,8 @@ angular.module('abacuApp')
       getOrderNum: function () { return this.orderNum; },
       getWheelchairs: function () { return this.wheelchairs; },
       getNumWheelchairs: function () { return this.wheelchairs.length; },
+      hasBeenSent: function () { return this.sent; },
+
 
       setPayMethod: function (newMethod) { this.payMethod = newMethod; },
       setOrderNum: function (numNum) { this.orderNum = newNum; },
@@ -71,7 +74,18 @@ angular.module('abacuApp')
 
       getTotalCost: function () {
         return this.getSubtotal() + this.getShippingCost() + this.getTaxCost();
-      }
+      },
+
+      /********************Saving to DB***********************/
+
+      send: function (userData) {
+        //TODO: save userData to order
+        //TODO: Save current date to order
+        this.sent = true;
+
+        //TODO: Send order into database
+
+      },
 
     };
 
@@ -83,6 +97,7 @@ angular.module('abacuApp')
       for (var i = 0; i < jsonData.wheelchairs.length; i++) {
         newOrder.addWheelchair(jsonData.wheelchairs[i]);
       }
+      newOrder.sent = true;
       return newOrder;
     };
 
