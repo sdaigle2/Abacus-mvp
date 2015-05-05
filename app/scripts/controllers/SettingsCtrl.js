@@ -10,7 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('SettingsCtrl', function ($scope, $location, sharedVars) {
+  .controller('SettingsCtrl', ['$scope', 'User',
+    function ($scope, User) {
 
     //Sidebar options
     $scope.ContentSection = {
@@ -19,7 +20,7 @@ angular.module('abacuApp')
       MEASUREMENTS : 'measurements'
     };
 
-    //Categories inside the 'My Measurements' Section
+    //Categories inside the 'My Measurements' Section of the User
     $scope.MeasurementTypes = {
       REAR_SEAT_HEIGHT : 'rearSeatHeight',
       REAR_SEAT_WIDTH : 'rearSeatWidth',
@@ -34,15 +35,15 @@ angular.module('abacuApp')
 
     /***************** SIDEBAR BUTTONS ***************************************/
 
+    //TODO not sure why this button is even here???
     $scope.edit = function () {
       switch (contentSection) {
         case $scope.ContentSection.ACCOUNT:
-          //TODO: 
+          return;
         case $scope.ContentSection.ORDERS:
           return;
         case $scope.ContentSection.MEASUREMENTS:
-          //TODO: 
-          break;
+          return;
       }
     };
 
@@ -50,11 +51,32 @@ angular.module('abacuApp')
     $scope.save = function () {
       switch (contentSection) {
         case $scope.ContentSection.ACCOUNT:
-          //TODO: 
+
+          User.fName = $scope.accountModel.fName;
+          User.lName = $scope.accountModel.lName;
+          User.email = $scope.accountModel.email;
+          User.addr = $scope.accountModel.addr;
+          User.addr2 = $scope.accountModel.addr2;
+          User.city = $scope.accountModel.city;
+          User.state = $scope.accountModel.state;
+          User.zip = $scope.accountModel.zip;
+
+          //TODO: update in the database (including password)
+
+          break;
+
         case $scope.ContentSection.ORDERS:
-          return;
+          break;
+
         case $scope.ContentSection.MEASUREMENTS:
-          //TODO: 
+          User.commonMeasures.REAR_SEAT_HEIGHT = $scope.measDisplay.rearSeatHeight.optionSelected;
+          User.commonMeasures.REAR_SEAT_WIDTH = $scope.measDisplay.rearSeatWidth.optionSelected;
+          User.commonMeasures.FOLDING_BACKREST_HEIGHT = $scope.measDisplay.foldingBackrestHeight.optionSelected;
+          User.commonMeasures.AXEL_POSITION = $scope.measDisplay.axelPosition.optionSelected;
+          User.commonMeasures.SEAT_DEPTH = $scope.measDisplay.seatDepth.optionSelected;
+
+          //TODO: update values in the database
+
           break;
       }
     };
@@ -96,14 +118,15 @@ angular.module('abacuApp')
 
     //Model for the 'My Account' inputs
     $scope.accountModel = {
-      fName: '',
-      lName: '',
-      email: '',
-      addr: '',
-      addr2: '',
-      city: '',
-      state: '',
-      zip: '',
+      fName: User.fName,
+      lName: User.lName,
+      email: User.email,
+      addr: User.addr,
+      addr2: User.addr2,
+      city: User.city,
+      state: User.state,
+      zip: User.zip,
+      oldPass: '',
       newPass1: '',
       newPass2: ''
     };
@@ -111,6 +134,7 @@ angular.module('abacuApp')
     /***************** MY ORDERS **********************************************/
 
     //Array of orders
+    //TODO needs to be integrated with the Order factory
     $scope.orders = [{
       orderNum: '0000',
       datePlaced: new Date(2015, 1, 15, 7, 30, 0, 0),
@@ -129,7 +153,7 @@ angular.module('abacuApp')
     }];
 
     $scope.openOrderDetails = function (index) {
-      //TODO: Display order details
+      //TODO: Display order details from the User service
     };
 
     /***************** MY MEASURES *********************************************/
@@ -139,7 +163,7 @@ angular.module('abacuApp')
       rearSeatHeight: {
         name: 'Rear Seat Height',
         options: ['1', '2', '3'],
-        optionSelected: null,
+        optionSelected: User.commonMeasures.REAR_SEAT_HEIGHT,
         desc: 'Distance from the ground up to back corner of your seat',
         imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
@@ -147,7 +171,7 @@ angular.module('abacuApp')
       rearSeatWidth: {
         name: 'Rear Seat Width',
         options: ['A', 'B', 'C'],
-        optionSelected: null,
+        optionSelected: User.commonMeasures.REAR_SEAT_WIDTH,
         desc: 'The distance between armrests at the back of the seat',
         imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
@@ -155,7 +179,7 @@ angular.module('abacuApp')
       foldingBackrestHeight: {
         name: 'Folding Backrest Height',
         options: ['Do', 'Re', 'Mi'],
-        optionSelected: null,
+        optionSelected: User.commonMeasures.FOLDING_BACKREST_HEIGHT,
         desc: 'Distance from the seat to the top of the backrest',
         imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
@@ -163,7 +187,7 @@ angular.module('abacuApp')
       axelPosition: {
         name: 'Axel Position',
         options: ['Uno', 'Dos', 'Tres'],
-        optionSelected: null,
+        optionSelected: User.commonMeasures.AXEL_POSITION,
         desc: 'The position of the axel',
         imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
@@ -171,11 +195,11 @@ angular.module('abacuApp')
       seatDepth: {
         name: 'Seat Depth',
         options: ['I', 'II', 'III'],
-        optionSelected: null,
+        optionSelected: User.commonMeasures.SEAT_DEPTH,
         desc: 'Distance from the back of the seat to the front',
         imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
       }
     };
 
-  });
+  }]);

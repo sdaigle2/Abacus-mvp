@@ -14,7 +14,6 @@ angular.module('abacuApp')
     function ($http, $location, Order, Wheelchair, Units, Costs) {
 
     var orders = [];
-    //var measures = []; //TODO: Implement this later (Settings->MyMeasurements)
     var designedWheelchairs = [];
 
     var curEditWheelchairIndex = -1;
@@ -107,7 +106,14 @@ angular.module('abacuApp')
 
       /******************************MY MEASUREMENTS*******************************/
 
-      //TODO: this
+      commonMeasures : {
+        REAR_SEAT_HEIGHT : -1,
+        REAR_SEAT_WIDTH : -1,
+        FOLDING_BACKREST_HEIGHT : -1,
+        AXEL_POSITION : -1,
+        SEAT_DEPTH : -1
+      },
+
 
       /******************************MY ORDERS*******************************/
 
