@@ -56,7 +56,7 @@ angular.module('abacuApp')
     var curAngle = Angles.angleType.FRONTRIGHT;
 
     //The current measurement system being used
-    $scope.curUnitSys = User.getUnitSys();
+    $scope.curUnitSys = User.unitSys;
 
     /***************************Initialization****************************/
 
@@ -106,12 +106,12 @@ angular.module('abacuApp')
 
     //mark: wheelchairFactory.getTotalWeight
     $scope.getTotalWeight = function () {
-      User.getCurEditWheelchair().getTotalWeight();
+      return User.getCurEditWheelchair().getTotalWeight();
     };
 
     //mark: wheelchairFactory.getTotalPrice
     $scope.getTotalPrice = function () {
-      User.getCurEditWheelchair().getTotalPrice();
+      return User.getCurEditWheelchair().getTotalPrice();
     };
 
     /*******************Unit Systems ****************************/
