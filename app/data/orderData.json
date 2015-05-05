@@ -1,9 +1,16 @@
 {
-  "orderID": 0,
+  "orderNum": 0,
   "payMethod": "advance",
-  "subtotal":0,
-  "tax":0,
-  "shipping": null,
-  "total":0,
-  "wheelchair":[]
+  "taxRate":0,
+  "shippingFee": 0,
+	"fName": "",
+  "lName": "",
+  "email": "",
+  "phone": "",
+  "addr": "",
+  "addr2": "",
+  "city": "",
+  "state": "",
+  "zip": "",
+  "wheelchairs":[]
 }
