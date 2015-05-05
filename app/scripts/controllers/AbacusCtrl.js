@@ -10,16 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', ['$scope', '$location', 'sharedVars', 'FrameData', 'User', 'previewImage', 'Wheelchair',
-    function ($scope, $location, sharedVars, FrameData, User, previewImage, Wheelchair) {
-
-    /*********************Constants***************************/
-
-    //The base of the URL used to retrieve wheelchair preview images
-    var previewBaseURL = 'images/chairPic/';
-
-    //The filetype used for the wheelchair preview images
-    var previewImageType = '.png';
+  .controller('AbacusCtrl', ['$scope', '$location', 'sharedVars', 'FrameData', 'User', 'previewImage', 'Wheelchair', 'Angles',
+    function ($scope, $location, sharedVars, FrameData, User, previewImage, Wheelchair, Angles) {
 
     /*********************Enums*******************************/
 
@@ -29,18 +21,6 @@ angular.module('abacuApp')
       UNVISITED: 'unvisited',
       CURRENT: 'current'
     };
-
-    //The angle type of the wheelchair image
-    //mark: replace with previewImageFactory
-    var angleType = {
-      numAngles: 5, //The number of angle options (change this if more added/removed)
-      BACK : 0,
-      BACKRIGHT : 1,
-      RIGHT: 2,
-      FRONTRIGHT : 3,
-      FRONT : 4
-    };
-
 
     $scope.pageType = {
       CUSTOMIZE: 0,
@@ -59,7 +39,7 @@ angular.module('abacuApp')
 
     /**********************Main Variables****************************/
 
-    //All the data about the current frame
+    //All the data about the current frame (loaded by init)
     $scope.frameData = null;
 
     //Arrays that store information about the pages
@@ -74,13 +54,11 @@ angular.module('abacuApp')
       type: $scope.pageType.CUSTOMIZE //keeps track of which page type we are currently looking at
     };
 
-
-
     //The images used to generate the full wheelchair image
     $scope.previewImgs = [];
 
     //The current angle the wheelchair is being viewed from
-    var curAngle = angleType.FRONTRIGHT;
+    var curAngle = Angles.FRONTRIGHT;
 
     //The current measurement system being used
     $scope.curUnitSys = $scope.unitSys.IMPERIAL;
@@ -89,90 +67,34 @@ angular.module('abacuApp')
 
     //Generates the page arrays inside of pages
     function generatePages (){
+
+      //part pages generation
       for (var i = 0; i < $scope.frameData.parts.length; i++ ){
         var page = {index:i, partID: $scope.frameData.parts[i].partID, visitstatus:visitstatus.UNVISITED};
         pages.customizePages.push(page);
       }
 
+      //measure pages generation
       for (var j = 0; j < $scope.frameData.measures.length; j++){
         var page1 = {index:j, measureID: $scope.frameData.measures[j].measureID, visitstatus:visitstatus.UNVISITED};
         pages.measurePages.push(page1);
       }
+
+      //reset visit statuses
       pages.customizePages[0].visitstatus = visitstatus.CURRENT;
       pages.measurePages[0].visitstatus = visitstatus.CURRENT;
 
+      //set our current pages to the beginning
       curPage.page[$scope.pageType.CUSTOMIZE] = pages.customizePages[0];
       curPage.page[$scope.pageType.MEASURE] = pages.measurePages[0];
 
 
     }
 
-    //resets current wheelchair to default
-    //TODO: This needs to recreate the parts and measures arrays
-
-      //mark:  function missing in the wheelchairFactory
-    function resetCurWheelchair() {
-      curWheelchair = {
-        'title': 'My Wheelchair',
-        'calcPrice': -1,
-        'calcWeight': -1,
-        'imgURL': '',
-        'frameID': 0,
-        'parts': [],
-        'measures': []
-      };
-    }
-
-    //Generates the initial curWheelchair
-    //if curWheelChairCartIndex is -1, it generates a new chair
-    //otherwise it grabs the wheelchair from the cart
-
-    //mark:   userService: generateCurWheelchair
-    function generateCurWheelchair(curWheelChairCartIndex) {
-
-      //if we have no current wheelchair index, generate a new chair
-      if (curWheelChairCartIndex === -1) {
-        resetCurWheelchair();
-        curWheelchair.frameID = $scope.frameData.frameID;
-        for (var i = 0; i < $scope.frameData.parts.length; i++) {
-          var curPart = $scope.frameData.parts[i];
-          curWheelchair.parts.push({
-            partID: curPart.partID,
-            optionID: curPart.defaultOptionID,
-            colorID: getOptionData(curPart.defaultOptionID, curPart).defaultColorID,
-            weight: getOptionData(curPart.defaultOptionID, curPart).weight,
-            price: getOptionData(curPart.defaultOptionID, curPart).price
-          });
-        }
-        for (var j = 0; j < $scope.frameData.measures.length; j++) {
-          curWheelchair.measures.push({
-            measureID: $scope.frameData.measures[j].measureID,
-            measureOptionIndex: -1
-          });
-        }
-        //window.alert("new wheelchair: " + JSON.stringify(curWheelchair));
-      }
-
-      //if we have a current wheelchair index, grab it from our cart
-
-      else {
-        curWheelchair = JSON.parse(JSON.stringify(cartDataFromDB[curWheelChairCartIndex])); //deep copy so that user can manually save the wheelchair
-        //window.alert("editing wheelchair: " + JSON.stringify(curWheelchair));
-      }
-
-    }
-
     //Initialize the page - called on pageLoad
     function init() {
-
-      //mark: Framedata.getframebyIndex
       $scope.frameData = FrameData.getFrame(User.getcurEditWheelchair().getFrameID());
-
-
-      User.curEditWheelchairIndex = -1; //reset it
-
       generatePages();
-      //TODO replace with previewImgFactory function later
       refreshPreviewImage();
     }
 
@@ -303,7 +225,7 @@ angular.module('abacuApp')
 
     //Updates the preview image array after a value is changed
     function refreshPreviewImage() {
-      $scope.previewImgs = getCurWheelchairImages();
+      $scope.previewImgs = previewImage.getImages();
     }
 
     //Changes curAngle based on dir (dir = +-1)

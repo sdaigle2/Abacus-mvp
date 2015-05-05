@@ -6,10 +6,10 @@ angular.module('abacuApp')
     //##########################  Constructor  #########################
     function PreviewImage( urlFolder, frameID, partData ) {
 
-      this.baseURL = '/images/' + urlFolder + '/';
+      this.baseURL = '/images/chairPic/' + urlFolder + '/';
       this.frameID = frameID;
       this.parts = [];
-      this.dirty = true; //Indicates if the parts array bee changed
+      this.dirty = true; //Indicates if the parts array been changed
       this.lastAngle = -1;
       this.images = [];
 

@@ -100,7 +100,10 @@ angular.module('abacuApp')
       },
 
       getcurEditWheelchair: function () {
-        return this.getWheelchair(curEditWheelchairIndex); }
+        return this.getWheelchair(curEditWheelchairIndex);
+      }
+
+
 
 
       //TODO: get/sets
