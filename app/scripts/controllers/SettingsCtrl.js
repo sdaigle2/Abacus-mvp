@@ -20,8 +20,7 @@ angular.module('abacuApp')
       MEASUREMENTS : 'measurements'
     };
 
-    //Categories inside the 'My Measurements' Section
-    //TODO Common Measurements should be stored in the User service
+    //Categories inside the 'My Measurements' Section of the User
     $scope.MeasurementTypes = {
       REAR_SEAT_HEIGHT : 'rearSeatHeight',
       REAR_SEAT_WIDTH : 'rearSeatWidth',
@@ -132,7 +131,7 @@ angular.module('abacuApp')
     }];
 
     $scope.openOrderDetails = function (index) {
-      //TODO: Display order details
+      //TODO: Display order details from the User service
     };
 
     /***************** MY MEASURES *********************************************/
@@ -142,7 +141,7 @@ angular.module('abacuApp')
       rearSeatHeight: {
         name: 'Rear Seat Height',
         options: ['1', '2', '3'],
-        optionSelected: null,
+        optionSelected: User.commonMeasures.REAR_SEAT_HEIGHT,
         desc: 'Distance from the ground up to back corner of your seat',
         imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
@@ -150,7 +149,7 @@ angular.module('abacuApp')
       rearSeatWidth: {
         name: 'Rear Seat Width',
         options: ['A', 'B', 'C'],
-        optionSelected: null,
+        optionSelected: User.commonMeasures.REAR_SEAT_WIDTH,
         desc: 'The distance between armrests at the back of the seat',
         imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
@@ -158,7 +157,7 @@ angular.module('abacuApp')
       foldingBackrestHeight: {
         name: 'Folding Backrest Height',
         options: ['Do', 'Re', 'Mi'],
-        optionSelected: null,
+        optionSelected: User.commonMeasures.FOLDING_BACKREST_HEIGHT,
         desc: 'Distance from the seat to the top of the backrest',
         imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
@@ -166,7 +165,7 @@ angular.module('abacuApp')
       axelPosition: {
         name: 'Axel Position',
         options: ['Uno', 'Dos', 'Tres'],
-        optionSelected: null,
+        optionSelected: User.commonMeasures.AXEL_POSITION,
         desc: 'The position of the axel',
         imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
@@ -174,7 +173,7 @@ angular.module('abacuApp')
       seatDepth: {
         name: 'Seat Depth',
         options: ['I', 'II', 'III'],
-        optionSelected: null,
+        optionSelected: User.commonMeasures.SEAT_DEPTH,
         desc: 'Distance from the back of the seat to the front',
         imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
         imgIndex: 0
