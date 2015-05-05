@@ -14,7 +14,7 @@ angular.module('abacuApp')
     function ($http, $location, Order, Wheelchair, Units, Costs) {
 
     var orders = [];
-    //var measures = []; //TODO: Implement this later (Settings->MyMeasurements)
+    //var measures = []; //TODO: Implement this later (Settings->MyMeasurements). These are the common measurements
     var designedWheelchairs = [];
 
     var curEditWheelchairIndex = -1;

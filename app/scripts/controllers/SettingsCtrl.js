@@ -21,6 +21,7 @@ angular.module('abacuApp')
     };
 
     //Categories inside the 'My Measurements' Section
+    //TODO Common Measurements should be stored in the User service
     $scope.MeasurementTypes = {
       REAR_SEAT_HEIGHT : 'rearSeatHeight',
       REAR_SEAT_WIDTH : 'rearSeatWidth',
