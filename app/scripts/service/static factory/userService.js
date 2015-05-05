@@ -10,7 +10,7 @@
  * Service of the abacuApp
  */
 angular.module('abacuApp')
-  .service('User', ['$http', 'Order', 'Wheelchair', 'Units',  function ($http, Order, Wheelchair, Units) {
+  .service('User', ['$http', '$location', 'Order', 'Wheelchair', 'Units',  function ($http, $location, Order, Wheelchair, Units) {
 
     var userID = -1; //-1 means not logged in
 
@@ -26,7 +26,7 @@ angular.module('abacuApp')
     var zip = "";
 
     var orders = [];
-    var measures = [];
+    //var measures = []; //TODO: Implement this later (Settings->MyMeasurements)
     var designedWheelchairs = [];
 
     var curEditWheelchairIndex = -1;
@@ -37,6 +37,8 @@ angular.module('abacuApp')
 
     return {
 
+      /************************LOGIN AND LOGOUT****************************/
+
       //Attempt to login as the given username with the given password
       //If successful - should load in appropriate user data
       login: function (username, password) {
@@ -45,9 +47,33 @@ angular.module('abacuApp')
         //Verify username and password
         //Set userID
         //Set other user fields
-        //loadOrders()
-        //loadDesignedWheelchairs()
+        //load Orders from DB associated with UserID
+        //load Measurements from DB with associated UserID
+        //load Designed Wheelchairs from DB associated with UserID
       },
+
+      logout: function () {
+        userID = -1; //-1 means not logged in
+        fName = "";
+        lName = "";
+        email = "";
+        phone = "";
+        addr = "";
+        addr2 = "";
+        city = "";
+        state = "";
+        zip = "";
+        orders = [];
+        //measures = []; //TODO: Reset to default
+        designedWheelchairs = [];
+        curEditWheelchairIndex = -1;
+        unitSys = Units.unitSys.IMPERIAL;
+        $location.path('frames');
+      },
+
+      isLoggedIn: function () { return (userID !== -1); },
+
+      /*************************MY DESIGNS*******************************/
 
       //Create a new wheelchair object of given frame type and set edit pointer to it
       createNewWheelchair: function (frameID) {
@@ -78,6 +104,16 @@ angular.module('abacuApp')
         return this.getWheelchair(curEditWheelchairIndex);
       },
 
+      /******************************MY MEASUREMENTS*******************************/
+
+      //TODO: this
+
+      /******************************MY ORDERS*******************************/
+
+      getOrders: function () { return orders; },
+      getNumOrders: function () { return orders.length; },
+
+
       //Returns User's name and address info as an object
       getUserDataAsObject: function () {
         return {
@@ -93,9 +129,6 @@ angular.module('abacuApp')
         };
       },
 
-      //TODO: get/sets
-
-      getUnitSys: function () { return unitSys; },
 
 
     };

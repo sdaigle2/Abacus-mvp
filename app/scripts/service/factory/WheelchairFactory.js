@@ -153,7 +153,7 @@ angular.module('abacuApp')
         }
         for (var j = 0; j < this.measures.length; j++) {
           if (this.measures[j].measureOptionIndex !== -1) {
-            var m = frame.getMeasure(this.measures[j].measureID)
+            var m = frame.getMeasure(this.measures[j].measureID);
             totalWeight += m.getWeight(this.measures[j].measureOptionIndex);
           }
         }
@@ -171,7 +171,7 @@ angular.module('abacuApp')
         }
         for (var j = 0; j < this.measures.length; j++) {
           if (this.measures[j].measureOptionIndex !== -1) {
-            var m = frame.getMeasure(this.measures[j].measureID)
+            var m = frame.getMeasure(this.measures[j].measureID);
             totalPrice += m.getPrice(this.measures[j].measureOptionIndex);
           }
         }
