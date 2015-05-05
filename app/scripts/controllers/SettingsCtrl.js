@@ -35,15 +35,15 @@ angular.module('abacuApp')
 
     /***************** SIDEBAR BUTTONS ***************************************/
 
+    //TODO not sure why this button is even here???
     $scope.edit = function () {
       switch (contentSection) {
         case $scope.ContentSection.ACCOUNT:
-          //TODO:
+          return;
         case $scope.ContentSection.ORDERS:
           return;
         case $scope.ContentSection.MEASUREMENTS:
-          //TODO:
-          break;
+          return;
       }
     };
 
@@ -51,11 +51,32 @@ angular.module('abacuApp')
     $scope.save = function () {
       switch (contentSection) {
         case $scope.ContentSection.ACCOUNT:
-          //TODO:
+
+          User.fName = $scope.accountModel.fName;
+          User.lName = $scope.accountModel.lName;
+          User.email = $scope.accountModel.email;
+          User.addr = $scope.accountModel.addr;
+          User.addr2 = $scope.accountModel.addr2;
+          User.city = $scope.accountModel.city;
+          User.state = $scope.accountModel.state;
+          User.zip = $scope.accountModel.zip;
+
+          //TODO: update in the database (including password)
+
+          break;
+
         case $scope.ContentSection.ORDERS:
-          return;
+          break;
+
         case $scope.ContentSection.MEASUREMENTS:
-          //TODO:
+          User.commonMeasures.REAR_SEAT_HEIGHT = $scope.measDisplay.rearSeatHeight.optionSelected;
+          User.commonMeasures.REAR_SEAT_WIDTH = $scope.measDisplay.rearSeatWidth.optionSelected;
+          User.commonMeasures.FOLDING_BACKREST_HEIGHT = $scope.measDisplay.foldingBackrestHeight.optionSelected;
+          User.commonMeasures.AXEL_POSITION = $scope.measDisplay.axelPosition.optionSelected;
+          User.commonMeasures.SEAT_DEPTH = $scope.measDisplay.seatDepth.optionSelected;
+
+          //TODO: update values in the database
+
           break;
       }
     };
@@ -113,6 +134,7 @@ angular.module('abacuApp')
     /***************** MY ORDERS **********************************************/
 
     //Array of orders
+    //TODO needs to be integrated with the Order factory
     $scope.orders = [{
       orderNum: '0000',
       datePlaced: new Date(2015, 1, 15, 7, 30, 0, 0),
