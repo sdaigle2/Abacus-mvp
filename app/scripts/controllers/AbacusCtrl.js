@@ -1,5 +1,4 @@
 ﻿﻿// jshint unused:false
-/* globals frameDataFromDB:true, cartDataFromDB:true, curWheelchair:true, $ */
 'use strict';
 
 /**

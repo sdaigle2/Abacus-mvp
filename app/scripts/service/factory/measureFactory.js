@@ -56,9 +56,9 @@ angular.module('abacuApp')
       getNumImages: function () { return this.imageURLs.length; },
       getImageURL: function (index) { return this.imageURLs[index]; },
 
-      getOption: function (index) {
-        if (index >= 0 && index < this.measureOptions.length) {
-          return this.measureOptions[index];
+      getOption: function (unitSys, index) {
+        if (index >= 0 && index < this.measureOptions[unitSys].length) {
+          return this.measureOptions[unitSys][index];
         }
         return '';
       },
