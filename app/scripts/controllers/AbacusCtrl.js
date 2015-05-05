@@ -10,8 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', ['$scope', '$location', 'sharedVars', 'FrameData', 'User', 'previewImage', 'Wheelchair', 'Angles',
-    function ($scope, $location, sharedVars, FrameData, User, previewImage, Wheelchair, Angles) {
+  .controller('AbacusCtrl', ['$scope', '$location', 'sharedVars', 'FrameData', 'User', 'Wheelchair', 'Angles',
+    function ($scope, $location, sharedVars, FrameData, User, Wheelchair, Angles) {
 
     /*********************Enums*******************************/
 
