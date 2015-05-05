@@ -10,28 +10,10 @@
 angular.module('abacuApp')
   .controller('FrameCtrl', ['$scope', '$location', 'FrameData','User', function ($scope, $location, FrameData, User) {
 
-    $scope.frames = [];
-
-    function initialize() {
-      for (var i = 0; i < FrameData.getNumFrames(); i++) {
-        var f = FrameData.getFrameByIndex(i);
-        $scope.frames.push({
-          frameID: f.getID(),
-          manufacturer: f.getManufacturer(),
-          name: f.getName(),
-          desc: f.getDesc(),
-          basePrice: f.getBasePrice(),
-          baseWeight: f.getBaseWeight(),
-          imageURL: f.getImageURL()
-        });
-      }
-    };
+    $scope.frames = FrameData.getFrames();
 
     $scope.selectFrame = function (frameID) {
-      //TODO: Send user to abacus with chosen frame
-
-      alert("FrameData test: " + JSON.stringify(FrameData.getFrame(frameID))); //Test alert please ignore
-      //
+      //alert("FrameData test: " + JSON.stringify(FrameData.getFrame(frameID))); //Test alert please ignore
       User.createNewWheelchair(frameID);
       $location.path('abacus');
     };
@@ -40,9 +22,12 @@ angular.module('abacuApp')
       return (hoverItem === frameID);
     }
 
-    initialize();
-
   }]);
+
+
+
+
+
 
 
 
