@@ -12,30 +12,30 @@
 angular.module('abacuApp')
   .service('User', ['$http', '$location', 'Order', 'Wheelchair', 'Units',  function ($http, $location, Order, Wheelchair, Units) {
 
-    var userID = -1; //-1 means not logged in
-
-    var fName = "";
-    var lName = "";
-    var email = "";
-    var phone = "";
-
-    var addr = "";
-    var addr2 = "";
-    var city = "";
-    var state = "";
-    var zip = "";
-
     var orders = [];
     //var measures = []; //TODO: Implement this later (Settings->MyMeasurements)
     var designedWheelchairs = [];
 
     var curEditWheelchairIndex = -1;
 
-    var unitSys = Units.unitSys.IMPERIAL;
-
     //*********functions************//
 
     return {
+
+      userID: -1, //-1 means not logged in
+
+      fName: '',
+      lName: '',
+      email: '',
+      phone: '',
+
+      addr: '',
+      addr2: '',
+      city: '',
+      state: '',
+      zip: '',
+
+      unitSys: Units.unitSys.IMPERIAL,
 
       /************************LOGIN AND LOGOUT****************************/
 
@@ -53,25 +53,25 @@ angular.module('abacuApp')
       },
 
       logout: function () {
-        userID = -1; //-1 means not logged in
-        fName = "";
-        lName = "";
-        email = "";
-        phone = "";
-        addr = "";
-        addr2 = "";
-        city = "";
-        state = "";
-        zip = "";
+        this.userID = -1; //-1 means not logged in
+        this.fName = "";
+        this.lName = "";
+        this.email = "";
+        this.phone = "";
+        this.addr = "";
+        this.addr2 = "";
+        this.city = "";
+        this.state = "";
+        this.zip = "";
+        this.unitSys = Units.unitSys.IMPERIAL;
         orders = [];
         //measures = []; //TODO: Reset to default
         designedWheelchairs = [];
         curEditWheelchairIndex = -1;
-        unitSys = Units.unitSys.IMPERIAL;
         $location.path('frames');
       },
 
-      isLoggedIn: function () { return (userID !== -1); },
+      isLoggedIn: function () { return (this.userID !== -1); },
 
       /*************************MY DESIGNS*******************************/
 
@@ -117,15 +117,15 @@ angular.module('abacuApp')
       //Returns User's name and address info as an object
       getUserDataAsObject: function () {
         return {
-          fName: fName,
-          lName: lName,
-          email: email,
-          phone: phone,
-          addr: addr,
-          addr2: addr2,
-          city: city,
-          state: state,
-          zip: zip
+          fName: this.fName,
+          lName: this.lName,
+          email: this.email,
+          phone: this.phone,
+          addr: this.addr,
+          addr2: this.addr2,
+          city: this.city,
+          state: this.state,
+          zip: this.zip
         };
       },
 
