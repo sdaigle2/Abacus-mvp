@@ -31,7 +31,15 @@ angular.module('abacuApp')
     };
 
     //The angle type of the wheelchair image
-    //replace: angleService
+    //mark: replace with previewImageFactory
+    var angleType = {
+      numAngles: 5, //The number of angle options (change this if more added/removed)
+      BACK : 0,
+      BACKRIGHT : 1,
+      RIGHT: 2,
+      FRONTRIGHT : 3,
+      FRONT : 4
+    };
 
 
     $scope.pageType = {
@@ -530,9 +538,10 @@ angular.module('abacuApp')
     //Determine the text for each tooltip to display
     $scope.getProgressBarSegmentTooltipText = function (page) {
       if (curPage.type === $scope.pageType.CUSTOMIZE){
-        return getPartData(page.partID).name;}
+        console.log(JSON.stringify(User.getcurEditWheelchair().getPart(page.partID)));
+        return User.getcurEditWheelchair().getPart(page.partID).name;}
       else if (curPage.type === $scope.pageType.MEASURE){
-        return getMeasureData(page.measureID).name;}
+        return User.getcurEditWheelchair().getMeasure(page.partID).name;}
       return 'ERROR: Invalid page type';
     };
 

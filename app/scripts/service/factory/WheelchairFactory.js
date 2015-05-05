@@ -23,10 +23,9 @@ angular.module('abacuApp')
 
       for (var i = 0; i < parts.length; i++) {
         var p = parts[i];
-        console.log("part: " + JSON.stringify(p));
-        console.log("optionID:" + p.defaultOptionID);
 
         this.parts.push({
+          name: p.getName(),
           partID: p.getID(),
           optionID: p.getDefaultOptionID(),
           colorID: p.getDefaultOption().getDefaultColorID()
@@ -36,6 +35,7 @@ angular.module('abacuApp')
       for (var j = 0; j < meas.length; j++) {
         var m = meas[j];
         this.measures.push({
+          name: m.getName(),
           measureID: m.getID(),
           measureOptionIndex: -1
         })
@@ -52,6 +52,7 @@ angular.module('abacuApp')
 
       //GETS
       getFrameID: function () { return this.frameID; },
+      getName: function() {return this.name},
       getTitle: function () { return this.title; },
       getParts: function () { return this.parts; },
       getMeasures: function () { return this.measures; },

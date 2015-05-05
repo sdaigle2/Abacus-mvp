@@ -49,7 +49,7 @@ angular.module('abacuApp')
           var err = textStatus + ', ' + error;
           console.log('Request Failed: ' + err);
         });
-    };
+    }
 
 
     return {
@@ -99,7 +99,8 @@ angular.module('abacuApp')
         return null;
       },
 
-      getcurEditWheelchair: function () { return getWheelchair(curEditWheelchairIndex); }
+      getcurEditWheelchair: function () {
+        return this.getWheelchair(curEditWheelchairIndex); }
 
 
       //TODO: get/sets

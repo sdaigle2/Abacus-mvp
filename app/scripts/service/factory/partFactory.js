@@ -35,9 +35,7 @@ angular.module('abacuApp')
 
       getOption: function (opID) {
         for (var i = 0; i < this.options.length; i++){
-          console.log("optionsID inside: " + this.options[i].getID());
           if (this.options[i].getID() === opID) {
-            console.log("retrun option:" + JSON.stringify(this.options[i]));
             return this.options[i];
             break;
             }
