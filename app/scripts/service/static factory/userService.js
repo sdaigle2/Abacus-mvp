@@ -49,9 +49,8 @@ angular.module('abacuApp')
 
       //Create a new wheelchair object of given frame type and set edit pointer to it
       createNewWheelchair: function (frameID) {
-        if (curEditWheelchairIndex === -1)
-          designedWheelchairs.push(new Wheelchair(frameID));
-          curEditWheelchairIndex = designedWheelchairs.length - 1;
+        designedWheelchairs.push(new Wheelchair(frameID));
+        curEditWheelchairIndex = designedWheelchairs.length - 1;
       },
 
       //Set the given wheelchair index to be edited

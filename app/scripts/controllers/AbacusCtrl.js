@@ -58,7 +58,7 @@ angular.module('abacuApp')
     $scope.previewImgs = [];
 
     //The current angle the wheelchair is being viewed from
-    var curAngle = Angles.FRONTRIGHT;
+    var curAngle = Angles.angleType.FRONTRIGHT;
 
     //The current measurement system being used
     $scope.curUnitSys = $scope.unitSys.IMPERIAL;
@@ -114,9 +114,9 @@ angular.module('abacuApp')
       User.getcurEditWheelchair().getTotalWeight();
     };
 
-      //mark: wheelchairFactory.getTotalPrice
-      $scope.getTotalPrice = function () {
-        User.getcurEditWheelchair().getTotalPrice();
+    //mark: wheelchairFactory.getTotalPrice
+    $scope.getTotalPrice = function () {
+      User.getcurEditWheelchair().getTotalPrice();
     };
 
     /*******************Unit Systems ****************************/
@@ -160,7 +160,7 @@ angular.module('abacuApp')
     //Returns the angle as a String
 
     //mark cancelout :: replace angleService
-    function getAngleName(angle) {
+    /*function getAngleName(angle) {
       switch (angle) {
         case angleType.FRONT:
           return 'Front';
@@ -175,7 +175,7 @@ angular.module('abacuApp')
         default:
           return '';
       }
-    }
+    }*/
 
     //Generates a URL for the given part based on the frame, partID,
     //OptionID, ColorID, SubImageIndex, and Angle
@@ -186,7 +186,7 @@ angular.module('abacuApp')
       var optionIDString =     curWheelchairPart.optionID;
       var colorString    = '_' + curWheelchairPart.colorID;
       var subIndString   = '_' + subImageIndex;
-      var angleString    = '_' + getAngleName(curAngle);
+      var angleString    = '_' + Angles.getAngleName(curAngle);
       var partURL = previewBaseURL + 'frame' + frameIDString + '/';
       partURL += 'part' + partIDString + '/';
       partURL += optionIDString + colorString + subIndString + angleString + previewImageType;
@@ -237,9 +237,9 @@ angular.module('abacuApp')
     $scope.rotatePreview = function (dir) {
       curAngle = curAngle + dir;
       if (curAngle < 0) {
-        curAngle = angleType.numAngles - 1;
+        curAngle = Angles.numAngles - 1;
       }
-      if (curAngle >= angleType.numAngles) {
+      if (curAngle >= Angles.numAngles) {
         curAngle = 0;
       }
       refreshPreviewImage();
