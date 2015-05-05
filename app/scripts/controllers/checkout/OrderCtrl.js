@@ -10,7 +10,7 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('OrderCtrl',  function ($scope, $location,userFactory) {
+  .controller('OrderCtrl',  function ($scope, $location,orderFactory) {
 
     /*************************** CONTROL VARIABLES *************************/
     $scope.stages = {
@@ -42,23 +42,15 @@ angular.module('abacuApp')
       }
     ];
 
-    //TODO: $scope.user is not available
-
-
-
-    userFactory.all()
+    //database action
+    orderFactory.all()
       .success(function(data){
-        $scope.user = data;
-        console.log(JSON.stringify($scope.user ));
+        $scope.info = data;
+        console.log(JSON.stringify(data ));
       })
       .error(function(data) {
-        console.log("Request failed: " + data);
+      console.log("Request failed: " + data);
       });
-
-
-
-
-
 
 
 
@@ -120,6 +112,7 @@ angular.module('abacuApp')
     /*************************** INFO ******************************/
 
 
+
     //Model for the contact form
     $scope.contactForm = {
       fName: "",
@@ -137,10 +130,6 @@ angular.module('abacuApp')
       zip: ""
     };
 
-
-
-
-
     /**************************** PAYMENT ******************************/
 
     //Payment Method radio buttons
@@ -148,19 +137,11 @@ angular.module('abacuApp')
       PAYPAL: 'paypal',
       ADVANCE: 'advance'
     };
-    //
-    ////User's choice of payment method
+
+    //User's choice of payment method
     $scope.payForm = {
       method: $scope.payMethods.ADVANCE
     };
-
-
-
-    ////User's choice of payment method
-
-    //$scope.payForm = {
-    //  method: $scope.info.payMethods.ADVANCE
-    //}
 
     /**************************** CONFIRM ******************************/
 

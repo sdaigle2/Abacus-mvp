@@ -73,12 +73,7 @@ angular
       setCurWheelChairCartIndex: function(value) {
         curWheelChairCartIndex = value;
       }
-    }
-
-
-
-
-      ;
+    };
   });
 
 
