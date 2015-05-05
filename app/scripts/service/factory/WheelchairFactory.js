@@ -103,8 +103,8 @@ angular.module('abacuApp')
         return -1;
       },
 
-      getPreviewImages: function () {
-        return this.previewImageGenerator.getImages();
+      getPreviewImages: function (angle) {
+        return this.previewImageGenerator.getImages(angle);
       },
 
 

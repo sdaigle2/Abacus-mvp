@@ -217,7 +217,7 @@ angular.module('abacuApp')
 
     //Returns an array of images for User.getCurEditWheelchair() sorted by zRank
     $scope.getPreviewImages = function () {
-      return User.getCurEditWheelchair().getPreviewImages();
+      return User.getCurEditWheelchair().getPreviewImages(curAngle);
     };
 
 
