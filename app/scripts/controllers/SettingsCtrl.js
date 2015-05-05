@@ -10,7 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('SettingsCtrl', function ($scope, $location, sharedVars) {
+  .controller('SettingsCtrl', ['$scope', 'User',
+    function ($scope, User) {
 
     //Sidebar options
     $scope.ContentSection = {
@@ -37,11 +38,11 @@ angular.module('abacuApp')
     $scope.edit = function () {
       switch (contentSection) {
         case $scope.ContentSection.ACCOUNT:
-          //TODO: 
+          //TODO:
         case $scope.ContentSection.ORDERS:
           return;
         case $scope.ContentSection.MEASUREMENTS:
-          //TODO: 
+          //TODO:
           break;
       }
     };
@@ -50,11 +51,11 @@ angular.module('abacuApp')
     $scope.save = function () {
       switch (contentSection) {
         case $scope.ContentSection.ACCOUNT:
-          //TODO: 
+          //TODO:
         case $scope.ContentSection.ORDERS:
           return;
         case $scope.ContentSection.MEASUREMENTS:
-          //TODO: 
+          //TODO:
           break;
       }
     };
@@ -96,14 +97,15 @@ angular.module('abacuApp')
 
     //Model for the 'My Account' inputs
     $scope.accountModel = {
-      fName: '',
-      lName: '',
-      email: '',
-      addr: '',
-      addr2: '',
-      city: '',
-      state: '',
-      zip: '',
+      fName: User.fName,
+      lName: User.lName,
+      email: User.email,
+      addr: User.addr,
+      addr2: User.addr2,
+      city: User.city,
+      state: User.state,
+      zip: User.zip,
+      oldPass: '',
       newPass1: '',
       newPass2: ''
     };
@@ -178,4 +180,4 @@ angular.module('abacuApp')
       }
     };
 
-  });
+  }]);
