@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 angular.module('abacuApp')
-  .factory('Wheelchair', ['FrameData', 'previewImage', function (FrameData, previewImage) {
+  .factory('Wheelchair', ['Part', 'FrameData', 'previewImage', function (Part, FrameData, previewImage) {
 
     //##########################  Constructor  #########################
 
@@ -20,22 +20,12 @@ angular.module('abacuApp')
 
       for (var i = 0; i < parts.length; i++) {
         var p = parts[i];
-
-        this.parts.push({
-          name: p.getName(),
-          partID: p.getID(),
-          optionID: p.getDefaultOptionID(),
-          colorID: p.getDefaultOption().getDefaultColorID()
-        });
+        this.parts.push(p);
       }
 
       for (var j = 0; j < meas.length; j++) {
         var m = meas[j];
-        this.measures.push({
-          name: m.getName(),
-          measureID: m.getID(),
-          measureOptionIndex: -1
-        })
+        this.measures.push(m);
       }
       this.name = frame.name;
       this.desc = frame.desc;
