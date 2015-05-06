@@ -138,7 +138,7 @@ angular.module('abacuApp')
         var totalWeight = frame.getBaseWeight();
         for (var i = 0; i < this.parts.length; i++) {
           var p = frame.getPart(this.parts[i].partID);
-          var o = p.getOption(this.parts[i].optionID);
+          var o = p.getOption(this.parts[i].getDefaultOptionID());
           totalWeight += o.getWeight();
         }
         for (var j = 0; j < this.measures.length; j++) {
@@ -156,7 +156,7 @@ angular.module('abacuApp')
         var totalPrice = frame.getBasePrice();
         for (var i = 0; i < this.parts.length; i++) {
           var p = frame.getPart(this.parts[i].partID);
-          var o = p.getOption(this.parts[i].optionID);
+          var o = p.getOption(this.parts[i].getDefaultOptionID());
           totalPrice += o.getPrice();
         }
         for (var j = 0; j < this.measures.length; j++) {
