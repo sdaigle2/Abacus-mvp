@@ -8,7 +8,6 @@ angular.module('abacuApp')
 
       this.measureID = measureData.measureID;
       this.measureOptions = measureData.measureOptions;
-      this.selectedMeasureOptionIndex = 0;
       this.weights = measureData.weights;
       this.prices = measureData.prices;
 
@@ -74,21 +73,6 @@ angular.module('abacuApp')
         if (index >= 0 && index < this.prices.length)
           return this.prices[index];
         return 0;
-      },
-
-      getSelectedMeasureOption: function () {
-        if (this.selectedMeasureOptionIndex >= 0 && this.selectedMeasureOptionIndex < this.measureOptions[0].length) {
-          return this.measureOptions[0][this.selectedMeasureOptionIndex];
-        }
-        return '';
-      },
-
-      getSelectedMeasureOptionIndex: function () {
-        return this.selectedMeasureOptionIndex;
-      },
-
-      setSelectedMeasureOptionIndex: function (index) {
-        this.selectedMeasureOptionIndex = index;
       }
 
     };
