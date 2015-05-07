@@ -24,12 +24,12 @@ angular.module('abacuApp')
     $scope.wOrderIndex = [];
 
 
-    var curOrder = null;
+    $scope.curOrder = null;
 
     //Initialize Cart page
     function init() {
       User.createNewOrder();
-      curOrder = User.getCurEditOrder();
+      $scope.curOrder = User.getCurEditOrder();
 
       for (var i = 0; i < $scope.wheelchairs.length; i++) {
         $scope.wOrderIndex.push(-1);
@@ -43,6 +43,7 @@ angular.module('abacuApp')
     //The index of the cart whose detail panel is open, -1 = None
     $scope.curDetailPanel = -1;
 
+    //Opens up a panel with details about the selected wheelchair
     $scope.seeWheelchairDetails = function (index) {
       if ($scope.curDetailPanel == index)
         $scope.curDetailPanel = -1;
@@ -50,16 +51,18 @@ angular.module('abacuApp')
         $scope.curDetailPanel = index;
     };
 
+    //Sends the user back to abacus with the selected wheelchair
     $scope.editWheelchair = function (index) {
       User.setEditWheelchair(index);
       $location.path('abacus');
     };
 
-    $scope.removeWheelchair = function (index) {
+    //Deletes wheelchair from user's My Designs
+    $scope.deleteWheelchair = function (index) {
       //Remove wheelchair from order if in order
       var orderInd = $scope.wOrderIndex[index];
       if (orderInd !== -1) {
-        curOrder.removeWheelchair(orderInd);
+        $scope.curOrder.removeWheelchair(orderInd);
       }
       $scope.wOrderIndex.splice(index, 1);
       $scope.wInOrder.splice(index, 1);
@@ -70,12 +73,44 @@ angular.module('abacuApp')
       //TODO: Save changes to DB
     };
 
+
+    //Adds the selected wheelchair to curOrder
+    $scope.addWheelchairToOrder = function (index) {
+      if ($scope.wheelchairs[index].allMeasuresSet() === false) {
+        alert('All measurements must be set before this can be purchased');
+        return;
+      }
+
+      $scope.curOrder.addWheelchair($scope.wheelchairs[index]);
+      $scope.wInOrder[index] = true;
+      $scope.wOrderIndex[index] = $scope.curOrder.getNumWheelchairs() - 1;
+      updateCosts();
+    };
+
+    //Removes the selected wheelchair from curOrder
+    $scope.removeWheelchairFromOrder = function (index) {
+      $scope.curOrder.removeWheelchair($scope.wOrderIndex[index]);
+      $scope.wInOrder[index] = false;
+      for (var i = 0; i < $scope.wOrderIndex.length; i++)
+        if ($scope.wOrderIndex[i] > $scope.wOrderIndex[index])
+          $scope.wOrderIndex[i]--;
+      $scope.wOrderIndex[index] = -1;
+      updateCosts();
+    };
+
     /********************SIDEBAR CALCULATIONS************************/
     $scope.costs = {
       subtotal: 0,
       tax: 0,
       shipping: 0,
       total: 0
+    };
+
+    function updateCosts() {
+      $scope.costs.subtotal = $scope.curOrder.getSubtotal();
+      $scope.costs.tax = $scope.curOrder.getTaxCost();
+      $scope.costs.shipping = $scope.curOrder.getShippingCost();
+      $scope.costs.total = $scope.curOrder.getTotalCost();
     };
 
     /*********************CHECK OUT***********************************/
@@ -92,8 +127,16 @@ angular.module('abacuApp')
 
     /********************DETAIL PANEL*********************************/
 
+    $scope.getWeightString = function (wheelchair) {
+      return (wheelchair.getTotalWeight() * Units.getWeightFactor(User.unitSys)).toFixed(2) + ' ' + Units.getWeightName(User.unitSys);
+    };
+
     //Get data for curWheelchair.Part object
-    $scope.getPartDetails = function (fID, pID, oID, cID) {
+    $scope.getPartDetails = function (fID, curPart) {
+      var pID = curPart.partID;
+      var oID = curPart.optionID;
+      var cID = curPart.colorID;
+
       var part = FrameData.getFramePart(fID, pID);
       var option = part.getOption(oID);
       var color = option.getColor(cID);
@@ -115,8 +158,9 @@ angular.module('abacuApp')
     };
 
     //Get data for curWheelchair.Measure object
-    $scope.getMeasureDetails = function (fID, mID, optionIndex) {
-      var i = optionIndex;
+    $scope.getMeasureDetails = function (fID, curMeas) {
+      var mID = curMeas.measureID;
+      var i = curMeas.measureOptionIndex;
       var meas = FrameData.getFrameMeasure(fID, mID);
 
       var optionString = 'NOT SELECTED';

@@ -54,10 +54,10 @@ angular.module('abacuApp')
 
       /*****************Cost Calculators****************/
       getSubtotal: function () {
-        if (orderWheelchairs.length > 0) {
+        if (this.wheelchairs.length > 0) {
           var total = 0;
-          for (var i = 0; i < orderWheelchairs.length; i++) {
-            total += orderWheelchairs[i].getTotalPrice();
+          for (var i = 0; i < this.wheelchairs.length; i++) {
+            total += this.wheelchairs[i].getTotalPrice();
           }
           return total;
         }

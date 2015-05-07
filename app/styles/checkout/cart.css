@@ -121,6 +121,40 @@
   cursor: pointer;
 }
 
+.cartAddButton {
+  border: 1px solid #60C2B1;
+  background-color: #FFFFFF;
+  display:inline-block;
+  color: #000000;
+  float: right;
+}
+
+.cartAddButton.inactive {
+  background-color: #AAAAAA;
+}
+
+.cartAddButton:hover {
+  background-color: #60C2B1;
+  cursor: pointer;
+}
+
+.cartAddButton.inactive:hover {
+  background-color: #AAAAAA;
+}
+
+.cartRemoveButton {
+  border: 1px solid #60C2B1;
+  background-color: #60C2B1;
+  display:inline-block;
+  color: #000000;
+  float: right;
+}
+
+.cartRemoveButton:hover {
+  background-color: #b11b1b;
+  cursor: pointer;
+}
+
 /*************************
 ****** Detail Table ******
 **************************/
