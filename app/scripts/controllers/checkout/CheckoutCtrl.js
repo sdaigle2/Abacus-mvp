@@ -14,8 +14,8 @@ angular.module('abacuApp')
 
     //Login Form Model
     $scope.loginForm = {
-      email: "",
-      pass: ""
+      email: '',
+      pass: ''
     };
 
     //Return the user to their cart
@@ -37,20 +37,19 @@ angular.module('abacuApp')
 
     //Log in the user as a guest
     $scope.loginAsGuest = function () {
-      //TODO: Mark user as a guest?
       $location.path('/order');
     };
 
     //Launch password recovery
     $scope.recoverPassword = function () {
       //TODO: Recover Password
-      alert("COMING SOON!!!");
+      alert('COMING SOON!!!');
     };
 
     //Register a new user account
     $scope.register = function () {
       //TODO: Register the user
-      alert("COMING SOON!!!");
+      alert('COMING SOON!!!');
     };
 
   });

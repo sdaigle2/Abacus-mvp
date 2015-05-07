@@ -42,17 +42,22 @@ angular.module('abacuApp')
       }
     ];
 
+    /*************************** WHEELCHAIRS ****************************/
+
+    $scope.wheelchairs = User.getCurEditOrder().getWheelchairs();
+
+    //TODO: Copy over methods from Cart
+
     /*************************** SIDEBAR BUTTONS ************************/
 
     //Return to the previous stage of checkout
     $scope.back = function () {
       switch ($scope.curStage) {
         case $scope.stages.INFO:
-          //TODO: Implement this
-          //If guest, return to 'checkout'
-          $location.path('/checkout');
-          //If logged in, return to 'cart'
-          //$location.path('/cart');
+          if (User.isLoggedIn())
+            $location.path('/cart');
+          else
+            $location.path('/checkout');
           break;
         case $scope.stages.PAYMENT:
         case $scope.stages.CONFIRM:
@@ -66,9 +71,11 @@ angular.module('abacuApp')
     $scope.next = function () {
       switch ($scope.curStage) {
         case $scope.stages.INFO:
-          //TODO: Verify inputs to contactForm and shippingForm
-          alert(JSON.stringify($scope.contactForm));
-          alert(JSON.stringify($scope.shippingForm));
+      
+          if (allInputsFilled() === false) {
+            alert('You must fill in all contact information');
+            return;
+          }
 
           $scope.curStage++;
           break;
@@ -81,7 +88,7 @@ angular.module('abacuApp')
             alert("You must accept the Terms and Conditions to continue");
             return;
           }
-          //TODO: Send the order
+          sendOrder();
           $scope.curStage++;
           break;
         case $scope.stages.COMPLETE:
@@ -96,24 +103,43 @@ angular.module('abacuApp')
       $location.path('/cart');
     };
 
+    function allInputsFilled() {
+      var allFilled = true;
+      allFilled = $scope.contactForm.fName !== '' ? allFilled : false;
+      allFilled = $scope.contactForm.lName !== '' ? allFilled : false;
+      allFilled = $scope.contactForm.email !== '' ? allFilled : false;
+      allFilled = $scope.contactForm.phone !== '' ? allFilled : false;
+      allFilled = $scope.shippingForm.addr !== '' ? allFilled : false;
+      allFilled = $scope.shippingForm.city !== '' ? allFilled : false;
+      allFilled = $scope.shippingForm.state !== '' ? allFilled : false;
+      allFilled = $scope.shippingForm.zip !== '' ? allFilled : false;
+      return allFilled;
+    };
+
+    function sendOrder() {
+      $scope.orderNum = User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.payForm.method);
+    };
+
     /*************************** INFO ******************************/
 
 
     //Model for the contact form
+    //Init'ed using User settings - does not change User values b/c they're primitives
     $scope.contactForm = {
-      fName: "",
-      lName: "",
-      email: "",
-      phone: ""
+      fName: User.fName,
+      lName: User.lName,
+      email: User.email,
+      phone: User.phone
     };
 
     //Model for the shipping form
+    //Init'ed using User settings - does not change User values b/c they're primitives
     $scope.shippingForm = {
-      addr: "",
-      addr2: "",
-      city: "",
-      state: "",
-      zip: ""
+      addr: User.addr,
+      addr2: User.addr2,
+      city: User.city,
+      state: User.state,
+      zip: User.zip
     };
 
     /**************************** PAYMENT ******************************/
@@ -136,11 +162,6 @@ angular.module('abacuApp')
     $scope.termsForm = {
       hasReadTerms: false
     };
-
-    //$scope.wheelchairs = User.getCurOrder().getWheelchairs();
-
-    //TODO: Verify $scope.wheelchairs is correct
-    //TODO: Fix HTML to display correct data
 
     $scope.termsAndConditionsHTML = termsAndConditionsHTML;
 

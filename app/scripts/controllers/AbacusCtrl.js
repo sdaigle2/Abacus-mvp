@@ -78,7 +78,6 @@ angular.module('abacuApp')
       //set our current pages to the beginning
       curPage.page[$scope.pageType.CUSTOMIZE] = pages.customizePages[0];
       curPage.page[$scope.pageType.MEASURE] = pages.measurePages[0];
-
     }
 
     //Initialize the page - called on pageLoad
@@ -90,8 +89,10 @@ angular.module('abacuApp')
       }
 
       var curEditWheelchair = User.getCurEditWheelchair();
-      if (curEditWheelchair === null)
+      if (curEditWheelchair === null) {
         $location.path('frames');
+        return;
+      }       
 
       $scope.frameData = FrameData.getFrame(curEditWheelchair.getFrameID());
       generatePages();
@@ -299,10 +300,9 @@ angular.module('abacuApp')
     //Determine the text for each tooltip to display
     $scope.getProgressBarSegmentTooltipText = function (page) {
       if (curPage.type === $scope.pageType.CUSTOMIZE){
-        //console.log(JSON.stringify(User.getCurEditWheelchair().getPart(page.partID)));
-        return User.getCurEditWheelchair().getPart(page.partID).name;}
+        return User.getCurEditWheelchair().getPartDetails(page.partID, 0).partName;}
       else if (curPage.type === $scope.pageType.MEASURE){
-        return User.getCurEditWheelchair().getMeasure(page.partID).name;}
+        return User.getCurEditWheelchair().getMeasureDetails(page.measureID, 0).name;}
       return 'ERROR: Invalid page type';
     };
 

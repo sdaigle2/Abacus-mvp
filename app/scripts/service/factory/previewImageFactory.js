@@ -81,8 +81,6 @@ angular.module('abacuApp')
           }
         }
 
-        console.log(JSON.stringify(this.images));
-
         //Sort array by zRanks
         this.images.sort(function (a, b) {
           return (a.zRank - b.zRank);
@@ -107,7 +105,6 @@ angular.module('abacuApp')
         var partURL = this.baseURL + 'frame' + frameIDString + '/';
         partURL += 'part' + partIDString + '/';
         partURL += optionIDString + colorString + subIndString + angleString + '.png';
-        console.log(partURL)
 
         return partURL;
 

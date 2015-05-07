@@ -54,15 +54,15 @@ angular.module('abacuApp')
 
       logout: function () {
         this.userID = -1; //-1 means not logged in
-        this.fName = "";
-        this.lName = "";
-        this.email = "";
-        this.phone = "";
-        this.addr = "";
-        this.addr2 = "";
-        this.city = "";
-        this.state = "";
-        this.zip = "";
+        this.fName = '';
+        this.lName = '';
+        this.email = '';
+        this.phone = '';
+        this.addr = '';
+        this.addr2 = '';
+        this.city = '';
+        this.state = '';
+        this.zip = '';
         this.unitSys = Units.unitSys.IMPERIAL;
         orders = [];
         //measures = []; //TODO: Reset to default
@@ -151,26 +151,10 @@ angular.module('abacuApp')
         return orders[orders.length - 1];
       },
 
-      sendCurEditOrder: function () {
+      sendCurEditOrder: function (userData, shippingData, payMethod) {
         var editOrder = this.getCurEditOrder();
-        editOrder.send(this.getUserDataAsObject());
-      },
-
-      //Returns User's name and address info as an object
-      getUserDataAsObject: function () {
-        return {
-          fName: this.fName,
-          lName: this.lName,
-          email: this.email,
-          phone: this.phone,
-          addr: this.addr,
-          addr2: this.addr2,
-          city: this.city,
-          state: this.state,
-          zip: this.zip
-        };
-      },
-
+        return editOrder.send(userData, shippingData, payMethod);
+      }
 
 
     };

@@ -78,13 +78,16 @@ angular.module('abacuApp')
 
       /********************Saving to DB***********************/
 
-      send: function (userData) {
-        //TODO: save userData to order
+      send: function (userData, shippingData, payMethod) {
+        //TODO: save userData, shippingData, and payMethod to order
         //TODO: Save current date to order
         this.sent = true;
 
         //TODO: Send order into database
 
+        //TODO: Set and Return generated orderNum
+        this.setOrderNum('0000');
+        return '0000';
       },
 
     };

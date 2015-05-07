@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 angular.module('abacuApp')
-  .factory('Wheelchair', [ 'FrameData', 'previewImage', function (FrameData, previewImage) {
+  .factory('Wheelchair', [ 'FrameData', 'previewImage', 'Units', function (FrameData, previewImage, Units) {
 
     //##########################  Constructor  #########################
 
@@ -100,6 +100,55 @@ angular.module('abacuApp')
         if (m !== null)
           return m.measureOptionIndex;
         return -1;
+      },
+
+      getPartDetails: function (pID, unitSys) {
+        var curPart = this.getPart(pID);
+        var oID = curPart.optionID;
+        var cID = curPart.colorID;
+
+        var part = FrameData.getFramePart(this.frameID, pID);
+        var option = part.getOption(oID);
+        var color = option.getColor(cID);
+
+        var colorName = (color === null) ? '' : color.getName();
+
+        var priceString = (option.getPrice() < 0) ? '-$' : '$';
+        priceString += Math.abs(option.getPrice()).toFixed(2);
+
+        var weightString = (option.getWeight() * Units.getWeightFactor(unitSys)) + ' ' + Units.getWeightName(unitSys);
+
+        return {
+          partName: part.getName(),
+          optionName: option.getName(),
+          colorName: colorName,
+          priceString: priceString,
+          weightString: weightString
+        };
+      },
+
+      getMeasureDetails: function (mID, unitSys) {
+        var curMeas = this.getMeasure(mID);
+        var i = curMeas.measureOptionIndex;
+        var meas = FrameData.getFrameMeasure(this.frameID, mID);
+
+        var optionString = 'NOT SELECTED';
+        var priceString = '';
+        var weightString = '';
+
+        if (i != -1) {
+          optionString = meas.getOption(unitSys, i);
+          optionString += " " + meas.getUnits(unitSys);
+          priceString = ((meas.getPrice(i) < 0) ? "-$" : "$") + Math.abs(meas.getPrice(i).toFixed(2));
+          weightString = (meas.getWeight(i) * Units.getWeightFactor(unitSys)) + ' ' + Units.getWeightName(unitSys);
+        }
+
+        return {
+          name: meas.getName(),
+          optionString: optionString,
+          priceString: priceString,
+          weightString: weightString
+        }
       },
 
       getPreviewImages: function (angle) {

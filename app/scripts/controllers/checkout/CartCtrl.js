@@ -116,13 +116,15 @@ angular.module('abacuApp')
     /*********************CHECK OUT***********************************/
 
     $scope.checkOut = function () {
-
-
-
-      //If not logged in
-      $location.path('/checkout');
-      //If logged in
-      //$location.path('/info');
+      if ($scope.curOrder.getNumWheelchairs() === 0) {
+        alert('Your cart is empty');
+        return;
+      }
+     
+      if (User.isLoggedIn())
+        $location.path('order');
+      else
+        $location.path('checkout');
     };
 
     /********************DETAIL PANEL*********************************/
@@ -131,55 +133,12 @@ angular.module('abacuApp')
       return (wheelchair.getTotalWeight() * Units.getWeightFactor(User.unitSys)).toFixed(2) + ' ' + Units.getWeightName(User.unitSys);
     };
 
-    //Get data for curWheelchair.Part object
-    $scope.getPartDetails = function (fID, curPart) {
-      var pID = curPart.partID;
-      var oID = curPart.optionID;
-      var cID = curPart.colorID;
-
-      var part = FrameData.getFramePart(fID, pID);
-      var option = part.getOption(oID);
-      var color = option.getColor(cID);
-
-      var colorName = (color === null) ? '' : color.getName();
-
-      var priceString = (option.getPrice() < 0) ? '-$' : '$';
-      priceString += Math.abs(option.getPrice()).toFixed(2);
-
-      var weightString = (option.getWeight() * Units.getWeightFactor(User.unitSys)) + ' ' + Units.getWeightName(User.unitSys);
-
-      return {
-        partName: part.getName(),
-        optionName: option.getName(),
-        colorName: colorName,
-        priceString: priceString,
-        weightString: weightString
-      };
+    $scope.getPartDetails = function(wheelchair, part) {
+      return wheelchair.getPartDetails(part.partID, User.unitSys);
     };
 
-    //Get data for curWheelchair.Measure object
-    $scope.getMeasureDetails = function (fID, curMeas) {
-      var mID = curMeas.measureID;
-      var i = curMeas.measureOptionIndex;
-      var meas = FrameData.getFrameMeasure(fID, mID);
-
-      var optionString = 'NOT SELECTED';
-      var priceString = '';
-      var weightString = '';
-
-      if (i != -1) {
-        optionString = meas.getOption(User.unitSys, i);
-        optionString += " " + meas.getUnits(User.unitSys);
-        priceString = ((meas.getPrice(i) < 0) ? "-$" : "$") + Math.abs(meas.getPrice(i).toFixed(2));
-        weightString = (meas.getWeight(i) * Units.getWeightFactor(User.unitSys)) + ' ' + Units.getWeightName(User.unitSys);
-      }
-
-      return {
-        name: meas.getName(),
-        optionString: optionString,
-        priceString: priceString,
-        weightString: weightString
-      }
+    $scope.getMeasureDetails = function(wheelchair, measure) {
+      return wheelchair.getMeasureDetails(measure.measureID, User.unitSys);
     };
 
     init();

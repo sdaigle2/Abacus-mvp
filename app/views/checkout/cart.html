@@ -76,11 +76,11 @@
                 </thead>
                 <tbody>
                 <tr data-ng-repeat="p in w.getParts()"> <!--TODO: Way to reduce function calls?-->
-                  <td>{{getPartDetails(w.getFrameID(), p).partName}}</td>
-                  <td>{{getPartDetails(w.getFrameID(), p).optionName}}</td>
-                  <td>{{getPartDetails(w.getFrameID(), p).colorName}}</td>
-                  <td>{{getPartDetails(w.getFrameID(), p).priceString}}</td>
-                  <td>{{getPartDetails(w.getFrameID(), p).weightString}}</td>
+                  <td>{{getPartDetails(w, p).partName}}</td>
+                  <td>{{getPartDetails(w, p).optionName}}</td>
+                  <td>{{getPartDetails(w, p).colorName}}</td>
+                  <td>{{getPartDetails(w, p).priceString}}</td>
+                  <td>{{getPartDetails(w, p).weightString}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -96,10 +96,10 @@
                 </thead>
                 <tbody>
                 <tr data-ng-repeat="m in w.getMeasures()"> <!--TODO: Way to reduce function calls?-->
-                  <td>{{getMeasureDetails(w.getFrameID(), m).name}}</td>
-                  <td>{{getMeasureDetails(w.getFrameID(), m).optionString}}</td>
-                  <td>{{getMeasureDetails(w.getFrameID(), m).priceString}}</td>
-                  <td>{{getMeasureDetails(w.getFrameID(), m).weightString}}</td>
+                  <td>{{getMeasureDetails(w, m).name}}</td>
+                  <td>{{getMeasureDetails(w, m).optionString}}</td>
+                  <td>{{getMeasureDetails(w, m).priceString}}</td>
+                  <td>{{getMeasureDetails(w, m).weightString}}</td>
                 </tr>
                 </tbody>
               </table>
