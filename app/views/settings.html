@@ -13,22 +13,22 @@
   <div class="settingsSidebar">
     <ul class="settingsSidebarOptions">
 
-      <li class="settingsSidebarOption" id="settingsSidebarAccountOption" 
-          ng-click="setContentSection(ContentSection.ACCOUNT)" 
+      <li class="settingsSidebarOption" id="settingsSidebarAccountOption"
+          ng-click="setContentSection(ContentSection.ACCOUNT)"
           ng-class="{ 'active' : getContentSection() === ContentSection.ACCOUNT}">
         <i class="fa fa-user"></i>&nbsp; MY ACCOUNT
       </li>
       <li class="settingsSidebarOptionDivider"></li>
 
-      <li class="settingsSidebarOption" id="settingsSidebarOrdersOption" 
-          ng-click="setContentSection(ContentSection.ORDERS)" 
+      <li class="settingsSidebarOption" id="settingsSidebarOrdersOption"
+          ng-click="setContentSection(ContentSection.ORDERS)"
           ng-class="{ 'active' : getContentSection() === ContentSection.ORDERS}">
         <i class="fa fa-list"></i>&nbsp; MY ORDERS
       </li>
       <li class="settingsSidebarOptionDivider"></li>
 
-      <li class="settingsSidebarOption" id="settingsSidebarMeasurementsOption" 
-          ng-click="setContentSection(ContentSection.MEASUREMENTS)" 
+      <li class="settingsSidebarOption" id="settingsSidebarMeasurementsOption"
+          ng-click="setContentSection(ContentSection.MEASUREMENTS)"
           ng-class="{ 'active' : getContentSection() === ContentSection.MEASUREMENTS}">
         <i class="fa fa-wrench"></i>&nbsp; MY MEASUREMENTS
       </li>
@@ -38,10 +38,10 @@
 
     <div class="settingsSidebarButtons"
          ng-class="{'showSettingsSidebarButtons' : getContentSection() !== ContentSection.ORDERS, 'hideSettingsSidebarButtons' : getContentSection() === ContentSection.ORDERS}">
-      <button class="settingsSidebarButton" 
+      <button class="settingsSidebarButton"
               id="settingsSidebarEditButton"
               data-ng-click="edit()">EDIT &gt;&gt;</button>
-      <button class="settingsSidebarButton" 
+      <button class="settingsSidebarButton"
               id="settingsSidebarSaveButton"
               data-ng-click="save()">SAVE &gt;&gt;</button>
     </div>
@@ -54,7 +54,7 @@
 
     <!-- MY ACCOUNT -->
 
-    <div class="settingsContent" id="settingsAccountContent" 
+    <div class="settingsContent" id="settingsAccountContent"
          ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ACCOUNT}">
 
       <div class="settingsContentInputSection">
@@ -110,8 +110,12 @@
           <div class="settingsContentSectionTitle">Change Password</div>
           <ul>
             <li>
-              <label for="settingsContentInput-password-password">New Password</label>
-              <input id="settingsContentInput-password-password" name="password" type="password" data-ng-model="accountModel.newPass1" />
+              <label for="settingsContentInput-password-oldPassword">Current Password</label>
+              <input id="settingsContentInput-password-oldPassword" name="oldPassword" type="password" data-ng-model="accountModel.oldPass" />
+            </li>
+            <li>
+              <label for="settingsContentInput-password-newPassword">New Password</label>
+              <input id="settingsContentInput-password-newPassword" name="newPassword" type="password" data-ng-model="accountModel.newPass1" />
             </li>
             <li>
               <label for="settingsContentInput-password-passwordConfirm">Confirm New Password</label>
@@ -125,7 +129,7 @@
 
     <!-- MY ORDERS -->
 
-    <div class="settingsContent" id="settingsOrdersContent" 
+    <div class="settingsContent" id="settingsOrdersContent"
          ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ORDERS}">
       <ul id="settingsOrdersContentItems">
         <li class="settingsOrdersContentItem" data-ng-repeat="o in orders">
@@ -143,7 +147,7 @@
 
     <!-- MY MEASUREMENTS -->
 
-    <div class="settingsContent" id="settingsMeasurementsContent" 
+    <div class="settingsContent" id="settingsMeasurementsContent"
          ng-class="{'showSettingsContent' : getContentSection() === ContentSection.MEASUREMENTS}">
 
       <!-- MEASURE SELECTORS -->
@@ -158,14 +162,14 @@
                 {{measDisplay[val].name}} <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
               <select data-ng-options="o for o in measDisplay[val].options" data-ng-model="measDisplay[val].optionSelected"></select>
-            </li>           
+            </li>
           </ul>
         </form>
       </div>
 
       <!-- MEASUREMENT INFO -->
 
-      <div class="settingsContentInputMoreInfoSection" 
+      <div class="settingsContentInputMoreInfoSection"
            ng-repeat="(m, val) in MeasurementTypes"
            ng-class="{'active' : getMeasurementType() === val}">
         <div class="settingsContentSectionTitle">{{measDisplay[val].name}}</div>

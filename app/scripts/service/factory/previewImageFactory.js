@@ -1,15 +1,15 @@
 ﻿'use strict';
 
 angular.module('abacuApp')
-  .factory('previewImage', ['Angles', function (Angles) {
+  .factory('previewImage', ['Angles', 'FrameData', function (Angles, FrameData) {
 
     //##########################  Constructor  #########################
     function PreviewImage( urlFolder, frameID, partData ) {
 
-      this.baseURL = '/images/' + urlFolder + '/';
+      this.baseURL = '../../../images/' + urlFolder + '/';
       this.frameID = frameID;
       this.parts = [];
-      this.dirty = true; //Indicates if the parts array bee changed
+      this.dirty = true; //Indicates if the parts array been changed
       this.lastAngle = -1;
       this.images = [];
 
@@ -102,7 +102,7 @@ angular.module('abacuApp')
         var colorString    = '_' + curPart.colorID;
         var subIndString   = '_' + subImageIndex;
         var angleString    = '_' + Angles.getAngleName(angle);
-        var partURL = previewBaseURL + 'frame' + frameIDString + '/';
+        var partURL = this.baseURL + 'frame' + frameIDString + '/';
         partURL += 'part' + partIDString + '/';
         partURL += optionIDString + colorString + subIndString + angleString + '.png';
 

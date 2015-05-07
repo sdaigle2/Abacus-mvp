@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 angular.module('abacuApp')
-  .factory('Wheelchair', ['FrameData', 'previewImage', function (FrameData, previewImage) {
+  .factory('Wheelchair', ['Part', 'FrameData', 'previewImage', function (Part, FrameData, previewImage) {
 
     //##########################  Constructor  #########################
 
@@ -9,13 +9,10 @@ angular.module('abacuApp')
       this.frameID = frameID;
       this.parts = [];
       this.measures = [];
-      this.name = [];
-      this.desc = "";
+      this.desc = '';
       this.basePrice = 0;
       this.baseWeight = 0;
-      this.calcPrice = 0;
-      this.calcWeight = 0;
-      this.title = "My Custom Wheelchair";
+      this.title = 'My Custom Wheelchair';
 
       var frame = FrameData.getFrame(frameID);
       var parts = frame.getParts();
@@ -23,22 +20,12 @@ angular.module('abacuApp')
 
       for (var i = 0; i < parts.length; i++) {
         var p = parts[i];
-
-        this.parts.push({
-          name: p.getName(),
-          partID: p.getID(),
-          optionID: p.getDefaultOptionID(),
-          colorID: p.getDefaultOption().getDefaultColorID()
-        });
+        this.parts.push(p);
       }
 
       for (var j = 0; j < meas.length; j++) {
         var m = meas[j];
-        this.measures.push({
-          name: m.getName(),
-          measureID: m.getID(),
-          measureOptionIndex: -1
-        })
+        this.measures.push(m);
       }
       this.name = frame.name;
       this.desc = frame.desc;
@@ -52,7 +39,7 @@ angular.module('abacuApp')
 
       //GETS
       getFrameID: function () { return this.frameID; },
-      getName: function() {return this.name},
+      getName: function () { return this.name; },
       getTitle: function () { return this.title; },
       getParts: function () { return this.parts; },
       getMeasures: function () { return this.measures; },
@@ -106,8 +93,8 @@ angular.module('abacuApp')
         return -1;
       },
 
-      getPreviewImages: function () {
-        return this.previewImageGenerator.getImages();
+      getPreviewImages: function (angle) {
+        return this.previewImageGenerator.getImages(angle);
       },
 
 
@@ -145,30 +132,21 @@ angular.module('abacuApp')
           m.measureOptionIndex = index;
       },
 
-      resetWheelchair: function(){
-        this.frameID = 0;
-        this.parts = [];
-        this.measures = [];
-        this.title = "My Custom Wheelchair";
-      },
-
-
       //Calculate Total Weight
       getTotalWeight: function () {
         var frame = FrameData.getFrame(this.frameID);
         var totalWeight = frame.getBaseWeight();
         for (var i = 0; i < this.parts.length; i++) {
           var p = frame.getPart(this.parts[i].partID);
-          var o = p.getOption(this.parts[i].optionID);
+          var o = p.getOption(this.parts[i].getDefaultOptionID());
           totalWeight += o.getWeight();
         }
         for (var j = 0; j < this.measures.length; j++) {
           if (this.measures[j].measureOptionIndex !== -1) {
-            var m = frame.getMeasure(this.measures[j].measureID)
+            var m = frame.getMeasure(this.measures[j].measureID);
             totalWeight += m.getWeight(this.measures[j].measureOptionIndex);
           }
         }
-
         return totalWeight;
       },
 
@@ -178,12 +156,12 @@ angular.module('abacuApp')
         var totalPrice = frame.getBasePrice();
         for (var i = 0; i < this.parts.length; i++) {
           var p = frame.getPart(this.parts[i].partID);
-          var o = p.getOption(this.parts[i].optionID);
+          var o = p.getOption(this.parts[i].getDefaultOptionID());
           totalPrice += o.getPrice();
         }
         for (var j = 0; j < this.measures.length; j++) {
           if (this.measures[j].measureOptionIndex !== -1) {
-            var m = frame.getMeasure(this.measures[j].measureID)
+            var m = frame.getMeasure(this.measures[j].measureID);
             totalPrice += m.getPrice(this.measures[j].measureOptionIndex);
           }
         }

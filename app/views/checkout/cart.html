@@ -7,7 +7,7 @@
     <!-- Heading -->
     <div class="cartHeading">
       <h1><strong>SHOPPING CART</strong></h1>
-      <a ng-href="#/abacus"><div class="backButton">&lt;&lt; Design More Wheelchairs</div></a>
+      <a ng-href="#/frame"><div class="backButton">&lt;&lt; Design More Wheelchairs</div></a>
     </div>
 
     <!-- Cart Items -->
@@ -19,7 +19,7 @@
         <tbody>
         <tr class="cartItem" data-ng-repeat="w in wheelchairs">
           <td class="cartItemThumb">
-            <img data-ng-src="{{w.imgURL}}" height="100" width="100" style="position: relative; top:0px;" /> <!--TODO: Replace this with generated image ~ abacus-->
+            <img height="100" width="100" style="position: relative; top:0px;" /> <!--TODO: Replace this with generated image ~ abacus-->
           </td>
           <td class="cartItemDetails">
             <div>
@@ -52,6 +52,7 @@
             </div>
             <!-- Detail Tables -->
             <div data-ng-show="curDetailPanel == $index">
+              <br/>
               <table class="detailTable">
                 <thead>
                 <tr>
@@ -61,13 +62,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-ng-repeat="p in w.parts"> <!--TODO: Way to reduce function calls?-->
-                  <td>{{getPartDetails(p).partName}}</td>
-                  <td>{{getPartDetails(p).optionName}}</td>
-                  <td>{{getPartDetails(p).colorName}}</td>
+                <tr data-ng-repeat="p in w.getParts()"> <!--TODO: Way to reduce function calls?-->
+                  <td>{{p.getName()}}</td>
+                  <td>{{p.getOption( p.getDefaultOptionID() ).getName()}}</td>
+                  <td>{{p.getOption( p.getDefaultOptionID() ).getColor( p.getOption( p.getDefaultOptionID() ).getDefaultColorID() ).getName()}}</td>
                 </tr>
                 </tbody>
               </table>
+              <br/>
               <table class="detailTable">
                 <thead>
                 <tr>
@@ -76,9 +78,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-ng-repeat="m in w.measures"> <!--TODO: Way to reduce function calls?-->
-                  <td>{{getMeasureDetails(m).name}}</td>
-                  <td>{{getMeasureDetails(m).option}}</td>
+                <tr data-ng-repeat="m in w.getMeasures()"> <!--TODO: Way to reduce function calls?-->
+                  <td>{{m.getName()}}</td>
+                  <td>{{m.getSelectedMeasureOption()}}</td>
                 </tr>
                 </tbody>
               </table>

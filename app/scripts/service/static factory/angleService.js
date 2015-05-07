@@ -20,7 +20,7 @@ angular.module('abacuApp')
         FRONT: 4
       },
 
-      //The number of anlges
+      //The number of angles
       numAngles: 5,
 
       getAngleName: function (angle) {
