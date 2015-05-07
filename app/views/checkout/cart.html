@@ -6,14 +6,14 @@
   <div class="text-center cartBody">
     <!-- Heading -->
     <div class="cartHeading">
-      <h1><strong>SHOPPING CART</strong></h1>
-      <a ng-href="#/frame"><div class="backButton">&lt;&lt; Design More Wheelchairs</div></a>
+      <h1><strong>MY DESIGNS</strong></h1>
+      <a ng-href="#/frame"><div class="backButton">&lt;&lt; Design Another Wheelchair</div></a>
     </div>
 
     <!-- Cart Items -->
     <div class="cartItems">
       <div class="emptyCartMessage" ng-show="wheelchairs.length == 0">
-        No items in cart
+        You haven't saved any wheelchair designs
       </div>
       <table class="cartItemsTable">
         <tbody>
@@ -25,13 +25,13 @@
             <div>
               <div class="cartItemDetailDisplay">
                 <div class="cartItemName">
-                  {{w.title}}
+                  {{w.getTitle()}}
                 </div>
                 <div class="cartItemPrice">
-                  ${{w.calcPrice.toFixed(2)}}
+                  ${{w.getTotalPrice().toFixed(2)}}
                 </div>
                 <div class="cartItemWeight">
-                  {{w.calcWeight.toFixed(2)}} lbs <!--TODO: Metric/Imperial toggle?-->
+                  {{getWeightString(w)}}
                 </div>
               </div>
               <div class="cartItemButtons">
@@ -45,8 +45,19 @@
                   Edit
                 </button>
                 <button class="cartItemRemoveButton cartItemButton"
-                        data-ng-click="removeWheelchair($index)">
-                  Remove
+                        data-ng-click="deleteWheelchair($index)">
+                  Delete
+                </button>
+                <button class="cartAddButton"
+                        data-ng-click="addWheelchairToOrder($index)"
+                        data-ng-if="wInOrder[$index] === false"
+                        data-ng-class="{'inactive': w.allMeasuresSet() === false }">
+                  Add to Cart
+                </button>
+                <button class="cartRemoveButton"
+                        data-ng-click="removeWheelchairFromOrder($index)"
+                        data-ng-if="wInOrder[$index] === true">
+                  Remove From Cart
                 </button>
               </div>
             </div>
@@ -59,13 +70,17 @@
                   <td>Part</td>
                   <td>Option Chosen</td>
                   <td>Color</td>
+                  <td>Price</td>
+                  <td>Weight</td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr data-ng-repeat="p in w.getParts()"> <!--TODO: Way to reduce function calls?-->
-                  <td>{{p.getName()}}</td>
-                  <td>{{p.getOption( p.getDefaultOptionID() ).getName()}}</td>
-                  <td>{{p.getOption( p.getDefaultOptionID() ).getColor( p.getOption( p.getDefaultOptionID() ).getDefaultColorID() ).getName()}}</td>
+                  <td>{{getPartDetails(w.getFrameID(), p).partName}}</td>
+                  <td>{{getPartDetails(w.getFrameID(), p).optionName}}</td>
+                  <td>{{getPartDetails(w.getFrameID(), p).colorName}}</td>
+                  <td>{{getPartDetails(w.getFrameID(), p).priceString}}</td>
+                  <td>{{getPartDetails(w.getFrameID(), p).weightString}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -75,12 +90,16 @@
                 <tr>
                   <td>Measurement</td>
                   <td>Selection</td>
+                  <td>Price</td>
+                  <td>Weight</td>
                 </tr>
                 </thead>
                 <tbody>
                 <tr data-ng-repeat="m in w.getMeasures()"> <!--TODO: Way to reduce function calls?-->
-                  <td>{{m.getName()}}</td>
-                  <td>{{m.getSelectedMeasureOption()}}</td>
+                  <td>{{getMeasureDetails(w.getFrameID(), m).name}}</td>
+                  <td>{{getMeasureDetails(w.getFrameID(), m).optionString}}</td>
+                  <td>{{getMeasureDetails(w.getFrameID(), m).priceString}}</td>
+                  <td>{{getMeasureDetails(w.getFrameID(), m).weightString}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -101,27 +120,27 @@
       <tbody>
       <tr>
         <td class="cartSidebarLabel">Subtotal:</td>
-        <td class="cartSidebarValue">${{calculateSubtotal().toFixed(2)}}</td>
+        <td class="cartSidebarValue">${{costs.subtotal.toFixed(2)}}</td>
       </tr>
       <tr>
         <td class="cartSidebarLabel">Estimated Shipping:</td>
-        <td class="cartSidebarValue">${{calculateShippingFee().toFixed(2)}}</td>
+        <td class="cartSidebarValue">${{costs.shipping.toFixed(2)}}</td>
       </tr>
       <tr>
         <td class="cartSidebarLabel">Tax:</td>
-        <td class="cartSidebarValue">${{calculateTax().toFixed(2)}}</td>
+        <td class="cartSidebarValue">${{costs.tax.toFixed(2)}}</td>
       </tr>
       </tbody>
       <tfoot class="cartSidebarTotal">
       <tr>
         <td class="cartSidebarLabel">Total:</td>
-        <td class="cartSidebarValue">${{calculateTotalPrice().toFixed(2)}}</td>
+        <td class="cartSidebarValue">${{costs.total.toFixed(2)}}</td>
       </tr>
       </tfoot>
     </table>
     <div class="text-center">
       <button class="checkoutButton"
-              data-ng-class="{ 'inactive' : wheelchairs.length == 0}"
+              data-ng-class="{ 'inactive' : curOrder.getNumWheelchairs() === 0}"
               data-ng-click="checkOut()">Check Out</button>
     </div>
   </div>

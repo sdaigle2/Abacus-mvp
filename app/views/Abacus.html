@@ -121,8 +121,10 @@
                     <div class="sideBar-custom-item-button text-center"
                          ng-class="{'detailsSelected': isPanelSelected(option.optionID, panelTypes.DETAIL)}"
                          ng-click="setPanel(option.optionID, panelTypes.DETAIL);">Details</div>
-                    <div class="sideBar-custom-item-button text-center selected" ng-if="getCurWheelchairPart().optionID === option.optionID">Selected</div>
-                    <div class="sideBar-custom-item-button text-center" ng-if="getCurWheelchairPart().optionID !== option.optionID"
+                    <div class="sideBar-custom-item-button text-center selected" 
+                         ng-if="getCurWheelchairPart().optionID === option.optionID">Selected</div>
+                    <div class="sideBar-custom-item-button text-center" 
+                         ng-if="getCurWheelchairPart().optionID !== option.optionID"
                          ng-click="setCurOption(option.optionID);">Add</div>
                   </div>
                 </td>

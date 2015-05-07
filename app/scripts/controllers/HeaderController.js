@@ -12,8 +12,8 @@ angular.module('abacuApp')
     };
 
     $scope.loginModel = {
-      email: "",
-      password: ""
+      email: '',
+      password: ''
     };
 
     $scope.recoverPassword = function () {
