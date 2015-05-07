@@ -1,5 +1,4 @@
 ﻿// jshint unused:false
-/* globals frameDataFromDB:true, cartDataFromDB:true, curWheelchair:true, $ */
 'use strict';
 
 /**
@@ -10,7 +9,7 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('CheckoutCtrl', function ($scope, $location, sharedVars) {
+  .controller('CheckoutCtrl', ['$scope', '$location', function ($scope, $location) {
 
     //Login Form Model
     $scope.loginForm = {
@@ -30,6 +29,8 @@ angular.module('abacuApp')
       //      Send to "Order" Page
 
       //loginForm.email should be verified as an email address by the HTML - it should be null if not an email
+
+      //User.login($scope.loginForm.email, $scope.loginForm.pass);
 
       alert(JSON.stringify($scope.loginForm));
       $location.path('/order');
@@ -52,4 +53,4 @@ angular.module('abacuApp')
       alert('COMING SOON!!!');
     };
 
-  });
+  }]);

@@ -62,23 +62,6 @@ angular
       'https://www.youtube.com/embed/**',
       'http://www.youtube.com/embed/**'
     ]);
-  })
-  .service('sharedVars', function () {
-    var curWheelChairCartIndex = -1;
-
-    return {
-      getCurWheelChairCartIndex: function () {
-        return curWheelChairCartIndex;
-      },
-      setCurWheelChairCartIndex: function(value) {
-        curWheelChairCartIndex = value;
-      }
-    }
-
-
-
-
-      ;
   });
 
 

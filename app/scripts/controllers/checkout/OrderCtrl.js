@@ -1,5 +1,4 @@
 ﻿// jshint unused:false
-/* globals frameDataFromDB:true, cartDataFromDB:true, curWheelchair:true, $ */
 'use strict';
 
 /**
@@ -10,7 +9,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('OrderCtrl',  ['$scope', '$location', 'User', function ($scope, $location, User) {
+  .controller('OrderCtrl', ['$scope', '$location', 'User', 'FrameData', 'Bank',
+    function ($scope, $location, User, FrameData, Bank) {
 
     /*************************** CONTROL VARIABLES *************************/
     $scope.stages = {
@@ -44,9 +44,20 @@ angular.module('abacuApp')
 
     /*************************** WHEELCHAIRS ****************************/
 
-    $scope.wheelchairs = User.getCurEditOrder().getWheelchairs();
+    $scope.curOrder = User.getCurEditOrder();
+    $scope.wheelchairs = $scope.curOrder.getWheelchairs();
 
-    //TODO: Copy over methods from Cart
+    $scope.getFrame = function (fID) {
+      return FrameData.getFrame(fID);
+    };
+
+    $scope.getPartDetails = function (wheelchair, part) {
+      return wheelchair.getPartDetails(part.partID, User.unitSys);
+    };
+
+    $scope.getMeasureDetails = function (wheelchair, measure) {
+      return wheelchair.getMeasureDetails(measure.measureID, User.unitSys);
+    };
 
     /*************************** SIDEBAR BUTTONS ************************/
 
@@ -155,6 +166,7 @@ angular.module('abacuApp')
       method: $scope.payMethods.ADVANCE
     };
 
+    $scope.bankData = Bank;
 
     /**************************** CONFIRM ******************************/
 

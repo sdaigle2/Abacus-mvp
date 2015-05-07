@@ -46,33 +46,32 @@
     <div class="order-left" data-ng-if="curStage === stages.PAYMENT">
       <div class="order-form">
         <div class="order-form-header">Choose your payment method</div>
-        <input type="radio" data-ng-model="payForm.method" data-ng-value="info.payMethods.PAYPAL"/>
+        <input type="radio" data-ng-model="payForm.method" data-ng-value="payMethods.PAYPAL"/>
         <img width="50" height="50" src="../../images/icons/paypal_logo.gif" />
         <br />
-        <input type="radio" data-ng-model="payForm.method" data-ng-value="info.payMethods.ADVANCE"/>
+        <input type="radio" data-ng-model="payForm.method" data-ng-value="payMethods.ADVANCE"/>
         <strong>Pay in advance</strong>
         <br />
       </div>
       <div class="order-form" data-ng-show="payForm.method === payMethods.ADVANCE">
         <div class="order-form-header"></div>
-        <!--TODO: Angularize, Pull from DB, or keep static? -->
         <table class="order-form-table">
           <tbody>
             <tr>
               <td><strong>Account Holder</strong></td>
-              <td>Abacus</td>
+              <td>{{bankData.ACCOUNT_HOLDER}}</td>
             </tr>
             <tr>
               <td><strong>Account Number</strong></td>
-              <td>1234567890</td>
+              <td>{{bankData.ACCOUNT_NUMBER}}</td>
             </tr>
             <tr>
               <td><strong>BLZ</strong></td>
-              <td>123456</td>
+              <td>{{bankData.BLZ}}</td>
             </tr>
             <tr>
               <td><strong>Bank Name</strong></td>
-              <td>Chase Bank</td>
+              <td>{{bankData.BANK_NAME}}</td>
             </tr>
           </tbody>
         </table>
@@ -82,11 +81,11 @@
           <tbody>
             <tr>
               <td><strong>IBAN</strong></td>
-              <td>67789027453</td>
+              <td>{{bankData.IBAN}}</td>
             </tr>
             <tr>
               <td><strong>BIC</strong></td>
-              <td>09728453784695</td>
+              <td>{{bankData.BIC}}</td>
             </tr>
           </tbody>
         </table>
@@ -151,28 +150,24 @@
           <tbody class="table-section" data-ng-repeat="w in wheelchairs">
             <tr class="table-seperator"></tr>
             <tr class="table-title-row">
-              <td style="font-size: 20px"><strong>{{w.title}}</strong></td>
-              <td></td>
-              <td>{{frameData.name}}</td>
-              <td style="text-align:right;">${{frameData.basePrice.toFixed(2)}}</td>
+              <td style="font-size: 20px"><strong>{{w.getTitle()}}</strong></td>
+              <td>{{getFrame(w.getFrameID()).getName()}}</td>
+              <td style="text-align:right;">${{getFrame(w.getFrameID()).getBasePrice().toFixed(2)}}</td>
             </tr>
             <tr data-ng-repeat="p in w.parts">
-              <td><strong>{{getPartDetails(p).partName}}</strong></td>
-              <td>{{getPartDetails(p).optionName}}</td>
-              <td>{{getPartDetails(p).colorName}}</td>
-              <td style="text-align:right;">{{getPartDetails(p).priceString}}</td>
+              <td><strong>{{getPartDetails(w, p).partName}}</strong></td>
+              <td>{{getPartDetails(w, p).optionName}} ({{getPartDetails(w, p).colorName}})</td>
+              <td style="text-align:right;">{{getPartDetails(w, p).priceString}}</td>
             </tr>
             <tr data-ng-repeat="m in w.measures">
-              <td><strong>{{getMeasureDetails(m).name}}</strong></td>
-              <td>{{getMeasureDetails(m).option}}</td>
-              <td></td>
-              <td style="text-align:right;">{{getMeasureDetails(m).price}}</td>
+              <td><strong>{{getMeasureDetails(w, m).name}}</strong></td>
+              <td>{{getMeasureDetails(w, m).optionString}}</td>
+              <td style="text-align:right;">{{getMeasureDetails(w, m).priceString}}</td>
             </tr>
             <tr class="table-price-row">
               <td></td>
               <td></td>
-              <td></td>
-              <td style="text-align:right;"><strong>${{w.calcPrice.toFixed(2)}}</strong></td>
+              <td style="text-align:right;"><strong>${{w.getTotalPrice().toFixed(2)}}</strong></td>
             </tr>
           </tbody>
           <tfoot>
@@ -180,26 +175,22 @@
             <tr>
               <td><strong>Subtotal</strong></td>
               <td></td>
-              <td></td>
-              <td style="text-align:right;"><strong>$xxxx.xx</strong></td>
+              <td style="text-align:right;"><strong>${{curOrder.getSubtotal().toFixed(2)}}</strong></td>
             </tr>
             <tr>
               <td><strong>Shipping Fee</strong></td>
               <td></td>
-              <td></td>
-              <td style="text-align:right;"><strong>$xxxx.xx</strong></td>
+              <td style="text-align:right;"><strong>${{curOrder.getShippingCost().toFixed(2)}}</strong></td>
             </tr>
             <tr>
               <td><strong>Tax</strong></td>
               <td></td>
-              <td></td>
-              <td style="text-align:right;"><strong>$xxxx.xx</strong></td>
+              <td style="text-align:right;"><strong>${{curOrder.getTaxCost().toFixed(2)}}</strong></td>
             </tr>
             <tr style="border-top:solid 1px #DDDDDD;">
               <td><strong>Total</strong></td>
               <td></td>
-              <td></td>
-              <td style="text-align:right;"><strong>$xxxx.xx</strong></td>
+              <td style="text-align:right;"><strong>${{curOrder.getTotalCost().toFixed(2)}}</strong></td>
             </tr>
           </tfoot>
         </table>

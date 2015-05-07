@@ -41,10 +41,10 @@ angular.module('abacuApp')
 
       //Attempt to login as the given username with the given password
       //If successful - should load in appropriate user data
-      login: function (username, password) {
+      login: function (email, password) {
         //TODO: Actually write function
 
-        //Verify username and password
+        //Verify email and password
         //Set userID
         //Set other user fields
         //load Orders from DB associated with UserID
