@@ -147,8 +147,7 @@ angular.module('abacuApp')
           if (!lastOrder.hasBeenSent())
             return lastOrder;
         }
-        this.createNewOrder();
-        return orders[orders.length - 1];
+        return null;
       },
 
       sendCurEditOrder: function (userData, shippingData, payMethod) {

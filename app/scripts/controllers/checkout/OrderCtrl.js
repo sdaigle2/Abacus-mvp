@@ -45,6 +45,13 @@ angular.module('abacuApp')
     /*************************** WHEELCHAIRS ****************************/
 
     $scope.curOrder = User.getCurEditOrder();
+
+    //Send user to My Designs if orders page reached without having an unsent order
+    if ($scope.curOrder === null) {
+      $location.path('\cart');
+      return;
+    }
+
     $scope.wheelchairs = $scope.curOrder.getWheelchairs();
 
     $scope.getFrame = function (fID) {
