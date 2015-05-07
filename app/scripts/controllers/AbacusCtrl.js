@@ -89,9 +89,12 @@ angular.module('abacuApp')
         $location.path('frame');
       }
 
-      $scope.frameData = FrameData.getFrame(User.getCurEditWheelchair().getFrameID());
+      var curEditWheelchair = User.getCurEditWheelchair();
+      if (curEditWheelchair === null)
+        $location.path('frames');
+
+      $scope.frameData = FrameData.getFrame(curEditWheelchair.getFrameID());
       generatePages();
-      //refreshPreviewImage();
     }
 
     init(); //Initialize the page
@@ -366,15 +369,13 @@ angular.module('abacuApp')
       $scope.saveDesign = function () {
 
         //prompt for wheelchair title
-        var wTitle = prompt('Design Name:', 'My Wheelchair');
+        var wTitle = prompt('Design Name:', User.getCurEditWheelchair().getTitle());
         if (wTitle == null) User.getCurEditWheelchair().title = 'My Wheelchair';
         User.getCurEditWheelchair().title = wTitle;
 
         //TODO save the design to the database
 
-        //TODO redirect the user to My Designs
-
-        //redirect user to the cart
+        //redirect user to the cart/myDesigns
         $location.path('cart');
 
       };
