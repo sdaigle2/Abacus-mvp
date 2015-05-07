@@ -1,5 +1,4 @@
-﻿﻿// jshint unused:false
-'use strict';
+﻿'use strict';
 
 /**
  * @ngdoc function
@@ -131,7 +130,7 @@ angular.module('abacuApp')
 
     //Returns the factor used to convert from lbs to given weight unit
     $scope.getCurUnitSysWeightFactor = function () {
-      return Units.getWeightFactor($scope.curUnitSys);;
+      return Units.getWeightFactor($scope.curUnitSys);
     };
 
     /*******************Wheelchair Preview & Rotation***********************/
@@ -172,13 +171,13 @@ angular.module('abacuApp')
     $scope.getCurPageType = function () { return curPage.type; };
 
     //Returns the current part from FrameData based on curPage.page[CUSTOMIZE].ID
-    $scope.getCurPartData = function () { return $scope.frameData.getPart($scope.getCurCustomizePage().partID) };
+    $scope.getCurPartData = function () { return $scope.frameData.getPart($scope.getCurCustomizePage().partID); };
 
     //Returns the current part from curWheelchair based on curPage.page[CUSTOMIZE].ID
     $scope.getCurWheelchairPart = function () { return User.getCurEditWheelchair().getPart($scope.getCurCustomizePage().partID); };
 
     //Returns the current measure from FrameData based on curPage.page[MEASURE].ID
-    $scope.getCurMeasureData = function () { return $scope.frameData.getMeasure($scope.getCurMeasurePage().measureID) };
+    $scope.getCurMeasureData = function () { return $scope.frameData.getMeasure($scope.getCurMeasurePage().measureID); };
 
     //Returns the current measure from curWheelchair based on curPage.page[MEASURE].ID
     $scope.getCurWheelchairMeasure = function () { return User.getCurEditWheelchair().getMeasure($scope.getCurMeasurePage().measureID); };
@@ -369,8 +368,10 @@ angular.module('abacuApp')
       $scope.saveDesign = function () {
 
         //prompt for wheelchair title
-        var wTitle = prompt('Design Name:', User.getCurEditWheelchair().getTitle());
-        if (wTitle == null) User.getCurEditWheelchair().title = 'My Wheelchair';
+        var wTitle = window.prompt('Design Name:', User.getCurEditWheelchair().getTitle());
+        if (wTitle === null) {
+          User.getCurEditWheelchair().title = 'My Wheelchair';
+        }   
         User.getCurEditWheelchair().title = wTitle;
 
         //TODO save the design to the database

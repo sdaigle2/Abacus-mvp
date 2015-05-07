@@ -18,16 +18,16 @@ angular.module('abacuApp')
 
     $scope.recoverPassword = function () {
       //TODO: Password recovery system
-      alert("Password Recovery coming soon");
+      window.alert('Password Recovery coming soon');
     };
 
     $scope.register = function () {
       //TODO: Registration system
-      alert("Registration coming soon");
+      window.alert('Registration coming soon');
     };
 
     $scope.login = function () {
       //TODO: Login system
-      alert(JSON.stringify($scope.loginModel));
+      window.alert(JSON.stringify($scope.loginModel));
     };
 });

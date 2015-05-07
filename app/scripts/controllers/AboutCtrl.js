@@ -8,11 +8,11 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AboutCtrl', function ($scope) {
+  .controller('AboutCtrl', ['$scope', function ($scope) {
 
     //defined to stop jsHint from whining
     $scope.nothing = function () {
 
     };
 
-  });
+  }]);
