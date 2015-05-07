@@ -1,19 +1,9 @@
 {
-  "contactForm": {
-    "fName": "",
-    "lName": "",
-    "email": "",
-    "phone": ""
-  },
-  "shippingForm": {
-    "addr": "",
-    "addr2": "",
-    "city": "",
-    "state": "",
-    "zip": ""
-  },
-  "paymentMethods": {
-    "PAYPAL": "PAYPAL",
-    "ADVANCE": "advence"
-  }
+  "orderID": 0,
+  "payMethod": "advance",
+  "subtotal":0,
+  "tax":0,
+  "shipping": null,
+  "total":0,
+  "wheelchair":[]
 }

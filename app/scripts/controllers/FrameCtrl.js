@@ -8,25 +8,46 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('FrameCtrl', function ($scope, $location) {
+  .controller('FrameCtrl', ['$scope', '$location', 'FrameData','User', function ($scope, $location, FrameData, User) {
 
-    $scope.frames = dummyFramesData; //TODO: Replace with actual data
+    $scope.frames = [];
+
+    function initialize() {
+      for (var i = 0; i < FrameData.getNumFrames(); i++) {
+        var f = FrameData.getFrameByIndex(i);
+        $scope.frames.push({
+          frameID: f.getID(),
+          manufacturer: f.getManufacturer(),
+          name: f.getName(),
+          desc: f.getDesc(),
+          basePrice: f.getBasePrice(),
+          baseWeight: f.getBaseWeight(),
+          imageURL: f.getImageURL()
+        });
+      }
+    };
 
     $scope.selectFrame = function (frameID) {
       //TODO: Send user to abacus with chosen frame
+
+      alert("FrameData test: " + JSON.stringify(FrameData.getFrame(frameID))); //Test alert please ignore
+      //
+      User.createNewWheelchair(frameID);
       $location.path('abacus');
     };
 
-    $scope.panelSelected = function (hoverItem ,frameID){
+    $scope.panelSelected = function (hoverItem, frameID) {
       return (hoverItem === frameID);
     }
 
-  });
+    initialize();
+
+  }]);
 
 
 
 
-var dummyFramesData = [
+/*var dummyFramesData = [
   {
     frameID: 1,
     manufacturer: "Ti Arrow",
@@ -45,4 +66,4 @@ var dummyFramesData = [
     baseWeight: 30,
     imageURL: "images/frame_page_img/frame2_frame_page.png"
   }
-];
+];*/

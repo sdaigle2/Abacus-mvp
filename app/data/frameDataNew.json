@@ -1,0 +1,361 @@
+[
+	{
+		"manufacturer": "Ti Arrow",
+		"name": "CKF",
+		"desc": "Ti Arrow's Standard Rigid Frame Wheelchair made from Titanium",
+		"basePrice": 2995,
+		"baseWeight": 5.5,
+		"frameID": 1,
+		"imageURL": "images/frame_page_img/frame1_frame_page.png",
+		"parts": [
+			{
+				"name": "Frame Style",
+				"partID": 2,
+				"numSubImages": 1,
+				"zRank": [[10,7,6,7,10]],
+				"defaultOptionID": 3,
+				"options": [
+					{
+						"optionID": 3,
+						"price": 0,
+						"defaultColorID": 0,
+						"colors": []
+					},
+					{
+						"optionID": 4,
+						"price": 100,
+						"defaultColorID": 5,
+						"colors": [
+							{
+								"name": "Black",
+								"colorID": 5,
+								"hex": "#000000"
+							},
+							{
+								"name": "Gun Metal Gray",
+								"colorID": 6,
+								"hex": "#404040"
+							},
+							{
+								"name": "White",
+								"colorID": 7,
+								"hex": "#FFFFFF"
+							},
+							{
+								"name": "Blue",
+								"colorID": 8,
+								"hex": "#1900FF"
+							},
+							{
+								"name": "Red",
+								"colorID": 9,
+								"hex": "#FF0000"
+							},
+							{
+								"name": "Yellow",
+								"colorID": 10,
+								"hex": "#FFFB00"
+							},
+							{
+								"name": "Purple",
+								"colorID": 11,
+								"hex": "#D400FF"
+							},
+							{
+								"name": "Pink",
+								"colorID": 12,
+								"hex": "#FF00D9"
+							},
+							{
+								"name": "Other (specify)",
+								"colorID": 13,
+								"hex": "#858585"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "Accent Color",
+				"partID": 14,
+				"numSubImages": 1,
+				"zRank": [[9,6,5,6,9]],
+				"defaultOptionID": 15,
+				"options": [
+					{
+						"optionID": 15,
+						"price": 0,
+						"defaultColorID": 16,
+						"colors": [
+							{
+								"name": "Black - Anodized",
+								"colorID": 16,
+								"hex": "#000000"
+							},
+							{
+								"name": "Red - Anodized",
+								"colorID": 17,
+								"hex": "#FF0000"
+							},
+							{
+								"name": "Yellow - Anodized",
+								"colorID": 18,
+								"hex": "#FFFB00"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "Back Rest",
+				"partID": 19,
+				"numSubImages": 1,
+				"zRank": [[11,8,7,8,11]],
+				"defaultOptionID": 20,
+				"options": [
+					{
+						"optionID": 20,
+						"price": 0,
+						"defaultColorID": 0,
+						"colors": []
+					},
+					{
+						"optionID": 21,
+						"price": 0,
+						"defaultColorID": 0,
+						"colors": []
+					},
+					{
+						"optionID": 22,
+						"price": 0,
+						"defaultColorID": 0,
+						"colors": []
+					}
+				]
+			},
+			{
+				"name": "Wheel Rim",
+				"partID": 23,
+				"numSubImages": 2,
+				"zRank": [[5,2,2,5,6],[6,9,9,9,5]],
+				"defaultOptionID": 24,
+				"options": [
+					{
+						"optionID": 24,
+						"defaultColorID": 25,
+						"price": 0,
+						"colors": [
+							{
+								"name": "Black",
+								"colorID": 25,
+								"hex": "#000000"
+							},
+							{
+								"name": "White",
+								"colorID": 26,
+								"hex": "#FFFFFF"
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "Hand Rims",
+				"partID": 27,
+				"numSubImages": 2,
+				"zRank": [[1,1,1,3,4],[2,13,11,11,3]],
+				"defaultOptionID": 28,
+				"options": [
+					{
+						"optionID": 28,
+						"price": 0,
+						"defaultColorID": 0,
+						"colors": []
+					},
+					{
+						"optionID": 29,
+						"price": 0,
+						"defaultColorID": 0,
+						"colors": []
+					},
+					{
+						"optionID": 30,
+						"price": 300,
+						"defaultColorID": 0,
+						"colors": []
+					}
+				]
+			},
+			{
+				"name": "Tire",
+				"partID": 31,
+				"numSubImages": 2,
+				"zRank": [[3,3,3,4,8],[4,10,10,10,7]],
+				"defaultOptionID": 32,
+				"options": [
+					{
+						"optionID": 32,
+						"defaultColorID": 33,
+						"price": 0,
+						"colors": [
+							{
+								"name": "Gray",
+								"colorID": 33,
+								"hex": "#404040"
+
+							},
+							{
+								"name": "Blue",
+								"colorID": 34,
+								"hex": "#1900FF"
+							},
+							{
+								"name": "Yellow",
+								"colorID": 35,
+								"hex": "#FFFB00"
+							},
+							{
+								"name": "Red",
+								"colorID": 36,
+								"hex": "#FF0000"
+							}
+						]
+					},
+					{
+						"optionID": 33,
+						"price": 0,
+						"defaultColorID": 0,
+						"colors": []
+					}
+				]
+			},
+			{
+				"name": "Inner Tube",
+				"partID": 34,
+				"numSubImages": 0,
+				"defaultOptionID": 36,
+				"options": [
+					{
+						"optionID": 36,
+						"price": 0,
+						"defaultColorID": 0,
+						"colors": []
+					},
+					{
+						"optionID": 37,
+						"price": 0,
+						"defaultColorID": 0,
+						"colors": []
+					}
+				]
+			},
+			{
+				"name": "Caster Style",
+				"partID": 38,
+				"numSubImages": 2,
+				"zRank": [[7,4,4,1,2],[8,5,8,2,1]],
+				"defaultOptionID": 39,
+				"options": [
+					{
+						"optionID": 39,
+						"price": 0,
+						"defaultColorID": 0,
+						"colors": []
+					},
+					{
+						"optionID": 40,
+						"price": 0,
+						"defaultColorID": 0,
+						"colors": []
+					}
+				]
+			},
+			{
+				"name": "Brakes (No Images for Now)",
+				"partID": 41,
+				"numSubImages": 0,
+				"defaultOptionID": 42,
+				"options": [
+					{
+						"optionID": 42,
+						"price": 50,
+						"defaultColorID": 0,
+						"colors": []
+					},
+					{
+						"optionID": 43,
+						"price": 0,
+						"defaultColorID": 0,
+						"colors": []
+					},
+					{
+						"name": "No Brakes",
+						"optionID": 44,
+						"thumbnailURL": "images/d_panel_1.png",
+						"desc": "Cutting weight? Live life on the edge with no wheel locksÖ you rebel you.",
+						"weight": -0.2,
+						"price": -50,
+						"defaultColorID": 0,
+						"colors": []
+					}
+				]
+			}
+		],
+		"measures": [
+			{
+				"measureID": 45,
+				"measureOptions": [["<70", "71-95", "96-115"],["<150", "150-210", "210-250"]],
+				"weights": [-0.1, 0, 0.1],
+				"prices": [-0.1, 0, 0.1]
+			},
+			{
+				"measureID": 46,
+				"measureOptions": [["35", "37", "39", "41"],["13.8", "14.6", "15.4", "16.1"]],
+				"weights": [0, 0.1, 0.2, 0.3],
+				"prices": [0, 0.1, 0.2, 0.3]
+			},
+			{
+				"measureID": 47,
+				"measureOptions": [["10.16", "12.7"],["4", "5"]],
+				"weights": [0, 0.2],
+				"prices": [0, 0.2]
+			},
+			{
+				"measureID": 48,
+				"measureOptions": [["24", "25" , "26" ],["24", "25", "26"]],
+				"weights": [-0.06, 0, 0.06],
+				"prices": [-0.06, 0, 0.06]
+			},
+			{
+				"measureID": 49,
+				"measureOptions": [["24", "26", "28", "30", "32", "34"],["9.4", "10.2", "11", "11.8", "12.6", "13.4"]],
+				"weights": [-0.1, -0.05, 0, 0.05, 0.1, 0.15],
+				"prices": [-0.1, -0.05, 0, 0.05, 0.1, 0.15]
+			},
+			{
+				"measureID": 50,
+				"measureOptions": [["40", "41", "42", "43", "44"],["15.7", "16.1", "16.5", "16.9", "17.3"]],
+				"weights": [-0.1, -0.05, 0, 0.05, 0.1],
+				"prices": [-0.1, -0.05, 0, 0.05, 0.1]
+			},
+			{
+				"measureID": 51,
+				"measureOptions": [["5", "7", "9", "11", "13"],["2", "2.8", "3.5", "4.3", "5.1"]],
+				"weights": [-0.1, -0.05, 0, 0.05, 0.1],
+				"prices": [-0.1, -0.05, 0, 0.05, 0.1]
+			},
+			{
+				"measureID": 52,
+				"measureOptions": [["-6", "-4", "-2", "0", "2", "4", "6"],["-2.4", "-1.6", "-0.8", "0", "0.8", "1.6", "2.4"]],
+				"weights": [-0.15, -0.1, -0.05, 0, 0.05, 0.1, 0.15],
+				"prices": [-0.15, -0.1, -0.05, 0, 0.05, 0.1, 0.15]
+			},
+			{
+				"measureID": 53,
+				"measureOptions": [["-6", "-4", "-2", "0", "2", "4", "6"],["-2.4", "-1.6", "-0.8", "0", "0.8", "1.6", "2.4"]],
+				"weights": [-0.15, -0.1, -0.05, 0, 0.05, 0.1, 0.15],
+				"prices": [-0.15, -0.1, -0.05, 0, 0.05, 0.1, 0.15]
+			}
+		]
+	}
+]
