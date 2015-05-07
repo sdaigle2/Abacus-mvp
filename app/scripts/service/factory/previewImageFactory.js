@@ -76,7 +76,7 @@ angular.module('abacuApp')
           for (var j = 0; j < numSubImages; j++) {
             this.images.push({
               URL: this.getPartPreviewImageURL(curPart, j, angle),
-              zRank: curPartData.getZRank(j, angle)
+              zRank: curPartData.getZRanks(j, angle)
             });
           }
         }
@@ -105,6 +105,7 @@ angular.module('abacuApp')
         var partURL = this.baseURL + 'frame' + frameIDString + '/';
         partURL += 'part' + partIDString + '/';
         partURL += optionIDString + colorString + subIndString + angleString + '.png';
+        console.log(partURL)
 
         return partURL;
 

@@ -296,7 +296,7 @@ angular.module('abacuApp')
     //Determine the text for each tooltip to display
     $scope.getProgressBarSegmentTooltipText = function (page) {
       if (curPage.type === $scope.pageType.CUSTOMIZE){
-        console.log(JSON.stringify(User.getCurEditWheelchair().getPart(page.partID)));
+        //console.log(JSON.stringify(User.getCurEditWheelchair().getPart(page.partID)));
         return User.getCurEditWheelchair().getPart(page.partID).name;}
       else if (curPage.type === $scope.pageType.MEASURE){
         return User.getCurEditWheelchair().getMeasure(page.partID).name;}
