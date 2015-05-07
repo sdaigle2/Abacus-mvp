@@ -76,10 +76,12 @@ angular.module('abacuApp')
           for (var j = 0; j < numSubImages; j++) {
             this.images.push({
               URL: this.getPartPreviewImageURL(curPart, j, angle),
-              zRank: curPartData.getZRanks(j, angle)
+              zRank: curPartData.getZRank(j, angle)
             });
           }
         }
+
+        console.log(JSON.stringify(this.images));
 
         //Sort array by zRanks
         this.images.sort(function (a, b) {

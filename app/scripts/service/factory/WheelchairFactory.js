@@ -40,7 +40,7 @@ angular.module('abacuApp')
       this.desc = frame.desc;
       this.basePrice = frame.basePrice;
       this.baseWeight = frame.baseWeight;
-      this.previewImageGenerator = new previewImage("chairPics",this.frameID, this.parts);
+      this.previewImageGenerator = new previewImage("chairPic",this.frameID, this.parts);
     };
 
     //#######################  Instance methods  ##########################

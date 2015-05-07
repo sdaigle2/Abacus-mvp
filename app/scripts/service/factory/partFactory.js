@@ -63,7 +63,7 @@ angular.module('abacuApp')
 
       getZRank: function (subImageIndex, angle) {
         if (subImageIndex >= 0 && subImageIndex < this.zRank.length)
-          if (angle >= 0 && angle < zRank[subImageIndex].length)
+          if (angle >= 0 && angle < this.zRank[subImageIndex].length)
             return this.zRank[subImageIndex][angle];
         return 0;
       },
