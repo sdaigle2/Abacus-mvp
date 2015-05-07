@@ -44,7 +44,7 @@ angular.module('abacuApp')
 
 
       setPayMethod: function (newMethod) { this.payMethod = newMethod; },
-      setOrderNum: function (numNum) { this.orderNum = newNum; },
+      setOrderNum: function (newNum) { this.orderNum = newNum; },
 
       getWheelchair: function (index) {
         if (index >= 0 && index < this.wheelchairs.length)
@@ -86,6 +86,7 @@ angular.module('abacuApp')
         //TODO: Send order into database
 
         //TODO: Set and Return generated orderNum
+        window.alert('Order Sent! Order Number: ' + '0000');
         this.setOrderNum('0000');
         return '0000';
       },
