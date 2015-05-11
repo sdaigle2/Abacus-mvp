@@ -50,6 +50,9 @@ angular.module('abacuApp')
       name: 'Nadda Realperson',
       extra: 'An actual Nigerian Prince'
     },
-    ]
+    {
+      name: 'Dhruv Vajpeyi',
+      extra: 'He stole my job!'
+    }]
 
   }]);

@@ -362,6 +362,25 @@ angular.module('abacuApp')
     $scope.getCurPanelID = function () { return curPanel.panelID; };
 
 
+    /*******************Sidebar Colors***************/
+
+    $scope.isSidebarColored = function (optionID) {
+      var partID = $scope.getCurPage().partID;
+      var part = $scope.frameData.getPart(partID);
+      var option = part.getOption(optionID);
+      var wPart = User.getCurEditWheelchair().getPart(partID);
+
+      return (wPart.optionID === optionID) && (option.getNumColors() > 0);
+    };
+
+    $scope.getSidebarColor = function (optionID) {
+      var partID = $scope.getCurPage().partID;
+      var part = $scope.frameData.getPart(partID);
+      var option = part.getOption(optionID);
+      var wPart = User.getCurEditWheelchair().getPart(partID);
+
+      return option.getColor(wPart.colorID).getHexString();
+    };
 
     /*******************Saving***********************/
 
