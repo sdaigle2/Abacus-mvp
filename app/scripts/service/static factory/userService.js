@@ -39,8 +39,9 @@ angular.module('abacuApp')
 
       //Attempt to login as the given username with the given password
       //If successful - should load in appropriate user data
-      login: function (email, password) {
+      login: function (in_email, password) {
         //TODO: Verify email and password
+        //Call deferred.reject(message) if invalid
 
         var deferred = $q.defer();
 
@@ -62,7 +63,7 @@ angular.module('abacuApp')
           .fail(function (jqxhr, textStatus, error) {
             var err = textStatus + ', ' + error;
             console.log('Request Failed: ' + err);
-            deferred.reject();
+            deferred.reject('Error loading user data');
           });
 
         //load Orders from DB associated with UserID
@@ -92,7 +93,7 @@ angular.module('abacuApp')
       },
 
       isLoggedIn: function () {
-        return (this.userID !== -1);
+        return (userID !== -1);
       },
 
       /*************************MY DESIGNS*******************************/
@@ -188,7 +189,7 @@ angular.module('abacuApp')
         return deferred.promise;
       },
 
-      //***********getters
+      //***********get/sets
       getFname: function (){ return fName; },
       getLname: function () { return lName; },
       getEmail: function () { return email; },
@@ -200,8 +201,24 @@ angular.module('abacuApp')
       getZip: function () { return zip; },
       getUnitSys: function () { return unitSys; },
 
-      getFullName: function () { return fName + ' ' + lName; }
+      getFullName: function () { return fName + ' ' + lName; },
+      getFullAddr: function () { 
+        var a2 = addr2;
+        if (addr2 !== '')
+          a2 = ' ' + a2;
+        return addr + a2;
+      },
 
+      setFname: function (newFName) { fName = newFName; },
+      setLname: function (newLName) { lName = newLName; },
+      setEmail: function (newEmail) { email = newEmail; },
+      setPhone: function (newPhone) { phone = newPhone; },
+      setAddr: function (newAddr) { addr = newAddr; },
+      setAddr2: function (newAddr2) { addr2 = newAddr2; },
+      setCity: function (newCity) { city = newCity; },
+      setState: function (newState) { state = newState; },
+      setZip: function (newZip) { zip = newZip; },
+      setUnitSys: function (newUnitSys) { unitSys = newUnitSys; }
     };
 
   }]);

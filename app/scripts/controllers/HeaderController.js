@@ -40,9 +40,8 @@ angular.module('abacuApp')
           $scope.user.loggedIn = User.isLoggedIn();
           $scope.user.email = User.getEmail();
           $scope.user.name = User.getFullName();
-          alert('You have successfully logged in as ' + $scope.user.name);
-        }, function () {
-          alert('Login failed');
+        }, function (message) {
+          alert('Login failed: ' + message);
         });
 
       $scope.loginModel.password = '';

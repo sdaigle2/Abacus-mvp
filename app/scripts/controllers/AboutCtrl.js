@@ -16,7 +16,7 @@ angular.module('abacuApp')
     },
     {
       name: 'Scott Daigle',
-      extra: 'dummy text goes here'
+      extra: 'Source of name-based confusion'
     },
     {
       name: 'Josh George',
@@ -28,11 +28,11 @@ angular.module('abacuApp')
     },
     {
       name: 'Steven Pick',
-      extra: 'dummy text goes here'
+      extra: 'Pretty fly'
     },
     {
       name: 'Matt Kowalec',
-      extra: 'dummy text goes here'
+      extra: 'Lorem ipsum'
     },
     {
       name: 'Sarah Cho',
@@ -45,6 +45,10 @@ angular.module('abacuApp')
     {
       name: 'Nick Galloway',
       extra: 'He\'s also cool'
+    },
+    {
+      name: 'Nadda Realperson',
+      extra: 'An actual Nigerian Prince'
     },
     ]
 

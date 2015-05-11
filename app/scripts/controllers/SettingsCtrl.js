@@ -10,8 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('SettingsCtrl', ['$scope', 'User',
-    function ($scope, User) {
+  .controller('SettingsCtrl', ['$scope', '$location', 'User', 'Units',
+    function ($scope, $location, User, Units) {
 
     //Kick user off page if not logged in
     if (User.isLoggedIn() === false) {
@@ -24,6 +24,7 @@ angular.module('abacuApp')
       fName: User.getFname(),
       lName: User.getLname(),
       email: User.getEmail(),
+      phone: User.getPhone(),
       addr: User.getAddr(),
       addr2: User.getAddr2(),
       city: User.getCity(),
@@ -56,33 +57,21 @@ angular.module('abacuApp')
 
     /***************** SIDEBAR BUTTONS ***************************************/
 
-    //TODO: What does this button do?
-    $scope.edit = function () {
-      switch (contentSection) {
-        case $scope.ContentSection.ACCOUNT:
-          return;
-        case $scope.ContentSection.ORDERS:
-          return;
-        case $scope.ContentSection.MEASUREMENTS:
-          return;
-      }
-    };
-
-
     $scope.save = function () {
       switch (contentSection) {
         case $scope.ContentSection.ACCOUNT:
 
-          User.fName = $scope.accountModel.fName;
-          User.lName = $scope.accountModel.lName;
-          User.email = $scope.accountModel.email;
-          User.addr = $scope.accountModel.addr;
-          User.addr2 = $scope.accountModel.addr2;
-          User.city = $scope.accountModel.city;
-          User.state = $scope.accountModel.state;
-          User.zip = $scope.accountModel.zip;
+          User.setFname($scope.accountModel.fName);
+          User.setLname($scope.accountModel.lName);
+          User.setEmail($scope.accountModel.email);
+          User.setPhone($scope.accountModel.phone);
+          User.setAddr($scope.accountModel.addr);
+          User.setAddr2($scope.accountModel.addr2);
+          User.setCity($scope.accountModel.city);
+          User.setState($scope.accountModel.state);
+          User.setZip($scope.accountModel.zip);
 
-          //TODO: update in the database (including password)
+          //TODO: update in the database (including password?)
 
           break;
 
@@ -96,6 +85,7 @@ angular.module('abacuApp')
           User.commonMeasures.AXEL_POSITION = $scope.measDisplay.axelPosition.optionSelected;
           User.commonMeasures.SEAT_DEPTH = $scope.measDisplay.seatDepth.optionSelected;
 
+          User.setUnitSys($scope.curUnitSys);
           //TODO: update values in the database
 
           break;
@@ -209,5 +199,17 @@ angular.module('abacuApp')
         imgIndex: 0
       }
     };
+
+    $scope.curUnitSys = User.getUnitSys();
+
+    $scope.unitSysList = [
+      {
+        name: 'Metric',
+        enumVal: Units.unitSys.METRIC
+      },
+      {
+        name: 'Imperial',
+        enumVal: Units.unitSys.IMPERIAL
+      }];
 
   }]);

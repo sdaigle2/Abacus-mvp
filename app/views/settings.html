@@ -39,9 +39,6 @@
     <div class="settingsSidebarButtons"
          ng-class="{'showSettingsSidebarButtons' : getContentSection() !== ContentSection.ORDERS, 'hideSettingsSidebarButtons' : getContentSection() === ContentSection.ORDERS}">
       <button class="settingsSidebarButton"
-              id="settingsSidebarEditButton"
-              data-ng-click="edit()">EDIT &gt;&gt;</button>
-      <button class="settingsSidebarButton"
               id="settingsSidebarSaveButton"
               data-ng-click="save()">SAVE &gt;&gt;</button>
     </div>
@@ -72,6 +69,10 @@
             <li>
               <label for="settingsContentInput-contact-email">Email Address</label>
               <input id="settingsContentInput-contact-email" name="email" type="text" data-ng-model="accountModel.email" />
+            </li>
+            <li>
+              <label for="settingsContentInput-contact-phone">Phone</label>
+              <input id="settingsContentInput-contact-phone" name="phone" type="text" data-ng-model="accountModel.phone" />
             </li>
           </ul>
         </form>
@@ -164,6 +165,11 @@
               <select data-ng-options="o for o in measDisplay[val].options" data-ng-model="measDisplay[val].optionSelected"></select>
             </li>
           </ul>
+          <div>
+            <h6>Unit System</h6>
+            <select data-ng-model="curUnitSys"
+                    data-ng-options="sys.enumVal as sys.name for sys in unitSysList" />
+          </div>
         </form>
       </div>
 
