@@ -4,16 +4,13 @@
   <div>
     <h1><u>Meet the Intelliwheels Team</u></h1>
   </div>
-  <ul>
-    <li>Marissa Siebel</li>
-    <li>Scott Daigle</li>
-    <li>Josh George</li>
-    <li>Brian Zhou</li>
-    <li>Steven Pick</li>
-    <li>Matt Kowalec</li>
-    <li>Sarah Cho</li>
-    <li>Scott Blessing</li>
-    <li>Nick Galloway</li>
-  </ul>
+  <marquee direction="down" width="1300" height="500" behavior="alternate" 
+           style="position:absolute; top:95px;"
+           data-ng-repeat="e in employees"
+           scrollamount="{{$index + 5}}">
+    <marquee behavior="alternate" scrollamount="{{(employees.length - $index) + 5}}">
+      <h3>{{e.name}}</h3>
+    </marquee>
+  </marquee>
 </div>
 

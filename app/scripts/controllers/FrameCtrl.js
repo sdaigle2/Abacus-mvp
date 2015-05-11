@@ -23,7 +23,7 @@ angular.module('abacuApp')
     };
 
     $scope.getWeightString = function (frame) {
-      return (frame.getBaseWeight() * Units.getWeightFactor(User.unitSys)) + ' ' + Units.getWeightName(User.unitSys);
+      return (frame.getBaseWeight() * Units.getWeightFactor(User.getUnitSys())) + ' ' + Units.getWeightName(User.getUnitSys());
     };
 
   }]);
