@@ -24,16 +24,16 @@ angular.module('abacuApp')
 
     //Validate user login, and then log them in
     $scope.loginAsUser = function () {
-      //TODO: Validate $scope.loginForm inputs
-      //      Log user in
-      //      Send to "Order" Page
 
-      //loginForm.email should be verified as an email address by the HTML - it should be null if not an email
+      //TODO: Make sure curOrder isn't lost - login will overwrite it
 
-      //User.login($scope.loginForm.email, $scope.loginForm.pass);
-
-      alert(JSON.stringify($scope.loginForm));
-      $location.path('/order');
+      User.login($scope.loginForm.email, $scope.loginForm.pass)
+        .then(function () {        
+          $location.path('/order');
+        }, function (message) {
+          alert('Login failed: ' + meassage);
+        });
+      $scope.loginForm.pass = '';
     };
 
     //Log in the user as a guest

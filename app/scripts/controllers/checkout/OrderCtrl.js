@@ -108,7 +108,7 @@ angular.module('abacuApp')
           
           User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.payForm.method)
             .then(function () {
-              $scope.orderNum = User.getCurEditOrder().getOrderNum();
+              $scope.orderNum = $scope.curOrder.getOrderNum(); //Note - from this point on User.getCurEditOrder() returns null
               $scope.curStage++;
             }, function () {
               alert('Error sending order');
