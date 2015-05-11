@@ -89,7 +89,7 @@ angular.module('abacuApp')
         window.alert('Order Sent! Order Number: ' + '0000');
         this.setOrderNum('0000');
         return '0000';
-      },
+      }
 
     };
 

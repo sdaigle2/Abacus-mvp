@@ -1,4 +1,4 @@
-/// <reference path="userService.js" />
+/// <reference path="userService.js" />=
 // jshint unused:false
 'use strict';
 
@@ -17,25 +17,23 @@ angular.module('abacuApp')
     var designedWheelchairs = [];
 
     var curEditWheelchairIndex = -1;
+    var userID = -1; //-1 means not logged in
+    var fName = 'fds';
+    var lName = '';
+    var email = '';
+    var phone = '';
+
+    var addr = '';
+    var addr2 = 'fds  ';
+    var city = '';
+    var state = '';
+    var zip = '';
+    var unitSys = Units.unitSys.IMPERIAL;
 
     //*********functions************//
 
     return {
 
-      userID: -1, //-1 means not logged in
-
-      fName: '',
-      lName: '',
-      email: '',
-      phone: '',
-
-      addr: '',
-      addr2: '',
-      city: '',
-      state: '',
-      zip: '',
-
-      unitSys: Units.unitSys.IMPERIAL,
 
       /************************LOGIN AND LOGOUT****************************/
 
@@ -45,25 +43,54 @@ angular.module('abacuApp')
         //TODO: Actually write function
 
         //Verify email and password
-        //Set userID
-        //Set other user fields
+
+        //Set user fields
+        this.loadUser();
         //load Orders from DB associated with UserID
         //load Measurements from DB with associated UserID
         //load Designed Wheelchairs from DB associated with UserID
       },
 
+
+      loadUser: function () {
+          console.log("I am here0");
+
+
+        $.getJSON('data/user2Data.json')
+          .done(function( data ) {
+            console.log(JSON.stringify(data));
+            userID = data.ID; //-1 means not logged in
+            fName = data.fName;
+            lName = data.lName;
+            email = data.email;
+            phone = data.phone;
+
+            addr = data.addr;
+            addr2 = data.addr2;
+            city = data.city;
+            state = data.state;
+            zip = data.zip;
+            return true;
+          })
+          .fail(function( jqxhr, textStatus, error ) {
+            var err = textStatus + ', ' + error;
+            console.log( 'Request Failed: ' + err );
+            return false;
+          });
+      },
+
       logout: function () {
-        this.userID = -1; //-1 means not logged in
-        this.fName = '';
-        this.lName = '';
-        this.email = '';
-        this.phone = '';
-        this.addr = '';
-        this.addr2 = '';
-        this.city = '';
-        this.state = '';
-        this.zip = '';
-        this.unitSys = Units.unitSys.IMPERIAL;
+        userID = -1; //-1 means not logged in
+        fName = '';
+        lName = '';
+        email = '';
+        phone = '';
+        addr = '';
+        addr2 = '';
+        city = '';
+        state = '';
+        zip = '';
+        unitSys = Units.unitSys.IMPERIAL;
         orders = [];
         //measures = []; //TODO: Reset to default
         designedWheelchairs = [];
@@ -103,6 +130,8 @@ angular.module('abacuApp')
       getCurEditWheelchair: function () {
         return this.getWheelchair(curEditWheelchairIndex);
       },
+
+
 
       /******************************MY MEASUREMENTS*******************************/
 
@@ -153,7 +182,17 @@ angular.module('abacuApp')
       sendCurEditOrder: function (userData, shippingData, payMethod) {
         var editOrder = this.getCurEditOrder();
         return editOrder.send(userData, shippingData, payMethod);
-      }
+      },
+
+      //***********getters
+      getFname: function (){return fName;},
+      getLname: function (){return lName},
+      getEmail: function (){return email},
+      getAddr: function (){return addr},
+      getAddr2: function (){return addr2},
+      getCity: function (){return city},
+      getState: function (){return state},
+      getZip: function (){return state}
 
 
     };

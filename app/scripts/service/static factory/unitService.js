@@ -14,7 +14,7 @@ angular.module('abacuApp')
       //The angle type of the wheelchair image
       unitSys: {
         METRIC: 0,
-        IMPERIAL: 1,
+        IMPERIAL: 1
       },
 
       //Returns the appropriate weight unit name

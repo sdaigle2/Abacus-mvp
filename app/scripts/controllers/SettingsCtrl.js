@@ -13,6 +13,21 @@ angular.module('abacuApp')
   .controller('SettingsCtrl', ['$scope', 'User',
     function ($scope, User) {
 
+
+    //Model for the 'My Account' inputs
+    $scope.accountModel = {
+      fName: User.getFname(),
+      lName: User.getLname(),
+      email: User.getEmail(),
+      addr: User.getAddr(),
+      addr2: User.getAddr2(),
+      city: User.getCity(),
+      state: User.getState(),
+      zip: User.getZip(),
+      oldPass: '',
+      newPass1: '',
+      newPass2: ''
+    };
     //Sidebar options
     $scope.ContentSection = {
       ACCOUNT : 'account',
@@ -32,7 +47,9 @@ angular.module('abacuApp')
     //Navigational values
     var contentSection = $scope.ContentSection.ACCOUNT;
     var curMeasureType = $scope.MeasurementTypes.REAR_SEAT_HEIGHT;
-
+    function login(){User.loadUser()}
+    login();
+    console.log($scope.accountModel.addr2);
     /***************** SIDEBAR BUTTONS ***************************************/
 
     //TODO not sure why this button is even here???
@@ -116,20 +133,7 @@ angular.module('abacuApp')
 
     /***************** MY ACCOUNT *********************************************/
 
-    //Model for the 'My Account' inputs
-    $scope.accountModel = {
-      fName: User.fName,
-      lName: User.lName,
-      email: User.email,
-      addr: User.addr,
-      addr2: User.addr2,
-      city: User.city,
-      state: User.state,
-      zip: User.zip,
-      oldPass: '',
-      newPass1: '',
-      newPass2: ''
-    };
+
 
     /***************** MY ORDERS **********************************************/
 
