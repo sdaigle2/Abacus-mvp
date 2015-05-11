@@ -5,15 +5,23 @@
 'use strict';
 
 angular.module('abacuApp')
-  .controller('HeaderController', function($scope, $location){
+  .controller('HeaderController', ['$scope', '$location', 'User', function($scope, $location, User){
 
     $scope.isActive = function (viewLocation) {
         return viewLocation === $location.path();
     };
 
+    //Model used for login form
     $scope.loginModel = {
       email: '',
       password: ''
+    };
+
+    //Values set by logged-in user
+    $scope.user = {
+      loggedIn: false,
+      email: '',
+      name: ''
     };
 
     $scope.recoverPassword = function () {
@@ -27,7 +35,15 @@ angular.module('abacuApp')
     };
 
     $scope.login = function () {
-      //TODO: Login system
-      window.alert(JSON.stringify($scope.loginModel));
+      User.login($scope.loginModel.email, $scope.loginModel.password)
+        .then(function () {
+          $scope.user.loggedIn = User.isLoggedIn();
+          $scope.user.email = User.getEmail();
+          $scope.user.name = User.getFullName();
+        }, function () {
+          alert('Login failed');
+        });
+
+      $scope.loginModel.password = '';
     };
-});
+}]);

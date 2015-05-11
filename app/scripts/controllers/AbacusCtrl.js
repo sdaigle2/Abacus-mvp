@@ -51,7 +51,7 @@ angular.module('abacuApp')
     var curAngle = Angles.angleType.FRONTRIGHT;
 
     //The current measurement system being used
-    $scope.curUnitSys = User.unitSys;
+    $scope.curUnitSys = User.getUnitSys();
 
     /***************************Initialization****************************/
 

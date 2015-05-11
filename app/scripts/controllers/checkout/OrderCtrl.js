@@ -59,11 +59,11 @@ angular.module('abacuApp')
     };
 
     $scope.getPartDetails = function (wheelchair, part) {
-      return wheelchair.getPartDetails(part.partID, User.unitSys);
+      return wheelchair.getPartDetails(part.partID, User.getUnitSys());
     };
 
     $scope.getMeasureDetails = function (wheelchair, measure) {
-      return wheelchair.getMeasureDetails(measure.measureID, User.unitSys);
+      return wheelchair.getMeasureDetails(measure.measureID, User.getUnitSys());
     };
 
     /*************************** SIDEBAR BUTTONS ************************/
@@ -144,20 +144,20 @@ angular.module('abacuApp')
     //Model for the contact form
     //Init'ed using User settings - does not change User values b/c they're primitives
     $scope.contactForm = {
-      fName: User.fName,
-      lName: User.lName,
-      email: User.email,
-      phone: User.phone
+      fName: User.getFname(),
+      lName: User.getLname(),
+      email: User.getEmail(),
+      phone: User.getPhone()
     };
 
     //Model for the shipping form
     //Init'ed using User settings - does not change User values b/c they're primitives
     $scope.shippingForm = {
-      addr: User.addr,
-      addr2: User.addr2,
-      city: User.city,
-      state: User.state,
-      zip: User.zip
+      addr: User.getAddr(),
+      addr2: User.getAddr2(),
+      city: User.getCity(),
+      state: User.getState(),
+      zip: User.getZip()
     };
 
     /**************************** PAYMENT ******************************/

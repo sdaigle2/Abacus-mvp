@@ -130,15 +130,15 @@ angular.module('abacuApp')
     /********************DETAIL PANEL*********************************/
 
     $scope.getWeightString = function (wheelchair) {
-      return (wheelchair.getTotalWeight() * Units.getWeightFactor(User.unitSys)).toFixed(2) + ' ' + Units.getWeightName(User.unitSys);
+      return (wheelchair.getTotalWeight() * Units.getWeightFactor(User.getUnitSys())).toFixed(2) + ' ' + Units.getWeightName(User.getUnitSys());
     };
 
     $scope.getPartDetails = function(wheelchair, part) {
-      return wheelchair.getPartDetails(part.partID, User.unitSys);
+      return wheelchair.getPartDetails(part.partID, User.getUnitSys());
     };
 
     $scope.getMeasureDetails = function(wheelchair, measure) {
-      return wheelchair.getMeasureDetails(measure.measureID, User.unitSys);
+      return wheelchair.getMeasureDetails(measure.measureID, User.getUnitSys());
     };
 
     init();

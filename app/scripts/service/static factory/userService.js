@@ -10,21 +10,21 @@
  * Service of the abacuApp
  */
 angular.module('abacuApp')
-  .service('User', ['$http', '$location', 'Order', 'Wheelchair', 'Units', 'Costs',
-    function ($http, $location, Order, Wheelchair, Units, Costs) {
+  .service('User', ['$http', '$location', '$q', 'Order', 'Wheelchair', 'Units', 'Costs',
+    function ($http, $location, $q, Order, Wheelchair, Units, Costs) {
 
     var orders = [];
     var designedWheelchairs = [];
 
     var curEditWheelchairIndex = -1;
     var userID = -1; //-1 means not logged in
-    var fName = 'fds';
+    var fName = '';
     var lName = '';
     var email = '';
     var phone = '';
 
     var addr = '';
-    var addr2 = 'fds  ';
+    var addr2 = '';
     var city = '';
     var state = '';
     var zip = '';
@@ -40,26 +40,13 @@ angular.module('abacuApp')
       //Attempt to login as the given username with the given password
       //If successful - should load in appropriate user data
       login: function (email, password) {
-        //TODO: Actually write function
+        //TODO: Verify email and password
 
-        //Verify email and password
-
-        //Set user fields
-        this.loadUser();
-        //load Orders from DB associated with UserID
-        //load Measurements from DB with associated UserID
-        //load Designed Wheelchairs from DB associated with UserID
-      },
-
-
-      loadUser: function () {
-          console.log("I am here0");
-
+        var deferred = $q.defer();
 
         $.getJSON('data/user2Data.json')
-          .done(function( data ) {
-            console.log(JSON.stringify(data));
-            userID = data.ID; //-1 means not logged in
+          .done(function (data) {
+            userID = data.ID;
             fName = data.fName;
             lName = data.lName;
             email = data.email;
@@ -70,13 +57,19 @@ angular.module('abacuApp')
             city = data.city;
             state = data.state;
             zip = data.zip;
-            return true;
+            deferred.resolve();
           })
-          .fail(function( jqxhr, textStatus, error ) {
+          .fail(function (jqxhr, textStatus, error) {
             var err = textStatus + ', ' + error;
-            console.log( 'Request Failed: ' + err );
-            return false;
+            console.log('Request Failed: ' + err);
+            deferred.reject();
           });
+
+        //load Orders from DB associated with UserID
+        //load Measurements from DB with associated UserID
+        //load Designed Wheelchairs from DB associated with UserID
+
+        return deferred.promise;
       },
 
       logout: function () {
@@ -98,7 +91,9 @@ angular.module('abacuApp')
         $location.path('frames');
       },
 
-      isLoggedIn: function () { return (this.userID !== -1); },
+      isLoggedIn: function () {
+        return (this.userID !== -1);
+      },
 
       /*************************MY DESIGNS*******************************/
 
@@ -185,15 +180,18 @@ angular.module('abacuApp')
       },
 
       //***********getters
-      getFname: function (){return fName;},
-      getLname: function (){return lName},
-      getEmail: function (){return email},
-      getAddr: function (){return addr},
-      getAddr2: function (){return addr2},
-      getCity: function (){return city},
-      getState: function (){return state},
-      getZip: function (){return state}
+      getFname: function (){ return fName; },
+      getLname: function () { return lName; },
+      getEmail: function () { return email; },
+      getPhone: function () { return phone; },
+      getAddr: function () { return addr; },
+      getAddr2: function () { return addr2; },
+      getCity: function () { return city; },
+      getState: function () { return state; },
+      getZip: function () { return zip; },
+      getUnitSys: function () { return unitSys; },
 
+      getFullName: function () { return fName + ' ' + lName; }
 
     };
 

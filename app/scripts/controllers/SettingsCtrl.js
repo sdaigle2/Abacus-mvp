@@ -47,12 +47,11 @@ angular.module('abacuApp')
     //Navigational values
     var contentSection = $scope.ContentSection.ACCOUNT;
     var curMeasureType = $scope.MeasurementTypes.REAR_SEAT_HEIGHT;
-    function login(){User.loadUser()}
-    login();
-    console.log($scope.accountModel.addr2);
+ 
+
     /***************** SIDEBAR BUTTONS ***************************************/
 
-    //TODO not sure why this button is even here???
+    //TODO: What does this button do?
     $scope.edit = function () {
       switch (contentSection) {
         case $scope.ContentSection.ACCOUNT:
