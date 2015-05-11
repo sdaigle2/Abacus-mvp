@@ -13,6 +13,11 @@ angular.module('abacuApp')
   .controller('SettingsCtrl', ['$scope', 'User',
     function ($scope, User) {
 
+    //Kick user off page if not logged in
+    if (User.isLoggedIn() === false) {
+      $location.path('/frames');
+      return;
+    }
 
     //Model for the 'My Account' inputs
     $scope.accountModel = {
