@@ -37,7 +37,9 @@ Stop users from manually switching pages via URL?
 
 How will the current cart system respond when the site is live?
 -Is cartData.json unique per user?
--Can we turn the cart into a sharedVar to guarantee functionality (as well as improve load times)?
+-Can we turn the cart into a sharedVar to guarantee functionality (as well as improve load times
+
+*Systems have been replaced
 
 --------------------------------------------------------------------------------------------------
 
@@ -47,3 +49,5 @@ Cart wheelchair images borrowed from frame page
 
 frameData.json is only a single frame object - should it be an array of frames?
 -If we change this, need to accomodate code around change (ie point abacus.frameData to correct frame in array)
+
+*Fixed

@@ -14,11 +14,23 @@ angular.module('abacuApp')
 
     function Order(taxRate, shippingFee) {
       this.wheelchairs = [];
-      this.payMethod = 'advance';
       this.orderNum = 'OrderNumNotSet';
       this.taxRate = taxRate;
       this.shippingFee = shippingFee;
-      this.sent = false;
+      this.sentDate = null;
+
+      this.userID = -1;
+      this.fName = '';
+      this.lName = '';
+      this.email = '';
+      this.phone = '';
+      this.addr = '';
+      this.addr2 = '';
+      this.city = '';
+      this.state = '';
+      this.zip = '';
+
+      this.payMethod = '';
     };
 
     Order.prototype = {
@@ -40,11 +52,27 @@ angular.module('abacuApp')
       getOrderNum: function () { return this.orderNum; },
       getWheelchairs: function () { return this.wheelchairs; },
       getNumWheelchairs: function () { return this.wheelchairs.length; },
-      hasBeenSent: function () { return this.sent; },
+      getSentDate: function () { return this.sentDate; },
+      getUserID: function () { return this.userID; },
+      getFname: function () { return this.fName; },
+      getLname: function () { return this.lName; },
+      getEmail: function () { return this.email; },
+      getPhone: function () { return this.phone; },
+      getAddr: function () { return this.addr; },
+      getAddr2: function () { return this.addr2; },
+      getCity: function () { return this.city; },
+      getState: function () { return this.state; },
+      getZip: function () { return this.zip; },
 
+      getFullName: function () { return this.fName + ' ' + this.lName; },
+      getFullAddr: function () {
+        var a2 = this.addr2;
+        if (this.addr2 !== '')
+          a2 = ' ' + a2;
+        return this.addr + a2;
+      },
 
-      setPayMethod: function (newMethod) { this.payMethod = newMethod; },
-      setOrderNum: function (newNum) { this.orderNum = newNum; },
+      hasBeenSent: function () { return this.sentDate !== null; },
 
       getWheelchair: function (index) {
         if (index >= 0 && index < this.wheelchairs.length)
@@ -78,22 +106,35 @@ angular.module('abacuApp')
 
       /********************Saving to DB***********************/
 
-      send: function (userData, shippingData, payMethod) {
+      send: function (userID, userData, shippingData, payMethod) {
         var deferred = $q.defer();
 
-        //Fake asyncronous call
-        setTimeout(function () {
-          this.sent = true;
-          this.setOrderNum('0000');
-          deferred.resolve();
-        }, 5000);
+        var curThis = this;
 
-        //TODO: save userData, shippingData, and payMethod to order
-        //TODO: Save current date to order
+        //Save userData, shippingData, and payMethod into Order
+        this.userID = userID;
+        this.fName = userData.fName;
+        this.lName = userData.lName;
+        this.email = userData.email;
+        this.phone = userData.phone;
+        this.addr = shippingData.addr;
+        this.addr2 = shippingData.addr2;
+        this.city = shippingData.city;
+        this.state = shippingData.state;
+        this.zip = shippingData.zip;
+        this.payMethod = payMethod;
+        this.sentDate = new Date(); //Now
+
+        //Fake asyncronous call - TODO: Replace with actual asyncronous call
         //TODO: Send order into database
-        //TODO: Set generated orderNum
+        setTimeout(function () {
 
-        return deferred.promise();
+          curThis.orderNum = '1234'; //TODO: Set generated orderNum
+          deferred.resolve();
+
+        }, 3000);      
+
+        return deferred.promise;
       }
 
     };
@@ -101,12 +142,23 @@ angular.module('abacuApp')
     //Create an order object using data from JSON
     Order.fromJSONData = function (jsonData) {
       var newOrder = new Order(jsonData.taxRate, jsonData.shippingFee);
-      newOrder.setOrderNum(jsonData.orderNum);
-      newOrder.setPayMethod(jsonData.payMethod);
+      newOrder.orderNum = jsonData.orderNum;
+      newOrder.payMethod = jsonData.payMethod;
+      newOrder.userID = jsonData.userID;
+      newOrder.sentDate = jsonData.sentDate; //TODO: Need to convert?
+      newOrder.fName = jsonData.fName;
+      newOrder.lName = jsonData.lName;
+      newOrder.phone = jsonData.phone;
+      newOrder.email = jsonData.email;
+      newOrder.addr = jsonData.addr;
+      newOrder.addr2 = jsonData.addr2;
+      newOrder.city = jsonData.city;
+      newOrder.state = jsonData.state;
+      newOrder.zip = jsonData.zip;
       for (var i = 0; i < jsonData.wheelchairs.length; i++) {
         newOrder.addWheelchair(jsonData.wheelchairs[i]);
       }
-      newOrder.sent = true;
+      newOrder.sentDate = jsonData.sentDate;
       return newOrder;
     };
 

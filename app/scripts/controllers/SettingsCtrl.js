@@ -34,6 +34,7 @@ angular.module('abacuApp')
       newPass1: '',
       newPass2: ''
     };
+
     //Sidebar options
     $scope.ContentSection = {
       ACCOUNT : 'account',
@@ -132,7 +133,7 @@ angular.module('abacuApp')
     /***************** MY ORDERS **********************************************/
 
     //Array of orders
-    //TODO needs to be integrated with the Order factory
+    //TODO: needs to be integrated with the Order factory
     $scope.orders = [{
       orderNum: '0000',
       datePlaced: new Date(2015, 1, 15, 7, 30, 0, 0),

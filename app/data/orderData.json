@@ -1,8 +1,9 @@
 {
-  "orderNum": 0,
+  "orderNum": "3863",
+	"userID": 0,
   "payMethod": "advance",
-  "taxRate":0,
-  "shippingFee": 0,
+  "taxRate": 0.09,
+  "shippingFee": 15,
 	"fName": "",
   "lName": "",
   "email": "",
@@ -12,5 +13,6 @@
   "city": "",
   "state": "",
   "zip": "",
+	"sentDate": "2012-04-23T18:25:43.511Z",
   "wheelchairs":[]
 }

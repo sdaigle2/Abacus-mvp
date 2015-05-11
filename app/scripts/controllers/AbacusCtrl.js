@@ -365,6 +365,9 @@ angular.module('abacuApp')
     /*******************Sidebar Colors***************/
 
     $scope.isSidebarColored = function (optionID) {
+      if (curPage.type !== $scope.pageType.CUSTOMIZE)
+        return;
+
       var partID = $scope.getCurPage().partID;
       var part = $scope.frameData.getPart(partID);
       var option = part.getOption(optionID);
@@ -374,6 +377,9 @@ angular.module('abacuApp')
     };
 
     $scope.getSidebarColor = function (optionID) {
+      if (curPage.type !== $scope.pageType.CUSTOMIZE)
+        return;
+
       var partID = $scope.getCurPage().partID;
       var part = $scope.frameData.getPart(partID);
       var option = part.getOption(optionID);
@@ -384,23 +390,21 @@ angular.module('abacuApp')
 
     /*******************Saving***********************/
 
-      $scope.saveDesign = function () {
+    $scope.saveDesign = function () {
 
-        //prompt for wheelchair title
-        var wTitle = window.prompt('Design Name:', User.getCurEditWheelchair().getTitle());
-        if (wTitle === null) {
-          User.getCurEditWheelchair().title = 'My Wheelchair';
-        }   
-        User.getCurEditWheelchair().title = wTitle;
+      //prompt for wheelchair title
+      var wTitle = window.prompt('Design Name:', User.getCurEditWheelchair().getTitle());
+      if (wTitle === null) {
+        User.getCurEditWheelchair().title = 'My Wheelchair';
+      }   
+      User.getCurEditWheelchair().title = wTitle;
 
-        //TODO save the design to the database
+      //TODO save the design to the database
 
-        //redirect user to the cart/myDesigns
-        $location.path('cart');
+      //redirect user to the cart/myDesigns
+      $location.path('cart');
 
-      };
-
-
+    };
 
     /*****************General Use Functions*********************/
 

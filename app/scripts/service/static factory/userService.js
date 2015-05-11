@@ -179,7 +179,7 @@ angular.module('abacuApp')
         var deferred = $q.defer();
 
         var editOrder = this.getCurEditOrder();
-        editOrder.send(userData, shippingData, payMethod)
+        editOrder.send(userID, userData, shippingData, payMethod)
           .then(function () {
             deferred.resolve();
           }, function () {
