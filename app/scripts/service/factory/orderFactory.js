@@ -10,7 +10,7 @@
  * Service of the abacuApp
  */
 angular.module('abacuApp')
-  .factory('Order', [function (){
+  .factory('Order', ['$q', function ($q){
 
     function Order(taxRate, shippingFee) {
       this.wheelchairs = [];
@@ -79,16 +79,21 @@ angular.module('abacuApp')
       /********************Saving to DB***********************/
 
       send: function (userData, shippingData, payMethod) {
+        var deferred = $q.defer();
+
+        //Fake asyncronous call
+        setTimeout(function () {
+          this.sent = true;
+          this.setOrderNum('0000');
+          deferred.resolve();
+        }, 5000);
+
         //TODO: save userData, shippingData, and payMethod to order
         //TODO: Save current date to order
-        this.sent = true;
-
         //TODO: Send order into database
+        //TODO: Set generated orderNum
 
-        //TODO: Set and Return generated orderNum
-        window.alert('Order Sent! Order Number: ' + '0000');
-        this.setOrderNum('0000');
-        return '0000';
+        return deferred.promise();
       }
 
     };

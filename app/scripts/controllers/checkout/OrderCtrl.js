@@ -98,7 +98,6 @@ angular.module('abacuApp')
           $scope.curStage++;
           break;
         case $scope.stages.PAYMENT:
-          alert(JSON.stringify($scope.payForm.method));
           $scope.curStage++;
           break;
         case $scope.stages.CONFIRM:
@@ -106,8 +105,16 @@ angular.module('abacuApp')
             alert("You must accept the Terms and Conditions to continue");
             return;
           }
-          sendOrder();
-          $scope.curStage++;
+          
+          User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.payForm.method)
+            .then(function () {
+              $scope.orderNum = User.getCurEditOrder().getOrderNum();
+              $scope.curStage++;
+            }, function () {
+              alert('Error sending order');
+            });
+
+          
           break;
         case $scope.stages.COMPLETE:
           //TODO: Send user to "orders" page (Settings-MyOrders?)
@@ -132,10 +139,6 @@ angular.module('abacuApp')
       allFilled = $scope.shippingForm.state !== '' ? allFilled : false;
       allFilled = $scope.shippingForm.zip !== '' ? allFilled : false;
       return allFilled;
-    };
-
-    function sendOrder() {
-      $scope.orderNum = User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.payForm.method);
     };
 
     /*************************** INFO ******************************/

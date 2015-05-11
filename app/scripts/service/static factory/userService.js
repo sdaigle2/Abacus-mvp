@@ -175,8 +175,17 @@ angular.module('abacuApp')
       },
 
       sendCurEditOrder: function (userData, shippingData, payMethod) {
+        var deferred = $q.defer();
+
         var editOrder = this.getCurEditOrder();
-        return editOrder.send(userData, shippingData, payMethod);
+        editOrder.send(userData, shippingData, payMethod)
+          .then(function () {
+            deferred.resolve();
+          }, function () {
+            deferred.reject();
+          });
+
+        return deferred.promise;
       },
 
       //***********getters
