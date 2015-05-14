@@ -1,0 +1,110 @@
+Abacus Project
+Intelliwheels 2015
+
+Controller Documentation
+
+------------------------------------------------------
+
+Change Log:
+5/14/15 - Scott Blessing - Created this file
+
+------------------------------------------------------
+
+This documentation keeps track of all the pages contained in Abacus as well as their associated controllers.  Unless otherwise specified, for each header it can be assumed there is a similarly-named html and css file.  The controller used by that page will appear in parenthesis next to it.
+
+------------------------------------------------------
+
+Contents:
+1) Index [Navbar]
+2) Frames
+3) Abacus
+4) About
+5) Settings
+6) Cart [MyDesigns]
+7) Checkout
+8) Order [Info, Payment, Confirm, Complete]
+
+------------------------------------------------------
+
+1) Index
+
+This page is the basic framework of the Abacus project.  Index contains the <html> and <body> tags that encompass the entire site.  In addition, Index has the navbar, as well as a div labeled as "appContainer".  All other html files will be loaded into that div.
+
+The Navbar (headerController.js)
+
+Because the navbar is part of index.html, it will always be visible.  The navbar allows the user to travel between various pages, such as "frames", "about", "cart", and "settings".  The navbar also has a login menu.  When the user is logged in, this is replaced with their name, which links them to the "settings" page.
+
+-------------------------------------------------------
+
+2) Frames (frameCtrl.js)
+
+The frames page displays all of the frames available to purchase.  These frames all come from the FrameData service.  When a user clicks "Choose this frame", the user is then sent to the "abacus" page.  This process adds a new wheelchair design to the user's myDesigns.
+
+-------------------------------------------------------
+
+3) Abacus (abacusCtrl.js)
+
+This page contains the main bulk of the project.  From this page, the user can modify User.getCurEditWheelchair (The wheelchair currently being edited).  If sent from "frames," curEditWheelchair will be a newly instantiated wheelchair of the chosen frame type.  If sent from "cart," it will be a previously created wheelchair from the user's MyDesigns.  If the page is loaded with User.getCurEditWheelchair being null, the user is immeadiately sent back to the frames page.
+
+This page has two types: customize and measure.  
+
+While in the customize type, the user can select options and colors for each part of the wheelchair.  These actions are accomplished through the sidebar, which appears on the righthand side of the screen.  In the main part of the screen, an image of the wheelchair is generated.  This image can be rotated and will update as the user selects various options.
+
+While in the measure type, the user can learn more about various important measurements and then choose the correct ones for their body type.  This page displays the information in various ways, such as text, a youtube video, a gif, and various graphics.  The user can choose the option from a drop-down-list in the sidebar.
+
+The controller for abacus uses a data structure we call "pages".  There are two arrays of pages, one for customize and the other for measure.  These pages are generated when abacus loads, and are created based on the measurements and parts available for the given frame.  Switching between pages can be done through the methods labeled as "Page Functions".  Pages also track their visitation status (unvisited, visited, current), which is used for displaying the "progress bar" at the top of the page.
+
+In the upper right, there is a "Main Display" which shows overall stats about the chair being constructed.  These include the frame type, weight, and price.  In addition, there is a unit toggler, which switches the page between metric and imperial units.  For more info on units, look at "Services->Units".
+
+Finally, there is a "Save Design" button in the upper-right corner.  This button will save the wheelchair design to the user's MyDesigns.  If the user is logged in, this button should also save the design to the database associated with the user.  This button will send the user to the "Cart" page.
+
+----------------------------------------------------------
+
+4) About (AboutCtrl.js)
+
+This page is the typical "About Us" page
+
+----------------------------------------------------------
+
+5) Settings (SettingsCtrl.js)
+
+This page allows the user to modify their personal site settings.  This page can only be accessed while the user is logged in.  If the user is not logged in, they will immeadiately be sent back to the "frames" page.  There are three types of settings available: MyAccount, MyOrders, and MyMeasurements.
+
+MyAccount contains various user data, such as name, email, phone number, and address, as well as a password changer.  MyOrders displays a staic list of orders the user has placed in the past.  The user should only be able to look at these - not modify them.  MyMeasurements allows the user to choose presets for various measurements, such that when a new wheelchair is created on "frames", its default measurements are already set to these values.
+
+-----------------------------------------------------------
+
+6) Cart [MyDesigns] (CartCtrl.js)
+
+This badly-named page displays all of the user's designed wheelchairs.  The user can see various details about each chair, send them back to the abacus, or remove them from MyDesigns.  In addition, the user can choose a set of completed designs to be checked out.  A completed design is one where every measurement has been set to a valid option.  The user can only checkout if they have selected at least one cart.
+
+This page generates a blank Order, which is then filled with the user-selected wheelchairs.  When checkout is clicked, this order is carried through the entire checkout process.  If the user leaves the cart and returns, the previous order will be replaced by a new Order.
+
+If the user is logged in, clicking checkout will send the user straight to the "Order" page.  If the user is not logged in, they will be sent to "Checkout".
+
+------------------------------------------------------------
+
+7) Checkout (CheckoutCtrl.js)
+
+
+This page is only accessed by checking out from the cart while not logged in.  This page gives the user the opportunity to login, register, or continue as a guest.  If the user chooses to login, the loaded user data must be loaded in carefully to avoid overwriting the current order.
+
+-------------------------------------------------------------
+
+8) Order [Info, Payment, Confirm, Complete](OrderCtrl.js)
+
+This page walks the user step-by-step through the ordering process.  If the page is loaded without a User.getCurEditOrder, the user is immeadiately sent back to "cart".  This page consists of 4 segments: Info, Payment, Confirm, and Complete.  The page will always start at Info.  
+
+The Info segment will request shipping information from the user.  If the user is already logged in, this will be preloaded from their settings.  Every field except Address 2 must be filled in to advance to the next stage.
+
+The Payment will prompt the user with a radio button list of payment options.  One of the options must be chosen to advance.  If 'Pay in Advance' is chosen, various static fields from the "Banks" constant will be displayed.
+
+The Confirm segment will display back to the user all the data they have inputted thus far and ask them to confirm that it is all correct.  They will then need to read some Terms and Conditions and check a box confirming they have.  Clicking "next" in this segment will send the Order with all the given data.
+
+The Complete segment simply displays the generated Order number.
+
+--------------------------------------------------------------
+
+9) Invoice (InvoiceCtrl.js)
+
+--In Progress--
