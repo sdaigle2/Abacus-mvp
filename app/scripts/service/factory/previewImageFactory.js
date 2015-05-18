@@ -115,7 +115,7 @@ angular.module('abacuApp')
         //SubImageIndex = 4
         //CurAngle = FRONT
         //    CREATES
-        //'baseURL/frame1/part1/2_3_4_Front.png'
+        //'baseURL/frame0/part1/2_3_4_Front.png'
       },
 
     };
