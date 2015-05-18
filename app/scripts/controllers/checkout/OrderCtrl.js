@@ -51,6 +51,10 @@ angular.module('abacuApp')
       $location.path('\cart');
       return;
     }
+    else if ($scope.curOrder.getNumWheelchairs() === 0) {
+      $location.path('\cart');
+      return;
+    }
 
     $scope.wheelchairs = $scope.curOrder.getWheelchairs();
 
