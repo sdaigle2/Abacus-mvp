@@ -1,6 +1,6 @@
 ﻿<link href="styles/about.css" rel="stylesheet" />
 
-<div class="aboutUsDiv">
+<div id="aboutUsDiv">
   <div>
     <h1><u>Meet the Intelliwheels Team</u></h1>
   </div>
@@ -9,8 +9,11 @@
            data-ng-repeat="e in employees"
            scrollamount="{{$index + 5}}">
     <marquee behavior="alternate" scrollamount="{{(employees.length - $index) + 5}}">
-      <h2 style="margin-bottom: 0px;">{{e.name}}</h2>
-      <h5 style="margin-top: 0px;">{{e.extra}}</h5>
+      <div class="about-block"
+           data-ng-style="{'color':e.color}">
+        <h2 style="margin-bottom: 0px;">{{e.name}}</h2>
+        <h5 style="margin-top: 0px;">{{e.extra}}</h5>
+      </div>
     </marquee>
   </marquee>
 </div>
