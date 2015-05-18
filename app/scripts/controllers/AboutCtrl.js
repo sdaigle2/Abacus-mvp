@@ -53,6 +53,18 @@ angular.module('abacuApp')
     {
       name: 'Dhruv Vajpeyi',
       extra: 'He stole my job!'
+    },
+    {
+      name: 'Dhruv\'s Ego',
+      extra: 'It\'s out of control!'
+    },
+    {
+      name: 'Fit Gripz',
+      extra: 'The easiest way to type'
+    },
+    {
+      name: 'Caffeine',
+      extra: 'The true hero'
     }]
 
   }]);

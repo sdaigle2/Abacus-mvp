@@ -88,7 +88,9 @@ A PreviewImage is a helper class used by Wheelchair to generate its preview imag
 
 1h) Order (orderFactory.js)
 
+An Order is an object that tracks what the user is ordering.  This object contains an array of fully-designed wheelchairs and some aggregate functions regarding them.  Some of these include calculating subtotal, tax, and shipping fee.  In addition, the Order tracks information about the User and the state of the database when it is ordered (since that is subject to change).
 
+Orders also track their sent date, and if an Order doesn't have a sent date, it is considered "unsent".  Whenever the user visits the Cart page [MyDesigns], a new unsent order is created for them.  This Order is then used as the "cart" through the entire ordering process.
 
 ----------------------------------------------------------------------------
 
@@ -100,7 +102,9 @@ This service generates and keeps track of all the Frames.  When FrameData is fir
 
 2b) User (userService.js)
 
+This service keeps track of the current user's data as well as the user's designs and orders.  The User service will track data whether or not the user is logged in - but will save data to the database if the user is logged in.  Login status can be found by the isLoggedIn() method.  The user service provides login() and logout() methods.
 
+The User service also keeps track of the "currently-being-edited" wheelchair and order (getCurEditWheelchair and getCurEditOrder).  These are used by Abacus and Order pages to track changes made to them.
 
 ----------------------------------------------------------------------------
 
@@ -118,17 +122,17 @@ This service contains various enums and methods relating to angles.  This is mos
 
 2e) SyncJSON (syncJSONService.js)
 
-
+This service provides a function that allows JSON files to be read syncronously rather than asyncronously.
 
 ----------------------------------------------------------------------------
 
 3a) Cost (costConstant.js)
 
-
+Constants relating to costs the user must pay, such as the shipping fee and taxes.
 
 ----------------------------------------------------------------------------
 
 3b) Bank (bankConstant.js)
 
-
+Constants regarding banking information.
 

@@ -24,12 +24,12 @@ angular.module('abacuApp')
     $scope.wOrderIndex = [];
 
 
-    $scope.curOrder = null;
+    var curOrder = null;
 
     //Initialize Cart page
     function init() {
       User.createNewOrder();
-      $scope.curOrder = User.getCurEditOrder();
+      curOrder = User.getCurEditOrder();
 
       for (var i = 0; i < $scope.wheelchairs.length; i++) {
         $scope.wOrderIndex.push(-1);
@@ -62,7 +62,7 @@ angular.module('abacuApp')
       //Remove wheelchair from order if in order
       var orderInd = $scope.wOrderIndex[index];
       if (orderInd !== -1) {
-        $scope.curOrder.removeWheelchair(orderInd);
+        curOrder.removeWheelchair(orderInd);
       }
       $scope.wOrderIndex.splice(index, 1);
       $scope.wInOrder.splice(index, 1);
@@ -81,15 +81,15 @@ angular.module('abacuApp')
         return;
       }
 
-      $scope.curOrder.addWheelchair($scope.wheelchairs[index]);
+      curOrder.addWheelchair($scope.wheelchairs[index]);
       $scope.wInOrder[index] = true;
-      $scope.wOrderIndex[index] = $scope.curOrder.getNumWheelchairs() - 1;
+      $scope.wOrderIndex[index] = curOrder.getNumWheelchairs() - 1;
       updateCosts();
     };
 
     //Removes the selected wheelchair from curOrder
     $scope.removeWheelchairFromOrder = function (index) {
-      $scope.curOrder.removeWheelchair($scope.wOrderIndex[index]);
+      curOrder.removeWheelchair($scope.wOrderIndex[index]);
       $scope.wInOrder[index] = false;
       for (var i = 0; i < $scope.wOrderIndex.length; i++)
         if ($scope.wOrderIndex[i] > $scope.wOrderIndex[index])
@@ -107,16 +107,16 @@ angular.module('abacuApp')
     };
 
     function updateCosts() {
-      $scope.costs.subtotal = $scope.curOrder.getSubtotal();
-      $scope.costs.tax = $scope.curOrder.getTaxCost();
-      $scope.costs.shipping = $scope.curOrder.getShippingCost();
-      $scope.costs.total = $scope.curOrder.getTotalCost();
+      $scope.costs.subtotal = curOrder.getSubtotal();
+      $scope.costs.tax = curOrder.getTaxCost();
+      $scope.costs.shipping = curOrder.getShippingCost();
+      $scope.costs.total = curOrder.getTotalCost();
     };
 
     /*********************CHECK OUT***********************************/
 
     $scope.checkOut = function () {
-      if ($scope.curOrder.getNumWheelchairs() === 0) {
+      if (curOrder.getNumWheelchairs() === 0) {
         alert('Your cart is empty');
         return;
       }
@@ -125,6 +125,10 @@ angular.module('abacuApp')
         $location.path('order');
       else
         $location.path('checkout');
+    };
+
+    $scope.validCart = function () {
+      return curOrder.getNumWheelchairs() > 0;
     };
 
     /********************DETAIL PANEL*********************************/

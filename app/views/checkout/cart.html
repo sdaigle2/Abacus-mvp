@@ -140,7 +140,7 @@
     </table>
     <div class="text-center">
       <button class="checkoutButton"
-              data-ng-class="{ 'inactive' : curOrder.getNumWheelchairs() === 0}"
+              data-ng-class="{ 'inactive' : !validCart() }"
               data-ng-click="checkOut()">Check Out</button>
     </div>
   </div>
