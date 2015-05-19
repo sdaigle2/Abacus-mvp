@@ -11,7 +11,8 @@ angular.module('abacuApp')
   .service('Units', [function () {
 
     return {
-      //The angle type of the wheelchair image
+
+      //Unit systems
       unitSys: {
         METRIC: 0,
         IMPERIAL: 1
@@ -29,7 +30,7 @@ angular.module('abacuApp')
         }
       },
 
-      //Returns the factor used to convert from lbs to given weight unit
+      //Returns the multiplication factor used to convert from lbs to given weight unit
       getWeightFactor: function (myUnitSys) {
         switch (myUnitSys) {
           case this.unitSys.IMPERIAL:

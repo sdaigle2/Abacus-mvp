@@ -7,6 +7,17 @@
  * # orderFactory
  * Service of the abacuApp
  */
+
+/*
+* This factory produces Order objects
+* An Order is a collection of designed wheelchairs and user data to be sent to the distributor
+* An Order is "sent" if it has a date set for sentDate - it is "unsent" if sentDate is null
+* User contains an array of Orders
+* User also keeps track of one unsent Order, which is used as the cart
+* Order contains various aggregation functions which calculate the subtotal, shipping fee, tax, and total costs
+* Order has a function send() which accepts finalized user data and sends itself to the distributor, marking itself as sent
+* Orders can be constructed directly from a JSON object using the Order.fromJSONData() function
+*/
 angular.module('abacuApp')
   .factory('Order', ['$q', function ($q){
 
@@ -15,7 +26,7 @@ angular.module('abacuApp')
       this.orderNum = 'OrderNumNotSet';
       this.taxRate = taxRate;
       this.shippingFee = shippingFee;
-      this.sentDate = null;
+      this.sentDate = null; //null = "unsent"
 
       this.userID = -1;
       this.fName = '';
@@ -70,6 +81,7 @@ angular.module('abacuApp')
         return this.addr + a2;
       },
 
+      //The Order is "sent" if sentDate is non-null
       hasBeenSent: function () { return this.sentDate !== null; },
 
       getWheelchair: function (index) {
@@ -78,7 +90,9 @@ angular.module('abacuApp')
         return null;
       },
 
-      /*****************Cost Calculators****************/
+      /*****************Cost Calculators (Aggregate Functions)****************/
+
+      //The combined cost of all the Wheelchairs in the Order
       getSubtotal: function () {
         if (this.wheelchairs.length > 0) {
           var total = 0;
@@ -90,23 +104,30 @@ angular.module('abacuApp')
         return 0;
       },
 
+      //The estimated cost of shipping this Order
       getShippingCost: function () {
         return this.getShippingFee() * this.getNumWheelchairs();
       },
 
+      //The Tax to be paid for this Order
       getTaxCost: function () {
         return this.getSubtotal() * this.getTaxRate();
       },
 
+      //The sum of Subtotal, Shipping Cost, and Tax Cost
       getTotalCost: function () {
         return this.getSubtotal() + this.getShippingCost() + this.getTaxCost();
       },
 
       /********************Saving to DB***********************/
 
+      //This asyncronous funtion takes in various user information
+      //and sends the Order to the distibutor with it.
+      //This method also saves the Order to the database and marks it as "sent"
       send: function (userID, userData, shippingData, payMethod) {
         var deferred = $q.defer();
 
+        //Need a reference to the current scope when inside the callback function
         var curThis = this;
 
         //Save userData, shippingData, and payMethod into Order
@@ -121,7 +142,7 @@ angular.module('abacuApp')
         this.state = shippingData.state;
         this.zip = shippingData.zip;
         this.payMethod = payMethod;
-        this.sentDate = new Date(); //Now
+        this.sentDate = new Date(); //Set date to now - doing this marks this Order as "sent"
 
         //Fake asyncronous call - TODO: Replace with actual asyncronous call
         //TODO: Send order into database

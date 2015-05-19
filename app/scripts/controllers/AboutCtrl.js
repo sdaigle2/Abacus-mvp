@@ -102,8 +102,23 @@ angular.module('abacuApp')
     },
     {
       name: 'The NSA',
-      extra: '',
+      extra: 'Always watching',
       color: '#eeeeee'
+    },
+    {
+      name: 'Barbs',
+      extra: 'Also known as Treasury Tags',
+      color: '#012345'
+    },
+    {
+      name: 'Actual Abacuses',
+      extra: 'Counting is hard',
+      color: '#987654'
+    },
+    {
+      name: 'Click me for a FREE* XBOX',
+      extra: '*Raised on open pastures',
+      color: '#ba9876'
     }]
 
   }]);

@@ -9,7 +9,7 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('CheckoutCtrl', ['$scope', '$location', function ($scope, $location) {
+  .controller('CheckoutCtrl', ['$scope', '$location', 'User', function ($scope, $location, User) {
 
     //Login Form Model
     $scope.loginForm = {

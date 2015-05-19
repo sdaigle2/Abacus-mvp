@@ -7,8 +7,8 @@
   <marquee direction="down" width="1300" height="500" behavior="alternate" 
            style="position:absolute; top:95px;"
            data-ng-repeat="e in employees"
-           scrollamount="{{$index + 5}}">
-    <marquee behavior="alternate" scrollamount="{{(employees.length - $index) + 5}}">
+           scrollamount="{{$index + 2}}">
+    <marquee behavior="alternate" scrollamount="{{(employees.length - $index) + 2}}">
       <div class="about-block"
            data-ng-style="{'color':e.color}">
         <h2 style="margin-bottom: 0px;">{{e.name}}</h2>

@@ -1,5 +1,12 @@
 'use strict';
 
+/*
+* This factory produces Part objects
+* Part is part of the FrameData model tree
+* Each Frame has an array of at least one Part
+* Each Part has an array of at least one Option
+* Part contains numSubImages and zRank, which are used by PreviewImage
+*/
 angular.module('abacuApp')
   .factory('Part', ['Option', 'syncJSON', function (Option, syncJSON) {
 
@@ -68,7 +75,7 @@ angular.module('abacuApp')
         return 0;
       },
 
-      //Silly function
+      //Multi-level functions
       getOptionColor: function (oID, cID) {
         return this.getOption(oID).getColor(cID);
       }

@@ -1,5 +1,11 @@
 ﻿'use strict';
 
+/*
+* This factory produces Wheelchair objects
+* A Wheelchair object keeps track of a user-created wheelchair design
+* To do this, the Wheelchair object tracks {partID, optionID, colorID} for parts and {measureID, optionIndex} for measures
+* The wheelchair also has a PreviewImage that assists in generating the array of preview images
+*/
 angular.module('abacuApp')
   .factory('Wheelchair', [ 'FrameData', 'previewImage', 'Units', function (FrameData, previewImage, Units) {
 
@@ -11,10 +17,12 @@ angular.module('abacuApp')
       this.measures = [];
       this.title = 'My Custom Wheelchair';
 
+      //Get data from FrameData
       var frame = FrameData.getFrame(frameID);
       var parts = frame.getParts();
       var meas = frame.getMeasures();
 
+      //Generate parts array and set defaults
       for (var i = 0; i < parts.length; i++) {
         var p = parts[i];
         this.parts.push({
@@ -24,6 +32,7 @@ angular.module('abacuApp')
         });
       }
 
+      //Generate measures array and set default to -1 (NOT SELECTED)
       for (var j = 0; j < meas.length; j++) {
         var m = meas[j];
         this.measures.push({
@@ -31,7 +40,8 @@ angular.module('abacuApp')
           measureOptionIndex: -1
         })
       }
-      this.name = frame.name;
+
+      //Helper PreviewImage object
       this.previewImageGenerator = new previewImage("chairPic",this.frameID, this.parts);
     };
 
@@ -93,6 +103,7 @@ angular.module('abacuApp')
         return -1;
       },
 
+      //Returns an object of display-formatted details about the given part
       getPartDetails: function (pID, unitSys) {
         var curPart = this.getPart(pID);
         var oID = curPart.optionID;
@@ -118,6 +129,7 @@ angular.module('abacuApp')
         };
       },
 
+      //Returns an object of display-formatted details about the given measure
       getMeasureDetails: function (mID, unitSys) {
         var curMeas = this.getMeasure(mID);
         var i = curMeas.measureOptionIndex;
@@ -142,6 +154,7 @@ angular.module('abacuApp')
         }
       },
 
+      //Returns an array of images in zRank order that create the preview image
       getPreviewImages: function (angle) {
         return this.previewImageGenerator.getImages(angle);
       },
@@ -181,7 +194,7 @@ angular.module('abacuApp')
           m.measureOptionIndex = index;
       },
 
-      //Calculate Total Weight
+      //Calculate the total weight of the Wheelchair
       getTotalWeight: function () {
         var frame = FrameData.getFrame(this.frameID);
         var totalWeight = frame.getBaseWeight();
@@ -199,7 +212,7 @@ angular.module('abacuApp')
         return totalWeight;
       },
 
-      //Calculate total Price
+      //Calculate the total price of the Wheelchair
       getTotalPrice: function () {
         var frame = FrameData.getFrame(this.frameID);
         var totalPrice = frame.getBasePrice();
@@ -220,6 +233,7 @@ angular.module('abacuApp')
 
 
       //Returns true if all measurements have a selected option
+      //A Wheelchair should not be purchaseable if any of the measurements are unset
       allMeasuresSet: function () {
         for (var i = 0; i < this.measures.length; i++) {
           if (this.measures[i].measureOptionIndex === -1) {

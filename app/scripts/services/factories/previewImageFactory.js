@@ -1,5 +1,11 @@
 ﻿'use strict';
 
+/*
+* This factory produces PreviewImage objects
+* A PreviewImage is a helper class used by Wheelchair to construct its rotatable preview image
+* More complete documentation for how preview images are generated at: docs/ImageGeneration.txt
+* The important function is getImages(angle) which returns an array of objects containing imageURLs sorted by their zRank
+*/
 angular.module('abacuApp')
   .factory('previewImage', ['Angles', 'FrameData', function (Angles, FrameData) {
 
@@ -10,7 +16,7 @@ angular.module('abacuApp')
       this.frameID = frameID;
       this.parts = [];
       this.dirty = true; //Indicates if the parts array been changed
-      this.lastAngle = -1;
+      this.lastAngle = -1; //What angle the image was last requested from
       this.images = [];
 
 
@@ -64,10 +70,11 @@ angular.module('abacuApp')
 
       //Returns an array of image objects sorted by zRank
       getImages: function (angle) {
-        if (this.dirty === false && angle === this.lastAngle)
+        if (this.dirty === false && angle === this.lastAngle) //Check if images is unchanged
           return this.images;
 
         this.images = [];
+
         //Generate array of images with zRank's
         for (var i = 0; i < this.parts.length; i++) {
           var curPart = this.parts[i];
@@ -86,6 +93,7 @@ angular.module('abacuApp')
           return (a.zRank - b.zRank);
         });
 
+        //Reset dirtyness trackers
         this.lastAngle = angle;
         this.dirty = false;
 

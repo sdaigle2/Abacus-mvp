@@ -5,6 +5,11 @@ Preview Image Generator
 
 #############################################################################################
 
+Change Log
+5/19/15 - Scott Blessing - Created file
+
+#############################################################################################
+
 GENERATING THE PREVIEW IMAGE:
 
 Goal Output: An array of imageURLs ordered by zIndex (lowest z-index to highest)
