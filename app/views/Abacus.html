@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <!-- Main Body of Page -->
+    <!-- BODY -->
     <div class="main">
 
       <!-- CUSTOMIZE: Wheelchair Display and controls -->
@@ -60,7 +60,9 @@
           </div>
 
           <iframe class="main-measure-video"
-                  data-ng-src="{{getCurMeasureData().videoURL}}" frameborder="0" allowfullscreen>
+                  data-ng-src="{{getCurMeasureData().videoURL}}" 
+                  frameborder="0" 
+                  allowfullscreen>
           </iframe>
         </div>
 
@@ -75,8 +77,9 @@
       </div>
 
 
-      <!-- Sidebar -->
+      <!-- SIDEBAR -->
       <div class="sideBarWrapper">
+
         <!-- Tabs -->
         <ul  class="nav nav-tabs nav-justified">
           <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}">
@@ -102,7 +105,9 @@
             </h3>
           </div>
           <div class="sideBar-custom">
+            <!-- Options List -->
             <table class="table">
+              <!-- Option Display block -->
               <tr class="sideBar-custom-item"
                   data-ng-repeat="option in getCurPartData().options"
                   data-ng-style="(isSidebarColored(option.optionID)) && {'border-left': 'solid 5px ' + getSidebarColor(option.optionID) }" >
@@ -129,6 +134,7 @@
                          ng-click="setCurOption(option.optionID);">Add</div>
                   </div>
                 </td>
+                <!-- Color Panel -->
                 <td class="panel colorPanel" ng-class="{ 'colorPanelHidden': ! isPanelSelected(option.optionID, panelTypes.COLOR) , 'colorPanelShow': isPanelSelected(option.optionID, panelTypes.COLOR)}">
                   <div data-ng-repeat="color in option.colors" class="colorPanelItem"
                        data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
@@ -137,6 +143,7 @@
                        title="{{color.name}}">
                   </div>
                 </td>
+                <!-- Detail Panel -->
                 <td class="panel detailPanel  " ng-class="{ 'detailPanelHidden': ! isPanelSelected(option.optionID, panelTypes.DETAIL) , 'detailPanelShow': isPanelSelected(option.optionID, panelTypes.DETAIL)}">
                   <div class="text-center">
                     <img data-ng-src="{{option.thumbnailURL}}" height="200" width="200" />
@@ -168,6 +175,7 @@
             </h3>
           </div>
           <div class="sideBar-measure">
+            <!-- Measurement Selector -->
             <div class="sideBar-measure-top text-center">
               <h4>Choose your measurement</h4>
               <select data-ng-model="getCurWheelchairMeasure().measureOptionIndex"
@@ -178,6 +186,7 @@
                 <h5 data-ng-bind-html="getCurMeasureData().tip"></h5>
               </div>
             </div>
+            <!-- Measure Image Carousel -->
             <div class="sideBar-measure-bottom">
               <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
                    data-ng-click="rotateMeasureCarouselIndex(-1)"/>

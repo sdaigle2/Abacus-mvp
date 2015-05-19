@@ -13,6 +13,7 @@ angular.module('abacuApp')
     function ($scope, $location, User, FrameData, Bank) {
 
     /*************************** CONTROL VARIABLES *************************/
+
     $scope.stages = {
       INFO: 0,
       PAYMENT: 1,
@@ -42,7 +43,7 @@ angular.module('abacuApp')
       }
     ];
 
-    /*************************** WHEELCHAIRS ****************************/
+    /*************************** LOADING CUREDITORDER ****************************/
 
     $scope.curOrder = User.getCurEditOrder();
 
@@ -56,16 +57,20 @@ angular.module('abacuApp')
       return;
     }
 
+    /**************************** WHEELCHAIRS ************************************/
+
     $scope.wheelchairs = $scope.curOrder.getWheelchairs();
 
     $scope.getFrame = function (fID) {
       return FrameData.getFrame(fID);
     };
 
+    //Returns an object of display-friendly strings regarding the given part
     $scope.getPartDetails = function (wheelchair, part) {
       return wheelchair.getPartDetails(part.partID, User.getUnitSys());
     };
 
+    //Returns an object of display-friendly strings regarding the given measure
     $scope.getMeasureDetails = function (wheelchair, measure) {
       return wheelchair.getMeasureDetails(measure.measureID, User.getUnitSys());
     };
@@ -89,27 +94,29 @@ angular.module('abacuApp')
       }
     };
 
-    //Advance to the next stage of checkout (Payment)
+    //Advance to the next stage of checkout
     $scope.next = function () {
       switch ($scope.curStage) {
-        case $scope.stages.INFO:
-      
+
+        case $scope.stages.INFO:     
           if (allInputsFilled() === false) {
             alert('You must fill in all contact information');
             return;
           }
-
           $scope.curStage++;
           break;
+
+
         case $scope.stages.PAYMENT:
           $scope.curStage++;
           break;
+
+
         case $scope.stages.CONFIRM:
           if (!$scope.termsForm.hasReadTerms) {
             alert("You must accept the Terms and Conditions to continue");
             return;
-          }
-          
+          }        
           User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.payForm.method)
             .then(function () {
               $scope.orderNum = $scope.curOrder.getOrderNum(); //Note - from this point on User.getCurEditOrder() returns null
@@ -117,9 +124,9 @@ angular.module('abacuApp')
             }, function () {
               alert('Error sending order');
             });
-
-          
           break;
+
+
         case $scope.stages.COMPLETE:
           //TODO: Send user to "orders" page (Settings-MyOrders?)
           alert("YAY!");
@@ -132,6 +139,7 @@ angular.module('abacuApp')
       $location.path('/cart');
     };
 
+    //Returns true if all inputs on INFO filled in (except addr2)
     function allInputsFilled() {
       var allFilled = true;
       allFilled = $scope.contactForm.fName !== '' ? allFilled : false;
@@ -199,6 +207,7 @@ angular.module('abacuApp')
   }]);
 
 
+//HTML code inserted into the Terms & Conditions box
 var termsAndConditionsHTML = "By agreeing to the following terms and conditions, you (hereby referred to as WHEELCHAIREE) give up the \
 following rights to Intelliwheels (hereby referred to as WHEELCHAIRER):<br /> \
 1) WHEELCHAIREE agrees that all information provided on this page has been verified, and any mistakes \

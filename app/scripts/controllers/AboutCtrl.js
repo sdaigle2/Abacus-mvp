@@ -119,6 +119,11 @@ angular.module('abacuApp')
       name: 'Click me for a FREE* XBOX',
       extra: '*Raised on open pastures',
       color: '#ba9876'
+    },
+    {
+      name: 'Refactoring',
+      extra: 'Fixing dumb errors since April',
+      color: '#aa6633'
     }]
 
   }]);

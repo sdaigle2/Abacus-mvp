@@ -13,19 +13,19 @@
   <div class="settingsSidebar">
     <ul class="settingsSidebarOptions">
 
-      <li class="settingsSidebarOption" id="settingsSidebarAccountOption"
-          ng-click="setContentSection(ContentSection.ACCOUNT)"
-          ng-class="{ 'active' : getContentSection() === ContentSection.ACCOUNT}">
-        <i class="fa fa-user"></i>&nbsp; MY ACCOUNT
-      </li>
-      <li class="settingsSidebarOptionDivider"></li>
-
       <li class="settingsSidebarOption" id="settingsSidebarOrdersOption"
           ng-click="setContentSection(ContentSection.ORDERS)"
           ng-class="{ 'active' : getContentSection() === ContentSection.ORDERS}">
         <i class="fa fa-list"></i>&nbsp; MY ORDERS
       </li>
       <li class="settingsSidebarOptionDivider"></li>
+
+      <li class="settingsSidebarOption" id="settingsSidebarAccountOption"
+          ng-click="setContentSection(ContentSection.ACCOUNT)"
+          ng-class="{ 'active' : getContentSection() === ContentSection.ACCOUNT}">
+        <i class="fa fa-user"></i>&nbsp; MY ACCOUNT
+      </li>
+      <li class="settingsSidebarOptionDivider"></li>    
 
       <li class="settingsSidebarOption" id="settingsSidebarMeasurementsOption"
           ng-click="setContentSection(ContentSection.MEASUREMENTS)"

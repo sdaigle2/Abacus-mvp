@@ -9,9 +9,10 @@
   </div>
 
   <div class="mainDisplay" data-ng-init="hoverItem = -1">
+
     <div class="frame-item text-center"
          data-ng-repeat="f in frames"
-         data-ng-class="{'right-border': (($index % 2 === 0) && ($index !== frames.length-1)), 'bottom-border': ($index < frames.length-2)}">
+         data-ng-class="{'right-border': ($even && ($index !== frames.length-1)), 'bottom-border': ($index < frames.length-2)}">
       <div class="frame-item-image">
         <div class="img" data-ng-mouseenter="hoverItem = f.getFrameID()"
              data-ng-mouseleave="hoverItem = -1">
@@ -29,13 +30,11 @@
           </div>
         </div>
       </div>
-
-
       <div class="frame-item-button"
            data-ng-click="selectFrame(f.frameID)">
         <strong>Select this frame >></strong>
       </div>
-
     </div>
+
   </div>
 </div>
