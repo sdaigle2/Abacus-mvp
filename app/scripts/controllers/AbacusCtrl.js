@@ -197,16 +197,18 @@ angular.module('abacuApp')
 
     function resetSelectedMeasureImageIndex () {
       $scope.selectedMeasureImageIndex = 0;
-    };
+    }
 
     //Cycles the carousel in the direction of dir (+-1)
     $scope.rotateMeasureCarouselIndex = function (dir) {
       var len = $scope.getCurMeasureData().getNumImages();
       $scope.curMeasureCarouselIndex += dir;
-      if ($scope.curMeasureCarouselIndex >= len)
+      if ($scope.curMeasureCarouselIndex >= len) {
         $scope.curMeasureCarouselIndex = 0;
-      else if ($scope.curMeasureCarouselIndex < 0)
+      }
+      else if ($scope.curMeasureCarouselIndex < 0) {
         $scope.curMeasureCarouselIndex = len - 1;
+      }
     };
 
 
@@ -343,8 +345,9 @@ angular.module('abacuApp')
 
     //Returns true if the current option is selected and has color options
     $scope.isSidebarColored = function (optionID) {
-      if (curPage.type !== $scope.pageType.CUSTOMIZE)
+      if (curPage.type !== $scope.pageType.CUSTOMIZE) {
         return;
+      }
 
       var partID = $scope.getCurPage().partID;
       var part = $scope.curFrameData.getPart(partID);
@@ -357,8 +360,9 @@ angular.module('abacuApp')
     //Returns a CSS-styled hex string for the given option
     //This should only be called if isSidebarColored returns true
     $scope.getSidebarColor = function (optionID) {
-      if (curPage.type !== $scope.pageType.CUSTOMIZE)
+      if (curPage.type !== $scope.pageType.CUSTOMIZE) {
         return;
+      }
 
       var partID = $scope.getCurPage().partID;
       var part = $scope.curFrameData.getPart(partID);

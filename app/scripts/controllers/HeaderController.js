@@ -39,7 +39,7 @@ angular.module('abacuApp')
         .then(function () {
           //TODO: Something?
         }, function (message) {
-          alert('Login failed: ' + message);
+          window.alert('Login failed: ' + message);
         });
 
       $scope.loginModel.password = '';

@@ -124,6 +124,6 @@ angular.module('abacuApp')
       name: 'Refactoring',
       extra: 'Fixing dumb errors since April',
       color: '#aa6633'
-    }]
+    }];
 
   }]);
