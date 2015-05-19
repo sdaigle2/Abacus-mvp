@@ -1,5 +1,13 @@
 'use strict';
 
+/*
+* This factory produces Frame objects
+* The Frame is part of the FrameData model tree
+* Frames are the highest level of the tree
+* Frames contain an array of Parts and an array of Measures
+* Frames also have a name, price, weight, and image
+*/
+
 angular.module('abacuApp')
   .factory('Frame', ['Part', 'Measure', 'syncJSON', function (Part, Measure, syncJSON) {
 
@@ -81,7 +89,7 @@ angular.module('abacuApp')
         return null;
       },
 
-      //Silly extra functions
+      //Multi-level functions
       getPartOption: function (partID, optionID) {
         return this.getPart(partID).getOption(optionID);
       },

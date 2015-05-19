@@ -14,7 +14,10 @@ angular.module('abacuApp')
     $scope.frames = FrameData.getFrames();
 
     $scope.selectFrame = function (frameID) {
+      //Create a new wheelchair and set is as curEditWheelchair
       User.createNewWheelchair(frameID);
+
+      //Send the user to Abacus
       $location.path('abacus');
     };
 

@@ -1,0 +1,67 @@
+Abacus Project
+Intelliwheels 2015
+
+Preview Image Generator
+
+#############################################################################################
+
+GENERATING THE PREVIEW IMAGE:
+
+Goal Output: An array of imageURLs ordered by zIndex (lowest z-index to highest)
+
+Wheelchair.getImages()
+  -- For each part in Wheelchair.parts
+     -- For each subImage in part
+        -- Add subImageURL and zRank to array
+  -- Sort array by zRank
+  -- Return array
+
+##############################################################################################
+
+GENERATING SUBIMAGE URLS:
+
+Given Values:
+ - BaseURL
+ - FrameID
+ - PartID
+ - OptionID
+ - ColorID (0 if no color options)
+ - SubImageIndex (0 if only one subImage)
+ - Angle
+
+Output: "<BaseURL>/frame<FrameID>/part<PartID>/<OptionID>_<ColorID>_<SubImageIndex>_<Angle>.png"
+
+EXAMPLE:
+ - BaseURL = "http://intellimages/"
+ - FrameID = 0
+ - PartID = 1
+ - OptionID = 2
+ - ColorID = 3
+ - SubImageIndex = 4
+ - Angle = Angles.AngleType.FRONT
+
+"http://intellimages/frame0/part1/2_3_4_Front.png"
+
+##############################################################################################
+
+Z-RANKINGS AND SUBIMAGES
+
+If a part takes multiple images to display, such as Wheels which includes both a left and
+right wheel image, then "Wheels" should have 2 subimages.  For this example, let the left
+wheel be subimage 0 and the right be subimage 1.  When the array of images is being assembled,
+both subimages are put into the array and then sorted by their respective zRankings.  The
+indicies assigned must be zero-indexed, incrementing integers.
+
+ZRankings are contained in a 2D array. The first index of the array is the subImage Index.
+If zRank=[[1,2,3,4,5],[6,7,8,9,10]], then zRank[0]=[1,2,3,4,5] and zRank[1]=[6,7,8,9,10].
+Thus, zRank[0] corresponds to the zRankings for the left wheel, and zRank[1] for the right.
+
+The second index is the angle in the order [BACK, BACKRIGHT, RIGHT, FRONT, FRONTRIGHT].
+
+For simplicity's sake, a part that doesn't need subimages will simply be represented with
+zRank=[[1,2,3,4,5]], as if it consisted of just one subImage.
+
+zRankings are not indicies per se, but simply denote parts that could be at the same index
+without issue.  This makes generating the rankings easier and should improve the array sorting
+speed.
+

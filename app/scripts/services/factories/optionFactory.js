@@ -1,5 +1,12 @@
 ﻿'use strict';
 
+/*
+* This factory creates Option objects
+* Option is part of the FrameData model tree
+* Each Part has an array containing at least one Option
+* Each Option has an array of 0 or more Colors
+*/
+
 angular.module('abacuApp')
   .factory('Option', ['Color', function (Color) {
 

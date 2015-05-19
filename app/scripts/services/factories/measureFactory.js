@@ -1,5 +1,16 @@
 ﻿'use strict';
 
+/*
+* This factory produces Measure objects
+* Measure is part of the FrameData model tree
+* Measure contains it own array of options as well as the names of the option's units, prices, and weights
+* EXAMPLE:
+* options = [['a', 'b', 'c'], ['A', 'B', 'C']]
+* units = ['lowercase', 'uppercase']
+* prices = [1, 2, 3]
+* weights = [0.1, 0.2, 0.3]
+*/
+
 angular.module('abacuApp')
   .factory('Measure', [function () {
 
@@ -49,7 +60,7 @@ angular.module('abacuApp')
       getTip: function () { return this.tip; },
       getWeights: function () { return this.weights; },
       getPrices: function () { return this.prices; },
-      getUnits: function (system) { return this.units[system]; },
+      getUnits: function (system) { return this.units[system]; }, //Expects a Units.unitSys enum value
       getVideoURL: function () { return this.videoURL; },
       getGifURL: function () { return this.gifURL; },
       getImageURLs: function () { return this.imageURLs; },

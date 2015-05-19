@@ -20,7 +20,7 @@ angular
   .config(function ($routeProvider, $sceDelegateProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: '../views/frame.html',
+        templateUrl: 'views/frame.html',
         controller: 'FrameCtrl'
       })
       .when('/abacus', {
@@ -32,19 +32,19 @@ angular
         controller: 'AboutCtrl'
       })
       .when('/cart', {
-        templateUrl: '../views/checkout/cart.html',
+        templateUrl: 'views/checkout/cart.html',
         controller: 'CartCtrl'
       })
       .when('/checkout', {
-        templateUrl: '../views/checkout/checkout.html',
+        templateUrl: 'views/checkout/checkout.html',
         controller: 'CheckoutCtrl'
       })
       .when('/order', {
-        templateUrl: '../views/checkout/order.html',
+        templateUrl: 'views/checkout/order.html',
         controller: 'OrderCtrl'
       })
       .when('/invoice', {
-        templateUrl: '../views/checkout/invoice.html',
+        templateUrl: 'views/checkout/invoice.html',
         controller: 'InvoiceCtrl'
       })
       .when('/settings', {
