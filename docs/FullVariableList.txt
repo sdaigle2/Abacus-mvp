@@ -11,135 +11,135 @@ Change Log
 ##############################################################################
 
 
-*****Frame Data*****
-Frames[<Frame>]
-
-
-~~~Frame~~~
-FrameID
-Manufacturer
-Name
-Desc
-BasePrice
-BaseWeight
-ImageURL
-Parts[<Part>]
-Measures[<Measure>]
-
-
-~~~Measure~~~
-MeasureID
-MeasureOptions[[<String>]]
-Weights[<Float>]
-Prices[<Float>]
-Name
-Desc
-Details
-Tip
-Units[<String>]
-VideoURL
-ImageURLs[<String>]
-GifURL
-
-
-~~~Part~~~
-PartID
-Name
-NumSubImages
-ZRank[[<Int>]]
-DefaultOptionID
-Options[<Option>]
-
-
-~~~Option~~~
-OptionID
-Name
-Price
-Weight
-Desc
-ThumbnailURL
-DefaultColorID
-Colors[<Color>]
-
-
-~~~Color~~~
-ColorID
-Name
-Hex
-
-
-*****User*****
-UserID
-FName
-LName
-Email
-Phone
-Addr
-Addr2
-City
-State
-Zip
-UnitSys
-Orders[<Order>]
-DesignedWheelchairs[<Wheelchair>]
-CurEditWheelchairIndex
-CommonMeasures
-
-
-~~~Wheelchair~~~
-FrameID
-Title
-Parts[{PartID, OptionID, ColorID}]
-Measures[{MeasureID, MeasureOptionIndex}]
-PreviewImageGenerator
-
-
-~~~Order~~~
-OrderNum
-TaxRate
-ShippingFee
-SentDate
-UserID
-FName
-LName
-Email
-Phone
-Addr
-Addr2
-City
-State
-Zip
-PayMethod
-Wheelchairs[<Wheelchair>]
-
-
-~~~PreviewImage~~~
-BaseURL
-FrameID
-Dirty
-LastAngle
-Parts[{PartID, OptionID, ColorID}]
-Images[{imgURL, zRank}]
-
-
-*****Units*****
-UnitSys{METRIC, IMPERIAL}
-
-
-*****Angles*****
-AngleTypes{BACK, BACKRIGHT, RIGHT, FRONTRIGHT, FRONT}
-NumAngles
-
-
-*****Costs*****
-SHIPPING_FEE
-TAX_RATE
-
-
-*****Bank*****
-ACCOUNT_HOLDER
-ACCOUNT_NUMBER
-BLZ
-BANK_NAME
-IBAN
-BIC
+*****Frame Data*****                                     |
+Frames[<Frame>]                                          | An array of all Frames
+                                                         |
+                                                         |
+~~~Frame~~~                                              |
+FrameID                                                  | The Frame's unique ID
+Manufacturer                                             | The name of the Frame's manufacturer
+Name                                                     | The name of the Frame
+Desc                                                     | A description of the Frame
+BasePrice                                                | The base price of the Frame in USD
+BaseWeight                                               | The base weight of the Frame in lbs
+ImageURL                                                 | A URL of an image of the Frame
+Parts[<Part>]                                            | An array of Parts that this Frame has (must have at least one element)
+Measures[<Measure>]                                      | An array of Measures that this Frame needs (must have at least one element)
+                                                         |
+                                                         |
+~~~Measure~~~                                            |
+MeasureID                                                | The Measure's unique ID
+MeasureOptions[[<String>]]                               | A 2D array of options for the measure - The first dimension is the Unit System
+Weights[<Float>]                                         | An array of weights (in lbs) associated with each option
+Prices[<Float>]                                          | An array of prices (in USD) associated with each option
+Name                                                     | The name of the Measure
+Desc                                                     | A basic description of the Measure
+Details                                                  | A detailed description of the Measure
+Tip                                                      | A tip regarding how the user can calculate their personal measurement
+Units[<String>]                                          | An array of unit names by Unit System
+VideoURL                                                 | The URL of a YouTube video regarding this Measure
+ImageURLs[<String>]                                      | An array of image URLs associated with this Measure
+GifURL                                                   | The URL of a .gif regarding this Measure
+                                                         |
+                                                         |
+~~~Part~~~                                               |
+PartID                                                   | The Part's unique ID
+Name                                                     | The name of the Part
+NumSubImages                                             | The number of images this Part takes up in the generated Preview Image
+ZRank[[<Int>]]                                           | A 2D array of z-index rankings.  The first dimension is subimageIndex, the second is Angle
+DefaultOptionID                                          | The ID of the default Option associated with this Part
+Options[<Option>]                                        | An array of Options available for this Part (must have at least one element)
+                                                         |
+                                                         |
+~~~Option~~~                                             |
+OptionID                                                 | The Option's unique ID
+Name                                                     | The name of the Option
+Price                                                    | The price of this Option in USD
+Weight                                                   | The weight of this Option in lbs
+Desc                                                     | A description of this Option
+ThumbnailURL                                             | A URL of a thumbnail image associated with this Option
+DefaultColorID                                           | The ID of the default Color for this Option (0 if no color options)
+Colors[<Color>]                                          | An array of Colors available for this Option (can be empty)
+                                                         |
+                                                         |
+~~~Color~~~                                              |
+ColorID                                                  | The Color's unique ID
+Name                                                     | The name of the Color
+Hex                                                      | The hex value of the color ('#000000' format)
+                                                         |
+                                                         |
+*****User*****                                           |
+UserID                                                   | The User's unique ID (-1 if not logged in)
+FName                                                    | The first name of the User
+LName                                                    | The last name of the User
+Email                                                    | The email of the User
+Phone                                                    | The phone number of the User
+Addr                                                     | The address of the User
+Addr2                                                    | An additional address field for the User
+City                                                     | The city of the User
+State                                                    | The state of the User
+Zip                                                      | The Zipcode of the User
+UnitSys                                                  | The Unit System the User is using for the site (See "Units") 
+Orders[<Order>]                                          | An array of Orders associated with the User (both sent and unsent)
+DesignedWheelchairs[<Wheelchair>]                        | An array of Wheelchairs designed by the User
+CurEditWheelchairIndex                                   | The index of the Wheelchair designated as the "CurEditWheelchair"
+CommonMeasures                                           | An object consisting of the User's default choice for some common Measures
+                                                         |
+                                                         |
+~~~Wheelchair~~~                                         |
+FrameID                                                  | The ID of the Frame this Wheelchair is modeling
+Title                                                    | The title given to this Wheelchair by the User
+Parts[{PartID, OptionID, ColorID}]                       | An array of Part ID's, Option ID's, and Color ID's that model the User's design decisions
+Measures[{MeasureID, MeasureOptionIndex}]                | An array of Measure ID's and Option indices that model the User's chosen measurements
+PreviewImageGenerator                                    | A reference to a helper class that generates this Wheelchair's Preview Image
+                                                         |
+                                                         |
+~~~Order~~~                                              |
+OrderNum                                                 | This Order's unique "Num"
+TaxRate                                                  | The tax rate when this Order was sent
+ShippingFee                                              | The shipping fee when this Order was sent
+SentDate                                                 | The date this Order was sent (if null, the Order is "unsent")
+UserID                                                   | The ID of the User that placed this Order
+FName                                                    | The first name of the orderer
+LName                                                    | The last name of the orderer
+Email                                                    | The email of the orderer
+Phone                                                    | The phone number of the orderer
+Addr                                                     | The address of the orderer
+Addr2                                                    | An additional address field for the orderer
+City                                                     | The city of the orderer
+State                                                    | The state of the orderer
+Zip                                                      | The zipcode of the orderer
+PayMethod                                                | The method of payment the orderer is using
+Wheelchairs[<Wheelchair>]                                | An array of Wheelchairs being ordered
+                                                         |
+                                                         |
+~~~PreviewImage~~~                                       |
+BaseURL                                                  | The base URL used to dynamicly construct the image URLs
+FrameID                                                  | The ID of the Frame the PreviewImage is drawing
+Dirty                                                    | A boolean which tells if the PreviewImage needs to be updated
+LastAngle                                                | The Angle requested the last time the image was generated
+Parts[{PartID, OptionID, ColorID}]                       | A representative array of ID's used to generate the image
+Images[{imgURL, zRank}]                                  | An array that stores the resulting generated image
+                                                         |
+                                                         |
+*****Units*****                                          |
+UnitSys{METRIC, IMPERIAL}                                | An enum of Unit Systems
+                                                         |
+                                                         |
+*****Angles*****                                         |
+AngleTypes{BACK, BACKRIGHT, RIGHT, FRONTRIGHT, FRONT}    | An enum of Angles
+NumAngles                                                | The size of the AngleTypes enum
+                                                         |
+                                                         |
+*****Costs*****                                          |
+SHIPPING_FEE                                             | The current shipping cost per wheelchair
+TAX_RATE                                                 | The current tax rate on the subtotal
+                                                         |
+                                                         |
+*****Bank*****                                           |
+ACCOUNT_HOLDER                                           |
+ACCOUNT_NUMBER                                           |
+BLZ                                                      |
+BANK_NAME                                                |
+IBAN                                                     |
+BIC                                                      |
