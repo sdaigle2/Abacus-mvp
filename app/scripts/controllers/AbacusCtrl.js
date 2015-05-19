@@ -20,11 +20,13 @@ angular.module('abacuApp')
       CURRENT: 'current'
     };
 
+    //The two states for pages to be in
     $scope.pageType = {
       CUSTOMIZE: 0,
       MEASURE: 1
     };
-
+      
+    //The two types of panels that can open from the sidebar
     $scope.panelTypes = {
       COLOR: 'color',
       DETAIL: 'detail'
@@ -33,7 +35,7 @@ angular.module('abacuApp')
     /**********************Main Variables****************************/
 
     //All the data about the current frame (loaded by init)
-    $scope.frameData = null;
+    $scope.curFrameData = null;
 
     //Arrays that store information about the pages
     var pages = {
@@ -59,14 +61,14 @@ angular.module('abacuApp')
     function generatePages (){
 
       //part customization pages generation
-      for (var i = 0; i < $scope.frameData.parts.length; i++ ){
-        var pPage = {index:i, partID: $scope.frameData.parts[i].partID, visitstatus:visitstatus.UNVISITED};
+      for (var i = 0; i < $scope.curFrameData.parts.length; i++ ){
+        var pPage = {index:i, partID: $scope.curFrameData.parts[i].partID, visitstatus:visitstatus.UNVISITED};
         pages.customizePages.push(pPage);
       }
 
       //measure pages generation
-      for (var j = 0; j < $scope.frameData.measures.length; j++){
-        var mPage = {index:j, measureID: $scope.frameData.measures[j].measureID, visitstatus:visitstatus.UNVISITED};
+      for (var j = 0; j < $scope.curFrameData.measures.length; j++){
+        var mPage = {index:j, measureID: $scope.curFrameData.measures[j].measureID, visitstatus:visitstatus.UNVISITED};
         pages.measurePages.push(mPage);
       }
 
@@ -87,21 +89,21 @@ angular.module('abacuApp')
         $location.path('frame');
       }
 
+      //Send the user back to Frames if no curEditWheelchair set
       var curEditWheelchair = User.getCurEditWheelchair();
       if (curEditWheelchair === null) {
         $location.path('frames');
         return;
       }       
 
-      $scope.frameData = FrameData.getFrame(curEditWheelchair.getFrameID());
+      //Load data about the frame type of curEditWheelchair
+      $scope.curFrameData = FrameData.getFrame(curEditWheelchair.getFrameID());
       generatePages();
     }
 
     init(); //Initialize the page
 
     /****************Weight and Price******************/
-
-    //These Calculate the Total Weight and Price
 
     $scope.getTotalWeight = function () {
       return User.getCurEditWheelchair().getTotalWeight();
@@ -113,6 +115,7 @@ angular.module('abacuApp')
 
     /*******************Unit Systems ****************************/
 
+    //Options for the Unit System Drop-Down-List
     $scope.unitSysList = [
       {
         name: 'Metric',
@@ -155,10 +158,8 @@ angular.module('abacuApp')
     /****************Page Functions******************/
     $scope.getCurPages = function () {
       if (curPage.type === $scope.pageType.CUSTOMIZE) {
-
         return pages.customizePages;
       }
-
       return pages.measurePages;
     };
     $scope.getCustomizePages = function () { return pages.customizePages; };
@@ -170,16 +171,16 @@ angular.module('abacuApp')
 
     $scope.getCurPageType = function () { return curPage.type; };
 
-    //Returns the current part from FrameData based on curPage.page[CUSTOMIZE].ID
-    $scope.getCurPartData = function () { return $scope.frameData.getPart($scope.getCurCustomizePage().partID); };
+    //Returns the current part from curFrameData based on curPage.page[CUSTOMIZE].ID
+    $scope.getCurPartData = function () { return $scope.curFrameData.getPart($scope.getCurCustomizePage().partID); };
 
-    //Returns the current part from curWheelchair based on curPage.page[CUSTOMIZE].ID
+    //Returns the current part from curEditWheelchair based on curPage.page[CUSTOMIZE].ID
     $scope.getCurWheelchairPart = function () { return User.getCurEditWheelchair().getPart($scope.getCurCustomizePage().partID); };
 
-    //Returns the current measure from FrameData based on curPage.page[MEASURE].ID
-    $scope.getCurMeasureData = function () { return $scope.frameData.getMeasure($scope.getCurMeasurePage().measureID); };
+    //Returns the current measure from curFrameData based on curPage.page[MEASURE].ID
+    $scope.getCurMeasureData = function () { return $scope.curFrameData.getMeasure($scope.getCurMeasurePage().measureID); };
 
-    //Returns the current measure from curWheelchair based on curPage.page[MEASURE].ID
+    //Returns the current measure from curEditWheelchair based on curPage.page[MEASURE].ID
     $scope.getCurWheelchairMeasure = function () { return User.getCurEditWheelchair().getMeasure($scope.getCurMeasurePage().measureID); };
 
     $scope.setCurPageType = function (newType) { curPage.type = newType; };
@@ -190,77 +191,50 @@ angular.module('abacuApp')
 
 
     /****************Measure Carousel****************/
-    $scope.selectedMeasureImageIndex = 0;
 
-    $scope.resetSelectedMeasureImageIndex = function () {
+    //The current index of the image shown in the Measure Carousel
+    $scope.curMeasureCarouselIndex = 0;
+
+    function resetSelectedMeasureImageIndex () {
       $scope.selectedMeasureImageIndex = 0;
     };
 
-    $scope.setSelectedMeasureImageIndex = function (imageIndex) {
-      $scope.selectedMeasureImageIndex = imageIndex;
-    };
-
-    function hasNextSelectedMeasureImageIndex () {
-      var len = $scope.getCurMeasureData().imageURLs.length;
-      return ($scope.selectedMeasureImageIndex + 1 < len);
-    }
-
-    function hasPrevSelectedMeasureImageIndex () {
-      return ($scope.selectedMeasureImageIndex - 1 >= 0);
-    }
-
-    $scope.setNextSelectedMeasureImageIndex = function () {
-      if (hasNextSelectedMeasureImageIndex()) {
-        $scope.selectedMeasureImageIndex += 1;
-      } else {
-        $scope.selectedMeasureImageIndex = 0;
-      }
-    };
-
-    $scope.setPrevSelectedMeasureImageIndex = function () {
-      if (hasPrevSelectedMeasureImageIndex()) {
-        $scope.selectedMeasureImageIndex -= 1;
-      } else {
-        $scope.selectedMeasureImageIndex = $scope.getCurMeasureData().imageURLs.length-1;
-      }
+    //Cycles the carousel in the direction of dir (+-1)
+    $scope.rotateMeasureCarouselIndex = function (dir) {
+      var len = $scope.getCurMeasureData().getNumImages();
+      $scope.curMeasureCarouselIndex += dir;
+      if ($scope.curMeasureCarouselIndex >= len)
+        $scope.curMeasureCarouselIndex = 0;
+      else if ($scope.curMeasureCarouselIndex < 0)
+        $scope.curMeasureCarouselIndex = len - 1;
     };
 
 
     /****************ProgressBar******************/
-      //Called by SideBarHeader left arrow OnClick (works similar to secSwitchClick)
-    $scope.secSwitchLeft = function (){
+
+    //Switches pages left/right based on dir
+    $scope.pageSwitchStep = function (dir){
       $scope.getCurPage().visitstatus = visitstatus.VISITED;
-      $scope.setCurPage($scope.getCurPage().index - 1);
+      $scope.setCurPage($scope.getCurPage().index + dir);
       $scope.getCurPage().visitstatus = visitstatus.CURRENT;
       $scope.closeAllPanels();
       if ($scope.getCurPageType() === $scope.pageType.MEASURE) {
-        $scope.resetSelectedMeasureImageIndex();
+        resetSelectedMeasureImageIndex();
       }
     };
 
-    //Called by SideBarHeader right arrow OnClick (works similar to secSwitchClick)
-    $scope.secSwitchRight = function (){
-      $scope.getCurPage().visitstatus = visitstatus.VISITED;
-      $scope.setCurPage($scope.getCurPage().index + 1);
-      $scope.getCurPage().visitstatus = visitstatus.CURRENT;
-      $scope.closeAllPanels();
-      if ($scope.getCurPageType() === $scope.pageType.MEASURE) {
-        $scope.resetSelectedMeasureImageIndex();
-      }
-    };
-
-    //Called by progressbar section OnClick
-    $scope.secSwitchClick = function(page){
+    //Jump to the given page
+    $scope.pageSwitchJump = function(page){
       $scope.getCurPage().visitstatus = visitstatus.VISITED; //set current page to visit status: visited
       $scope.setCurPage(page.index); //set new current page
       $scope.getCurPage().visitstatus = visitstatus.CURRENT; //set new current page to visit status : current
       $scope.closeAllPanels(); //close any panels we may have opened
       if ($scope.getCurPageType() === $scope.pageType.MEASURE) { //resets the selected image in the measure panel
-        $scope.resetSelectedMeasureImageIndex();
+        resetSelectedMeasureImageIndex();
       }
     };
 
-    //Returns the proper image for the progress bar segment based on visit status
+    //Returns the image for the given progress bar segment based on visit status and index
     $scope.getProgBarImage = function (page) {
       if (page.index === 0) {
         if (page.visitstatus === visitstatus.UNVISITED) {
@@ -306,6 +280,7 @@ angular.module('abacuApp')
     };
 
     /*****************Sidebar Tabs***************/
+
     $scope.switchPageType = function (newPageType) {
       $scope.setCurPageType(newPageType);
       $scope.getCurPage().visitstatus = visitstatus.CURRENT;
@@ -359,29 +334,34 @@ angular.module('abacuApp')
       return curPanel.panelID === id;
     };
 
-    $scope.getCurPanelID = function () { return curPanel.panelID; };
 
+    $scope.getCurPanelID = function () {
+      return curPanel.panelID;
+    };
 
     /*******************Sidebar Colors***************/
 
+    //Returns true if the current option is selected and has color options
     $scope.isSidebarColored = function (optionID) {
       if (curPage.type !== $scope.pageType.CUSTOMIZE)
         return;
 
       var partID = $scope.getCurPage().partID;
-      var part = $scope.frameData.getPart(partID);
+      var part = $scope.curFrameData.getPart(partID);
       var option = part.getOption(optionID);
       var wPart = User.getCurEditWheelchair().getPart(partID);
 
       return (wPart.optionID === optionID) && (option.getNumColors() > 0);
     };
 
+    //Returns a CSS-styled hex string for the given option
+    //This should only be called if isSidebarColored returns true
     $scope.getSidebarColor = function (optionID) {
       if (curPage.type !== $scope.pageType.CUSTOMIZE)
         return;
 
       var partID = $scope.getCurPage().partID;
-      var part = $scope.frameData.getPart(partID);
+      var part = $scope.curFrameData.getPart(partID);
       var option = part.getOption(optionID);
       var wPart = User.getCurEditWheelchair().getPart(partID);
 
@@ -390,6 +370,7 @@ angular.module('abacuApp')
 
     /*******************Saving***********************/
 
+    //Saves the current design and updates the database if the user is logged in
     $scope.saveDesign = function () {
 
       //prompt for wheelchair title
@@ -399,7 +380,7 @@ angular.module('abacuApp')
       }   
       User.getCurEditWheelchair().title = wTitle;
 
-      //TODO save the design to the database
+      //TODO: save the design to the database
 
       //redirect user to the cart/myDesigns
       $location.path('cart');
@@ -408,7 +389,7 @@ angular.module('abacuApp')
 
     /*****************General Use Functions*********************/
 
-    //trims a string with an ellipsis if it is longer than len
+    //Trims a string with an ellipsis if it is longer than len
     $scope.ellipsisFormat = function(str, len) {
       if (str.length > len) {
         return str.substring(0,len) + '...';

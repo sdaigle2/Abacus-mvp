@@ -11,8 +11,10 @@ angular.module('abacuApp')
   .controller('FrameCtrl', ['$scope', '$location', 'FrameData', 'User', 'Units',
     function ($scope, $location, FrameData, User, Units) {
 
+    //An array of all Frames
     $scope.frames = FrameData.getFrames();
 
+    //Create a new Wheelchair of the chosen frame type and send the user to Abacus with it
     $scope.selectFrame = function (frameID) {
       //Create a new wheelchair and set is as curEditWheelchair
       User.createNewWheelchair(frameID);
@@ -21,10 +23,12 @@ angular.module('abacuApp')
       $location.path('abacus');
     };
 
+    //Determines if the given frame picture is being hovered over
     $scope.panelSelected = function (hoverItem, frameID) {
       return (hoverItem === frameID);
     };
 
+    //Returns a display-formatted string of the baseWeight of the given frame
     $scope.getWeightString = function (frame) {
       return (frame.getBaseWeight() * Units.getWeightFactor(User.getUnitSys())) + ' ' + Units.getWeightName(User.getUnitSys());
     };

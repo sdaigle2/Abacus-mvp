@@ -3,11 +3,12 @@
 <div id="offClickArea" ng-click="closeAllPanels()" ng-show="getCurPanelID() != -1"></div>
 
 <div id="background">
+
 <!-- Progress Bar and Save Button-->
   <div id="progressSaveBar">
     <div class="progressBar">
       <span class="progress-segment" ng-repeat="page in getCurPages()" ng-mouseover="progressSegmentHoverIn()" ng-mouseleave="progressSegmentHoverOut()">
-        <img class="progress-segment-arrow" ng-click="secSwitchClick(page)" data-ng-src="{{getProgBarImage(page)}}">
+        <img class="progress-segment-arrow" ng-click="pageSwitchJump(page)" data-ng-src="{{getProgBarImage(page)}}">
         <span class="progress-segment-tooltip"
               ng-show="showProgressSegmentTooltip">{{getProgressBarSegmentTooltipText(page)}}</span>
       </span>
@@ -24,7 +25,7 @@
         <select data-ng-model="curUnitSys"
                 data-ng-options="sys.enumVal as sys.name for sys in unitSysList" />
       </div>
-      <div class="display-frame"><h4>{{frameData.name}}</h4></div>
+      <div class="display-frame"><h4>{{curFrameData.name}}</h4></div>
       <div class="display-totals text-center">
         <h4>
           <small>PRICE:</small> ${{getTotalPrice().toFixed(2)}}&nbsp;&nbsp;&nbsp;<small>WEIGHT:</small> {{(getTotalWeight() * getCurUnitSysWeightFactor()).toFixed(2)}} {{getCurUnitSysWeightName()}}
@@ -92,11 +93,11 @@
           <div class="sideBar-header text-center">
             <h3>
               <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
-                   data-ng-click="secSwitchLeft()"
+                   data-ng-click="pageSwitchStep(-1)"
                    data-ng-show="getCurPage().index > 0"/>
               {{getCurPartData().name}}
               <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
-                   data-ng-click="secSwitchRight()"
+                   data-ng-click="pageSwitchStep(1)"
                    data-ng-show="getCurPage().index < getCurPages().length - 1"/>
             </h3>
           </div>
@@ -158,11 +159,11 @@
           <div class="sideBar-header text-center">
             <h3>
               <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
-                   data-ng-click="secSwitchLeft()"
+                   data-ng-click="pageSwitchStep(-1)"
                    data-ng-show="getCurPage().index > 0"/>
               {{getCurMeasureData().name}}
               <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
-                   data-ng-click="secSwitchRight()"
+                   data-ng-click="pageSwitchStep(1)"
                    data-ng-show="getCurPage().index < getCurPages().length - 1"/>
             </h3>
           </div>
@@ -179,14 +180,16 @@
             </div>
             <div class="sideBar-measure-bottom">
               <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
-                   data-ng-click="setPrevSelectedMeasureImageIndex()"/>
+                   data-ng-click="rotateMeasureCarouselIndex(-1)"/>
               <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
-                   data-ng-click="setNextSelectedMeasureImageIndex()"/>
-              <img ng-show="selectedMeasureImageIndex == $index" ng-repeat="image in getCurMeasureData().imageURLs" ng-src="images/measure/{{image}}" width="350" height="340">
+                   data-ng-click="rotateMeasureCarouselIndex(1)" />
+              <img ng-repeat="image in getCurMeasureData().imageURLs"
+                   ng-show="curMeasureCarouselIndex === $index"
+                   ng-src="{{image}}" width="350" height="340">
               <div class="dots">
                 <i ng-repeat="image in getCurMeasureData().imageURLs"
-                   ng-class="{ 'fa fa-circle-o' : selectedMeasureImageIndex != $index, 'fa fa-circle' : selectedMeasureImageIndex == $index }"
-                   ng-click="setSelectedMeasureImageIndex($index)"></i>
+                   ng-class="{ 'fa fa-circle-o' : curMeasureCarouselIndex !== $index, 'fa fa-circle' : curMeasureCarouselIndex === $index }"
+                   ng-click="curMeasureCarouselIndex = $index"></i>
               </div>
             </div>
           </div>
