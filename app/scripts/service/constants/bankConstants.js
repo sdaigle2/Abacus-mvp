@@ -7,6 +7,11 @@
  * # bankConstants
  * Constants of the abacuApp
  */
+
+/*
+* A set of constants that contains information about how the user can pay us
+*/
+
 angular.module('abacuApp')
   .constant('Bank', {
     ACCOUNT_HOLDER: 'Abacus',

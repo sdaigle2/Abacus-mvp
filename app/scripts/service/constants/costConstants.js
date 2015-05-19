@@ -7,6 +7,10 @@
  * # costService
  * Service of the abacuApp
  */
+
+/*
+* This set of constants contains fee calculation based costs
+*/
 angular.module('abacuApp')
   .constant('Costs', {
       TAX_RATE: 0.097,
