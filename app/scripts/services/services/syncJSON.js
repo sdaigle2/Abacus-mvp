@@ -14,6 +14,7 @@ angular.module('abacuApp')
     //You should only do this when instantiating a service/factory
 
     return {
+
       // Load JSON text from server hosted file and return JSON parsed object
       loadJSON: function (filePath) {
           // Load json file;

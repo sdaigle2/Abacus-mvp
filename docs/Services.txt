@@ -36,8 +36,6 @@ Contents:
 3a) Cost
 3b) Bank
 
-4) Relation Diagram
-
 -------------------------------------------------------------------------
 
 1a) Color (colorFactory.js)

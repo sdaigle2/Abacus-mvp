@@ -52,7 +52,7 @@ angular.module('abacuApp')
     };
 
     //Navigational values
-    var contentSection = $scope.ContentSection.ACCOUNT;
+    var contentSection = $scope.ContentSection.ORDERS;
     var curMeasureType = $scope.MeasurementTypes.REAR_SEAT_HEIGHT;
  
 
@@ -104,7 +104,7 @@ angular.module('abacuApp')
     };
 
     $scope.resetContentSection = function () {
-      contentSection = $scope.ContentSection.ACCOUNT;
+      contentSection = $scope.ContentSection.ORDERS;
     };
 
     /***************** MEASUREMENT HELP SWITCHING *****************************/

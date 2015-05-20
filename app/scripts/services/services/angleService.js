@@ -11,6 +11,7 @@ angular.module('abacuApp')
   .service('Angles', [function () {
 
     return {
+
       //The angle type of the wheelchair image
       angleType: {
         BACK: 0,
@@ -23,6 +24,7 @@ angular.module('abacuApp')
       //The number of angles
       numAngles: 5,
 
+      //Returns the angle as a String
       getAngleName: function (angle) {
         switch (angle) {
           case this.angleType.FRONT:
@@ -36,7 +38,7 @@ angular.module('abacuApp')
           case this.angleType.BACKRIGHT:
             return 'BackRight';
           default:
-            return '';
+            return 'InvalidAngle';
         }
       }
     }

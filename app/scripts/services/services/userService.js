@@ -1,14 +1,16 @@
-/// <reference path="userService.js" />=
-// jshint unused:false
 'use strict';
 
 /**
  * @ngdoc function
- * @name abacuApp.static factory:userService
+ * @name abacuApp.serives:userService
  * @description
  * # userService
  * Service of the abacuApp
  */
+
+/*
+*
+*/
 angular.module('abacuApp')
   .service('User', ['$http', '$location', '$q', 'Order', 'Wheelchair', 'Units', 'Costs',
     function ($http, $location, $q, Order, Wheelchair, Units, Costs) {
@@ -66,9 +68,9 @@ angular.module('abacuApp')
             deferred.reject('Error loading user data');
           });
 
-        //load Orders from DB associated with UserID
-        //load Measurements from DB with associated UserID
-        //load Designed Wheelchairs from DB associated with UserID
+        //TODO: load Orders from DB associated with UserID
+        //TODO: load Common Measurements from DB with associated UserID
+        //TODO: load Designed Wheelchairs from DB associated with UserID
 
         return deferred.promise;
       },
@@ -86,12 +88,14 @@ angular.module('abacuApp')
         zip = '';
         unitSys = Units.unitSys.IMPERIAL;
         orders = [];
-        //measures = []; //TODO: Reset to default
+        //TODO: Reset CommonMeasures
         designedWheelchairs = [];
         curEditWheelchairIndex = -1;
+
         $location.path('frames');
       },
 
+      //Returns true if the user is logged in
       isLoggedIn: function () {
         return (userID !== -1);
       },
@@ -115,7 +119,10 @@ angular.module('abacuApp')
         designedWheelchairs.splice(index, 1);
       },
 
-      getDesignedWheelchairs: function () { return designedWheelchairs; },
+      //Returns the full array of user-defined wheelchairs
+      getDesignedWheelchairs: function () {
+        return designedWheelchairs;
+      },
 
       getWheelchair: function (index) {
         if (index >= 0 && index < designedWheelchairs.length)
@@ -123,6 +130,8 @@ angular.module('abacuApp')
         return null;
       },
 
+      //Returns the wheelchair currently set as "curEditWheelchair"
+      //Returns null if no chair set as curEditWheelchair
       getCurEditWheelchair: function () {
         return this.getWheelchair(curEditWheelchairIndex);
       },
@@ -145,6 +154,7 @@ angular.module('abacuApp')
       getAllOrders: function () { return orders; },
       getNumOrders: function () { return orders.length; },
 
+      //Returns an array of all orders that have been sent (ignores "unsent" orders)
       getSentOrders: function () {
         var sentOrders = orders;
         if (sentOrders.length > 0) {
@@ -155,6 +165,7 @@ angular.module('abacuApp')
         return sentOrders;
       },
 
+      //Creates a new "unsent" order - overwriting a previous unset order if one exists
       createNewOrder: function () {
         if (orders.length > 0) {
           var lastOrder = orders[orders.length - 1];
@@ -166,6 +177,8 @@ angular.module('abacuApp')
         orders.push(newOrder);
       },
 
+      //Returns the unsent Order set as the "curEditOrder"
+      //If no such Order exists, returns null
       getCurEditOrder: function () {
         if (orders.length > 0) {
           var lastOrder = orders[orders.length - 1];
@@ -175,15 +188,19 @@ angular.module('abacuApp')
         return null;
       },
 
+      //Sends the curEditOrder to the distributor
       sendCurEditOrder: function (userData, shippingData, payMethod) {
         var deferred = $q.defer();
 
         var editOrder = this.getCurEditOrder();
+        if (editOrder === null)
+          deferred.reject('CurEditOrder does not exist');
+
         editOrder.send(userID, userData, shippingData, payMethod)
           .then(function () {
             deferred.resolve();
-          }, function () {
-            deferred.reject();
+          }, function (err) {
+            deferred.reject(err);
           });
 
         return deferred.promise;

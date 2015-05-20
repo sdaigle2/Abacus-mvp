@@ -23,7 +23,7 @@ angular.module('abacuApp')
     //If j === -1 then $scope.wheelchairs[i] is not in curOrder
     $scope.wOrderIndex = [];
 
-
+    //A reference to User.curEditOrder (set during init())
     var curOrder = null;
 
     //Initialize Cart page
@@ -115,6 +115,7 @@ angular.module('abacuApp')
 
     /*********************CHECK OUT***********************************/
 
+    //Validates the user's "cart" and sends the user to Checkout or Order if valid
     $scope.checkOut = function () {
       if (curOrder.getNumWheelchairs() === 0) {
         alert('Your cart is empty');
@@ -122,28 +123,36 @@ angular.module('abacuApp')
       }
      
       if (User.isLoggedIn())
-        $location.path('order');
+        $location.path('order'); //Send to Order if logged in
       else
-        $location.path('checkout');
+        $location.path('checkout'); //Send to Checkout if not logged in
     };
 
+    //Determines if the current cart is valid
     $scope.validCart = function () {
       return curOrder.getNumWheelchairs() > 0;
     };
 
     /********************DETAIL PANEL*********************************/
 
+    //Returns the weight of the given wheelchair as a displayable string
     $scope.getWeightString = function (wheelchair) {
       return (wheelchair.getTotalWeight() * Units.getWeightFactor(User.getUnitSys())).toFixed(2) + ' ' + Units.getWeightName(User.getUnitSys());
     };
 
+    //Returns an object of display-friendly strings regarding the given part
     $scope.getPartDetails = function(wheelchair, part) {
       return wheelchair.getPartDetails(part.partID, User.getUnitSys());
     };
 
+    //Returns an object of display-friendly strings regarding the given measure
     $scope.getMeasureDetails = function(wheelchair, measure) {
       return wheelchair.getMeasureDetails(measure.measureID, User.getUnitSys());
     };
+
+
+
+
 
     init();
 

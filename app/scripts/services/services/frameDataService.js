@@ -1,17 +1,22 @@
-﻿// jshint unused:false
-/* globals frameDataFromDB:true, cartDataFromDB:true, curWheelchair:true, $ */
-'use strict';
+﻿'use strict';
 
 /**
  * @ngdoc function
- * @name abacuApp.static factory:frameDataService
+ * @name abacuApp.services:frameDataService
  * @description
  * # frameDataService
  * Service of the abacuApp
  */
+
+/*
+* The FrameData service acts as the root to a forest (set of trees) of Frames
+* FrameData loads in all frame-related data from the database when the page loads
+* The data in FrameData should not be modified, only accessed
+*/
 angular.module('abacuApp')
   .service('FrameData', ['Frame', 'syncJSON', function (Frame, syncJSON) {
 
+    //Load in data from database
     var frames = [];
     var frameData = syncJSON.loadJSON('data/frameDataNew.json');
     for (var i = 0; i < frameData.length; i++) {
@@ -52,7 +57,7 @@ angular.module('abacuApp')
 
       getNumFrames: function () { return frames.length; },
 
-      //Silly functions
+      //Multi-level functions
       getFramePart: function (fID, pID) {
         return this.getFrame(fID).getPart(pID);
       },
@@ -88,6 +93,8 @@ angular.module('abacuApp')
 
 
 /*
+This is what FrameData looks like when it is fully constructed:
+
 this.data = [{
   frameID
   name
