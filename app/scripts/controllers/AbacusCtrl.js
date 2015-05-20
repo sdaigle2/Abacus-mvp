@@ -91,7 +91,7 @@ angular.module('abacuApp')
       if (curEditWheelchair === null) {
         $location.path('frames');
         return;
-      }       
+      }
 
       $scope.frameData = FrameData.getFrame(curEditWheelchair.getFrameID());
       generatePages();
@@ -365,8 +365,8 @@ angular.module('abacuApp')
     /*******************Sidebar Colors***************/
 
     $scope.isSidebarColored = function (optionID) {
-      if (curPage.type !== $scope.pageType.CUSTOMIZE)
-        return;
+      if (curPage.type !== $scope.pageType.CUSTOMIZE){
+        return;}
 
       var partID = $scope.getCurPage().partID;
       var part = $scope.frameData.getPart(partID);
@@ -377,8 +377,8 @@ angular.module('abacuApp')
     };
 
     $scope.getSidebarColor = function (optionID) {
-      if (curPage.type !== $scope.pageType.CUSTOMIZE)
-        return;
+      if (curPage.type !== $scope.pageType.CUSTOMIZE){
+        return;}
 
       var partID = $scope.getCurPage().partID;
       var part = $scope.frameData.getPart(partID);
@@ -396,7 +396,7 @@ angular.module('abacuApp')
       var wTitle = window.prompt('Design Name:', User.getCurEditWheelchair().getTitle());
       if (wTitle === null) {
         User.getCurEditWheelchair().title = 'My Wheelchair';
-      }   
+      }
       User.getCurEditWheelchair().title = wTitle;
 
       //TODO save the design to the database

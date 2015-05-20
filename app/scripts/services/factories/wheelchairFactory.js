@@ -1,4 +1,4 @@
-﻿'use strict';
+﻿﻿'use strict';
 
 /*
 * This factory produces Wheelchair objects

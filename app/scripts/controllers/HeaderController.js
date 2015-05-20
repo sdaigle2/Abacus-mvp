@@ -41,7 +41,7 @@ angular.module('abacuApp')
           $scope.user.email = User.getEmail();
           $scope.user.name = User.getFullName();
         }, function (message) {
-          alert('Login failed: ' + message);
+          window.alert('Login failed: ' + message);
         });
 
       $scope.loginModel.password = '';

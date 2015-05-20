@@ -119,6 +119,6 @@ angular.module('abacuApp')
       name: 'Click me for a FREE* XBOX',
       extra: '*Raised on open pastures',
       color: '#ba9876'
-    }]
+    }];
 
   }]);
