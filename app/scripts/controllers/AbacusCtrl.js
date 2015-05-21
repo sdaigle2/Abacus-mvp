@@ -211,6 +211,11 @@ angular.module('abacuApp')
       }
     };
 
+    //Directly jumps the carousel to the given index
+    $scope.jumpMeasureCarouselIndex = function (index) {
+        $scope.curMeasureCarouselIndex = index;
+    };
+
 
     /****************ProgressBar******************/
 

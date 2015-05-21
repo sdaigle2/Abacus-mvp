@@ -198,7 +198,7 @@
               <div class="dots">
                 <i ng-repeat="image in getCurMeasureData().imageURLs"
                    ng-class="{ 'fa fa-circle-o' : curMeasureCarouselIndex !== $index, 'fa fa-circle' : curMeasureCarouselIndex === $index }"
-                   ng-click="curMeasureCarouselIndex = $index"></i>
+                   ng-click="jumpMeasureCarouselIndex($index)"></i>
               </div>
             </div>
           </div>
