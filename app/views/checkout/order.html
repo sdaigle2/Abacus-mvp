@@ -5,7 +5,7 @@
   <div class="order-header">
     <h2><strong>{{display[curStage].title}}</strong></h2>
     <h5 data-ng-click="returnToCart()"
-        data-ng-hide="curStage == stages.COMPLETE"><< Go Back to Shopping Cart</h5>
+        data-ng-hide="curStage == stages.COMPLETE">&lt;&lt; Go Back to Shopping Cart</h5>
   </div>
 
   <!--BODY-->
@@ -243,7 +243,7 @@
       <div class="order-buttonrow">
         <div class="order-button order-button-light"
              data-ng-if="curStage !== stages.COMPLETE"
-             data-ng-click="back()"><strong>< GO BACK</strong></div>
+             data-ng-click="back()"><strong>&lt; GO BACK</strong></div>
         <div class="order-button"
              data-ng-style="(curStage === stages.COMPLETE) && {'width': '80%'}"
              data-ng-click="next()"><strong>{{display[curStage].button}}</strong></div>

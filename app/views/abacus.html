@@ -4,207 +4,208 @@
 
 <div id="background">
 
-    <!-- Progress Bar and Save Button-->
-    <div id="progressSaveBar">
-        <div class="progressBar">
-            <span class="progress-segment" ng-repeat="page in getCurPages()" ng-mouseover="progressSegmentHoverIn()" ng-mouseleave="progressSegmentHoverOut()">
-                <img class="progress-segment-arrow" ng-click="pageSwitchJump(page)" data-ng-src="{{getProgBarImage(page)}}">
-                <span class="progress-segment-tooltip"
-                      ng-show="showProgressSegmentTooltip">{{getProgressBarSegmentTooltipText(page)}}</span>
-            </span>
-        </div>
-        <button type="button" id="SaveButton" class="btn btn-primary" data-ng-click="saveDesign()">Save & Review</button>
+<!-- Progress Bar and Save Button-->
+  <div id="progressSaveBar">
+    <div class="progressBar">
+      <span class="progress-segment" ng-repeat="page in getCurPages()" ng-mouseover="progressSegmentHoverIn()" ng-mouseleave="progressSegmentHoverOut()">
+        <img class="progress-segment-arrow" ng-click="pageSwitchJump(page)" data-ng-src="{{getProgBarImage(page)}}">
+        <span class="progress-segment-tooltip"
+              ng-show="showProgressSegmentTooltip">{{getProgressBarSegmentTooltipText(page)}}</span>
+      </span>
+    </div>
+    <button type="button" id="SaveButton" class="btn btn-primary" data-ng-click="saveDesign()">Save & Review</button>
+  </div>
+
+  <div class="appBody">
+
+  <!-- Price & Weight Display -->
+    <div id="display">
+      <div class="display-toggle text-center">
+        <h6>Select Units</h6>
+        <select data-ng-model="curUnitSys"
+                data-ng-options="sys.enumVal as sys.name for sys in unitSysList" />
+      </div>
+      <div class="display-frame"><h4>{{curFrameData.name}}</h4></div>
+      <div class="display-totals text-center">
+        <h4>
+          <small>PRICE:</small> ${{getTotalPrice().toFixed(2)}}&nbsp;&nbsp;&nbsp;<small>WEIGHT:</small> {{(getTotalWeight() * getCurUnitSysWeightFactor()).toFixed(2)}} {{getCurUnitSysWeightName()}}
+        </h4>
+      </div>
     </div>
 
-    <div class="appBody">
+    <!-- BODY -->
+    <div class="main">
 
-        <!-- Price & Weight Display -->
-        <div id="display">
-            <div class="display-toggle text-center">
-                <h6>Select Units</h6>
-                <select data-ng-model="curUnitSys"
-                        data-ng-options="sys.enumVal as sys.name for sys in unitSysList" />
-            </div>
-            <div class="display-frame"><h4>{{curFrameData.name}}</h4></div>
-            <div class="display-totals text-center">
-                <h4>
-                    <small>PRICE:</small> ${{getTotalPrice().toFixed(2)}}&nbsp;&nbsp;&nbsp;<small>WEIGHT:</small> {{(getTotalWeight() * getCurUnitSysWeightFactor()).toFixed(2)}} {{getCurUnitSysWeightName()}}
-                </h4>
-            </div>
+      <!-- CUSTOMIZE: Wheelchair Display and controls -->
+      <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE" style="position:relative;">
+        <div class="main-custom-rotatebuttons">
+          <img class="leftButton" src="images/icons/rotate_left.png" alt="Previous" width="30" height="30"
+               data-ng-click="rotatePreview(-1)" />
+          <img class="rightButton" src="images/icons/rotate_right.png" alt="Next" width="30" height="30"
+               data-ng-click="rotatePreview(1)" />
+        </div>
+        <img class="main-custom-wheelchairDisplay"
+             ng-repeat="img in getPreviewImages()"
+             ng-src="{{img.URL}}"
+             ng-style="{'z-index': $index }" />
+      </div>
+
+      <!-- MEASURE: Video + gif + details -->
+      <div id ="main-measure" class="main-measure" data-ng-show="getCurPageType() == pageType.MEASURE">
+        <div class="main-measure-top">
+          <div class="main-measure-title">
+            <h1><strong>{{getCurMeasureData().name}}</strong></h1>
+            <div class="divider"></div>
+            <h4 data-ng-bind-html="getCurMeasureData().desc"></h4>
+          </div>
+
+          <iframe class="main-measure-video"
+                  data-ng-src="{{getCurMeasureData().videoURL}}" 
+                  frameborder="0" 
+                  allowfullscreen>
+          </iframe>
         </div>
 
-        <!-- BODY -->
-        <div class="main">
-
-            <!-- CUSTOMIZE: Wheelchair Display and controls -->
-            <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE" style="position:relative;">
-                <div class="main-custom-rotatebuttons">
-                    <img class="leftButton" src="images/icons/rotate_left.png" alt="Previous" width="30" height="30"
-                         data-ng-click="rotatePreview(-1)" />
-                    <img class="rightButton" src="images/icons/rotate_right.png" alt="Next" width="30" height="30"
-                         data-ng-click="rotatePreview(1)" />
-                </div>
-                <img class="main-custom-wheelchairDisplay"
-                     ng-repeat="img in getPreviewImages()"
-                     ng-src="{{img.URL}}"
-                     ng-style="{'z-index': $index }" />
-            </div>
-
-            <!-- MEASURE: Video + gif + details -->
-            <div id="main-measure" class="main-measure" data-ng-show="getCurPageType() == pageType.MEASURE">
-                <div class="main-measure-top">
-                    <div class="main-measure-title">
-                        <h1><strong>{{getCurMeasureData().name}}</strong></h1>
-                        <div class="divider"></div>
-                        <h4 data-ng-bind-html="getCurMeasureData().desc"></h4>
-                    </div>
-
-                    <iframe class="main-measure-video"
-                            data-ng-src="{{getCurMeasureData().videoURL}}"
-                            frameborder="0"
-                            allowfullscreen></iframe>
-                </div>
-
-                <div class="main-measure-bottom">
-                    <div class="main-measure-gif">
-                        <img data-ng-src="{{getCurMeasureData().gifURL}}" />
-                    </div>
-                    <div class="main-measure-details">
-                        <h4>{{getCurMeasureData().details}}</h4>
-                    </div>
-                </div>
-            </div>
+        <div class="main-measure-bottom">
+          <div class="main-measure-gif">
+            <img data-ng-src="{{getCurMeasureData().gifURL}}"/>
+          </div>
+          <div class="main-measure-details">
+            <h4>{{getCurMeasureData().details}}</h4>
+          </div>
+        </div>
+      </div>
 
 
-            <!-- SIDEBAR -->
-            <div class="sideBarWrapper">
+      <!-- SIDEBAR -->
+      <div class="sideBarWrapper">
 
-                <!-- Tabs -->
-                <ul class="nav nav-tabs nav-justified">
-                    <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}">
-                        <a ng-href="#/abacus" data-ng-click="switchPageType(pageType.CUSTOMIZE)">Customize</a>
-                    </li>
-                    <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.MEASURE}">
-                        <a ng-href="#/abacus" data-ng-click="switchPageType(pageType.MEASURE)">Measure</a>
-                    </li>
-                </ul>
+        <!-- Tabs -->
+        <ul  class="nav nav-tabs nav-justified">
+          <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}">
+            <a ng-href="#/abacus" data-ng-click="switchPageType(pageType.CUSTOMIZE)">Customize</a>
+          </li>
+          <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.MEASURE}">
+            <a ng-href="#/abacus" data-ng-click="switchPageType(pageType.MEASURE)">Measure</a>
+          </li>
+        </ul>
 
-                <!-- CUSTOMIZE: Sidebar -->
+        <!-- CUSTOMIZE: Sidebar -->
 
-                <div class="sideBar" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
-                    <div class="sideBar-header text-center">
-                        <h3>
-                            <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
-                                 data-ng-click="pageSwitchStep(-1)"
-                                 data-ng-show="getCurPage().index > 0" />
-                            {{getCurPartData().name}}
-                            <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
-                                 data-ng-click="pageSwitchStep(1)"
-                                 data-ng-show="getCurPage().index < getCurPages().length - 1" />
-                        </h3>
-                    </div>
-                    <div class="sideBar-custom">
-                        <!-- Options List -->
-                        <table class="table">
-                            <!-- Option Display block -->
-                            <tr class="sideBar-custom-item"
-                                data-ng-repeat="option in getCurPartData().options"
-                                data-ng-style="(isSidebarColored(option.optionID)) && {'border-left': 'solid 5px ' + getSidebarColor(option.optionID) }">
-                                <td class="sideBar-custom-item-left">
-                                    <div class="panelArrow" ng-class="{ 'panelArrowHidden': ! isPanelIDSelected(option.optionID) , 'panelArrowShow': isPanelIDSelected(option.optionID)}"></div>
-                                    <img class="colorOptionsIndicator" ng-show="option.colors"
-                                         src="images/icons/color_option.png" alt="See color options"
-                                         ng-click="setPanel(option.optionID, panelTypes.COLOR);" />
-                                    <img data-ng-src="{{option.thumbnailURL}}" height="100" width="100">
-                                </td>
-                                <td class="sideBar-custom-item-right">
-                                    <h4 class="sideBar-custom-item-name" title="{{titleForEllipsis(option.name, 45)}}"> {{ellipsisFormat(option.name, 45)}}</h4>
-                                    <h4 class="sideBar-custom-item-details">
-                                        <strong>${{option.price.toFixed(2)}} | {{(option.weight * getCurUnitSysWeightFactor()).toFixed(2)}} {{getCurUnitSysWeightName()}}</strong>
-                                    </h4>
-                                    <div class="sideBar-custom-item-buttonRow">
-                                        <div class="sideBar-custom-item-button text-center"
-                                             ng-class="{'detailsSelected': isPanelSelected(option.optionID, panelTypes.DETAIL)}"
-                                             ng-click="setPanel(option.optionID, panelTypes.DETAIL);">Details</div>
-                                        <div class="sideBar-custom-item-button text-center selected"
-                                             ng-if="getCurWheelchairPart().optionID === option.optionID">Selected</div>
-                                        <div class="sideBar-custom-item-button text-center"
-                                             ng-if="getCurWheelchairPart().optionID !== option.optionID"
-                                             ng-click="setCurOption(option.optionID);">Add</div>
-                                    </div>
-                                </td>
-                                <!-- Color Panel -->
-                                <td class="panel colorPanel" ng-class="{ 'colorPanelHidden': ! isPanelSelected(option.optionID, panelTypes.COLOR) , 'colorPanelShow': isPanelSelected(option.optionID, panelTypes.COLOR)}">
-                                    <div data-ng-repeat="color in option.colors" class="colorPanelItem"
-                                         data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
-                                         data-ng-style="{'background-color': color.hex, 'height': (250 / option.colors.length), 'max-height':90}"
-                                         data-ng-click="setCurOption(option.optionID); setCurOptionColor(color.colorID);"
-                                         title="{{color.name}}">
-                                    </div>
-                                </td>
-                                <!-- Detail Panel -->
-                                <td class="panel detailPanel  " ng-class="{ 'detailPanelHidden': ! isPanelSelected(option.optionID, panelTypes.DETAIL) , 'detailPanelShow': isPanelSelected(option.optionID, panelTypes.DETAIL)}">
-                                    <div class="text-center">
-                                        <img data-ng-src="{{option.thumbnailURL}}" height="200" width="200" />
-                                        <h4><strong>{{option.name}}</strong></h4>
-                                        <h4>${{option.price}} | {{option.weight}}lbs</h4>
-                                        <div class="sideBar-custom-item-button text-center selected" ng-if="getCurWheelchairPart().optionID === option.optionID">Selected</div>
-                                        <div class="sideBar-custom-item-button text-center" ng-if="getCurWheelchairPart().optionID !== option.optionID"
-                                             ng-click="setCurOption(option.optionID);">Add</div>
-                                        <p>{{option.desc}}</p>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- MEASURE: Sidebar-->
-
-                <div class="sideBar" data-ng-show="getCurPageType() == pageType.MEASURE">
-                    <div class="sideBar-header text-center">
-                        <h3>
-                            <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
-                                 data-ng-click="pageSwitchStep(-1)"
-                                 data-ng-show="getCurPage().index > 0" />
-                            {{getCurMeasureData().name}}
-                            <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
-                                 data-ng-click="pageSwitchStep(1)"
-                                 data-ng-show="getCurPage().index < getCurPages().length - 1" />
-                        </h3>
-                    </div>
-                    <div class="sideBar-measure">
-                        <!-- Measurement Selector -->
-                        <div class="sideBar-measure-top text-center">
-                            <h4>Choose your measurement</h4>
-                            <select data-ng-model="getCurWheelchairMeasure().measureOptionIndex"
-                                    data-ng-options="idx as mo for (idx, mo) in getCurMeasureData().measureOptions[curUnitSys]" />
-                            <span style="font-size: 1.3em">{{getCurMeasureData().units[curUnitSys]}}</span>
-                            <div class="sideBar-measure-tip text-left" data-ng-show="getCurMeasureData().tip">
-                                <h4><strong><span class="glyphicon glyphicon-exclamation-sign"></span> &nbsp;&nbsp;TIP</strong></h4>
-                                <h5 data-ng-bind-html="getCurMeasureData().tip"></h5>
-                            </div>
-                        </div>
-                        <!-- Measure Image Carousel -->
-                        <div class="sideBar-measure-bottom">
-                            <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
-                                 data-ng-click="rotateMeasureCarouselIndex(-1)" />
-                            <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
-                                 data-ng-click="rotateMeasureCarouselIndex(1)" />
-                            <img ng-repeat="image in getCurMeasureData().imageURLs"
-                                 ng-show="curMeasureCarouselIndex === $index"
-                                 ng-src="{{image}}" width="350" height="340">
-                            <div class="dots">
-                                <i ng-repeat="image in getCurMeasureData().imageURLs"
-                                   ng-class="{ 'fa fa-circle-o' : curMeasureCarouselIndex !== $index, 'fa fa-circle' : curMeasureCarouselIndex === $index }"
-                                   ng-click="jumpMeasureCarouselIndex($index)"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="sideBar" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
+          <div class="sideBar-header text-center">
+            <h3>
+              <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
+                   data-ng-click="pageSwitchStep(-1)"
+                   data-ng-show="getCurPage().index > 0"/>
+              {{getCurPartData().name}}
+              <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
+                   data-ng-click="pageSwitchStep(1)"
+                   data-ng-show="getCurPage().index < getCurPages().length - 1"/>
+            </h3>
+          </div>
+          <div class="sideBar-custom">
+            <!-- Options List -->
+            <table class="table">
+              <!-- Option Display block -->
+              <tr class="sideBar-custom-item"
+                  data-ng-repeat="option in getCurPartData().options"
+                  data-ng-style="(isSidebarColored(option.optionID)) && {'border-left': 'solid 5px ' + getSidebarColor(option.optionID) }" >
+                <td class="sideBar-custom-item-left">
+                  <div class="panelArrow" ng-class="{ 'panelArrowHidden': ! isPanelIDSelected(option.optionID) , 'panelArrowShow': isPanelIDSelected(option.optionID)}"></div>
+                  <img class="colorOptionsIndicator" ng-show="option.colors"
+                       src="images/icons/color_option.png" alt="See color options"
+                       ng-click="setPanel(option.optionID, panelTypes.COLOR);" />
+                  <img data-ng-src="{{option.thumbnailURL}}" height="100" width="100">
+                </td>
+                <td class="sideBar-custom-item-right">
+                  <h4 class="sideBar-custom-item-name" title="{{titleForEllipsis(option.name, 45)}}"> {{ellipsisFormat(option.name, 45)}}</h4>
+                  <h4 class="sideBar-custom-item-details">
+                    <strong>${{option.price.toFixed(2)}} | {{(option.weight * getCurUnitSysWeightFactor()).toFixed(2)}} {{getCurUnitSysWeightName()}}</strong>
+                  </h4>
+                  <div class="sideBar-custom-item-buttonRow">
+                    <div class="sideBar-custom-item-button text-center"
+                         ng-class="{'detailsSelected': isPanelSelected(option.optionID, panelTypes.DETAIL)}"
+                         ng-click="setPanel(option.optionID, panelTypes.DETAIL);">Details</div>
+                    <div class="sideBar-custom-item-button text-center selected" 
+                         ng-if="getCurWheelchairPart().optionID === option.optionID">Selected</div>
+                    <div class="sideBar-custom-item-button text-center" 
+                         ng-if="getCurWheelchairPart().optionID !== option.optionID"
+                         ng-click="setCurOption(option.optionID);">Add</div>
+                  </div>
+                </td>
+                <!-- Color Panel -->
+                <td class="panel colorPanel" ng-class="{ 'colorPanelHidden': ! isPanelSelected(option.optionID, panelTypes.COLOR) , 'colorPanelShow': isPanelSelected(option.optionID, panelTypes.COLOR)}">
+                  <div data-ng-repeat="color in option.colors" class="colorPanelItem"
+                       data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
+                       data-ng-style="{'background-color': color.hex, 'height': (250 / option.colors.length), 'max-height':90}"
+                       data-ng-click="setCurOption(option.optionID); setCurOptionColor(color.colorID);"
+                       title="{{color.name}}">
+                  </div>
+                </td>
+                <!-- Detail Panel -->
+                <td class="panel detailPanel  " ng-class="{ 'detailPanelHidden': ! isPanelSelected(option.optionID, panelTypes.DETAIL) , 'detailPanelShow': isPanelSelected(option.optionID, panelTypes.DETAIL)}">
+                  <div class="text-center">
+                    <img data-ng-src="{{option.thumbnailURL}}" height="200" width="200" />
+                    <h4><strong>{{option.name}}</strong></h4>
+                    <h4>${{option.price}} | {{option.weight}}lbs</h4>
+                    <div class="sideBar-custom-item-button text-center selected" ng-if="getCurWheelchairPart().optionID === option.optionID">Selected</div>
+                    <div class="sideBar-custom-item-button text-center" ng-if="getCurWheelchairPart().optionID !== option.optionID"
+                         ng-click="setCurOption(option.optionID);">Add</div>
+                    <p>{{option.desc}}</p>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
 
+        <!-- MEASURE: Sidebar-->
 
+        <div class="sideBar" data-ng-show="getCurPageType() == pageType.MEASURE">
+          <div class="sideBar-header text-center">
+            <h3>
+              <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
+                   data-ng-click="pageSwitchStep(-1)"
+                   data-ng-show="getCurPage().index > 0"/>
+              {{getCurMeasureData().name}}
+              <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
+                   data-ng-click="pageSwitchStep(1)"
+                   data-ng-show="getCurPage().index < getCurPages().length - 1"/>
+            </h3>
+          </div>
+          <div class="sideBar-measure">
+            <!-- Measurement Selector -->
+            <div class="sideBar-measure-top text-center">
+              <h4>Choose your measurement</h4>
+              <select data-ng-model="getCurWheelchairMeasure().measureOptionIndex"
+                      data-ng-options="idx as mo for (idx, mo) in getCurMeasureData().measureOptions[curUnitSys]" />
+              <span style="font-size: 1.3em">{{getCurMeasureData().units[curUnitSys]}}</span>
+              <div class="sideBar-measure-tip text-left" data-ng-show="getCurMeasureData().tip">
+                <h4><strong><span class="glyphicon glyphicon-exclamation-sign"></span> &nbsp;&nbsp;TIP</strong></h4>
+                <h5 data-ng-bind-html="getCurMeasureData().tip"></h5>
+              </div>
+            </div>
+            <!-- Measure Image Carousel -->
+            <div class="sideBar-measure-bottom">
+              <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
+                   data-ng-click="rotateMeasureCarouselIndex(-1)"/>
+              <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
+                   data-ng-click="rotateMeasureCarouselIndex(1)" />
+              <img ng-repeat="image in getCurMeasureData().imageURLs"
+                   ng-show="curMeasureCarouselIndex === $index"
+                   ng-src="{{image}}" width="350" height="340">
+              <div class="dots">
+                <i ng-repeat="image in getCurMeasureData().imageURLs"
+                   ng-class="{ 'fa fa-circle-o' : curMeasureCarouselIndex !== $index, 'fa fa-circle' : curMeasureCarouselIndex === $index }"
+                   ng-click="jumpMeasureCarouselIndex($index)"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+
+  </div>
 </div>
