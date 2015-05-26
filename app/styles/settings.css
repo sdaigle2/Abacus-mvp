@@ -62,7 +62,6 @@
 }
 .settingsSidebarOption:hover {
   background-color: rgba(234, 234, 232, 1);
-  transition: .5s;
 }
 .settingsSidebarOption.active {
   background-color: rgba(234, 234, 232, 1);
@@ -100,7 +99,6 @@
 
 .settingsSidebarButton.active, .settingsSidebarButton:hover {
   background-color: rgba(11, 158, 144, 1);
-  transition: .5s;
 }
 .settingsSidebarButton:last-child {
   margin-right: 0;

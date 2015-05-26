@@ -25,7 +25,7 @@ angular.module('abacuApp')
       CUSTOMIZE: 0,
       MEASURE: 1
     };
-      
+
     //The two types of panels that can open from the sidebar
     $scope.panelTypes = {
       COLOR: 'color',
@@ -94,7 +94,7 @@ angular.module('abacuApp')
       if (curEditWheelchair === null) {
         $location.path('frames');
         return;
-      }       
+      }
 
       //Load data about the frame type of curEditWheelchair
       $scope.curFrameData = FrameData.getFrame(curEditWheelchair.getFrameID());
@@ -386,7 +386,7 @@ angular.module('abacuApp')
       var wTitle = window.prompt('Design Name:', User.getCurEditWheelchair().getTitle());
       if (wTitle === null) {
         User.getCurEditWheelchair().title = 'My Wheelchair';
-      }   
+      }
       User.getCurEditWheelchair().title = wTitle;
 
       //TODO: save the design to the database
