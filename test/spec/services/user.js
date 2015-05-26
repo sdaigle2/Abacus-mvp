@@ -17,6 +17,6 @@ describe('Service: UserService', function () {
     }));
 
     it('should attach a list of awesomeThings to the scope', function () {
-        expect(scope.employees.length).toBe(23);
+        expect(scope.employees.length).toBe(4);
     });
 });
