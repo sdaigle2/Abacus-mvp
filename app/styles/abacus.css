@@ -162,11 +162,78 @@
 
 /*************************Main-Measure******************************/
 .main-measure {
-  width: 850px;
+  width: 800px;
+  height: 850px;
   margin: 20px;
   padding-left: 40px;
   float: left;
 }
+
+.main-measure .measure-top{
+  width: 100%;
+  height: 200px;
+  margin-bottom: 20px;
+}
+
+.main-measure .measure-body{
+  width:100%;
+  height : 500px;
+  background-color: white;
+  border: 1px solid #bcbec0;
+  border-collapse: collapse;
+
+}
+
+.main-measure .measure-tab{
+  width: 100%;
+  height: 60px;
+  background-color:#EAEAEA;
+
+}
+
+.main-measure .measure-tab .measure-tab-title {
+  width: 33%;
+  text-align: center;
+  border-right: 1px solid #bcbec0;
+  border-bottom: 1px solid #bcbec0;
+}
+
+.main-measure .measure-tab td:hover{
+  cursor: pointer;
+  background-color: white;
+}
+.main-measure .measure-tab .active {
+  cursor: pointer;
+  border-bottom: solid 4px #60C2B1;
+  background-color: white;
+}
+
+.main-measure .measure-body .measure-content {
+  width: 600px;
+  height: 85%;
+  margin: 43px auto 0;
+}
+
+
+.main-measure .measure-body .measure-content .measure-content-title{
+  height: 20px;
+  width: 100%;
+}
+
+
+.main-measure .measure-body .measure-content iframe{
+  margin: auto;
+  height: 325px;
+  width: inherit;
+}
+
+
+
+
+
+
+
+
 
 .main-measure .main-measure-top{
   width: inherit;

@@ -32,6 +32,12 @@ angular.module('abacuApp')
       DETAIL: 'detail'
     };
 
+    $scope.MeasureTabs = {
+      TUTORIAL : 'tutorial',
+      ERGONOMICS : 'ergonomics',
+      SUMMARY : 'summary'
+    };
+
     /**********************Main Variables****************************/
 
     //All the data about the current frame (loaded by init)
@@ -51,6 +57,7 @@ angular.module('abacuApp')
 
     //The current angle the wheelchair is being viewed from
     var curAngle = Angles.angleType.FRONTRIGHT;
+    var measureTabs = $scope.MeasureTabs.TUTORIAL;
 
     //The current measurement system being used
     $scope.curUnitSys = User.getUnitSys();
@@ -215,6 +222,18 @@ angular.module('abacuApp')
     $scope.jumpMeasureCarouselIndex = function (index) {
         $scope.curMeasureCarouselIndex = index;
     };
+
+
+    /*************measurement page tab switch  ******/
+
+    $scope.getMeasureTabs = function (){
+      return measureTabs;
+    };
+
+    $scope.setMeasureTabs = function (newSection) {
+      measureTabs = newSection;
+    };
+
 
 
     /****************ProgressBar******************/

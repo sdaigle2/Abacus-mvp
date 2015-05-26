@@ -14,10 +14,10 @@ angular.module('abacuApp')
     function ($scope, $location, User, Units) {
 
     //Kick user off page if not logged in
-    if (User.isLoggedIn() === false) {
-      $location.path('/frames');
-      return;
-    }
+    //if (User.isLoggedIn() === false) {
+    //  $location.path('/frames');
+    //  return;
+    //}
 
     //Model for the 'My Account' inputs
     $scope.accountModel = {
@@ -54,7 +54,7 @@ angular.module('abacuApp')
     //Navigational values
     var contentSection = $scope.ContentSection.ORDERS;
     var curMeasureType = $scope.MeasurementTypes.REAR_SEAT_HEIGHT;
- 
+
 
     /***************** SIDEBAR BUTTONS ***************************************/
 
