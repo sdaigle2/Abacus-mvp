@@ -98,7 +98,7 @@ angular.module('abacuApp')
     $scope.next = function () {
       switch ($scope.curStage) {
 
-        case $scope.stages.INFO:     
+        case $scope.stages.INFO:
           if (allInputsFilled() === false) {
             alert('You must fill in all contact information');
             return;
@@ -116,10 +116,10 @@ angular.module('abacuApp')
           if (!$scope.termsForm.hasReadTerms) {
             alert("You must accept the Terms and Conditions to continue");
             return;
-          }        
+          }
           User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.payForm.method)
             .then(function () {
-              $scope.orderNum = $scope.curOrder.getOrderNum(); //Note - from this point on User.getCurEditOrder() returns null
+              $scope.orderNum = $scope.curOrder.getOrderNum();
               $scope.curStage++;
             }, function () {
               alert('Error sending order');

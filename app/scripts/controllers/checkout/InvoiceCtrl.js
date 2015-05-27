@@ -10,10 +10,12 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('InvoiceCtrl', ['$scope', '$location', function ($scope, $location) {
+  .controller('InvoiceCtrl', ['$scope', '$location', 'User', function ($scope, $location, User) {
+    var order = User.getCurEditOrder();
+    $scope.name = User.getFullName();
+    $scope.wheelchairs = order.getWheelchairs();
+    $scope.orderNum = order.getOrderNum();
 
-    $scope.nothing = function () {
-      var pointless = null + 'void';
-    };
+
 
   }]);
