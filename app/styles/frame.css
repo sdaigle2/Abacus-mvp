@@ -10,6 +10,7 @@
 .frame-header-row {
   min-height:80px;
   margin-bottom: 30px;
+  line-height: 0;
 }
 
 .frame-header {

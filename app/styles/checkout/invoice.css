@@ -27,7 +27,7 @@
 
 div.details{
   width: 45%;
-  padding-top: 32px;
+  padding-top: 320px;
   padding-left: 25px;
   display: inline-block;
   vertical-align: top;
@@ -53,7 +53,7 @@ p.description-result{
   padding-top: 10px;
   padding-left: 55px;
   font-size: 14px;
-  
+
 }
 
 p.price-bold{
@@ -76,11 +76,13 @@ img.wheel_measurement_one{
 
 div.images{
   width: 45%;
+  height: 916px;
   display: inline-block;
   vertical-align: top;
+  position: relative;
 }
 
-.label{
+.invoice-label{
   font-weight: bold;
 }
 
@@ -98,10 +100,25 @@ h2{
 
 .front-page-disp{
   height: 33%;
-  width: 100%
+  position: absolute;
 }
 
-#footer{
+.first-image{
+  top: 0px;
+  left: 0px;
+}
+
+.second-image{
+  top: 33%;
+  left: 0px;
+}
+
+.third-image{
+  top: 66%;
+  left: 0px;
+}
+
+.footer{
   margin-left: 458px;
 }
 
@@ -136,7 +153,7 @@ p{
 
 h3{
   margin-top:0;
-  margin-bottom:7;
+  margin-bottom:7px;
   font-size: 20px;
 }
 

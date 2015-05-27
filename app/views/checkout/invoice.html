@@ -1,284 +1,277 @@
-<link href="../../styles/checkout/invoice.css" rel="stylesheet" />
-<div ng-repeat="wheelchair in wheelchairs">
-  <div class="page">
-    <div class="wrapper">
-      <div class="details">
-        <h2>ABACUS</h2>
-        <table>
-          <tr>
-            <td class="label">Name:</td>
-            <td class="value">MyName</td>
-          </tr>
-          <tr>
-            <td class="label">Manufacturer:</td>
-            <td class="value">manu</td>
-          </tr>
-          <tr>
-            <td class="label">Price:</td>
-            <td class="value">$1</td>
-          </tr>
-          <tr>
-            <td class="label">Model:</td>
-            <td class="value">CKE</td>
-          </tr>
-          <tr>
-            <td class="label">Design Date:</td>
-            <td class="value">05.21.2014</td>
-          </tr>
-          <tr>
-            <td class="label">Weight:</td>
-            <td class="value">123lb</td>
-          </tr>
-          <tr>
-            <td class="label">Order Number:</td>
-            <td class="value">123456</td>
-          </tr>
-        </table>
+  <link href="../../styles/checkout/invoice.css" rel="stylesheet" />
+    <div id="invoice-body" ng-repeat="wheelchair in wheelchairs">
+      <div class="page">
+        <div class="wrapper">
+          <div class="details">
+            <h2>ABACUS</h2>
+            <table>
+              <tr>
+                <td class="invoice-label">Name:</td>
+                <td class="value" ng-bind-html="name"></td>
+              </tr>
+              <tr>
+                <td class="invoice-label">Manufacturer:</td>
+                <td class="value" ng-bind-html="getManufacturer(wheelchair)"></td>
+              </tr>
+              <tr>
+                <td class="invoice-label">Price:</td>
+                <td class="value" ng-bind-html="getBasePrice(wheelchair)"></td>
+              </tr>
+              <tr>
+                <td class="invoice-label">Model:</td>
+                <td class="value" ng-bind-html="getModel(wheelchair)"></td>
+              </tr>
+              <tr>
+                <td class="invoice-label">Weight:</td>
+                <td class="value" ng-bind-html="getBaseWeight(wheelchair)"></td>
+              </tr>
+              <tr>
+                <td class="invoice-label">Order Number:</td>
+                <td class="value" ng-bind-html="orderNum"></td>
+              </tr>
+            </table>
+          </div>
+          <div class="images">
+            <img class="front-page-disp first-image"
+                 ng-repeat="img in getPreviewImages(wheelchair, 1)"
+                 ng-src="{{img.URL}}"
+                 ng-style="{'z-index': $index }" />
+            <img class="front-page-disp second-image"
+                 ng-repeat="img in getPreviewImages(wheelchair, 3)"
+                 ng-src="{{img.URL}}"
+                 ng-style="{'z-index': $index }" />
+            <img class="front-page-disp third-image"
+                 ng-repeat="img in getPreviewImages(wheelchair, 2)"
+                 ng-src="{{img.URL}}"
+                 ng-style="{'z-index': $index }" />
+          </div>
+        </div>
+        <span class="footer">Powered by</span>
       </div>
-      <div class="images">
-        <img class="front-page-disp" src="../../images/pangding.jpg"/>
-        <img class="front-page-disp" src="../../images/pangding.jpg"/>
-        <img class="front-page-disp" src="../../images/pangding.jpg"/>
+      <div class="page">
+        <div class="wrapper">
+          <div class="details">
+            <h2>ABACUS</h2>
+            <table>
+              <tr>
+                <td class="invoice-label">Name:</td>
+                <td class="value">MyName</td>
+              </tr>
+              <tr>
+                <td class="invoice-label">Manufacturer:</td>
+                <td class="value">manu</td>
+              </tr>
+              <tr>
+                <td class="invoice-label">Price:</td>
+                <td class="value">$1</td>
+              </tr>
+              <tr>
+                <td class="invoice-label">Model:</td>
+                <td class="value">CKE</td>
+              </tr>
+              <tr>
+                <td class="invoice-label">Design Date:</td>
+                <td class="value">05.21.2014</td>
+              </tr>
+              <tr>
+                <td class="invoice-label">Weight:</td>
+                <td class="value">123lb</td>
+              </tr>
+              <tr>
+                <td class="invoice-label">Order Number:</td>
+                <td class="value">123456</td>
+              </tr>
+            </table>
+          </div>
+          <div class="images">
+            <img class="front-page-disp" src="../../images/pangding.jpg"/>
+            <img class="front-page-disp" src="../../images/pangding.jpg"/>
+            <img class="front-page-disp" src="../../images/pangding.jpg"/>
+          </div>
+        </div>
+        <span class="footer">Powered by</span>
       </div>
-    </div>
-    <span id="footer">Powered by</span>
-  </div>
-  <div class="page">
-    <div class="wrapper">
-      <div class="details">
-        <h2>ABACUS</h2>
-        <table>
-          <tr>
-            <td class="label">Name:</td>
-            <td class="value">MyName</td>
-          </tr>
-          <tr>
-            <td class="label">Manufacturer:</td>
-            <td class="value">manu</td>
-          </tr>
-          <tr>
-            <td class="label">Price:</td>
-            <td class="value">$1</td>
-          </tr>
-          <tr>
-            <td class="label">Model:</td>
-            <td class="value">CKE</td>
-          </tr>
-          <tr>
-            <td class="label">Design Date:</td>
-            <td class="value">05.21.2014</td>
-          </tr>
-          <tr>
-            <td class="label">Weight:</td>
-            <td class="value">123lb</td>
-          </tr>
-          <tr>
-            <td class="label">Order Number:</td>
-            <td class="value">123456</td>
-          </tr>
-        </table>
-      </div>
-      <div class="images">
-        <img class="front-page-disp" src="../../images/pangding.jpg"/>
-        <img class="front-page-disp" src="../../images/pangding.jpg"/>
-        <img class="front-page-disp" src="../../images/pangding.jpg"/>
-      </div>
-    </div>
-    <span id="footer">Powered by</span>
-  </div>
-  <div class="page">
-    <div class="wrapper">
-      <div class="measurements">
-        <h3>Measurements</h3>
+      <div class="page">
+        <div class="wrapper">
+          <div class="measurements">
+            <h3>Measurements</h3>
 
-      </div>
-        <hr class="dark_line">
-      <p class="description">
-        Rear Sear Height
-      </p>
-      <p class="description-result">
-        35 cm / 13.78 in
-      </p>
+          </div>
+            <hr class="dark_line">
+          <p class="description">
+            Rear Sear Height
+          </p>
+          <p class="description-result">
+            35 cm / 13.78 in
+          </p>
 
 
-      <p class="description">
-        Front Seat Height
-      </p>
-      <p class="description-result">
-        24 cm / 9.45 in
-      </p>
+          <p class="description">
+            Front Seat Height
+          </p>
+          <p class="description-result">
+            24 cm / 9.45 in
+          </p>
 
 
-      <p class="description">
-        Seat Width
-      </p>
-      <p class="description-result">
-        24 cm / 9.45 in
-      </p>
+          <p class="description">
+            Seat Width
+          </p>
+          <p class="description-result">
+            24 cm / 9.45 in
+          </p>
 
 
-       <p class="description">
-        Seat Depth
-      </p>
-      <p class="description-result">
-        24 cm / 9.45 in
-      </p>
+           <p class="description">
+            Seat Depth
+          </p>
+          <p class="description-result">
+            24 cm / 9.45 in
+          </p>
 
 
-       <p class="description">
-        Backrest Height
-      </p>
-      <p class="description-result">
-        24 cm / 9.45 in
-      </p>
+           <p class="description">
+            Backrest Height
+          </p>
+          <p class="description-result">
+            24 cm / 9.45 in
+          </p>
 
 
-       <p class="description">
-        Axle Position
-      </p>
-      <p class="description-result">
-        24 cm / 9.45 in
-      </p>
+           <p class="description">
+            Axle Position
+          </p>
+          <p class="description-result">
+            24 cm / 9.45 in
+          </p>
 
 
-       <p class="description">
-        Footrest Height
-      </p>
-      <p class="description-result">
-        24 cm / 9.45 in
-      </p>
+           <p class="description">
+            Footrest Height
+          </p>
+          <p class="description-result">
+            24 cm / 9.45 in
+          </p>
 
 
-       <p class="description">
-        Footrest Width
-      </p>
-      <p class="description-result">
-        24 cm / 9.45 in
-      </p>
+           <p class="description">
+            Footrest Width
+          </p>
+          <p class="description-result">
+            24 cm / 9.45 in
+          </p>
 
 
-     <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
+         <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
 
-    </div>
-    <span id="footer">Powered by</span>
-  </div>
-</div>
-<div class="page">
-  <div class="wrapper2">
-    <div id="intelliwheels-info">
-      <img id="logo" src="../../images/tiarrow_logo.png"/>
-      <div id="address">
-        <p>60 Hazelwood Dr.</p>
-        <p>Suite 110</p>
-        <p>Champaign, IL, 61820</p>
-      </div>
-      <div id="contact">
-        <p>Phone: (217)903-4563</p>
-        <p>Fax: (217)332-1560</p>
-        <p>www.intelliwheels.net</p>
+        </div>
+        <span class="footer">Powered by</span>
       </div>
     </div>
-    <div id="summary">
-      <h3>SUMMARY</h3>
-      <table>
-        <tr>
-          <td class="label">Purchase Date:</td>
-          <td class="value2">Dec. 19, 2012</td>
-        </tr>
-        <tr>
-          <td class="label">Terms:</td>
-          <td class="value2">Net 30</td>
-        </tr>
-        <tr>
-          <td class="label">Ship Via:</td>
-          <td class="value2">Best</td>
-        </tr>
-        <tr>
-          <td>
-            <div class="address">
-              <h4>BILL TO:</h4>
-              <p>Kevin Hale</p>
-              <p>Unisource Worldwide, Inc.</p>
-              <p>1701 Crossroads Dr.</p>
-              <p>Joliet, IL 60431</p>
-            </div>
-          </td>
-          <td class="value2">
-            <div class="address">
-              <h4>SHIP TO:</h4>
-              <p>Intelliwheels, Inc.</p>
-              <p>60 Hazelwood Dr.</p>
-              <p>Suite 110</p>
-              <p>Champaign, IL, 61820</p>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div id="wheelchair-sum">
-      <table>
-        <tr class="header">
-          <td class="qty">Qty</td>
-          <td>Details</td>
-          <td class="price">Price</td>
-        </tr>
-        <tr>
-          <td class="qty">2000</td>
-          <td>Wheelchair 1</td>
-          <td class="price">$1234</td>
-        </tr>
-        <tr>
-          <td class="qty">1</td>
-          <td>Wheelchair 2</td>
-          <td class="price">$1234</td>
-        </tr>
-      </table>
-    </div>
-    <div id="final-sum">
-    <table>
-    <td>
-      <div id="tax">
-        <p>Sales tax rate:</p>
-        <p>8.75%</p>
+    <div class="page">
+      <div class="wrapper2">
+        <div id="intelliwheels-info">
+          <img id="logo" src="../../images/tiarrow_logo.png"/>
+          <div id="address">
+            <p>60 Hazelwood Dr.</p>
+            <p>Suite 110</p>
+            <p>Champaign, IL, 61820</p>
+          </div>
+          <div id="contact">
+            <p>Phone: (217)903-4563</p>
+            <p>Fax: (217)332-1560</p>
+            <p>www.intelliwheels.net</p>
+          </div>
+        </div>
+        <div id="summary">
+          <h3>SUMMARY</h3>
+          <table>
+            <tr>
+              <td class="invoice-label">Purchase Date:</td>
+              <td class="value2">Dec. 19, 2012</td>
+            </tr>
+            <tr>
+              <td class="invoice-label">Terms:</td>
+              <td class="value2">Net 30</td>
+            </tr>
+            <tr>
+              <td class="invoice-label">Ship Via:</td>
+              <td class="value2">Best</td>
+            </tr>
+            <tr>
+              <td>
+                <div class="address">
+                  <h4>BILL TO:</h4>
+                  <p>Kevin Hale</p>
+                  <p>Unisource Worldwide, Inc.</p>
+                  <p>1701 Crossroads Dr.</p>
+                  <p>Joliet, IL 60431</p>
+                </div>
+              </td>
+              <td class="value2">
+                <div class="address">
+                  <h4>SHIP TO:</h4>
+                  <p>Intelliwheels, Inc.</p>
+                  <p>60 Hazelwood Dr.</p>
+                  <p>Suite 110</p>
+                  <p>Champaign, IL, 61820</p>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div id="wheelchair-sum">
+          <table>
+            <tr class="header">
+              <td class="qty">Qty</td>
+              <td>Details</td>
+              <td class="price">Price</td>
+            </tr>
+            <tr>
+              <td class="qty">2000</td>
+              <td>Wheelchair 1</td>
+              <td class="price">$1234</td>
+            </tr>
+            <tr>
+              <td class="qty">1</td>
+              <td>Wheelchair 2</td>
+              <td class="price">$1234</td>
+            </tr>
+          </table>
+        </div>
+        <div id="final-sum">
+          <div id="tax">
+              <p>Sales tax rate:</p>
+              <p>8.75%</p>
+          </div>
+          <table>
+            <tr>
+              <td><p class="price-bold">Subtotal</p></td>
+              <td><p class="price">$2345</p></td>
+            </tr>
+            <tr>
+              <td><p class="price-bold">Shipping</p></td>
+              <td><p class="price">$23</p></td>
+            </tr>
+            <tr>
+              <td><p class="price-bold">Tax</p></td>
+              <td><p class="price">$224</p></td>
+            </tr>
+            <tr>
+              <td><p class="price-bold">Discount</p></td>
+              <td><p class="price">$23</p></td>
+            </tr>
+          </table>
+          <hr class="dark_line">
+            <table>
+              <td>
+                <p class="price-bold">Total</p>
+              </td>
+              <td>
+               <p class="price">$234234</p>
+              </td>
+           </table>
+          </hr>
+        </div>
       </div>
-    </td>
-
-    <td>
-    	<table>
-        
-     
-          <td><p class="price-bold">Subtotal</p></td>
-          <td><p class="price">$2345</p></td>
-        </tr>
-        <tr>
-         
-          <td><p class="price-bold">Shipping</p></td>
-          <td><p class="price">$23</p></td>
-        </tr>
-
-        <tr>
-         <td><p class="price-bold">Tax</p></td>
-          <td><p class="price">$224</p></td>
-        </tr>
-
-        <tr>
-         <td><p class="price-bold">Discount</p></td>
-          <td><p class="price">$23</p></td>
-        </tr>
-
-      </table>
-<hr class="dark_line">
-		<table>
-		<td>
-			<p class="price-bold">Total</p>	
-		</td>
-		<td>
-			<p class="price">$234234</p>
-		</td>
-		</table>
-    </tr>
-
-
     </div>
-  </div>
-</div>
