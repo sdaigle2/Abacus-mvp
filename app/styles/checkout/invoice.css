@@ -1,21 +1,132 @@
+.page{
+  width: 820px;
+  height: 1061px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .wrapper{
-  margin: 0 auto;
-  padding: 50px;
+  width: 724px;
+  height: 916px;
+  border-style: solid;
+  border-width: 5px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: 50px;
+  margin-bottom: 45px;
+}
+
+.wrapper2{
+  width: 724px;
+  height: 916px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: 50px;
+  margin-bottom: 45px;
+}
+
+div.details{
+  width: 45%;
+  padding-top: 310px;
+  padding-left: 25px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+div.images{
+  width: 45%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.label{
+  font-weight: bold;
+}
+
+.value{
+  padding-left: 15px;
+}
+
+.value2{
+  padding-left: 100px;
+}
+
+h2{
+  font-size: 40px;
+}
+
+.front-page-disp{
+  height: 33%;
+  width: 100%
+}
+
+#footer{
+  margin-left: 458px;
+}
+
+p{
+  margin: 0;
+}
+
+#address{
+  margin-bottom: 10px;
+}
+
+#logo{
+  margin-bottom:30px;
+  width: 100px;
+}
+
+#intelliwheels-info{
+  width:30%;
+  height: 30%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#summary{
+  width: 60%;
+  display: inline-block;
+  vertical-align: top;
+  padding-left:20px;
+  padding-bottom:20px;
+  border-left-style: solid;
+}
+
+h3{
+  margin-top:0;
+  font-size: 20px;
+}
+
+.address{
+  padding-top:15px;
+}
+
+#wheelchair-sum{
+  margin-top:50px;
 }
 
 table{
-  width: 1000px;
-  margin: 0 auto;
+  width:100%;
+  border-collapse: collapse;
 }
 
-
-
-table .topEntity td{
-  width: 33%;
-  padding: 24px 0px 24px;
-}
-table  .detail{
-  border-bottom: 1px solid black;
+.price{
+  float:right;
 }
 
+.qty{
+  width:34%;
+}
 
+.header{
+  border-bottom-style:solid;
+  border-color: #080808;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+#final-sum{
+  border-top-style: solid;
+  margin-top:100px;
+}
