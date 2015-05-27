@@ -1,55 +1,211 @@
 <link href="../../styles/checkout/invoice.css" rel="stylesheet" />
 
-<div class="wrapper">
-  <table>
-    <tr class="topEntity detail">
-      <td> img</td>
-      <td>60 Hazelwood Dr. <br> Suite 110<br> Champaign, IL, 61820</td>
-      <td>phone: (217) 903-4563 <br> Fax: (217) 332-1560 <br> www.intelliwheels.net </td>
-    </tr>
-    <tr class="topEntity detail">
-      <td> <h1><strong>INVOICE</strong></h1></td>
-      <td>BILL TO: <br> Scott Daigle<br> Unicorn Worldwide, Inc. <br> 1701 Crossroads Dr. <br> Joliet, Mars, 99999</td>
-      <td>SHIP TO: <br> Intelliwheels, Inc. <br> Suite 110 <br>Champaign, IL, 61820</td>
-    </tr>
-    <tr class="topEntity detail">
-      <td> <strong>Purchase Date:<br>Terms:<br>F.O.B<br>Ship Via:</strong></td>
-      <td>Dec. 19, 2012<br>Net 30<br>Champaign, IL<br>Best</td>
-      <td>
-        The following number must appear on all invoices, bills of landing, and acknowledgements relating to this purchase order:<br><br>
-        <span><h2>PURCHASE ORDER: 2000</h2></span>
-      </td>
-    </tr>
-    <tr >
-      <td>Part</td>
-      <td>Option Chosen</td>
-      <td>Color</td>
-    </tr>
-    <tr  data-ng-repeat="p in wheelchairs[0].parts">
-      <td><strong>{{getPartDetails(p).partName}}</strong></td>
-      <td>{{getPartDetails(p).optionName}}</td>
-      <td>{{getPartDetails(p).colorName}}</td>
-      <td>{{getPartDetails(p).priceString}}</td>
-    </tr>
-    <tr class="detail" data-ng-repeat="m in wheelchairs[0].measures">
-      <td><strong>{{getMeasureDetails(m).name}}</strong></td>
-      <td>{{getMeasureDetails(m).option}}</td>
-      <td>{{getMeasureDetails(m).price}}</td>
-    </tr>
-    <tr>
-      <td>Sales tax rate: 8.7%</td>
-      <td>Shipping: <span>${{wheelchairs[0].calcPrice.toFixed(2)}}</span></td>
-    </tr>
-    <tr>
-      <td>Tax: <span>${{wheelchairs[0].calcPrice.toFixed(2)*0.087}}</span></td>
-    </tr>
-    <tr>
-      <td>other: </td>
-      <td>$0</td>
-    </tr>
-    <tr class="detail">
-      <td >TOTAL:</td>
-      <td>$1358.01</td>
-    </tr>
-  </table>
+<div class="page">
+  <div class="wrapper">
+    <div class="details">
+      <h2>ABACUS</h2>
+      <table>
+        <tr>
+          <td class="label">Name:</td>
+          <td class="value">MyName</td>
+        </tr>
+        <tr>
+          <td class="label">Manufacturer:</td>
+          <td class="value">manu</td>
+        </tr>
+        <tr>
+          <td class="label">Price:</td>
+          <td class="value">$1</td>
+        </tr>
+        <tr>
+          <td class="label">Model:</td>
+          <td class="value">CKE</td>
+        </tr>
+        <tr>
+          <td class="label">Design Date:</td>
+          <td class="value">05.21.2014</td>
+        </tr>
+        <tr>
+          <td class="label">Weight:</td>
+          <td class="value">123lb</td>
+        </tr>
+        <tr>
+          <td class="label">Order Number:</td>
+          <td class="value">123456</td>
+        </tr>
+      </table>
+    </div>
+    <div class="images">
+      <img class="front-page-disp" src="../../images/pangding.jpg"/>
+      <img class="front-page-disp" src="../../images/pangding.jpg"/>
+      <img class="front-page-disp" src="../../images/pangding.jpg"/>
+    </div>
+  </div>
+  <span id="footer">Powered by</span>
+</div>
+<div class="page">
+  <div class="wrapper">
+    <div class="details">
+      <h2>ABACUS</h2>
+      <table>
+        <tr>
+          <td class="label">Name:</td>
+          <td class="value">MyName</td>
+        </tr>
+        <tr>
+          <td class="label">Manufacturer:</td>
+          <td class="value">manu</td>
+        </tr>
+        <tr>
+          <td class="label">Price:</td>
+          <td class="value">$1</td>
+        </tr>
+        <tr>
+          <td class="label">Model:</td>
+          <td class="value">CKE</td>
+        </tr>
+        <tr>
+          <td class="label">Design Date:</td>
+          <td class="value">05.21.2014</td>
+        </tr>
+        <tr>
+          <td class="label">Weight:</td>
+          <td class="value">123lb</td>
+        </tr>
+        <tr>
+          <td class="label">Order Number:</td>
+          <td class="value">123456</td>
+        </tr>
+      </table>
+    </div>
+    <div class="images">
+      <img class="front-page-disp" src="../../images/pangding.jpg"/>
+      <img class="front-page-disp" src="../../images/pangding.jpg"/>
+      <img class="front-page-disp" src="../../images/pangding.jpg"/>
+    </div>
+  </div>
+  <span id="footer">Powered by</span>
+</div>
+<div class="page">
+  <div class="wrapper">
+    <div class="details">
+      <h2>ABACUS</h2>
+      <table>
+        <tr>
+          <td class="label">Name:</td>
+          <td class="value">MyName</td>
+        </tr>
+        <tr>
+          <td class="label">Manufacturer:</td>
+          <td class="value">manu</td>
+        </tr>
+        <tr>
+          <td class="label">Price:</td>
+          <td class="value">$1</td>
+        </tr>
+        <tr>
+          <td class="label">Model:</td>
+          <td class="value">CKE</td>
+        </tr>
+        <tr>
+          <td class="label">Design Date:</td>
+          <td class="value">05.21.2014</td>
+        </tr>
+        <tr>
+          <td class="label">Weight:</td>
+          <td class="value">123lb</td>
+        </tr>
+        <tr>
+          <td class="label">Order Number:</td>
+          <td class="value">123456</td>
+        </tr>
+      </table>
+    </div>
+    <div class="images">
+      <img class="front-page-disp" src="../../images/pangding.jpg"/>
+      <img class="front-page-disp" src="../../images/pangding.jpg"/>
+      <img class="front-page-disp" src="../../images/pangding.jpg"/>
+    </div>
+  </div>
+  <span id="footer">Powered by</span>
+</div>
+
+<div class="page">
+  <div class="wrapper2">
+    <div id="intelliwheels-info">
+      <img id="logo" src="../../images/tiarrow_logo.png"/>
+      <div id="address">
+        <p>60 Hazelwood Dr.</p>
+        <p>Suite 110</p>
+        <p>Champaign, IL, 61820</p>
+      </div>
+      <div id="contact">
+        <p>Phone: (217)903-4563</p>
+        <p>Fax: (217)332-1560</p>
+        <p>www.intelliwheels.net</p>
+      </div>
+    </div>
+    <div id="summary">
+      <h3>SUMMARY</h3>
+      <table>
+        <tr>
+          <td class="label">Purchase Date:</td>
+          <td class="value2">Dec. 19, 2012</td>
+        </tr>
+        <tr>
+          <td class="label">Terms:</td>
+          <td class="value2">Net 30</td>
+        </tr>
+        <tr>
+          <td class="label">Ship Via:</td>
+          <td class="value2">Best</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="address">
+              <h4>BILL TO:</h4>
+              <p>Kevin Hale</p>
+              <p>Unisource Worldwide, Inc.</p>
+              <p>1701 Crossroads Dr.</p>
+              <p>Joliet, IL 60431</p>
+            </div>
+          </td>
+          <td class="value2">
+            <div class="address">
+              <h4>SHIP TO:</h4>
+              <p>Intelliwheels, Inc.</p>
+              <p>60 Hazelwood Dr.</p>
+              <p>Suite 110</p>
+              <p>Champaign, IL, 61820</p>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="wheelchair-sum">
+      <table>
+        <tr class="header">
+          <td class="qty">Qty</td>
+          <td>Details</td>
+          <td class="price">Price</td>
+        </tr>
+        <tr>
+          <td class="qty">2000</td>
+          <td>Wheelchair 1</td>
+          <td class="price">$1234</td>
+        </tr>
+        <tr>
+          <td class="qty">1</td>
+          <td>Wheelchair 2</td>
+          <td class="price">$1234</td>
+        </tr>
+      </table>
+    </div>
+    <div id="final-sum">
+      <div id="tax">
+        <p>Sales tax rate:</p>
+        <p>8.75%</p>
+      </div>
+    </div>
+  </div>
 </div>
