@@ -56,6 +56,20 @@ p.description-result{
   
 }
 
+p.price-bold{
+  padding-top: 10px;
+  padding-left: 80px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+p.price{
+  padding-top: 10px;
+  padding-right: 115px;
+  font-size: 17px;
+}
+
+
 img.wheel_measurement_one{
   width: 300px;
 }
@@ -135,6 +149,7 @@ h3{
 }
 
 table{
+  border-spacing: 0px;
   width:100%;
   border-collapse: collapse;
 }
