@@ -1,5 +1,6 @@
   <link href="../../styles/checkout/invoice.css" rel="stylesheet" />
     <div id="invoice-body" ng-repeat="wheelchair in wheelchairs">
+
       <div class="page">
         <div class="wrapper">
           <div class="details">
@@ -33,21 +34,22 @@
           </div>
           <div class="images">
             <img class="front-page-disp first-image"
-                 ng-repeat="img in getPreviewImages(wheelchair, 1)"
+                 ng-repeat="img in topImageSets[$index]"
                  ng-src="{{img.URL}}"
                  ng-style="{'z-index': $index }" />
             <img class="front-page-disp second-image"
-                 ng-repeat="img in getPreviewImages(wheelchair, 3)"
+                 ng-repeat="img in midImageSets[$index]"
                  ng-src="{{img.URL}}"
                  ng-style="{'z-index': $index }" />
             <img class="front-page-disp third-image"
-                 ng-repeat="img in getPreviewImages(wheelchair, 2)"
+                 ng-repeat="img in botImageSets[$index]"
                  ng-src="{{img.URL}}"
                  ng-style="{'z-index': $index }" />
           </div>
         </div>
         <span class="footer">Powered by</span>
       </div>
+
       <div class="page">
         <div class="wrapper">
           <div class="details">
@@ -91,83 +93,27 @@
         </div>
         <span class="footer">Powered by</span>
       </div>
+
       <div class="page">
         <div class="wrapper">
           <div class="measurements">
             <h3>Measurements</h3>
-
           </div>
-            <hr class="dark_line">
-          <p class="description">
-            Rear Sear Height
-          </p>
-          <p class="description-result">
-            35 cm / 13.78 in
-          </p>
-
-
-          <p class="description">
-            Front Seat Height
-          </p>
-          <p class="description-result">
-            24 cm / 9.45 in
-          </p>
-
-
-          <p class="description">
-            Seat Width
-          </p>
-          <p class="description-result">
-            24 cm / 9.45 in
-          </p>
-
-
-           <p class="description">
-            Seat Depth
-          </p>
-          <p class="description-result">
-            24 cm / 9.45 in
-          </p>
-
-
-           <p class="description">
-            Backrest Height
-          </p>
-          <p class="description-result">
-            24 cm / 9.45 in
-          </p>
-
-
-           <p class="description">
-            Axle Position
-          </p>
-          <p class="description-result">
-            24 cm / 9.45 in
-          </p>
-
-
-           <p class="description">
-            Footrest Height
-          </p>
-          <p class="description-result">
-            24 cm / 9.45 in
-          </p>
-
-
-           <p class="description">
-            Footrest Width
-          </p>
-          <p class="description-result">
-            24 cm / 9.45 in
-          </p>
-
-
-         <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
-
+          <hr class="dark_line">
+          <div class="measure" ng-repeat="measure in measurements[$index]">
+            <p class="description">
+              {{measure.name}}
+            </p>
+            <p class="description-result">
+              {{measure.optionString}} / {{measure.altOptionString}}
+            </p>
+          </div>
+          <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
         </div>
         <span class="footer">Powered by</span>
       </div>
     </div>
+
     <div class="page">
       <div class="wrapper2">
         <div id="intelliwheels-info">
@@ -188,7 +134,7 @@
           <table>
             <tr>
               <td class="invoice-label">Purchase Date:</td>
-              <td class="value2">Dec. 19, 2012</td>
+              <td class="value2" ng-bind-html="date"></td>
             </tr>
             <tr>
               <td class="invoice-label">Terms:</td>
@@ -202,19 +148,15 @@
               <td>
                 <div class="address">
                   <h4>BILL TO:</h4>
-                  <p>Kevin Hale</p>
-                  <p>Unisource Worldwide, Inc.</p>
-                  <p>1701 Crossroads Dr.</p>
-                  <p>Joliet, IL 60431</p>
+                  <p ng-bind-html="name"></p>
+                  <p ng-bind-html="address"></p>
                 </div>
               </td>
               <td class="value2">
                 <div class="address">
                   <h4>SHIP TO:</h4>
-                  <p>Intelliwheels, Inc.</p>
-                  <p>60 Hazelwood Dr.</p>
-                  <p>Suite 110</p>
-                  <p>Champaign, IL, 61820</p>
+                  <p ng-bind-html="name"></p>
+                  <p ng-bind-html="address"></p>
                 </div>
               </td>
             </tr>
@@ -227,35 +169,30 @@
               <td>Details</td>
               <td class="price">Price</td>
             </tr>
-            <tr>
-              <td class="qty">2000</td>
-              <td>Wheelchair 1</td>
-              <td class="price">$1234</td>
-            </tr>
-            <tr>
+            <tr ng-repeat="wheelchair in wheelchairs">
               <td class="qty">1</td>
-              <td>Wheelchair 2</td>
-              <td class="price">$1234</td>
+              <td>{{wheelchair.getTitle()}}</td>
+              <td class="price">{{wheelchair.getTotalPrice().toFixed(2)}}</td>
             </tr>
           </table>
         </div>
         <div id="final-sum">
           <div id="tax">
               <p>Sales tax rate:</p>
-              <p>8.75%</p>
+              <p ng-bind-html="taxrate+'%'"></p>
           </div>
           <table>
             <tr>
               <td><p class="price-bold">Subtotal</p></td>
-              <td><p class="price">$2345</p></td>
+              <td><p class="price" ng-bind-html="'$'+subtotal"></p></td>
             </tr>
             <tr>
               <td><p class="price-bold">Shipping</p></td>
-              <td><p class="price">$23</p></td>
+              <td><p class="price" ng-bind-html="'$'+shipping"></p></td>
             </tr>
             <tr>
               <td><p class="price-bold">Tax</p></td>
-              <td><p class="price">$224</p></td>
+              <td><p class="price" ng-bind-html="'$'+tax"></p></td>
             </tr>
             <tr>
               <td><p class="price-bold">Discount</p></td>
@@ -268,7 +205,7 @@
                 <p class="price-bold">Total</p>
               </td>
               <td>
-               <p class="price">$234234</p>
+               <p class="price" ng-bind-html="'$'+total"></p>
               </td>
            </table>
           </hr>

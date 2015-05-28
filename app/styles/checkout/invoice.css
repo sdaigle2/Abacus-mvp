@@ -42,7 +42,7 @@ div.measurements{
 }
 
 p.description{
-  padding-top: 10px;
+  padding-top: 5px;
   padding-left: 35px;
   font-size: 16px;
   font-weight: bold;
@@ -50,7 +50,6 @@ p.description{
 
 
 p.description-result{
-  padding-top: 10px;
   padding-left: 55px;
   font-size: 14px;
 
@@ -90,16 +89,12 @@ div.images{
   padding-left: 15px;
 }
 
-.value2{
-  padding-left: 100px;
-}
-
 h2{
   font-size: 40px;
 }
 
 .front-page-disp{
-  height: 33%;
+  height: 30%;
   position: absolute;
 }
 

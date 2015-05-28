@@ -81,6 +81,15 @@ angular.module('abacuApp')
         return this.addr + a2;
       },
 
+      getFormattedAddr: function () {
+        var fullAddr = this.addr;
+        if(this.addr2 !== ''){
+          fullAddr += '<br>' + this.addr2;
+        }
+        fullAddr += '<br>' + this.city + ', ' + this.state + ', ' + this.zip;
+        return fullAddr;
+      },
+
       //The Order is "sent" if sentDate is non-null
       hasBeenSent: function () { return this.sentDate !== null; },
 
@@ -151,7 +160,7 @@ angular.module('abacuApp')
           curThis.orderNum = '1234'; //TODO: Set generated orderNum
           deferred.resolve();
 
-        }, 3000);      
+        }, 3000);
 
         return deferred.promise;
       }
