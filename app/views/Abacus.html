@@ -124,8 +124,7 @@
                    data-ng-show="getCurPage().index > 0"/>
               {{getCurPartData().name}}
               <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
-                   data-ng-click="pageSwitchStep(1)"
-                   data-ng-show="getCurPage().index < getCurPages().length - 1"/>
+                   data-ng-click="pageSwitchStep(1)"/>
             </h3>
           </div>
           <div class="sideBar-custom">
@@ -190,8 +189,7 @@
           <div class="sideBar-header text-center">
             <h3>
               <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
-                   data-ng-click="pageSwitchStep(-1)"
-                   data-ng-show="getCurPage().index > 0"/>
+                   data-ng-click="pageSwitchStep(-1)"/>
               {{getCurMeasureData().name}}
               <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
                    data-ng-click="pageSwitchStep(1)"

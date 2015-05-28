@@ -24,7 +24,8 @@ angular.module('abacuApp')
     $scope.subtotal = 0;
     $scope.shipping = Costs.SHIPPING_FEE;
     $scope.taxrate = (Costs.TAX_RATE*100).toFixed(2);
-
+    $scope.frameParts = [];
+    $scope.wheelParts = [];
 
     function getFrame(wheelchair){
       var frameID = wheelchair.getFrameID();
@@ -58,9 +59,35 @@ angular.module('abacuApp')
       $scope.subtotal = $scope.subtotal.toFixed(2);
     }
 
+    function getFrameParts() {
+      for(var i=0; i<$scope.wheelchairs.length; i++){
+        var frame = getFrame($scope.wheelchairs[i]);
+        var customizeDetails = [];
+        for(var j=0; j<frame.getWheelIndex(); j++){
+          var partDetails = $scope.wheelchairs[i].getPartDetails(frame.getPartByIndex(j).getID(), 0);
+          customizeDetails.push(partDetails);
+        }
+        $scope.frameParts.push(customizeDetails);
+      }
+    }
+
+    function getWheelParts() {
+      for(var i=0; i<$scope.wheelchairs.length; i++){
+        var frame = getFrame($scope.wheelchairs[i]);
+        var customizeDetails = [];
+        for(var j=frame.getWheelIndex(); j<frame.getNumParts(); j++){
+          var partDetails = $scope.wheelchairs[i].getPartDetails(frame.getPartByIndex(j).getID(), 0);
+          customizeDetails.push(partDetails);
+        }
+        $scope.wheelParts.push(customizeDetails);
+      }
+    }
+
     getImageSets();
     getMeasurements();
     getSubtotal();
+    getFrameParts();
+    getWheelParts();
 
     $scope.tax = ($scope.taxrate * $scope.subtotal / 100).toFixed(2);
     $scope.total = parseFloat($scope.subtotal) + parseFloat($scope.shipping) + parseFloat($scope.tax) - 23;

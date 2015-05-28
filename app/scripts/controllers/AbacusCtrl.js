@@ -240,13 +240,25 @@ angular.module('abacuApp')
 
     //Switches pages left/right based on dir
     $scope.pageSwitchStep = function (dir){
-      $scope.getCurPage().visitstatus = visitstatus.VISITED;
-      $scope.setCurPage($scope.getCurPage().index + dir);
+      if ($scope.getCurPageType() === $scope.pageType.MEASURE && dir === -1 && $scope.getCurPage().index === 0){
+        $scope.setCurPageType($scope.pageType.CUSTOMIZE);
+        $scope.getCurPage().visitstatus = visitstatus.VISITED;
+        $scope.setCurPage(pages.customizePages.length-1);
+      }
+      else
+      if ($scope.getCurPageType() === $scope.pageType.CUSTOMIZE && dir === 1 && $scope.getCurPage().index === pages.customizePages.length-1){
+        $scope.setCurPageType($scope.pageType.MEASURE);
+        $scope.getCurPage().visitstatus = visitstatus.VISITED;
+        $scope.setCurPage(0);
+      }
+      else {
+        $scope.getCurPage().visitstatus = visitstatus.VISITED;
+        $scope.setCurPage($scope.getCurPage().index + dir);
+      }
+
       $scope.getCurPage().visitstatus = visitstatus.CURRENT;
       $scope.closeAllPanels();
-      if ($scope.getCurPageType() === $scope.pageType.MEASURE) {
-        resetSelectedMeasureImageIndex();
-      }
+      resetSelectedMeasureImageIndex();
     };
 
     //Jump to the given page

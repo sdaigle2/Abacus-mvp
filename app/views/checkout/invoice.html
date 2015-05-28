@@ -1,555 +1,334 @@
-  <link href="../../styles/checkout/invoice.css" rel="stylesheet" />
-    <div id="invoice-body" ng-repeat="wheelchair in wheelchairs">
+<link href="../../styles/checkout/invoice.css" rel="stylesheet"/>
+<div id="invoice-body" ng-repeat="wheelchair in wheelchairs">
 
-<!-- FIRST PAGE -->
-      <div class="page">
-        <div class="wrapper">
-          <div class="details">
-            <h2>ABACUS</h2>
-            <table>
-              <tr>
-                <td class="invoice-label">Name:</td>
-                <td class="value" ng-bind-html="name"></td>
-              </tr>
-              <tr>
-                <td class="invoice-label">Manufacturer:</td>
-                <td class="value" ng-bind-html="getManufacturer(wheelchair)"></td>
-              </tr>
-              <tr>
-                <td class="invoice-label">Price:</td>
-                <td class="value" ng-bind-html="getBasePrice(wheelchair)"></td>
-              </tr>
-              <tr>
-                <td class="invoice-label">Model:</td>
-                <td class="value" ng-bind-html="getModel(wheelchair)"></td>
-              </tr>
-              <tr>
-                <td class="invoice-label">Weight:</td>
-                <td class="value" ng-bind-html="getBaseWeight(wheelchair)"></td>
-              </tr>
-              <tr>
-                <td class="invoice-label">Order Number:</td>
-                <td class="value" ng-bind-html="orderNum"></td>
-              </tr>
-            </table>
-          </div>
-          <div class="images">
-            <img class="front-page-disp first-image"
-                 ng-repeat="img in topImageSets[$index]"
-                 ng-src="{{img.URL}}"
-                 ng-style="{'z-index': $index }" />
-            <img class="front-page-disp second-image"
-                 ng-repeat="img in midImageSets[$index]"
-                 ng-src="{{img.URL}}"
-                 ng-style="{'z-index': $index }" />
-            <img class="front-page-disp third-image"
-                 ng-repeat="img in botImageSets[$index]"
-                 ng-src="{{img.URL}}"
-                 ng-style="{'z-index': $index }" />
-          </div>
-        </div>
-        <span class="footer">Powered by</span>
+  <!-- FIRST PAGE -->
+  <div class="page">
+    <div class="wrapper">
+      <div class="details">
+        <h2>ABACUS</h2>
+        <table>
+          <tr>
+            <td class="invoice-label">Name:</td>
+            <td class="value" ng-bind-html="name"></td>
+          </tr>
+          <tr>
+            <td class="invoice-label">Manufacturer:</td>
+            <td class="value" ng-bind-html="getManufacturer(wheelchair)"></td>
+          </tr>
+          <tr>
+            <td class="invoice-label">Price:</td>
+            <td class="value" ng-bind-html="getBasePrice(wheelchair)"></td>
+          </tr>
+          <tr>
+            <td class="invoice-label">Model:</td>
+            <td class="value" ng-bind-html="getModel(wheelchair)"></td>
+          </tr>
+          <tr>
+            <td class="invoice-label">Weight:</td>
+            <td class="value" ng-bind-html="getBaseWeight(wheelchair)"></td>
+          </tr>
+          <tr>
+            <td class="invoice-label">Order Number:</td>
+            <td class="value" ng-bind-html="orderNum"></td>
+          </tr>
+        </table>
       </div>
-
-<!-- PART DESCRIPTION PAGE -->
-      <div class="page">
-        <div class="wrapper">
-        <div class="top_text">
-            <table class="desc_table">
-              <td>
-                
-                <p class="type">
-                  Type
-                </p>
-                
-              </td>
-              <td>
-           
-                 <p class="details">
-                  Details
-                </p>
-              
-              </td>
-              <td>
-               
-                 <p class="price_text">
-                  Price
-                 </p>
-                
-              </td>
-            </table>
-       
-         <hr class ="dark_line">
-
-         <table class="desc_table">
-          <td width="30%">
-          
-            <table>
-            <td>
-              <p class="big_bold_me">
-                Frame
-              </p>
-            </td>
-            <tr>
-            <td>
-              <img class="frame_img" src="../../images/pangding.jpg"/>
-            </td>
-            </tr>
-            </table>
-            
-          </p>
-          </td>
-          <td width="30%">
-          
-            <table>
-
-              <td>
-                <p class="detailed_text">
-                Frame Style
-                </p>
-              </td>
-              <tr>
-              <td>
-                <p class="selection">
-                --
-                </p>
-              </td>
-
-              <tr>
-              <td>
-                <p class="detailed_text">
-                Accent Color
-                </p>
-              </td>
-              <tr>
-              <td>
-                <p class="selection">
-                --
-                </p>
-              </td>
-
-              <tr>
-              <td>
-                <p class="detailed_text">
-                Backrest
-                </p>
-              </td>
-              <tr>
-              <td>
-                <p class="selection">
-                --
-                </p>
-              </td>
-
-              <tr>
-              <td>
-                <p class="detailed_text">
-                Hand Rims
-                </p>
-              </td>
-              <tr>
-              <td>
-                <p class="selection">
-                --
-                </p>
-              </td>
-
-
-              <tr>
-              <td>
-                <p class="detailed_text">
-                Inner Tube
-                </p>
-              </td>
-              <tr>
-              <td>
-                <p class="selection">
-                --
-                </p>
-              </td>
-
-
-              <tr>
-              <td>
-                <p class="detailed_text">
-                Brakes
-                </p>
-              </td>
-              <tr>
-              <td>
-                <p class="selection">
-                --
-                </p>
-              </td>
-
-
-              <tr>
-              <td>
-                <p class="detailed_text">
-                Side Guard
-                </p>
-              </td>
-              <tr>
-              <td>
-                <p class="selection">
-                --
-                </p>
-              </td>
-
-
-            </table>
-
-          </td>
-          <td width="30%">
-          
-
-          <table height="100%"  class="priced_table">
-            <td>
-              <p class="priced_text">
-                $1234
-              </p>
-            </td>
-
-            <tr>
-            <td>
-              <p class="priced_text">
-                $1234
-              </p>
-            </td>
-
-            <tr>
-            <td>
-              <p class="priced_text">
-                $1234
-              </p>
-            </td>
-
-            <tr>
-            <td>
-              <p class="priced_text">
-                $1234
-              </p>
-            </td>
-
-            <tr>
-            <td>
-              <p class="priced_text">
-                $1234
-              </p>
-            </td>
-
-            <tr>
-            <td>
-              <p class="priced_text">
-                $1234
-              </p>
-            </td>
-
-            <tr>
-            <td>
-              <p class="priced_text">
-                $1234
-              </p>
-            </td>
-          </table>
-          </td>
-         </table>
-         <hr class="dark_line">
-
-
-
-
-
-
-
-
-          <table class="desc_table">
-          <td width="30%">
-          
-            <table class="wheel_frame">
-            <td>
-              <p class="big_bold_me">
-                Wheel
-              </p>
-            </td>
-            <tr>
-            <td>
-              <img class="frame_img_wheel" src="../../images/pangding.jpg"/>
-            </td>
-            </tr>
-            </table>
-            
-          </p>
-          </td>
-          <td width="30%">
-          
-            <table class="wheel_selection">
-
-              <td>
-                <p class="detailed_text">
-                Wheel Rim
-                </p>
-              </td>
-              <tr>
-              <td>
-                <p class="selection">
-                --
-                </p>
-              </td>
-
-              <tr>
-              <td>
-                <p class="detailed_text">
-                Tire
-                </p>
-              </td>
-              <tr>
-              <td>
-                <p class="selection">
-                --
-                </p>
-              </td>
-
-              <tr>
-              <td>
-                <p class="detailed_text">
-                Caster Style
-                </p>
-              </td>
-              <tr>
-              <td>
-                <p class="selection">
-                --
-                </p>
-              </td>
-
-              <tr>
-              <td>
-                <p class="detailed_text">
-                Caster Size
-                </p>
-              </td>
-              <tr>
-              <td>
-                <p class="selection">
-                --
-                </p>
-              </td>
-            </table>
-
-          </td>
-          <td width="30%">
-          
-
-          <table height="100%" class="priced_table_wheel">
-            <td>
-              <p class="priced_text">
-                $1234
-              </p>
-            </td>
-
-            <tr>
-            <td>
-              <p class="priced_text">
-                $1234
-              </p>
-            </td>
-
-            <tr>
-            <td>
-              <p class="priced_text">
-                $1234
-              </p>
-            </td>
-
-            <tr>
-            <td>
-              <p class="priced_text">
-                $1234
-              </p>
-            </td>
-
-           
-          </table>
-          </td>
-         </table>
-
-         <hr class="dark_line">
-
-         <div id="final-sum-frames">
-          <div id="tax">
-              <p>Sales tax rate:</p>
-              <p ng-bind-html="taxrate+'%'"></p>
-          </div>
-          <table>
-            <tr>
-              <td><p class="price-bold">Subtotal</p></td>
-              <td><p class="price" ng-bind-html="'$'+subtotal"></p></td>
-            </tr>
-            <tr>
-              <td><p class="price-bold">Shipping</p></td>
-              <td><p class="price" ng-bind-html="'$'+shipping"></p></td>
-            </tr>
-            <tr>
-              <td><p class="price-bold">Tax</p></td>
-              <td><p class="price" ng-bind-html="'$'+tax"></p></td>
-            </tr>
-            <tr>
-              <td><p class="price-bold">Discount</p></td>
-              <td><p class="price">$23</p></td>
-            </tr>
-          </table>
-          <hr class="dark_line">
-            <table>
-              <td>
-                <p class="price-bold">Total</p>
-              </td>
-              <td>
-               <p class="price" ng-bind-html="'$'+total"></p>
-              </td>
-           </table>
-          </hr>
-        </div>
-
-
-
-
-        </div>
-        </div>
-        <span class="footer">Powered by</span>
+      <div class="images">
+        <img class="front-page-disp first-image"
+             ng-repeat="img in topImageSets[$index]"
+             ng-src="{{img.URL}}"
+             ng-style="{'z-index': $index }"/>
+        <img class="front-page-disp second-image"
+             ng-repeat="img in midImageSets[$index]"
+             ng-src="{{img.URL}}"
+             ng-style="{'z-index': $index }"/>
+        <img class="front-page-disp third-image"
+             ng-repeat="img in botImageSets[$index]"
+             ng-src="{{img.URL}}"
+             ng-style="{'z-index': $index }"/>
       </div>
+    </div>
+    <span class="footer">Powered by</span>
+  </div>
 
-<!-- MEASUREMENTS PAGE -->
-      <div class="page">
-        <div class="wrapper">
-          <div class="measurements">
-            <h3>Measurements</h3>
-          </div>
-          <hr class="dark_line">
-          <table>
+  <!-- PART DESCRIPTION PAGE -->
+  <div class="page">
+    <div class="wrapper">
+      <div class="top_text">
+        <table class="desc_table">
+          <tr>
+            <td>
+              <p class="type">
+                Type
+              </p>
+            </td>
+            <td>
+              <p class="details">
+                Details
+              </p>
+            </td>
+            <td>
+              <p class="price_text">
+                Price
+              </p>
+            </td>
+          </tr>
+        </table>
+        <hr class="dark_line">
+        <table class="desc_table">
+          <tr>
+            <td width="30%">
+              <table>
+                <tr>
+                  <td>
+                    <p class="big_bold_me">
+                      Frame
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img class="frame_img" src="../../images/pangding.jpg"/>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td width="60%">
+              <table>
+                <tbody ng-repeat="part in frameParts[$index]">
+                <tr>
+                  <td>
+                    <p class="detailed_text">
+                      {{part.partName}}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="selection">
+                      {{part.optionName}}
+                    </p>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+            <td width="10%">
+              <table class="priced_table">
+                <tr ng-repeat="part in frameParts[$index]">
+                  <td>
+                    <p class="priced_text">
+                      {{part.priceString}}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <hr class="dark_line">
+        <table class="desc_table">
+          <tr>
+            <td width="30%">
+              <table class="wheel_frame">
+                <tr>
+                  <td>
+                    <p class="big_bold_me">
+                      Wheel
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img class="frame_img_wheel" src="../../images/pangding.jpg"/>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td width="60%">
+              <table class="wheel_selection">
+                <tbody ng-repeat="part in wheelParts[$index]">
+                <tr>
+                  <td>
+                    <p class="detailed_text">
+                      {{part.partName}}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="selection">
+                      {{part.optionName}}
+                    </p>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
+            <td width="10%">
+              <table class="priced_table_wheel">
+                <tr ng-repeat="part in wheelParts[$index]">
+                  <td>
+                    <p class="priced_text">
+                      {{part.priceString}}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+        <hr class="dark_line">
+      </div>
+    </div>
+    <span class="footer">Powered by</span>
+  </div>
+
+  <!-- MEASUREMENTS PAGE -->
+  <div class="page">
+    <div class="wrapper">
+      <div class="measurements">
+        <h3>Measurements</h3>
+      </div>
+      <hr class="dark_line">
+      <table>
+        <tr>
           <td>
             <div class="measure" ng-repeat="measure in measurements[$index]">
               <p class="description">
                 {{measure.name}}
               </p>
+
               <p class="description-result">
                 {{measure.optionString}} / {{measure.altOptionString}}
               </p>
             </div>
-            </td>
-            <td>
-          <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
-          </td>
-          <tr>
-          <td>
-           <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
           </td>
           <td>
-           <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
+            <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
           </td>
-          </tr>
-          </table>
-        </div>
-        <span class="footer">Powered by</span>
-      </div>
+        </tr>
+        <tr>
+          <td>
+            <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
+          </td>
+          <td>
+            <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
+          </td>
+        </tr>
+      </table>
     </div>
+    <span class="footer">Powered by</span>
+  </div>
+</div>
 
 <!-- INTELLIWHEELS INFO PAGE -->
-    <div class="page">
-      <div class="wrapper2">
-        <div id="intelliwheels-info">
-          <img id="logo" src="../../images/tiarrow_logo.png"/>
-          <div id="address">
-            <p>60 Hazelwood Dr.</p>
-            <p>Suite 110</p>
-            <p>Champaign, IL, 61820</p>
-          </div>
-          <div id="contact">
-            <p>Phone: (217)903-4563</p>
-            <p>Fax: (217)332-1560</p>
-            <p>www.intelliwheels.net</p>
-          </div>
-        </div>
-        <div id="summary">
-          <h3>SUMMARY</h3>
-          <table>
-            <tr>
-              <td class="invoice-label">Purchase Date:</td>
-              <td class="value2" ng-bind-html="date"></td>
-            </tr>
-            <tr>
-              <td class="invoice-label">Terms:</td>
-              <td class="value2">Net 30</td>
-            </tr>
-            <tr>
-              <td class="invoice-label">Ship Via:</td>
-              <td class="value2">Best</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="address">
-                  <h4>BILL TO:</h4>
-                  <p ng-bind-html="name"></p>
-                  <p ng-bind-html="address"></p>
-                </div>
-              </td>
-              <td class="value2">
-                <div class="address">
-                  <h4>SHIP TO:</h4>
-                  <p ng-bind-html="name"></p>
-                  <p ng-bind-html="address"></p>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div id="wheelchair-sum">
-          <table>
-            <tr class="header">
-              <td class="qty">Qty</td>
-              <td>Details</td>
-              <td class="price">Price</td>
-            </tr>
-            <tr ng-repeat="wheelchair in wheelchairs">
-              <td class="qty">1</td>
-              <td>{{wheelchair.getTitle()}}</td>
-              <td class="price">{{wheelchair.getTotalPrice().toFixed(2)}}</td>
-            </tr>
-          </table>
-        </div>
-        <div id="final-sum">
-          <div id="tax">
-              <p>Sales tax rate:</p>
-              <p ng-bind-html="taxrate+'%'"></p>
-          </div>
-          <table>
-            <tr>
-              <td><p class="price-bold">Subtotal</p></td>
-              <td><p class="price" ng-bind-html="'$'+subtotal"></p></td>
-            </tr>
-            <tr>
-              <td><p class="price-bold">Shipping</p></td>
-              <td><p class="price" ng-bind-html="'$'+shipping"></p></td>
-            </tr>
-            <tr>
-              <td><p class="price-bold">Tax</p></td>
-              <td><p class="price" ng-bind-html="'$'+tax"></p></td>
-            </tr>
-            <tr>
-              <td><p class="price-bold">Discount</p></td>
-              <td><p class="price">$23</p></td>
-            </tr>
-          </table>
-          <hr class="dark_line">
-            <table>
-              <td>
-                <p class="price-bold">Total</p>
-              </td>
-              <td>
-               <p class="price" ng-bind-html="'$'+total"></p>
-              </td>
-           </table>
-          </hr>
-        </div>
+<div class="page">
+  <div class="wrapper2">
+    <div id="intelliwheels-info">
+      <img id="logo" src="../../images/tiarrow_logo.png"/>
+
+      <div id="address">
+        <p>60 Hazelwood Dr.</p>
+
+        <p>Suite 110</p>
+
+        <p>Champaign, IL, 61820</p>
+      </div>
+      <div id="contact">
+        <p>Phone: (217)903-4563</p>
+
+        <p>Fax: (217)332-1560</p>
+
+        <p>www.intelliwheels.net</p>
       </div>
     </div>
+    <div id="summary">
+      <h3>SUMMARY</h3>
+      <table>
+        <tr>
+          <td class="invoice-label">Purchase Date:</td>
+          <td class="value2" ng-bind-html="date"></td>
+        </tr>
+        <tr>
+          <td class="invoice-label">Terms:</td>
+          <td class="value2">Net 30</td>
+        </tr>
+        <tr>
+          <td class="invoice-label">Ship Via:</td>
+          <td class="value2">Best</td>
+        </tr>
+        <tr>
+          <td>
+            <div class="address">
+              <h4>BILL TO:</h4>
+
+              <p ng-bind-html="name"></p>
+
+              <p ng-bind-html="address"></p>
+            </div>
+          </td>
+          <td class="value2">
+            <div class="address">
+              <h4>SHIP TO:</h4>
+
+              <p ng-bind-html="name"></p>
+
+              <p ng-bind-html="address"></p>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="wheelchair-sum">
+      <table>
+        <tr class="header">
+          <td class="qty">Qty</td>
+          <td>Details</td>
+          <td class="price">Price</td>
+        </tr>
+        <tr ng-repeat="wheelchair in wheelchairs">
+          <td class="qty">1</td>
+          <td>{{wheelchair.getTitle()}}</td>
+          <td class="price">{{wheelchair.getTotalPrice().toFixed(2)}}</td>
+        </tr>
+      </table>
+    </div>
+    <div id="final-sum">
+      <div id="tax">
+        <p>Sales tax rate:</p>
+
+        <p ng-bind-html="taxrate+'%'"></p>
+      </div>
+      <table>
+        <tr>
+          <td><p class="price-bold">Subtotal</p></td>
+          <td><p class="price" ng-bind-html="'$'+subtotal"></p></td>
+        </tr>
+        <tr>
+          <td><p class="price-bold">Shipping</p></td>
+          <td><p class="price" ng-bind-html="'$'+shipping"></p></td>
+        </tr>
+        <tr>
+          <td><p class="price-bold">Tax</p></td>
+          <td><p class="price" ng-bind-html="'$'+tax"></p></td>
+        </tr>
+        <tr>
+          <td><p class="price-bold">Discount</p></td>
+          <td><p class="price">$23</p></td>
+        </tr>
+      </table>
+      <hr class="dark_line">
+      <table>
+        <tr>
+          <td>
+            <p class="price-bold">Total</p>
+          </td>
+          <td>
+            <p class="price" ng-bind-html="'$'+total"></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
