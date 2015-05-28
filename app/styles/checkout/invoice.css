@@ -186,6 +186,11 @@ table{
   margin-top:100px;
 }
 
+#final-sum-frames{
+  margin-left: 25px;
+  margin-top:0px;
+}
+
 hr.dark_line{
   width: 92%;
    padding-left: 25px;
@@ -194,4 +199,81 @@ hr.dark_line{
    /* Set the hr color */
    color: #333; /* old IE */
    background-color: #333; /* Modern Browsers */
+}
+
+div.top_text table.desc_table{
+  width: 92%;
+   margin-left: 25px;
+   margin-top: 10px;
+}
+div.top_text p.type{
+  font-size: 20px;
+  margin-left: 25px;
+}
+
+div.top_text p.details{
+  font-size: 20px;
+  text-align:center;
+  margin-left: 25px;
+}
+
+div.top_text p.price_text{
+  font-size: 20px;
+  text-align:right;
+  margin-right: 25px;
+}
+
+
+div.top_text p.big_bold_me{
+  font-size: 24px;
+  font-weight: bold;
+}
+
+div.top_text p.detailed_text{
+  font-size: 20px;
+  margin-left: 45px;
+  font-weight: bold;
+}
+
+div.top_text table.priced_table{
+  margin-bottom: 5px;
+}
+
+
+
+div.top_text p.priced_text{
+   text-align: right;
+   font-size: 20px;
+   margin-right: 23px;
+   margin-top: 24px;
+}
+
+div.top_text p.selection{
+  font-size: 20px;
+  margin-left: 70px;
+}
+
+img.frame_img{
+  width:250px;
+  margin-bottom: 80px;
+
+}
+
+img.frame_img_wheel{
+  width:250px;
+  margin-bottom: 0px;
+
+}
+
+div.top_text table.wheel_selection{
+  margin-bottom: 75px;
+}
+
+
+div.top_text table.wheel_frame{
+  margin-bottom: 0px;
+}
+
+div.top_text table.priced_table_wheel{
+  margin-bottom: 75px;
 }
