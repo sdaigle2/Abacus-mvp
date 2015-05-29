@@ -55,7 +55,7 @@
   <div class="page">
     <div class="wrapper">
       <div class="top_text">
-        <table class="desc_table">
+        <table class="desc_table dark_line">
           <tr>
             <td>
               <p class="type">
@@ -74,11 +74,10 @@
             </td>
           </tr>
         </table>
-        <hr class="dark_line">
-        <table class="desc_table">
+        <table class="desc_table dark_line">
           <tr>
             <td width="30%">
-              <table>
+              <table class="wheel_frame">
                 <tr>
                   <td>
                     <p class="big_bold_me">
@@ -126,8 +125,7 @@
             </td>
           </tr>
         </table>
-        <hr class="dark_line">
-        <table class="desc_table">
+        <table class="desc_table dark_line">
           <tr>
             <td width="30%">
               <table class="wheel_frame">
@@ -178,7 +176,6 @@
             </td>
           </tr>
         </table>
-        <hr class="dark_line">
       </div>
     </div>
     <span class="footer">Powered by</span>
@@ -187,10 +184,9 @@
   <!-- MEASUREMENTS PAGE -->
   <div class="page">
     <div class="wrapper">
-      <div class="measurements">
+      <div class="measurements dark_line">
         <h3>Measurements</h3>
       </div>
-      <hr class="dark_line">
       <table>
         <tr>
           <td>
@@ -198,7 +194,6 @@
               <p class="description">
                 {{measure.name}}
               </p>
-
               <p class="description-result">
                 {{measure.optionString}} / {{measure.altOptionString}}
               </p>
@@ -244,19 +239,19 @@
       </div>
     </div>
     <div id="summary">
-      <h3>SUMMARY</h3>
+      <h3 id="sum-head">SUMMARY</h3>
       <table>
         <tr>
-          <td class="invoice-label">Purchase Date:</td>
-          <td class="value2" ng-bind-html="date"></td>
+          <td class="invoice-label"><p>Purchase Date:</p></td>
+          <td class="value2"><p ng-bind-html="date"></p></td>
         </tr>
         <tr>
-          <td class="invoice-label">Terms:</td>
-          <td class="value2">Net 30</td>
+          <td class="invoice-label"><p>Terms:</p></td>
+          <td class="value2"><p>Net 30</p></td>
         </tr>
         <tr>
-          <td class="invoice-label">Ship Via:</td>
-          <td class="value2">Best</td>
+          <td class="invoice-label"><p>Ship Via:</p></td>
+          <td class="value2"><p>Best</p></td>
         </tr>
         <tr>
           <td>
@@ -283,14 +278,14 @@
     <div id="wheelchair-sum">
       <table>
         <tr class="header">
-          <td class="qty">Qty</td>
-          <td>Details</td>
-          <td class="price">Price</td>
+          <td class="qty"><p>Qty</p></td>
+          <td><p>Details</p></td>
+          <td><p class="price">Price</p></td>
         </tr>
         <tr ng-repeat="wheelchair in wheelchairs">
-          <td class="qty">1</td>
-          <td>{{wheelchair.getTitle()}}</td>
-          <td class="price">{{wheelchair.getTotalPrice().toFixed(2)}}</td>
+          <td class="qty"><p>1</p></td>
+          <td><p>{{wheelchair.getTitle()}}</p></td>
+          <td><p class="price">{{wheelchair.getTotalPrice().toFixed(2)}}</p></td>
         </tr>
       </table>
     </div>
@@ -300,7 +295,7 @@
 
         <p ng-bind-html="taxrate+'%'"></p>
       </div>
-      <table>
+      <table class="dark_line final-sum-table">
         <tr>
           <td><p class="price-bold">Subtotal</p></td>
           <td><p class="price" ng-bind-html="'$'+subtotal"></p></td>
@@ -318,8 +313,7 @@
           <td><p class="price">$23</p></td>
         </tr>
       </table>
-      <hr class="dark_line">
-      <table>
+      <table class="final-sum-table">
         <tr>
           <td>
             <p class="price-bold">Total</p>

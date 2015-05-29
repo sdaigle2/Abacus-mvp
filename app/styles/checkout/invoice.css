@@ -1,19 +1,22 @@
+
 .page{
-  width: 820px;
-  height: 1061px;
+  width: 8.5in;
+  height: 11in;
   margin-left: auto;
   margin-right: auto;
 }
 
 .wrapper{
-  width: 724px;
-  height: 916px;
+  width: 7.5in;
+  height: 9.5in;
   border-style: solid;
   border-width: 5px;
   margin-left:auto;
   margin-right:auto;
   margin-top: 50px;
   margin-bottom: 45px;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 .wrapper2{
@@ -36,7 +39,8 @@ div.details{
 div.measurements{
   width: 92%;
   padding-top: 20px;
-  padding-left: 35px;
+  margin-left: 25px;
+  padding-left: 10px;
   display: inline-block;
   vertical-align: top;
 }
@@ -57,14 +61,12 @@ p.description-result{
 
 p.price-bold{
   padding-top: 10px;
-  padding-left: 80px;
   font-size: 17px;
   font-weight: bold;
 }
 
 p.price{
   padding-top: 10px;
-  padding-right: 115px;
   font-size: 17px;
 }
 
@@ -75,7 +77,7 @@ img.wheel_measurement_one{
 
 div.images{
   width: 45%;
-  height: 916px;
+  height: 100%;
   display: inline-block;
   vertical-align: top;
   position: relative;
@@ -94,7 +96,7 @@ h2{
 }
 
 .front-page-disp{
-  height: 30%;
+  height: 33%;
   position: absolute;
 }
 
@@ -138,7 +140,7 @@ p{
 }
 
 #summary{
-  width: 60%;
+  width: 69%;
   display: inline-block;
   vertical-align: top;
   padding-left:20px;
@@ -150,6 +152,10 @@ h3{
   margin-top:0;
   margin-bottom:7px;
   font-size: 20px;
+}
+
+#sum-head{
+  margin-bottom: 37px;
 }
 
 .address{
@@ -191,14 +197,14 @@ table{
   margin-top:0px;
 }
 
-hr.dark_line{
-  width: 92%;
-   padding-left: 25px;
-   border: none;
-   height: 2px;
-   /* Set the hr color */
-   color: #333; /* old IE */
-   background-color: #333; /* Modern Browsers */
+table.final-sum-table{
+  width: 478px;
+  float: right;
+}
+
+.dark_line{
+  border-bottom-style: solid;
+  width: 95%;
 }
 
 div.top_text table.desc_table{
@@ -214,7 +220,7 @@ div.top_text p.type{
 div.top_text p.details{
   font-size: 20px;
   text-align:center;
-  margin-left: 25px;
+  margin-left: 50px;
 }
 
 div.top_text p.price_text{
@@ -274,6 +280,15 @@ div.top_text table.wheel_frame{
   margin-bottom: 0px;
 }
 
+table.wheel_frame{
+  margin-left: 25px;
+}
+
 div.top_text table.priced_table_wheel{
   margin-bottom: 75px;
 }
+
+p{
+  font-size:17px;
+}
+

@@ -13,9 +13,10 @@
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/frame.css -->
 
-  <link href="styles/index.css" rel="stylesheet" />
+  <link href="styles/index.css" rel="stylesheet"/>
 
-  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic' rel='stylesheet'
+        type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
@@ -26,22 +27,23 @@
 <div id="backgrounder"></div>
 
 <!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
 <![endif]-->
 
-  <div >
+<div>
 
 
-    <div class="mainNavbar" data-ng-controller="HeaderController">
-
+  <div data-ng-controller="HeaderController">
+    <div class="mainNavbar" data-ng-if="!isActive('/invoice')">
       <div class="preload">
-        <img src="images/icons/on_frames.png" />
-        <img src="images/icons/on_about_us.png" />
+        <img src="images/icons/on_frames.png"/>
+        <img src="images/icons/on_about_us.png"/>
       </div>
 
       <div class="mainNavbar-header">
         <a class="mainNavbar-brand" href="#">
-          <img alt="Brand" src="images/tiarrow_logo.png" width="100" />
+          <img alt="Brand" src="images/tiarrow_logo.png" width="100"/>
         </a>
       </div>
       <ul class="mainNavbar-left">
@@ -60,8 +62,10 @@
             <div ng-show="windowPop" class="window">
               <p>EMAIL ADDRESS</p>
               <input type="text" data-ng-model="loginModel.email"/>
+
               <p>PASSWORD</p>
               <input type="password" data-ng-model="loginModel.password"/>
+
               <div class="login-optionrow">
                 <span data-ng-click="recoverPassword()">Forgot password</span> <span data-ng-click="register()">Register >></span>
               </div>
@@ -71,82 +75,84 @@
             </div>
           </div>
         </li>
-        <li class="settingsButton" data-ng-if="user.isLoggedIn()"><a ng-href="#/settings">{{user.getFullName()}}</a></li>
+        <li class="settingsButton" data-ng-if="user.isLoggedIn()"><a ng-href="#/settings">{{user.getFullName()}}</a>
+        </li>
       </ul>
-
     </div>
-
-    <div id="appContainer" ng-view=""></div> <!-- Angular App -->
   </div>
 
-
-  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-  <!--
-  <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-XXXXX-X');
-    ga('send', 'pageview');
-  </script>
-    -->
-
-  <!-- build:js(.) scripts/oldieshim.js -->
-  <!--[if lt IE 9]>
-  <script src="bower_components/es5-shim/es5-shim.js"></script>
-  <script src="bower_components/json3/lib/json3.js"></script>
-  <![endif]-->
-  <!-- endbuild -->
-
-  <!-- build:js(.) scripts/vendor.js -->
-  <!-- bower:js -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="bower_components/angular-resource/angular-resource.js"></script>
-  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-  <script src="bower_components/angular-touch/angular-touch.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <!-- endbower -->
-  <!-- endbuild -->
+  <div id="appContainer" ng-view=""></div>
+  <!-- Angular App -->
+</div>
 
 
-  <!-- build:js({.tmp,app}) scripts/scripts.js -->
-  <script src="scripts/app.js"></script>
-  <script src="scripts/controllers/FrameCtrl.js"></script>
-  <script src="scripts/controllers/AboutCtrl.js"></script>
-  <script src="scripts/controllers/AbacusCtrl.js"></script>
-  <script src="scripts/controllers/checkout/CartCtrl.js"></script>
-  <script src="scripts/controllers/checkout/CheckoutCtrl.js"></script>
-  <script src="scripts/controllers/checkout/OrderCtrl.js"></script>
-  <script src="scripts/controllers/checkout/InvoiceCtrl.js"></script>
-  <script src="scripts/controllers/SettingsCtrl.js"></script>
-  <script src="scripts/controllers/HeaderController.js"></script>
-  <!-- endbuild -->
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<!--
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  <!--services-->
+  ga('create', 'UA-XXXXX-X');
+  ga('send', 'pageview');
+</script>
+  -->
 
-  <script src="scripts/services/factories/colorFactory.js"></script>
-  <script src="scripts/services/factories/optionFactory.js"></script>
-  <script src="scripts/services/factories/partFactory.js"></script>
-  <script src="scripts/services/factories/measureFactory.js"></script>
-  <script src="scripts/services/factories/frameFactory.js"></script>
-  <script src="scripts/services/factories/orderFactory.js"></script>
-  <script src="scripts/services/factories/wheelchairFactory.js"></script>
-  <script src="scripts/services/factories/previewImageFactory.js"></script>
+<!-- build:js(.) scripts/oldieshim.js -->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<![endif]-->
+<!-- endbuild -->
 
-  <script src="scripts/services/services/userService.js"></script>
-  <script src="scripts/services/services/frameDataService.js"></script>
-  <script src="scripts/services/services/syncJSON.js"></script>
-  <script src="scripts/services/services/angleService.js"></script>
-  <script src="scripts/services/services/unitService.js"></script>
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
 
-  <script src="scripts/services/constants/bankConstants.js"></script>
-  <script src="scripts/services/constants/costConstants.js"></script>
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/FrameCtrl.js"></script>
+<script src="scripts/controllers/AboutCtrl.js"></script>
+<script src="scripts/controllers/AbacusCtrl.js"></script>
+<script src="scripts/controllers/checkout/CartCtrl.js"></script>
+<script src="scripts/controllers/checkout/CheckoutCtrl.js"></script>
+<script src="scripts/controllers/checkout/OrderCtrl.js"></script>
+<script src="scripts/controllers/checkout/InvoiceCtrl.js"></script>
+<script src="scripts/controllers/SettingsCtrl.js"></script>
+<script src="scripts/controllers/HeaderController.js"></script>
+<!-- endbuild -->
+
+<!--services-->
+
+<script src="scripts/services/factories/colorFactory.js"></script>
+<script src="scripts/services/factories/optionFactory.js"></script>
+<script src="scripts/services/factories/partFactory.js"></script>
+<script src="scripts/services/factories/measureFactory.js"></script>
+<script src="scripts/services/factories/frameFactory.js"></script>
+<script src="scripts/services/factories/orderFactory.js"></script>
+<script src="scripts/services/factories/wheelchairFactory.js"></script>
+<script src="scripts/services/factories/previewImageFactory.js"></script>
+
+<script src="scripts/services/services/userService.js"></script>
+<script src="scripts/services/services/frameDataService.js"></script>
+<script src="scripts/services/services/syncJSON.js"></script>
+<script src="scripts/services/services/angleService.js"></script>
+<script src="scripts/services/services/unitService.js"></script>
+
+<script src="scripts/services/constants/bankConstants.js"></script>
+<script src="scripts/services/constants/costConstants.js"></script>
 
 </body>
 </html>

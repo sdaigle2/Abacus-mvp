@@ -44,4 +44,5 @@ angular.module('abacuApp')
 
       $scope.loginModel.password = '';
     };
+
 }]);
