@@ -76,7 +76,7 @@
         </table>
         <table class="desc_table dark_line">
           <tr>
-            <td width="30%">
+            <td class="wheel-image">
               <table class="wheel_frame">
                 <tr>
                   <td>
@@ -92,43 +92,37 @@
                 </tr>
               </table>
             </td>
-            <td width="60%">
+            <td width="70%">
               <table>
                 <tbody ng-repeat="part in frameParts[$index]">
                 <tr>
                   <td>
-                    <p class="detailed_text">
+                    <p class="description">
                       {{part.partName}}
                     </p>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <p class="selection">
+                    <p class="description-result">
                       {{part.optionName}}
+                    </p>
+                  </td>
+                  <td>
+                    <p class="description-result">
+                      {{part.priceString}}
                     </p>
                   </td>
                 </tr>
                 </tbody>
               </table>
             </td>
-            <td width="10%">
-              <table class="priced_table">
-                <tr ng-repeat="part in frameParts[$index]">
-                  <td>
-                    <p class="priced_text">
-                      {{part.priceString}}
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
           </tr>
         </table>
         <table class="desc_table dark_line">
           <tr>
-            <td width="30%">
-              <table class="wheel_frame">
+            <td class="wheel-image">
+              <table class="wheel_frame wheel_alt">
                 <tr>
                   <td>
                     <p class="big_bold_me">
@@ -143,40 +137,47 @@
                 </tr>
               </table>
             </td>
-            <td width="60%">
+            <td width="70%">
               <table class="wheel_selection">
                 <tbody ng-repeat="part in wheelParts[$index]">
                 <tr>
                   <td>
-                    <p class="detailed_text">
+                    <p class="description">
                       {{part.partName}}
                     </p>
                   </td>
                 </tr>
                 <tr>
                   <td>
-                    <p class="selection">
+                    <p class="description-result">
                       {{part.optionName}}
+                    </p>
+                  </td>
+                  <td>
+                    <p class="description-result">
+                      {{part.priceString}}
                     </p>
                   </td>
                 </tr>
                 </tbody>
               </table>
             </td>
-            <td width="10%">
-              <table class="priced_table_wheel">
-                <tr ng-repeat="part in wheelParts[$index]">
-                  <td>
-                    <p class="priced_text">
-                      {{part.priceString}}
-                    </p>
-                  </td>
-                </tr>
-              </table>
-            </td>
           </tr>
         </table>
       </div>
+      <table width="70%" class="wheel_selection"><tr>
+        <td>
+          <p class="description">
+            Subtotal
+          </p>
+        </td>
+        <td>
+          <p class="description-result">
+            {{part.priceString}}
+          </p>
+        </td>
+      </tr>
+      </table>
     </div>
     <span class="footer">Powered by</span>
   </div>
@@ -194,6 +195,7 @@
               <p class="description">
                 {{measure.name}}
               </p>
+
               <p class="description-result">
                 {{measure.optionString}} / {{measure.altOptionString}}
               </p>
@@ -290,39 +292,39 @@
       </table>
     </div>
     <div id="final-sum">
-      <div id="tax">
-        <p>Sales tax rate:</p>
-
-        <p ng-bind-html="taxrate+'%'"></p>
-      </div>
-      <table class="dark_line final-sum-table">
-        <tr>
-          <td><p class="price-bold">Subtotal</p></td>
-          <td><p class="price" ng-bind-html="'$'+subtotal"></p></td>
-        </tr>
-        <tr>
-          <td><p class="price-bold">Shipping</p></td>
-          <td><p class="price" ng-bind-html="'$'+shipping"></p></td>
-        </tr>
-        <tr>
-          <td><p class="price-bold">Tax</p></td>
-          <td><p class="price" ng-bind-html="'$'+tax"></p></td>
-        </tr>
-        <tr>
-          <td><p class="price-bold">Discount</p></td>
-          <td><p class="price">$23</p></td>
-        </tr>
-      </table>
-      <table class="final-sum-table">
-        <tr>
-          <td>
-            <p class="price-bold">Total</p>
-          </td>
-          <td>
-            <p class="price" ng-bind-html="'$'+total"></p>
-          </td>
-        </tr>
-      </table>
     </div>
+    <div id="tax">
+      <p>Sales tax rate:</p>
+
+      <p ng-bind-html="taxrate+'%'"></p>
+    </div>
+    <table class="dark_line final-sum-table">
+      <tr>
+        <td><p class="price-bold">Subtotal</p></td>
+        <td><p class="price" ng-bind-html="'$'+subtotal"></p></td>
+      </tr>
+      <tr>
+        <td><p class="price-bold">Shipping</p></td>
+        <td><p class="price" ng-bind-html="'$'+shipping"></p></td>
+      </tr>
+      <tr>
+        <td><p class="price-bold">Tax</p></td>
+        <td><p class="price" ng-bind-html="'$'+tax"></p></td>
+      </tr>
+      <tr>
+        <td><p class="price-bold">Discount</p></td>
+        <td><p class="price">$23</p></td>
+      </tr>
+    </table>
+    <table class="final-sum-table">
+      <tr>
+        <td>
+          <p class="price-bold">Total</p>
+        </td>
+        <td>
+          <p class="price" ng-bind-html="'$'+total"></p>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>

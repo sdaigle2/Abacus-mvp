@@ -60,19 +60,12 @@ p.description-result{
 }
 
 p.price-bold{
-  padding-top: 10px;
-  font-size: 17px;
   font-weight: bold;
 }
 
-p.price{
-  padding-top: 10px;
-  font-size: 17px;
-}
-
-
 img.wheel_measurement_one{
   width: 300px;
+  padding-left:35px;
 }
 
 div.images{
@@ -119,10 +112,6 @@ h2{
   margin-left: 458px;
 }
 
-p{
-  margin: 0;
-}
-
 #address{
   margin-bottom: 10px;
 }
@@ -150,8 +139,9 @@ p{
 
 h3{
   margin-top:0;
-  margin-bottom:7px;
+  margin-bottom:20px;
   font-size: 20px;
+  font-weight: bold;
 }
 
 #sum-head{
@@ -205,63 +195,63 @@ table.final-sum-table{
 .dark_line{
   border-bottom-style: solid;
   width: 95%;
+  margin-bottom: 20px;
 }
 
-div.top_text table.desc_table{
+table.desc_table{
   width: 92%;
    margin-left: 25px;
    margin-top: 10px;
 }
-div.top_text p.type{
-  font-size: 20px;
+p.type{
   margin-left: 25px;
+  margin-bottom: 20px;
 }
 
-div.top_text p.details{
-  font-size: 20px;
+p.details{
   text-align:center;
-  margin-left: 50px;
+  margin-left: 22px;
+  margin-bottom:20px;
 }
 
-div.top_text p.price_text{
-  font-size: 20px;
+p.price_text{
   text-align:right;
   margin-right: 25px;
+  margin-bottom: 20px;
 }
 
 
-div.top_text p.big_bold_me{
-  font-size: 24px;
+p.big_bold_me{
   font-weight: bold;
 }
 
-div.top_text p.detailed_text{
+p.detailed_text{
   font-size: 20px;
   margin-left: 45px;
   font-weight: bold;
 }
 
-div.top_text table.priced_table{
+table.priced_table{
   margin-bottom: 5px;
 }
 
 
 
-div.top_text p.priced_text{
+p.priced_text{
    text-align: right;
    font-size: 20px;
    margin-right: 23px;
    margin-top: 24px;
 }
 
-div.top_text p.selection{
+p.selection{
   font-size: 20px;
   margin-left: 70px;
 }
 
 img.frame_img{
   width:250px;
-  margin-bottom: 80px;
+  margin-bottom: 20px;
 
 }
 
@@ -271,24 +261,36 @@ img.frame_img_wheel{
 
 }
 
-div.top_text table.wheel_selection{
+table.wheel_selection{
   margin-bottom: 75px;
-}
-
-
-div.top_text table.wheel_frame{
-  margin-bottom: 0px;
+  float: right;
 }
 
 table.wheel_frame{
   margin-left: 25px;
 }
 
-div.top_text table.priced_table_wheel{
+table.priced_table_wheel{
   margin-bottom: 75px;
 }
 
 p{
-  font-size:17px;
+  font-size:16px;
+  margin: 2px;
 }
 
+.wheel-image{
+  width: 30%;
+}
+
+td{
+  vertical-align: top;
+}
+
+#tax{
+  float: left;
+}
+
+div.top_text{
+  height: 90%;
+}
