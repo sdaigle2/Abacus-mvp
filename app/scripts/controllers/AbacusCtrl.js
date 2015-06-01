@@ -20,6 +20,8 @@ angular.module('abacuApp')
       CURRENT: 'current'
     };
 
+    $scope.saveDropdown = false;
+
     //The two states for pages to be in
     $scope.pageType = {
       CUSTOMIZE: 0,
@@ -304,6 +306,12 @@ angular.module('abacuApp')
         return User.getCurEditWheelchair().getMeasureDetails(page.measureID, 0).name;}
       return 'ERROR: Invalid page type';
     };
+
+    /*********Save $ review Dropdown*********/
+      $scope.toggleSaveDropDown = function() {
+        $scope.saveDropdown = !$scope.saveDropdown;
+        console.log($scope.saveDropdown);
+      };
 
     /*****************Sidebar Tabs***************/
 

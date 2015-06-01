@@ -13,10 +13,35 @@
               ng-show="showProgressSegmentTooltip">{{getProgressBarSegmentTooltipText(page)}}</span>
       </span>
     </div>
-    <button type="button" id="SaveButton" class="btn btn-primary" data-ng-click="saveDesign()">Save & Review</button>
+    <button type="button" id="SaveButton" class="btn btn-primary" data-ng-click="toggleSaveDropDown()">Save & Review</button>
   </div>
 
-  <div class="appBody">
+  <div data-ng-class="{'dropdownButtonShow':saveDropdown === true }" class="dropdownButton">
+    <table class="dropdownTable" >
+      <tr >
+        <td ><img data-ng-click="saveDesign()" data-ng-src="images/abacus_page/save_review/save_to_my_design_hover.png">
+            <img data-ng-click="saveDesign()" class=" iconHover" data-ng-src="images/abacus_page/save_review/save_to_my_design.png">
+            <h4 data-ng-click="saveDesign()">SAVE TO MY DESIGN</h4>
+        </td>
+        <td><img  data-ng-src="images/abacus_page/save_review/save_to_computer_hover.png">
+            <img class="iconHover" data-ng-src="images/abacus_page/save_review/save_to_computer.png">
+           <h4>SAVE TO MY COMPUTER</h4>
+        </td>
+        <td><img  data-ng-src="images/abacus_page/save_review/share_with_friends_hover.png">
+            <img class="iconHover" data-ng-src="images/abacus_page/save_review/share_with_friends.png">
+            <h4>SHARE WITH FRIEND</h4>
+        </td>
+      </tr>
+      <!--<tr>-->
+        <!--<td> <h4>SAVE TO MY DESIGN</h4></td>-->
+        <!--<td> <h4>SAVE TO MY COMPUTER</h4></td>-->
+        <!--<td> <h4>SHARE WITH FRIEND</h4></td>-->
+      <!--</tr>-->
+
+    </table>
+  </div>
+
+  <div class="appBody" data-ng-class="{'appBodyShow':saveDropdown === true }">
 
   <!-- Price & Weight Display -->
     <div id="display">
@@ -32,6 +57,8 @@
         </h4>
       </div>
     </div>
+
+
 
     <!-- BODY -->
     <div class="main">

@@ -17,6 +17,8 @@
   position: relative;
   height: 30px;
   top: 0px;
+  z-index: 2;
+  background-color: white;
 }
 
 #progressSaveBar > .progressBar {
@@ -57,19 +59,87 @@
 }
 
 
+/*******Save & reveiw drodown buttun***********/
+.dropdownButtonReal {
+  background-color: white;
+}
+.dropdownButton {
+  position: relative;
+  z-index: -1;
+  top: -180px;
+  background-color: #FFFFFF;
+  height: 180px;
+  width: 100%;
+  transition: 0.5s;
+}
+
+.dropdownButtonShow {
+  position: relative;
+  z-index: 1;
+  top: 0;
+  transition: 0.5s;
+}
+
+.dropdownButton .dropdownTable {
+  height: 73%;
+  width: 80%;
+  position: relative;
+  top: 21px;
+  margin: auto ;
+  vertical-align: middle;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-collapse: separate;
+}
+
+.dropdownButton td {
+  height: 80px;
+  position: relative;
+}
+
+.dropdownButton img {
+  position: absolute;
+  top: 12px;
+  left: 129px;
+}
+
+.dropdownButton .iconHover:hover {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.dropdownButton table tr  h4 {
+  position: relative;
+  top: 42px;
+  left: 84px;
+}
+
+
+
 /******************Save Button********************/
 
 #SaveButton {
   width:10%;
-  height: 3%;
   max-height: 30px;
   background-color:#777;
   border-radius: 0px;
   border: none;
   text-align: center;
-  padding-bottom:2%;
+  padding-bottom:1%;
   float: right;
   font-size: 14px;
+}
+
+.appBody {
+  position: relative;
+  top: -180px;
+  transition: 0.5s;
+}
+
+.appBodyShow{
+  position: relative;
+  top: 0;
+  transition: 0.5s;
 }
 
 /******************* Price & Weight Display *****************/
@@ -235,65 +305,65 @@
 
 
 
-.main-measure .main-measure-top{
-  width: inherit;
-  height: 350px;
-  padding-right: 40px;
-}
+/*.main-measure .main-measure-top{*/
+  /*width: inherit;*/
+  /*height: 350px;*/
+  /*padding-right: 40px;*/
+/*}*/
 
-.main-measure .main-measure-title{
-  width: 240px;
-  float: left;
-  text-align: right;
-}
-.main-measure .main-measure-title h1{
-  clear: right;
-  float: right;
-  text-transform: uppercase;
-}
-.main-measure .main-measure-title h4{
-  clear: right;
-  float: right;
-  line-height: 1.2;
-}
-.main-measure .main-measure-title .divider {
-  width: 30%;
-  clear: right;
-  float: right;
-  height: 1px;
-  background-color: #000;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
+/*.main-measure .main-measure-title{*/
+  /*width: 240px;*/
+  /*float: left;*/
+  /*text-align: right;*/
+/*}*/
+/*.main-measure .main-measure-title h1{*/
+  /*clear: right;*/
+  /*float: right;*/
+  /*text-transform: uppercase;*/
+/*}*/
+/*.main-measure .main-measure-title h4{*/
+  /*clear: right;*/
+  /*float: right;*/
+  /*line-height: 1.2;*/
+/*}*/
+/*.main-measure .main-measure-title .divider {*/
+  /*width: 30%;*/
+  /*clear: right;*/
+  /*float: right;*/
+  /*height: 1px;*/
+  /*background-color: #000;*/
+  /*margin-top: 5px;*/
+  /*margin-bottom: 5px;*/
+/*}*/
 
-.main-measure .main-measure-video {
-  display: inline-block;
-  float: right;
-  height: 325px;
-  max-height: 325px;
-  width: 500px;
-  max-width: 500px;
-}
+/*.main-measure .main-measure-video {*/
+  /*display: inline-block;*/
+  /*float: right;*/
+  /*height: 325px;*/
+  /*max-height: 325px;*/
+  /*width: 500px;*/
+  /*max-width: 500px;*/
+/*}*/
 
-.main-measure .main-measure-bottom {
-  width: inherit;
-  height: 350px;
-  margin: 60px 0px;
-}
+/*.main-measure .main-measure-bottom {*/
+  /*width: inherit;*/
+  /*height: 350px;*/
+  /*margin: 60px 0px;*/
+/*}*/
 
-.main-measure .main-measure-details {
-  width: 260px;
-  height: 260px;
-  overflow: auto;
-  float: right;
-}
+/*.main-measure .main-measure-details {*/
+  /*width: 260px;*/
+  /*height: 260px;*/
+  /*overflow: auto;*/
+  /*float: right;*/
+/*}*/
 
-.main-measure .main-measure-gif {
-  height: 260px;
-  width: 400px;
-  border:1px solid black;
-  float: left;
-}
+/*.main-measure .main-measure-gif {*/
+  /*height: 260px;*/
+  /*width: 400px;*/
+  /*border:1px solid black;*/
+  /*float: left;*/
+/*}*/
 
 /******************************************************Sidebar*******************************************/
 .nav-tabs.nav-justified > li.active,
@@ -304,7 +374,7 @@
   line-height: 1.42857143;
   /*border: 1px solid transparent;*/
   border-radius: 20px 20px 0px 0px;
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 400;
   /*text-transform: uppercase;*/
   letter-spacing: 0.6px;
@@ -316,10 +386,12 @@
 .nav-tabs.nav-justified > li > a,
 .nav-tabs.nav-justified > li > a:hover,
 .nav-tabs.nav-justified > li > a:focus {
-  color: #FFFFFF;
+  position: relative;
+  top: 1px;
+  color: #000000;
   cursor: pointer;
-  background-color: #bcbec0;
-  border-bottom: solid 4px #bcbec0;
+  background-color: #EAEAEA;
+  border: solid 1px #bcbec0;
   box-sizing:border-box;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
@@ -554,7 +626,7 @@
 
 #offClickArea {
   position: fixed;
-  z-index: 2;
+  z-index: 20;
   background-color: rgba(0, 0, 0, 0);
   width: 100%;
   height: 100%;
