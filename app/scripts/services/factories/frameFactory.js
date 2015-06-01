@@ -21,9 +21,11 @@ angular.module('abacuApp')
       this.basePrice    = frameData.basePrice;
       this.baseWeight   = frameData.baseWeight;
       this.imageURL     = frameData.imageURL;
+      this.wheelIndex   = frameData.wheelIndex;
 
       this.parts = [];
       this.measures = [];
+
 
       for (var i = 0; i < frameData.parts.length; i++)
         this.parts.push(new Part(frameData.parts[i]));
@@ -44,6 +46,7 @@ angular.module('abacuApp')
       getBasePrice: function () { return this.basePrice; },
       getBaseWeight: function () { return this.baseWeight; },
       getImageURL: function () { return this.imageURL; },
+      getWheelIndex: function () { return this.wheelIndex;},
       getParts: function () { return this.parts; },
       getMeasures: function () { return this.measures; },
       getNumParts: function () { return this.parts.length; },

@@ -188,6 +188,13 @@ angular.module('abacuApp')
         return null;
       },
 
+      //Returns the last order whether it is sent or unsent
+      getLastOrder: function () {
+        if(orders.length>0){
+          return orders[orders.length - 1];
+        }
+      },
+
       //Sends the curEditOrder to the distributor
       sendCurEditOrder: function (userData, shippingData, payMethod) {
         var deferred = $q.defer();
@@ -219,7 +226,7 @@ angular.module('abacuApp')
       getUnitSys: function () { return unitSys; },
 
       getFullName: function () { return fName + ' ' + lName; },
-      getFullAddr: function () { 
+      getFullAddr: function () {
         var a2 = addr2;
         if (addr2 !== '')
           a2 = ' ' + a2;

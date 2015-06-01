@@ -128,8 +128,7 @@ angular.module('abacuApp')
 
 
         case $scope.stages.COMPLETE:
-          //TODO: Send user to "orders" page (Settings-MyOrders?)
-          alert("YAY!");
+          $location.path('/invoice');
           break;
       }
     };

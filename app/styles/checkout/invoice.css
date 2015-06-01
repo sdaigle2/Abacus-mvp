@@ -1,19 +1,22 @@
+
 .page{
-  width: 820px;
-  height: 1061px;
+  width: 8.5in;
+  height: 11in;
   margin-left: auto;
   margin-right: auto;
 }
 
 .wrapper{
-  width: 724px;
-  height: 916px;
+  width: 7.5in;
+  height: 9.5in;
   border-style: solid;
   border-width: 5px;
   margin-left:auto;
   margin-right:auto;
   margin-top: 50px;
   margin-bottom: 45px;
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
 .wrapper2{
@@ -27,7 +30,7 @@
 
 div.details{
   width: 45%;
-  padding-top: 32px;
+  padding-top: 320px;
   padding-left: 25px;
   display: inline-block;
   vertical-align: top;
@@ -36,13 +39,14 @@ div.details{
 div.measurements{
   width: 92%;
   padding-top: 20px;
-  padding-left: 35px;
+  margin-left: 25px;
+  padding-left: 10px;
   display: inline-block;
   vertical-align: top;
 }
 
 p.description{
-  padding-top: 10px;
+  padding-top: 5px;
   padding-left: 35px;
   font-size: 16px;
   font-weight: bold;
@@ -50,32 +54,34 @@ p.description{
 
 
 p.description-result{
-  padding-top: 10px;
   padding-left: 55px;
   font-size: 14px;
-  
+
+}
+
+p.price-bold{
+  font-weight: bold;
 }
 
 img.wheel_measurement_one{
   width: 300px;
+  padding-left:35px;
 }
 
 div.images{
   width: 45%;
+  height: 100%;
   display: inline-block;
   vertical-align: top;
+  position: relative;
 }
 
-.label{
+.invoice-label{
   font-weight: bold;
 }
 
 .value{
   padding-left: 15px;
-}
-
-.value2{
-  padding-left: 100px;
 }
 
 h2{
@@ -84,15 +90,26 @@ h2{
 
 .front-page-disp{
   height: 33%;
-  width: 100%
+  position: absolute;
 }
 
-#footer{
+.first-image{
+  top: 0px;
+  left: 0px;
+}
+
+.second-image{
+  top: 33%;
+  left: 0px;
+}
+
+.third-image{
+  top: 66%;
+  left: 0px;
+}
+
+.footer{
   margin-left: 458px;
-}
-
-p{
-  margin: 0;
 }
 
 #address{
@@ -112,7 +129,7 @@ p{
 }
 
 #summary{
-  width: 60%;
+  width: 69%;
   display: inline-block;
   vertical-align: top;
   padding-left:20px;
@@ -122,8 +139,13 @@ p{
 
 h3{
   margin-top:0;
-  margin-bottom:7;
+  margin-bottom:20px;
   font-size: 20px;
+  font-weight: bold;
+}
+
+#sum-head{
+  margin-bottom: 37px;
 }
 
 .address{
@@ -135,6 +157,7 @@ h3{
 }
 
 table{
+  border-spacing: 0px;
   width:100%;
   border-collapse: collapse;
 }
@@ -159,12 +182,115 @@ table{
   margin-top:100px;
 }
 
-hr.dark_line{
+#final-sum-frames{
+  margin-left: 25px;
+  margin-top:0px;
+}
+
+table.final-sum-table{
+  width: 478px;
+  float: right;
+}
+
+.dark_line{
+  border-bottom-style: solid;
+  width: 95%;
+  margin-bottom: 20px;
+}
+
+table.desc_table{
   width: 92%;
-   padding-left: 25px;
-   border: none;
-   height: 2px;
-   /* Set the hr color */
-   color: #333; /* old IE */
-   background-color: #333; /* Modern Browsers */
+   margin-left: 25px;
+   margin-top: 10px;
+}
+p.type{
+  margin-left: 25px;
+  margin-bottom: 20px;
+}
+
+p.details{
+  text-align:center;
+  margin-left: 22px;
+  margin-bottom:20px;
+}
+
+p.price_text{
+  text-align:right;
+  margin-right: 25px;
+  margin-bottom: 20px;
+}
+
+
+p.big_bold_me{
+  font-weight: bold;
+}
+
+p.detailed_text{
+  font-size: 20px;
+  margin-left: 45px;
+  font-weight: bold;
+}
+
+table.priced_table{
+  margin-bottom: 5px;
+}
+
+
+
+p.priced_text{
+   text-align: right;
+   font-size: 20px;
+   margin-right: 23px;
+   margin-top: 24px;
+}
+
+p.selection{
+  font-size: 20px;
+  margin-left: 70px;
+}
+
+img.frame_img{
+  width:250px;
+  margin-bottom: 20px;
+
+}
+
+img.frame_img_wheel{
+  width:250px;
+  margin-bottom: 0px;
+
+}
+
+table.wheel_selection{
+  margin-bottom: 75px;
+  float: right;
+}
+
+table.wheel_frame{
+  margin-left: 25px;
+}
+
+table.priced_table_wheel{
+  margin-bottom: 75px;
+}
+
+p{
+  font-size:16px;
+  margin: 2px;
+}
+
+.wheel-image{
+  width: 30%;
+}
+
+td{
+  vertical-align: top;
+}
+
+#tax{
+  float: left;
+}
+
+div.top_text{
+  height: 90%;
 }

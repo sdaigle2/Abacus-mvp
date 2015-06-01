@@ -1,4 +1,4 @@
-﻿﻿'use strict';
+﻿'use strict';
 
 /*
 * This factory produces Wheelchair objects
@@ -138,19 +138,22 @@ angular.module('abacuApp')
         var optionString = 'NOT SELECTED';
         var priceString = '';
         var weightString = '';
+        var altOptionString = '';
 
         if (i != -1) {
           optionString = meas.getOption(unitSys, i);
           optionString += " " + meas.getUnits(unitSys);
           priceString = ((meas.getPrice(i) < 0) ? "-$" : "$") + Math.abs(meas.getPrice(i).toFixed(2));
           weightString = (meas.getWeight(i) * Units.getWeightFactor(unitSys)) + ' ' + Units.getWeightName(unitSys);
+          altOptionString = meas.getOption(1-unitSys, i) + ' ' + meas.getUnits(1-unitSys);
         }
 
         return {
           name: meas.getName(),
           optionString: optionString,
           priceString: priceString,
-          weightString: weightString
+          weightString: weightString,
+          altOptionString: altOptionString
         }
       },
 

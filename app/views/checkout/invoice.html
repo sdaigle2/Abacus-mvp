@@ -1,215 +1,277 @@
-<link href="../../styles/checkout/invoice.css" rel="stylesheet" />
-<div ng-repeat="wheelchair in wheelchairs">
+<link href="../../styles/checkout/invoice.css" rel="stylesheet"/>
+<div id="invoice-body" ng-repeat="wheelchair in wheelchairs">
+
+  <!-- FIRST PAGE -->
   <div class="page">
     <div class="wrapper">
       <div class="details">
         <h2>ABACUS</h2>
         <table>
           <tr>
-            <td class="label">Name:</td>
-            <td class="value">MyName</td>
+            <td class="invoice-label">Name:</td>
+            <td class="value" ng-bind-html="name"></td>
           </tr>
           <tr>
-            <td class="label">Manufacturer:</td>
-            <td class="value">manu</td>
+            <td class="invoice-label">Manufacturer:</td>
+            <td class="value" ng-bind-html="getManufacturer(wheelchair)"></td>
           </tr>
           <tr>
-            <td class="label">Price:</td>
-            <td class="value">$1</td>
+            <td class="invoice-label">Price:</td>
+            <td class="value" ng-bind-html="getBasePrice(wheelchair)"></td>
           </tr>
           <tr>
-            <td class="label">Model:</td>
-            <td class="value">CKE</td>
+            <td class="invoice-label">Model:</td>
+            <td class="value" ng-bind-html="getModel(wheelchair)"></td>
           </tr>
           <tr>
-            <td class="label">Design Date:</td>
-            <td class="value">05.21.2014</td>
+            <td class="invoice-label">Weight:</td>
+            <td class="value" ng-bind-html="getBaseWeight(wheelchair)"></td>
           </tr>
           <tr>
-            <td class="label">Weight:</td>
-            <td class="value">123lb</td>
-          </tr>
-          <tr>
-            <td class="label">Order Number:</td>
-            <td class="value">123456</td>
+            <td class="invoice-label">Order Number:</td>
+            <td class="value" ng-bind-html="orderNum"></td>
           </tr>
         </table>
       </div>
       <div class="images">
-        <img class="front-page-disp" src="../../images/pangding.jpg"/>
-        <img class="front-page-disp" src="../../images/pangding.jpg"/>
-        <img class="front-page-disp" src="../../images/pangding.jpg"/>
+        <img class="front-page-disp first-image"
+             ng-repeat="img in topImageSets[$index]"
+             ng-src="{{img.URL}}"
+             ng-style="{'z-index': $index }"/>
+        <img class="front-page-disp second-image"
+             ng-repeat="img in midImageSets[$index]"
+             ng-src="{{img.URL}}"
+             ng-style="{'z-index': $index }"/>
+        <img class="front-page-disp third-image"
+             ng-repeat="img in botImageSets[$index]"
+             ng-src="{{img.URL}}"
+             ng-style="{'z-index': $index }"/>
       </div>
     </div>
-    <span id="footer">Powered by</span>
+    <span class="footer">Powered by</span>
   </div>
+
+  <!-- PART DESCRIPTION PAGE -->
   <div class="page">
     <div class="wrapper">
-      <div class="details">
-        <h2>ABACUS</h2>
-        <table>
+      <div class="top_text">
+        <table class="desc_table dark_line">
           <tr>
-            <td class="label">Name:</td>
-            <td class="value">MyName</td>
+            <td>
+              <p class="type">
+                Type
+              </p>
+            </td>
+            <td>
+              <p class="details">
+                Details
+              </p>
+            </td>
+            <td>
+              <p class="price_text">
+                Price
+              </p>
+            </td>
           </tr>
+        </table>
+        <table class="desc_table dark_line">
           <tr>
-            <td class="label">Manufacturer:</td>
-            <td class="value">manu</td>
+            <td class="wheel-image">
+              <table class="wheel_frame">
+                <tr>
+                  <td>
+                    <p class="big_bold_me">
+                      Frame
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img class="frame_img" src="../../images/pangding.jpg"/>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td width="70%">
+              <table>
+                <tbody ng-repeat="part in frameParts[$index]">
+                <tr>
+                  <td>
+                    <p class="description">
+                      {{part.partName}}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="description-result">
+                      {{part.optionName}}
+                    </p>
+                  </td>
+                  <td>
+                    <p class="description-result">
+                      {{part.priceString}}
+                    </p>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
           </tr>
+        </table>
+        <table class="desc_table dark_line">
           <tr>
-            <td class="label">Price:</td>
-            <td class="value">$1</td>
-          </tr>
-          <tr>
-            <td class="label">Model:</td>
-            <td class="value">CKE</td>
-          </tr>
-          <tr>
-            <td class="label">Design Date:</td>
-            <td class="value">05.21.2014</td>
-          </tr>
-          <tr>
-            <td class="label">Weight:</td>
-            <td class="value">123lb</td>
-          </tr>
-          <tr>
-            <td class="label">Order Number:</td>
-            <td class="value">123456</td>
+            <td class="wheel-image">
+              <table class="wheel_frame wheel_alt">
+                <tr>
+                  <td>
+                    <p class="big_bold_me">
+                      Wheel
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <img class="frame_img_wheel" src="../../images/pangding.jpg"/>
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td width="70%">
+              <table class="wheel_selection">
+                <tbody ng-repeat="part in wheelParts[$index]">
+                <tr>
+                  <td>
+                    <p class="description">
+                      {{part.partName}}
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <p class="description-result">
+                      {{part.optionName}}
+                    </p>
+                  </td>
+                  <td>
+                    <p class="description-result">
+                      {{part.priceString}}
+                    </p>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td>
           </tr>
         </table>
       </div>
-      <div class="images">
-        <img class="front-page-disp" src="../../images/pangding.jpg"/>
-        <img class="front-page-disp" src="../../images/pangding.jpg"/>
-        <img class="front-page-disp" src="../../images/pangding.jpg"/>
-      </div>
+      <table width="70%" class="wheel_selection"><tr>
+        <td>
+          <p class="description">
+            Subtotal
+          </p>
+        </td>
+        <td>
+          <p class="description-result">
+            {{part.priceString}}
+          </p>
+        </td>
+      </tr>
+      </table>
     </div>
-    <span id="footer">Powered by</span>
+    <span class="footer">Powered by</span>
   </div>
+
+  <!-- MEASUREMENTS PAGE -->
   <div class="page">
     <div class="wrapper">
-      <div class="measurements">
+      <div class="measurements dark_line">
         <h3>Measurements</h3>
-
       </div>
-        <hr class="dark_line">
-      <p class="description">
-        Rear Sear Height
-      </p>
-      <p class="description-result">
-        35 cm / 13.78 in
-      </p>
+      <table>
+        <tr>
+          <td>
+            <div class="measure" ng-repeat="measure in measurements[$index]">
+              <p class="description">
+                {{measure.name}}
+              </p>
 
-
-      <p class="description">
-        Front Seat Height
-      </p>
-      <p class="description-result">
-        24 cm / 9.45 in
-      </p>
-
-
-      <p class="description">
-        Seat Width
-      </p>
-      <p class="description-result">
-        24 cm / 9.45 in
-      </p>
-
-
-       <p class="description">
-        Seat Depth
-      </p>
-      <p class="description-result">
-        24 cm / 9.45 in
-      </p>
-
-
-       <p class="description">
-        Backrest Height
-      </p>
-      <p class="description-result">
-        24 cm / 9.45 in
-      </p>
-
-
-       <p class="description">
-        Axle Position
-      </p>
-      <p class="description-result">
-        24 cm / 9.45 in
-      </p>
-
-
-       <p class="description">
-        Footrest Height
-      </p>
-      <p class="description-result">
-        24 cm / 9.45 in
-      </p>
-
-
-       <p class="description">
-        Footrest Width
-      </p>
-      <p class="description-result">
-        24 cm / 9.45 in
-      </p>
-
-
-     <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
-
+              <p class="description-result">
+                {{measure.optionString}} / {{measure.altOptionString}}
+              </p>
+            </div>
+          </td>
+          <td>
+            <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
+          </td>
+          <td>
+            <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
+          </td>
+        </tr>
+      </table>
     </div>
-    <span id="footer">Powered by</span>
+    <span class="footer">Powered by</span>
   </div>
 </div>
+
+<!-- INTELLIWHEELS INFO PAGE -->
 <div class="page">
   <div class="wrapper2">
     <div id="intelliwheels-info">
       <img id="logo" src="../../images/tiarrow_logo.png"/>
+
       <div id="address">
         <p>60 Hazelwood Dr.</p>
+
         <p>Suite 110</p>
+
         <p>Champaign, IL, 61820</p>
       </div>
       <div id="contact">
         <p>Phone: (217)903-4563</p>
+
         <p>Fax: (217)332-1560</p>
+
         <p>www.intelliwheels.net</p>
       </div>
     </div>
     <div id="summary">
-      <h3>SUMMARY</h3>
+      <h3 id="sum-head">SUMMARY</h3>
       <table>
         <tr>
-          <td class="label">Purchase Date:</td>
-          <td class="value2">Dec. 19, 2012</td>
+          <td class="invoice-label"><p>Purchase Date:</p></td>
+          <td class="value2"><p ng-bind-html="date"></p></td>
         </tr>
         <tr>
-          <td class="label">Terms:</td>
-          <td class="value2">Net 30</td>
+          <td class="invoice-label"><p>Terms:</p></td>
+          <td class="value2"><p>Net 30</p></td>
         </tr>
         <tr>
-          <td class="label">Ship Via:</td>
-          <td class="value2">Best</td>
+          <td class="invoice-label"><p>Ship Via:</p></td>
+          <td class="value2"><p>Best</p></td>
         </tr>
         <tr>
           <td>
             <div class="address">
               <h4>BILL TO:</h4>
-              <p>Kevin Hale</p>
-              <p>Unisource Worldwide, Inc.</p>
-              <p>1701 Crossroads Dr.</p>
-              <p>Joliet, IL 60431</p>
+
+              <p ng-bind-html="name"></p>
+
+              <p ng-bind-html="address"></p>
             </div>
           </td>
           <td class="value2">
             <div class="address">
               <h4>SHIP TO:</h4>
-              <p>Intelliwheels, Inc.</p>
-              <p>60 Hazelwood Dr.</p>
-              <p>Suite 110</p>
-              <p>Champaign, IL, 61820</p>
+
+              <p ng-bind-html="name"></p>
+
+              <p ng-bind-html="address"></p>
             </div>
           </td>
         </tr>
@@ -218,27 +280,51 @@
     <div id="wheelchair-sum">
       <table>
         <tr class="header">
-          <td class="qty">Qty</td>
-          <td>Details</td>
-          <td class="price">Price</td>
+          <td class="qty"><p>Qty</p></td>
+          <td><p>Details</p></td>
+          <td><p class="price">Price</p></td>
         </tr>
-        <tr>
-          <td class="qty">2000</td>
-          <td>Wheelchair 1</td>
-          <td class="price">$1234</td>
-        </tr>
-        <tr>
-          <td class="qty">1</td>
-          <td>Wheelchair 2</td>
-          <td class="price">$1234</td>
+        <tr ng-repeat="wheelchair in wheelchairs">
+          <td class="qty"><p>1</p></td>
+          <td><p>{{wheelchair.getTitle()}}</p></td>
+          <td><p class="price">{{wheelchair.getTotalPrice().toFixed(2)}}</p></td>
         </tr>
       </table>
     </div>
     <div id="final-sum">
-      <div id="tax">
-        <p>Sales tax rate:</p>
-        <p>8.75%</p>
-      </div>
     </div>
+    <div id="tax">
+      <p>Sales tax rate:</p>
+
+      <p ng-bind-html="taxrate+'%'"></p>
+    </div>
+    <table class="dark_line final-sum-table">
+      <tr>
+        <td><p class="price-bold">Subtotal</p></td>
+        <td><p class="price" ng-bind-html="'$'+subtotal"></p></td>
+      </tr>
+      <tr>
+        <td><p class="price-bold">Shipping</p></td>
+        <td><p class="price" ng-bind-html="'$'+shipping"></p></td>
+      </tr>
+      <tr>
+        <td><p class="price-bold">Tax</p></td>
+        <td><p class="price" ng-bind-html="'$'+tax"></p></td>
+      </tr>
+      <tr>
+        <td><p class="price-bold">Discount</p></td>
+        <td><p class="price">$23</p></td>
+      </tr>
+    </table>
+    <table class="final-sum-table">
+      <tr>
+        <td>
+          <p class="price-bold">Total</p>
+        </td>
+        <td>
+          <p class="price" ng-bind-html="'$'+total"></p>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
