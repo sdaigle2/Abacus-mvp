@@ -80,19 +80,22 @@
               <table class="wheel_frame">
                 <tr>
                   <td>
-                    <p class="big_bold_me">
+                    <p class="desc_img">
                       Frame
                     </p>
                   </td>
                 </tr>
                 <tr>
-                  <td>
-                    <img class="frame_img" src="../../images/pangding.jpg"/>
+                  <td class="image_holder">
+                    <img class="frame_img"
+                         ng-repeat="img in frameImageSets[$index]"
+                         ng-src="{{img.URL}}"
+                         ng-style="{'z-index': $index }"/>
                   </td>
                 </tr>
               </table>
             </td>
-            <td width="70%">
+            <td>
               <table>
                 <tbody ng-repeat="part in frameParts[$index]">
                 <tr>
@@ -109,7 +112,7 @@
                     </p>
                   </td>
                   <td>
-                    <p class="description-result">
+                    <p class="description-result price">
                       {{part.priceString}}
                     </p>
                   </td>
@@ -125,19 +128,22 @@
               <table class="wheel_frame wheel_alt">
                 <tr>
                   <td>
-                    <p class="big_bold_me">
+                    <p class="desc_img">
                       Wheel
                     </p>
                   </td>
                 </tr>
                 <tr>
-                  <td>
-                    <img class="frame_img_wheel" src="../../images/pangding.jpg"/>
+                  <td class="image_holder">
+                    <img class="frame_img_wheel"
+                         ng-repeat="img in wheelImageSets[$index]"
+                         ng-src="{{img.URL}}"
+                         ng-style="{'z-index': $index }"/>
                   </td>
                 </tr>
               </table>
             </td>
-            <td width="70%">
+            <td>
               <table class="wheel_selection">
                 <tbody ng-repeat="part in wheelParts[$index]">
                 <tr>
@@ -154,7 +160,7 @@
                     </p>
                   </td>
                   <td>
-                    <p class="description-result">
+                    <p class="description-result price">
                       {{part.priceString}}
                     </p>
                   </td>
@@ -165,19 +171,14 @@
           </tr>
         </table>
       </div>
-      <table width="70%" class="wheel_selection"><tr>
-        <td>
-          <p class="description">
-            Subtotal
-          </p>
-        </td>
-        <td>
-          <p class="description-result">
-            {{part.priceString}}
-          </p>
-        </td>
-      </tr>
-      </table>
+      <div class="bottom-text">
+        <span class="description left">
+          Subtotal
+        </span>
+        <span class="description-result price">
+          ${{wheelchair.getTotalPrice().toFixed(2)}}
+        </span>
+      </div>
     </div>
     <span class="footer">Powered by</span>
   </div>
@@ -293,7 +294,7 @@
     </div>
     <div id="final-sum">
     </div>
-    <div id="tax">
+    <div class="left">
       <p>Sales tax rate:</p>
 
       <p ng-bind-html="taxrate+'%'"></p>

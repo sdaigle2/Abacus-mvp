@@ -124,7 +124,7 @@ angular.module('abacuApp')
         //CurAngle = FRONT
         //    CREATES
         //'baseURL/frame0/part1/2_3_4_Front.png'
-      },
+      }
 
     };
 

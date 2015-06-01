@@ -18,12 +18,16 @@ angular.module('abacuApp')
     $scope.topImageSets = [];
     $scope.midImageSets = [];
     $scope.botImageSets = [];
+    $scope.wheelImageSets = [];
+    $scope.frameImageSets = [];
     $scope.measurements = [];
     $scope.date = order.getSentDate().toDateString();
     $scope.address = order.getFormattedAddr();
-    $scope.subtotal = 0;
-    $scope.shipping = Costs.SHIPPING_FEE;
-    $scope.taxrate = (Costs.TAX_RATE*100).toFixed(2);
+    $scope.subtotal = order.getSubtotal().toFixed(2);
+    $scope.shipping = order.getShippingCost().toFixed(2);
+    $scope.taxrate = order.getTaxRate();
+    $scope.tax = order.getTaxCost().toFixed(2);
+    $scope.total = order.getTotalCost().toFixed(2);
     $scope.frameParts = [];
     $scope.wheelParts = [];
 
@@ -37,6 +41,8 @@ angular.module('abacuApp')
         $scope.topImageSets.push($scope.wheelchairs[i].getPreviewImages(Angles.angleType.BACKRIGHT));
         $scope.midImageSets.push($scope.wheelchairs[i].getPreviewImages(Angles.angleType.FRONTRIGHT));
         $scope.botImageSets.push($scope.wheelchairs[i].getPreviewImages(Angles.angleType.RIGHT));
+        $scope.wheelImageSets.push($scope.wheelchairs[i].getWheelImages(Angles.angleType.RIGHT));
+        $scope.frameImageSets.push($scope.wheelchairs[i].getFrameImages(Angles.angleType.FRONTRIGHT));
       }
     }
 
@@ -52,12 +58,6 @@ angular.module('abacuApp')
       }
     }
 
-    function getSubtotal() {
-      for(var i=0; i<$scope.wheelchairs.length; i++){
-        $scope.subtotal += $scope.wheelchairs[i].getTotalPrice();
-      }
-      $scope.subtotal = $scope.subtotal.toFixed(2);
-    }
 
     function getFrameParts() {
       for(var i=0; i<$scope.wheelchairs.length; i++){
@@ -85,12 +85,8 @@ angular.module('abacuApp')
 
     getImageSets();
     getMeasurements();
-    getSubtotal();
     getFrameParts();
     getWheelParts();
-
-    $scope.tax = ($scope.taxrate * $scope.subtotal / 100).toFixed(2);
-    $scope.total = parseFloat($scope.subtotal) + parseFloat($scope.shipping) + parseFloat($scope.tax) - 23;
 
     $scope.getManufacturer = function(wheelchair){
       var frame = getFrame(wheelchair);
@@ -112,4 +108,7 @@ angular.module('abacuApp')
       return frame.getBaseWeight()+'lb';
     };
 
+    $scope.totalPrice = function(){
+
+    }
   }]);

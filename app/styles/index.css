@@ -227,6 +227,5 @@ body {
 
 /* the main container that can be found in the sub pages */
 #appContainer .appBody {
-  width: 1280px;
   margin: auto;
 }

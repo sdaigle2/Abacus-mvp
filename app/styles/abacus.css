@@ -147,7 +147,6 @@
   float: right;
   clear: right;
   margin-right: 5px;
-  margin-top: 15px;
   width: 350px;
   line-height: 1;
   height: 60px;
@@ -395,7 +394,8 @@
   box-sizing:border-box;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
-  padding: 8px 0;
+  padding: 8px 0 10px;
+  border-radius: 0;
 }
 
 
@@ -405,8 +405,9 @@
 .nav-tabs.nav-justified > li.active > a:focus {
   color: #000000;
   cursor: default;
-  background-color: #f1f2f2;
+  background-color: #ffffff;
   border-bottom: solid 4px #60C2B1;
+  padding: 8px 0;
   box-sizing:border-box;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
@@ -440,6 +441,11 @@
   max-height: 600px;
 }
 
+.sideBar-header {
+  box-shadow: -5px 5px 2px rgba(168,168,168,0.5);
+  z-index: 1;
+  position: relative;
+}
 
 .sideBar-header h3 {
   font-size: 1.6em;
@@ -465,12 +471,18 @@
   cursor: pointer;
 }
 
-
+.curPage-header{
+  margin: 0;
+  padding-top:20px;
+  padding-bottom: 10px;
+  background-color: white;
+}
 /****************SideBar-Custom********************/
 .sideBar .sideBar-custom {
   overflow-y: auto;
   max-height: 600px;
   height: 100%;
+  box-shadow: -3px 3px 10px lightgrey;
 }
 
 .sideBar-custom-item {
@@ -567,12 +579,17 @@
   max-height: 600px;
   height: 100%;
   max-width:350px;
+  box-shadow: -3px 3px 10px lightgrey;
 }
 
 .sideBar-measure-top {
   /*height: 240px;*/
-  padding: 5px 20px;
+  padding: 5px 0px 0px;
   background-color: #fec44f;
+}
+
+.sideBar-measure-select{
+  padding: 0px 20px;
 }
 
 .sideBar-measure-top .btn-group .dropdown-toggle{
@@ -582,11 +599,25 @@
 }
 
 .sideBar-measure-tip {
-  margin: 20px 0;
-  padding: 5px 10px;
+  margin: 20px 0 0;
+  padding: 5px 0px;
   border: 1px solid white;
-  max-width: 300px;
+  border-bottom: 1px solid lightgrey;
+  border-top: 1px solid lightgrey;
   min-height: 130px;
+  background-color: #F0F0F0;
+}
+
+.sideBar-measure-tip-left{
+  float: left;
+  margin: 0px 20px;
+  color: #60C2B1;
+  font-style: italic;
+  height: 100%
+}
+
+.sideBar-measure-tip-right{
+  width: 70%;
 }
 
 .sideBar-measure-bottom {
