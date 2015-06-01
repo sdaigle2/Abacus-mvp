@@ -7,7 +7,7 @@
     "measureID": 45,
     "units": ["kg","lbs"],
     "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-    "imageURLs": ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+    "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
     "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
   },
   {
@@ -18,7 +18,7 @@
     "measureID": 46,
     "units": ["cm","inches"],
     "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-    "imageURLs": ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+    "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
     "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
   },
   {
@@ -29,7 +29,7 @@
     "measureID": 47,
     "units": ["cm","inches"],
     "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-    "imageURLs": ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+    "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
     "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
   },
   {
@@ -40,7 +40,7 @@
     "measureID": 48,
     "units": ["cm", "inches"],
     "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-    "imageURLs": ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+    "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
     "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
 
   },
@@ -52,7 +52,7 @@
     "measureID": 49,
     "units": ["cm","inches"],
     "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-    "imageURLs": ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+    "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
     "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
   },
   {
@@ -63,7 +63,7 @@
     "measureID": 50,
     "units": ["cm","inches"],
     "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-    "imageURLs": ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+    "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
     "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
   },
   {
@@ -74,7 +74,7 @@
     "measureID": 51,
     "units": ["cm","inches"],
     "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-    "imageURLs": ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+    "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
     "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
   },
   {
@@ -85,7 +85,7 @@
     "measureID": 52,
     "units": ["cm","inches"],
     "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-    "imageURLs": ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+    "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
     "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
   },
   {
@@ -96,7 +96,7 @@
     "measureID": 53,
     "units": ["cm","inches"],
     "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-    "imageURLs": ["images/measure/rear-seat-height1.jpg", "images/measure/rear-seat-height2.jpg", "images/measure/rear-seat-height3.jpg"],
+    "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
     "gifURL": "http://i.imgur.com/nCcOxqP.png?1"
   }
 ]
