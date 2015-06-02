@@ -229,12 +229,12 @@
 
 .main-custom-rotatebuttons {
   position: relative;
-  top: 48vw;
+  top: 40vw;
   left: 34vw;
 }
 
 
-@media screen and (max-width: 990px) {
+@media screen and (max-width: 1110px) {
     .main-custom-rotatebuttons {
       position: relative;
       top: 480px;
@@ -242,13 +242,8 @@
     }
 }
 
-@media screen and (min-width: 1500px) {
-    .main-custom-rotatebuttons {
-      position: relative;
-      top: 800px;
-      left: 700px;
-    }
-}
+
+
 
 
 /*************************Main-Measure******************************/
