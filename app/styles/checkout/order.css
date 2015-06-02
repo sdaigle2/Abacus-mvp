@@ -1,6 +1,6 @@
 ﻿.order {
   line-height: normal;
-  width: 1280px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -100,6 +100,13 @@
   float: left;
   position: relative;
 }
+
+@media screen and (max-width: 1300px) {
+    .order-right {
+        width: 35%;
+    }
+}
+
 
 .order-right .progress-bar-label{
   word-spacing: 60px;
