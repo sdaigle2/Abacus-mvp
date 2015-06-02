@@ -216,8 +216,10 @@
 .main-custom .main-custom-wheelchairDisplay {
   margin-top: 50px;
   margin-left: 7%;
-  width: 795px;
-  height: 607px;
+  min-width: 600px;
+  min-height: 450px;
+  width: 60vw;
+  height: 45vw;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -228,6 +230,9 @@
   top: 700px;
   left: 380px;
 }
+
+
+
 
 /*************************Main-Measure******************************/
 .main-measure {
