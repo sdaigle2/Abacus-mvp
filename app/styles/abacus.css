@@ -214,8 +214,8 @@
 }
 
 .main-custom .main-custom-wheelchairDisplay {
-  margin-top: 50px;
-  margin-left: 7%;
+  margin-top: 0;
+  margin-left: 5vw;
   min-width: 600px;
   min-height: 450px;
   width: 60vw;
@@ -227,16 +227,24 @@
 
 .main-custom-rotatebuttons {
   position: relative;
-  top: 700px;
-  left: 380px;
+  top: 48vw;
+  left: 34vw;
 }
 
+
+@media screen and (max-width: 990px) {
+    .main-custom-rotatebuttons {
+      position: relative;
+      top: 480px;
+      left: 340px;
+    }
+}
 
 
 
 /*************************Main-Measure******************************/
 .main-measure {
-  width: 800px;
+  width: 65%;
   height: 850px;
   margin: 20px;
   padding-left: 40px;
@@ -283,7 +291,7 @@
 }
 
 .main-measure .measure-body .measure-content {
-  width: 600px;
+  width: 90%;
   height: 85%;
   margin: 43px auto 0;
 }
