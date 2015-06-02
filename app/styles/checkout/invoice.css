@@ -9,12 +9,8 @@
 .wrapper {
   width: 7.5in;
   height: 9.5in;
-  border-style: solid;
-  border-width: 5px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  margin-bottom: 45px;
+  border: 5px solid;
+  margin: 50px auto 45px;
   padding-top: 5%;
   padding-bottom: 5%;
 }
@@ -22,10 +18,7 @@
 .wrapper2 {
   width: 724px;
   height: 916px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 50px;
-  margin-bottom: 45px;
+  margin: 50px auto 45px;
 }
 
 div.details {
@@ -99,18 +92,18 @@ h2 {
 }
 
 .first-image {
-  top: 0px;
-  left: 0px;
+  top: 0;
+  left: 0;
 }
 
 .second-image {
   top: 33%;
-  left: 0px;
+  left: 0;
 }
 
 .third-image {
   top: 66%;
-  left: 0px;
+  left: 0;
 }
 
 .footer {
@@ -162,7 +155,7 @@ h3 {
 }
 
 table {
-  border-spacing: 0px;
+  border-spacing: 0;
   width: 100%;
   border-collapse: collapse;
 }
@@ -190,7 +183,7 @@ table {
 
 #final-sum-frames {
   margin-left: 25px;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 table.final-sum-table {
@@ -215,7 +208,7 @@ table.desc_table{
   overflow: hidden;
   width: 378px;
   float: right;
-  margin-right: 28.5px;
+  margin-right: 29px;
 }
 
 p.type {
@@ -265,7 +258,7 @@ img.frame_img {
 
 img.frame_img_wheel {
   width: 250px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   position: absolute;
 }
 

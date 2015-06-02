@@ -60,24 +60,37 @@
 
 
 /*******Save & reveiw drodown buttun***********/
+@keyframes expand {
+  from {top: -180px;}
+  to {top: 0;}
+}
+
+@keyframes leave {
+  from {top: 0;}
+  to {top: -180px;}
+}
+
 .dropdownButtonReal {
   background-color: white;
 }
+
 .dropdownButton {
   position: relative;
-  z-index: -1;
-  top: -180px;
   background-color: #FFFFFF;
   height: 180px;
   width: 100%;
-  transition: 0.5s;
-}
-
-.dropdownButtonShow {
-  position: relative;
   z-index: 1;
   top: 0;
-  transition: 0.5s;
+}
+
+.dropdownButton.ng-enter{
+  animation-name: expand;
+  animation-duration: 1s;
+}
+
+.dropdownButton.ng-leave{
+  animation-name: leave;
+  animation-duration: 1s;
 }
 
 .dropdownButton .dropdownTable {
@@ -132,16 +145,17 @@
 
 .appBody {
   position: relative;
-  top: -180px;
-  transition: 0.5s;
 }
 
 .appBodyShow{
-  position: relative;
-  top: 0;
-  transition: 0.5s;
+  animation-name: expand;
+  animation-duration: 1s;
 }
 
+.appBodyShow-remove{
+  animation-name: leave;
+  animation-duration: 1s;
+}
 /******************* Price & Weight Display *****************/
 #display{
   float: right;
@@ -153,7 +167,7 @@
   border: 1px solid #ddd;
   border-bottom: hidden;
   box-shadow: -5px 5px 2px rgba(168,168,168,0.5);
-  
+
 }
 
 .display-frame {
@@ -249,7 +263,6 @@
 /*************************Main-Measure******************************/
 .main-measure {
   width: 65%;
-  height: 850px;
   margin: 20px;
   padding-left: 40px;
   float: left;
@@ -383,6 +396,10 @@
 /*}*/
 
 /******************************************************Sidebar*******************************************/
+#shadow-customs{
+  box-shadow: -5px 5px 2px rgba(168,168,168,0.5);
+}
+
 .nav-tabs.nav-justified > li.active,
 .nav-tabs.nav-justified > li {
   margin-right: 10px;
@@ -397,11 +414,6 @@
   letter-spacing: 0.6px;
   padding: 8px 0;
 }
-
-#shadow-customs{
-  box-shadow: -5px 5px 2px rgba(168,168,168,0.5);
-}
-
 
 .nav-tabs.nav-justified > li > a,
 .nav-tabs.nav-justified > li > a:hover,
@@ -449,7 +461,7 @@
   width: 350px;
   max-width: 350px;
   margin-right: 20px;
-  height: 100vh;
+  height: calc(100vh - 130px);
 }
 
 .sideBar{
@@ -458,7 +470,7 @@
   top: -16px;
   border-top: 1px solid #f1f2f2 ;
   border-radius: 0px;
-  height: 100%;
+  height: calc(100% - 36px);
 }
 
 .sideBar-header {
@@ -500,7 +512,7 @@
 /****************SideBar-Custom********************/
 .sideBar .sideBar-custom {
   overflow-y: auto;
-  height: 100%;
+  height: calc(100% - 54px);
   box-shadow: -3px 3px 10px lightgrey;
 }
 
@@ -596,7 +608,7 @@
 .sideBar .sideBar-measure {
   overflow-y: auto;
   max-height: 600px;
-  height: 100%;
+  height: calc(100% - 54px);
   max-width:350px;
   box-shadow: -3px 3px 10px lightgrey;
 }

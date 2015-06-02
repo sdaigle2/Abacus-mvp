@@ -27,7 +27,7 @@ angular.module('abacuApp')
           colorID: partData[i].colorID
         });
       }
-    };
+    }
 
 
     /************instance functions**************/

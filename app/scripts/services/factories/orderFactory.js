@@ -40,7 +40,7 @@ angular.module('abacuApp')
       this.zip = '';
 
       this.payMethod = '';
-    };
+    }
 
     Order.prototype = {
 

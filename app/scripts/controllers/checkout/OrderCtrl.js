@@ -150,7 +150,7 @@ angular.module('abacuApp')
       allFilled = $scope.shippingForm.state !== '' ? allFilled : false;
       allFilled = $scope.shippingForm.zip !== '' ? allFilled : false;
       return allFilled;
-    };
+    }
 
     /*************************** INFO ******************************/
 

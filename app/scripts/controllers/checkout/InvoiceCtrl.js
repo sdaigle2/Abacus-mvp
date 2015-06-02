@@ -10,7 +10,7 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('InvoiceCtrl', ['$scope', '$location', 'User', 'FrameData', 'Angles', 'Units', 'Costs', function ($scope, $location, User, FrameData, Angles, Units, Costs) {
+  .controller('InvoiceCtrl', ['$scope', '$location', 'User', 'FrameData', 'Angles', 'Units', function ($scope, $location, User, FrameData, Angles, Units) {
     var order = User.getLastOrder();
     $scope.name = User.getFullName();
     $scope.wheelchairs = order.getWheelchairs();

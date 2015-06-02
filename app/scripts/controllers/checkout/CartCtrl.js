@@ -36,7 +36,7 @@ angular.module('abacuApp')
         $scope.wInOrder.push(false);
       }
 
-    };
+    }
 
     /********************CART ITEM BUTTONS******************************/
 
@@ -112,7 +112,7 @@ angular.module('abacuApp')
       $scope.costs.tax = curOrder.getTaxCost();
       $scope.costs.shipping = curOrder.getShippingCost();
       $scope.costs.total = curOrder.getTotalCost();
-    };
+    }
 
     /*********************CHECK OUT***********************************/
 
