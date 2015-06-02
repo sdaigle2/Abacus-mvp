@@ -67,76 +67,58 @@
 
     <!-- BODY -->
     <div class="main">
-
-      <!-- CUSTOMIZE: Wheelchair Display and controls -->
-      <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE"
-           style="position:relative;">
-        <div class="main-custom-rotatebuttons">
-          <img class="leftButton" src="images/icons/rotate_left.png" alt="Previous" width="30" height="30"
-               data-ng-click="rotatePreview(-1)"/>
-          <img class="rightButton" src="images/icons/rotate_right.png" alt="Next" width="30" height="30"
-               data-ng-click="rotatePreview(1)"/>
+      <div class="main-holder">
+        <!-- CUSTOMIZE: Wheelchair Display and controls -->
+        <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE"
+             style="position:relative;">
+          <div class="main-custom-rotatebuttons">
+            <img class="leftButton" src="images/icons/rotate_left.png" alt="Previous" width="30" height="30"
+                 data-ng-click="rotatePreview(-1)"/>
+            <img class="rightButton" src="images/icons/rotate_right.png" alt="Next" width="30" height="30"
+                 data-ng-click="rotatePreview(1)"/>
+          </div>
+          <img class="main-custom-wheelchairDisplay"
+               ng-repeat="img in getPreviewImages()"
+               ng-src="{{img.URL}}"
+               ng-style="{'z-index': $index }"/>
         </div>
-        <img class="main-custom-wheelchairDisplay"
-             ng-repeat="img in getPreviewImages()"
-             ng-src="{{img.URL}}"
-             ng-style="{'z-index': $index }"/>
-      </div>
 
-      <!-- MEASURE: Video + gif + details -->
-      <div id="main-measure" class="main-measure" data-ng-show="getCurPageType() == pageType.MEASURE">
-        <div class="measure-top">
-          <h1><strong>{{getCurMeasureData().name}}</strong></h1>
-          <h4 data-ng-bind-html="getCurMeasureData().desc"></h4>
+        <!-- MEASURE: Video + gif + details -->
+        <div id="main-measure" class="main-measure" data-ng-show="getCurPageType() == pageType.MEASURE">
+          <div class="measure-top">
+            <h1><strong>{{getCurMeasureData().name}}</strong></h1>
+            <h4 data-ng-bind-html="getCurMeasureData().desc"></h4>
 
-          <div class="measure-body">
-            <table class="measure-tab">
-              <tr>
-                <td class="measure-tab-title"
-                    ng-click="setMeasureTabs(MeasureTabs.TUTORIAL)"
-                    ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.TUTORIAL}"> Tutorial
-                </td>
-                <td class="measure-tab-title"
-                    ng-click="setMeasureTabs(MeasureTabs.ERGONOMICS)"
-                    ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.ERGONOMICS}"> Ergonomics/body impact
-                </td>
-                <td class="measure-tab-title"
-                    ng-click="setMeasureTabs(MeasureTabs.SUMMARY)"
-                    ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.SUMMARY}"> Summary
-                </td>
-              </tr>
-            </table>
+            <div class="measure-body">
+              <table class="measure-tab">
+                <tr>
+                  <td class="measure-tab-title"
+                      ng-click="setMeasureTabs(MeasureTabs.TUTORIAL)"
+                      ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.TUTORIAL}"> Tutorial
+                  </td>
+                  <td class="measure-tab-title"
+                      ng-click="setMeasureTabs(MeasureTabs.ERGONOMICS)"
+                      ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.ERGONOMICS}"> Ergonomics/body impact
+                  </td>
+                  <td class="measure-tab-title"
+                      ng-click="setMeasureTabs(MeasureTabs.SUMMARY)"
+                      ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.SUMMARY}"> Summary
+                  </td>
+                </tr>
+              </table>
 
-            <div class="measure-content">
-              <h4 class="measure-content-title">{{getCurMeasureData().name}} Tutorial </h4>
-              <iframe
-                data-ng-src="{{getCurMeasureData().videoURL}}"
-                frameborder="0"
-                allowfullscreen>
-              </iframe>
+              <div class="measure-content">
+                <h4 class="measure-content-title">{{getCurMeasureData().name}} Tutorial </h4>
+                <iframe
+                  data-ng-src="{{getCurMeasureData().videoURL}}"
+                  frameborder="0"
+                  allowfullscreen>
+                </iframe>
+              </div>
             </div>
           </div>
         </div>
-        <!--<div class="main-measure-top">-->
-        <!--<div class="main-measure-title">-->
-        <!--<h1><strong>{{getCurMeasureData().name}}</strong></h1>-->
-        <!--<div class="divider"></div>-->
-        <!--<h4 data-ng-bind-html="getCurMeasureData().desc"></h4>-->
-        <!--</div>-->
-
-
-        <!--</div>-->
-
-        <!--<div class="main-measure-bottom">-->
-        <!--<div class="main-measure-gif">-->
-        <!--<img data-ng-src="{{getCurMeasureData().gifURL}}"/>-->
-        <!--</div>-->
-        <!--<div class="main-measure-details">-->
-        <!--<h4>{{getCurMeasureData().details}}</h4>-->
-        <!--</div>-->
-        <!--</div>-->
       </div>
-
 
       <!-- SIDEBAR -->
       <div class="sideBarWrapper">
@@ -261,7 +243,8 @@
                   <h5><strong>TIP: </strong></h5>
                 </div>
                 <div class="sideBar-measure-tip-right">
-                  <h5>Important factors to think about are things and whatnot, but don't forget to remember to not forget seat height. </h5>
+                  <h5>Important factors to think about are things and whatnot, but don't forget to remember to not
+                    forget seat height. </h5>
                 </div>
               </div>
             </div>

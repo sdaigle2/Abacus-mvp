@@ -10,7 +10,7 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('CartCtrl', ['$scope', '$location', 'User', 'FrameData', 'Units', 
+  .controller('CartCtrl', ['$scope', '$location', 'User', 'FrameData', 'Units',
     function ($scope, $location, User, FrameData, Units) {
 
     //Array of wheelchair objects designed by user
@@ -35,7 +35,7 @@ angular.module('abacuApp')
         $scope.wOrderIndex.push(-1);
         $scope.wInOrder.push(false);
       }
-        
+
     };
 
     /********************CART ITEM BUTTONS******************************/
@@ -76,11 +76,12 @@ angular.module('abacuApp')
 
     //Adds the selected wheelchair to curOrder
     $scope.addWheelchairToOrder = function (index) {
+      /*
       if ($scope.wheelchairs[index].allMeasuresSet() === false) {
         alert('All measurements must be set before this can be purchased');
         return;
       }
-
+      */
       curOrder.addWheelchair($scope.wheelchairs[index]);
       $scope.wInOrder[index] = true;
       $scope.wOrderIndex[index] = curOrder.getNumWheelchairs() - 1;
@@ -121,7 +122,7 @@ angular.module('abacuApp')
         alert('Your cart is empty');
         return;
       }
-     
+
       if (User.isLoggedIn())
         $location.path('order'); //Send to Order if logged in
       else
