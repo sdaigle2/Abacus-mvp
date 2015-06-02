@@ -125,7 +125,7 @@
 
         <!-- Tabs -->
         <ul class="nav nav-tabs nav-justified">
-          <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}">
+          <li role="presentation" id="shadow-customs" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}">
             <a ng-href="#/abacus" data-ng-click="switchPageType(pageType.CUSTOMIZE)">Customize</a>
           </li>
           <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.MEASURE}">

@@ -5,10 +5,10 @@
   position: fixed;
   left: 0px;
   top: 0px;
-  height: 60%;
+  height: 50%;
   width: 100%;
   z-index: -5000;
-  background-color: #EAEAEA;
+  background: linear-gradient(#EAEAEA,#FFFFFF);
 }
 
 
@@ -152,6 +152,8 @@
   height: 60px;
   border: 1px solid #ddd;
   border-bottom: hidden;
+  box-shadow: -5px 5px 2px rgba(168,168,168,0.5);
+  
 }
 
 .display-frame {
@@ -219,7 +221,7 @@
   min-width: 600px;
   min-height: 450px;
   width: 60vw;
-  height: 45vw;
+  height: 40vw;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -240,6 +242,13 @@
     }
 }
 
+@media screen and (min-width: 1500px) {
+    .main-custom-rotatebuttons {
+      position: relative;
+      top: 800px;
+      left: 700px;
+    }
+}
 
 
 /*************************Main-Measure******************************/
@@ -291,7 +300,7 @@
 }
 
 .main-measure .measure-body .measure-content {
-  width: 90%;
+  width: 600px;
   height: 85%;
   margin: 43px auto 0;
 }
@@ -391,7 +400,10 @@
   /*text-transform: uppercase;*/
   letter-spacing: 0.6px;
   padding: 8px 0;
+}
 
+#shadow-customs{
+  box-shadow: -5px 5px 2px rgba(168,168,168,0.5);
 }
 
 
@@ -441,6 +453,7 @@
   width: 350px;
   max-width: 350px;
   margin-right: 20px;
+  height: 100vh;
 }
 
 .sideBar{
@@ -449,9 +462,7 @@
   top: -16px;
   border-top: 1px solid #f1f2f2 ;
   border-radius: 0px;
-
-  height: 600px;
-  max-height: 600px;
+  height: 100%;
 }
 
 .sideBar-header {
@@ -493,7 +504,6 @@
 /****************SideBar-Custom********************/
 .sideBar .sideBar-custom {
   overflow-y: auto;
-  max-height: 600px;
   height: 100%;
   box-shadow: -3px 3px 10px lightgrey;
 }
