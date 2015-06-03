@@ -52,7 +52,7 @@
 
         <form id="wheelChairEdit" data-ng-submit="editComplete()" data-ng-if="edit === true">
           <input  name="wheelChairName" type="text"
-                 data-ng-model="curEditWheelchair.title"/>
+                 data-ng-model="curEditWheelchair.title" data-ng-click="$event.stopPropagation();"/>
         </form>
         <span class="glyphicon glyphicon-pencil edit-button"></span>
       </div>
