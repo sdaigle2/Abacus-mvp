@@ -377,7 +377,7 @@ angular.module('abacuApp')
 
       /*****************Panels*********************/
 
-      $scope.editName = false;
+      $scope.edit = false;
 
       //Indicates the current panel
       //ID = -1 indicates no panel open
@@ -419,11 +419,11 @@ angular.module('abacuApp')
       };
 
       $scope.editName = function () {
-        $scope.editName = true;
+        $scope.edit = true;
       };
 
       $scope.editComplete = function () {
-        $scope.editName = false;
+        $scope.edit = false;
       };
       /*******************Sidebar Colors***************/
 

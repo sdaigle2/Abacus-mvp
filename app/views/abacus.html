@@ -49,13 +49,13 @@
                 data-ng-options="sys.enumVal as sys.name for sys in unitSysList"/>
       </div>
       <div class="display-frame">
-        <h4 id="wheelChairName" data-ng-if="editName !== true" data-ng-bind="curEditWheelchair.title"></h4>
+        <h4 id="wheelChairName" data-ng-if="edit !== true" data-ng-bind="curEditWheelchair.title"></h4>
 
-        <form data-ng-submit="editComplete()" data-ng-if="editName === true">
+        <form data-ng-submit="editComplete()" data-ng-if="edit === true">
           <input id="wheelChairEdit" name="wheelChairName" type="text"
                  data-ng-model="curEditWheelchair.title"/>
         </form>
-        <span data-ng-click="editName()" data-ng-if="editName !== true"
+        <span data-ng-click="editName()" data-ng-if="edit !== true"
               class="glyphicon glyphicon-pencil edit-button"></span>
       </div>
       <div class="display-totals text-center">
