@@ -26,8 +26,9 @@
                data-ng-src="images/abacus_page/save_review/save_to_my_design.png">
           <h4 data-ng-click="saveDesign()">SAVE TO MY DESIGN</h4>
         </td>
-        <td><img data-ng-src="images/abacus_page/save_review/save_to_computer_hover.png">
-          <img class="iconHover" data-ng-src="images/abacus_page/save_review/save_to_computer.png">
+        <td><img data-ng-click="saveComputer()" data-ng-src="images/abacus_page/save_review/save_to_computer_hover.png">
+          <img data-ng-click="saveComputer()" class="iconHover"
+               data-ng-src="images/abacus_page/save_review/save_to_computer.png">
           <h4>SAVE TO MY COMPUTER</h4>
         </td>
         <td><img data-ng-src="images/abacus_page/save_review/share_with_friends_hover.png">
@@ -47,22 +48,23 @@
         <select data-ng-model="curUnitSys"
                 data-ng-options="sys.enumVal as sys.name for sys in unitSysList"/>
       </div>
-      	<div class="display-frame">
+      <div class="display-frame">
+        <h4 id="wheelChairName" data-ng-if="editName !== true" data-ng-bind="curEditWheelchair.title"></h4>
 
-      		
- 				<div ng-app="app" ng-controller="Ctrl">
-  					<h4 href="#" editable-text="wheelTitle" class="chair-name">{{ wheelTitle || 'My Custom WheelChair' }}</h4>
-				</div>
-      	</div>
+        <form data-ng-submit="editComplete()" data-ng-if="editName === true">
+          <input id="wheelChairEdit" name="wheelChairName" type="text"
+                 data-ng-model="curEditWheelchair.title"/>
+        </form>
+        <span data-ng-click="editName()" data-ng-if="editName !== true"
+              class="glyphicon glyphicon-pencil edit-button"></span>
+      </div>
       <div class="display-totals text-center">
-      <div class="small-top-margin">
         <h4>
           <small>PRICE:</small>
           ${{getTotalPrice().toFixed(2)}}&nbsp;&nbsp;&nbsp;
           <small>WEIGHT:</small>
           {{(getTotalWeight() * getCurUnitSysWeightFactor()).toFixed(2)}} {{getCurUnitSysWeightName()}}
         </h4>
-       </div>
       </div>
     </div>
 
@@ -124,15 +126,15 @@
     <!-- SIDEBAR -->
     <div class="sideBarWrapper">
 
-        <!-- Tabs -->
-        <ul class="nav nav-tabs nav-justified">
-          <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}">
-            <a id="shadow-customs" ng-href="#/abacus" data-ng-click="switchPageType(pageType.CUSTOMIZE)">Customize</a>
-          </li>
-          <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.MEASURE}">
-            <a ng-href="#/abacus" data-ng-click="switchPageType(pageType.MEASURE)">Measure</a>
-          </li>
-        </ul>
+      <!-- Tabs -->
+      <ul class="nav nav-tabs nav-justified">
+        <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}">
+          <a id="shadow-customs" ng-href="#/abacus" data-ng-click="switchPageType(pageType.CUSTOMIZE)">Customize</a>
+        </li>
+        <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.MEASURE}">
+          <a ng-href="#/abacus" data-ng-click="switchPageType(pageType.MEASURE)">Measure</a>
+        </li>
+      </ul>
 
       <!-- CUSTOMIZE: Sidebar -->
 

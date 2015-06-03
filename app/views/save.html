@@ -1,0 +1,211 @@
+<link href="../../styles/checkout/invoice.css" rel="stylesheet"/>
+<!-- FIRST PAGE -->
+<div class="page">
+  <div class="wrapper">
+    <div class="details">
+      <h2 ng-bind-html="wheelchair.getTitle()"></h2>
+      <table>
+        <tr>
+          <td class="invoice-label">Manufacturer:</td>
+          <td class="value" ng-bind-html="manufacturer"></td>
+        </tr>
+        <tr>
+          <td class="invoice-label">Price:</td>
+          <td class="value" ng-bind-html="wheelchair.getTotalPrice()"></td>
+        </tr>
+        <tr>
+          <td class="invoice-label">Model:</td>
+          <td class="value" ng-bind-html="model"></td>
+        </tr>
+        <tr>
+          <td class="invoice-label">Weight:</td>
+          <td class="value" ng-bind-html="wheelchair.getTotalWeight()"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="images">
+      <img class="front-page-disp first-image"
+           ng-repeat="img in topImageSet"
+           ng-src="{{img.URL}}"
+           ng-style="{'z-index': $index }"/>
+      <img class="front-page-disp second-image"
+           ng-repeat="img in midImageSet"
+           ng-src="{{img.URL}}"
+           ng-style="{'z-index': $index }"/>
+      <img class="front-page-disp third-image"
+           ng-repeat="img in botImageSet"
+           ng-src="{{img.URL}}"
+           ng-style="{'z-index': $index }"/>
+    </div>
+  </div>
+  <span class="footer">Powered by</span>
+</div>
+
+<!-- PART DESCRIPTION PAGE -->
+<div class="page">
+  <div class="wrapper">
+    <div class="top_text">
+      <table class="desc_table dark_line">
+        <tr>
+          <td>
+            <p class="type">
+              Type
+            </p>
+          </td>
+          <td>
+            <p class="details">
+              Details
+            </p>
+          </td>
+          <td>
+            <p class="price_text">
+              Price
+            </p>
+          </td>
+        </tr>
+      </table>
+      <table class="desc_table dark_line">
+        <tr>
+          <td class="wheel-image">
+            <table class="wheel_frame">
+              <tr>
+                <td>
+                  <p class="desc_img">
+                    Frame
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td class="image_holder">
+                  <img class="frame_img"
+                       ng-repeat="img in frameImageSet"
+                       ng-src="{{img.URL}}"
+                       ng-style="{'z-index': $index }"/>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table>
+              <tbody ng-repeat="part in frameParts">
+              <tr>
+                <td>
+                  <p class="description">
+                    {{part.partName}}
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="description-result">
+                    {{part.optionName}}
+                  </p>
+                </td>
+                <td>
+                  <p class="description-result price">
+                    {{part.priceString}}
+                  </p>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </table>
+      <table class="desc_table dark_line">
+        <tr>
+          <td class="wheel-image">
+            <table class="wheel_frame wheel_alt">
+              <tr>
+                <td>
+                  <p class="desc_img">
+                    Wheel
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td class="image_holder">
+                  <img class="frame_img_wheel"
+                       ng-repeat="img in wheelImageSet"
+                       ng-src="{{img.URL}}"
+                       ng-style="{'z-index': $index }"/>
+                </td>
+              </tr>
+            </table>
+          </td>
+          <td>
+            <table class="wheel_selection">
+              <tbody ng-repeat="part in wheelParts">
+              <tr>
+                <td>
+                  <p class="description">
+                    {{part.partName}}
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p class="description-result">
+                    {{part.optionName}}
+                  </p>
+                </td>
+                <td>
+                  <p class="description-result price">
+                    {{part.priceString}}
+                  </p>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="bottom-text">
+        <span class="description left">
+          Subtotal
+        </span>
+        <span class="description-result price">
+          ${{wheelchair.getTotalPrice().toFixed(2)}}
+        </span>
+    </div>
+  </div>
+  <span class="footer">Powered by</span>
+</div>
+
+<!-- MEASUREMENTS PAGE -->
+<div class="page">
+  <div class="wrapper">
+    <div class="measurements dark_line">
+      <h3>Measurements</h3>
+    </div>
+    <table>
+      <tr>
+        <td>
+          <div class="measure" ng-repeat="measure in measures">
+            <p class="description">
+              {{measure.name}}
+            </p>
+
+            <p class="description-result">
+              {{measure.optionString}} / {{measure.altOptionString}}
+            </p>
+          </div>
+        </td>
+        <td>
+          <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
+        </td>
+        <td>
+          <img class="wheel_measurement_one" src="../../images/pangding.jpg"/>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <span class="footer">Powered by</span>
+</div>
+
