@@ -61,13 +61,13 @@
 
 /*******Save & reveiw drodown buttun***********/
 @keyframes expand {
-  from {top: -180px;}
+  from {top: -200px;}
   to {top: 0;}
 }
 
 @keyframes leave {
   from {top: 0;}
-  to {top: -180px;}
+  to {top: -200px;}
 }
 
 .dropdownButtonReal {
@@ -77,7 +77,7 @@
 .dropdownButton {
   position: relative;
   background-color: #FFFFFF;
-  height: 180px;
+  height: 200px;
   width: 100%;
   z-index: 1;
   top: 0;
@@ -85,34 +85,43 @@
 
 .dropdownButton.ng-enter{
   animation-name: expand;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 
 .dropdownButton.ng-leave{
   animation-name: leave;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 
 .dropdownButton .dropdownTable {
-  height: 73%;
+  height: 76%;
   width: 80%;
   position: relative;
-  top: 21px;
+  top: 24px;
   margin: auto ;
   vertical-align: middle;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid #939597;
+  border-bottom: 1px solid #939597;
   border-collapse: separate;
 }
 
 .dropdownButton td {
   height: 80px;
   position: relative;
+  margin-right: 20px;
+}
+
+.dropdownButton #panelIcon1{
+  left: -45px;
+}
+
+.dropdownButton #panelIcon3{
+  left: 45px;
 }
 
 .dropdownButton img {
   position: absolute;
-  top: 12px;
+  top: 18px;
   left: 129px;
 }
 
@@ -124,7 +133,11 @@
 .dropdownButton table tr  h4 {
   position: relative;
   top: 42px;
-  left: 84px;
+  left: 90px;
+}
+
+.dropdownButton #panelText {
+  left: 82px;
 }
 
 
@@ -134,14 +147,21 @@
 #SaveButton {
   width:10%;
   max-height: 30px;
-  background-color:#777;
+  background-color: #00a89c;
   border-radius: 0px;
-  border: none;
+  border-COLOR:transparent;
   text-align: center;
   padding-bottom:1%;
   float: right;
   font-size: 14px;
 }
+
+#progressSaveBar .saveButton {
+  background-color: white;
+  color: #00a89c;
+  border: 1px solid #00A89C;
+}
+
 
 .appBody {
   position: relative;
@@ -149,12 +169,12 @@
 
 .appBodyShow{
   animation-name: expand;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 
 .appBodyShow-remove{
   animation-name: leave;
-  animation-duration: 1s;
+  animation-duration: 0.5s;
 }
 /******************* Price & Weight Display *****************/
 #display{
