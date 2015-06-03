@@ -418,8 +418,8 @@ angular.module('abacuApp')
         return curPanel.panelID;
       };
 
-      $scope.editName = function () {
-        $scope.edit = true;
+      $scope.changeEditState = function () {
+        $scope.edit = !$scope.edit;
       };
 
       $scope.editComplete = function () {

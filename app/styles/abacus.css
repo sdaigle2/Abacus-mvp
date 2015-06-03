@@ -192,6 +192,7 @@
 
 #wheelChairEdit{
   margin: 3px 0;
+  display: inline-block;
 }
 
 #wheelChairName{
@@ -200,7 +201,9 @@
 
 .edit-button{
   margin: 7px 15px;
-  vertical-align: top;}
+  vertical-align: top;
+  float: right;
+}
 
 .display-frame {
   background-color: #60C2B1;
@@ -210,6 +213,7 @@
   height: 50%;
   vertical-align: middle;
   padding-left: 7px;
+  cursor: pointer;
 }
 
 .display-frame h4 {
