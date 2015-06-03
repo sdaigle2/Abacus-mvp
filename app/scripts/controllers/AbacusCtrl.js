@@ -12,7 +12,6 @@ angular.module('abacuApp')
     function ($scope, $location, FrameData, User, Angles, Units) {
 
     /*********************Enums*******************************/
-
     //The visitation status for pages (parts/measures)
     var visitstatus = {
       VISITED: 'visited',
@@ -428,8 +427,10 @@ angular.module('abacuApp')
       }
       User.getCurEditWheelchair().title = wTitle;
 
-      //TODO: save the design to the database
 
+
+      //TODO: save the design to the database
+      $scope.curFrameData.name = wTitle;
       //redirect user to the cart/myDesigns
       $location.path('cart');
 
@@ -458,3 +459,13 @@ angular.module('abacuApp')
     };
 
   }]);
+
+
+//delete this
+app.run(function(editableOptions) {
+  editableOptions.theme = 'bs3';
+});
+
+app.controller('Ctrl', function($scope) {
+  $scope.wheelTitle = "My Custom WheelChair";
+});

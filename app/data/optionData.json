@@ -2,42 +2,42 @@
   {
 		"name": "Titanium - Unpainted",
 		"optionID": 3,
-		"thumbnailURL": "images/d_panel_1.png",
+		"thumbnailURL": "images/chairPic/frame1/part1/3_0_0_FrontRight.png",
 		"desc": "Titanium is a strong, beautiful material for a wheelchair frame",
 		"weight": 0
   },
   {
     "name": "Magnesium - Painted",
     "optionID": 4,
-    "thumbnailURL": "images/d_panel_1.png",
+    "thumbnailURL": "images/chairPic/frame1/part1/4_5_0_FrontRight.png",
     "desc": "Magnesium is even lighter than Titanium, and it can be painted to any color you want!",
     "weight": -0.1
   },
   {
     "name": "Anodized Aluminum Brackets",
     "optionID": 15,
-    "thumbnailURL": "images/d_panel_1.png",
+    "thumbnailURL": "images/chairPic/frame1/part2/15_16_0_FrontRight.png",
     "desc": "These brackets hold the camber tube to the frame.",
     "weight": 0
   },
   {
     "name": "Carbon Fiber",
     "optionID": 20,
-    "thumbnailURL": "images/d_panel_1.png",
+    "thumbnailURL": "images/chairPic/frame1/part3/20_0_0_Back.png",
     "desc": "A super light and stiff backrest.",
     "weight": 0
   },
   {
     "name": "Plastic",
     "optionID": 21,
-    "thumbnailURL": "images/d_panel_1.png",
+    "thumbnailURL": "images/chairPic/frame1/part3/21_0_0_Back.png",
     "desc": "Nothing beats the simplicity and ease of maintenance of a plastic seat back.",
     "weight": 0.1
   },
   {
     "name": "Upholstery",
     "optionID": 22,
-    "thumbnailURL": "images/d_panel_1.png",
+    "thumbnailURL": "images/chairPic/frame1/part3/22_0_0_Back.png",
     "desc": "A clasic fabric sling is the lightest option.",
     "weight": -0.07
   },

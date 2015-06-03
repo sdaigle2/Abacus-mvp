@@ -8,14 +8,15 @@
  *
  * Main module of the application.
  */
-angular
+var app = angular
   .module('abacuApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'xeditable'
   ])
   .config(function ($routeProvider, $sceDelegateProvider) {
     $routeProvider
@@ -63,5 +64,15 @@ angular
       'http://www.youtube.com/embed/**'
     ]);
   });
+
+
+//delete this
+app.run(function(editableOptions) {
+  editableOptions.theme = 'bs3';
+});
+
+app.controller('Ctrl', function($scope) {
+  $scope.wheelTitle = "My Custom WheelChair";
+});
 
 

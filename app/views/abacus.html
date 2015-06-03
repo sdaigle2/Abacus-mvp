@@ -47,14 +47,22 @@
         <select data-ng-model="curUnitSys"
                 data-ng-options="sys.enumVal as sys.name for sys in unitSysList"/>
       </div>
-      <div class="display-frame"><h4>{{curFrameData.name}}</h4></div>
+      	<div class="display-frame">
+
+      		
+ 				<div ng-app="app" ng-controller="Ctrl">
+  					<h4 href="#" editable-text="wheelTitle" class="chair-name">{{ wheelTitle || 'My Custom WheelChair' }}</h4>
+				</div>
+      	</div>
       <div class="display-totals text-center">
+      <div class="small-top-margin">
         <h4>
           <small>PRICE:</small>
           ${{getTotalPrice().toFixed(2)}}&nbsp;&nbsp;&nbsp;
           <small>WEIGHT:</small>
           {{(getTotalWeight() * getCurUnitSysWeightFactor()).toFixed(2)}} {{getCurUnitSysWeightName()}}
         </h4>
+       </div>
       </div>
     </div>
 

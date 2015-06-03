@@ -163,7 +163,7 @@
   margin-right: 5px;
   width: 350px;
   line-height: 1;
-  height: 60px;
+  height: 70px;
   border: 1px solid #ddd;
   border-bottom: hidden;
   box-shadow: -5px 5px 2px rgba(168,168,168,0.5);
@@ -787,4 +787,14 @@
   overflow-x: hidden;
   background-color: #D6D8D8;
   transition: 1s;
+}
+
+h4.chair-name{
+  margin-left: 7px;
+  margin-top: 11px;
+  color: #FFFFFF;
+  cursor: pointer; cursor: hand;
+}
+div.small-top-margin{
+  margin-top: 13px;
 }
