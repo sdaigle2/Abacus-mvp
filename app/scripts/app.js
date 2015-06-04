@@ -35,6 +35,13 @@ angular
         templateUrl: 'views/checkout/cart.html',
         controller: 'CartCtrl'
       })
+
+      //Delete this later
+      .when('/design', {
+        templateUrl: 'views/checkout/design.html',
+        controller: 'CartCtrl'
+      })
+
       .when('/checkout', {
         templateUrl: 'views/checkout/checkout.html',
         controller: 'CheckoutCtrl'
