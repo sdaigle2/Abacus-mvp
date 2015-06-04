@@ -1,0 +1,165 @@
+<link href="../../styles/checkout/design.css" rel="stylesheet" />
+
+<style type="text/css">
+body {
+        overflow: hidden;
+}
+</style>
+
+<div class="appBody">
+
+  <div class="text-center cartBody">
+    <!-- Heading -->
+    <div class="cartHeading">
+      <h1><strong>MY DESIGNS</strong></h1>
+      <a ng-href="#/frame"><div class="backButton">&lt;&lt; Design more wheelchairs</div></a>
+    </div>
+
+    <!-- Cart Items -->
+    <div class="cartItems">
+    <hr class="header-line">
+      <div class="emptyCartMessage" ng-show="wheelchairs.length == 0">
+        You haven't saved any wheelchair designs
+      </div>
+      <table class="cartItemsTable">
+        <tbody>
+        <tr class="cartItem" data-ng-repeat="w in wheelchairs">
+          <td class="cartItemThumb">
+            <img height="100" width="100" style="position: relative; top:0px;" /> <!--TODO: Replace this with generated image ~ abacus-->
+          </td>
+          <td class="cartItemDetails">
+            <div>
+              <div class="cartItemDetailDisplay">
+                <div class="cartItemName">
+                  {{w.getTitle()}}
+                </div>
+                <div class="cartItemPrice">
+                  ${{w.getTotalPrice().toFixed(2)}}
+                </div>
+                <div class="cartItemWeight">
+                  {{getWeightString(w)}}
+                </div>
+              </div>
+              <div class="cartItemButtons">
+                <button class="cartItemDetailsButton cartItemButton"
+                        data-ng-click="seeWheelchairDetails($index)">
+                  See Details <i class="fa fa-caret-down"
+                                 data-ng-class="{'fa-caret-down':curDetailPanel != $index , 'fa-caret-up':curDetailPanel == $index}"></i>
+                </button>
+                <button class="cartItemEditButton cartItemButton"
+                        data-ng-click="editWheelchair($index)">
+                  Edit
+                </button>
+                <button class="cartItemRemoveButton cartItemButton"
+                        data-ng-click="deleteWheelchair($index)">
+                  Delete
+                </button>
+                <button class="cartAddButton"
+                        data-ng-click="addWheelchairToOrder($index)"
+                        data-ng-if="wInOrder[$index] === false"
+                        data-ng-class="{'inactive': w.allMeasuresSet() === false }">
+                  Add to Cart
+                </button>
+                <button class="cartRemoveButton"
+                        data-ng-click="removeWheelchairFromOrder($index)"
+                        data-ng-if="wInOrder[$index] === true">
+                  Remove From Cart
+                </button>
+              </div>
+            </div>
+            <!-- Detail Tables -->
+            <div data-ng-show="curDetailPanel == $index">
+              <br/>
+              <table class="detailTable">
+                <thead>
+                <tr>
+                  <td>Part</td>
+                  <td>Option Chosen</td>
+                  <td>Color</td>
+                  <td>Price</td>
+                  <td>Weight</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="p in w.getParts()"> <!--TODO: Way to reduce function calls?-->
+                  <td>{{getPartDetails(w, p).partName}}</td>
+                  <td>{{getPartDetails(w, p).optionName}}</td>
+                  <td>{{getPartDetails(w, p).colorName}}</td>
+                  <td>{{getPartDetails(w, p).priceString}}</td>
+                  <td>{{getPartDetails(w, p).weightString}}</td>
+                </tr>
+                </tbody>
+              </table>
+              <br/>
+              <table class="detailTable">
+                <thead>
+                <tr>
+                  <td>Measurement</td>
+                  <td>Selection</td>
+                  <td>Price</td>
+                  <td>Weight</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-ng-repeat="m in w.getMeasures()"> <!--TODO: Way to reduce function calls?-->
+                  <td>{{getMeasureDetails(w, m).name}}</td>
+                  <td>{{getMeasureDetails(w, m).optionString}}</td>
+                  <td>{{getMeasureDetails(w, m).priceString}}</td>
+                  <td>{{getMeasureDetails(w, m).weightString}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+  <!-- Sidebar -->
+  <div class="cartSidebar">
+    <div class="cartSidebarHeading"><strong>CART</strong></div>
+    
+    <div class="cartItemsThumbnails">
+      
+      <div class="cartItemsThumbnailComponent">
+        <p class="thumbIndex"> 1. </p>
+        <img src = "images/pangding.jpg" class="cartThumbImage">
+        <div class="cartItemName"> DESIGN FOR BRIAN </div>
+      </div>
+
+    </div>
+
+    <table class="cartSidebarSubtotals">
+      <tbody>
+      <tr>
+        <td class="cartSidebarLabel">SUBTOTAL:</td>
+        <td class="cartSidebarValue">${{costs.subtotal.toFixed(2)}}</td>
+      </tr>
+      <tr>
+        <td class="cartSidebarLabel">SHIPPING:</td>
+        <td class="cartSidebarValue">${{costs.shipping.toFixed(2)}}</td>
+      </tr>
+      <tr>
+        <td class="cartSidebarLabel">TAX:</td>
+        <td class="cartSidebarValue">${{costs.tax.toFixed(2)}}</td>
+      </tr>
+      </tbody>
+      <tfoot class="cartSidebarTotal">
+      <tr>
+        <td class="cartSidebarLabel">TOTAL:</td>
+        <td class="cartSidebarValue">${{costs.total.toFixed(2)}}</td>
+      </tr>
+      </tfoot>
+    </table>
+    <div class="text-center">
+      <button class="checkoutButton"
+              data-ng-class="{ 'inactive' : !validCart() }"
+              data-ng-click="checkOut()">CHECK OUT &gt;&gt; </button>
+    </div>
+  </div>
+
+</div>
