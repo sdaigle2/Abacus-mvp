@@ -353,7 +353,6 @@ angular.module('abacuApp')
       /*********Save $ review Dropdown*********/
       $scope.toggleSaveDropDown = function () {
         $scope.saveDropdown = !$scope.saveDropdown;
-        console.log($scope.saveDropdown);
       };
 
       /*****************Sidebar Tabs***************/
@@ -461,6 +460,7 @@ angular.module('abacuApp')
         //Saves the current design and updates the database if the user is logged in
       $scope.saveDesign = function () {
         //redirect user to the cart/myDesigns
+        User.pushNewWheelchair();
         $location.path('cart');
 
       };

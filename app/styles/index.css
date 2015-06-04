@@ -80,6 +80,9 @@ body {
   text-decoration: none;
 }
 
+
+
+/*********main Navigation bar right**************/
 .mainNavbar-right {
   clear: right;
   float: right;
@@ -91,6 +94,12 @@ body {
   float: right;
   margin: 0 0 0 0;
   padding: 0;
+}
+
+.mainNavbar .mainNavbar-right .cartIcon{
+  position: absolute;
+  right: 8px;
+  top: 3px;
 }
 
 

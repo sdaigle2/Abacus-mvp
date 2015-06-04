@@ -63,12 +63,17 @@
 @keyframes expand {
   from {top: -200px;}
   to {top: 0;}
+
 }
 
 @keyframes leave {
   from {top: 0;}
   to {top: -200px;}
 }
+
+
+
+
 
 .dropdownButtonReal {
   background-color: white;
@@ -159,7 +164,6 @@
 #progressSaveBar .saveButton {
   background-color: white;
   color: #00a89c;
-  border: 1px solid #00A89C;
 }
 
 

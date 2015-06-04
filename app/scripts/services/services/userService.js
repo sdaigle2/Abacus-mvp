@@ -16,6 +16,7 @@ angular.module('abacuApp')
     function ($http, $location, $q, Order, Wheelchair, Units, Costs) {
 
     var orders = [];
+    var currentWheelchair = {isNew:false, editingWheelchair:{}};
     var designedWheelchairs = [];
 
     var curEditWheelchairIndex = -1;
@@ -102,16 +103,28 @@ angular.module('abacuApp')
 
       /*************************MY DESIGNS*******************************/
 
+      createCurrentDesign: function (frameID){
+        currentWheelchair.editingWheelchair = new Wheelchair(frameID);
+        currentWheelchair.isNew = true;
+      },
+
       //Create a new wheelchair object of given frame type and set edit pointer to it
-      createNewWheelchair: function (frameID) {
-        designedWheelchairs.push(new Wheelchair(frameID));
-        curEditWheelchairIndex = designedWheelchairs.length - 1;
+      pushNewWheelchair: function () {
+        if (currentWheelchair.isNew === true){
+          designedWheelchairs.push(currentWheelchair.editingWheelchair);
+          curEditWheelchairIndex = designedWheelchairs.length - 1;
+        }
+        else if(currentWheelchair.isNew === false){
+          designedWheelchairs[curEditWheelchairIndex] = jQuery.extend(true,currentWheelchair.editingWheelchair);
+        }
       },
 
       //Set the given wheelchair index to be edited
       setEditWheelchair: function (index) {
-        if (index >= 0 && index < designedWheelchairs.length)
-          curEditWheelchairIndex = index;
+        if (index >= 0 && index < designedWheelchairs.length){
+          curEditWheelchairIndex = index;}
+        currentWheelchair.editingWheelchair = jQuery.extend(true,designedWheelchairs[index]);
+        currentWheelchair.isNew = false;
       },
 
       //Removes the wheelchair at the given index from the user's myDesign
@@ -133,8 +146,14 @@ angular.module('abacuApp')
       //Returns the wheelchair currently set as "curEditWheelchair"
       //Returns null if no chair set as curEditWheelchair
       getCurEditWheelchair: function () {
-        return this.getWheelchair(curEditWheelchairIndex);
+        return currentWheelchair.editingWheelchair;
       },
+
+      getNumDesignedWheelchairs: function() {
+        return designedWheelchairs.length;
+      },
+
+
 
 
 

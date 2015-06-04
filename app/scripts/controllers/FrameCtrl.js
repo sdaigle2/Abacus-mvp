@@ -17,7 +17,7 @@ angular.module('abacuApp')
     //Create a new Wheelchair of the chosen frame type and send the user to Abacus with it
     $scope.selectFrame = function (frameID) {
       //Create a new wheelchair and set is as curEditWheelchair
-      User.createNewWheelchair(frameID);
+      User.createCurrentDesign(frameID);
 
       //Send the user to Abacus
       $location.path('abacus');
