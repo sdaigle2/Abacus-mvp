@@ -123,12 +123,13 @@
 }
 
 .title-column{
-  width: 116px;
+  width: 150px;
   font-weight: bold;
 }
 
 .value-column{
-  width: 247px;
+  width: 227px;
+  padding-right: 20px;
 }
 
 #parts-table p{
