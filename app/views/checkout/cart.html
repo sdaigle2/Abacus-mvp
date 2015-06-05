@@ -13,51 +13,25 @@
     </div>
 
     <!--comparison table main problem-->
-    <div id="mainContent">
-      <div id="comparisonImages">
-        <p><h4>Design for Brian</h4></p>
+    <div id="mainContent" >
+      <!-- ng-repeat="wheelchair in wheelchairs"-->
+      <div ng-repeat="wheelchair in wheelchairs" id="comparisonImages" >
+        <p><h4><strong>Design for Brian</strong></h4></p>
         <img ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false"
              data-ng-src="images/mainpic.png" width="185">
-        <table ng-show="editPanelShow === true">
+        <table ng-show="editPanelShow === true"
+               ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false">
           <tr>
             <td><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
             <td><strong>Edit</strong></td>
             <td><img data-ng-src="images/my_design_page/delete.png" width="20"></td>
           </tr>
         </table>
-        <p class="addButton">
-
-        <h3>ADD TO CART</h3></p>
-      </div>
-      <div id="comparisonImages">
-        <p><h4>Design for Brian</h4></p>
-        <img data-ng-src="images/mainpic.png" width="185">
-        <table>
-          <tr>
-            <td><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
-            <td><strong>Edit</strong></td>
-            <td><img data-ng-src="images/my_design_page/delete.png" width="20"></td>
-          </tr>
-        </table>
-        <p class="addButton">
-
-        <h3>ADD TO CART</h3></p>
-      </div>
-      <div id="comparisonImages">
-        <p><h4>Design for Brian</h4></p>
-        <img data-ng-src="images/mainpic.png" width="185">
-        <table>
-          <tr>
-            <td><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
-            <td><strong>Edit</strong></td>
-            <td><img data-ng-src="images/my_design_page/delete.png" width="20"></td>
-          </tr>
-        </table>
-        <p class="addButton">
-
-        <h3>ADD TO CART</h3></p>
+        <div class="addButton" >ADD TO CART</div>
       </div>
     </div>
+
+
 
 
     <!--detail part table-->
