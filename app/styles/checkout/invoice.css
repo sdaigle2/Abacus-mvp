@@ -1,59 +1,62 @@
 
 .page {
-  width: 8.5in;
-  height: 11in;
-  margin-left: auto;
-  margin-right: auto;
+  width: 612px;
+  height: 757px;
+  margin: 0;
 }
 
 .wrapper {
-  width: 7.5in;
-  height: 9.5in;
-  border: 5px solid;
-  margin: 50px auto 45px;
+  width: 540px;
+  height: 667px;
+  border: 4px solid;
+  margin: 36px auto 32px;
   padding-top: 5%;
   padding-bottom: 5%;
 }
 
 .wrapper2 {
-  width: 724px;
-  height: 916px;
-  margin: 50px auto 45px;
+  width: 540px;
+  height: 667px;
+  margin: 36px auto 32px;
 }
 
 div.details {
   width: 45%;
-  padding-top: 320px;
-  padding-left: 25px;
+  padding-top: 239px;
+  padding-left: 19px;
   display: inline-block;
   vertical-align: top;
 }
 
+#page-title{
+  font-size: 22px;
+}
+
 div.measurements {
   width: 92%;
-  padding-top: 20px;
-  margin-left: 25px;
-  padding-left: 10px;
+  padding-top: 15px;
+  margin-left: 19px;
+  padding-left: 7px;
   display: inline-block;
   vertical-align: top;
 }
 
 p.description {
-  padding-top: 5px;
-  padding-left: 35px;
-  font-size: 16px;
+  padding-top: 4px;
+  padding-left: 26px;
+  font-size: 12px;
   font-weight: bold;
 }
 
 span.description{
-  padding-left: 35px;
-  font-size: 16px;
+  padding-left: 26px;
+  font-size: 12px;
   font-weight: bold;
 }
 
 .description-result {
-  padding-left: 55px;
-  font-size: 14px;
+  padding-left: 41px;
+  font-size: 11px;
 
 }
 
@@ -62,8 +65,8 @@ p.price-bold {
 }
 
 img.wheel_measurement_one {
-  width: 300px;
-  padding-left: 35px;
+  width: 224px;
+  padding-left: 26px;
 }
 
 div.images {
@@ -79,11 +82,11 @@ div.images {
 }
 
 .value {
-  padding-left: 15px;
+  padding-left: 11px;
 }
 
 h2 {
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .front-page-disp {
@@ -107,16 +110,16 @@ h2 {
 }
 
 .footer {
-  margin-left: 458px;
+  margin-left: 342px;
 }
 
 #address {
-  margin-bottom: 10px;
+  margin-bottom: 7px;
 }
 
 #logo {
-  margin-bottom: 30px;
-  width: 100px;
+  margin-bottom: 22px;
+  width: 75px;
 }
 
 #intelliwheels-info {
@@ -130,28 +133,28 @@ h2 {
   width: 69%;
   display: inline-block;
   vertical-align: top;
-  padding-left: 20px;
-  padding-bottom: 20px;
+  padding-left: 15px;
+  padding-bottom: 15px;
   border-left-style: solid;
 }
 
 h3 {
   margin-top: 0;
-  margin-bottom: 20px;
-  font-size: 20px;
+  margin-bottom: 15px;
+  font-size: 15px;
   font-weight: bold;
 }
 
 #sum-head {
-  margin-bottom: 37px;
+  margin-bottom: 28px;
 }
 
 .address {
-  padding-top: 15px;
+  padding-top: 11px;
 }
 
 #wheelchair-sum {
-  margin-top: 50px;
+  margin-top: 37px;
 }
 
 table {
@@ -162,7 +165,7 @@ table {
 
 .price {
   float: right;
-  margin-right: 25px;
+  margin-right: 19px;
 }
 
 .qty {
@@ -172,128 +175,128 @@ table {
 .header {
   border-bottom-style: solid;
   border-color: #080808;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+  padding-bottom: 7px;
+  margin-bottom: 7px;
 }
 
 #final-sum {
   border-top-style: solid;
-  margin-top: 100px;
+  margin-top: 75px;
 }
 
 #final-sum-frames {
-  margin-left: 25px;
+  margin-left: 19px;
   margin-top: 0;
 }
 
 table.final-sum-table {
-  width: 478px;
+  width: 357px;
   float: right;
 }
 
 .dark_line {
   border-bottom-style: solid;
   width: 95%;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 table.desc_table{
   width: 92%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 10px;
+  margin-top: 7px;
 }
 
 .bottom-text{
   overflow: hidden;
-  width: 378px;
+  width: 282px;
   float: right;
-  margin-right: 29px;
+  margin-right: 22px;
 }
 
 p.type {
-  margin-left: 25px;
-  margin-bottom: 20px;
+  margin-left: 19px;
+  margin-bottom: 15px;
 }
 
 p.details {
   text-align: center;
-  margin-left: 22px;
-  margin-bottom: 20px;
+  margin-left: 16px;
+  margin-bottom: 15px;
 }
 
 p.price_text {
   text-align: right;
-  margin-right: 25px;
-  margin-bottom: 20px;
+  margin-right: 19px;
+  margin-bottom: 15px;
 }
 
 p.detailed_text {
-  font-size: 20px;
-  margin-left: 45px;
+  font-size: 19px;
+  margin-left: 34px;
   font-weight: bold;
 }
 
 table.priced_table {
-  margin-bottom: 5px;
+  margin-bottom: 4px;
 }
 
 p.priced_text {
   text-align: right;
-  font-size: 20px;
-  margin-right: 23px;
-  margin-top: 24px;
+  font-size: 15px;
+  margin-right: 17px;
+  margin-top: 18px;
 }
 
 p.selection {
-  font-size: 20px;
-  margin-left: 70px;
+  font-size: 15px;
+  margin-left: 52px;
 }
 
 img.frame_img {
-  width: 250px;
-  margin-bottom: 20px;
+  width: 187px;
+  margin-bottom: 15px;
   position: absolute;
 }
 
 img.frame_img_wheel {
-  width: 250px;
+  width: 187px;
   margin-bottom: 0;
   position: absolute;
 }
 
 .image_holder{
   position: relative;
-  width: 250px;
-  height: 201px;
+  width: 187px;
+  height: 150px;
 }
 
 .desc_img{
-  padding-top: 5px;
-  font-size: 16px;
+  padding-top: 4px;
+  font-size: 12px;
   font-weight: bold;
 }
 
 table.wheel_selection {
-  margin-bottom: 10px;
+  margin-bottom: 7px;
   float: right;
 }
 
 table.wheel_frame {
-  margin-left: 25px;
+  margin-left: 19px;
 }
 
 table.priced_table_wheel {
-  margin-bottom: 75px;
+  margin-bottom: 56px;
 }
 
 p {
-  font-size: 16px;
-  margin: 2px;
+  font-size: 12px;
+  margin: 1px;
 }
 
 .wheel-image {
-  width: 275px;
+  width: 205px;
 }
 
 td {

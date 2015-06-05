@@ -108,7 +108,4 @@ angular.module('abacuApp')
       return frame.getBaseWeight()+'lb';
     };
 
-    $scope.totalPrice = function(){
-
-    }
   }]);
