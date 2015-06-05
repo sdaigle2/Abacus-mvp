@@ -1,13 +1,13 @@
 ﻿'use strict';
 
 /*
-* This factory produces Wheelchair objects
-* A Wheelchair object keeps track of a user-created wheelchair design
-* To do this, the Wheelchair object tracks {partID, optionID, colorID} for parts and {measureID, optionIndex} for measures
-* The wheelchair also has a PreviewImage that assists in generating the array of preview images
-*/
+ * This factory produces Wheelchair objects
+ * A Wheelchair object keeps track of a user-created wheelchair design
+ * To do this, the Wheelchair object tracks {partID, optionID, colorID} for parts and {measureID, optionIndex} for measures
+ * The wheelchair also has a PreviewImage that assists in generating the array of preview images
+ */
 angular.module('abacuApp')
-  .factory('Wheelchair', [ 'FrameData', 'previewImage', 'Units', function (FrameData, previewImage, Units) {
+  .factory('Wheelchair', ['FrameData', 'previewImage', 'Units', function (FrameData, previewImage, Units) {
 
     //##########################  Constructor  #########################
 
@@ -33,10 +33,10 @@ angular.module('abacuApp')
           colorID: p.getDefaultOption().getDefaultColorID()
         };
         this.parts.push(defaultPart);
-        if(i<frame.wheelIndex){
+        if (i < frame.wheelIndex) {
           this.frameParts.push(defaultPart);
         }
-        else{
+        else {
           this.wheelParts.push(defaultPart);
         }
       }
@@ -51,8 +51,8 @@ angular.module('abacuApp')
       }
 
       //Helper PreviewImage object
-      this.previewImageGenerator = new previewImage("chairPic",this.frameID, this.parts);
-      this.wheelImageGenerator = new previewImage("chairPic",this.frameID, this.wheelParts);
+      this.previewImageGenerator = new previewImage("chairPic", this.frameID, this.parts);
+      this.wheelImageGenerator = new previewImage("chairPic", this.frameID, this.wheelParts);
       this.frameImageGenerator = new previewImage("chairPic", this.frameID, this.frameParts);
     };
 
@@ -60,12 +60,24 @@ angular.module('abacuApp')
     Wheelchair.prototype = {
 
       //GETS
-      getFrameID: function () { return this.frameID; },
-      getTitle: function () { return this.title; },
-      getParts: function () { return this.parts; },
-      getMeasures: function () { return this.measures; },
-      getNumParts: function () { return this.parts.length; },
-      getNumMeasures: function () { return this.measures.length; },
+      getFrameID: function () {
+        return this.frameID;
+      },
+      getTitle: function () {
+        return this.title;
+      },
+      getParts: function () {
+        return this.parts;
+      },
+      getMeasures: function () {
+        return this.measures;
+      },
+      getNumParts: function () {
+        return this.parts.length;
+      },
+      getNumMeasures: function () {
+        return this.measures.length;
+      },
 
       getPart: function (pID) {
         for (var i = 0; i < this.parts.length; i++)
@@ -117,6 +129,15 @@ angular.module('abacuApp')
       //Returns an object of display-formatted details about the given part
       getPartDetails: function (pID, unitSys) {
         var curPart = this.getPart(pID);
+        if (curPart === null) {
+          return {
+            partName: '-',
+            optionName: '-',
+            colorName: '-',
+            priceString: '-',
+            weightString: '-'
+          };
+        }
         var oID = curPart.optionID;
         var cID = curPart.colorID;
 
@@ -156,7 +177,7 @@ angular.module('abacuApp')
           optionString += " " + meas.getUnits(unitSys);
           priceString = ((meas.getPrice(i) < 0) ? "-$" : "$") + Math.abs(meas.getPrice(i).toFixed(2));
           weightString = (meas.getWeight(i) * Units.getWeightFactor(unitSys)) + ' ' + Units.getWeightName(unitSys);
-          altOptionString = meas.getOption(1-unitSys, i) + ' ' + meas.getUnits(1-unitSys);
+          altOptionString = meas.getOption(1 - unitSys, i) + ' ' + meas.getUnits(1 - unitSys);
         }
 
         return {
@@ -177,7 +198,7 @@ angular.module('abacuApp')
         return this.wheelImageGenerator.getImages(angle);
       },
 
-      getFrameImages: function(angle) {
+      getFrameImages: function (angle) {
         return this.frameImageGenerator.getImages(angle);
       },
 
@@ -278,14 +299,13 @@ angular.module('abacuApp')
   }]);
 
 
-
 /*
-curWheelchair = {
-  frameID
-  parts[] = {partID, optionID, colorID}
-  measures[] = {measureID, measureOptionIndex}
-}
+ curWheelchair = {
+ frameID
+ parts[] = {partID, optionID, colorID}
+ measures[] = {measureID, measureOptionIndex}
+ }
 
 
-*/
+ */
 

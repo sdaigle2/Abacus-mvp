@@ -73,12 +73,31 @@
   border-top: 3px solid #88cbc3;
 }
 
+#parts-table{
+  margin: 0 25px;
+  position: relative;
+  top: 50px;
+}
+.price-weight-row{
+  border-bottom: solid 3px grey;
+}
 
+.part-row{
+  border-bottom: solid 1px grey;
+}
 
+.title-column{
+  width: 116px;
+  font-weight: bold;
+}
 
+.value-column{
+  width: 247px;
+}
 
-
-
+#parts-table p{
+  margin: 25px 0 0 0;
+}
 
 
 

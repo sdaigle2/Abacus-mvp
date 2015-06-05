@@ -1,4 +1,4 @@
-﻿<link href="../../styles/checkout/cart.css" rel="stylesheet" />
+﻿<link href="../../styles/checkout/cart.css" rel="stylesheet"/>
 
 
 <div class="appBody">
@@ -7,7 +7,9 @@
     <!-- Heading -->
     <div class="cartHeading">
       <h3><strong>MY DESIGNS</strong></h3>
-      <a ng-href="#/frame"><div class="backButton">&lt;&lt; Design Another Wheelchair</div></a>
+      <a ng-href="#/frame">
+        <div class="backButton">&lt;&lt; Design Another Wheelchair</div>
+      </a>
     </div>
 
     <!--comparison table main problem-->
@@ -17,24 +19,64 @@
           <td>
             <p><h4>Design for Brian</h4></p>
             <img data-ng-src="images/pangding.jpg" width="185">
-            <p class="addButton"><h3>Add to cart</h3></p>
+
+            <p class="addButton">
+
+            <h3>Add to cart</h3></p>
           </td>
           <td>
             <p><h4>Design for Brian</h4></p>
             <img data-ng-src="images/pangding.jpg" width="185">
-            <p class="addButton"><h3>Add to cart</h3></p>
+
+            <p class="addButton">
+
+            <h3>Add to cart</h3></p>
           </td>
           <td>
             <p><h4>Design for Brian</h4></p>
             <img data-ng-src="images/pangding.jpg" width="185">
-            <p class="addButton"><h3>Add to cart</h3></p>
+
+            <p class="addButton">
+
+            <h3>Add to cart</h3></p>
           </td>
 
         </tr>
       </table>
     </div>
 
-    <!-- Cart Items -->
+    <table id="parts-table">
+      <tr class="price-weight-row">
+        <td class="title-column">
+          <p>Price</p>
+        </td>
+        <td  class="value-column" ng-repeat="wheelchair in wheelchairs">
+          <p>${{wheelchair.getTotalPrice()}}</p>
+        </td>
+        <td  class="value-column" ng-repeat="space in emptyCols"></td>
+      </tr>
+      <tr class="price-weight-row">
+        <td class="title-column">
+          <p>Weight</p>
+        </td>
+        <td  class="value-column" ng-repeat="wheelchair in wheelchairs">
+          <p data-ng-bind="getWeightString(wheelchair)"></p>
+        </td>
+        <td  class="value-column" ng-repeat="space in emptyCols"></td>
+      </tr>
+      <tr class="part-row" ng-repeat="part in parts">
+        <td class="title-column">
+          <p>{{part.getName()}}</p>
+        </td>
+        <td class="value-column" ng-repeat="wheelchair in wheelchairs">
+          <p data-ng-bind="getPartOption(wheelchair, part)"></p>
+        </td>
+        <td  class="value-column" ng-repeat="space in emptyCols"></td>
+      </tr>
+    </table>
+
+
+    <!-- Cart Items
     <div class="cartItems">
       <div class="emptyCartMessage" ng-show="wheelchairs.length == 0">
         You haven't saved any wheelchair designs
@@ -43,7 +85,7 @@
         <tbody>
         <tr class="cartItem" data-ng-repeat="w in wheelchairs">
           <td class="cartItemThumb">
-            <img height="100" width="100" style="position: relative; top:0px;" /> <!--TODO: Replace this with generated image ~ abacus-->
+            <img height="100" width="100" style="position: relative; top:0px;" />
           </td>
           <td class="cartItemDetails">
             <div>
@@ -85,7 +127,7 @@
                 </button>
               </div>
             </div>
-            <!-- Detail Tables -->
+            < Detail Tables >
             <div data-ng-show="curDetailPanel == $index">
               <br/>
               <table class="detailTable">
@@ -99,7 +141,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-ng-repeat="p in w.getParts()"> <!--TODO: Way to reduce function calls?-->
+                <tr data-ng-repeat="p in w.getParts()">
                   <td>{{getPartDetails(w, p).partName}}</td>
                   <td>{{getPartDetails(w, p).optionName}}</td>
                   <td>{{getPartDetails(w, p).colorName}}</td>
@@ -119,7 +161,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-ng-repeat="m in w.getMeasures()"> <!--TODO: Way to reduce function calls?-->
+                <tr data-ng-repeat="m in w.getMeasures()">
                   <td>{{getMeasureDetails(w, m).name}}</td>
                   <td>{{getMeasureDetails(w, m).optionString}}</td>
                   <td>{{getMeasureDetails(w, m).priceString}}</td>
@@ -133,8 +175,8 @@
         </tbody>
       </table>
     </div>
+    -->
   </div>
-
 
 
   <!-- Sidebar -->
@@ -165,7 +207,8 @@
     <div class="text-center">
       <button class="checkoutButton"
               data-ng-class="{ 'inactive' : !validCart() }"
-              data-ng-click="checkOut()">Check Out</button>
+              data-ng-click="checkOut()">Check Out
+      </button>
     </div>
   </div>
 
