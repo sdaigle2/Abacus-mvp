@@ -64,6 +64,9 @@ angular.module('abacuApp')
         return false;
       }
 
+      $scope.panelSelected = function(hoveritem, index, part){
+        return hoveritem.index === index && hoveritem.name === part.getName();
+      };
       /********************CART ITEM BUTTONS******************************/
 
         //The index of the cart whose detail panel is open, -1 = None

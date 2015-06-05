@@ -20,71 +20,83 @@
              data-ng-src="images/mainpic.png" width="185">
         <table ng-show="editPanelShow === true">
           <tr>
-            <td><img data-ng-src="images/my_design_page/zoom_in.png" width="20"> </td>
+            <td><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
             <td><strong>Edit</strong></td>
-            <td><img data-ng-src="images/my_design_page/delete.png" width="20"> </td>
+            <td><img data-ng-src="images/my_design_page/delete.png" width="20"></td>
           </tr>
         </table>
-        <p class="addButton"><h3 >ADD TO CART</h3></p>
+        <p class="addButton">
+
+        <h3>ADD TO CART</h3></p>
       </div>
       <div id="comparisonImages">
         <p><h4>Design for Brian</h4></p>
         <img data-ng-src="images/mainpic.png" width="185">
         <table>
           <tr>
-            <td><img data-ng-src="images/my_design_page/zoom_in.png" width="20"> </td>
+            <td><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
             <td><strong>Edit</strong></td>
-            <td><img data-ng-src="images/my_design_page/delete.png" width="20"> </td>
+            <td><img data-ng-src="images/my_design_page/delete.png" width="20"></td>
           </tr>
         </table>
-        <p class="addButton"><h3>ADD TO CART</h3></p>
+        <p class="addButton">
+
+        <h3>ADD TO CART</h3></p>
       </div>
       <div id="comparisonImages">
         <p><h4>Design for Brian</h4></p>
         <img data-ng-src="images/mainpic.png" width="185">
         <table>
           <tr>
-            <td><img data-ng-src="images/my_design_page/zoom_in.png" width="20"> </td>
+            <td><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
             <td><strong>Edit</strong></td>
-            <td><img data-ng-src="images/my_design_page/delete.png" width="20"> </td>
+            <td><img data-ng-src="images/my_design_page/delete.png" width="20"></td>
           </tr>
         </table>
-        <p class="addButton"><h3>ADD TO CART</h3></p>
+        <p class="addButton">
+
+        <h3>ADD TO CART</h3></p>
       </div>
     </div>
-
 
 
     <!--detail part table-->
 
 
-    <table id="parts-table">
+    <table>
       <tr class="price-weight-row">
         <td class="title-column">
           <p>Price</p>
         </td>
-        <td  class="value-column" ng-repeat="wheelchair in wheelchairs">
+        <td class="value-column" ng-repeat="wheelchair in wheelchairs">
           <p>${{wheelchair.getTotalPrice()}}</p>
         </td>
-        <td  class="value-column" ng-repeat="space in emptyCols"></td>
+        <td class="value-column" ng-repeat="space in emptyCols"></td>
       </tr>
       <tr class="price-weight-row">
         <td class="title-column">
           <p>Weight</p>
         </td>
-        <td  class="value-column" ng-repeat="wheelchair in wheelchairs">
+        <td class="value-column" ng-repeat="wheelchair in wheelchairs">
           <p data-ng-bind="getWeightString(wheelchair)"></p>
         </td>
-        <td  class="value-column" ng-repeat="space in emptyCols"></td>
+        <td class="value-column" ng-repeat="space in emptyCols"></td>
       </tr>
-      <tr class="part-row" ng-repeat="part in parts">
+    </table>
+    <table class="parts-table" data-ng-init="hoverItem = {index: -1, name: ''}">
+      <tr class="part-row" ng-repeat="part in parts" >
         <td class="title-column">
           <p>{{part.getName()}}</p>
         </td>
-        <td class="value-column" ng-repeat="wheelchair in wheelchairs">
-          <p data-ng-bind="getPartOption(wheelchair, part)"></p>
+        <td class="value-column" ng-repeat="wheelchair in wheelchairs" data-ng-mouseenter="hoverItem = {index: $index, name: part.getName()}"
+            data-ng-mouseleave="hoverItem = {index: -1, name: ''}">
+          <div class="option-desc" data-ng-if="panelSelected(hoverItem, $index, part)">
+            <p data-ng-bind="getPartOption(wheelchair, part)"></p>
+            <p>{{getPartDetails(wheelchair, part).priceString}} | {{getPartDetails(wheelchair, part).weightString}}</p>
+          </div>
+          <p data-ng-bind="getPartOption(wheelchair, part)" data-ng-if="!panelSelected(hoverItem, $index, part)"></p>
         </td>
-        <td  class="value-column" ng-repeat="space in emptyCols"></td>
+        <td class="value-column" ng-repeat="space in emptyCols"></td>
       </tr>
     </table>
 

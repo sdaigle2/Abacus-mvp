@@ -107,13 +107,16 @@
 
 
 /********detail part table***********/
-#parts-table{
-  margin: 0 25px;
-  position: relative;
-  top: 50px;
+.cartBody table{
+  margin: 20px 25px;
   float: left;
   clear: left;
 }
+
+.parts-table, .parts-table td{
+  border: solid 1px grey;
+}
+
 .price-weight-row{
   border-bottom: solid 3px grey;
 }
@@ -123,20 +126,24 @@
 }
 
 .title-column{
-  width: 150px;
+  width: 140px;
   font-weight: bold;
 }
 
 .value-column{
   width: 227px;
-  padding-right: 20px;
+  padding: 0 10px;
 }
 
-#parts-table p{
+.cartBody table p{
   margin: 25px 0 0 0;
 }
 
-
+.option-desc{
+  background-color: #EAEAEA;
+  height: 100%
+  width: 100%
+}
 
 
 
