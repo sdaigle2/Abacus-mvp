@@ -10,7 +10,7 @@
 .cartBody {
   float: left;
   clear: left;
-  width: 82%;
+  width: 75%;
 }
 
 /*************************
@@ -49,30 +49,58 @@
 
 
 #mainContent #comparisonImages{
+  display: inline-block;
   position: relative;
   top: 15px;
   left: 141px;
-
+  float: left;
+  border: 1px solid #EAEAEA;
+  margin-right: 20px;
 }
 
-#mainContent #comparisonImages tr
-{
-  border: 1px solid black;
-  margin-left: 40px;
+
+#mainContent #comparisonImages h4{
+  float: left;
+  margin-left: 15px;
+}
+
+
+#mainContent #comparisonImages img{
+  margin: 0 10px 5px;
+}
+
+#mainContent #comparisonImages tr{
+  background-color:rgba(256,256,256,0.85);
+  width: 100%;
+  padding: 10px 0;
+  position: absolute;
+  bottom: 42px;
 }
 
 #mainContent #comparisonImages td{
-  border: 1px solid black;
+  padding: 0 15px;
 }
 
-#mainContent #comparisonImages img{
-  margin: 0 30px;
+#mainContent #comparisonImages td:nth-child(2){
+  border-left: 3px solid black;
+  border-right: 3px solid black;
 }
+
+
 
 #mainContent #comparisonImages .addButton {
   border-top: 3px solid #88cbc3;
 }
 
+#mainContent #comparisonImages .addButton:hover {
+  background-color: #00a89c;
+  color: white;
+}
+#mainContent #comparisonImages h3{
+  color: #00A89C;
+  font-size: 1.3em;
+  margin-top: 10px;
+}
 #parts-table{
   margin: 0 25px;
   position: relative;
@@ -247,7 +275,7 @@
   padding-top: 100px;
   padding-bottom: 100px;
   position: relative;
-  width: 18%;
+  width: 25%;
   height: 100%;
 }
 

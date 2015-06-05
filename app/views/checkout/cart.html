@@ -14,35 +14,43 @@
 
     <!--comparison table main problem-->
     <div id="mainContent">
-      <table id="comparisonImages">
-        <tr>
-          <td>
-            <p><h4>Design for Brian</h4></p>
-            <img data-ng-src="images/pangding.jpg" width="185">
-
-            <p class="addButton">
-
-            <h3>Add to cart</h3></p>
-          </td>
-          <td>
-            <p><h4>Design for Brian</h4></p>
-            <img data-ng-src="images/pangding.jpg" width="185">
-
-            <p class="addButton">
-
-            <h3>Add to cart</h3></p>
-          </td>
-          <td>
-            <p><h4>Design for Brian</h4></p>
-            <img data-ng-src="images/pangding.jpg" width="185">
-
-            <p class="addButton">
-
-            <h3>Add to cart</h3></p>
-          </td>
-
-        </tr>
-      </table>
+      <div id="comparisonImages">
+        <p><h4>Design for Brian</h4></p>
+        <img ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false"
+             data-ng-src="images/mainpic.png" width="185">
+        <table ng-show="editPanelShow === true">
+          <tr>
+            <td><img data-ng-src="images/my_design_page/zoom_in.png" width="20"> </td>
+            <td><strong>Edit</strong></td>
+            <td><img data-ng-src="images/my_design_page/delete.png" width="20"> </td>
+          </tr>
+        </table>
+        <p class="addButton"><h3 >ADD TO CART</h3></p>
+      </div>
+      <div id="comparisonImages">
+        <p><h4>Design for Brian</h4></p>
+        <img data-ng-src="images/mainpic.png" width="185">
+        <table>
+          <tr>
+            <td><img data-ng-src="images/my_design_page/zoom_in.png" width="20"> </td>
+            <td><strong>Edit</strong></td>
+            <td><img data-ng-src="images/my_design_page/delete.png" width="20"> </td>
+          </tr>
+        </table>
+        <p class="addButton"><h3>ADD TO CART</h3></p>
+      </div>
+      <div id="comparisonImages">
+        <p><h4>Design for Brian</h4></p>
+        <img data-ng-src="images/mainpic.png" width="185">
+        <table>
+          <tr>
+            <td><img data-ng-src="images/my_design_page/zoom_in.png" width="20"> </td>
+            <td><strong>Edit</strong></td>
+            <td><img data-ng-src="images/my_design_page/delete.png" width="20"> </td>
+          </tr>
+        </table>
+        <p class="addButton"><h3>ADD TO CART</h3></p>
+      </div>
     </div>
 
     <table id="parts-table">
