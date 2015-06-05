@@ -16,7 +16,7 @@ angular.module('abacuApp')
     function ($http, $location, $q, Order, Wheelchair, Units, Costs) {
 
     var orders = [];
-    var currentWheelchair = {isNew:false, editingWheelchair:{}};
+    var currentWheelchair = {isNew:false, editingWheelchair:null};
     var designedWheelchairs = [];
 
     var curEditWheelchairIndex = -1;

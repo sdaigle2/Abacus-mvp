@@ -10,7 +10,7 @@
 .cartBody {
   float: left;
   clear: left;
-  width: 68%;
+  width: 82%;
 }
 
 /*************************
@@ -22,17 +22,16 @@
   border-bottom: 2px solid #000000;
   clear: left;
   float: left;
-  margin-right: 0;
-  margin-top: 30px;
-  padding-right: 25px;
-  padding-left: 10px;
+  margin:30px 25px 0;
+
   width: 96%;
 }
 
 
-.cartHeading h1 {
+.cartHeading h3 {
   clear: left;
   float: left;
+  margin-top: 36px;
   text-transform: uppercase;
 }
 
@@ -43,6 +42,50 @@
   font-weight: bold;
   color: #000;
 }
+
+/*************************
+****** Comparison table ****
+**************************/
+
+
+#mainContent #comparisonImages{
+  position: relative;
+  top: 15px;
+  left: 141px;
+
+}
+
+#mainContent #comparisonImages tr
+{
+  border: 1px solid black;
+  margin-left: 40px;
+}
+
+#mainContent #comparisonImages td{
+  border: 1px solid black;
+}
+
+#mainContent #comparisonImages img{
+  margin: 0 30px;
+}
+
+#mainContent #comparisonImages .addButton {
+  border-top: 3px solid #88cbc3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*************************
 ****** Cart Item List ****
@@ -185,7 +228,7 @@
   padding-top: 100px;
   padding-bottom: 100px;
   position: relative;
-  width: 30%;
+  width: 18%;
   height: 100%;
 }
 
@@ -223,12 +266,13 @@
 
 .checkoutButton {
   width: 90%;
+  margin: auto;
   border: none;
   background-color: #60C2B1;
   display:inline-block;
   font-size: 1.5em;
   color: #FFFFFF;
-  height: 40px;
+  height: 35px;
 }
 
 .checkoutButton.inactive {
