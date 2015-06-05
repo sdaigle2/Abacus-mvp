@@ -52,7 +52,7 @@
   display: inline-block;
   position: relative;
   top: 15px;
-  left: 141px;
+  left: 175px;
   float: left;
   border: 1px solid #EAEAEA;
   margin-right: 20px;
@@ -101,10 +101,18 @@
   font-size: 1.3em;
   margin-top: 10px;
 }
+
+
+
+
+
+/********detail part table***********/
 #parts-table{
   margin: 0 25px;
   position: relative;
   top: 50px;
+  float: left;
+  clear: left;
 }
 .price-weight-row{
   border-bottom: solid 3px grey;
