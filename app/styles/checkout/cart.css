@@ -74,10 +74,11 @@
   width: 100%;
   padding: 10px 0;
   position: absolute;
-  bottom: 42px;
+  bottom: 48px;
 }
 
 #mainContent #comparisonImages td{
+  cursor: pointer;
   padding: 0 15px;
 }
 
@@ -89,18 +90,18 @@
 
 
 #mainContent #comparisonImages .addButton {
-  border-top: 3px solid #88cbc3;
+  color: #00A89C;
+  font-size: 1.3em;
+  margin-top: 10px;
+  border-top: 3px solid #00a89c;
+  padding: 10px 0;
 }
 
 #mainContent #comparisonImages .addButton:hover {
   background-color: #00a89c;
   color: white;
 }
-#mainContent #comparisonImages h3{
-  color: #00A89C;
-  font-size: 1.3em;
-  margin-top: 10px;
-}
+
 
 
 
