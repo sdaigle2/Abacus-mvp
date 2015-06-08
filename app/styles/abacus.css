@@ -1,8 +1,13 @@
 
+
+
+
 /*************************************************Top Bar*****************************************/
+
 
 #backgrounder {
   position: fixed;
+  min-width: 1180px;
   left: 0px;
   top: 0px;
   height: 50%;
@@ -315,7 +320,7 @@
 
 .main-measure .measure-body{
   width:100%;
-  min-width: 860px;
+  min-width: 720px;
   height : 500px;
   background-color: white;
   border: 1px solid #bcbec0;
@@ -331,7 +336,7 @@
 }
 
 .main-measure .measure-tab .measure-tab-title {
-  width: 33%;
+  width: 33.3%;
   text-align: center;
   border-right: 1px solid #bcbec0;
   border-bottom: 1px solid #bcbec0;
@@ -348,7 +353,7 @@
 }
 
 .main-measure .measure-body .measure-content {
-  width: 600px;
+  width: 585px;
   height: 85%;
   margin: 43px auto 0;
 }

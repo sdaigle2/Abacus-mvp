@@ -26,6 +26,10 @@ angular.module('abacuApp')
       //If j === -1 then $scope.wheelchairs[i] is not in curOrder
       $scope.wOrderIndex = [];
 
+      $scope.imageDisplay1 = false;
+
+
+
       //A reference to User.curEditOrder (set during init())
       var curOrder = null;
 
@@ -85,6 +89,7 @@ angular.module('abacuApp')
         User.setEditWheelchair(index);
         $location.path('abacus');
       };
+
 
       //Deletes wheelchair from user's My Designs
       $scope.deleteWheelchair = function (index) {
@@ -161,6 +166,10 @@ angular.module('abacuApp')
       //Determines if the current cart is valid
       $scope.validCart = function () {
         return curOrder.getNumWheelchairs() > 0;
+      };
+
+      $scope.toggleImageDisplay = function(){
+        $scope.imageDisplay1 = !$scope.imageDisplay1;
       };
 
       /********************DETAIL PANEL*********************************/

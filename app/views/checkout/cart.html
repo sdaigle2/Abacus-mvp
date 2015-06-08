@@ -1,9 +1,9 @@
 ﻿<link href="../../styles/checkout/cart.css" rel="stylesheet"/>
 
 
-<div class="appBody">
+<div class="appBody" >
 
-  <div class="text-center cartBody">
+  <div class="text-center cartBody" ng-class="{'appBodyOverflow': imageDisplay1 }">
     <!-- Heading -->
     <div class="cartHeading">
       <h3><strong>MY DESIGNS</strong></h3>
@@ -22,7 +22,7 @@
         <table ng-show="editPanelShow === true"
                ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false">
           <tr>
-            <td><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
+            <td ng-click="toggleImageDisplay()"><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
             <td data-ng-click="editWheelchair($index)"><strong>Edit</strong></td>
             <td data-ng-click="deleteWheelchair($index)"><img data-ng-src="images/my_design_page/delete.png" width="20"></td>
           </tr>
@@ -219,9 +219,17 @@
       </button>
     </div>
   </div>
-  <div ng-repeat="" id="displayImage">
+
+
+  <div ng-show="imageDisplay1"  id="displayImage">
+    <div id="offClickArea" ng-show="imageDisplay1"  data-ng-click="toggleImageDisplay()"></div>
     <div class="mainDisplay">
-      <div> {{w.getTitle()}} </div>
+      <div id="designTitle"> <h3>DESIGN FOR BRIAN</h3> </div>
+      <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
+           data-ng-click=""/>
+      <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
+           data-ng-click=""/>
+      <img data-ng-src="images/mainpic.png" height="90%">
     </div>
   </div>
 
