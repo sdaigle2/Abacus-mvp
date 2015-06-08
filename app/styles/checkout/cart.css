@@ -118,11 +118,8 @@
 
 
 
-
-
-
-
 /********detail part table***********/
+
 .cartBody > table{
   margin: 20px 25px;
   float: left;
@@ -148,20 +145,30 @@
 
 .value-column{
   width: 227px;
-  padding: 0 10px;
+  margin: 0 10px;
 }
 
-.cartBody >table p{
+.hover-column:hover{
+  background-color: #EAEAEA;
+}
+
+.cartBody td > p{
   margin: 25px 0 0 0;
 }
 
 .option-desc{
   background-color: #EAEAEA;
-  height: 100%
-  width: 100%
+  padding: 0;
 }
 
+.option-desc.ng-enter{
+  animation-name: expand;
+  animation-duration: 2s;
+}
 
+.option-desc > p{
+  margin: 0;
+}
 
 
 

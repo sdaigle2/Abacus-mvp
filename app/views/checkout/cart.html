@@ -71,13 +71,13 @@
         <td class="title-column">
           <p>{{part.getName()}}</p>
         </td>
-        <td class="value-column" ng-repeat="wheelchair in wheelchairs" data-ng-mouseenter="hoverItem = {index: $index, name: part.getName()}"
-            data-ng-mouseleave="hoverItem = {index: -1, name: ''}">
-          <div class="option-desc" data-ng-if="panelSelected(hoverItem, $index, part)">
-            <p data-ng-bind="getPartOption(wheelchair, part)"></p>
+        <td class="value-column hover-column" ng-repeat="wheelchair in wheelchairs" data-ng-mouseenter="hoverItem.index = $index; hoverItem.name = part.getName()"
+            data-ng-mouseleave="hoverItem.index=-1; hoverItem.name=''">
+          <div class="option-desc" data-ng-if="hoverItem.index === $index && hoverItem.name === part.getName()">
+            <p class="option-desc-head" data-ng-bind="getPartOption(wheelchair, part)"></p>
             <p>{{getPartDetails(wheelchair, part).priceString}} | {{getPartDetails(wheelchair, part).weightString}}</p>
           </div>
-          <p data-ng-bind="getPartOption(wheelchair, part)" data-ng-if="!panelSelected(hoverItem, $index, part)"></p>
+          <p data-ng-bind="getPartOption(wheelchair, part)" data-ng-if="hoverItem.index !== $index || hoverItem.name !== part.getName()"></p>
         </td>
         <td class="value-column" ng-repeat="space in emptyCols"></td>
       </tr>

@@ -6,11 +6,12 @@
 }
 
 .wrapper {
+  font-family: 'Roboto', sans-serif;
   width: 540px;
   height: 667px;
   border: 4px solid;
   margin: 36px auto 32px;
-  padding-top: 5%;
+  padding-top: 3%;
   padding-bottom: 5%;
 }
 
@@ -195,7 +196,7 @@ table.final-sum-table {
 }
 
 .dark_line {
-  border-bottom-style: solid;
+  border-bottom: solid 1px;
   width: 95%;
   margin-bottom: 15px;
 }

@@ -63,7 +63,6 @@
 @keyframes expand {
   from {top: -200px;}
   to {top: 0;}
-
 }
 
 @keyframes leave {
