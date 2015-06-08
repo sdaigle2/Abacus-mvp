@@ -417,6 +417,14 @@ a:hover{
   cursor: pointer;
 }
 
+#scroll-order {
+  overflow-y: auto;
+  max-height: 213px;
+}
+
+.order-block img, .order-block p {
+  margin: 0 auto;
+}
 
 /****************display Image*********/
 #displayImage{

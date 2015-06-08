@@ -32,12 +32,12 @@ angular.module('abacuApp')
 
       //A reference to User.curEditOrder (set during init())
       var curOrder = null;
-
+      $scope.orderChairs;
       //Initialize Cart page
       function init() {
         User.createNewOrder();
         curOrder = User.getCurEditOrder();
-
+        $scope.orderChairs = curOrder.getWheelchairs();
         for (var i = 0; i < $scope.wheelchairs.length; i++) {
           $scope.wOrderIndex.push(-1);
           $scope.wInOrder.push(false);
@@ -45,7 +45,7 @@ angular.module('abacuApp')
         }
 
         for (var j = $scope.wheelchairs.length; j < 3; j++){
-          $scope.emptyCols.push(j);
+          $scope.emptyCols.push({});
         }
       }
 
@@ -103,7 +103,7 @@ angular.module('abacuApp')
 
         //Remove wheelchair from My Designs
         User.deleteWheelchair(index);
-
+        $scope.emptyCols.push({});
         //TODO: Save changes to DB
       };
 
