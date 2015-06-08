@@ -189,7 +189,13 @@
 
   <!-- Sidebar -->
   <div class="cartSidebar">
-    <div class="cartSidebarHeading"><strong>SUMMARY</strong></div>
+    <div class="cartSidebarHeading"><strong>CART</strong></div>
+    <div id="scroll-order">
+      <div class="order-block" ng-repeat="wheelchair in orderChairs">
+        <img class="order-img" data-ng-src="images/mainpic.png" width="250">
+        <p>{{wheelchair.getTitle()}}</p>
+      </div>
+    </div>
     <table class="cartSidebarSubtotals">
       <tbody>
       <tr>
