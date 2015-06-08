@@ -102,13 +102,28 @@
   color: white;
 }
 
+#mainContent #comparisonImages .removeButton {
+  color: #00A89C;
+  font-size: 1.3em;
+  margin-top: 10px;
+  border-top: 3px solid #00a89c;
+  padding: 10px 0;
+}
+
+#mainContent #comparisonImages .removeButton:hover {
+  background-color: red;
+  color: white;
+}
+
+
+
 
 
 
 
 
 /********detail part table***********/
-.cartBody table{
+.cartBody > table{
   margin: 20px 25px;
   float: left;
   clear: left;
@@ -136,7 +151,7 @@
   padding: 0 10px;
 }
 
-.cartBody table p{
+.cartBody >table p{
   margin: 25px 0 0 0;
 }
 

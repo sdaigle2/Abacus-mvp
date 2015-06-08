@@ -15,19 +15,28 @@
     <!--comparison table main problem-->
     <div id="mainContent" >
       <!-- ng-repeat="wheelchair in wheelchairs"-->
-      <div ng-repeat="wheelchair in wheelchairs" id="comparisonImages" >
-        <p><h4><strong>Design for Brian</strong></h4></p>
+      <div ng-repeat="w in wheelchairs" id="comparisonImages" >
+        <p><h4><strong>{{w.getTitle()}}</strong></h4></p>
         <img ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false"
              data-ng-src="images/mainpic.png" width="185">
         <table ng-show="editPanelShow === true"
                ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false">
           <tr>
             <td><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
-            <td><strong>Edit</strong></td>
-            <td><img data-ng-src="images/my_design_page/delete.png" width="20"></td>
+            <td data-ng-click="editWheelchair($index)"><strong>Edit</strong></td>
+            <td data-ng-click="deleteWheelchair($index)"><img data-ng-src="images/my_design_page/delete.png" width="20"></td>
           </tr>
         </table>
-        <div class="addButton" >ADD TO CART</div>
+        <div class="addButton"
+             data-ng-click="addWheelchairToOrder($index)"
+             data-ng-if="wInOrder[$index] === false"
+             data-ng-class="{'inactive': w.allMeasuresSet() === false }">ADD TO CART
+        </div>
+        <div class="removeButton"
+             data-ng-click="removeWheelchairFromOrder($index)"
+             data-ng-if="wInOrder[$index] === true">
+          REMOVE FROM CART
+        </div>
       </div>
     </div>
 
@@ -75,7 +84,7 @@
     </table>
 
 
-    <!-- Cart Items
+    <!-- Cart Items-
     <div class="cartItems">
       <div class="emptyCartMessage" ng-show="wheelchairs.length == 0">
         You haven't saved any wheelchair designs
@@ -208,6 +217,11 @@
               data-ng-class="{ 'inactive' : !validCart() }"
               data-ng-click="checkOut()">Check Out
       </button>
+    </div>
+  </div>
+  <div ng-repeat="" id="displayImage">
+    <div class="mainDisplay">
+      <div> {{w.getTitle()}} </div>
     </div>
   </div>
 
