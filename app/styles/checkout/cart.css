@@ -54,6 +54,43 @@
 ****** Comparison table ****
 **************************/
 
+#mainContent .addWheelchair{
+  position: absolute;
+  top: 159px;
+  left: 173px;
+  height: 260px;
+  background-color: white;
+  z-index: 0;
+}
+
+#mainContent .addWheelchair img{
+  display: inline-block;
+  width: 30%;
+}
+
+#mainContent .addWheelchair >a>div{
+  display: inline-block;
+  width: 207px;
+  position: relative;
+  margin: auto;
+  top: 85px;
+}
+
+#mainContent .addWheelchair >a >div:hover{
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a:hover{
+  text-decoration: none;
+}
+
+#mainContent .addWheelchair >a>div >div{
+  width: 37%;
+  display: inline-block;
+}
+
+
 
 #mainContent #comparisonImages{
   display: inline-block;
@@ -63,6 +100,8 @@
   float: left;
   border: 1px solid #EAEAEA;
   margin-right: 20px;
+  background-color: white;
+  z-index: 1;
 }
 
 
@@ -134,7 +173,8 @@
 }
 
 .parts-table, .parts-table td{
-  border: solid 1px grey;
+  border-top: solid 1px #EAEAEA;
+  border-bottom: solid 1px #EAEAEA;
 }
 
 .price-weight-row{

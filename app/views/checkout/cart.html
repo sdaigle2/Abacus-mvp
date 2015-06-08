@@ -14,7 +14,7 @@
 
     <!--comparison table main problem-->
     <div id="mainContent" >
-      <!-- ng-repeat="wheelchair in wheelchairs"-->
+
       <div ng-repeat="w in wheelchairs" id="comparisonImages" >
         <p><h4><strong>{{w.getTitle()}}</strong></h4></p>
         <img ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false"
@@ -37,6 +37,27 @@
              data-ng-if="wInOrder[$index] === true">
           REMOVE FROM CART
         </div>
+      </div>
+
+      <div class="addWheelchair">
+        <a ng-href="#/frame">
+          <div>
+            <img data-ng-src="images/my_design_page/add_icon.png">
+            <div><h5>Add another Wheelchair</h5></div>
+          </div>
+        </a>
+        <a ng-href="#/frame">
+          <div>
+            <img data-ng-src="images/my_design_page/add_icon.png">
+            <div><h5>Add another Wheelchair</h5></div>
+          </div>
+        </a>
+        <a ng-href="#/frame">
+          <div>
+            <img data-ng-src="images/my_design_page/add_icon.png">
+            <div><h5>Add another Wheelchair</h5></div>
+          </div>
+        </a>
       </div>
     </div>
 
