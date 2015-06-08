@@ -1,7 +1,12 @@
 ﻿/* ----- CSS FOR INDEX.HTML ----- */
+@font-face {
+  font-family: "Roboto", sans-serif;
+  src: url(../Fonts/Roboto-Regular.ttf);
+}
+
 body {
   padding-top: 0;
-  padding-bottom: 20px;=
+  padding-bottom: 20px;
   background-color: #FFF;
 
   font-family: 'PT Sans', sans-serif;
