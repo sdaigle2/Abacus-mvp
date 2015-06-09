@@ -7,9 +7,6 @@
     <!-- Heading -->
     <div class="cartHeading">
       <h3><strong>MY DESIGNS</strong></h3>
-      <a ng-href="#/frame">
-        <div class="backButton">&lt;&lt; Design Another Wheelchair</div>
-      </a>
     </div>
 
     <!--comparison table main problem-->
@@ -68,7 +65,7 @@
     <!--detail part table-->
 
 
-    <table>
+    <table ng-if="wheelchairs.length > 0">
       <tr class="price-weight-row">
         <td class="title-column">
           <p>Price</p>
@@ -88,7 +85,7 @@
         <td class="value-column" ng-repeat="space in emptyCols"></td>
       </tr>
     </table>
-    <table class="parts-table" data-ng-init="hoverItem = {index: -1, name: ''}">
+    <table class="parts-table" data-ng-init="hoverItem = {index: -1, name: ''}" ng-if="wheelchairs.length > 0">
       <tr class="part-row" ng-repeat="part in parts">
         <td class="title-column">
           <p>{{part.getName()}}</p>
@@ -106,108 +103,6 @@
         <td class="value-column" ng-repeat="space in emptyCols"></td>
       </tr>
     </table>
-
-
-    <!-- Cart Items-
-    <div class="cartItems">
-      <div class="emptyCartMessage" ng-show="wheelchairs.length == 0">
-        You haven't saved any wheelchair designs
-      </div>
-      <table class="cartItemsTable">
-        <tbody>
-        <tr class="cartItem" data-ng-repeat="w in wheelchairs">
-          <td class="cartItemThumb">
-            <img height="100" width="100" style="position: relative; top:0px;" />
-          </td>
-          <td class="cartItemDetails">
-            <div>
-              <div class="cartItemDetailDisplay">
-                <div class="cartItemName">
-                  {{w.getTitle()}}
-                </div>
-                <div class="cartItemPrice">
-                  ${{w.getTotalPrice().toFixed(2)}}
-                </div>
-                <div class="cartItemWeight">
-                  {{getWeightString(w)}}
-                </div>
-              </div>
-              <div class="cartItemButtons">
-                <button class="cartItemDetailsButton cartItemButton"
-                        data-ng-click="seeWheelchairDetails($index)">
-                  See Details <i class="fa fa-caret-down"
-                                 data-ng-class="{'fa-caret-down':curDetailPanel != $index , 'fa-caret-up':curDetailPanel == $index}"></i>
-                </button>
-                <button class="cartItemEditButton cartItemButton"
-                        data-ng-click="editWheelchair($index)">
-                  Edit
-                </button>
-                <button class="cartItemRemoveButton cartItemButton"
-                        data-ng-click="deleteWheelchair($index)">
-                  Delete
-                </button>
-                <button class="cartAddButton"
-                        data-ng-click="addWheelchairToOrder($index)"
-                        data-ng-if="wInOrder[$index] === false"
-                        data-ng-class="{'inactive': w.allMeasuresSet() === false }">
-                  Add to Cart
-                </button>
-                <button class="cartRemoveButton"
-                        data-ng-click="removeWheelchairFromOrder($index)"
-                        data-ng-if="wInOrder[$index] === true">
-                  Remove From Cart
-                </button>
-              </div>
-            </div>
-            < Detail Tables >
-            <div data-ng-show="curDetailPanel == $index">
-              <br/>
-              <table class="detailTable">
-                <thead>
-                <tr>
-                  <td>Part</td>
-                  <td>Option Chosen</td>
-                  <td>Color</td>
-                  <td>Price</td>
-                  <td>Weight</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr data-ng-repeat="p in w.getParts()">
-                  <td>{{getPartDetails(w, p).partName}}</td>
-                  <td>{{getPartDetails(w, p).optionName}}</td>
-                  <td>{{getPartDetails(w, p).colorName}}</td>
-                  <td>{{getPartDetails(w, p).priceString}}</td>
-                  <td>{{getPartDetails(w, p).weightString}}</td>
-                </tr>
-                </tbody>
-              </table>
-              <br/>
-              <table class="detailTable">
-                <thead>
-                <tr>
-                  <td>Measurement</td>
-                  <td>Selection</td>
-                  <td>Price</td>
-                  <td>Weight</td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr data-ng-repeat="m in w.getMeasures()">
-                  <td>{{getMeasureDetails(w, m).name}}</td>
-                  <td>{{getMeasureDetails(w, m).optionString}}</td>
-                  <td>{{getMeasureDetails(w, m).priceString}}</td>
-                  <td>{{getMeasureDetails(w, m).weightString}}</td>
-                </tr>
-                </tbody>
-              </table>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    -->
   </div>
 
 
