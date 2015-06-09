@@ -377,8 +377,9 @@ a:hover{
 .cartSidebarSubtotals {
   width: 100%;
   position: relative;
-  top: -19px;
+  top: 20px;
   line-height: 2;
+  border-top: solid 2px #AAAAAA;
 }
 
 .cartSidebarSubtotals td {
@@ -395,6 +396,11 @@ a:hover{
 
 .cartSidebarSubtotals tfoot {
   border-top: solid 2px #AAAAAA;
+}
+
+.button-div{
+  position: relative;
+  top: 39px;
 }
 
 .checkoutButton {
@@ -419,11 +425,29 @@ a:hover{
 
 #scroll-order {
   overflow-y: auto;
-  max-height: 213px;
+  overflow-x: hidden;
+  max-height: 263px;
 }
 
-.order-block img, .order-block p {
-  margin: 0 auto;
+.order-block {
+  margin: 0 0 30px 0;
+}
+
+.order-block img {
+  margin: 0 25px;
+}
+
+.order-block h4 {
+  margin: 0 60px;
+}
+
+.ol{
+  list-style-position: inside;
+}
+
+.order-list-element:not(:first-child){
+  padding: 30px 0 0 0;
+  border-top: solid 2px #AAAAAA;
 }
 
 /****************display Image*********/

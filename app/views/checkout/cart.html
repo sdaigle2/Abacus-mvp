@@ -1,7 +1,7 @@
 ﻿<link href="../../styles/checkout/cart.css" rel="stylesheet"/>
 
 
-<div class="appBody" >
+<div class="appBody">
 
   <div class="text-center cartBody" ng-class="{'appBodyOverflow': imageDisplay1 }">
     <!-- Heading -->
@@ -13,9 +13,9 @@
     </div>
 
     <!--comparison table main problem-->
-    <div id="mainContent" >
-
-      <div ng-repeat="w in wheelchairs" id="comparisonImages" >
+    <div id="mainContent">
+      <!-- ng-repeat="wheelchair in wheelchairs"-->
+      <div ng-repeat="w in wheelchairs" id="comparisonImages">
         <p><h4><strong>{{w.getTitle()}}</strong></h4></p>
         <img ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false"
              data-ng-src="images/mainpic.png" width="185">
@@ -24,7 +24,8 @@
           <tr>
             <td ng-click="toggleImageDisplay()"><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
             <td data-ng-click="editWheelchair($index)"><strong>Edit</strong></td>
-            <td data-ng-click="deleteWheelchair($index)"><img data-ng-src="images/my_design_page/delete.png" width="20"></td>
+            <td data-ng-click="deleteWheelchair($index)"><img data-ng-src="images/my_design_page/delete.png" width="20">
+            </td>
           </tr>
         </table>
         <div class="addButton"
@@ -88,17 +89,19 @@
       </tr>
     </table>
     <table class="parts-table" data-ng-init="hoverItem = {index: -1, name: ''}">
-      <tr class="part-row" ng-repeat="part in parts" >
+      <tr class="part-row" ng-repeat="part in parts">
         <td class="title-column">
           <p>{{part.getName()}}</p>
         </td>
-        <td class="value-column hover-column" ng-repeat="wheelchair in wheelchairs" data-ng-mouseenter="hoverItem.index = $index; hoverItem.name = part.getName()"
+        <td class="value-column hover-column" ng-repeat="wheelchair in wheelchairs"
+            data-ng-mouseenter="hoverItem.index = $index; hoverItem.name = part.getName()"
             data-ng-mouseleave="hoverItem.index=-1; hoverItem.name=''">
           <div class="option-desc" data-ng-if="hoverItem.index === $index && hoverItem.name === part.getName()">
             <p class="option-desc-head" data-ng-bind="getPartOption(wheelchair, part)"></p>
             <p>{{getPartDetails(wheelchair, part).priceString}} | {{getPartDetails(wheelchair, part).weightString}}</p>
           </div>
-          <p data-ng-bind="getPartOption(wheelchair, part)" data-ng-if="hoverItem.index !== $index || hoverItem.name !== part.getName()"></p>
+          <p data-ng-bind="getPartOption(wheelchair, part)"
+             data-ng-if="hoverItem.index !== $index || hoverItem.name !== part.getName()"></p>
         </td>
         <td class="value-column" ng-repeat="space in emptyCols"></td>
       </tr>
@@ -212,10 +215,14 @@
   <div class="cartSidebar">
     <div class="cartSidebarHeading"><strong>CART</strong></div>
     <div id="scroll-order">
-      <div class="order-block" ng-repeat="wheelchair in orderChairs">
-        <img class="order-img" data-ng-src="images/mainpic.png" width="250">
-        <p>{{wheelchair.getTitle()}}</p>
-      </div>
+      <ol>
+        <li class="order-list-element" ng-repeat="wheelchair in orderChairs">
+          <div class="order-block">
+            <img class="order-img" data-ng-src="images/mainpic.png" width="250">
+            <h4><strong>{{wheelchair.getTitle()}}</strong></h4>
+          </div>
+        </li>
+      </ol>
     </div>
     <table class="cartSidebarSubtotals">
       <tbody>
@@ -239,7 +246,7 @@
       </tr>
       </tfoot>
     </table>
-    <div class="text-center">
+    <div class="text-center button-div">
       <button class="checkoutButton"
               data-ng-class="{ 'inactive' : !validCart() }"
               data-ng-click="checkOut()">Check Out
@@ -248,10 +255,10 @@
   </div>
 
 
-  <div ng-show="imageDisplay1"  id="displayImage">
-    <div id="offClickArea" ng-show="imageDisplay1"  data-ng-click="toggleImageDisplay()"></div>
+  <div ng-show="imageDisplay1" id="displayImage">
+    <div id="offClickArea" ng-show="imageDisplay1" data-ng-click="toggleImageDisplay()"></div>
     <div class="mainDisplay">
-      <div id="designTitle"> <h3>DESIGN FOR BRIAN</h3> </div>
+      <div id="designTitle"><h3>DESIGN FOR BRIAN</h3></div>
       <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
            data-ng-click=""/>
       <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
