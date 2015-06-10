@@ -189,7 +189,7 @@
   float: right;
   clear: right;
   margin-right: 5px;
-  width: 350px;
+  width: 330px;
   line-height: 1;
   height: 60px;
   border: 1px solid #ddd;
@@ -274,7 +274,7 @@
 }
 
 .main-custom .main-custom-wheelchairDisplay {
-  margin-top: 0;
+  margin-top: 40px;
   margin-left: 10vw;
   min-width: 600px;
   min-height: 450px;
@@ -286,7 +286,7 @@
 
 .main-custom-rotatebuttons {
   position: relative;
-  top: 40vw;
+  top: 46vw;
   left: 34vw;
 }
 
@@ -501,8 +501,8 @@
   display: inline-block;
   float: right;
   clear: right;
-  width: 350px;
-  max-width: 350px;
+  width: 330px;
+  max-width: 330px;
   margin-right: 20px;
   height: calc(100vh - 130px);
 }
