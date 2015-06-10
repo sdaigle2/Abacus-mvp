@@ -34,7 +34,7 @@
 
 .wrapper .mainDisplay{
   width: 1000px;
-  margin: 100px auto 0px;
+  margin: 80px auto 0px;
 }
 
 .frame-item {
@@ -81,11 +81,17 @@
 
 .frame-item-price {
   font-size: 17px;
-  margin-top: 200px;
+  background-color: white;
+  width: 50%;
+  height: 10%;
+  padding-top: 3%;
+  margin: auto;
 }
 
 .frame-item-weight {
   font-size: 17px;
+  margin: auto;
+  padding-top: 3%;
 }
 
 .frame-item-image {
@@ -115,8 +121,9 @@
 
 .img .frame-item-desc {
   position: absolute;
-  width: 100%;
-  transition: 0.2s;
+  width: 102%;
+  transition: all 0.2s ease 0s;
+  margin-left: -2%;
 }
 .img .frame-item-desc-hide{
   top: -400px;
@@ -147,7 +154,7 @@
   display: inline-block;
   color: #FFF;
   height: 60px;
-  margin-top: 40px;
+  margin-top: 30px;
   padding-top: 22px;
   text-align: center;
   font-family: "Oswald",sans-serif;
@@ -157,9 +164,32 @@
   letter-spacing: 1px;
   padding-left: 20px;
   padding-right: 20px;
+  margin-left: -2%;
 }
 
 .frame-item-button:hover {
   background-color: #60C2B1;
   cursor: pointer;
+}
+
+
+p{
+  margin: 0px 0px 0px;
+}
+
+.frame-info-table{
+  font-size: 17px;
+  background-color: #FFF;
+  height: 10%;
+  opacity: 0.75;
+  padding-top: 4%;
+  width: 100%;
+}
+td{
+  width:150px;
+
+}
+
+td.blue-line{
+  border-right: 1px solid #C4CBCA;
 }
