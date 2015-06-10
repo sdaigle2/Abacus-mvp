@@ -2,7 +2,7 @@
 
 .wrapper{
   margin: 0 auto;
-  width: 1280px;
+  width: 100%;
 }
 
 
@@ -11,6 +11,8 @@
   min-height:80px;
   margin-bottom: 30px;
   line-height: 0;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .frame-header {
@@ -20,6 +22,12 @@
   height: 15px;
   position: relative;
   clear: left;
+  padding-bottom: 3%;
+  font-family: "Oswald" , sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 4px;
+  margin-top: 2%;
 }
 
 /******main display part*****/
@@ -47,13 +55,28 @@
 }
 
 .frame-item-title {
-  padding-top: 20px;
+ padding-top: 20px;
   text-align: center;
-  font-size: 22px;
+  font-family: "Oswald",sans-serif;
+  font-weight: 700;
+  font-size: 25px;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 4px;
+  margin-top: 35px;
+  margin-bottom: 25px;
 }
 
 .frame-item-description {
-  font-size: 20px;
+  background: white;
+  padding: 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  height: 40%;
+  font-weight: 400;
+  line-height: 25px;
+
+
 }
 
 .frame-item-price {
@@ -119,15 +142,21 @@
 
 
 .frame-item-button {
-  width: 70%;
-  background-color: #A7A9Ac;
-  display:inline-block;
-  color: #FFFFFF;
-  height: 40px;
+  width: 80%;
+  background-color: #A7A9AC;
+  display: inline-block;
+  color: #FFF;
+  height: 60px;
   margin-top: 40px;
-  padding-top: 12px;
-  font-size: 15px;
+  padding-top: 22px;
   text-align: center;
+  font-family: "Oswald",sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 18px;
+  letter-spacing: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .frame-item-button:hover {

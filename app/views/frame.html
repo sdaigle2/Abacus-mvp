@@ -4,7 +4,7 @@
 <div class="wrapper">
   <div class=" frame-header-row">
     <div class="frame-header">
-      <strong>Frames</strong>
+      FRAMES
     </div>
   </div>
 
@@ -18,10 +18,22 @@
              data-ng-mouseleave="hoverItem = -1">
 
           <img data-ng-src="{{f.getImageURL()}}" />
-          <div class="frame-item-desc"
+          <!--<div class="frame-item-desc"
                data-ng-class="{ 'frame-item-desc-show' : panelSelected(hoverItem,f.getFrameID()) , 'frame-item-desc-hide' : !panelSelected(hoverItem,f.getFrameID())}">
+             -->
+
+             <div class="frame-item-desc ng-animate frame-item-desc-show" >
+
+
             <div class="hoverBackground frame-item-panel">
-              <p class="frame-item-title"><strong>{{f.getName()}}</strong></p>
+           
+
+              
+
+
+
+
+              <p class="frame-item-title">{{f.getName()}}</p>
               <br />
               <p class="frame-item-description">{{f.getDesc()}}</p>
               <p class="frame-item-price">${{f.getBasePrice().toFixed(2)}}</p>
@@ -32,7 +44,7 @@
       </div>
       <div class="frame-item-button"
            data-ng-click="selectFrame(f.frameID)">
-        <strong>Select this frame >></strong>
+       Select this frame >>
       </div>
     </div>
 

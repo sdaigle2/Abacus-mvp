@@ -62,6 +62,10 @@ body {
   background: no-repeat 0 0;
   background-size: 20px 20px;
   cursor: pointer;
+
+
+
+
 }
 
 .mainNavbar .mainNavbar-left > li.frameNavButton {
@@ -119,10 +123,11 @@ body {
   text-decoration: none;
 }
 .mainNavbar .mainNavbar-right .cartButton {
-  height: 100%;
-  margin: 0;
-  padding: 0 0 0 5px;
-  border-left: 1px solid #777;
+    height: 100%;
+    margin: 0px;
+    padding-top: 5px;
+    padding-right: 10px;
+    padding-left: 0px;
 }
 .mainNavbar .mainNavbar-right .loginButton {
   height: 100%;
@@ -144,7 +149,11 @@ body {
 }
 .mainNavbar .mainNavbar-left > li {
   color: #FFF;
-  font-family:inherit;
+  font-family: "Oswald",sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: Uppercase;
+  letter-spacing: 1px
 }
 .mainNavbar .mainNavbar-left > li:hover,
 .mainNavbar .mainNavbar-left > li:focus {
@@ -188,7 +197,14 @@ body {
 }
 
 .login .loginText{
-  padding: 20px 0;
+  padding: 20px 15px;
+  color: #FFF;
+  font-family: "Oswald",sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: Uppercase;
+  letter-spacing: 1px;
+  border-right: 1px solid rgb(119, 119, 119);
 }
 
 .login .window{
