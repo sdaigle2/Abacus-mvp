@@ -10,11 +10,12 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('CartCtrl', ['$scope', '$location', 'User', 'FrameData', 'Units',
-    function ($scope, $location, User, FrameData, Units) {
+  .controller('CartCtrl', ['$scope', '$location', 'User', 'FrameData', 'Units', '$cookieStore',
+    function ($scope, $location, User, FrameData, Units, $cookieStore) {
 
       //Array of wheelchair objects designed by user
-      $scope.wheelchairs = User.getDesignedWheelchairs();
+      $scope.wheelchairs = $cookieStore.get('wheelchairs');
+
 
       $scope.emptyCols = [];
 
@@ -35,6 +36,10 @@ angular.module('abacuApp')
       $scope.orderChairs;
       //Initialize Cart page
       function init() {
+        cookieLoad();
+        $cookieStore.put('wheelchairs', $scope.wheelchairs);
+        console.log('I am here');
+
         User.createNewOrder();
         curOrder = User.getCurEditOrder();
         $scope.orderChairs = curOrder.getWheelchairs();
@@ -46,6 +51,14 @@ angular.module('abacuApp')
 
         for (var j = $scope.wheelchairs.length; j < 3; j++){
           $scope.emptyCols.push({});
+        }
+
+      }
+
+      function cookieLoad() {
+        if(!$scope.wheelchairss){
+          $scope.wheelchairs = User.getDesignedWheelchairs();
+
         }
       }
 

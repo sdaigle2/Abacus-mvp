@@ -12,13 +12,12 @@
 *
 */
 angular.module('abacuApp')
-  .service('User', ['$http', '$location', '$q', 'Order', 'Wheelchair', 'Units', 'Costs',
-    function ($http, $location, $q, Order, Wheelchair, Units, Costs) {
+  .service('User', ['$http', '$location', '$q', 'Order', 'Wheelchair', 'Units', 'Costs', '$cookies',
+    function ($http, $location, $q, Order, Wheelchair, Units, Costs, $cookies) {
 
     var orders = [];
     var currentWheelchair = {isNew:false, editingWheelchair:null};
     var designedWheelchairs = [];
-
     var curEditWheelchairIndex = -1;
     var userID = -1; //-1 means not logged in
     var fName = '';
@@ -33,9 +32,19 @@ angular.module('abacuApp')
     var zip = '';
     var unitSys = Units.unitSys.IMPERIAL;
 
+      //cookieLoad();
+      //function cookieLoad(){
+      //  if(!designedWheelchairs){
+      //    designedWheelchairs = [];}
+      //  else{
+      //    $cookies.designedWheelchairs = designedWheelchairs;
+      //    console.log(JSON.stringify($cookies.wheelchairs));}
+      //}
+
     //*********functions************//
 
     return {
+
 
 
       /************************LOGIN AND LOGOUT****************************/
