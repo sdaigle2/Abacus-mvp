@@ -201,10 +201,16 @@
 #wheelChairEdit{
   margin: 3px 0;
   display: inline-block;
+
 }
 
 #wheelChairName{
   display: inline-block;
+  color: white;
+  font-family: "Oswald" , sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  font-size: 11pt;
 }
 
 .edit-button{
@@ -242,6 +248,13 @@
 
 .display-toggle select{
   border-radius: 0px;
+  border-radius: 0px;
+  -moz-appearance: none;
+  background: rgb(255, 255, 255) url("http://www.apple.com/jobs/images/icons/select.svg") no-repeat scroll 100% top / 20px 20px;
+  border: medium none;
+  color: #666;
+  width: 75px;
+  font-size: 9pt;
 }
 
 .display-toggle h6 {
@@ -258,7 +271,10 @@
 .display-totals h4 {
   position: relative;
   top: -5px;
-  font-size: 17px;
+  font-family: "Oswald",sans-serif;
+  font-weight: 400;
+  font-size: 11pt;
+  margin-left: -38px;
 }
 
 /*************************************************Main*****************************************/
@@ -523,7 +539,7 @@
 }
 
 .sideBar-header h3 {
-  font-size: 1.6em;
+  font-size: 1.2em;
   font-weight: 700;
   letter-spacing: 0.4px;
 }
@@ -548,8 +564,8 @@
 
 .curPage-header{
   margin: 0;
-  padding-top:20px;
-  padding-bottom: 10px;
+  padding-top:18px;
+  padding-bottom: 18px;
   background-color: white;
 }
 /****************SideBar-Custom********************/
@@ -627,6 +643,13 @@
   display:inline-block;
   width: 50%;
   margin-right:-5px;
+}
+
+.sideBar-custom-item-button-wide {
+  border: 1px solid #A7A9Ac;
+  display:inline-block;
+  width: 100%;
+  
 }
 
 .sideBar-custom-item-button:hover {
@@ -756,7 +779,7 @@
 .sideBar .panelArrow {
   position: absolute;
   top: 10px;
-  left: 0px;
+  left: -4px;
   width: 0;
   height: 0;
   z-index: -10; /* so that the panelArrow won't visibly fade out upon load */
@@ -830,4 +853,15 @@
   overflow-x: hidden;
   background-color: #D6D8D8;
   transition: 1s;
+}
+
+.detail-name{
+  font-size: 11pt;
+  padding: 6px 6px;
+  font-weight: 500;
+}
+h4{
+  font-weight: 500;
+  padding: 0px;
+  font-size: 10pt;
 }

@@ -201,17 +201,52 @@
                   ng-class="{ 'detailPanelHidden': ! isPanelSelected(option.optionID, panelTypes.DETAIL) , 'detailPanelShow': isPanelSelected(option.optionID, panelTypes.DETAIL)}">
                 <div class="text-center">
                   <img data-ng-src="{{option.thumbnailURL}}" height="200" width="200"/>
-                  <h4><strong>{{option.name}}</strong></h4>
-                  <h4>${{option.price}} | {{option.weight}}lbs</h4>
+                  
 
-                  <div class="sideBar-custom-item-button text-center selected"
+                  <table border="1" width="100%">
+                   <tr>
+                  <td width="100%" colspan="2">
+                  
+                  <div class="detail-name">{{option.name}} </div></h3>
+
+                  </td>
+                  </tr>
+                  <tr>
+                  <td width="30%"><table border="1" width="100%">
+                  <td>
+                  
+                  <h4> ${{option.price}}</h4>
+
+                  </td><tr>
+                  <td>
+
+                   <h4> {{option.weight}}lbs </h4>
+
+                  </td></table></td><td>
+                    
+                  <p>{{option.desc}}</p>
+
+                  </td>
+                  </tr>
+                  <tr>
+                  <td colspan="2"> 
+
+                    <div class="sideBar-custom-item-button-wide text-center selected"
                        ng-if="getCurWheelchairPart().optionID === option.optionID">Selected
                   </div>
-                  <div class="sideBar-custom-item-button text-center"
+                  <div class="sideBar-custom-item-button-wide text-center"
                        ng-if="getCurWheelchairPart().optionID !== option.optionID"
                        ng-click="setCurOption(option.optionID);">Add
                   </div>
-                  <p>{{option.desc}}</p>
+
+                  </td>
+                  </tr>
+                  </table>
+
+                  
+                
+                  
+                  
                 </div>
               </td>
             </tr>
