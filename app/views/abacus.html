@@ -150,6 +150,10 @@
           </h3>
         </div>
         <div class="sideBar-custom">
+
+        <div class="darkener">
+        </div>
+
           <!-- Options List -->
           <table class="table">
             <!-- Option Display block -->
@@ -189,12 +193,17 @@
               <!-- Color Panel -->
               <td class="panel colorPanel"
                   ng-class="{ 'colorPanelHidden': ! isPanelSelected(option.optionID, panelTypes.COLOR) , 'colorPanelShow': isPanelSelected(option.optionID, panelTypes.COLOR)}">
+                 <!-- <div class="size-reducer">-->
+
+
                 <div data-ng-repeat="color in option.colors" class="colorPanelItem"
                      data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
-                     data-ng-style="{'background-color': color.hex, 'height': (250 / option.colors.length), 'max-height':90}"
+                     data-ng-style="{'background-color': color.hex, 'max-height':90}"
                      data-ng-click="setCurOption(option.optionID); setCurOptionColor(color.colorID);"
                      title="{{color.name}}">
                 </div>
+
+                <!--</div>-->
               </td>
               <!-- Detail Panel -->
               <td class="panel detailPanel  "
@@ -203,7 +212,7 @@
                   <img data-ng-src="{{option.thumbnailURL}}" height="200" width="200"/>
                   
 
-                  <table border="1" width="100%">
+                  <table class="details-table" width="100%">
                    <tr>
                   <td width="100%" colspan="2">
                   
@@ -212,19 +221,19 @@
                   </td>
                   </tr>
                   <tr>
-                  <td width="30%"><table border="1" width="100%">
-                  <td>
+                  <td width="30%"><table border="0" width="100%">
+                  <td style="border: 0px solid rgba(254, 254, 254, 0.75);">
                   
-                  <h4> ${{option.price}}</h4>
+                  <h4> $ {{option.price}}</h4>
 
                   </td><tr>
-                  <td>
+                  <td class="details-special-td">
 
-                   <h4> {{option.weight}}lbs </h4>
+                   <h4> {{option.weight}} lbs </h4>
 
                   </td></table></td><td>
                     
-                  <p>{{option.desc}}</p>
+                  <p class="item-description">{{option.desc}}</p>
 
                   </td>
                   </tr>
@@ -234,7 +243,7 @@
                     <div class="sideBar-custom-item-button-wide text-center selected"
                        ng-if="getCurWheelchairPart().optionID === option.optionID">Selected
                   </div>
-                  <div class="sideBar-custom-item-button-wide text-center"
+                  <div class="sideBar-custom-item-button-wide-add text-center"
                        ng-if="getCurWheelchairPart().optionID !== option.optionID"
                        ng-click="setCurOption(option.optionID);">Add
                   </div>

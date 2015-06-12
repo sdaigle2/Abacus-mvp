@@ -647,9 +647,28 @@
 
 .sideBar-custom-item-button-wide {
   border: 1px solid #A7A9Ac;
+  border: 1px solid #60C2B1;
+  background-color: #60C2B1;
+  color: #FFF;
   display:inline-block;
   width: 100%;
-  
+  padding: 8px;
+  font-size: 14pt;
+  font-family: "Oswald",sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.sideBar-custom-item-button-wide-add {
+  background-color: #FFF;
+  color: #469C8D;
+  display: inline-block;
+  width: 100%;
+  padding: 8px;
+  font-size: 14pt;
+  font-family: "Oswald",sans-serif;
+  font-weight: 400;
+  letter-spacing: 1px;
 }
 
 .sideBar-custom-item-button:hover {
@@ -807,15 +826,15 @@
   top: 55px;
   width: 140px;
   height: auto;
-  max-height: 300px;
+  max-height: calc(100% - 55px);
   overflow-y: auto;
   background-color: #D6D8D8;
   transition: 1s;
 }
 
 .sideBar .colorPanel .colorPanelItem {
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 75px;
   margin: auto;
   margin-top: 15px;
   margin-bottom: 15px;
@@ -826,9 +845,15 @@
 }
 
 .sideBar .colorPanel .colorPanelItem.active {
+  /*
   -webkit-box-shadow: 0px 0px 23px 9px rgba(230,194,16,1);
   -moz-box-shadow: 0px 0px 23px 9px rgba(230,194,16,1);
   box-shadow: 0px 0px 23px 9px rgba(230,194,16,1);
+  */
+  background-image: url("../images/icons/check.png");
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /****************************Detail Panel*****************************/
@@ -864,4 +889,26 @@ h4{
   font-weight: 500;
   padding: 0px;
   font-size: 10pt;
+}
+
+.item-description{
+  text-align: left;
+  margin-top: 3px;
+  margin-left: 5px;
+}
+
+.details-table td{
+  border-width: 1px;
+  border: 3px solid rgba(254, 254, 254, 0.75);
+  margin-left:1px;
+}
+
+td.details-special-td{
+  border-bottom: 0px solid rgba(254, 254, 254, 0.75); 
+  border-left: 0px solid rgba(254, 254, 254, 0.75);
+  border-right: 0px solid rgba(254, 254, 254, 0.75);"
+}
+
+.size-reducer{
+  max-height: 500px
 }
