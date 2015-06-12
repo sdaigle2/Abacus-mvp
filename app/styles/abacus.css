@@ -906,9 +906,13 @@ h4{
 td.details-special-td{
   border-bottom: 0px solid rgba(254, 254, 254, 0.75); 
   border-left: 0px solid rgba(254, 254, 254, 0.75);
-  border-right: 0px solid rgba(254, 254, 254, 0.75);"
+  border-right: 0px solid rgba(254, 254, 254, 0.75);
 }
 
 .size-reducer{
-  max-height: 500px
+  max-height: 500px;
+}
+
+.darkener{
+
 }
