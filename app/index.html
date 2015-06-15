@@ -59,14 +59,14 @@
           <div ng-mouseover="windowPop = true" ng-mouseleave="windowPop = false" class="login">
             <div class="loginText">LOG IN</div>
             <div ng-show="windowPop" class="window">
-              <p>EMAIL ADDRESS</p>
+              <p class="oswald 15pt">EMAIL ADDRESS</p>
               <input type="text" data-ng-model="loginModel.email"/>
 
-              <p>PASSWORD</p>
+              <p class="oswald 15pt">PASSWORD</p>
               <input type="password" data-ng-model="loginModel.password"/>
 
               <div class="login-optionrow">
-                <span data-ng-click="recoverPassword()">Forgot password</span> <span data-ng-click="register()">Register >></span>
+                <span data-ng-click="recoverPassword()" class="roboto 10pt grey-slanted">Forgot password</span> <span data-ng-click="register()" class="roboto thick 15pt">Register >></span>
               </div>
               <div class="login-button" data-ng-click="login()">
                 <p><strong>LOG IN >></strong></p>

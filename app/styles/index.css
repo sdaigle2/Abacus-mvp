@@ -261,3 +261,32 @@ body {
 #appContainer .appBody {
   margin: auto;
 }
+
+
+.oswald{
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+  font-size: 15pt
+}
+
+.roboto{
+  font-family: "Oswald", sans-serif;
+  font-weight: 400;
+}
+
+.10pt{
+  font-size: 10pt;
+}
+
+.15pt{
+  font-size: 15pt;
+}
+
+.grey-slanted{
+  color: #808284;
+  font-style: italic;
+}
+
+.thick{
+  font-weight: 700;
+}
