@@ -151,13 +151,13 @@
         </div>
         <div class="sideBar-custom">
 
-        <div class="darkener">
+        <div class="{{darkenerClass}}">
         </div>
 
           <!-- Options List -->
           <table class="table">
-            <!-- Option Display block -->
-            <tr class="sideBar-custom-item"
+            <!-- Option Display block   isPanelSelectedTd(option.optionID);-->
+            <tr class="{{isPanelSelectedTr(option.optionID)}}"
                 data-ng-repeat="option in getCurPartData().options"
                 data-ng-style="(isSidebarColored(option.optionID)) && {'border-left': 'solid 5px ' + getSidebarColor(option.optionID) }">
               <td class="sideBar-custom-item-left">
@@ -179,7 +179,7 @@
                 <div class="sideBar-custom-item-buttonRow">
                   <div class="sideBar-custom-item-button text-center"
                        ng-class="{'detailsSelected': isPanelSelected(option.optionID, panelTypes.DETAIL)}"
-                       ng-click="setPanel(option.optionID, panelTypes.DETAIL);">Details
+                       ng-click="setPanel(option.optionID, panelTypes.DETAIL); ">Details
                   </div>
                   <div class="sideBar-custom-item-button text-center selected"
                        ng-if="getCurWheelchairPart().optionID === option.optionID">Selected
@@ -205,7 +205,13 @@
 
                 <!--</div>-->
               </td>
-              <!-- Detail Panel -->
+            </tr>
+          </table>
+
+
+          <table>
+           <!-- Detail Panel -->
+           <tr  data-ng-repeat="option in getCurPartData().options" >
               <td class="panel detailPanel  "
                   ng-class="{ 'detailPanelHidden': ! isPanelSelected(option.optionID, panelTypes.DETAIL) , 'detailPanelShow': isPanelSelected(option.optionID, panelTypes.DETAIL)}">
                 <div class="text-center">
@@ -251,15 +257,10 @@
                   </td>
                   </tr>
                   </table>
-
-                  
-                
-                  
-                  
                 </div>
               </td>
-            </tr>
           </table>
+
         </div>
       </div>
 

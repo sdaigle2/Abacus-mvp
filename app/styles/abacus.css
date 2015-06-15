@@ -583,6 +583,17 @@
   border-bottom: solid 1px #bbb;
 }
 
+.sideBar-custom-item-selected {
+    height: 120px;
+    max-height: 120px;
+    margin: 5px 0px;
+    border-top: 1px solid #BBB;
+    border-bottom: 1px solid #BBB;
+    z-index: 9;
+    background-color: white;
+    position: relative;
+}
+
 .sideBar-custom-item > td {
   border: none;
 }
@@ -913,6 +924,11 @@ td.details-special-td{
   max-height: 500px;
 }
 
-.darkener{
-
+.darkener {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    position: absolute;
+    background: linear-gradient(0deg, gray, black);
+    opacity: 0.5;
 }

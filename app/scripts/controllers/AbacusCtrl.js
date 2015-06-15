@@ -63,6 +63,8 @@ angular.module('abacuApp')
       //The current measurement system being used
       $scope.curUnitSys = User.getUnitSys();
 
+      //whether the darkener on the options panel gets shown
+      $scope.darkenerClass="nothing";
       /***************************Initialization****************************/
 
       //Generates the page arrays inside of pages
@@ -388,10 +390,12 @@ angular.module('abacuApp')
       //Sets curPanel to the chosen panel
       //Closes the panel if id and type match curPanel
       $scope.setPanel = function (id, type) {
+       
         if ($scope.isPanelSelected(id, type)) {
-          curPanel.panelID = -1;
+           curPanel.panelID = -1;
         }
         else {
+        
           curPanel.panelID = id;
         }
         curPanel.panelType = type;
@@ -407,10 +411,24 @@ angular.module('abacuApp')
         return (curPanel.panelID === id && curPanel.panelType === type);
       };
 
+
+      $scope.isPanelSelectedTr = function(id){
+        if(curPanel.panelID===-1){
+           $scope.darkenerClass="nothing";
+        }
+        if(curPanel.panelID===id){
+            $scope.darkenerClass="darkener";
+         return "sideBar-custom-item-selected";
+
+        }
+        return "sideBar-custom-item";
+      }
+
       //Checks if a panel with the given ID is selected
       $scope.isPanelIDSelected = function (id) {
         return curPanel.panelID === id;
       };
+
 
 
       $scope.getCurPanelID = function () {
