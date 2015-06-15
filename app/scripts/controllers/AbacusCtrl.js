@@ -395,7 +395,6 @@ angular.module('abacuApp')
            curPanel.panelID = -1;
         }
         else {
-        
           curPanel.panelID = id;
         }
         curPanel.panelType = type;
@@ -412,6 +411,9 @@ angular.module('abacuApp')
       };
 
 
+      $scope.panelReset = function(){
+        curPanel.panelID=-1;
+      }
       $scope.isPanelSelectedTr = function(id){
         if(curPanel.panelID===-1){
            $scope.darkenerClass="nothing";
