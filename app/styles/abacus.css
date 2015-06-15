@@ -252,6 +252,7 @@
   border-radius: 0px;
   border-radius: 0px;
   -moz-appearance: none;
+  -webkit-appearance: none;
   background: rgb(255, 255, 255) url("http://www.apple.com/jobs/images/icons/select.svg") no-repeat scroll 100% top / 20px 20px;
   border: medium none;
   color: #666;
@@ -515,13 +516,13 @@
 
 .sideBarWrapper {
   position: relative;
-  right: -15px;
+  right: -19px;
   z-index: 50;
   display: inline-block;
   float: right;
   clear: right;
-  width: 330px;
-  max-width: 330px;
+  width: 335px;
+  max-width: 430px;
   margin-right: 20px;
   height: calc(100vh - 130px);
 }
@@ -652,6 +653,8 @@ img.rightButtonNav{
 
 .sideBar-custom-item-right .sideBar-custom-item-buttonRow {
   height:25px;
+  padding: 0px 8px;
+  margin-left: -8px;
 }
 
 
