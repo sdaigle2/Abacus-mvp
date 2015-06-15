@@ -154,16 +154,16 @@
 /******************Save Button********** **********/
 
 #SaveButton {
-  width:10%;
-  max-height: 30px;
-  background-color: #00a89c;
-  border-radius: 0px;
-  border-COLOR:transparent;
-  text-align: center;
-  padding-bottom:1%;
-  float: right;
-  font-size: 14px;
-  font-family: "Oswald",sans-serif;
+  width: 10%;
+max-height: 30px;
+background-color: #00A89C;
+border-radius: 0px;
+border-color: transparent;
+text-align: center;
+float: right;
+font-size: 15px;
+font-family: "Roboto",sans-serif;
+font-weight: 700;
 }
 
 #progressSaveBar .saveButton {
@@ -195,7 +195,7 @@
   height: 60px;
   border: 1px solid #ddd;
   border-bottom: hidden;
-  box-shadow: -3px 3px 10px rgba(168, 168, 168, 0.5);
+  border-left: 1px solid #ddd;
 
 }
 
@@ -258,6 +258,7 @@
   color: #666;
   width: 75px;
   font-size: 9pt;
+  border: solid 1px #939597;
 }
 
 .display-toggle h6 {
@@ -484,16 +485,17 @@
   color: #000000;
   cursor: pointer;
   background-color: #FFFFFF;
-  border: solid 1px #bcbec0;
+
   box-sizing:border-box;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
   padding: 8px 0 10px;
   border-radius: 0;
+  border-bottom: none;
 }
 
 .shadow-fixer{
-  box-shadow: -3px 3px 10px #D3D3D3;
+  border-left: 1px solid #ddd;
 }
 
 .nav-tabs.nav-justified > li.active > a,
@@ -534,7 +536,7 @@
   border-top: 1px solid #f1f2f2 ;
   border-radius: 0px;
   height: calc(100% - 36px);
-  box-shadow: -3px 3px 10px #D3D3D3;
+  border-left: 1px solid #ddd;
 }
 
 .sideBar-header {
@@ -550,11 +552,11 @@
 
 img.leftButtonNav{
   width: 30px;
-  height: 52px;
+  height: 54px;
   position: absolute;
-  margin-left: -165px;
+  margin-left: -168px;
   margin-top: -1px;
-}
+ }
 
 img.rightButtonNav{
   width: 30px;
@@ -579,7 +581,7 @@ img.rightButtonNav{
 .sideBar .sideBar-custom {
   overflow-y: auto;
   height: calc(100% - 54px);
-  box-shadow: -3px 3px 10px lightgrey;
+  border-left: 1px solid #ddd;
 }
 
 .sideBar-custom-item {
@@ -713,7 +715,6 @@ img.rightButtonNav{
 .sideBar .sideBar-measure {
   overflow-x: hidden;
   overflow-y: hidden;
-  max-height: 600px;
   height: calc(100% - 54px);
   max-width:350px;
 }
@@ -923,9 +924,9 @@ h5.roboto-med{
 
 }
 
-h6.oswald-small{
-  font-family: "Oswald",sans-serif;
-  font-weight: 400;
+h6.roboto-small{
+  font-family: "Roboto",sans-serif;
+  font-weight: 500;
   font-size: 8pt;
   letter-spacing: 0.1em;
   padding-bottom: 3px;
@@ -993,6 +994,7 @@ font-size: inherit;
 line-height: inherit;
 border-radius: 0px;
 -moz-appearance: none;
+-webkit-appearance: none;
 background: #FFF url("http://www.apple.com/jobs/images/icons/select.svg") no-repeat scroll 100% top / 20px 20px;
 border: medium none;
 color: #666;
