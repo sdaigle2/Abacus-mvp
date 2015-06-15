@@ -53,20 +53,19 @@ app.post('/register', function (req, res) {
 });
 
 app.post('/wheelchair', function (req, res) {
-  users.destroy(req.body.email, _rev, function (err, body) {
-    if (!err) {
-      users.insert(req.body, req.body.email, function (err, body) {
-        if (!err) {
-          _rev = body.rev;
-          res.json({'success': true});
-        }
-        else
-          res.json({'success': 'Insert Failed'});
-      });
-    }
-    else
-      res.json({'success': ' Destroy failed'});
+  update(req.body, req.body.email, function (err, body) {
+    res.json({'success': err});
   });
 });
+
+update = function (obj, key, callback) {
+  users.get(key, function (error, existing) {
+    if (!error) {
+      obj._rev = existing._rev;
+      obj.password = existing.password;
+    }
+    users.insert(obj, key, callback);
+  });
+};
 
 app.listen(8080);

@@ -73,6 +73,16 @@ angular.module('abacuApp')
             fName = data.fName;
             lName = data.lName;
             userID = data.userID;
+            email = in_email;
+            phone = data.phone;
+            addr = data.addr;
+            addr2 = data.addr2;
+            city = data.city;
+            state = data.state;
+            zip = data.zip;
+            unitSys = data.unitSys;
+            orders = data.orders;
+            designedWheelchairs = data.wheelchairs;
             deferred.resolve();
           })
             .error(function (data) {
@@ -130,6 +140,7 @@ angular.module('abacuApp')
           }
 
           if (userID !== -1) {
+            console.log(this.allDetails());
             $http({
               url: '/wheelchair',
               data: this.allDetails(),
