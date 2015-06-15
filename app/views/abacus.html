@@ -56,7 +56,7 @@
         </form>
         <span class="glyphicon glyphicon-pencil edit-button"></span>
       </div>
-      <div class="display-totals text-center">
+      <div class="display-totals">
         <h4>
           <small>PRICE:</small>
           ${{getTotalPrice().toFixed(2)}}&nbsp;&nbsp;&nbsp;
@@ -127,7 +127,7 @@
     <div class="sideBarWrapper">
 
       <!-- Tabs -->
-      <ul class="nav nav-tabs nav-justified">
+      <ul class="nav nav-tabs nav-justified shadow-fixer">
         <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}">
           <a id="shadow-customs" ng-href="#/abacus" data-ng-click="switchPageType(pageType.CUSTOMIZE)">Customize</a>
         </li>
@@ -140,13 +140,15 @@
 
       <div class="sideBar" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
         <div class="sideBar-header text-center">
-          <h3 class="curPage-header">
-            <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
+        <img class="leftButtonNav" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
                  data-ng-click="pageSwitchStep(-1)"
                  data-ng-show="getCurPage().index > 0"/>
-            {{getCurPartData().name}}
-            <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
+            <img class="rightButtonNav" src="images/icons/right_button.png" alt="Next" width="30" height="30"
                  data-ng-click="pageSwitchStep(1)"/>
+          <h3 class="curPage-header">
+            
+            {{getCurPartData().name}}
+          
           </h3>
         </div>
         <div class="sideBar-custom">
@@ -215,10 +217,10 @@
               <td class="panel detailPanel  "
                   ng-class="{ 'detailPanelHidden': ! isPanelSelected(option.optionID, panelTypes.DETAIL) , 'detailPanelShow': isPanelSelected(option.optionID, panelTypes.DETAIL)}">
                 <div class="text-center">
-                  <img data-ng-src="{{option.thumbnailURL}}" height="200" width="200"/>
+                  <img data-ng-src="{{option.thumbnailURL}}" height="300" width="300"/>
                   
 
-                  <table class="details-table" width="100%">
+                  <table class="details-table" width="95%">
                    <tr>
                   <td width="100%" colspan="2">
                   
@@ -268,13 +270,15 @@
 
       <div class="sideBar" data-ng-show="getCurPageType() == pageType.MEASURE">
         <div class="sideBar-header text-center">
-          <h3 class="curPage-header">
-            <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
+         <img class="leftButtonNav" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
                  data-ng-click="pageSwitchStep(-1)"/>
+          <img class="rightButtonNav" src="images/icons/right_button.png" alt="Next" width="30" height="30"
+         data-ng-click="pageSwitchStep(1)"
+         data-ng-show="getCurPage().index < getCurPages().length - 1"/>
+          <h3 class="curPage-header">
+           
             {{getCurMeasureData().name}}
-            <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
-                 data-ng-click="pageSwitchStep(1)"
-                 data-ng-show="getCurPage().index < getCurPages().length - 1"/>
+           
           </h3>
         </div>
         <div class="sideBar-measure">
@@ -288,7 +292,7 @@
             </div>
             <div class="sideBar-measure-tip text-left" data-ng-show="getCurMeasureData().tip">
               <div class="sideBar-measure-tip-left">
-                <h5 class="roboto heavy">TIP:</h5>
+                <h5 class="roboto heavy tip-lower">TIP:</h5>
               </div>
               <div class="sideBar-measure-tip-right">
                 <h5 class="roboto thin">Important factors to think about are things and whatnot, but don't forget to remember to not

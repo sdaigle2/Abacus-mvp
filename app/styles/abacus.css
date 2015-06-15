@@ -195,7 +195,7 @@
   height: 60px;
   border: 1px solid #ddd;
   border-bottom: hidden;
-  box-shadow: -5px 5px 2px rgba(168,168,168,0.5);
+  box-shadow: -3px 3px 10px rgba(168, 168, 168, 0.5);
 
 }
 
@@ -212,6 +212,7 @@
   font-weight: 400;
   text-transform: uppercase;
   font-size: 11pt;
+  margin-top: 12px;
 }
 
 .edit-button{
@@ -267,6 +268,7 @@
   display: inline-block;
   width: 75%;
   height: 50%;
+  padding-left: 12px;
 }
 
 .display-totals h4 {
@@ -275,7 +277,7 @@
   font-family: "Oswald",sans-serif;
   font-weight: 400;
   font-size: 11pt;
-  margin-left: -38px;
+  /*margin-left: -38px;*/
 }
 
 /*************************************************Main*****************************************/
@@ -456,9 +458,7 @@
 /*}*/
 
 /******************************************************Sidebar*******************************************/
-#shadow-customs{
-  box-shadow: -5px 5px 2px rgba(168,168,168,0.5);
-}
+
 
 .nav-tabs.nav-justified > li.active,
 .nav-tabs.nav-justified > li {
@@ -491,7 +491,9 @@
   border-radius: 0;
 }
 
-
+.shadow-fixer{
+  box-shadow: -3px 3px 10px #D3D3D3;
+}
 
 .nav-tabs.nav-justified > li.active > a,
 .nav-tabs.nav-justified > li.active > a:hover,
@@ -531,33 +533,36 @@
   border-top: 1px solid #f1f2f2 ;
   border-radius: 0px;
   height: calc(100% - 36px);
+  box-shadow: -3px 3px 10px #D3D3D3;
 }
 
 .sideBar-header {
-  box-shadow: -5px 5px 2px rgba(168,168,168,0.5);
   z-index: 1;
   position: relative;
 }
 
 .sideBar-header h3 {
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: 700;
   letter-spacing: 0.4px;
 }
 
-.sideBar-header h3 img.leftButton {
-  float: left;
-  margin-top: -19px;
+img.leftButtonNav{
   width: 30px;
-  height: 55px;
+  height: 52px;
+  position: absolute;
+  margin-left: -165px;
+  margin-top: -1px;
 }
 
-.sideBar-header h3 img.rightButton {
-  float: right;
-  margin-top: -19px;
+img.rightButtonNav{
   width: 30px;
-  height: 55px;
+  height: 52px;
+  position: absolute;
+  margin-left: 135px;
+  margin-top: -1px;
 }
+
 
 .sideBar-header h3 img:hover {
   cursor: pointer;
@@ -703,11 +708,11 @@
 /*****************SideBar-Measure********************/
 
 .sideBar .sideBar-measure {
-  overflow-y: auto;
+  overflow-x: hidden;
+  overflow-y: hidden;
   max-height: 600px;
   height: calc(100% - 54px);
   max-width:350px;
-  box-shadow: -3px 3px 10px lightgrey;
 }
 
 .sideBar-measure-top {
@@ -717,8 +722,7 @@
 }
 
 .sideBar-measure-select{
-  padding: 0px 20px;
-  border: dashed #BC770F;
+  padding: 10px 30px 9px 30px;
 }
 
 .sideBar-measure-top .btn-group .dropdown-toggle{
@@ -739,10 +743,11 @@
 
 .sideBar-measure-tip-left{
   float: left;
-  margin: 0px 20px;
+  margin: 0px 10px 0px 30px;
   color: #60C2B1;
   font-style: italic;
   height: 100%
+
 }
 
 .sideBar-measure-tip-right{
@@ -871,7 +876,7 @@
 
 /****************************Detail Panel*****************************/
 .sideBar .detailPanelShow {
-  left: -250px;
+  left: -350px;
   opacity: 1;
   z-index: -10;
 }
@@ -884,13 +889,13 @@
 .sideBar .detailPanel {
   position: absolute;
   top: 55px;
-  width: 250px;
+  width: 350px;
   height: auto;
-  max-height: 400px;
   overflow-y: auto;
   overflow-x: hidden;
   background-color: #D6D8D8;
   transition: 1s;
+  opacity: .9;
 }
 
 .detail-name{
@@ -924,20 +929,13 @@ h6.oswald-small{
   margin-top: 0p;
 }
 
-.oswald{
-  font-family: "Oswald", sans-serif;
-  font-weight: 400;
-}
 
-.15pt{
-  font-size: 15pt;
-}
 
 
 .roboto{
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  font-size: 13pt;
+  font-size: 11pt;
 }
 
 .heavy{
@@ -946,7 +944,7 @@ h6.oswald-small{
 }
 .thin{
   font-weight: 300;
-  line-height: 18pt;
+  line-height: 16pt;
 }
 
 .item-description{
@@ -956,9 +954,12 @@ h6.oswald-small{
 }
 
 .details-table td{
-  border-width: 1px;
-  border: 3px solid rgba(254, 254, 254, 0.75);
-  margin-left:1px;
+  border: 3px solid rgb(0, 168, 156);
+  background: white none repeat scroll 0% 0%;
+}
+
+.details-table {
+  margin-left:8px;
 }
 
 td.details-special-td{
@@ -980,6 +981,9 @@ td.details-special-td{
     opacity: 0.5;
 }
 
+.tip-lower{
+  margin-top: 14px;
+}
 select{
 font-family: inherit;
 font-size: inherit;
@@ -990,4 +994,8 @@ background: #FFF url("http://www.apple.com/jobs/images/icons/select.svg") no-rep
 border: medium none;
 color: #666;
 width: 100px;
+}
+
+body{
+  overflow:hidden;
 }
