@@ -83,14 +83,16 @@
   font-size: 17px;
   background-color: white;
   width: 50%;
-  padding-top: 3%;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin: auto;
 }
 
 .frame-item-weight {
   font-size: 17px;
   margin: auto;
-  padding-top: 3%;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .frame-item-image {
