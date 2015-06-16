@@ -50,11 +50,6 @@ angular.module('abacuApp')
             measureOptionIndex: -1
           })
         }
-
-        //Helper PreviewImage object
-        this.previewImageGenerator = new previewImage("chairPic", this.frameID, this.parts);
-        this.wheelImageGenerator = new previewImage("chairPic", this.frameID, this.wheelParts);
-        this.frameImageGenerator = new previewImage("chairPic", this.frameID, this.frameParts);
       }
 
       else {
@@ -91,17 +86,25 @@ angular.module('abacuApp')
           };
           this.measures.push(copyMeasure);
         }
-
-        //Helper PreviewImage object
-        this.previewImageGenerator = new previewImage("chairPic", this.frameID, this.parts);
-        this.wheelImageGenerator = new previewImage("chairPic", this.frameID, this.wheelParts);
-        this.frameImageGenerator = new previewImage("chairPic", this.frameID, this.frameParts);
       }
+      //Helper PreviewImage object
+      this.previewImageGenerator = new previewImage("chairPic", this.frameID, this.parts);
+      this.wheelImageGenerator = new previewImage("chairPic", this.frameID, this.wheelParts);
+      this.frameImageGenerator = new previewImage("chairPic", this.frameID, this.frameParts);
     };
 
     //#######################  Instance methods  ##########################
     Wheelchair.prototype = {
       //GETS
+      getAll: function () {
+        return {
+          frameID: this.frameID,
+          title: this.title,
+          parts: this.parts,
+          measures: this.measures
+        }
+      },
+
       getFrameID: function () {
         return this.frameID;
       },

@@ -43,12 +43,15 @@ angular.module('abacuApp')
         currentWheelchair.editingWheelchair = new Wheelchair(cookieChair);
       }
 
-
       //*********functions************//
 
       return {
 
         allDetails: function (){
+          var tempDesignedWheelchairs = [];
+          for(var i = 0; i < designedWheelchairs.length; i++){
+            tempDesignedWheelchairs.push(designedWheelchairs[i].getAll());
+          }
           return {
             'userID': userID,
             'fName': fName,
@@ -62,7 +65,7 @@ angular.module('abacuApp')
             'zip': zip,
             'unitSys': unitSys,
             'orders': orders,
-            'wheelchairs': designedWheelchairs
+            'wheelchairs': tempDesignedWheelchairs
           }
         },
 
@@ -159,7 +162,7 @@ angular.module('abacuApp')
         createCurrentDesign: function (frameID) {
           currentWheelchair.editingWheelchair = new Wheelchair(frameID);
           currentWheelchair.isNew = true;
-          $cookieStore.put('currentWheelchair', currentWheelchair.editingWheelchair);
+          $cookieStore.put('currentWheelchair', currentWheelchair.editingWheelchair.getAll());
           $cookieStore.put('isNew', true);
         },
 
@@ -185,7 +188,7 @@ angular.module('abacuApp')
           }
           currentWheelchair.editingWheelchair = jQuery.extend(true, designedWheelchairs[index]);
           currentWheelchair.isNew = false;
-          $cookieStore.put('currentWheelchair', currentWheelchair.editingWheelchair);
+          $cookieStore.put('currentWheelchair', currentWheelchair.editingWheelchair.getAll());
           $cookieStore.put('isNew', true);
           $cookieStore.put('currentWheelchairIndex', curEditWheelchairIndex);
         },
