@@ -8,8 +8,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', ['$scope', '$location', 'FrameData', 'User', 'Angles', 'Units',
-    function ($scope, $location, FrameData, User, Angles, Units) {
+  .controller('AbacusCtrl', ['$scope', '$location', '$cookieStore', 'FrameData', 'User', 'Angles', 'Units',
+    function ($scope, $location, $cookieStore, FrameData, User, Angles, Units) {
 
       /*********************Enums*******************************/
       //The visitation status for pages (parts/measures)
@@ -366,11 +366,14 @@ angular.module('abacuApp')
 
       $scope.setCurOption = function (newOptionID) {
         User.getCurEditWheelchair().setOptionForPart($scope.getCurPartData().partID, newOptionID);
+        $cookieStore.put('currentWheelchair', User.getCurEditWheelchair());
+
       };
 
       $scope.setCurOptionColor = function (newColorID) {
         if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
           User.getCurEditWheelchair().setColorForPart($scope.getCurWheelchairPart().partID, newColorID);
+          $cookieStore.put('currentWheelchair', User.getCurEditWheelchair());
         }
       };
 
