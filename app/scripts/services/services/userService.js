@@ -19,10 +19,7 @@ angular.module('abacuApp')
       var currentWheelchair = {isNew: false, editingWheelchair: null};
       var designedWheelchairs = [];
 
-      var curEditWheelchairIndex = $cookieStore.get('currentWheelchairIndex');
-      if(!curEditWheelchairIndex){
-        curEditWheelchairIndex = -1;
-      }
+      var curEditWheelchairIndex = -1;
       var userID = -1; //-1 means not logged in
       var fName = '';
       var lName = '';
@@ -36,13 +33,6 @@ angular.module('abacuApp')
       var zip = '';
       var unitSys = Units.unitSys.IMPERIAL;
 
-      var cookieChair = $cookieStore.get('currentWheelchair');
-      var isNew = $cookieStore.get('isNew');
-      if(cookieChair){
-        currentWheelchair.isNew = isNew;
-        currentWheelchair.editingWheelchair = new Wheelchair(cookieChair);
-      }
-
       //*********functions************//
 
       return {
@@ -52,6 +42,12 @@ angular.module('abacuApp')
           for(var i = 0; i < designedWheelchairs.length; i++){
             tempDesignedWheelchairs.push(designedWheelchairs[i].getAll());
           }
+
+          var tempOrders = [];
+          for(i = 0; i < orders.length; i++){
+            tempOrders.push(orders[i].getAll());
+          }
+
           return {
             'userID': userID,
             'fName': fName,
@@ -64,7 +60,7 @@ angular.module('abacuApp')
             'state': state,
             'zip': zip,
             'unitSys': unitSys,
-            'orders': orders,
+            'orders': tempOrders,
             'wheelchairs': tempDesignedWheelchairs
           }
         },
@@ -162,8 +158,6 @@ angular.module('abacuApp')
         createCurrentDesign: function (frameID) {
           currentWheelchair.editingWheelchair = new Wheelchair(frameID);
           currentWheelchair.isNew = true;
-          $cookieStore.put('currentWheelchair', currentWheelchair.editingWheelchair.getAll());
-          $cookieStore.put('isNew', true);
         },
 
         //Create a new wheelchair object of given frame type and set edit pointer to it
@@ -171,7 +165,6 @@ angular.module('abacuApp')
           if (currentWheelchair.isNew === true) {
             designedWheelchairs.push(currentWheelchair.editingWheelchair);
             curEditWheelchairIndex = designedWheelchairs.length - 1;
-            $cookieStore.put('currentWheelchairIndex', curEditWheelchairIndex);
 
           }
           else if (currentWheelchair.isNew === false) {
@@ -188,9 +181,6 @@ angular.module('abacuApp')
           }
           currentWheelchair.editingWheelchair = jQuery.extend(true, designedWheelchairs[index]);
           currentWheelchair.isNew = false;
-          $cookieStore.put('currentWheelchair', currentWheelchair.editingWheelchair.getAll());
-          $cookieStore.put('isNew', true);
-          $cookieStore.put('currentWheelchairIndex', curEditWheelchairIndex);
         },
 
         //Removes the wheelchair at the given index from the user's myDesign

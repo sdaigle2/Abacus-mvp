@@ -108,21 +108,6 @@ angular.module('abacuApp')
           return;
         }
 
-        $scope.$watchCollection('curEditWheelchair', function(newChair){
-          console.log('wheelchair edited');
-          $cookieStore.put('currentWheelchair', $scope.curEditWheelchair.getAll());
-        });
-
-        $scope.$watchCollection('curEditWheelchair.parts', function(newChair){
-          console.log('wheelchair edited');
-          $cookieStore.put('currentWheelchair', $scope.curEditWheelchair.getAll());
-        });
-
-        $scope.$watchCollection('curEditWheelchair.measures', function(newChair){
-          console.log('wheelchair edited');
-          $cookieStore.put('currentWheelchair', $scope.curEditWheelchair.getAll());
-        });
-
         //Load data about the frame type of curEditWheelchair
         $scope.curFrameData = FrameData.getFrame($scope.curEditWheelchair.getFrameID());
         generatePages();

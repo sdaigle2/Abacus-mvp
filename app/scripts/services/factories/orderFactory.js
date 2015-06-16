@@ -59,7 +59,7 @@ angular.module('abacuApp')
         this.zip = order.zip;
         this.payMethod = order.payMethod;
 
-        for(var i = 0; i < order.wheelchairs.length; i++){
+        for (var i = 0; i < order.wheelchairs.length; i++) {
           this.wheelchairs.push(new Wheelchair(order.wheelchairs[i]));
         }
       }
@@ -78,6 +78,32 @@ angular.module('abacuApp')
       },
 
       //**************gets/sets************/
+
+      getAll: function () {
+        var tempChairs = [];
+        for (var i = 0; i < this.wheelchairs.length; i++) {
+          tempChairs.push(this.wheelchairs[i].getAll());
+        }
+        return {
+          orderNum: this.orderNum,
+          taxRate: this.taxRate,
+          shippingFee: this.shippingFee,
+          sentDate: this.sentDate,
+          userID: this.userID,
+          fName: this.fName,
+          lName: this.lName,
+          email: this.email,
+          phone: this.phone,
+          addr: this.addr,
+          addr2: this.addr2,
+          city: this.city,
+          state: this.state,
+          zip: this.zip,
+          paymethod: this.paymethod,
+          wheelchairs: tempChairs
+        };
+      },
+
       getPayMethod: function () {
         return this.payMethod;
       },
