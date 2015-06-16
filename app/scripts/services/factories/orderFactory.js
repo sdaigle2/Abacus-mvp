@@ -9,37 +9,60 @@
  */
 
 /*
-* This factory produces Order objects
-* An Order is a collection of designed wheelchairs and user data to be sent to the distributor
-* An Order is "sent" if it has a date set for sentDate - it is "unsent" if sentDate is null
-* User contains an array of Orders
-* User also keeps track of one unsent Order, which is used as the cart
-* Order contains various aggregation functions which calculate the subtotal, shipping fee, tax, and total costs
-* Order has a function send() which accepts finalized user data and sends itself to the distributor, marking itself as sent
-* Orders can be constructed directly from a JSON object using the Order.fromJSONData() function
-*/
+ * This factory produces Order objects
+ * An Order is a collection of designed wheelchairs and user data to be sent to the distributor
+ * An Order is "sent" if it has a date set for sentDate - it is "unsent" if sentDate is null
+ * User contains an array of Orders
+ * User also keeps track of one unsent Order, which is used as the cart
+ * Order contains various aggregation functions which calculate the subtotal, shipping fee, tax, and total costs
+ * Order has a function send() which accepts finalized user data and sends itself to the distributor, marking itself as sent
+ * Orders can be constructed directly from a JSON object using the Order.fromJSONData() function
+ */
 angular.module('abacuApp')
-  .factory('Order', ['$q', function ($q){
+  .factory('Order', ['$q', 'Wheelchair', function ($q, Wheelchair) {
 
-    function Order(taxRate, shippingFee) {
+    function Order(taxRate, shippingFee, order) {
       this.wheelchairs = [];
-      this.orderNum = 'OrderNumNotSet';
-      this.taxRate = taxRate;
-      this.shippingFee = shippingFee;
-      this.sentDate = null; //null = "unsent"
+      if (order == null) {
+        this.orderNum = 'OrderNumNotSet';
+        this.taxRate = taxRate;
+        this.shippingFee = shippingFee;
+        this.sentDate = null; //null = "unsent"
 
-      this.userID = -1;
-      this.fName = '';
-      this.lName = '';
-      this.email = '';
-      this.phone = '';
-      this.addr = '';
-      this.addr2 = '';
-      this.city = '';
-      this.state = '';
-      this.zip = '';
+        this.userID = -1;
+        this.fName = '';
+        this.lName = '';
+        this.email = '';
+        this.phone = '';
+        this.addr = '';
+        this.addr2 = '';
+        this.city = '';
+        this.state = '';
+        this.zip = '';
 
-      this.payMethod = '';
+        this.payMethod = '';
+      }
+      else {
+        this.orderNum = order.orderNum;
+        this.taxRate = order.taxRate;
+        this.shippingFee = order.shippingFee;
+        this.sentDate = order.sentDate;
+        this.userID = order.userID;
+        this.fName = order.fName;
+        this.lName = order.lName;
+        this.email = order.email;
+        this.phone = order.phone;
+        this.addr = order.addr;
+        this.addr2 = order.addr2;
+        this.city = order.city;
+        this.state = order.state;
+        this.zip = order.zip;
+        this.payMethod = order.payMethod;
+
+        for(var i = 0; i < order.wheelchairs.length; i++){
+          this.wheelchairs.push(new Wheelchair(order.wheelchairs[i]));
+        }
+      }
     }
 
     Order.prototype = {
@@ -55,25 +78,61 @@ angular.module('abacuApp')
       },
 
       //**************gets/sets************/
-      getPayMethod: function () { return this.payMethod; },
-      getTaxRate: function () { return this.taxRate; },
-      getShippingFee: function () { return this.shippingFee; },
-      getOrderNum: function () { return this.orderNum; },
-      getWheelchairs: function () { return this.wheelchairs; },
-      getNumWheelchairs: function () { return this.wheelchairs.length; },
-      getSentDate: function () { return this.sentDate; },
-      getUserID: function () { return this.userID; },
-      getFname: function () { return this.fName; },
-      getLname: function () { return this.lName; },
-      getEmail: function () { return this.email; },
-      getPhone: function () { return this.phone; },
-      getAddr: function () { return this.addr; },
-      getAddr2: function () { return this.addr2; },
-      getCity: function () { return this.city; },
-      getState: function () { return this.state; },
-      getZip: function () { return this.zip; },
+      getPayMethod: function () {
+        return this.payMethod;
+      },
+      getTaxRate: function () {
+        return this.taxRate;
+      },
+      getShippingFee: function () {
+        return this.shippingFee;
+      },
+      getOrderNum: function () {
+        return this.orderNum;
+      },
+      getWheelchairs: function () {
+        return this.wheelchairs;
+      },
+      getNumWheelchairs: function () {
+        return this.wheelchairs.length;
+      },
+      getSentDate: function () {
+        return this.sentDate;
+      },
+      getUserID: function () {
+        return this.userID;
+      },
+      getFname: function () {
+        return this.fName;
+      },
+      getLname: function () {
+        return this.lName;
+      },
+      getEmail: function () {
+        return this.email;
+      },
+      getPhone: function () {
+        return this.phone;
+      },
+      getAddr: function () {
+        return this.addr;
+      },
+      getAddr2: function () {
+        return this.addr2;
+      },
+      getCity: function () {
+        return this.city;
+      },
+      getState: function () {
+        return this.state;
+      },
+      getZip: function () {
+        return this.zip;
+      },
 
-      getFullName: function () { return this.fName + ' ' + this.lName; },
+      getFullName: function () {
+        return this.fName + ' ' + this.lName;
+      },
       getFullAddr: function () {
         var a2 = this.addr2;
         if (this.addr2 !== '')
@@ -83,7 +142,7 @@ angular.module('abacuApp')
 
       getFormattedAddr: function () {
         var fullAddr = this.addr;
-        if(this.addr2 !== ''){
+        if (this.addr2 !== '') {
           fullAddr += '<br>' + this.addr2;
         }
         fullAddr += '<br>' + this.city + ', ' + this.state + ', ' + this.zip;
@@ -91,7 +150,9 @@ angular.module('abacuApp')
       },
 
       //The Order is "sent" if sentDate is non-null
-      hasBeenSent: function () { return this.sentDate !== null; },
+      hasBeenSent: function () {
+        return this.sentDate !== null;
+      },
 
       getWheelchair: function (index) {
         if (index >= 0 && index < this.wheelchairs.length)
@@ -191,4 +252,7 @@ angular.module('abacuApp')
     };
 
     return (Order);
-  }]);
+  }
+
+  ])
+;

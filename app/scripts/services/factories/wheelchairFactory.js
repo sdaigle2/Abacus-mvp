@@ -12,53 +12,95 @@ angular.module('abacuApp')
     //##########################  Constructor  #########################
 
     function Wheelchair(frameID) {
-      this.frameID = frameID;
       this.parts = [];
       this.measures = [];
       this.wheelParts = [];
       this.frameParts = [];
-      this.title = 'My Custom Wheelchair';
+      if (typeof frameID === 'number') {
+        this.frameID = frameID;
+        this.title = 'My Custom Wheelchair';
 
-      //Get data from FrameData
-      var frame = FrameData.getFrame(frameID);
-      var parts = frame.getParts();
-      var meas = frame.getMeasures();
+        //Get data from FrameData
+        var frame = FrameData.getFrame(frameID);
+        var parts = frame.getParts();
+        var meas = frame.getMeasures();
 
-      //Generate parts array and set defaults
-      for (var i = 0; i < parts.length; i++) {
-        var p = parts[i];
-        var defaultPart = {
-          partID: p.getID(),
-          optionID: p.getDefaultOptionID(),
-          colorID: p.getDefaultOption().getDefaultColorID()
-        };
-        this.parts.push(defaultPart);
-        if (i < frame.wheelIndex) {
-          this.frameParts.push(defaultPart);
+        //Generate parts array and set defaults
+        for (var i = 0; i < parts.length; i++) {
+          var p = parts[i];
+          var defaultPart = {
+            partID: p.getID(),
+            optionID: p.getDefaultOptionID(),
+            colorID: p.getDefaultOption().getDefaultColorID()
+          };
+          this.parts.push(defaultPart);
+          if (i < frame.wheelIndex) {
+            this.frameParts.push(defaultPart);
+          }
+          else {
+            this.wheelParts.push(defaultPart);
+          }
         }
-        else {
-          this.wheelParts.push(defaultPart);
+
+        //Generate measures array and set default to -1 (NOT SELECTED)
+        for (var j = 0; j < meas.length; j++) {
+          var m = meas[j];
+          this.measures.push({
+            measureID: m.getID(),
+            measureOptionIndex: -1
+          })
         }
+
+        //Helper PreviewImage object
+        this.previewImageGenerator = new previewImage("chairPic", this.frameID, this.parts);
+        this.wheelImageGenerator = new previewImage("chairPic", this.frameID, this.wheelParts);
+        this.frameImageGenerator = new previewImage("chairPic", this.frameID, this.frameParts);
       }
 
-      //Generate measures array and set default to -1 (NOT SELECTED)
-      for (var j = 0; j < meas.length; j++) {
-        var m = meas[j];
-        this.measures.push({
-          measureID: m.getID(),
-          measureOptionIndex: -1
-        })
-      }
+      else {
+        var wheelchair = frameID;
+        //####################### COPY CONSTRUCTOR ############################
 
-      //Helper PreviewImage object
-      this.previewImageGenerator = new previewImage("chairPic", this.frameID, this.parts);
-      this.wheelImageGenerator = new previewImage("chairPic", this.frameID, this.wheelParts);
-      this.frameImageGenerator = new previewImage("chairPic", this.frameID, this.frameParts);
+        this.frameID = wheelchair.frameID;
+        this.title = wheelchair.title;
+        var frame = FrameData.getFrame(this.frameID);
+
+        //Copy Parts
+        for (var i = 0; i < wheelchair.parts.length; i++) {
+          var p = wheelchair.parts[i];
+          var copyPart = {
+            partID: p.partID,
+            optionID: p.optionID,
+            colorID: p.colorID
+          };
+          this.parts.push(copyPart);
+          if (i < frame.wheelIndex) {
+            this.frameParts.push(copyPart);
+          }
+          else {
+            this.wheelParts.push(copyPart);
+          }
+        }
+
+        //Copy Measures
+        for (i = 0; i < wheelchair.measures.length; i++) {
+          var m = wheelchair.measures[i];
+          var copyMeasure = {
+            measureID: m.measureID,
+            measureOptionIndex: m.measureOptionIndex
+          };
+          this.measures.push(copyMeasure);
+        }
+
+        //Helper PreviewImage object
+        this.previewImageGenerator = new previewImage("chairPic", this.frameID, this.parts);
+        this.wheelImageGenerator = new previewImage("chairPic", this.frameID, this.wheelParts);
+        this.frameImageGenerator = new previewImage("chairPic", this.frameID, this.frameParts);
+      }
     };
 
     //#######################  Instance methods  ##########################
     Wheelchair.prototype = {
-
       //GETS
       getFrameID: function () {
         return this.frameID;
@@ -296,7 +338,10 @@ angular.module('abacuApp')
 
     //Don't touch this
     return (Wheelchair);
-  }]);
+  }
+
+  ])
+;
 
 
 /*

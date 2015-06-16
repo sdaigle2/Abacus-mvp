@@ -81,8 +81,15 @@ angular.module('abacuApp')
             state = data.state;
             zip = data.zip;
             unitSys = data.unitSys;
-            orders = data.orders;
-            designedWheelchairs = data.wheelchairs;
+
+            for(var i = 0; i < data.wheelchairs.length; i++){
+              designedWheelchairs.push(new Wheelchair(data.wheelchairs[i]));
+            }
+
+            for(i = 0; i < data.orders.length; i++){
+              orders.push(new Order(0,0, data.orders[i]));
+            }
+
             deferred.resolve();
           })
             .error(function (data) {
@@ -122,6 +129,20 @@ angular.module('abacuApp')
           return (userID !== -1);
         },
 
+        updateDB: function (){
+          if (userID !== -1) {
+            $http({
+              url: '/update',
+              data: this.allDetails(),
+              method: 'POST'
+            }).success(function (data) {
+              console.log(data);
+            })
+              .error(function (data) {
+                console.log('Request Failed: ' + data);
+              });
+          }
+        },
         /*************************MY DESIGNS*******************************/
 
         createCurrentDesign: function (frameID) {
@@ -139,19 +160,7 @@ angular.module('abacuApp')
             designedWheelchairs[curEditWheelchairIndex] = jQuery.extend(true, currentWheelchair.editingWheelchair);
           }
 
-          if (userID !== -1) {
-            console.log(this.allDetails());
-            $http({
-              url: '/wheelchair',
-              data: this.allDetails(),
-              method: 'POST'
-            }).success(function (data) {
-              console.log(data);
-            })
-              .error(function (data) {
-                console.log('Request Failed: ' + data);
-              });
-          }
+          this.updateDB();
         },
 
         //Set the given wheelchair index to be edited
@@ -229,7 +238,7 @@ angular.module('abacuApp')
               orders.splice(orders.length - 1, 1);
           }
 
-          var newOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE);
+          var newOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
           orders.push(newOrder);
         },
 

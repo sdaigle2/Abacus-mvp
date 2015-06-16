@@ -52,7 +52,7 @@ app.post('/register', function (req, res) {
   });
 });
 
-app.post('/wheelchair', function (req, res) {
+app.post('/update', function (req, res) {
   update(req.body, req.body.email, function (err, body) {
     res.json({'success': err});
   });
