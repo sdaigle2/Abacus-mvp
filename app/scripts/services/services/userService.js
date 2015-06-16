@@ -25,7 +25,6 @@ angular.module('abacuApp')
       var lName = '';
       var email = '';
       var phone = '';
-
       var addr = '';
       var addr2 = '';
       var city = '';
@@ -69,14 +68,14 @@ angular.module('abacuApp')
 
         //Attempt to login as the given username with the given password
         //If successful - should load in appropriate user data
-        login: function (in_email, password) {
+        login: function (in_email, pass) {
           //TODO: Verify email and password
           //Call deferred.reject(message) if invalid
 
           var deferred = $q.defer();
           $http({
             url: '/login'
-            , data: {email: in_email, password: password}
+            , data: {email: in_email, password: pass}
             , method: 'POST'
           }).success(function (data) {
             console.log(data);
@@ -130,7 +129,7 @@ angular.module('abacuApp')
           //TODO: Reset CommonMeasures
           designedWheelchairs = [];
           curEditWheelchairIndex = -1;
-
+          password = '';
           $location.path('frames');
         },
 
