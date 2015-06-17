@@ -341,15 +341,17 @@
           </div>
           <!-- Measure Image Carousel -->
           <div class="sideBar-measure-bottom">
+            <img class="help-image" ng-repeat="image in getCurMeasureData().imageURLs"
+                 ng-show="curMeasureCarouselIndex === $index"
+                 ng-src="{{image}}" width="350" height="340">
+
             <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
                  data-ng-click="rotateMeasureCarouselIndex(-1)"/>
             <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
                  data-ng-click="rotateMeasureCarouselIndex(1)"/>
-            <img ng-repeat="image in getCurMeasureData().imageURLs"
-                 ng-show="curMeasureCarouselIndex === $index"
-                 ng-src="{{image}}" width="350" height="340">
+          
 
-            <div class="dots">
+            <div class="help-image-progressbar">
               <i ng-repeat="image in getCurMeasureData().imageURLs"
                  ng-class="{ 'fa fa-circle-o' : curMeasureCarouselIndex !== $index, 'fa fa-circle' : curMeasureCarouselIndex === $index }"
                  ng-click="jumpMeasureCarouselIndex($index)"></i>

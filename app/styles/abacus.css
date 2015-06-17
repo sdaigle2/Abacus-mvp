@@ -802,19 +802,35 @@ img.rightButtonNav{
 .sideBar-measure-bottom {
   background-color: #FFF;
   position: relative;
+  height:100%;
 }
 .sideBar-measure-bottom .leftButton {
   position: absolute;
-  top: 160px;
   left: 0px;
   cursor: pointer;
+  top: calc(50% - 120px);
 }
 .sideBar-measure-bottom .rightButton {
   position: absolute;
-  top: 160px;
   right: 0px;
   cursor: pointer;
+  top: calc(50% - 120px);
 }
+
+
+.sideBar-measure-bottom .help-image{
+  cursor: pointer;
+  top: calc(50% - 330px);
+  position: absolute;
+}
+
+.sideBar-measure-bottom .help-image-progressbar{
+  cursor: pointer;
+  top: calc(50%);
+  position: absolute;
+  margin-left: 155px;
+}
+
 
 .sideBar-measure-bottom .dots {
   width: 100%;
@@ -1042,7 +1058,7 @@ width: 100px;
 }
 
 body{
-  overflow:hidden;
+/*  overflow:hidden; */
 }
 .nothing{
   position:absolute;
