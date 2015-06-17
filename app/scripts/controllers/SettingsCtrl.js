@@ -52,7 +52,7 @@ angular.module('abacuApp')
     };
 
     //Navigational values
-    var contentSection = $scope.ContentSection.ORDERS;
+    var contentSection = User.loginSection();
     var curMeasureType = $scope.MeasurementTypes.REAR_SEAT_HEIGHT;
 
 

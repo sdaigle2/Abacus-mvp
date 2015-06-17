@@ -31,6 +31,7 @@ angular.module('abacuApp')
     var state = '';
     var zip = '';
     var unitSys = Units.unitSys.IMPERIAL;
+    var loginSection = '';
 
       //cookieLoad();
       //function cookieLoad(){
@@ -108,6 +109,25 @@ angular.module('abacuApp')
       //Returns true if the user is logged in
       isLoggedIn: function () {
         return (userID !== -1);
+      },
+
+      AfterLogin: function (section){
+        if(section === 'account'){
+          loginSection = 'account'}
+        else if(section === 'orders'){
+          loginSection = 'order';
+        }
+        else if(section === 'measurements'){
+          loginSection = 'measurements';
+        }
+        else {
+          loginSection = '';
+        }
+        $location.path('settings');
+      },
+
+      loginSection: function(){
+        return loginSection;
       },
 
       /*************************MY DESIGNS*******************************/

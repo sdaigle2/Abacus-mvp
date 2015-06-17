@@ -56,4 +56,8 @@ angular.module('abacuApp')
       $scope.loginModel.password = '';
     };
 
+    $scope.loginSection = function(section){
+      User.AfterLogin(section);
+    }
+
 }]);

@@ -133,7 +133,8 @@ body {
   padding: 0 10px 0 0;
 }
 .mainNavbar .mainNavbar-right .settingsButton {
-  height: 100%;
+  position: relative;
+  height: 40px;
   margin: 0 0 0 0;
   padding: 18px 10px 0 0;
 }
@@ -254,6 +255,41 @@ body {
 
 .login .login-optionrow span:hover {
   cursor: pointer;
+}
+
+.afterlogin {
+  position: absolute;
+  top: 39px;
+  right:-26px;
+  color: #000000;
+  background-color: white;
+  line-height: 1;
+  letter-spacing: 1px;
+  width: 240px;
+  border: 1px solid black;
+  padding: 8px 20px 16px;
+  z-index: -1;
+}
+
+.afterlogin #divider{
+  border-bottom: 1px solid #939597;
+}
+
+.afterlogin >div{
+  padding: 0.1px 0;
+}
+
+.afterlogin .logout-button{
+  height: 44px;
+  text-align: center;
+  margin-top: 16px ;
+  padding-top: 15px;
+  background-color: #939597;
+  color: white;
+}
+
+.afterlogin >div:hover{
+  cursor:pointer;
 }
 
 
