@@ -32,18 +32,48 @@ angular.module('abacuApp')
       var zip = '';
       var unitSys = Units.unitSys.IMPERIAL;
 
-      //*********functions************//
+      $http({
+        url: '/session'
+        , method: 'POST'
+      }).success(function (data) {
+        console.log(data);
+        userID = data.userID;
+        if (userID !== -1) {
+          fName = data.fName;
+          lName = data.lName;
+          email = data.email;
+          phone = data.phone;
+          addr = data.addr;
+          addr2 = data.addr2;
+          city = data.city;
+          state = data.state;
+          zip = data.zip;
+          unitSys = data.unitSys;
+
+          for (var i = 0; i < data.wheelchairs.length; i++) {
+            designedWheelchairs.push(new Wheelchair(data.wheelchairs[i]));
+          }
+
+          for (i = 0; i < data.orders.length; i++) {
+            orders.push(new Order(0, 0, data.orders[i]));
+          }
+        }
+      })
+        .error(function (data) {
+          console.log('Request Failed: ' + data);
+        });
+//*********functions************//
 
       return {
 
-        allDetails: function (){
+        allDetails: function () {
           var tempDesignedWheelchairs = [];
-          for(var i = 0; i < designedWheelchairs.length; i++){
+          for (var i = 0; i < designedWheelchairs.length; i++) {
             tempDesignedWheelchairs.push(designedWheelchairs[i].getAll());
           }
 
           var tempOrders = [];
-          for(i = 0; i < orders.length; i++){
+          for (i = 0; i < orders.length; i++) {
             tempOrders.push(orders[i].getAll());
           }
 
@@ -79,24 +109,26 @@ angular.module('abacuApp')
             , method: 'POST'
           }).success(function (data) {
             console.log(data);
-            fName = data.fName;
-            lName = data.lName;
             userID = data.userID;
-            email = in_email;
-            phone = data.phone;
-            addr = data.addr;
-            addr2 = data.addr2;
-            city = data.city;
-            state = data.state;
-            zip = data.zip;
-            unitSys = data.unitSys;
+            if (userID !== -1) {
+              fName = data.fName;
+              lName = data.lName;
+              email = in_email;
+              phone = data.phone;
+              addr = data.addr;
+              addr2 = data.addr2;
+              city = data.city;
+              state = data.state;
+              zip = data.zip;
+              unitSys = data.unitSys;
 
-            for(var i = 0; i < data.wheelchairs.length; i++){
-              designedWheelchairs.push(new Wheelchair(data.wheelchairs[i]));
-            }
+              for (var i = 0; i < data.wheelchairs.length; i++) {
+                designedWheelchairs.push(new Wheelchair(data.wheelchairs[i]));
+              }
 
-            for(i = 0; i < data.orders.length; i++){
-              orders.push(new Order(0,0, data.orders[i]));
+              for (i = 0; i < data.orders.length; i++) {
+                orders.push(new Order(0, 0, data.orders[i]));
+              }
             }
 
             deferred.resolve();
@@ -105,11 +137,6 @@ angular.module('abacuApp')
               console.log('Request Failed: ' + data);
               deferred.reject('Error loading user data');
             });
-
-          //TODO: load Orders from DB associated with UserID
-          //TODO: load Common Measurements from DB with associated UserID
-          //TODO: load Designed Wheelchairs from DB associated with UserID
-
           return deferred.promise;
         },
 
@@ -138,7 +165,7 @@ angular.module('abacuApp')
           return (userID !== -1);
         },
 
-        updateDB: function (){
+        updateDB: function () {
           if (userID !== -1) {
             $http({
               url: '/update',
@@ -362,7 +389,8 @@ angular.module('abacuApp')
         }
       };
 
-    }]);
+    }])
+;
 
 
 
