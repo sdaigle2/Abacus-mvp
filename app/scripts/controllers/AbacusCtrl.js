@@ -423,8 +423,22 @@ angular.module('abacuApp')
          return "sideBar-custom-item-selected";
 
         }
-        return "sideBar-custom-item";
+        return "nothing";
       }
+
+
+      $scope.isPanelSelectedTd = function(id){
+        if(curPanel.panelID===-1){
+           $scope.darkenerClass="sideBar-custom-item-right";
+        }
+        if(curPanel.panelID===id){
+            $scope.darkenerClass="darkener";
+         return "sideBar-custom-item-right-selected";
+
+        }
+        return "sideBar-custom-item-right";
+      }
+
 
       //Checks if a panel with the given ID is selected
       $scope.isPanelIDSelected = function (id) {

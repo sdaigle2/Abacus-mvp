@@ -595,12 +595,13 @@ img.rightButtonNav{
 .sideBar-custom-item-selected {
     height: 120px;
     max-height: 120px;
-    margin: 5px 0px;
     border-top: 1px solid #BBB;
     border-bottom: 1px solid #BBB;
     z-index: 9;
     background-color: white;
-    position: relative;
+    position: absolute;
+    width:100%;
+    margin-top:-2px;
 }
 
 .sideBar-custom-item > td {
@@ -633,6 +634,7 @@ img.rightButtonNav{
   padding: 5px 0px;
 }
 
+
 .sideBar-custom-item-right .sideBar-custom-item-name {
   font-size: 16px;
   font-family: "Roboto", sans-serif;
@@ -657,7 +659,45 @@ img.rightButtonNav{
   height:25px;
   padding: 0px 8px;
   margin-left: -8px;
+  width: 200px;
 }
+
+.sideBar-custom-item .sideBar-custom-item-right-selected {
+  height: 120px;
+  padding: 5px 0px;
+}
+
+
+.sideBar-custom-item-right-selected .sideBar-custom-item-name {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 0.4px;
+  line-height: 19px;
+  margin-top:1px;
+  margin-left:-2px;
+  height: 40px;
+  overflow: hidden ;
+  overflow-wrap: normal;
+}
+
+.sideBar-custom-item-right-selected .sideBar-custom-item-details {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: 0.4px;
+  line-height: 19px;
+  margin-top: -5px;
+  margin-left: -3px;
+  height: 25px;
+}
+
+.sideBar-custom-item-right-selected .sideBar-custom-item-buttonRow {
+  height:25px;
+  padding: 0px 8px;
+  margin-left: -10px;
+  margin-top:-5px;
+  width: 200px;
+}
+
 
 
 .sideBar-custom-item-button {
@@ -1003,4 +1043,8 @@ width: 100px;
 
 body{
   overflow:hidden;
+}
+.nothing{
+  position:absolute;
+  visibility:hidden;
 }
