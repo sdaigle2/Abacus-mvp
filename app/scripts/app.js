@@ -33,7 +33,10 @@ angular
       })
       .when('/cart', {
         templateUrl: 'views/checkout/cart.html',
-        controller: 'CartCtrl'
+        controller: 'CartCtrl',
+        resolve: {UserData: function($q, User){
+          return User.getPromise();
+        }}
       })
       .when('/checkout', {
         templateUrl: 'views/checkout/checkout.html',
@@ -49,7 +52,10 @@ angular
       })
       .when('/settings', {
         templateUrl: 'views/settings.html',
-        controller: 'SettingsCtrl'
+        controller: 'SettingsCtrl',
+        resolve: {UserData: function($q, User){
+          return User.getPromise();
+        }}
       })
       .when('/save', {
         templateUrl: 'views/save.html',

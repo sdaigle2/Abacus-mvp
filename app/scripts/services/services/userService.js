@@ -32,39 +32,47 @@ angular.module('abacuApp')
       var zip = '';
       var unitSys = Units.unitSys.IMPERIAL;
 
+      var deferred = $q.defer();
       $http({
         url: '/session'
         , method: 'POST'
-      }).success(function (data) {
-        console.log(data);
-        userID = data.userID;
-        if (userID !== -1) {
-          fName = data.fName;
-          lName = data.lName;
-          email = data.email;
-          phone = data.phone;
-          addr = data.addr;
-          addr2 = data.addr2;
-          city = data.city;
-          state = data.state;
-          zip = data.zip;
-          unitSys = data.unitSys;
-
-          for (var i = 0; i < data.wheelchairs.length; i++) {
-            designedWheelchairs.push(new Wheelchair(data.wheelchairs[i]));
-          }
-
-          for (i = 0; i < data.orders.length; i++) {
-            orders.push(new Order(0, 0, data.orders[i]));
-          }
-        }
       })
+        .success(function (data) {
+          console.log(data);
+          userID = data.userID;
+          if (userID !== -1) {
+            fName = data.fName;
+            lName = data.lName;
+            email = data.email;
+            phone = data.phone;
+            addr = data.addr;
+            addr2 = data.addr2;
+            city = data.city;
+            state = data.state;
+            zip = data.zip;
+            unitSys = data.unitSys;
+
+            for (var i = 0; i < data.wheelchairs.length; i++) {
+              designedWheelchairs.push(new Wheelchair(data.wheelchairs[i]));
+            }
+
+            for (i = 0; i < data.orders.length; i++) {
+              orders.push(new Order(0, 0, data.orders[i]));
+            }
+          }
+          deferred.resolve();
+        })
         .error(function (data) {
           console.log('Request Failed: ' + data);
+          deferred.resolve();
         });
 //*********functions************//
 
       return {
+
+        getPromise: function () {
+          return deferred.promise;
+        },
 
         allDetails: function () {
           var tempDesignedWheelchairs = [];

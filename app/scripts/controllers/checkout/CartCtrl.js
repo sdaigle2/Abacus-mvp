@@ -104,7 +104,7 @@ angular.module('abacuApp')
         //Remove wheelchair from My Designs
         User.deleteWheelchair(index);
         $scope.emptyCols.push({});
-        //TODO: Save changes to DB
+        User.updateDB();
       };
 
 

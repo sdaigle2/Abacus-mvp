@@ -13,13 +13,19 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+//Security
+var crypto = require('crypto');
+var hash = require('./pass').hash;
+
+var token = crypto.randomBytes(64).toString('hex');
+
 //Session Management
 var session = require('express-session');
 
 app.use(session({
   resave: false, // don't save session if unmodified
   saveUninitialized: false, // don't create session until something stored
-  secret: 'W828Y4OOX19nY>a]}M<D,4W|{5S,9/'
+  secret: token
 }));
 
 //Cloudant Database API
@@ -27,9 +33,6 @@ var me = 'intelliwheels';
 var password = 'Wheelchair34';
 var cloudant = require('cloudant')({account: me, password: password});
 var users = cloudant.use('abacus');
-
-//Security
-var hash = require('./pass').hash;
 
 function restrict(req, res, next) {
   console.log('restrict');
@@ -48,8 +51,11 @@ app.get('*', function (req, res) {
 //Check user session on page reload
 app.post('/session', restrict, function (req, res) {
   users.get(req.session.user, function (err, body) {
-    if (!err)
+    if (!err) {
+      delete body.salt;
+      delete body.password;
       res.json(body);
+    }
     else
       res.json({'userID': -1});
   });
@@ -67,6 +73,8 @@ app.post('/login', function (req, res) {
         else if (hash === body.password) {
           req.session.regenerate(function () {
             req.session.user = body.email;
+            delete body.salt;
+            delete body.password;
             res.json(body);
           });
         }
@@ -81,7 +89,7 @@ app.post('/login', function (req, res) {
 
 app.post('/register', function (req, res) {
   var email = req.body.email;
-  users.get(email, function (err, body) {
+  users.get(email, function (err) {
     if (err) {
       hash(req.body.password, function (err, salt, hash) {
         if (err) throw err;

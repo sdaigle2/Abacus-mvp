@@ -128,6 +128,7 @@ angular.module('abacuApp')
 
 
         case $scope.stages.COMPLETE:
+          User.updateDB();
           $location.path('/invoice');
           break;
       }

@@ -71,8 +71,7 @@ angular.module('abacuApp')
           User.setCity($scope.accountModel.city);
           User.setState($scope.accountModel.state);
           User.setZip($scope.accountModel.zip);
-
-          //TODO: update in the database (including password?)
+          User.updateDB();
 
           break;
 
@@ -87,7 +86,7 @@ angular.module('abacuApp')
           User.commonMeasures.SEAT_DEPTH = $scope.measDisplay.seatDepth.optionSelected;
 
           User.setUnitSys($scope.curUnitSys);
-          //TODO: update values in the database
+          User.updateDB();
 
           break;
       }
