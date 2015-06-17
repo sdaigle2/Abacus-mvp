@@ -1058,7 +1058,7 @@ width: 100px;
 }
 
 body{
-/*  overflow:hidden; */
+ overflow:hidden; 
 }
 .nothing{
   position:absolute;
