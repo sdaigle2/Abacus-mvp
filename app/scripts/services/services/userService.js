@@ -32,7 +32,6 @@ angular.module('abacuApp')
       var zip = '';
       var unitSys = Units.unitSys.IMPERIAL;
       var contentSection = 'orders';
-      var loginSection = '';
       var deferred = $q.defer();
       $http   ({
         url: '/session'
@@ -53,11 +52,11 @@ angular.module('abacuApp')
             zip = data.zip;
             unitSys = data.unitSys;
 
-            for (var i = 0; i < data.wheelchairs.length; i++) {
-              designedWheelchairs.push(new Wheelchair(data.wheelchairs[i]));
-            }
+            //for (var i = 0; i < data.wheelchairs.length; i++) {
+            //  designedWheelchairs.push(new Wheelchair(data.wheelchairs[i]));
+            //}
 
-            for (i = 0; i < data.orders.length; i++) {
+            for (var i = 0; i < data.orders.length; i++) {
               orders.push(new Order(0, 0, data.orders[i]));
             }
           }
@@ -67,6 +66,11 @@ angular.module('abacuApp')
           console.log('Request Failed: ' + data);
           deferred.resolve();
         });
+
+      var tempChairs = $cookieStore.get('wheelchairs') || [];
+      for (var i = 0; i < tempChairs.length; i++) {
+        designedWheelchairs.push(new Wheelchair(tempChairs[i]));
+      }
 //*********functions************//
 
       return {
@@ -108,8 +112,6 @@ angular.module('abacuApp')
         //Attempt to login as the given username with the given password
         //If successful - should load in appropriate user data
         login: function (in_email, pass) {
-          //TODO: Verify email and password
-          //Call deferred.reject(message) if invalid
 
           var deferred = $q.defer();
           $http({
@@ -131,11 +133,11 @@ angular.module('abacuApp')
               zip = data.zip;
               unitSys = data.unitSys;
 
-              for (var i = 0; i < data.wheelchairs.length; i++) {
-                designedWheelchairs.push(new Wheelchair(data.wheelchairs[i]));
-              }
+              //for (var i = 0; i < data.wheelchairs.length; i++) {
+              //  designedWheelchairs.push(new Wheelchair(data.wheelchairs[i]));
+              //}
 
-              for (i = 0; i < data.orders.length; i++) {
+              for (var i = 0; i < data.orders.length; i++) {
                 orders.push(new Order(0, 0, data.orders[i]));
               }
             }
@@ -162,35 +164,23 @@ angular.module('abacuApp')
           zip = '';
           unitSys = Units.unitSys.IMPERIAL;
           orders = [];
-          //TODO: Reset CommonMeasures
           designedWheelchairs = [];
           curEditWheelchairIndex = -1;
-          password = '';
+          $http({
+            url: '/logout',
+            method: 'POST'
+          }).success(function (data) {
+            console.log(data);
+          })
+            .error(function (data) {
+              console.log('Request Failed: ' + data);
+            });
           $location.path('frames');
         },
 
         //Returns true if the user is logged in
         isLoggedIn: function () {
           return (userID !== -1);
-        },
-
-        AfterLogin: function (section){
-          if(section === 'account'){
-            loginSection = 'account'}
-          else if(section === 'orders'){
-            loginSection = 'order';
-          }
-          else if(section === 'measurements'){
-            loginSection = 'measurements';
-          }
-          else {
-            loginSection = '';
-          }
-          $location.path('settings');
-        },
-
-        loginSection: function(){
-          return loginSection;
         },
 
         updateDB: function () {
@@ -206,6 +196,14 @@ angular.module('abacuApp')
                 console.log('Request Failed: ' + data);
               });
           }
+        },
+
+        updateCookie: function () {
+          var tempChairs = [];
+          for(var i = 0; i < designedWheelchairs.length; i++){
+            tempChairs.push(designedWheelchairs[i].getAll());
+          }
+          $cookieStore.put('wheelchairs', tempChairs);
         },
         /*************************MY DESIGNS*******************************/
 
@@ -224,7 +222,7 @@ angular.module('abacuApp')
           else if (currentWheelchair.isNew === false) {
             designedWheelchairs[curEditWheelchairIndex] = jQuery.extend(true, currentWheelchair.editingWheelchair);
           }
-
+          this.updateCookie();
           this.updateDB();
         },
 
@@ -240,6 +238,7 @@ angular.module('abacuApp')
         //Removes the wheelchair at the given index from the user's myDesign
         deleteWheelchair: function (index) {
           designedWheelchairs.splice(index, 1);
+          this.updateCookie();
         },
 
         //Returns the full array of user-defined wheelchairs

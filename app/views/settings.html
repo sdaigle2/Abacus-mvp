@@ -25,7 +25,7 @@
           ng-class="{ 'active' : getContentSection() === ContentSection.ACCOUNT}">
         <i class="fa fa-user"></i>&nbsp; MY ACCOUNT
       </li>
-      <li class="settingsSidebarOptionDivider"></li>    
+      <li class="settingsSidebarOptionDivider"></li>
 
       <li class="settingsSidebarOption" id="settingsSidebarMeasurementsOption"
           ng-click="setContentSection(ContentSection.MEASUREMENTS)"
@@ -137,11 +137,11 @@
           <img class="settingsOrdersContentItem-image" src="../images/mainpic.png" alt="Wheelchair"/>
           <div class="settingsOrdersContentItemMid">
             <div class="settingsOrdersContentItem-name">{{o.orderNum}}</div>
-            <div class="settingsOrdersContentItem-date">Order Placed: {{o.datePlaced.toLocaleDateString()}}</div>
+            <div class="settingsOrdersContentItem-date">Order Placed: {{o.sentDate.toLocaleDateString()}}</div>
             <button class="settingsOrdersContentItem-detailsButton"
                     data-ng-click="openOrderDetails($index)">View Order Details <i class="fa fa-arrow-circle-down"></i></button>
           </div>
-          <div class="settingsOrdersContentItem-cost">${{o.cart.totalPrice.toFixed(2)}}</div>
+          <div class="settingsOrdersContentItem-cost">${{o.getTotalCost().toFixed(2)}}</div>
         </li>
       </ul>
     </div>

@@ -10,11 +10,11 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('CartCtrl', ['$scope', '$location', 'User', 'FrameData', 'Units', '$cookieStore',
-    function ($scope, $location, User, FrameData, Units, $cookieStore) {
+  .controller('CartCtrl', ['$scope', '$location', 'User', 'FrameData', 'Units', 'Wheelchair',
+    function ($scope, $location, User, FrameData, Units, Wheelchair) {
 
       //Array of wheelchair objects designed by user
-      $scope.wheelchairs = $cookieStore.get('wheelchairs');
+      $scope.wheelchairs = User.getDesignedWheelchairs();
 
 
       $scope.emptyCols = [];
@@ -36,10 +36,7 @@ angular.module('abacuApp')
       $scope.orderChairs;
       //Initialize Cart page
       function init() {
-        cookieLoad();
-        $cookieStore.put('wheelchairs', $scope.wheelchairs);
         console.log('I am here');
-
         User.createNewOrder();
         curOrder = User.getCurEditOrder();
         $scope.orderChairs = curOrder.getWheelchairs();
@@ -53,13 +50,6 @@ angular.module('abacuApp')
           $scope.emptyCols.push({});
         }
 
-      }
-
-      function cookieLoad() {
-        if(!$scope.wheelchairss){
-          $scope.wheelchairs = User.getDesignedWheelchairs();
-
-        }
       }
 
       function getParts(fID) {
@@ -133,7 +123,6 @@ angular.module('abacuApp')
         $scope.wInOrder[index] = true;
         $scope.wOrderIndex[index] = curOrder.getNumWheelchairs() - 1;
         updateCosts();
-        User.updateDB();
       };
 
       //Removes the selected wheelchair from curOrder

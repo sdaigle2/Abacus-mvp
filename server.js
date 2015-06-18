@@ -94,6 +94,12 @@ app.post('/login', function (req, res) {
   });
 });
 
+app.post('/logout', restrict, function(req, res){
+  req.session.destroy(function(){
+    res.send('success');
+  });
+});
+
 app.post('/register', function (req, res) {
   var email = req.body.email;
   users.get(email, function (err) {
@@ -136,7 +142,7 @@ app.post('/order', function(req, res){
   orders.insert(req.body.order, function (err, body){
     //pdf(html, { pageSize: 'letter', output:'out.pdf'});
 
-    res.json(body.id);
+    res.send(body.id);
   });
 });
 

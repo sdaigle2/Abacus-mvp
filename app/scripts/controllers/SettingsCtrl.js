@@ -130,22 +130,7 @@ angular.module('abacuApp')
 
     //Array of orders
     //TODO: needs to be integrated with the Order factory
-    $scope.orders = [{
-      orderNum: '0000',
-      datePlaced: new Date(2015, 1, 15, 7, 30, 0, 0),
-      cart: {
-        //Various cart fields
-        totalPrice: 3721.90
-      }
-    },
-    {
-      orderNum: '0001',
-      datePlaced: new Date(2015, 1, 15, 8, 15, 0, 0),
-      cart: {
-        //Various cart fields
-        totalPrice: 9721.90
-      }
-    }];
+    $scope.orders = User.getSentOrders();
 
     $scope.openOrderDetails = function (index) {
       //TODO: Display order details from the User service
