@@ -5,11 +5,11 @@
 'use strict';
 
 angular.module('abacuApp')
-  .controller('HeaderController', ['$scope', '$location', 'User', function($scope, $location, User){
+  .controller('HeaderController', ['$scope', '$location', '$http', 'User', function ($scope, $location, $http, User) {
 
     //Returns true is the current angular URL matches viewLocation
     $scope.isActive = function (viewLocation) {
-        return viewLocation === $location.path();
+      return viewLocation === $location.path();
     };
 
     //Model used for login form
@@ -22,13 +22,16 @@ angular.module('abacuApp')
     $scope.user = User;
 
     //cartIcon image controll
-    $scope.cartIconShown = function (){
-      if (User.getNumDesignedWheelchairs() === 1 ){
-        return 1;}
-      if (User.getNumDesignedWheelchairs() === 2 ){
-        return 2;}
-      if (User.getNumDesignedWheelchairs() === 3 ){
-        return 3;}
+    $scope.cartIconShown = function () {
+      if (User.getNumDesignedWheelchairs() === 1) {
+        return 1;
+      }
+      if (User.getNumDesignedWheelchairs() === 2) {
+        return 2;
+      }
+      if (User.getNumDesignedWheelchairs() === 3) {
+        return 3;
+      }
 
     };
 
@@ -40,8 +43,30 @@ angular.module('abacuApp')
 
     //Sends the user to a registration page
     $scope.register = function () {
-      //TODO: Registration system
-      window.alert('Registration coming soon');
+      $http({
+        url: '/register',
+        data: {
+          email: $scope.loginModel.email,
+          password: $scope.loginModel.password,
+          fName: 'Bricottahsaven',
+          lName: 'Bob',
+          phone: 12345678902,
+          addr: '123 Street St',
+          addr2: '',
+          city: 'Oz',
+          state: 'IL',
+          zip: 61855,
+          unitSys: 1,
+          orders: [],
+          wheelchairs: []
+        },
+        method: 'POST'
+      }).success(function (data) {
+        console.log(data);
+      })
+        .error(function (data) {
+          console.log('Request Failed: ' + data);
+        });
     };
 
     //Log in the user using the data from loginModel

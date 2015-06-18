@@ -117,7 +117,7 @@ angular.module('abacuApp')
         //Remove wheelchair from My Designs
         User.deleteWheelchair(index);
         $scope.emptyCols.push({});
-        //TODO: Save changes to DB
+        User.updateDB();
       };
 
 
@@ -133,6 +133,7 @@ angular.module('abacuApp')
         $scope.wInOrder[index] = true;
         $scope.wOrderIndex[index] = curOrder.getNumWheelchairs() - 1;
         updateCosts();
+        User.updateDB();
       };
 
       //Removes the selected wheelchair from curOrder
@@ -144,6 +145,7 @@ angular.module('abacuApp')
             $scope.wOrderIndex[i]--;
         $scope.wOrderIndex[index] = -1;
         updateCosts();
+        User.updateDB();
       };
 
       /********************SIDEBAR CALCULATIONS************************/

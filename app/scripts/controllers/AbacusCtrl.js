@@ -8,8 +8,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', ['$scope', '$location', 'FrameData', 'User', 'Angles', 'Units',
-    function ($scope, $location, FrameData, User, Angles, Units) {
+  .controller('AbacusCtrl', ['$scope', '$location', '$cookieStore', 'FrameData', 'User', 'Angles', 'Units',
+    function ($scope, $location, $cookieStore, FrameData, User, Angles, Units) {
 
       /*********************Enums*******************************/
       //The visitation status for pages (parts/measures)
@@ -120,11 +120,11 @@ angular.module('abacuApp')
       /****************Weight and Price******************/
 
       $scope.getTotalWeight = function () {
-        return User.getCurEditWheelchair().getTotalWeight();
+        return $scope.curEditWheelchair.getTotalWeight();
       };
 
       $scope.getTotalPrice = function () {
-        return User.getCurEditWheelchair().getTotalPrice();
+        return $scope.curEditWheelchair.getTotalPrice();
       };
 
       /*******************Unit Systems ****************************/
@@ -154,7 +154,7 @@ angular.module('abacuApp')
 
         //Returns an array of images for User.getCurEditWheelchair() sorted by zRank
       $scope.getPreviewImages = function () {
-        return User.getCurEditWheelchair().getPreviewImages(curAngle);
+        return $scope.curEditWheelchair.getPreviewImages(curAngle);
       };
 
 
@@ -204,7 +204,7 @@ angular.module('abacuApp')
 
       //Returns the current part from curEditWheelchair based on curPage.page[CUSTOMIZE].ID
       $scope.getCurWheelchairPart = function () {
-        return User.getCurEditWheelchair().getPart($scope.getCurCustomizePage().partID);
+        return $scope.curEditWheelchair.getPart($scope.getCurCustomizePage().partID);
       };
 
       //Returns the current measure from curFrameData based on curPage.page[MEASURE].ID
@@ -214,7 +214,7 @@ angular.module('abacuApp')
 
       //Returns the current measure from curEditWheelchair based on curPage.page[MEASURE].ID
       $scope.getCurWheelchairMeasure = function () {
-        return User.getCurEditWheelchair().getMeasure($scope.getCurMeasurePage().measureID);
+        return $scope.curEditWheelchair.getMeasure($scope.getCurMeasurePage().measureID);
       };
 
       $scope.setCurPageType = function (newType) {
@@ -344,10 +344,10 @@ angular.module('abacuApp')
       //Determine the text for each tooltip to display
       $scope.getProgressBarSegmentTooltipText = function (page) {
         if (curPage.type === $scope.pageType.CUSTOMIZE) {
-          return User.getCurEditWheelchair().getPartDetails(page.partID, 0).partName;
+          return $scope.curEditWheelchair.getPartDetails(page.partID, 0).partName;
         }
         else if (curPage.type === $scope.pageType.MEASURE) {
-          return User.getCurEditWheelchair().getMeasureDetails(page.measureID, 0).name;
+          return $scope.curEditWheelchair.getMeasureDetails(page.measureID, 0).name;
         }
         return 'ERROR: Invalid page type';
       };
@@ -367,12 +367,14 @@ angular.module('abacuApp')
       /*****************Building CurWheelchair*****/
 
       $scope.setCurOption = function (newOptionID) {
-        User.getCurEditWheelchair().setOptionForPart($scope.getCurPartData().partID, newOptionID);
+        $scope.curEditWheelchair.setOptionForPart($scope.getCurPartData().partID, newOptionID);
+        console.log('Changed option');
       };
 
       $scope.setCurOptionColor = function (newColorID) {
         if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
-          User.getCurEditWheelchair().setColorForPart($scope.getCurWheelchairPart().partID, newColorID);
+          $scope.curEditWheelchair.setColorForPart($scope.getCurWheelchairPart().partID, newColorID);
+          console.log('Changed color option');
         }
       };
 
@@ -469,7 +471,7 @@ angular.module('abacuApp')
         var partID = $scope.getCurPage().partID;
         var part = $scope.curFrameData.getPart(partID);
         var option = part.getOption(optionID);
-        var wPart = User.getCurEditWheelchair().getPart(partID);
+        var wPart = $scope.curEditWheelchair.getPart(partID);
 
         return (wPart.optionID === optionID) && (option.getNumColors() > 0);
       };
@@ -484,7 +486,7 @@ angular.module('abacuApp')
         var partID = $scope.getCurPage().partID;
         var part = $scope.curFrameData.getPart(partID);
         var option = part.getOption(optionID);
-        var wPart = User.getCurEditWheelchair().getPart(partID);
+        var wPart = $scope.curEditWheelchair.getPart(partID);
 
         return option.getColor(wPart.colorID).getHexString();
       };
