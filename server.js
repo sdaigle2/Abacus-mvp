@@ -32,7 +32,14 @@ app.use(session({
 var me = 'intelliwheels';
 var password = 'Wheelchair34';
 var cloudant = require('cloudant')({account: me, password: password});
-var users = cloudant.use('abacus');
+var users = cloudant.use('users');
+var orders = cloudant.use('orders');
+
+
+//HTML to pdf
+var fs = require('fs');
+var pdf = require('wkhtmltopdf');
+pdf.command = 'c:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe';
 
 function restrict(req, res, next) {
   console.log('restrict');
@@ -121,5 +128,16 @@ update = function (obj, key, password, callback) {
     }
   });
 };
+
+app.post('/order', function(req, res){
+  delete req.body.order.orderNum;
+  var html = req.body.page;
+
+  orders.insert(req.body.order, function (err, body){
+    //pdf(html, { pageSize: 'letter', output:'out.pdf'});
+
+    res.json(body.id);
+  });
+});
 
 app.listen(8080);

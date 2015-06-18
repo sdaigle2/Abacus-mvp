@@ -121,6 +121,7 @@ angular.module('abacuApp')
             .then(function () {
               $scope.orderNum = $scope.curOrder.getOrderNum();
               $scope.curStage++;
+              User.updateDB();
             }, function () {
               alert('Error sending order');
             });
@@ -128,7 +129,6 @@ angular.module('abacuApp')
 
 
         case $scope.stages.COMPLETE:
-          User.updateDB();
           $location.path('/invoice');
           break;
       }

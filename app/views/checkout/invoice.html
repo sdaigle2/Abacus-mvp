@@ -337,24 +337,24 @@
     </div>
   </div>
 </span>
-<script>
-  require_baseUrl_override = '../../scripts/jsPDF';
-  require(['../../scripts/jsPDF/libs/require/config'], function () {
-    require(['html2pdf'], function () {
+<!--<script>-->
+  <!--require_baseUrl_override = '../../scripts/jsPDF';-->
+  <!--require(['../../scripts/jsPDF/libs/require/config'], function () {-->
+    <!--require(['html2pdf'], function () {-->
 
-      var pdf = new jsPDF('p', 'pt', 'letter');
-      pdf.addFont('Roboto', 'Roboto', 'normal');
-      pdf.setFont('Roboto', 'normal');
-      pdf.text(50, 50, 'Hello World');
-      pdf.save('test.pdf');
-//      var canvas = pdf.canvas;
-//      canvas.height =  72*11;
-//      canvas.width =  72*8.5;
-//      // var width = 400;
-//      html2pdf(document.getElementById("appContainer"), pdf, function (canvas) {
-//          pdf.save('invoice.pdf');
-//        }
-//      );
-    }); // require
-  }); // require
-</script>
+      <!--var pdf = new jsPDF('p', 'pt', 'letter');-->
+      <!--pdf.addFont('Roboto', 'Roboto', 'normal');-->
+      <!--pdf.setFont('Roboto', 'normal');-->
+      <!--pdf.text(50, 50, 'Hello World');-->
+      <!--pdf.save('test.pdf');-->
+      <!--var canvas = pdf.canvas;-->
+      <!--canvas.height =  72*11;-->
+      <!--canvas.width =  72*8.5;-->
+      <!--// var width = 400;-->
+      <!--html2pdf(document.getElementById("appContainer"), pdf, function (canvas) {-->
+          <!--pdf.save('invoice.pdf');-->
+        <!--}-->
+      <!--);-->
+    <!--}); // require-->
+  <!--}); // require-->
+<!--</script>-->

@@ -19,7 +19,7 @@
  * Orders can be constructed directly from a JSON object using the Order.fromJSONData() function
  */
 angular.module('abacuApp')
-  .factory('Order', ['$q', 'Wheelchair', function ($q, Wheelchair) {
+  .factory('Order', ['$q', '$http', 'Wheelchair', function ($q, $http, Wheelchair) {
 
     function Order(taxRate, shippingFee, order) {
       this.wheelchairs = [];
@@ -242,13 +242,15 @@ angular.module('abacuApp')
 
         //Fake asyncronous call - TODO: Replace with actual asyncronous call
         //TODO: Send order into database
-        setTimeout(function () {
-
-          curThis.orderNum = '1234'; //TODO: Set generated orderNum
+        $http   ({
+          url: '/order',
+          data: {order: this.getAll(), page: document.documentElement.outerHTML},
+          method: 'POST'
+        }).success(function(data){
+          console.log(data);
+          curThis.orderNum = data;
           deferred.resolve();
-
-        }, 3000);
-
+        });
         return deferred.promise;
       }
 

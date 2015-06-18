@@ -31,9 +31,9 @@ angular.module('abacuApp')
       var state = '';
       var zip = '';
       var unitSys = Units.unitSys.IMPERIAL;
-
+      var contentSection = 'orders';
       var deferred = $q.defer();
-      $http({
+      $http   ({
         url: '/session'
         , method: 'POST'
       })
@@ -364,7 +364,9 @@ angular.module('abacuApp')
             a2 = ' ' + a2;
           return addr + a2;
         },
-
+        getContentSection: function(){
+          return contentSection;
+        },
         setFname: function (newFName) {
           fName = newFName;
         },
@@ -394,6 +396,9 @@ angular.module('abacuApp')
         },
         setUnitSys: function (newUnitSys) {
           unitSys = newUnitSys;
+        },
+        setContentSection: function(newSection){
+          contentSection = newSection;
         }
       };
 

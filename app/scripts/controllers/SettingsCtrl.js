@@ -50,16 +50,13 @@ angular.module('abacuApp')
       AXEL_POSITION : 'axelPosition',
       SEAT_DEPTH : 'seatDepth'
     };
-
-    //Navigational values
-    var contentSection = $scope.ContentSection.ORDERS;
     var curMeasureType = $scope.MeasurementTypes.REAR_SEAT_HEIGHT;
 
 
     /***************** SIDEBAR BUTTONS ***************************************/
 
     $scope.save = function () {
-      switch (contentSection) {
+      switch (User.getContentSection()) {
         case $scope.ContentSection.ACCOUNT:
 
           User.setFname($scope.accountModel.fName);
@@ -94,16 +91,16 @@ angular.module('abacuApp')
 
     /***************** CONTENT SECTION SWITCHING *****************************/
     $scope.getContentSection = function () {
-      return contentSection;
+      return User.getContentSection();
     };
 
     $scope.setContentSection = function (newContentSection) {
       $scope.resetMeasurementType();
-      contentSection = newContentSection;
+      User.setContentSection(newContentSection);
     };
 
     $scope.resetContentSection = function () {
-      contentSection = $scope.ContentSection.ORDERS;
+      User.setContentSection($scope.ContentSection.ORDERS);
     };
 
     /***************** MEASUREMENT HELP SWITCHING *****************************/
