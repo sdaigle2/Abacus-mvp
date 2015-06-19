@@ -121,6 +121,7 @@ angular.module('abacuApp')
             .then(function () {
               $scope.orderNum = $scope.curOrder.getOrderNum();
               $scope.curStage++;
+              User.updateDB();
             }, function () {
               alert('Error sending order');
             });

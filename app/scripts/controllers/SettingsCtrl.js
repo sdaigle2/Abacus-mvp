@@ -50,16 +50,13 @@ angular.module('abacuApp')
       AXEL_POSITION : 'axelPosition',
       SEAT_DEPTH : 'seatDepth'
     };
-
-    //Navigational values
-    var contentSection = User.loginSection();
     var curMeasureType = $scope.MeasurementTypes.REAR_SEAT_HEIGHT;
 
 
     /***************** SIDEBAR BUTTONS ***************************************/
 
     $scope.save = function () {
-      switch (contentSection) {
+      switch (User.getContentSection()) {
         case $scope.ContentSection.ACCOUNT:
 
           User.setFname($scope.accountModel.fName);
@@ -71,8 +68,7 @@ angular.module('abacuApp')
           User.setCity($scope.accountModel.city);
           User.setState($scope.accountModel.state);
           User.setZip($scope.accountModel.zip);
-
-          //TODO: update in the database (including password?)
+          User.updateDB();
 
           break;
 
@@ -87,7 +83,7 @@ angular.module('abacuApp')
           User.commonMeasures.SEAT_DEPTH = $scope.measDisplay.seatDepth.optionSelected;
 
           User.setUnitSys($scope.curUnitSys);
-          //TODO: update values in the database
+          User.updateDB();
 
           break;
       }
@@ -95,15 +91,15 @@ angular.module('abacuApp')
 
     /***************** CONTENT SECTION SWITCHING *****************************/
     $scope.getContentSection = function () {
-      return contentSection;
+      return User.getContentSection();
     };
       $scope.setContentSection = function (newContentSection) {
       $scope.resetMeasurementType();
-      contentSection = newContentSection;
+      User.setContentSection(newContentSection);
     };
 
     $scope.resetContentSection = function () {
-      contentSection = $scope.ContentSection.ORDERS;
+      User.setContentSection($scope.ContentSection.ORDERS);
     };
 
     /***************** MEASUREMENT HELP SWITCHING *****************************/
@@ -133,22 +129,7 @@ angular.module('abacuApp')
 
     //Array of orders
     //TODO: needs to be integrated with the Order factory
-    $scope.orders = [{
-      orderNum: '0000',
-      datePlaced: new Date(2015, 1, 15, 7, 30, 0, 0),
-      cart: {
-        //Various cart fields
-        totalPrice: 3721.90
-      }
-    },
-    {
-      orderNum: '0001',
-      datePlaced: new Date(2015, 1, 15, 8, 15, 0, 0),
-      cart: {
-        //Various cart fields
-        totalPrice: 9721.90
-      }
-    }];
+    $scope.orders = User.getSentOrders();
 
     $scope.openOrderDetails = function (index) {
       //TODO: Display order details from the User service
