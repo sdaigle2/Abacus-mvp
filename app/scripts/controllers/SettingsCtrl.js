@@ -97,8 +97,7 @@ angular.module('abacuApp')
     $scope.getContentSection = function () {
       return contentSection;
     };
-
-    $scope.setContentSection = function (newContentSection) {
+      $scope.setContentSection = function (newContentSection) {
       $scope.resetMeasurementType();
       contentSection = newContentSection;
     };

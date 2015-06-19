@@ -268,7 +268,7 @@ body {
   width: 240px;
   border: 1px solid black;
   padding: 8px 20px 16px;
-  z-index: -1;
+  z-index: 100000;
 }
 
 .afterlogin #divider{
