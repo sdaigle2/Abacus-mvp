@@ -1,8 +1,5 @@
 ﻿/* ----- CSS FOR INDEX.HTML ----- */
-@font-face {
-  font-family: "Roboto", sans-serif;
-  src: url(../Fonts/Roboto-Regular.ttf);
-}
+
 
 body {
   padding-top: 0;
@@ -310,11 +307,11 @@ body {
   font-weight: 400;
 }
 
-.10pt{
+.ten{
   font-size: 10pt;
 }
 
-.15pt{
+.fifteen{
   font-size: 15pt;
 }
 
@@ -325,4 +322,8 @@ body {
 
 .thick{
   font-weight: 700;
+}
+
+.ng-cloak{
+  display: none;
 }
