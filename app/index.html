@@ -15,12 +15,12 @@
 
   <link href="styles/index.css" rel="stylesheet"/>
 
-  <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic|Oswald:400,700,300' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic|Oswald:400,700,300' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
   <!-- endbuild -->
 </head>
-<body ng-app="abacuApp">
+<body ng-app="abacuApp" ng-cloak>
 
 <div id="backgrounder"></div>
 
@@ -59,14 +59,14 @@
           <div ng-mouseover="windowPop = true" ng-mouseleave="windowPop = false" class="login">
             <div class="loginText">LOG IN</div>
             <div ng-show="windowPop" class="window">
-              <p class="oswald 15pt">EMAIL ADDRESS</p>
+              <p class="oswald fifteen">EMAIL ADDRESS</p>
               <input type="text" data-ng-model="loginModel.email"/>
 
-              <p class="oswald 15pt">PASSWORD</p>
+              <p class="oswald fifteen">PASSWORD</p>
               <input type="password" data-ng-model="loginModel.password"/>
 
               <div class="login-optionrow">
-                <span data-ng-click="recoverPassword()" class="roboto 10pt grey-slanted">Forgot password</span> <span data-ng-click="register()" class="roboto thick 15pt">Register >></span>
+                <span data-ng-click="recoverPassword()" class="roboto ten grey-slanted">Forgot password</span> <span data-ng-click="register()" class="roboto thick fifteen">Register >></span>
               </div>
               <div class="login-button" data-ng-click="login()">
                 <p><strong>LOG IN >></strong></p>

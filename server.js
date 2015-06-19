@@ -29,9 +29,7 @@ app.use(session({
 }));
 
 //Cloudant Database API
-var me = 'intelliwheels';
-var password = 'Wheelchair34';
-var cloudant = require('cloudant')({account: me, password: password});
+var cloudant = require('cloudant')({account: process.env.CLOUDANT_USERNAME, password: process.env.CLOUDANT_PASSWORD});
 var users = cloudant.use('users');
 var orders = cloudant.use('orders');
 
