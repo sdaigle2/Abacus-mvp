@@ -21,7 +21,7 @@ angular.module('abacuApp')
       $scope.register = function(){
         $http({
           url: '/register'
-          , data: accountModel
+          , data: $scope.accountModel
           , method: 'POST'
         }).success(function (data) {
           console.log(data);

@@ -17,6 +17,10 @@ app.use(bodyParser.urlencoded({
 var crypto = require('crypto');
 var hash = require('./security').hash;
 var check = require('./security').check;
+var sanitizeHtml = require('sanitize-html');
+var sProperties = {
+  allowedTags: []
+};
 var token = crypto.randomBytes(64).toString('hex');
 
 //Session Management
@@ -100,16 +104,16 @@ app.post('/logout', restrict, function(req, res){
 
 app.post('/register', function (req, res) {
   var data = {
-    fName: req.body.fName,
-    lName: req.body.lName,
-    email: req.body.email,
-    phone: req.body.phone,
-    addr: req.body.addr,
-    addr2: req.body.addr2,
-    city: req.body.city,
-    state: req.body.state,
-    zip: req.body.zip,
-    password: req.body.password
+    fName: sanitizeHtml(req.body.fName, sProperties),
+    lName: sanitizeHtml(req.body.lName, sProperties),
+    email: sanitizeHtml(req.body.email, sProperties),
+    phone: sanitizeHtml(req.body.phone, sProperties),
+    addr: sanitizeHtml(req.body.addr, sProperties),
+    addr2: sanitizeHtml(req.body.addr2, sProperties),
+    city: sanitizeHtml(req.body.city, sProperties),
+    state: sanitizeHtml(req.body.state, sProperties),
+    zip: sanitizeHtml(req.body.zip, sProperties),
+    password: sanitizeHtml(req.body.password, sProperties)
   };
   if(!check(data)){
     res.json({err:'evil input'});
