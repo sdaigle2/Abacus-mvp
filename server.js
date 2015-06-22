@@ -15,8 +15,8 @@ app.use(bodyParser.urlencoded({
 
 //Security
 var crypto = require('crypto');
-var hash = require('./pass').hash;
-
+var hash = require('./security').hash;
+var check = require('./security').check;
 var token = crypto.randomBytes(64).toString('hex');
 
 //Session Management
@@ -99,20 +99,34 @@ app.post('/logout', restrict, function(req, res){
 });
 
 app.post('/register', function (req, res) {
-  var email = req.body.email;
+  var data = {
+    fName: req.body.fName,
+    lName: req.body.lName,
+    email: req.body.email,
+    phone: req.body.phone,
+    addr: req.body.addr,
+    addr2: req.body.addr2,
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip,
+    password: req.body.password
+  };
+  if(!check(data)){
+    res.json({err:'evil input'});
+  }
+  else
   if(req.body.password !== req.body.confirm){
     res.json({err: 'passwords do not match'});
   }
   else
-  users.get(email, function (err) {
+  users.get(data.email, function (err) {
     if (err) {
-      hash(req.body.password, function (err, salt, hash) {
+      hash(data.password, function (err, salt, hash) {
         if (err) throw err;
         // store the salt & hash in the "db"
-        req.body.salt = salt;
-        req.body.password = hash;
-        delete req.body.confirm;
-        users.insert(req.body, email);
+        data.salt = salt;
+        data.password = hash;
+        users.insert(data, data.email);
         res.json({'success': true});
       });
     }
