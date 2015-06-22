@@ -100,6 +100,10 @@ app.post('/logout', restrict, function(req, res){
 
 app.post('/register', function (req, res) {
   var email = req.body.email;
+  if(req.body.password !== req.body.confirm){
+    res.json({err: 'passwords do not match'});
+  }
+  else
   users.get(email, function (err) {
     if (err) {
       hash(req.body.password, function (err, salt, hash) {
@@ -107,12 +111,13 @@ app.post('/register', function (req, res) {
         // store the salt & hash in the "db"
         req.body.salt = salt;
         req.body.password = hash;
+        delete req.body.confirm;
         users.insert(req.body, email);
         res.json({'success': true});
       });
     }
     else
-      res.json({'success': false});
+      res.json({err: 'user already exists'});
   });
 });
 

@@ -1,0 +1,65 @@
+<link href="styles/register.css" rel="stylesheet"/>
+<h2>REGISTER</h2>
+<div>
+  <div id="register-div">
+    <form action="" id="settingsContentForm-contact">
+      <div class="settingsContentSectionTitle">Account Information</div>
+      <div class="form-group form-inline">
+        <label for="settingsContentInput-contact-firstName">First Name</label><br>
+        <input id="settingsContentInput-contact-firstName" name="firstName" type="text"
+               class="form-control" data-ng-model="accountModel.fName"/>
+      </div>
+      <div class="form-group form-inline">
+        <label for="settingsContentInput-contact-lastName">Last Name</label><br>
+        <input id="settingsContentInput-contact-lastName" name="lastName" type="text"
+               class="form-control" data-ng-model="accountModel.lName"/>
+      </div>
+      <div class="form-group">
+        <label for="settingsContentInput-contact-email">Email Address</label>
+        <input id="settingsContentInput-contact-email" name="email" type="text" class="form-control"
+               data-ng-model="accountModel.email"/>
+      </div>
+      <div class="form-group form-inline">
+        <label for="settingsContentInput-contact-pass">Password</label><br>
+        <input id="settingsContentInput-contact-pass" name="password" type="password"
+               class="form-control" data-ng-model="accountModel.password"/>
+      </div>
+      <div class="form-group form-inline">
+        <label for="settingsContentInput-contact-confirm">Confirm Password</label><br>
+        <input id="settingsContentInput-contact-confirm" name="password" type="password"
+               class="form-control" data-ng-model="accountModel.confirm"/>
+      </div>
+    </form>
+    <form action="" id="settingContentForm-shipping">
+      <div class="settingsContentSectionTitle">Shipping Address</div>
+      <div class="form-group">
+        <label for="settingsContentInput-contact-address">Street Address</label><br>
+        <input id="settingsContentInput-contact-address" name="Address" type="text"
+               class="form-control" data-ng-model="accountModel.addr"/>
+      </div>
+      <div class="form-group">
+        <label for="settingsContentInput-contact-address2">Street Address2</label><br>
+        <input id="settingsContentInput-contact-address2" name="Address2" type="text"
+               class="form-control" data-ng-model="accountModel.addr2"/>
+      </div>
+      <div class="form-group">
+        <label for="settingsContentInput-contact-city">City</label><br>
+        <input id="settingsContentInput-contact-city" name="City" type="text"
+               class="form-control" data-ng-model="accountModel.city"/>
+      </div>
+      <div class="form-group">
+        <label for="settingsContentInput-contact-state">State</label><br>
+        <input id="settingsContentInput-contact-state" name="State" type="text"
+               class="form-control" data-ng-model="accountModel.state"/>
+      </div>
+      <div class="form-group">
+        <label for="settingsContentInput-contact-zip">Zip Code</label><br>
+        <input id="settingsContentInput-contact-zip" name="Zip" type="number"
+               class="form-control" data-ng-model="accountModel.zip"/>
+      </div>
+    </form>
+    <button class="settingsSidebarButton"
+            id="settingsSidebarSaveButton"
+            data-ng-click="register()">REGISTER &gt;&gt;</button>
+  </div>
+</div>

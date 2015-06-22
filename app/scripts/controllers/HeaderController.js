@@ -43,30 +43,7 @@ angular.module('abacuApp')
 
     //Sends the user to a registration page
     $scope.register = function () {
-      $http({
-        url: '/register',
-        data: {
-          email: $scope.loginModel.email,
-          password: $scope.loginModel.password,
-          fName: 'Bricottahsaven',
-          lName: 'Bob',
-          phone: 12345678902,
-          addr: '123 Street St',
-          addr2: '',
-          city: 'Oz',
-          state: 'IL',
-          zip: 61855,
-          unitSys: 1,
-          orders: [],
-          wheelchairs: []
-        },
-        method: 'POST'
-      }).success(function (data) {
-        console.log(data);
-      })
-        .error(function (data) {
-          console.log('Request Failed: ' + data);
-        });
+      $location.path('/register');
     };
 
     //Log in the user using the data from loginModel
