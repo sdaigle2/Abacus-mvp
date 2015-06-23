@@ -31,6 +31,9 @@ angular.module('abacuApp')
     $scope.frameParts = [];
     $scope.wheelParts = [];
 
+    
+
+
     function getFrame(wheelchair){
       var frameID = wheelchair.getFrameID();
       return FrameData.getFrame(frameID);
@@ -44,6 +47,13 @@ angular.module('abacuApp')
         $scope.wheelImageSets.push($scope.wheelchairs[i].getWheelImages(Angles.angleType.RIGHT));
         $scope.frameImageSets.push($scope.wheelchairs[i].getFrameImages(Angles.angleType.FRONTRIGHT));
       }
+      $scope.invoice_canvas_images = new Array(
+                                                  $scope.topImageSets,
+                                                  $scope.midImageSets,
+                                                  $scope.botImageSets,
+                                                  $scope.wheelImageSets,
+                                                  $scope.frameImageSets
+                                              );
     }
 
     function getMeasurements(){
@@ -107,5 +117,22 @@ angular.module('abacuApp')
       var frame = getFrame(wheelchair);
       return frame.getBaseWeight()+'lb';
     };
+
+    $scope.onloadCanvas= function(id){
+       console.log("loading cavnases..");
+       
+       var canvas_images = $scope.invoice_canvas_images[id][0];
+       var stack = new Array();
+       for(var i=0; i<canvas_images.length; i++){
+          console.log("obj:"+canvas_images[i]);
+          console.log("obj_url"+canvas_images[i].URL);
+          stack.push(canvas_images[i].URL);
+       }
+       console.log("Images: "+stack);
+       var canvas = "chair"+id;
+       var canv = document.getElementById(canvas);
+       stackImages( canv, stack, 300, 300);
+    };
+
 
   }]);

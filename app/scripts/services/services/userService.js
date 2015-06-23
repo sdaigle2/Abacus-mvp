@@ -309,6 +309,7 @@ angular.module('abacuApp')
         //Returns the unsent Order set as the "curEditOrder"
         //If no such Order exists, returns null
         getCurEditOrder: function () {
+        	console.log(orders.length);
           if (orders.length > 0) {
             var lastOrder = orders[orders.length - 1];
             if (!lastOrder.hasBeenSent())

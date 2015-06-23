@@ -1,4 +1,5 @@
 <link href="../../styles/checkout/invoice.css" rel="stylesheet"/>
+<script src='../../scripts/canvas/imageStacker.js'></script>
 <span id="pdf-wrapper">
   <div id="invoice-body" ng-repeat="wheelchair in wheelchairs">
 
@@ -35,6 +36,13 @@
           </table>
         </div>
         <div class="images">
+          <canvas id='chair1' width='300' height='300' ng-init="onloadCanvas(1)"></canvas>
+          <canvas id='chair2' width='300' height='300' ng-init="onloadCanvas(2)"></canvas>
+          <canvas id='chair3' width='300' height='300' ng-init="onloadCanvas(3)"></canvas>
+          <canvas id='chair4' width='300' height='300' ng-init="onloadCanvas(4)"></canvas>
+          <canvas id='chair5' width='300' height='300' ng-init="onloadCanvas(5)"></canvas>
+          
+          <!--
           <img class="front-page-disp first-image"
                ng-repeat="img in topImageSets[$index]"
                ng-src="{{img.URL}}"
@@ -47,6 +55,7 @@
                ng-repeat="img in botImageSets[$index]"
                ng-src="{{img.URL}}"
                ng-style="{'z-index': $index }"/>
+               -->
         </div>
       </div>
       <span class="footer">Powered by</span>

@@ -312,3 +312,34 @@ td {
   width: 64.4%;
   float: right;
 }
+
+canvas{
+  display: inline-block;
+  vertical-align: baseline;
+  position: absolute;
+  z-index: 3;
+  background-color: white;
+  width: 264px;
+  height: 200px;
+}
+
+#chair2{
+    margin-top: 215px;
+}
+
+#chair3{
+    margin-top: 420px;
+}
+
+#chair4{
+      margin-top: 870px;
+      margin-left: -220px;
+      width: 220px;
+      height: 150px;
+}
+
+#chair5{
+      margin-top: 1060px;
+      margin-left: -220px;
+      width: 220px;
+}
