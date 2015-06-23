@@ -18,31 +18,31 @@
              data-ng-mouseleave="hoverItem = -1">
 
           <img data-ng-src="{{f.getImageURL()}}" />
-          
-          
+
+
           <div class="frame-item-desc"
                data-ng-class="{ 'frame-item-desc-show' : panelSelected(hoverItem,f.getFrameID()) , 'frame-item-desc-hide' : !panelSelected(hoverItem,f.getFrameID())}">
-             
-             
-           
+
+
+
 
             <div class="hoverBackground frame-item-panel">
-           
-
-              
 
 
 
 
-              <p class="frame-item-title">{{f.getName()}}</p>
+
+
+
+              <p class="frame-item-title" data-ng-bind="f.getName()"></p>
               <br />
-              <p class="frame-item-description">{{f.getDesc()}}</p>
+              <p class="frame-item-description" data-ng-bind="f.getDesc()"></p>
               <table class="frame-info-table">
               <td class="blue-line">
-              <p class="frame-item-price">${{f.getBasePrice().toFixed(2)}}</p>
+              <p class="frame-item-price">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
               </td>
               <td>
-              <p class="frame-item-weight">{{getWeightString(f)}}</p>
+              <p class="frame-item-weight" data-ng-bind="getWeightString(f)"></p>
               </td>
               </table>
             </div>

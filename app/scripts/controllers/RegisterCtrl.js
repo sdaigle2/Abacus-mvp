@@ -2,8 +2,8 @@
  * Created by Dhruv on 6/22/2015.
  */
 angular.module('abacuApp')
-  .controller('RegisterCtrl', ['$scope', '$location', 'User', 'Units',
-    function ($scope, $location, User, Units) {
+  .controller('RegisterCtrl', ['$scope', '$http', '$location', 'User', 'Units',
+    function ($scope, $http, $location, User, Units) {
       $scope.accountModel = {
         fName: '',
         lName: '',
@@ -21,16 +21,14 @@ angular.module('abacuApp')
       $scope.register = function(){
         $http({
           url: '/register'
-          , data: accountModel
+          , data: $scope.accountModel
           , method: 'POST'
         }).success(function (data) {
           console.log(data);
-
         })
           .error(function (data) {
             console.log('Request Failed: ' + data);
             deferred.reject('Error loading user data');
           });
-        return d
       };
     }]);

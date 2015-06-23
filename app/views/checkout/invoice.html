@@ -110,21 +110,15 @@
                   <tbody ng-repeat="part in frameParts[$index]">
                   <tr>
                     <td>
-                      <p class="description">
-                        {{part.partName}}
-                      </p>
+                      <p class="description" data-ng-bind="part.partName"></p>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <p class="description-result">
-                        {{part.optionName}}
-                      </p>
+                      <p class="description-result" data-ng-bind="part.optionName"></p>
                     </td>
                     <td>
-                      <p class="description-result price">
-                        {{part.priceString}}
-                      </p>
+                      <p class="description-result price" data-ng-bind="part.priceString"></p>
                     </td>
                   </tr>
                   </tbody>
@@ -158,21 +152,15 @@
                   <tbody ng-repeat="part in wheelParts[$index]">
                   <tr>
                     <td>
-                      <p class="description">
-                        {{part.partName}}
-                      </p>
+                      <p class="description" data-ng-bind="part.partName"></p>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <p class="description-result">
-                        {{part.optionName}}
-                      </p>
+                      <p class="description-result" data-ng-bind="part.optionName"></p>
                     </td>
                     <td>
-                      <p class="description-result price">
-                        {{part.priceString}}
-                      </p>
+                      <p class="description-result price" data-ng-bind="part.priceString"></p>
                     </td>
                   </tr>
                   </tbody>
@@ -186,7 +174,7 @@
           Subtotal
         </span>
         <span class="description-result price">
-          ${{wheelchair.getTotalPrice().toFixed(2)}}
+          $<span data-ng-bind="wheelchair.getTotalPrice().toFixed(2)"></span>
         </span>
         </div>
       </div>
@@ -203,12 +191,10 @@
           <tr>
             <td>
               <div class="measure" ng-repeat="measure in measurements[$index]">
-                <p class="description">
-                  {{measure.name}}
-                </p>
+                <p class="description" data-ng-bind="measure.name"></p>
 
                 <p class="description-result">
-                  {{measure.optionString}} / {{measure.altOptionString}}
+                  <span data-ng-bind="measure.optionString"></span> / <span data-ng-bind="measure.altOptionString"></span>
                 </p>
               </div>
             </td>
@@ -297,8 +283,8 @@
           </tr>
           <tr ng-repeat="wheelchair in wheelchairs">
             <td class="qty"><p>1</p></td>
-            <td><p>{{wheelchair.getTitle()}}</p></td>
-            <td><p class="price">{{wheelchair.getTotalPrice().toFixed(2)}}</p></td>
+            <td><p data-ng-bind="wheelchair.getTitle()"></p></td>
+            <td><p class="price" data-ng-bind="wheelchair.getTotalPrice().toFixed(2)"></p></td>
           </tr>
         </table>
       </div>

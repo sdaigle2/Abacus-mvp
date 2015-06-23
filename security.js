@@ -15,6 +15,30 @@ var iterations = 12000;
  * @api public
  */
 
+function typeCheck(userData){
+  if(typeof userData.fName !== 'string')
+    return false;
+  if(typeof userData.lName !== 'string')
+    return false;
+  if(typeof userData.email !== 'string')
+    return false;
+  if(typeof userData.phone !== 'string')
+    return false;
+  if(typeof userData.addr !== 'string')
+    return false;
+  if(typeof userData.addr2 !== 'string')
+    return false;
+  if(typeof userData.city !== 'string')
+    return false;
+  if(typeof userData.state !== 'string')
+    return false;
+  if(typeof userData.zip !== 'string')
+    return false;
+  if(typeof userData.password !== 'string')
+    return false;
+  return true;
+}
+
 exports.hash = function (pwd, salt, fn) {
   if (3 == arguments.length) {
     crypto.pbkdf2(pwd, salt, iterations, len, function(err, hash){
@@ -31,4 +55,10 @@ exports.hash = function (pwd, salt, fn) {
       });
     });
   }
+};
+
+exports.check = function(userData) {
+  if(!typeCheck(userData))
+    return false;
+  return true;
 };

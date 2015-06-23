@@ -3,7 +3,7 @@
 <div class="order text-center">
   <!--HEADER-->
   <div class="order-header">
-    <h2><strong>{{display[curStage].title}}</strong></h2>
+    <h2><strong data-ng-bind="display[curStage].title"></strong></h2>
     <h5 data-ng-click="returnToCart()"
         data-ng-hide="curStage == stages.COMPLETE">&lt&lt Go Back to Shopping Cart</h5>
   </div>
@@ -59,19 +59,19 @@
           <tbody>
             <tr>
               <td><strong>Account Holder</strong></td>
-              <td>{{bankData.ACCOUNT_HOLDER}}</td>
+              <td data-ng-bind="bankData.ACCOUNT_HOLDER"></td>
             </tr>
             <tr>
               <td><strong>Account Number</strong></td>
-              <td>{{bankData.ACCOUNT_NUMBER}}</td>
+              <td data-ng-bind="bankData.ACCOUNT_NUMBER"></td>
             </tr>
             <tr>
               <td><strong>BLZ</strong></td>
-              <td>{{bankData.BLZ}}</td>
+              <td data-ng-bind="bankData.BLZ"></td>
             </tr>
             <tr>
               <td><strong>Bank Name</strong></td>
-              <td>{{bankData.BANK_NAME}}</td>
+              <td data-ng-bind="bankData.BANK_NAME"></td>
             </tr>
           </tbody>
         </table>
@@ -81,11 +81,11 @@
           <tbody>
             <tr>
               <td><strong>IBAN</strong></td>
-              <td>{{bankData.IBAN}}</td>
+              <td data-ng-bind="bankData.IBAN"></td>
             </tr>
             <tr>
               <td><strong>BIC</strong></td>
-              <td>{{bankData.BIC}}</td>
+              <td data-ng-bind="bankData.BIC"></td>
             </tr>
           </tbody>
         </table>
@@ -100,19 +100,19 @@
           <tbody>
             <tr>
               <td><strong>First Name</strong></td>
-              <td>{{contactForm.fName}}</td>
+              <td data-ng-bind="contactForm.fName"></td>
             </tr>
             <tr>
               <td><strong>Last Name</strong></td>
-              <td>{{contactForm.lName}}</td>
+              <td data-ng-bind="contactForm.lName"></td>
             </tr>
             <tr>
               <td><strong>Email</strong></td>
-              <td>{{contactForm.email}}</td>
+              <td data-ng-bind="contactForm.email"></td>
             </tr>
             <tr>
               <td><strong>Phone Number</strong></td>
-              <td>{{contactForm.phone}}</td>
+              <td data-ng-bind="contactForm.phone"></td>
             </tr>
           </tbody>
         </table>
@@ -123,23 +123,23 @@
           <tbody>
             <tr>
               <td><strong>Street Address</strong></td>
-              <td>{{shippingForm.addr}}</td>
+              <td data-ng-bind="shippingForm.addr"></td>
             </tr>
             <tr>
               <td><strong>Street Address 2</strong></td>
-              <td>{{shippingForm.addr2}}</td>
+              <td data-ng-bind="shippingForm.addr2"></td>
             </tr>
             <tr>
               <td><strong>City</strong></td>
-              <td>{{shippingForm.city}}</td>
+              <td data-ng-bind="shippingForm.city"></td>
             </tr>
             <tr>
               <td><strong>State</strong></td>
-              <td>{{shippingForm.state}}</td>
+              <td data-ng-bind="shippingForm.state"></td>
             </tr>
             <tr>
               <td><strong>Zipcode</strong></td>
-              <td>{{shippingForm.zip}}</td>
+              <td data-ng-bind="shippingForm.zip"></td>
             </tr>
           </tbody>
         </table>
@@ -150,24 +150,24 @@
           <tbody class="table-section" data-ng-repeat="w in wheelchairs">
             <tr class="table-seperator"></tr>
             <tr class="table-title-row">
-              <td style="font-size: 20px"><strong>{{w.getTitle()}}</strong></td>
-              <td>{{getFrame(w.getFrameID()).getName()}}</td>
-              <td style="text-align:right;">${{getFrame(w.getFrameID()).getBasePrice().toFixed(2)}}</td>
+              <td style="font-size: 20px"><strong data-ng-bind="w.getTitle()"></strong></td>
+              <td data-ng-bind="getFrame(w.getFrameID()).getName()"></td>
+              <td style="text-align:right;">$<span data-ng-bind="getFrame(w.getFrameID()).getBasePrice().toFixed(2)"></span></td>
             </tr>
             <tr data-ng-repeat="p in w.parts">
-              <td><strong>{{getPartDetails(w, p).partName}}</strong></td>
-              <td>{{getPartDetails(w, p).optionName}} <small style="color:#808080; font-size:10px;">{{getPartDetails(w, p).colorName}}</small></td>
-              <td style="text-align:right;">{{getPartDetails(w, p).priceString}}</td>
+              <td><strong data-ng-bind="getPartDetails(w, p).partName"></strong></td>
+              <td><span data-ng-bind="getPartDetails(w, p).optionName"></span> <small style="color:#808080; font-size:10px;" data-ng-bind="getPartDetails(w, p).colorName"></small></td>
+              <td style="text-align:right;" data-ng-bind="getPartDetails(w, p).priceString"></td>
             </tr>
             <tr data-ng-repeat="m in w.measures">
-              <td><strong>{{getMeasureDetails(w, m).name}}</strong></td>
-              <td>{{getMeasureDetails(w, m).optionString}}</td>
-              <td style="text-align:right;">{{getMeasureDetails(w, m).priceString}}</td>
+              <td><strong data-ng-bind="getMeasureDetails(w, m).name"></strong></td>
+              <td data-ng-bind="getMeasureDetails(w, m).optionString"></td>
+              <td style="text-align:right;" data-ng-bind="getMeasureDetails(w, m).priceString"></td>
             </tr>
             <tr class="table-price-row">
               <td></td>
               <td></td>
-              <td style="text-align:right;"><strong>${{w.getTotalPrice().toFixed(2)}}</strong></td>
+              <td style="text-align:right;"><strong>$<span data-ng-bind="w.getTotalPrice().toFixed(2)"></span></strong></td>
             </tr>
           </tbody>
           <tfoot>
@@ -175,22 +175,22 @@
             <tr>
               <td><strong>Subtotal</strong></td>
               <td></td>
-              <td style="text-align:right;"><strong>${{curOrder.getSubtotal().toFixed(2)}}</strong></td>
+              <td style="text-align:right;"><strong>$<span data-ng-bind="curOrder.getSubtotal().toFixed(2)"></span></strong></td>
             </tr>
             <tr>
               <td><strong>Shipping Fee</strong></td>
               <td></td>
-              <td style="text-align:right;"><strong>${{curOrder.getShippingCost().toFixed(2)}}</strong></td>
+              <td style="text-align:right;"><strong>$<span data-ng-bind="curOrder.getShippingCost().toFixed(2)"></span></strong></td>
             </tr>
             <tr>
               <td><strong>Tax</strong></td>
               <td></td>
-              <td style="text-align:right;"><strong>${{curOrder.getTaxCost().toFixed(2)}}</strong></td>
+              <td style="text-align:right;"><strong>$<span data-ng-bind="curOrder.getTaxCost().toFixed(2)"></span></strong></td>
             </tr>
             <tr style="border-top:solid 1px #DDDDDD;">
               <td><strong>Total</strong></td>
               <td></td>
-              <td style="text-align:right;"><strong>${{curOrder.getTotalCost().toFixed(2)}}</strong></td>
+              <td style="text-align:right;"><strong>$<span data-ng-bind="curOrder.getTotalCost().toFixed(2)"></span></strong></td>
             </tr>
           </tfoot>
         </table>
@@ -207,7 +207,7 @@
     <!--MAIN-COMPLETE-->
     <div class="order-left" data-ng-if="curStage === stages.COMPLETE">
       <div class="order-form">
-        <div class="order-form-label"><strong>Your order number is: {{orderNum}}</strong></div>
+        <div class="order-form-label"><strong>Your order number is: <span data-ng-bind="orderNum"></span></strong></div>
         <br />
         <div class="order-form-label">Thank you for your order!</div>
         <div class="order-form-label">Your order has been sent to the manufacturer.</div>
@@ -246,7 +246,7 @@
              data-ng-click="back()"><strong>&lt GO BACK</strong></div>
         <div class="order-button"
              data-ng-style="(curStage === stages.COMPLETE) && {'width': '80%'}"
-             data-ng-click="next()"><strong>{{display[curStage].button}}</strong></div>
+             data-ng-click="next()"><strong data-ng-bind="display[curStage].button"></strong></div>
       </div>
     </div>
   </div>

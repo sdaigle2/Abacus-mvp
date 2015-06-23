@@ -75,7 +75,7 @@
           </div>
         </li>
         <li ng-mouseover="windowPop = true" ng-mouseleave="windowPop = false"
-            class="settingsButton" data-ng-if="user.isLoggedIn()"><a ng-href="#/settings">{{user.getFullName()}}</a>
+            class="settingsButton" data-ng-if="user.isLoggedIn()"><a ng-href="#/settings" ng-bind="user.getFullName()"></a>
           <div ng-mouseover="windowPop = true" ng-mouseleave="windowPop = false" ng-show="windowPop"  class="afterlogin">
             <div ng-click="loginSection('account')"><h4>MY ACCOUNT</h4></div>
             <div ng-click="loginSection('orders')"><h4>MY ORDER</h4></div>
