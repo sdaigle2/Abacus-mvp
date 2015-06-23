@@ -253,7 +253,7 @@ font-weight: 700;
   border-radius: 0px;
   -moz-appearance: none;
   -webkit-appearance: none;
-  background: rgb(255, 255, 255) url("http://www.apple.com/jobs/images/icons/select.svg") no-repeat scroll 100% top / 20px 20px;
+  background: rgb(255, 255, 255) url("../images/icons/dropdown.svg") no-repeat scroll 100% top / 20px 20px;
   border: medium none;
   color: #666;
   width: 75px;
@@ -491,7 +491,7 @@ font-weight: 700;
   -webkit-box-sizing:border-box;
   padding: 8px 0 10px;
   border-radius: 0;
-  border-bottom: none;
+  border-top: none;
 }
 
 .shadow-fixer{
@@ -552,9 +552,9 @@ font-weight: 700;
 
 img.leftButtonNav{
   width: 30px;
-  height: 54px;
+  height: 52px;
   position: absolute;
-  margin-left: -168px;
+  margin-left: -171px;
   margin-top: -1px;
  }
 
@@ -562,7 +562,7 @@ img.rightButtonNav{
   width: 30px;
   height: 52px;
   position: absolute;
-  margin-left: 135px;
+  margin-left: 140px;
   margin-top: -1px;
 }
 
@@ -824,6 +824,20 @@ img.rightButtonNav{
   position: absolute;
 }
 
+
+@media screen and (max-height: 865px) {
+  .sideBar-measure-bottom .help-image{
+    height: 50%;
+    width: auto;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 0px;
+  }
+}
+
+
 .sideBar-measure-bottom .help-image-progressbar{
   cursor: pointer;
   top: calc(50%);
@@ -928,7 +942,7 @@ img.rightButtonNav{
   -moz-box-shadow: 0px 0px 23px 9px rgba(230,194,16,1);
   box-shadow: 0px 0px 23px 9px rgba(230,194,16,1);
   */
-  background-image: url("../images/icons/check.png");
+  background-image: url("../images/icons/color_check.svg");
   background-size: 50px 50px;
   background-repeat: no-repeat;
   background-position: center;
@@ -1051,7 +1065,7 @@ line-height: inherit;
 border-radius: 0px;
 -moz-appearance: none;
 -webkit-appearance: none;
-background: #FFF url("http://www.apple.com/jobs/images/icons/select.svg") no-repeat scroll 100% top / 20px 20px;
+background: #FFF url("../images/icons/dropdown.svg") no-repeat scroll 100% top / 20px 20px;
 border: medium none;
 color: #666;
 width: 100px;

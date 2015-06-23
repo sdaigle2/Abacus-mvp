@@ -171,10 +171,12 @@ angular.module('abacuApp')
 
       /****************Page Functions******************/
       $scope.getCurPages = function () {
+
         if (curPage.type === $scope.pageType.CUSTOMIZE) {
           return pages.customizePages;
         }
         return pages.measurePages;
+        //.concat(pages.customizePages);
       };
       $scope.getCustomizePages = function () {
         return pages.customizePages;

@@ -143,10 +143,10 @@
 
       <div class="sideBar" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
         <div class="sideBar-header text-center">
-          <img class="leftButtonNav" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
+          <img class="leftButtonNav" src="images/icons/left_button.svg" alt="Previous" width="30" height="30"
                data-ng-click="pageSwitchStep(-1)"
                data-ng-show="getCurPage().index > 0"/>
-          <img class="rightButtonNav" src="images/icons/right_button.png" alt="Next" width="30" height="30"
+          <img class="rightButtonNav" src="images/icons/right_button.svg" alt="Next" width="30" height="30"
                data-ng-click="pageSwitchStep(1)"/>
 
           <h3 class="curPage-header" data-ng-bind="getCurPartData().name"></h3>
@@ -318,9 +318,9 @@
 
       <div class="sideBar" data-ng-show="getCurPageType() == pageType.MEASURE">
         <div class="sideBar-header text-center">
-          <img class="leftButtonNav" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
+          <img class="leftButtonNav" src="images/icons/left_button.svg" alt="Previous" width="30" height="30"
                data-ng-click="pageSwitchStep(-1)"/>
-          <img class="rightButtonNav" src="images/icons/right_button.png" alt="Next" width="30" height="30"
+          <img class="rightButtonNav" src="images/icons/right_button.svg" alt="Next" width="30" height="30"
                data-ng-click="pageSwitchStep(1)"
                data-ng-show="getCurPage().index < getCurPages().length - 1"/>
 
@@ -352,9 +352,9 @@
                  ng-show="curMeasureCarouselIndex === $index"
                  ng-src="{{image}}" width="350" height="340">
 
-            <img class="leftButton" src="images/icons/left_button.png" alt="Previous" width="30" height="30"
+            <img class="leftButton" src="images/icons/circle_left_button.svg" alt="Previous" width="30" height="30"
                  data-ng-click="rotateMeasureCarouselIndex(-1)"/>
-            <img class="rightButton" src="images/icons/right_button.png" alt="Next" width="30" height="30"
+            <img class="rightButton" src="images/icons/circle_right_button.svg" alt="Next" width="30" height="30"
                  data-ng-click="rotateMeasureCarouselIndex(1)"/>
 
 
