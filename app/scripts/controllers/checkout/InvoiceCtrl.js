@@ -51,8 +51,9 @@ angular.module('abacuApp')
                                                   $scope.topImageSets,
                                                   $scope.midImageSets,
                                                   $scope.botImageSets,
-                                                  $scope.wheelImageSets,
-                                                  $scope.frameImageSets
+                                                  $scope.frameImageSets,
+                                                  $scope.wheelImageSets
+                                                  
                                               );
     }
 
@@ -118,17 +119,12 @@ angular.module('abacuApp')
       return frame.getBaseWeight()+'lb';
     };
 
-    $scope.onloadCanvas= function(id){
-       console.log("loading cavnases..");
-       
+    $scope.onloadCanvas= function(id){       
        var canvas_images = $scope.invoice_canvas_images[id][0];
        var stack = new Array();
        for(var i=0; i<canvas_images.length; i++){
-          console.log("obj:"+canvas_images[i]);
-          console.log("obj_url"+canvas_images[i].URL);
           stack.push(canvas_images[i].URL);
        }
-       console.log("Images: "+stack);
        var canvas = "chair"+id;
        var canv = document.getElementById(canvas);
        stackImages( canv, stack, 300, 300);

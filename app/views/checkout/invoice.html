@@ -36,11 +36,11 @@
           </table>
         </div>
         <div class="images">
+          <canvas id='chair0' width='300' height='300' ng-init="onloadCanvas(0)"></canvas>
           <canvas id='chair1' width='300' height='300' ng-init="onloadCanvas(1)"></canvas>
           <canvas id='chair2' width='300' height='300' ng-init="onloadCanvas(2)"></canvas>
           <canvas id='chair3' width='300' height='300' ng-init="onloadCanvas(3)"></canvas>
           <canvas id='chair4' width='300' height='300' ng-init="onloadCanvas(4)"></canvas>
-          <canvas id='chair5' width='300' height='300' ng-init="onloadCanvas(5)"></canvas>
           
           <!--
           <img class="front-page-disp first-image"
@@ -97,10 +97,12 @@
                   </tr>
                   <tr>
                     <td class="image_holder">
+                    <!--
                       <img class="frame_img"
                            ng-repeat="img in frameImageSets[$index]"
                            ng-src="{{img.URL}}"
                            ng-style="{'z-index': $index }"/>
+                           -->
                     </td>
                   </tr>
                 </table>
@@ -110,15 +112,21 @@
                   <tbody ng-repeat="part in frameParts[$index]">
                   <tr>
                     <td>
-                      <p class="description" data-ng-bind="part.partName"></p>
+                      <p class="description">
+                        {{part.partName}}
+                      </p>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <p class="description-result" data-ng-bind="part.optionName"></p>
+                      <p class="description-result">
+                        {{part.optionName}}
+                      </p>
                     </td>
                     <td>
-                      <p class="description-result price" data-ng-bind="part.priceString"></p>
+                      <p class="description-result price">
+                        {{part.priceString}}
+                      </p>
                     </td>
                   </tr>
                   </tbody>
@@ -139,10 +147,12 @@
                   </tr>
                   <tr>
                     <td class="image_holder">
+                    <!--
                       <img class="frame_img_wheel"
                            ng-repeat="img in wheelImageSets[$index]"
                            ng-src="{{img.URL}}"
                            ng-style="{'z-index': $index }"/>
+                           -->
                     </td>
                   </tr>
                 </table>
@@ -152,15 +162,21 @@
                   <tbody ng-repeat="part in wheelParts[$index]">
                   <tr>
                     <td>
-                      <p class="description" data-ng-bind="part.partName"></p>
+                      <p class="description">
+                        {{part.partName}}
+                      </p>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <p class="description-result" data-ng-bind="part.optionName"></p>
+                      <p class="description-result">
+                        {{part.optionName}}
+                      </p>
                     </td>
                     <td>
-                      <p class="description-result price" data-ng-bind="part.priceString"></p>
+                      <p class="description-result price">
+                        {{part.priceString}}
+                      </p>
                     </td>
                   </tr>
                   </tbody>
@@ -174,7 +190,7 @@
           Subtotal
         </span>
         <span class="description-result price">
-          $<span data-ng-bind="wheelchair.getTotalPrice().toFixed(2)"></span>
+          ${{wheelchair.getTotalPrice().toFixed(2)}}
         </span>
         </div>
       </div>
@@ -191,10 +207,12 @@
           <tr>
             <td>
               <div class="measure" ng-repeat="measure in measurements[$index]">
-                <p class="description" data-ng-bind="measure.name"></p>
+                <p class="description">
+                  {{measure.name}}
+                </p>
 
                 <p class="description-result">
-                  <span data-ng-bind="measure.optionString"></span> / <span data-ng-bind="measure.altOptionString"></span>
+                  {{measure.optionString}} / {{measure.altOptionString}}
                 </p>
               </div>
             </td>
@@ -283,8 +301,8 @@
           </tr>
           <tr ng-repeat="wheelchair in wheelchairs">
             <td class="qty"><p>1</p></td>
-            <td><p data-ng-bind="wheelchair.getTitle()"></p></td>
-            <td><p class="price" data-ng-bind="wheelchair.getTotalPrice().toFixed(2)"></p></td>
+            <td><p>{{wheelchair.getTitle()}}</p></td>
+            <td><p class="price">{{wheelchair.getTotalPrice().toFixed(2)}}</p></td>
           </tr>
         </table>
       </div>
