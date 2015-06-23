@@ -1,5 +1,31 @@
+#wrapper {
+  width: 700px;
+  margin: 40px auto;
+  line-height: 1;
+}
+
 #register-div{
-  width: 50%;
+  width: 95%;
+  margin: 20px auto 0;
+}
+
+#register-div #settingsContentForm-contact{
+  position: relative;
+  border: 1px solid #EAEAEA;
+  padding: 20px 40px;
+}
+
+#register-div .img-circle{
+  position: absolute;
+  top: 0;
+  left: -32px;
+}
+
+#register-div .settingsContentSectionTitle{
+  color: #00A89C;
+  border-bottom: 1px solid #939597;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .form-inline{
@@ -8,12 +34,32 @@
   border: 0;
 }
 
-.form-inline>.form-control{
+.form-group .form-control{
   width: 100%;
+  height: 30px;
+  margin-top: 5px;
 }
 
-.form-inline:nth-child(3), .form-inline:nth-child(6){
-  margin-left: calc(10% - 5px);
+.form-last{
+  float: right;
+}
+
+#register-div #settingContentForm-shipping{
+  position: relative;
+  margin: 40px 0;
+  border: 1px solid #EAEAEA;
+  padding: 20px 40px;
+}
+
+.form-inline-small{
+  width: 28%;
+  display: inline-block;
+  border: 0;
+  margin-right: 43px;
+}
+
+.form-inline-small:last-of-type{
+  margin-right: 0;
 }
 
 label{
@@ -25,16 +71,19 @@ input{
 }
 
 .settingsSidebarButton {
-  float: left;
-  width: 100%;
+  float: right;
+  width:140px;
   height: 40px;
   margin-right: 2%;
-  background-color: rgba(158, 159, 158, 1);
-  border: none;
+  border: 1px solid #00A89C;
+  color: #00A89C;
+  background-color: white;
+  margin-bottom: 60px;
 }
 
 .settingsSidebarButton.active, .settingsSidebarButton:hover {
   background-color: rgba(11, 158, 144, 1);
+  color: white;
 }
 .settingsSidebarButton:last-child {
   margin-right: 0;
