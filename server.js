@@ -44,7 +44,6 @@ var pdf = require('wkhtmltopdf');
 pdf.command = 'c:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe';
 
 function restrict(req, res, next) {
-  console.log('restrict');
   if (req.session.user) {
     next();
   } else {
@@ -104,16 +103,16 @@ app.post('/logout', restrict, function(req, res){
 
 app.post('/register', function (req, res) {
   var data = {
-    fName: sanitizeHtml(req.body.fName, sProperties),
-    lName: sanitizeHtml(req.body.lName, sProperties),
-    email: sanitizeHtml(req.body.email, sProperties),
-    phone: sanitizeHtml(req.body.phone, sProperties),
-    addr: sanitizeHtml(req.body.addr, sProperties),
-    addr2: sanitizeHtml(req.body.addr2, sProperties),
-    city: sanitizeHtml(req.body.city, sProperties),
-    state: sanitizeHtml(req.body.state, sProperties),
-    zip: sanitizeHtml(req.body.zip, sProperties),
-    password: sanitizeHtml(req.body.password, sProperties)
+    fName: (req.body.fName, sProperties),
+    lName: (req.body.lName, sProperties),
+    email: (req.body.email, sProperties),
+    phone: (req.body.phone, sProperties),
+    addr: (req.body.addr, sProperties),
+    addr2: (req.body.addr2, sProperties),
+    city: (req.body.city, sProperties),
+    state: (req.body.state, sProperties),
+    zip: (req.body.zip, sProperties),
+    password: (req.body.password, sProperties)
   };
   if(!check(data)){
     res.json({err:'evil input'});

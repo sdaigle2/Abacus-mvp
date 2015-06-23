@@ -13,7 +13,7 @@
     <div id="mainContent">
       <!-- ng-repeat="wheelchair in wheelchairs"-->
       <div ng-repeat="w in wheelchairs" id="comparisonImages">
-        <p><h4><strong>{{w.getTitle()}}</strong></h4></p>
+        <p><h4><strong data-ng-bind="w.getTitle()"></strong></h4></p>
         <img ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false"
              data-ng-src="images/mainpic.png" width="185">
         <table ng-show="editPanelShow === true"
@@ -71,7 +71,7 @@
           <p>Price</p>
         </td>
         <td class="value-column" ng-repeat="wheelchair in wheelchairs">
-          <p>${{wheelchair.getTotalPrice()}}</p>
+          <p>$<span data-ng-bind="wheelchair.getTotalPrice()"></span></p>
         </td>
         <td class="value-column" ng-repeat="space in emptyCols"></td>
       </tr>
@@ -88,14 +88,14 @@
     <table class="parts-table" data-ng-init="hoverItem = {index: -1, name: ''}" ng-if="wheelchairs.length > 0">
       <tr class="part-row" ng-repeat="part in parts">
         <td class="title-column">
-          <p>{{part.getName()}}</p>
+          <p data-ng-bind="part.getName()"></p>
         </td>
         <td class="value-column hover-column" ng-repeat="wheelchair in wheelchairs"
             data-ng-mouseenter="hoverItem.index = $index; hoverItem.name = part.getName()"
             data-ng-mouseleave="hoverItem.index=-1; hoverItem.name=''">
           <div class="option-desc" data-ng-if="hoverItem.index === $index && hoverItem.name === part.getName()">
             <p class="option-desc-head" data-ng-bind="getPartOption(wheelchair, part)"></p>
-            <p>{{getPartDetails(wheelchair, part).priceString}} | {{getPartDetails(wheelchair, part).weightString}}</p>
+            <p><span data-ng-bind="getPartDetails(wheelchair, part).priceString"></span> | <span data-ng-bind="getPartDetails(wheelchair, part).weightString"></span></p>
           </div>
           <p data-ng-bind="getPartOption(wheelchair, part)"
              data-ng-if="hoverItem.index !== $index || hoverItem.name !== part.getName()"></p>
@@ -114,7 +114,7 @@
         <li class="order-list-element" ng-repeat="wheelchair in orderChairs">
           <div class="order-block">
             <img class="order-img" data-ng-src="images/mainpic.png" width="250">
-            <h4><strong>{{wheelchair.getTitle()}}</strong></h4>
+            <h4><strong data-ng-bind="wheelchair.getTitle()"></strong></h4>
           </div>
         </li>
       </ol>
@@ -123,21 +123,21 @@
       <tbody>
       <tr>
         <td class="cartSidebarLabel">Subtotal:</td>
-        <td class="cartSidebarValue">${{costs.subtotal.toFixed(2)}}</td>
+        <td class="cartSidebarValue">$<span data-ng-bind="costs.subtotal.toFixed(2)"></span></td>
       </tr>
       <tr>
         <td class="cartSidebarLabel">Estimated Shipping:</td>
-        <td class="cartSidebarValue">${{costs.shipping.toFixed(2)}}</td>
+        <td class="cartSidebarValue">$<span data-ng-bind="costs.shipping.toFixed(2)"></span></td>
       </tr>
       <tr>
         <td class="cartSidebarLabel">Tax:</td>
-        <td class="cartSidebarValue">${{costs.tax.toFixed(2)}}</td>
+        <td class="cartSidebarValue">$<span data-ng-bind="costs.tax.toFixed(2)"></span></td>
       </tr>
       </tbody>
       <tfoot class="cartSidebarTotal">
       <tr>
         <td class="cartSidebarLabel">Total:</td>
-        <td class="cartSidebarValue">${{costs.total.toFixed(2)}}</td>
+        <td class="cartSidebarValue">$<span data-ng-bind="costs.total.toFixed(2)"></span></td>
       </tr>
       </tfoot>
     </table>

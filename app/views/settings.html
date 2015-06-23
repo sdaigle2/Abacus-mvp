@@ -136,12 +136,12 @@
         <li class="settingsOrdersContentItem" data-ng-repeat="o in orders">
           <img class="settingsOrdersContentItem-image" src="../images/mainpic.png" alt="Wheelchair"/>
           <div class="settingsOrdersContentItemMid">
-            <div class="settingsOrdersContentItem-name">{{o.orderNum}}</div>
-            <div class="settingsOrdersContentItem-date">Order Placed: {{o.sentDate.toLocaleDateString()}}</div>
+            <div class="settingsOrdersContentItem-name" data-ng-bind="o.orderNum"></div>
+            <div class="settingsOrdersContentItem-date">Order Placed: <span data-ng-bind="o.sentDate.toLocaleDateString()"></span></div>
             <button class="settingsOrdersContentItem-detailsButton"
                     data-ng-click="openOrderDetails($index)">View Order Details <i class="fa fa-arrow-circle-down"></i></button>
           </div>
-          <div class="settingsOrdersContentItem-cost">${{o.getTotalCost().toFixed(2)}}</div>
+          <div class="settingsOrdersContentItem-cost">$<span data-ng-bind="o.getTotalCost().toFixed(2)"></span></div>
         </li>
       </ul>
     </div>
@@ -160,7 +160,7 @@
             <li data-ng-repeat="(m, val) in MeasurementTypes"> <!-- TODO: Angularize (ng-repeat) using $scope.measOptions -->
               <label ng-click="setMeasurementType(val)"
                      ng-class="{'active' : getMeasurementType() === val}">
-                {{measDisplay[val].name}} <i class="fa fa-arrow-circle-right" title="Learn More"></i>
+                     <span data-ng-bind="measDisplay[val].name"></span> <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
               <select data-ng-options="o for o in measDisplay[val].options" data-ng-model="measDisplay[val].optionSelected"></select>
             </li>
@@ -178,8 +178,8 @@
       <div class="settingsContentInputMoreInfoSection"
            ng-repeat="(m, val) in MeasurementTypes"
            ng-class="{'active' : getMeasurementType() === val}">
-        <div class="settingsContentSectionTitle">{{measDisplay[val].name}}</div>
-        <div class="settingsContentSectionDescription">{{measDisplay[val].desc}}</div>
+        <div class="settingsContentSectionTitle" data-ng-bind="measDisplay[val].name"></div>
+        <div class="settingsContentSectionDescription" data-ng-bind="measDisplay[val].desc"></div>
         <div class="settingsContentSectionGraphic">
           <img ng-src="{{measDisplay[val].imgURLs[measDisplay[val].imgIndex]}}" width="350" height="340">
           <div class="dots">
