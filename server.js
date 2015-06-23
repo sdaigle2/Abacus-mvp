@@ -103,16 +103,17 @@ app.post('/logout', restrict, function(req, res){
 
 app.post('/register', function (req, res) {
   var data = {
-    fName: (req.body.fName, sProperties),
-    lName: (req.body.lName, sProperties),
-    email: (req.body.email, sProperties),
-    phone: (req.body.phone, sProperties),
-    addr: (req.body.addr, sProperties),
-    addr2: (req.body.addr2, sProperties),
-    city: (req.body.city, sProperties),
-    state: (req.body.state, sProperties),
-    zip: (req.body.zip, sProperties),
-    password: (req.body.password, sProperties)
+    fName: req.body.fName,
+    lName: req.body.lName,
+    email: req.body.email,
+    phone: req.body.phone,
+    addr: req.body.addr,
+    addr2: req.body.addr2,
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip,
+    password: req.body.password,
+    unitSys: 0
   };
   if(!check(data)){
     res.json({err:'evil input'});

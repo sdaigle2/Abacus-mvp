@@ -30,7 +30,7 @@ angular.module('abacuApp')
 
     //Returns a display-formatted string of the baseWeight of the given frame
     $scope.getWeightString = function (frame) {
-      return (frame.getBaseWeight() * Units.getWeightFactor(User.getUnitSys())) + ' ' + Units.getWeightName(User.getUnitSys());
+      return (frame.getBaseWeight() * Units.getWeightFactor(User.getUnitSys())).toFixed(2) + ' ' + Units.getWeightName(User.getUnitSys());
     };
 
   }]);
