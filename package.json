@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "main": "server.js",
   "dependencies": {
+    "address-validator": "^0.1.4",
     "body-parser": "^1.12.4",
     "bower": "^1.4.1",
     "cloudant": "^1.0.0",
