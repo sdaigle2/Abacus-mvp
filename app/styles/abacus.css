@@ -840,7 +840,7 @@ img.rightButtonNav{
 
 .sideBar-measure-bottom .help-image-progressbar{
   cursor: pointer;
-  top: calc(50%);
+  top: 50%;
   position: absolute;
   margin-left: 155px;
 }
@@ -1000,7 +1000,7 @@ h6.roboto-small{
   font-size: 8pt;
   letter-spacing: 0.1em;
   padding-bottom: 3px;
-  margin-top: 0p;
+  margin-top: 0px;
 }
 
 
@@ -1037,7 +1037,7 @@ h6.roboto-small{
 }
 
 td.details-special-td{
-  border-bottom: 0px solid rgba(254, 254, 254, 0.75); 
+  border-bottom: 0px solid rgba(254, 254, 254, 0.75);
   border-left: 0px solid rgba(254, 254, 254, 0.75);
   border-right: 0px solid rgba(254, 254, 254, 0.75);
 }
@@ -1072,7 +1072,7 @@ width: 100px;
 }
 
 body{
- overflow:hidden; 
+ overflow:auto;
 }
 .nothing{
   position:absolute;

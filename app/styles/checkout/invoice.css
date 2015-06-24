@@ -80,10 +80,12 @@ div.images {
 
 .invoice-label {
   font-weight: bold;
+  width: 15%;
 }
 
 .value {
   padding-left: 11px;
+  word-wrap: break-word;
 }
 
 h2 {
@@ -144,6 +146,7 @@ h3 {
 }
 
 table {
+  table-layout: fixed;
   border-spacing: 0;
   width: 100%;
   border-collapse: collapse;

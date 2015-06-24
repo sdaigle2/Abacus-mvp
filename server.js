@@ -37,6 +37,12 @@ var cloudant = require('cloudant')({account: process.env.CLOUDANT_USERNAME, pass
 var users = cloudant.use('users');
 var orders = cloudant.use('orders');
 
+//Email
+var sendgrid  = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
+var email     = new sendgrid.Email({
+  from:     'do-not-reply@abacus.fit',
+  subject:  'Abacus Registration'
+});
 
 //HTML to pdf
 var fs = require('fs');
@@ -131,7 +137,11 @@ app.post('/register', function (req, res) {
         data.salt = salt;
         data.password = hash;
         users.insert(data, data.email);
-        res.json({'success': true});
+        email.to = data.email;
+        email.text = 'Thank you for registering an account with Abacus.';
+        sendgrid.send(email, function(err, json) {
+          res.json({'success': true});
+        });
       });
     }
     else

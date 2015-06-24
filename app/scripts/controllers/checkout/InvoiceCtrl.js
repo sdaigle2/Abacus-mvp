@@ -12,7 +12,7 @@
 angular.module('abacuApp')
   .controller('InvoiceCtrl', ['$scope', '$location', 'User', 'FrameData', 'Angles', 'Units', function ($scope, $location, User, FrameData, Angles, Units) {
     var order = User.getLastOrder();
-    $scope.name = User.getFullName();
+    $scope.name = order.getFullName();
     $scope.wheelchairs = order.getWheelchairs();
     $scope.orderNum = order.getOrderNum();
     $scope.topImageSets = [];
@@ -30,7 +30,7 @@ angular.module('abacuApp')
     $scope.total = order.getTotalCost().toFixed(2);
     $scope.frameParts = [];
     $scope.wheelParts = [];
-
+    $scope.location = $location;
 
     function getFrame(wheelchair) {
       var frameID = wheelchair.getFrameID();
