@@ -137,9 +137,9 @@ app.post('/register', function (req, res) {
         // store the salt & hash in the "db"
         data.salt = salt;
         data.password = hash;
-        tempUser.insert(data, function (err, body) {
+        users.insert(data, data.email,function (err, body) {
           email.to = data.email;
-          email.text = 'Thank you for registering an account with Abacus. Click on this link finish creating your account. http://localhost:8080/#/confirm/'+body.id;
+          email.text = 'Thank you for registering an account with Abacus.';
           sendgrid.send(email, function (err, json) {
             res.json({'success': true});
           });

@@ -15,7 +15,8 @@ angular.module('abacuApp')
         state: '',
         zip: '',
         password: '',
-        confirm: ''
+        confirm: '',
+        orders: []
       };
 
       $scope.register = function(){
@@ -25,10 +26,13 @@ angular.module('abacuApp')
           , method: 'POST'
         }).success(function (data) {
           console.log(data);
+          User.login($scope.accountModel.email, $scope.accountModel.password);
+          $location.path('welcome');
         })
           .error(function (data) {
             console.log('Request Failed: ' + data);
             deferred.reject('Error loading user data');
           });
+
       };
     }]);

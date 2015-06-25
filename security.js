@@ -32,6 +32,8 @@ function typeCheck(userData){
     return false;
   if(typeof userData.city !== 'string')
     return false;
+  if(typeof userData.state !== 'string')
+    return false;
   if(typeof userData.zip !== 'string')
     return false;
   if(typeof userData.password !== 'string')

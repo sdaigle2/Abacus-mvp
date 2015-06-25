@@ -1,5 +1,62 @@
 #wrapper {
   width: 700px;
+  margin: 60px auto 0;
+  line-height: 1.8;
+  font-size: 1.1em;
+}
+
+#username{
+  font-size: 1.3em;
+}
+
+.brand{
+  color: #00A89C;
+}
+
+#mainContent{
   margin: 40px auto;
-  line-height: 1.5;
+  border: 1px solid #EAEAEA;
+  padding: 20px 20px;
+}
+
+#mainContent #mainText{
+  margin: 0 20px 0 40px;
+  padding-left: 65px;
+  border-left: 1px solid #00A89C;
+}
+
+#mainContent #mainText .textBlock{
+  margin: 20px 0;
+  position: relative;
+}
+
+#mainContent #mainText img{
+  position: absolute;
+  top: 30px;
+  left: -75px;
+}
+
+#buttonRow{
+  margin: 20px 20px;
+}
+
+#buttonRow div{
+  display: inline-block;
+  text-align: center;
+  padding: 6px 0;
+  margin-right: 31px;
+  width: 196px;
+  height: 40px;
+  border: 1px solid #00A89C;
+  color: #00A89C;
+}
+
+#buttonRow div:hover{
+  cursor: pointer;
+  color: white;
+  background-color: #00a89c;
+}
+
+#buttonRow div:last-of-type{
+  margin-right: 0;
 }
