@@ -65,6 +65,10 @@ angular
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl'
       })
+      .when('/confirm/:param1', {
+        templateUrl: 'views/confirm.html',
+        controller: 'ConfirmCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
