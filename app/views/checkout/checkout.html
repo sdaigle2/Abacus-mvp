@@ -4,37 +4,40 @@
 <div class="checkout text-center">
   <div class="checkout-header">
 
-    <h2><strong>CHECK OUT</strong></h2>
+    <h2 class="bold">CHECK OUT</h2>
     <!-- TODO: restore shopping cart data after go back-->
-    <h5 data-ng-click="returnToCart()">&lt&lt Go Back to Shopping Cart</h5>
+    <h5 data-ng-click="returnToCart()" class="book">&lt&lt Go Back to Shopping Cart</h5>
   </div>
   <div class="checkout-body">
     <div class="checkout-left">
       <div class="checkout-well">
-        <div class="checkout-well-title"><strong>LOG IN</strong></div>
-        <div class="checkout-well-label"><strong>Email Address</strong></div>
+        <div class="checkout-well-title book">LOG IN</div>
+        <div class="checkout-well-label book">Email Address</div>
         <input type="email" data-ng-model="loginForm.email" />
-        <div class="checkout-well-label"><strong>Password</strong></div>
+        <div class="checkout-well-label book">Password</div>
         <input type="password" data-ng-model="loginForm.pass" />
         <div class="checkout-well-extras">
           <div class="checkout-well-pass"
-               data-ng-click="recoverPassword()">Forgot your Password?</div>
+               data-ng-click="recoverPassword() book">Forgot your Password?</div>
           <div class="checkout-well-reg"
-               data-ng-click="register()"><strong>REGISTER >></strong></div>
+               data-ng-click="register() book">REGISTER >></div>
         </div>
       </div>
-      <div class="checkout-button"
+      <div class="checkout-button medium"
            data-ng-click="loginAsUser()">
-        <strong>Member Checkout >></strong>
+        Let's Go
       </div>
     </div>
     <div class="checkout-right">
       <div class="checkout-well">
-        <div class="checkout-well-title"><strong>GUESTS</strong></div>
+        <div class="checkout-well-title book">GUESTS</div>
+        <div align="center">
+        <p class="book">This option is perfect for one time checkout!</p>
+        </div>
       </div>
-      <div class="checkout-button"
+      <div class="checkout-button medium"
            data-ng-click="loginAsGuest()">
-        <strong>Guest Checkout >></strong>
+        Let's Go 
       </div>
     </div>
   </div>

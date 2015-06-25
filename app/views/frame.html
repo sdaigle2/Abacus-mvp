@@ -3,7 +3,7 @@
 
 <div class="wrapper">
   <div class=" frame-header-row">
-    <div class="frame-header">
+    <div class="frame-header medium">
       FRAMES
     </div>
   </div>
@@ -34,22 +34,22 @@
 
 
 
-              <p class="frame-item-title" data-ng-bind="f.getName()"></p>
+              <p class="frame-item-title medium" data-ng-bind="f.getName()"></p>
               <br />
-              <p class="frame-item-description" data-ng-bind="f.getDesc()"></p>
+              <p class="frame-item-description book" data-ng-bind="f.getDesc()"></p>
               <table class="frame-info-table">
               <td class="blue-line">
-              <p class="frame-item-price">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
+              <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
               </td>
               <td>
-              <p class="frame-item-weight" data-ng-bind="getWeightString(f)"></p>
+              <p class="frame-item-weight medium" data-ng-bind="getWeightString(f)"></p>
               </td>
               </table>
             </div>
           </div>
         </div>
       </div>
-      <div class="frame-item-button"
+      <div class="frame-item-button medium"
            data-ng-click="selectFrame(f.frameID)">
        Select this frame >>
       </div>

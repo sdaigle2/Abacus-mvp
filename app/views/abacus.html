@@ -45,7 +45,7 @@
     <!-- Price & Weight Display -->
     <div id="display">
       <div class="display-toggle text-center">
-        <h6 class="roboto-small">Change Unit</h6>
+        <h6>Change Unit</h6>
         <select data-ng-model="curUnitSys"
                 data-ng-options="sys.enumVal as sys.name for sys in unitSysList"/>
       </div>
@@ -330,17 +330,17 @@
           <!-- Measurement Selector -->
           <div class="sideBar-measure-top">
             <div class="sideBar-measure-select">
-              <h4 class="oswald">CHOOSE YOUR MEASUREMENT</h4>
+              <h4>CHOOSE YOUR MEASUREMENT</h4>
               <select data-ng-model="getCurWheelchairMeasure().measureOptionIndex"
                       data-ng-options="idx as mo for (idx, mo) in getCurMeasureData().measureOptions[curUnitSys]"/>
-              <span class="roboto" data-ng-bind="getCurMeasureData().units[curUnitSys]"></span>
+              <span data-ng-bind="getCurMeasureData().units[curUnitSys]"></span>
             </div>
             <div class="sideBar-measure-tip text-left" data-ng-show="getCurMeasureData().tip">
               <div class="sideBar-measure-tip-left">
-                <h5 class="roboto heavy tip-lower">TIP:</h5>
+                <h5 class="heavy tip-lower">TIP:</h5>
               </div>
               <div class="sideBar-measure-tip-right">
-                <h5 class="roboto thin">Important factors to think about are things and whatnot, but don't forget to
+                <h5 class="thin">Important factors to think about are things and whatnot, but don't forget to
                   remember to not
                   forget seat height. </h5>
               </div>
