@@ -162,7 +162,6 @@ border-color: transparent;
 text-align: center;
 float: right;
 font-size: 15px;
-font-family: "Roboto",sans-serif;
 font-weight: 700;
 }
 
@@ -208,10 +207,9 @@ font-weight: 700;
 #wheelChairName{
   display: inline-block;
   color: white;
-  font-family: "Oswald" , sans-serif;
   font-weight: 400;
   text-transform: uppercase;
-  font-size: 11pt;
+  font-size: 10pt;
   margin-top: 12px;
 }
 
@@ -219,6 +217,7 @@ font-weight: 700;
   margin: 7px 15px;
   vertical-align: top;
   float: right;
+  color:white;
 }
 
 .display-frame {
@@ -275,10 +274,9 @@ font-weight: 700;
 
 .display-totals h4 {
   position: relative;
-  top: -5px;
-  font-family: "Oswald",sans-serif;
+  top: -1px;
   font-weight: 400;
-  font-size: 11pt;
+  font-size: 10pt;
   /*margin-left: -38px;*/
 }
 
@@ -637,7 +635,6 @@ img.rightButtonNav{
 
 .sideBar-custom-item-right .sideBar-custom-item-name {
   font-size: 16px;
-  font-family: "Roboto", sans-serif;
   letter-spacing: 0.4px;
   line-height: 19px;
   margin:5px 0px;
@@ -648,7 +645,6 @@ img.rightButtonNav{
 
 .sideBar-custom-item-right .sideBar-custom-item-details {
   font-size: 16px;
-  font-family: "Roboto", sans-serif;
   letter-spacing: 0.4px;
   line-height: 19px;
   margin:5px 0px;
@@ -670,7 +666,6 @@ img.rightButtonNav{
 
 .sideBar-custom-item-right-selected .sideBar-custom-item-name {
   font-size: 16px;
-  font-family: "Roboto", sans-serif;
   letter-spacing: 0.4px;
   line-height: 19px;
   margin-top:1px;
@@ -682,7 +677,6 @@ img.rightButtonNav{
 
 .sideBar-custom-item-right-selected .sideBar-custom-item-details {
   font-size: 16px;
-  font-family: "Roboto", sans-serif;
   letter-spacing: 0.4px;
   line-height: 19px;
   margin-top: -5px;
@@ -716,7 +710,6 @@ img.rightButtonNav{
   width: 100%;
   padding: 8px;
   font-size: 14pt;
-  font-family: "Oswald",sans-serif;
   font-weight: 400;
   letter-spacing: 1px;
 }
@@ -728,7 +721,6 @@ img.rightButtonNav{
   width: 100%;
   padding: 8px;
   font-size: 14pt;
-  font-family: "Oswald",sans-serif;
   font-weight: 400;
   letter-spacing: 1px;
 }
@@ -984,7 +976,6 @@ h4{
 }
 
 h4.oswald{
-  font-family: "Oswald", sans-serif;
   font-weight: 400;
   font-size: 16px;
   letter-spacing: .1em;
@@ -995,7 +986,6 @@ h5.roboto-med{
 }
 
 h6.roboto-small{
-  font-family: "Roboto",sans-serif;
   font-weight: 500;
   font-size: 8pt;
   letter-spacing: 0.1em;
@@ -1007,7 +997,6 @@ h6.roboto-small{
 
 
 .roboto{
-  font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-size: 11pt;
 }

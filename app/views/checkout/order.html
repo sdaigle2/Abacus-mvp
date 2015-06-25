@@ -3,8 +3,8 @@
 <div class="order text-center">
   <!--HEADER-->
   <div class="order-header">
-    <h2><strong data-ng-bind="display[curStage].title"></strong></h2>
-    <h5 data-ng-click="returnToCart()"
+    <h2 class="medium" data-ng-bind="display[curStage].title"></h2>
+    <h5 class="book" data-ng-click="returnToCart()"
         data-ng-hide="curStage == stages.COMPLETE">&lt&lt Go Back to Shopping Cart</h5>
   </div>
 
@@ -218,7 +218,7 @@
 
     <!--SIDEBAR-->
     <div class="order-right">
-      <div class="progress-bar-label">
+      <div class="progress-bar-label book">
         <span data-ng-style="(curStage === stages.INFO) && {'color':'#000'}">1 </span>
         <span data-ng-style="(curStage === stages.PAYMENT) && {'color':'#000'}">2 </span>
         <span data-ng-style="(curStage === stages.CONFIRM) && {'color':'#000'}">3 </span>
@@ -234,19 +234,19 @@
         <img width="28" height="auto" src="images/checkout/progress_bar_image.png"
              data-ng-style="{'left': 23+(71*curStage) + 'px' }">
       </div>
-      <div class="progress-bar-label-text">
+      <div class="progress-bar-label-text book">
         <span data-ng-style="(curStage === stages.INFO) && {'color':'#000'}">info </span>
         <span data-ng-style="(curStage === stages.PAYMENT) && {'color':'#000'}">payment </span>
         <span data-ng-style="(curStage === stages.CONFIRM) && {'color':'#000'}">confirm </span>
         <span data-ng-style="(curStage === stages.COMPLETE) && {'color':'#000'}">complete</span>
       </div>
       <div class="order-buttonrow">
-        <div class="order-button order-button-light"
+        <div class="order-button order-button-light medium"
              data-ng-if="curStage !== stages.COMPLETE"
-             data-ng-click="back()"><strong>&lt GO BACK</strong></div>
-        <div class="order-button"
+             data-ng-click="back()">&lt GO BACK</div>
+        <div class="order-button medium"
              data-ng-style="(curStage === stages.COMPLETE) && {'width': '80%'}"
-             data-ng-click="next()"><strong data-ng-bind="display[curStage].button"></strong></div>
+             data-ng-click="next()" data-ng-bind="display[curStage].button"></div>
       </div>
     </div>
   </div>

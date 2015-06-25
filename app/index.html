@@ -9,6 +9,7 @@
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7097374/665808/css/fonts.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/frame.css -->
@@ -44,10 +45,10 @@
       </div>
       <ul class="mainNavbar-left">
         <li class="frameNavButton" ng-class="{ active: isActive('/')}">
-          <a ng-href="#/">FRAMES</a>
+          <a ng-href="#/" class="medium">FRAMES</a>
         </li>
         <li class="aboutNavButton" ng-class="{ active: isActive('/about')}">
-          <a ng-href="#/about">ABOUT US </a>
+          <a ng-href="#/about" class="medium">ABOUT US </a>
         </li>
       </ul>
       <ul class="mainNavbar-right">
@@ -57,19 +58,19 @@
         <li class="cartIcon" data-ng-show="cartIconShown() === 3"><img data-ng-src="images/my_design_page/cartIcon/cart_total_3.png" width="17" alt="cartIcon"> </li>
         <li class="loginButton" data-ng-if="!user.isLoggedIn()">
           <div ng-mouseover="windowPop = true" ng-mouseleave="windowPop = false" class="login">
-            <div class="loginText">LOG IN</div>
+            <div class="loginText medium">LOG IN</div>
             <div ng-show="windowPop" class="window">
-              <p class="oswald fifteen">EMAIL ADDRESS</p>
+              <p class="oswald fifteen book">EMAIL ADDRESS</p>
               <input type="text" data-ng-model="loginModel.email"/>
 
-              <p class="oswald fifteen">PASSWORD</p>
+              <p class="oswald fifteen book">PASSWORD</p>
               <input type="password" data-ng-model="loginModel.password"/>
 
               <div class="login-optionrow">
-                <span data-ng-click="recoverPassword()" class="roboto ten grey-slanted">Forgot password</span> <span data-ng-click="register()" class="roboto thick fifteen">Register >></span>
+                <span data-ng-click="recoverPassword()" class="roboto ten grey-slanted book">Forgot password</span> <span data-ng-click="register()" class="roboto thick fifteen book">Register >></span>
               </div>
               <div class="login-button" data-ng-click="login()">
-                <p><strong>LOG IN >></strong></p>
+                <p class="medium">LOG IN >></p>
               </div>
             </div>
           </div>

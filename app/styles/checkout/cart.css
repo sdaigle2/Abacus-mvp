@@ -501,5 +501,11 @@ a:hover{
 
 }
 
+div{
+  font-family: var(--main-font);
+}
+h4{
+  font-size:15px;
+}
 
 

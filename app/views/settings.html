@@ -6,28 +6,28 @@
 <div class="appBody">
 
   <div class="settingsHeader">
-    <div class="settingsHeaderTitle">SETTINGS <i class="fa fa-cog"></i></div>
+    <div class="settingsHeaderTitle medium">SETTINGS <i class="fa fa-cog"></i></div>
   </div>
 
-  <!--- SIDEBAR --->
+  <!-- SIDEBAR -->
   <div class="settingsSidebar">
     <ul class="settingsSidebarOptions">
 
-      <li class="settingsSidebarOption" id="settingsSidebarOrdersOption"
+      <li class="settingsSidebarOption book" id="settingsSidebarOrdersOption"
           ng-click="setContentSection(ContentSection.ORDERS)"
-          ng-class="{ 'active' : getContentSection() === ContentSection.ORDERS}">
+          ng-class="{ 'active' : getContentSection() === ContentSection.ORDERS} ">
         <i class="fa fa-list"></i>&nbsp; MY ORDERS
       </li>
       <li class="settingsSidebarOptionDivider"></li>
 
-      <li class="settingsSidebarOption" id="settingsSidebarAccountOption"
+      <li class="settingsSidebarOption book" id="settingsSidebarAccountOption"
           ng-click="setContentSection(ContentSection.ACCOUNT)"
           ng-class="{ 'active' : getContentSection() === ContentSection.ACCOUNT}">
         <i class="fa fa-user"></i>&nbsp; MY ACCOUNT
       </li>
       <li class="settingsSidebarOptionDivider"></li>
 
-      <li class="settingsSidebarOption" id="settingsSidebarMeasurementsOption"
+      <li class="settingsSidebarOption book" id="settingsSidebarMeasurementsOption"
           ng-click="setContentSection(ContentSection.MEASUREMENTS)"
           ng-class="{ 'active' : getContentSection() === ContentSection.MEASUREMENTS}">
         <i class="fa fa-wrench"></i>&nbsp; MY MEASUREMENTS
@@ -38,7 +38,7 @@
 
     <div class="settingsSidebarButtons"
          ng-class="{'showSettingsSidebarButtons' : getContentSection() !== ContentSection.ORDERS, 'hideSettingsSidebarButtons' : getContentSection() === ContentSection.ORDERS}">
-      <button class="settingsSidebarButton"
+      <button class="settingsSidebarButton medium"
               id="settingsSidebarSaveButton"
               data-ng-click="save()">SAVE &gt;&gt;</button>
     </div>
@@ -56,22 +56,22 @@
 
       <div class="settingsContentInputSection">
         <form action="" id="settingsContentForm-contact">
-          <div class="settingsContentSectionTitle">Contact Information</div>
+          <div class="settingsContentSectionTitle book">Contact Information</div>
           <ul>
             <li>
-              <label for="settingsContentInput-contact-firstName">First Name</label>
+              <label for="settingsContentInput-contact-firstName book">First Name</label>
               <input id="settingsContentInput-contact-firstName" name="firstName" type="text" data-ng-model="accountModel.fName" />
             </li>
             <li>
-              <label for="settingsContentInput-contact-lastName">Last Name</label>
+              <label for="settingsContentInput-contact-lastName book">Last Name</label>
               <input id="settingsContentInput-contact-lastName" name="lastName" type="text" data-ng-model="accountModel.lName" />
             </li>
             <li>
-              <label for="settingsContentInput-contact-email">Email Address</label>
+              <label for="settingsContentInput-contact-email book">Email Address</label>
               <input id="settingsContentInput-contact-email" name="email" type="text" data-ng-model="accountModel.email" />
             </li>
             <li>
-              <label for="settingsContentInput-contact-phone">Phone</label>
+              <label for="settingsContentInput-contact-phone book">Phone</label>
               <input id="settingsContentInput-contact-phone" name="phone" type="text" data-ng-model="accountModel.phone" />
             </li>
           </ul>
@@ -80,26 +80,26 @@
 
       <div class="settingsContentInputSection">
         <form action="" id="settingsContentForm-shipping">
-          <div class="settingsContentSectionTitle">Shipping Address</div>
+          <div class="settingsContentSectionTitle book">Shipping Address</div>
           <ul>
             <li>
-              <label for="settingsContentInput-shipping-streetAddress">Street Address</label>
+              <label for="settingsContentInput-shipping-streetAddress book">Street Address</label>
               <input id="settingsContentInput-shipping-streetAddress" name="streetAddress" type="text" data-ng-model="accountModel.addr" />
             </li>
             <li>
-              <label for="settingsContentInput-shipping-streetAddress2">Street Address 2</label>
+              <label for="settingsContentInput-shipping-streetAddress2 book">Street Address 2</label>
               <input id="settingsContentInput-shipping-streetAddress2" name="streetAddress2" type="text" data-ng-model="accountModel.addr2" />
             </li>
             <li>
-              <label for="settingsContentInput-shipping-city">City</label>
+              <label for="settingsContentInput-shipping-city book">City</label>
               <input id="settingsContentInput-shipping-city" name="city" type="text" data-ng-model="accountModel.city" />
             </li>
             <li>
-              <label for="settingsContentInput-shipping-state">State</label>
+              <label for="settingsContentInput-shipping-state book">State</label>
               <input id="settingsContentInput-shipping-state" name="state" type="text" data-ng-model="accountModel.state" />
             </li>
             <li>
-              <label for="settingsContentInput-shipping-zip">Zip Code</label>
+              <label for="settingsContentInput-shipping-zip book">Zip Code</label>
               <input id="settingsContentInput-shipping-zip" name="zip" type="text" data-ng-model="accountModel.zip" />
             </li>
           </ul>
@@ -108,18 +108,18 @@
 
       <div class="settingsContentInputSection">
         <form action="" id="settingsContentForm-password">
-          <div class="settingsContentSectionTitle">Change Password</div>
+          <div class="settingsContentSectionTitle book">Change Password</div>
           <ul>
             <li>
-              <label for="settingsContentInput-password-oldPassword">Current Password</label>
+              <label for="settingsContentInput-password-oldPassword book">Current Password</label>
               <input id="settingsContentInput-password-oldPassword" name="oldPassword" type="password" data-ng-model="accountModel.oldPass" />
             </li>
             <li>
-              <label for="settingsContentInput-password-newPassword">New Password</label>
+              <label for="settingsContentInput-password-newPassword book">New Password</label>
               <input id="settingsContentInput-password-newPassword" name="newPassword" type="password" data-ng-model="accountModel.newPass1" />
             </li>
             <li>
-              <label for="settingsContentInput-password-passwordConfirm">Confirm New Password</label>
+              <label for="settingsContentInput-password-passwordConfirm book">Confirm New Password</label>
               <input id="settingsContentInput-password-passwordConfirm" name="passwordConfirm" type="password" data-ng-model="accountModel.newPass2" />
             </li>
           </ul>
@@ -137,8 +137,8 @@
           <img class="settingsOrdersContentItem-image" src="../images/mainpic.png" alt="Wheelchair"/>
           <div class="settingsOrdersContentItemMid">
             <div class="settingsOrdersContentItem-name" data-ng-bind="o.orderNum"></div>
-            <div class="settingsOrdersContentItem-date">Order Placed: <span data-ng-bind="o.sentDate.toLocaleDateString()"></span></div>
-            <button class="settingsOrdersContentItem-detailsButton"
+            <div class="settingsOrdersContentItem-date book">Order Placed: <span data-ng-bind="o.sentDate.toLocaleDateString()"></span></div>
+            <button class="settingsOrdersContentItem-detailsButton book"
                     data-ng-click="openOrderDetails($index)">View Order Details <i class="fa fa-arrow-circle-down"></i></button>
           </div>
           <div class="settingsOrdersContentItem-cost">$<span data-ng-bind="o.getTotalCost().toFixed(2)"></span></div>
@@ -155,20 +155,24 @@
 
       <div class="settingsContentInputSection">
         <form action="" id="settingsContentForm-measurements">
-          <div class="settingsContentSectionTitle">My Measurements</div>
+          <div class="settingsContentSectionTitle book">My Measurements</div>
           <ul>
             <li data-ng-repeat="(m, val) in MeasurementTypes"> <!-- TODO: Angularize (ng-repeat) using $scope.measOptions -->
               <label ng-click="setMeasurementType(val)"
                      ng-class="{'active' : getMeasurementType() === val}">
                      <span data-ng-bind="measDisplay[val].name"></span> <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
-              <select data-ng-options="o for o in measDisplay[val].options" data-ng-model="measDisplay[val].optionSelected"></select>
+              <select class="sexy-toggle" data-ng-options="o for o in measDisplay[val].options" data-ng-model="measDisplay[val].optionSelected"></select>
             </li>
           </ul>
           <div>
-            <h6>Unit System</h6>
-            <select data-ng-model="curUnitSys"
-                    data-ng-options="sys.enumVal as sys.name for sys in unitSysList" />
+            <h6 class="medium">Unit</h6>
+            <!-- Fix Me -->
+            <input type="checkbox"  class="sexy-checkbox" data-ng-model="curUnitSys"
+                    data-ng-options="sys.enumVal as sys.name for sys in unitSysList"  > Metric<br>
+            <input type="checkbox"  class="sexy-checkbox" data-ng-model="curUnitSys"
+                    data-ng-options="sys.enumVal as sys.name for sys in unitSysList"  > Imperial<br>
+           
           </div>
         </form>
       </div>
