@@ -39,10 +39,10 @@ var orders = cloudant.use('orders');
 var tempUser = cloudant.use('temp');
 
 //Email
-var sendgrid  = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
-var email     = new sendgrid.Email({
-  from:     'do-not-reply@abacus.fit',
-  subject:  'Abacus Registration'
+var sendgrid = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
+var email = new sendgrid.Email({
+  from: 'do-not-reply@abacus.fit',
+  subject: 'Abacus Registration'
 });
 
 //HTML to pdf
@@ -102,8 +102,8 @@ app.post('/login', function (req, res) {
   });
 });
 
-app.post('/logout', restrict, function(req, res){
-  req.session.destroy(function(){
+app.post('/logout', restrict, function (req, res) {
+  req.session.destroy(function () {
     res.send('success');
   });
 });
@@ -122,11 +122,10 @@ app.post('/register', function (req, res) {
     password: req.body.password,
     unitSys: 0
   };
-  if(!check(data)){
-    res.json({err:'evil input'});
+  if (!check(data)) {
+    res.json({err: 'evil input'});
   }
-  else
-  if(req.body.password !== req.body.confirm){
+  else if (req.body.password !== req.body.confirm) {
     res.json({err: 'passwords do not match'});
   }
   else
@@ -144,37 +143,36 @@ app.post('/register', function (req, res) {
             res.json({'success': true});
           });
         });
-      });
-    }
-    else
-      res.json({err: 'user already exists'});
-  });
+      }
+      else
+        res.json({err: 'user already exists'});
+    });
 });
 
-app.post('/confirm', function(req, res){
+app.post('/confirm', function (req, res) {
   var id = req.body.id;
   console.log(id);
-  tempUser.get(id, function(err, body){
-    if(err){
+  tempUser.get(id, function (err, body) {
+    if (err) {
       res.json(err);
     }
-    else{
-      console.log(body);
+    else {
       var rev = body._rev;
+      var email = body.email;
       delete body._id;
       delete body._rev;
-      users.insert(body, body.email, function(err, body){
-        if(err){
+      users.insert(body, body.email, function (err, body) {
+        if (err) {
           res.json(err);
         }
         else
-        tempUser.destroy(id, rev, function(err){
-          if(err){
-            res.json(err);
-          }
-          else
-          res.json("Success");
-        });
+          tempUser.destroy(id, rev, function (err) {
+            tempUser.get(email, function (err, body) {
+              tempUser.destroy(email, body._rev, function (err) {
+                res.json("Success");
+              });
+            });
+          });
       });
     }
   });
@@ -197,11 +195,11 @@ update = function (obj, key, password, callback) {
   });
 };
 
-app.post('/order', function(req, res){
+app.post('/order', function (req, res) {
   delete req.body.order.orderNum;
   var html = req.body.page;
 
-  orders.insert(req.body.order, function (err, body){
+  orders.insert(req.body.order, function (err, body) {
     //pdf(html, { pageSize: 'letter', output:'out.pdf'});
 
     res.send(body.id);

@@ -30,7 +30,6 @@ angular.module('abacuApp')
       $scope.imageDisplay1 = false;
 
 
-
       //A reference to User.curEditOrder (set during init())
       var curOrder = null;
       $scope.orderChairs;
@@ -46,7 +45,7 @@ angular.module('abacuApp')
           getParts($scope.wheelchairs[i].getFrameID());
         }
 
-        for (var j = $scope.wheelchairs.length; j < 3; j++){
+        for (var j = $scope.wheelchairs.length; j < 3; j++) {
           $scope.emptyCols.push({});
         }
 
@@ -56,22 +55,22 @@ angular.module('abacuApp')
         var frame = FrameData.getFrame(fID);
         var parts = frame.getParts();
         for (var i = 0; i < parts.length; i++) {
-          if(!inPartsArray(parts[i])){
+          if (!inPartsArray(parts[i])) {
             $scope.parts.push(parts[i]);
           }
         }
       }
 
-      function inPartsArray(part){
-        for(var i=0; i < $scope.parts.length; i++){
-          if(part.getName()===$scope.parts[i].getName()){
+      function inPartsArray(part) {
+        for (var i = 0; i < $scope.parts.length; i++) {
+          if (part.getName() === $scope.parts[i].getName()) {
             return true;
           }
         }
         return false;
       }
 
-      $scope.panelSelected = function(hoveritem, index, part){
+      $scope.panelSelected = function (hoveritem, index, part) {
         return hoveritem.index === index && hoveritem.name === part.getName();
       };
       /********************CART ITEM BUTTONS******************************/
@@ -113,12 +112,10 @@ angular.module('abacuApp')
 
       //Adds the selected wheelchair to curOrder
       $scope.addWheelchairToOrder = function (index) {
-        /*
-         if ($scope.wheelchairs[index].allMeasuresSet() === false) {
-         alert('All measurements must be set before this can be purchased');
-         return;
-         }
-         */
+        if ($scope.wheelchairs[index].allMeasuresSet() === false) {
+          alert('All measurements must be set before this can be purchased');
+          return;
+        }
         curOrder.addWheelchair($scope.wheelchairs[index]);
         $scope.wInOrder[index] = true;
         $scope.wOrderIndex[index] = curOrder.getNumWheelchairs() - 1;
@@ -172,7 +169,7 @@ angular.module('abacuApp')
         return curOrder.getNumWheelchairs() > 0;
       };
 
-      $scope.toggleImageDisplay = function(){
+      $scope.toggleImageDisplay = function () {
         $scope.imageDisplay1 = !$scope.imageDisplay1;
       };
 

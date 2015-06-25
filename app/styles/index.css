@@ -195,9 +195,7 @@ body {
 .login .loginText{
   padding: 20px 15px;
   color: #FFF;
-  font-family: "Oswald",sans-serif;
   font-size: 14px;
-  font-weight: 400;
   text-transform: Uppercase;
   letter-spacing: 1px;
   border-right: 1px solid rgb(119, 119, 119);
@@ -326,4 +324,101 @@ body {
 
 .ng-cloak{
   display: none;
+}
+
+
+/* FONTS AND STDS*/
+:root{
+	--main-font: 'Gotham A', 'Gotham B';
+	--narrow-font: 'Gotham Narrow A','Gotham Narrow B';
+	--light-mint: "#88cbc3";
+	--darker-mint: "#00a8ac";
+	--very-light-grey: "#EAEAEA";
+	--light-grey:"#939597";
+}
+
+.light{
+	font-family: var(--main-font) ;
+	font-weight: 300;
+	font-style: normal;
+}
+
+.book{
+	font-family: var(--main-font) ;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.book-italic{
+	font-family: var(--main-font) ;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.medium{
+	font-family: var(--main-font) ;
+	font-weight: 500;
+	font-style: normal;
+}
+
+.medium-italic{
+	font-family: var(--main-font) ;
+	font-weight: 500;
+	font-style: italic;
+}
+
+.bold{
+	font-family: var(--main-font) ;
+	font-weight: 500;
+	font-style: normal;
+}
+
+.narrow-light{
+	font-family: var(--narrow-font) ;
+	font-weight: 300;
+	font-style: normal;
+}
+
+.narrow-book{
+	font-family: var(--narrow-font) ;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.narrow-book-italic{
+	font-family: var(--narrow-font) ;
+	font-weight: 400;
+	font-style: italic;
+}
+
+.narrow-medium{
+	font-family: var(--narrow-font) ;
+	font-weight: 500;
+	font-style: normal;
+}
+
+.narrow-medium-italic{
+	font-family: var(--narrow-font) ;
+	font-weight: 500;
+	font-style: italic;
+}
+
+.narrow-bold{
+	font-family: var(--narrow-font) ;
+	font-weight: 500;
+	font-style: normal;
+}
+
+.sexy-toggle{
+	border-radius: 0px;
+	-moz-appearance: none;
+	background: url("../images/icons/dropdown.svg") no-repeat scroll 100% top / 20px 20px #FFF;
+	color: #666;
+	width: 75px;
+	font-size: 9pt;
+	border: 1px solid #939597;
+}
+
+div{
+	font-family: var(--main-font);
 }
