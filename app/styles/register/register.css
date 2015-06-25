@@ -40,8 +40,8 @@
   margin-top: 5px;
 }
 
-.form-last{
-  float: right;
+.form-first{
+  margin-right:54px;
 }
 
 #register-div #settingContentForm-shipping{

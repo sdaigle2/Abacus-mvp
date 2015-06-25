@@ -1,4 +1,4 @@
-<link href="styles/register.css" rel="stylesheet"/>
+<link href="../../styles/register/register.css" rel="stylesheet"/>
 <div id="wrapper">
   <h3><strong>REGISTER</strong></h3>
   <div>
@@ -7,12 +7,12 @@
         <img class="img-circle" data-ng-src="images/register_page/circle_one.png">
 
         <div class="settingsContentSectionTitle">Account Information</div>
-        <div class="form-group form-inline">
+        <div class="form-group form-inline form-first">
           <label for="settingsContentInput-contact-firstName">First Name</label><br>
           <input id="settingsContentInput-contact-firstName" name="firstName" type="text"
                  class="form-control" data-ng-model="accountModel.fName"/>
         </div>
-        <div class="form-group form-inline form-last">
+        <div class="form-group form-inline">
           <label for="settingsContentInput-contact-lastName">Last Name</label><br>
           <input id="settingsContentInput-contact-lastName" name="lastName" type="text"
                  class="form-control" data-ng-model="accountModel.lName"/>
@@ -22,12 +22,12 @@
           <input id="settingsContentInput-contact-email" name="email" type="email" class="form-control"
                  data-ng-model="accountModel.email"/>
         </div>
-        <div class="form-group form-inline">
+        <div class="form-group form-inline form-first">
           <label for="settingsContentInput-contact-pass">Password</label><br>
           <input id="settingsContentInput-contact-pass" name="password" type="password"
                  class="form-control" data-ng-model="accountModel.password"/>
         </div>
-        <div class="form-group form-inline form-last">
+        <div class="form-group form-inline">
           <label for="settingsContentInput-contact-confirm">Confirm Password</label><br>
           <input id="settingsContentInput-contact-confirm" name="password" type="password"
                  class="form-control" data-ng-model="accountModel.confirm"/>
