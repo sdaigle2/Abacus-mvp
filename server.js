@@ -36,7 +36,14 @@ app.use(session({
 var cloudant = require('cloudant')({account: process.env.CLOUDANT_USERNAME, password: process.env.CLOUDANT_PASSWORD});
 var users = cloudant.use('users');
 var orders = cloudant.use('orders');
+var tempUser = cloudant.use('temp');
 
+//Email
+var sendgrid  = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
+var email     = new sendgrid.Email({
+  from:     'do-not-reply@abacus.fit',
+  subject:  'Abacus Registration'
+});
 
 //HTML to pdf
 var fs = require('fs');
@@ -130,12 +137,46 @@ app.post('/register', function (req, res) {
         // store the salt & hash in the "db"
         data.salt = salt;
         data.password = hash;
-        users.insert(data, data.email);
-        res.json({'success': true});
+        tempUser.insert(data, function (err, body) {
+          email.to = data.email;
+          email.text = 'Thank you for registering an account with Abacus. Click on this link finish creating your account. http://localhost:8080/#/confirm/'+body.id;
+          sendgrid.send(email, function (err, json) {
+            res.json({'success': true});
+          });
+        });
       });
     }
     else
       res.json({err: 'user already exists'});
+  });
+});
+
+app.post('/confirm', function(req, res){
+  var id = req.body.id;
+  console.log(id);
+  tempUser.get(id, function(err, body){
+    if(err){
+      res.json(err);
+    }
+    else{
+      console.log(body);
+      var rev = body._rev;
+      delete body._id;
+      delete body._rev;
+      users.insert(body, body.email, function(err, body){
+        if(err){
+          res.json(err);
+        }
+        else
+        tempUser.destroy(id, rev, function(err){
+          if(err){
+            res.json(err);
+          }
+          else
+          res.json("Success");
+        });
+      });
+    }
   });
 });
 

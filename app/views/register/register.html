@@ -1,4 +1,4 @@
-<link href="styles/register.css" rel="stylesheet"/>
+<link href="../../styles/register/register.css" rel="stylesheet"/>
 <div id="wrapper">
   <h3 class='bold'>REGISTER</h3>
   <div>
@@ -6,6 +6,7 @@
       <form action="" id="settingsContentForm-contact">
         <img class="img-circle" data-ng-src="images/register_page/circle_one.png">
 
+<<<<<<< HEAD:app/views/register.html
         <div class="settingsContentSectionTitle book">Account Information</div>
         <div class="form-group form-inline">
           <label for="settingsContentInput-contact-firstName book">First Name</label><br>
@@ -14,6 +15,16 @@
         </div>
         <div class="form-group form-inline form-last">
           <label for="settingsContentInput-contact-lastName book">Last Name</label><br>
+=======
+        <div class="settingsContentSectionTitle">Account Information</div>
+        <div class="form-group form-inline form-first">
+          <label for="settingsContentInput-contact-firstName">First Name</label><br>
+          <input id="settingsContentInput-contact-firstName" name="firstName" type="text"
+                 class="form-control" data-ng-model="accountModel.fName"/>
+        </div>
+        <div class="form-group form-inline">
+          <label for="settingsContentInput-contact-lastName">Last Name</label><br>
+>>>>>>> 15b1df728ca395bea1a8a485b0710912976d92f9:app/views/register/register.html
           <input id="settingsContentInput-contact-lastName" name="lastName" type="text"
                  class="form-control" data-ng-model="accountModel.lName"/>
         </div>
@@ -22,6 +33,7 @@
           <input id="settingsContentInput-contact-email" name="email" type="email" class="form-control"
                  data-ng-model="accountModel.email"/>
         </div>
+<<<<<<< HEAD:app/views/register.html
         <div class="form-group form-inline">
           <label for="settingsContentInput-contact-pass book">Password</label><br>
           <input id="settingsContentInput-contact-pass" name="password" type="password"
@@ -29,6 +41,15 @@
         </div>
         <div class="form-group form-inline form-last">
           <label for="settingsContentInput-contact-confirm book">Confirm Password</label><br>
+=======
+        <div class="form-group form-inline form-first">
+          <label for="settingsContentInput-contact-pass">Password</label><br>
+          <input id="settingsContentInput-contact-pass" name="password" type="password"
+                 class="form-control" data-ng-model="accountModel.password"/>
+        </div>
+        <div class="form-group form-inline">
+          <label for="settingsContentInput-contact-confirm">Confirm Password</label><br>
+>>>>>>> 15b1df728ca395bea1a8a485b0710912976d92f9:app/views/register/register.html
           <input id="settingsContentInput-contact-confirm" name="password" type="password"
                  class="form-control" data-ng-model="accountModel.confirm"/>
         </div>

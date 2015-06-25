@@ -80,10 +80,12 @@ div.images {
 
 .invoice-label {
   font-weight: bold;
+  width: 15%;
 }
 
 .value {
   padding-left: 11px;
+  word-wrap: break-word;
 }
 
 h2 {
@@ -93,21 +95,6 @@ h2 {
 .front-page-disp {
   height: 33%;
   position: absolute;
-}
-
-.first-image {
-  top: 0;
-  left: 0;
-}
-
-.second-image {
-  top: 33%;
-  left: 0;
-}
-
-.third-image {
-  top: 66%;
-  left: 0;
 }
 
 .footer {
@@ -159,6 +146,7 @@ h3 {
 }
 
 table {
+  table-layout: fixed;
   border-spacing: 0;
   width: 100%;
   border-collapse: collapse;
@@ -254,14 +242,16 @@ p.selection {
   margin-left: 52px;
 }
 
-img.frame_img {
+canvas.frame_img {
   width: 187px;
+  height: 143px;
   margin-bottom: 15px;
   position: absolute;
 }
 
-img.frame_img_wheel {
+canvas.frame_img_wheel {
   width: 187px;
+  height: 143px;
   margin-bottom: 0;
   position: absolute;
 }
@@ -320,26 +310,20 @@ canvas{
   z-index: 3;
   background-color: white;
   width: 264px;
-  height: 200px;
 }
 
-#chair1{
-    margin-top: 215px;
+#chair0, .first-image{
+  left: 0;
+  top: 0;
 }
 
-#chair2{
-    margin-top: 420px;
+#chair1, .second-image{
+  left: 0;
+  top: 33%;
 }
 
-#chair3{
-      margin-top: 870px;
-      margin-left: -220px;
-      width: 220px;
-      height: 150px;
+#chair2, .third-image{
+  left: 0;
+  top: 66%;
 }
 
-#chair4{
-      margin-top: 1060px;
-      margin-left: -220px;
-      width: 220px;
-}

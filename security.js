@@ -2,6 +2,8 @@
  * Created by Dhruv on 6/16/2015.
  */
 var crypto = require('crypto');
+var addressValidator = require('address-validator');
+var Address = addressValidator.Address;
 var len = 128;
 var iterations = 12000;
 
@@ -30,12 +32,33 @@ function typeCheck(userData){
     return false;
   if(typeof userData.city !== 'string')
     return false;
-  if(typeof userData.state !== 'string')
-    return false;
   if(typeof userData.zip !== 'string')
     return false;
   if(typeof userData.password !== 'string')
     return false;
+  return true;
+}
+
+function addressCheck(userData){
+  var address = new Address({
+    street: userData.addr,
+    city: userData.city,
+    state: userData.state,
+    country: 'US'
+  });
+  addressValidator.validate(address, validator.match.streetAddress, function(err, exact, inexact){
+    console.log('input: ', address.toString())
+    console.log('match: ', _.map(exact, function(a) {
+      return a.toString();
+    }));
+    console.log('did you mean: ', _.map(inexact, function(a) {
+      return a.toString();
+    }));
+
+    //access some props on the exact match
+    var first = exact[0];
+    console.log(first.streetNumber + ' '+ first.street);
+  });
   return true;
 }
 
@@ -60,5 +83,7 @@ exports.hash = function (pwd, salt, fn) {
 exports.check = function(userData) {
   if(!typeCheck(userData))
     return false;
+  //if(!addressCheck(userData))
+  //  return false;
   return true;
 };

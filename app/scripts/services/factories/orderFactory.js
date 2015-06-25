@@ -240,8 +240,6 @@ angular.module('abacuApp')
         this.payMethod = payMethod;
         this.sentDate = new Date(); //Set date to now - doing this marks this Order as "sent"
 
-        //Fake asyncronous call - TODO: Replace with actual asyncronous call
-        //TODO: Send order into database
         $http   ({
           url: '/order',
           data: {order: this.getAll(), page: document.documentElement.outerHTML},

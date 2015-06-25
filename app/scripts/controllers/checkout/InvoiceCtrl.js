@@ -12,7 +12,7 @@
 angular.module('abacuApp')
   .controller('InvoiceCtrl', ['$scope', '$location', 'User', 'FrameData', 'Angles', 'Units', function ($scope, $location, User, FrameData, Angles, Units) {
     var order = User.getLastOrder();
-    $scope.name = User.getFullName();
+    $scope.name = order.getFullName();
     $scope.wheelchairs = order.getWheelchairs();
     $scope.orderNum = order.getOrderNum();
     $scope.topImageSets = [];
@@ -30,17 +30,15 @@ angular.module('abacuApp')
     $scope.total = order.getTotalCost().toFixed(2);
     $scope.frameParts = [];
     $scope.wheelParts = [];
+    $scope.location = $location;
 
-    
-
-
-    function getFrame(wheelchair){
+    function getFrame(wheelchair) {
       var frameID = wheelchair.getFrameID();
       return FrameData.getFrame(frameID);
     }
 
-    function getImageSets(){
-      for(var i=0; i<$scope.wheelchairs.length; i++){
+    function getImageSets() {
+      for (var i = 0; i < $scope.wheelchairs.length; i++) {
         $scope.topImageSets.push($scope.wheelchairs[i].getPreviewImages(Angles.angleType.BACKRIGHT));
         $scope.midImageSets.push($scope.wheelchairs[i].getPreviewImages(Angles.angleType.FRONTRIGHT));
         $scope.botImageSets.push($scope.wheelchairs[i].getPreviewImages(Angles.angleType.RIGHT));
@@ -48,20 +46,19 @@ angular.module('abacuApp')
         $scope.frameImageSets.push($scope.wheelchairs[i].getFrameImages(Angles.angleType.FRONTRIGHT));
       }
       $scope.invoice_canvas_images = new Array(
-                                                  $scope.topImageSets,
-                                                  $scope.midImageSets,
-                                                  $scope.botImageSets,
-                                                  $scope.frameImageSets,
-                                                  $scope.wheelImageSets
-                                                  
-                                              );
+        $scope.topImageSets,
+        $scope.midImageSets,
+        $scope.botImageSets,
+        $scope.frameImageSets,
+        $scope.wheelImageSets
+      );
     }
 
-    function getMeasurements(){
-      for(var i=0; i<$scope.wheelchairs.length; i++){
+    function getMeasurements() {
+      for (var i = 0; i < $scope.wheelchairs.length; i++) {
         var measures = $scope.wheelchairs[i].getMeasures();
         var newMeasures = [];
-        for(var j=0; j<measures.length; j++){
+        for (var j = 0; j < measures.length; j++) {
           var newMeasure = $scope.wheelchairs[i].getMeasureDetails(measures[j].measureID, Units.unitSys.IMPERIAL);
           newMeasures.push(newMeasure);
         }
@@ -71,10 +68,10 @@ angular.module('abacuApp')
 
 
     function getFrameParts() {
-      for(var i=0; i<$scope.wheelchairs.length; i++){
+      for (var i = 0; i < $scope.wheelchairs.length; i++) {
         var frame = getFrame($scope.wheelchairs[i]);
         var customizeDetails = [];
-        for(var j=0; j<frame.getWheelIndex(); j++){
+        for (var j = 0; j < frame.getWheelIndex(); j++) {
           var partDetails = $scope.wheelchairs[i].getPartDetails(frame.getPartByIndex(j).getID(), 0);
           customizeDetails.push(partDetails);
         }
@@ -83,10 +80,10 @@ angular.module('abacuApp')
     }
 
     function getWheelParts() {
-      for(var i=0; i<$scope.wheelchairs.length; i++){
+      for (var i = 0; i < $scope.wheelchairs.length; i++) {
         var frame = getFrame($scope.wheelchairs[i]);
         var customizeDetails = [];
-        for(var j=frame.getWheelIndex(); j<frame.getNumParts(); j++){
+        for (var j = frame.getWheelIndex(); j < frame.getNumParts(); j++) {
           var partDetails = $scope.wheelchairs[i].getPartDetails(frame.getPartByIndex(j).getID(), 0);
           customizeDetails.push(partDetails);
         }
@@ -99,36 +96,39 @@ angular.module('abacuApp')
     getFrameParts();
     getWheelParts();
 
-    $scope.getManufacturer = function(wheelchair){
+    $scope.getManufacturer = function (wheelchair) {
       var frame = getFrame(wheelchair);
       return frame.getManufacturer();
     };
 
-    $scope.getBasePrice = function(wheelchair){
+    $scope.getBasePrice = function (wheelchair) {
       var frame = getFrame(wheelchair);
-      return '$'+frame.getBasePrice();
+      return '$' + frame.getBasePrice();
     };
 
-    $scope.getModel = function(wheelchair){
+    $scope.getModel = function (wheelchair) {
       var frame = getFrame(wheelchair);
       return frame.getName();
     };
 
-    $scope.getBaseWeight = function(wheelchair){
+    $scope.getBaseWeight = function (wheelchair) {
       var frame = getFrame(wheelchair);
-      return frame.getBaseWeight()+'lb';
+      return frame.getBaseWeight() + 'lb';
     };
-
-    $scope.onloadCanvas= function(id){       
-       var canvas_images = $scope.invoice_canvas_images[id][0];
-       var stack = new Array();
-       for(var i=0; i<canvas_images.length; i++){
-          stack.push(canvas_images[i].URL);
-       }
-       var canvas = "chair"+id;
-       var canv = document.getElementById(canvas);
-       stackImages( canv, stack, 300, 300);
-    };
-
-
-  }]);
+  }])
+  .directive('myCanvas', function($compile){
+    return function (scope, element, attrs) {
+      console.log(attrs.val);
+      console.log(attrs.index);
+      console.log(element);
+      var canvas_images = scope.invoice_canvas_images[attrs.val][attrs.index];
+      var stack = new Array();
+      for (var i = 0; i < canvas_images.length; i++) {
+        stack.push(canvas_images[i].URL);
+      }
+      if (attrs.val < 3)
+        stackImages(element[0], stack, 264, 201);
+      else
+        stackImages(element[0], stack, 187, 143);
+    }
+  });

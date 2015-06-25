@@ -1,8 +1,8 @@
 // ----------------------------------------
 // Actual game code goes here.
 
-// 
-//Global 
+//
+//Global
 //vars
 
 
@@ -12,9 +12,9 @@
 // ----------------------------------------
 
 function stackImages(canvy, image_dirs, width, height){
-	
+
 	//interval is set so if image fails to load at first it would retry.
-    setInterval(function(){ 
+    setInterval(function(){
 
 	    var ctx = canvy.getContext("2d");
 		//console.log("stacking images");

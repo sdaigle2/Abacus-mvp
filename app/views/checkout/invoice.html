@@ -36,24 +36,22 @@
           </table>
         </div>
         <div class="images">
-          <canvas id='chair0' width='300' height='300' ng-init="onloadCanvas(0)"></canvas>
-          <canvas id='chair1' width='300' height='300' ng-init="onloadCanvas(1)"></canvas>
-          <canvas id='chair2' width='300' height='300' ng-init="onloadCanvas(2)"></canvas>
-          <canvas id='chair3' width='300' height='300' ng-init="onloadCanvas(3)"></canvas>
-          <canvas id='chair4' width='300' height='300' ng-init="onloadCanvas(4)"></canvas>
+          <canvas my-canvas val="0" index="{{$index}}" class="first-image" width="264" height="201.313"></canvas>
+          <canvas my-canvas val="1" index="{{$index}}" class="second-image" width="264" height="201.313"></canvas>
+          <canvas my-canvas val="2" index="{{$index}}" class="third-image" width="264" height="201.313"></canvas>
 
           <!--<img class="front-page-disp first-image"-->
-               <!--ng-repeat="img in topImageSets[$index]"-->
-               <!--ng-src="{{img.URL}}"-->
-               <!--ng-style="{'z-index': $index }"/>-->
+          <!--ng-repeat="img in topImageSets[$index]"-->
+          <!--ng-src="{{img.URL}}"-->
+          <!--ng-style="{'z-index': $index }"/>-->
           <!--<img class="front-page-disp second-image"-->
-               <!--ng-repeat="img in midImageSets[$index]"-->
-               <!--ng-src="{{img.URL}}"-->
-               <!--ng-style="{'z-index': $index }"/>-->
+          <!--ng-repeat="img in midImageSets[$index]"-->
+          <!--ng-src="{{img.URL}}"-->
+          <!--ng-style="{'z-index': $index }"/>-->
           <!--<img class="front-page-disp third-image"-->
-               <!--ng-repeat="img in botImageSets[$index]"-->
-               <!--ng-src="{{img.URL}}"-->
-               <!--ng-style="{'z-index': $index }"/>-->
+          <!--ng-repeat="img in botImageSets[$index]"-->
+          <!--ng-src="{{img.URL}}"-->
+          <!--ng-style="{'z-index': $index }"/>-->
         </div>
       </div>
       <span class="footer">Powered by</span>
@@ -94,12 +92,9 @@
                     </td>
                   </tr>
                   <tr>
-                    <!--<td class="image_holder">-->
-                      <!--<img class="frame_img"-->
-                           <!--ng-repeat="img in frameImageSets[$index]"-->
-                           <!--ng-src="{{img.URL}}"-->
-                           <!--ng-style="{'z-index': $index }"/>-->
-                    <!--</td>-->
+                    <td class="image_holder">
+                      <canvas my-canvas val="3" index="{{$index}}" class="frame_img"></canvas>
+                    </td>
                   </tr>
                 </table>
               </td>
@@ -136,12 +131,9 @@
                     </td>
                   </tr>
                   <tr>
-                    <!--<td class="image_holder">-->
-                      <!--<img class="frame_img_wheel"-->
-                           <!--ng-repeat="img in wheelImageSets[$index]"-->
-                           <!--ng-src="{{img.URL}}"-->
-                           <!--ng-style="{'z-index': $index }"/>-->
-                    <!--</td>-->
+                    <td class="image_holder">
+                      <canvas my-canvas val="4" index="{{$index}}" class="frame_img_wheel"></canvas>
+                    </td>
                   </tr>
                 </table>
               </td>
@@ -192,7 +184,8 @@
                 <p class="description" data-ng-bind="measure.name"></p>
 
                 <p class="description-result">
-                  <span data-ng-bind="measure.optionString"></span> / <span data-ng-bind="measure.altOptionString"></span>
+                  <span data-ng-bind="measure.optionString"></span> / <span
+                  data-ng-bind="measure.altOptionString"></span>
                 </p>
               </div>
             </td>
@@ -331,8 +324,8 @@
 
       var pdf = new jsPDF('p', 'pt', 'letter');
       var canvas = pdf.canvas;
-      canvas.height =  72*11;
-      canvas.width =  72*8.5;
+      canvas.height = 72 * 11;
+      canvas.width = 72 * 8.5;
       // var width = 400;
       html2pdf(document.getElementById("appContainer"), pdf, function (canvas) {
           pdf.save('invoice.pdf');
