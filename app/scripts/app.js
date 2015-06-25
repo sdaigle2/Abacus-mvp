@@ -62,7 +62,7 @@ angular
         controller: 'SaveCtrl'
       })
       .when('/register', {
-        templateUrl: 'views/register.html',
+        templateUrl: 'views/register/register.html',
         controller: 'RegisterCtrl'
       })
       .when('/confirm/:param1', {
