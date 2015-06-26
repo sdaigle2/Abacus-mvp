@@ -53,6 +53,29 @@
         <strong>Pay in advance</strong>
         <br />
       </div>
+      <form id="payment-form" data-ng-show="payForm.method===payMethods.PAYPAL">
+        <span class="payment-errors" data-ng-bind="payment_errors"></span>
+        <div class="form-row">
+          <label>
+            <span>Card Number</span>
+            <input type="text" size="20" data-ng-model="card.number"/>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>CVC</span>
+            <input type="text" size="4" data-ng-model="card.cvc"/>
+          </label>
+        </div>
+        <div class="form-row">
+          <label>
+            <span>Expiration (MM/YYYY)</span>
+            <input type="text" size="2" data-ng-model="card.exp_month"/>
+          </label>
+          <span> / </span>
+          <input type="text" size="4" data-ng-model="card.exp_year"/>
+        </div>
+      </form>
       <div class="order-form" data-ng-show="payForm.method === payMethods.ADVANCE">
         <div class="order-form-header"></div>
         <table class="order-form-table">

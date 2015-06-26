@@ -100,6 +100,7 @@ angular.module('abacuApp')
           state: this.state,
           zip: this.zip,
           paymethod: this.paymethod,
+          total: this.getTotalCost(),
           wheelchairs: tempChairs
         };
       },
@@ -220,7 +221,7 @@ angular.module('abacuApp')
       //This asyncronous funtion takes in various user information
       //and sends the Order to the distibutor with it.
       //This method also saves the Order to the database and marks it as "sent"
-      send: function (userID, userData, shippingData, payMethod) {
+      send: function (userID, userData, shippingData, payMethod, token) {
         var deferred = $q.defer();
 
         //Need a reference to the current scope when inside the callback function
@@ -242,16 +243,20 @@ angular.module('abacuApp')
 
         $http   ({
           url: '/order',
-          data: {order: this.getAll(), page: document.documentElement.outerHTML},
+          data: {order: this.getAll(), token: token},
           method: 'POST'
         }).success(function(data){
           console.log(data);
-          curThis.orderNum = data;
+          if(!data.err)
+            curThis.orderNum = data;
+          else {
+            curThis.orderNum = -1;
+            alert('error processing order:'+ data.err);
+          }
           deferred.resolve();
         });
         return deferred.promise;
       }
-
     };
 
     //Create an order object using data from JSON

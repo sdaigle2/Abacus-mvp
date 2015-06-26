@@ -45,6 +45,9 @@ var email = new sendgrid.Email({
   subject: 'Abacus Registration'
 });
 
+//Payment
+var stripe = require("stripe")("sk_test_KLllqNCMhq2D26Rwgv90jw7N");
+
 //HTML to pdf
 var fs = require('fs');
 var pdf = require('wkhtmltopdf');
@@ -136,14 +139,15 @@ app.post('/register', function (req, res) {
         // store the salt & hash in the "db"
         data.salt = salt;
         data.password = hash;
-        users.insert(data, data.email,function (err, body) {
+        users.insert(data, data.email, function (err, body) {
           email.to = data.email;
           email.text = 'Thank you for registering an account with Abacus.';
           sendgrid.send(email, function (err, json) {
             res.json({'success': true});
           });
         });
-      }
+      });
+    }
       else
         res.json({err: 'user already exists'});
     });
@@ -197,12 +201,23 @@ update = function (obj, key, password, callback) {
 
 app.post('/order', function (req, res) {
   delete req.body.order.orderNum;
-  var html = req.body.page;
-
-  orders.insert(req.body.order, function (err, body) {
-    //pdf(html, { pageSize: 'letter', output:'out.pdf'});
-
-    res.send(body.id);
+  console.log(req.body);
+  var stripeToken = req.body.token;
+  console.log(stripeToken);
+  console.log(Math.round(req.body.order.total * 100));
+  var charge = stripe.charges.create({
+    amount: Math.round(req.body.order.total * 100), // amount in cents, again
+    currency: "usd",
+    source: stripeToken,
+    description: "Example charge"
+  }, function(err, charge) {
+    if (err) {
+      res.json({err: err.type});
+    }
+    else
+      orders.insert(req.body.order, function (err, body) {
+        res.send(body.id);
+      });
   });
 });
 

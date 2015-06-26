@@ -326,14 +326,14 @@ angular.module('abacuApp')
         },
 
         //Sends the curEditOrder to the distributor
-        sendCurEditOrder: function (userData, shippingData, payMethod) {
+        sendCurEditOrder: function (userData, shippingData, payMethod, token) {
           var deferred = $q.defer();
 
           var editOrder = this.getCurEditOrder();
           if (editOrder === null)
             deferred.reject('CurEditOrder does not exist');
 
-          editOrder.send(userID, userData, shippingData, payMethod)
+          editOrder.send(userID, userData, shippingData, payMethod, token)
             .then(function () {
               deferred.resolve();
             }, function (err) {

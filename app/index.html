@@ -108,6 +108,9 @@
 </script>
 
 
+<script src="scripts/jsPDF/libs/FileSaver.js/FileSaver.js"></script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
 <!-- build:js(.) scripts/oldieshim.js -->
 <!--[if lt IE 9]>
 <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -168,7 +171,10 @@
 <script src="scripts/services/constants/costConstants.js"></script>
 
 <script src="scripts/jsPDF/libs/require/require.js"></script>
-<script src="scripts/jsPDF/libs/FileSaver.js/FileSaver.js"></script>
-
+<script type="text/javascript">
+  // This identifies your website in the createToken call below
+  Stripe.setPublishableKey('pk_test_7ape2quK8HrcafwfsYjWDrBh');
+  // ...
+</script>
 </body>
 </html>
