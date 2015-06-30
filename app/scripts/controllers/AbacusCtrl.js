@@ -41,6 +41,8 @@ angular.module('abacuApp')
 
       /**********************Main Variables****************************/
 
+      $scope.left_button = 'left_button.svg';
+      $scope.right_button = 'right_button.svg';
         //All the data about the current frame (loaded by init)
       $scope.curFrameData = null;
 
@@ -394,7 +396,7 @@ angular.module('abacuApp')
       //Sets curPanel to the chosen panel
       //Closes the panel if id and type match curPanel
       $scope.setPanel = function (id, type) {
-       
+
         if ($scope.isPanelSelected(id, type)) {
            curPanel.panelID = -1;
         }

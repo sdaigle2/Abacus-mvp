@@ -23,8 +23,6 @@ body {
   padding: 0;
   width: 100%;
   height: 40px;
-  background-color: #1C1B1A;
-  box-shadow: 0 0 5px 0 rgba(0,0,0,0.8);
   line-height:0;
   font-family: "Oswald" , sans-serif;
   font-weight: 300;
@@ -32,6 +30,8 @@ body {
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
+  border-bottom: solid 2px #eaeaea;
+  background-color: #ffffff;
 }
 
 .mainNavbar-header {
@@ -39,7 +39,7 @@ body {
   height: 100%;
   margin: 0 0 0 5px;
   padding: 3px 5px 0 0;
-  border-right: 1px solid #777;
+  border-right: 2px solid #eaeaea;
 }
 
 .mainNavbar-left {
@@ -64,10 +64,10 @@ body {
 }
 
 .mainNavbar .mainNavbar-left > li.frameNavButton {
-  background-image: url("../images/icons/frames_white.png");
+  background-image: url("../images/icons/frames.png");
 }
 .mainNavbar .mainNavbar-left > li.aboutNavButton {
-  background-image: url("../images/icons/about_us_white.png");
+  background-image: url("../images/icons/about_us.png");
 }
 
 .mainNavbar .mainNavbar-left > li.frameNavButton:hover,
@@ -75,7 +75,7 @@ body {
 .mainNavbar .mainNavbar-left > li.frameNavButton.active,
 .mainNavbar .mainNavbar-left > li.frameNavButton.active:hover,
 .mainNavbar .mainNavbar-left > li.frameNavButton.active:focus {
-  background-image: url("../images/icons/on_frames.png");
+  background-image: url("../images/icons/frames.png");
 }
 .mainNavbar .mainNavbar-left > li.aboutNavButton:hover,
 .mainNavbar .mainNavbar-left > li.aboutNavButton:focus,
@@ -144,7 +144,7 @@ body {
   color: inherit;
 }
 .mainNavbar .mainNavbar-left > li {
-  color: #FFF;
+  color: #000000;
   font-family: "Oswald",sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -158,7 +158,7 @@ body {
 .mainNavbar .mainNavbar-left > .active > a,
 .mainNavbar .mainNavbar-left > .active > a:hover,
 .mainNavbar .mainNavbar-left > .active > a:focus {
-  color: #00A89C;
+  color: #000000;
 }
 
 /* nav bar right styles */
@@ -194,20 +194,18 @@ body {
 
 .login .loginText{
   padding: 20px 15px;
-  color: #FFF;
+  color: #000000;
   font-size: 14px;
   text-transform: Uppercase;
   letter-spacing: 1px;
-  border-right: 1px solid rgb(119, 119, 119);
+  border-right: 2px solid #eaeaea;
 }
 
 .login .window{
   color: #000000;
   background-color: white;
   width: 240px;
-  position: absolute;
-  top: 40px;
-  left: -158px;
+  position: relative;
   line-height: 1.3;
   border: 1px solid black;
   padding: 20px 20px 30px;
@@ -338,73 +336,73 @@ body {
 }
 
 .light{
-	font-family: var(--main-font) ;
+  font-family: 'Gotham A', 'Gotham B';
 	font-weight: 300;
 	font-style: normal;
 }
 
 .book{
-	font-family: var(--main-font) ;
+	font-family: 'Gotham A', 'Gotham B';
 	font-weight: 400;
 	font-style: normal;
 }
 
 .book-italic{
-	font-family: var(--main-font) ;
+	font-family: 'Gotham A', 'Gotham B';
 	font-weight: 400;
 	font-style: italic;
 }
 
 .medium{
-	font-family: var(--main-font) ;
+	font-family: 'Gotham A', 'Gotham B';
 	font-weight: 500;
 	font-style: normal;
 }
 
 .medium-italic{
-	font-family: var(--main-font) ;
+	font-family: 'Gotham A', 'Gotham B';
 	font-weight: 500;
 	font-style: italic;
 }
 
 .bold{
-	font-family: var(--main-font) ;
+	font-family: 'Gotham A', 'Gotham B';
 	font-weight: 500;
 	font-style: normal;
 }
 
 .narrow-light{
-	font-family: var(--narrow-font) ;
+	font-family: 'Gotham Narrow A','Gotham Narrow B';
 	font-weight: 300;
 	font-style: normal;
 }
 
 .narrow-book{
-	font-family: var(--narrow-font) ;
+	font-family: 'Gotham Narrow A','Gotham Narrow B';
 	font-weight: 400;
 	font-style: normal;
 }
 
 .narrow-book-italic{
-	font-family: var(--narrow-font) ;
+	font-family: 'Gotham Narrow A','Gotham Narrow B';
 	font-weight: 400;
 	font-style: italic;
 }
 
 .narrow-medium{
-	font-family: var(--narrow-font) ;
+	font-family: 'Gotham Narrow A','Gotham Narrow B';
 	font-weight: 500;
 	font-style: normal;
 }
 
 .narrow-medium-italic{
-	font-family: var(--narrow-font) ;
+	font-family: 'Gotham Narrow A','Gotham Narrow B';
 	font-weight: 500;
 	font-style: italic;
 }
 
 .narrow-bold{
-	font-family: var(--narrow-font) ;
+	font-family: 'Gotham Narrow A','Gotham Narrow B';
 	font-weight: 500;
 	font-style: normal;
 }
@@ -420,5 +418,27 @@ body {
 }
 
 div{
-	font-family: var(--main-font);
+	font-family: 'Gotham A', 'Gotham B';
 }
+
+.button{
+  width: 342px;
+  display: inline-block;
+  color: #60C2B1;
+  height: 60px;
+  line-height: 60px;
+  margin-top: 30px;
+  text-align: center;
+  font-size: 24px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: solid;
+  border-color: #60C2B1;
+}
+
+.button:hover {
+  background-color: #60C2B1;
+  color: #ffffff;
+  cursor: pointer;
+}
+

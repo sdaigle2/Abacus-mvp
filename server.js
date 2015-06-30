@@ -46,7 +46,7 @@ var email = new sendgrid.Email({
 });
 
 //Payment
-var stripe = require("stripe")("sk_test_KLllqNCMhq2D26Rwgv90jw7N");
+var stripe = require("stripe")(process.env.STRIPE_TKEY);
 
 //HTML to pdf
 var fs = require('fs');

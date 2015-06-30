@@ -37,7 +37,7 @@
 
 /*************************BODY-LEFT (Main)******************************/
 .order-form {
-  font-family: var(--main-font);
+  font-family: 'Gotham A', 'Gotham B';
   margin-bottom: 15px;
 }
 

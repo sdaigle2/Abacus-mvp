@@ -26,7 +26,6 @@
 
 .cartHeading {
   position: relative;
-  border-bottom: 2px solid #000000;
   clear: left;
   float: left;
   margin:30px 25px 0;
@@ -305,17 +304,9 @@ a:hover{
   float: right;
 }
 
-.cartAddButton.inactive {
+.button.inactive {
   background-color: #AAAAAA;
-}
-
-.cartAddButton:hover {
-  background-color: #60C2B1;
-  cursor: pointer;
-}
-
-.cartAddButton.inactive:hover {
-  background-color: #AAAAAA;
+  color: white;
 }
 
 .cartRemoveButton {
@@ -502,7 +493,7 @@ a:hover{
 }
 
 div{
-  font-family: var(--main-font);
+  font-family: 'Gotham A', 'Gotham B';
 }
 h4{
   font-size:15px;

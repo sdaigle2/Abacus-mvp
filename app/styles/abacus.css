@@ -221,7 +221,7 @@ font-weight: 700;
 }
 
 .display-frame {
-  background-color: #60C2B1;
+  background-color: #333333;
   display: inline-block;
   position: relative;
   width: 75%;
@@ -564,6 +564,13 @@ img.rightButtonNav{
   margin-top: -1px;
 }
 
+.leftButtonNav:hover{
+  cursor: pointer;
+}
+
+.rightButtonNav:hover{
+  cursor: pointer;
+}
 
 .sideBar-header h3 img:hover {
   cursor: pointer;
@@ -616,6 +623,7 @@ img.rightButtonNav{
   top: 10px;
   left: 10px;
   border: none;
+  height: 30px;
 }
 
 .sideBar-custom-item-left .colorOptionsIndicator:hover {

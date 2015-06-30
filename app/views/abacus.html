@@ -143,10 +143,14 @@
 
       <div class="sideBar" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
         <div class="sideBar-header text-center">
-          <img class="leftButtonNav" src="images/icons/left_button.svg" alt="Previous" width="30" height="30"
+          <img class="leftButtonNav" data-ng-src="images/icons/{{left_button}}"
+               data-ng-mouseenter="left_button='left_button_hover.svg'" alt="Previous" width="30" height="30"
+               data-ng-mouseleave="left_button='left_button.svg'"
                data-ng-click="pageSwitchStep(-1)"
                data-ng-show="getCurPage().index > 0"/>
-          <img class="rightButtonNav" src="images/icons/right_button.svg" alt="Next" width="30" height="30"
+          <img class="rightButtonNav" data-ng-src="images/icons/{{right_button}}" alt="Next" width="30" height="30"
+               data-ng-mouseenter="right_button='right_button_hover.svg'" alt="Previous" width="30" height="30"
+               data-ng-mouseleave="right_button='right_button.svg'"
                data-ng-click="pageSwitchStep(1)"/>
 
           <h3 class="curPage-header" data-ng-bind="getCurPartData().name"></h3>
@@ -318,9 +322,13 @@
 
       <div class="sideBar" data-ng-show="getCurPageType() == pageType.MEASURE">
         <div class="sideBar-header text-center">
-          <img class="leftButtonNav" src="images/icons/left_button.svg" alt="Previous" width="30" height="30"
+          <img class="leftButtonNav" src="images/icons/{{left_button}}" alt="Previous" width="30" height="30"
+               data-ng-mouseenter="left_button='left_button_hover.svg'" alt="Previous" width="30" height="30"
+               data-ng-mouseleave="left_button='left_button.svg'"
                data-ng-click="pageSwitchStep(-1)"/>
-          <img class="rightButtonNav" src="images/icons/right_button.svg" alt="Next" width="30" height="30"
+          <img class="rightButtonNav" src="images/icons/{{right_button}}" alt="Next" width="30" height="30"
+               data-ng-mouseenter="right_button='right_button_hover.svg'" alt="Previous" width="30" height="30"
+               data-ng-mouseleave="right_button='right_button.svg'"
                data-ng-click="pageSwitchStep(1)"
                data-ng-show="getCurPage().index < getCurPages().length - 1"/>
 
