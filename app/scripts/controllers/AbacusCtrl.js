@@ -371,6 +371,8 @@ angular.module('abacuApp')
       $scope.setCurOption = function (newOptionID) {
         $scope.curEditWheelchair.setOptionForPart($scope.getCurPartData().partID, newOptionID);
         console.log('Changed option');
+        if($scope.curEditWheelchair.getColorIDForPart($scope.getCurPartData().partID) !== 0){
+        $scope.setPanel(newOptionID,$scope.panelTypes.COLOR);}
       };
 
       $scope.setCurOptionColor = function (newColorID) {
@@ -394,14 +396,29 @@ angular.module('abacuApp')
       //Sets curPanel to the chosen panel
       //Closes the panel if id and type match curPanel
       $scope.setPanel = function (id, type) {
-       
-        if ($scope.isPanelSelected(id, type)) {
-           curPanel.panelID = -1;
+        console.log($scope.curEditWheelchair.getFrameID());
+        if(id === -1){
+          if ($scope.isPanelSelected(id, type)) {
+            curPanel.panelID = -1;
+          }
+          else {
+            curPanel.panelID = id;
+          }
+          curPanel.panelType = type;
+          console.log("set");
         }
-        else {
-          curPanel.panelID = id;
+         else if(FrameData.getFramePartOption($scope.curEditWheelchair.getFrameID(),$scope.getCurPartData().partID,id).defaultColorID !== 0
+          || (type !== $scope.panelTypes.COLOR)){
+
+          if ($scope.isPanelSelected(id, type)) {
+            curPanel.panelID = -1;
+          }
+          else {
+            curPanel.panelID = id;
+          }
+          curPanel.panelType = type;
+          console.log("set");
         }
-        curPanel.panelType = type;
       };
 
       //Closes any open panel

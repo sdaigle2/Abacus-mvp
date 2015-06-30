@@ -123,7 +123,8 @@ app.post('/register', function (req, res) {
     state: req.body.state,
     zip: req.body.zip,
     password: req.body.password,
-    unitSys: 0
+    unitSys: 0,
+    orders: []
   };
   if (!check(data)) {
     res.json({err: 'evil input'});
@@ -202,9 +203,11 @@ update = function (obj, key, password, callback) {
 app.post('/order', function (req, res) {
   delete req.body.order.orderNum;
   console.log(req.body);
+
   var stripeToken = req.body.token;
   console.log(stripeToken);
   console.log(Math.round(req.body.order.total * 100));
+
   var charge = stripe.charges.create({
     amount: Math.round(req.body.order.total * 100), // amount in cents, again
     currency: "usd",
@@ -215,9 +218,11 @@ app.post('/order', function (req, res) {
       res.json({err: err.type});
     }
     else
+
       orders.insert(req.body.order, function (err, body) {
         res.send(body.id);
       });
+
   });
 });
 

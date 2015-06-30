@@ -9,7 +9,6 @@
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-  <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7097374/665808/css/fonts.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/frame.css -->
@@ -76,7 +75,7 @@
           </div>
         </li>
         <li ng-mouseover="windowPop = true" ng-mouseleave="windowPop = false"
-            class="settingsButton" data-ng-if="user.isLoggedIn()"><a ng-href="#/settings" ng-bind="user.getFullName()"></a>
+            class="settingsButton" data-ng-if="user.isLoggedIn()"><a ng-href="#/settings" ng-bind="user.getFname()"></a>
           <div ng-mouseover="windowPop = true" ng-mouseleave="windowPop = false" ng-show="windowPop"  class="afterlogin">
             <div ng-click="loginSection('account')"><h4>MY ACCOUNT</h4></div>
             <div ng-click="loginSection('orders')"><h4>MY ORDER</h4></div>
@@ -146,6 +145,7 @@
 <script src="scripts/controllers/HeaderController.js"></script>
 <script src="scripts/controllers/SaveCtrl.js"></script>
 <script src="scripts/controllers/register/RegisterCtrl.js"></script>
+<script src="scripts/controllers/register/WelcomeCtrl.js"></script>
 <script src="scripts/controllers/ConfirmCtrl.js"></script>
 
 <!-- endbuild -->

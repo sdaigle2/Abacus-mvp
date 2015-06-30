@@ -1,7 +1,7 @@
 <link href="../../styles/register/welcome.css" rel="stylesheet"/>
 <div id="wrapper">
   <div><h3><strong>Complete</strong></h3></div>
-  <div>Hello, <strong id="username">Sarah</strong>, Welcome to <span class="brand">Abacus</span>!<br>
+  <div>Hello, <strong id="username" data-ng-bind="getName()"></strong>, Welcome to <span class="brand">Abacus</span>!<br>
     Your Account has been created.<br>
     we will send you a confirmation email shortly.<br>
     Please check your email for a code in order to login.<br>
@@ -10,15 +10,14 @@
     <div>On <span class="brand">Abacus</span>,</div>
     <div id="mainText">
       <div class="textBlock">
-        <img src="images/register_page/circle_wheelchair_gradient_one.svg>"
-
+        <img src="images/register_page/circle_wheelchair_gradient_one.png">
           <p>You can create your own wheelchair<br>
           Choose your design, color, material for your wheelchair.<br>
           Have fun with your wheelchair configurator!</p>
 
       </div>
       <div class="textBlock">
-        <img src="images/register_page/circle_wheelchair_gradient_two.svg>"
+        <img src="images/register_page/circle_wheelchair_gradient_two.png">
 
           <p>With <span class="brand">Abacus</span> account<br>
           You will be able to save your design and measurement.<br>
@@ -29,8 +28,8 @@
   </div>
 
   <div id="buttonRow">
-    <div>Go to My Settings</div>
-    <div>Build My Wheelchair</div>
-    <div>Go to My Design</div>
+    <div ng-click="goSettings()">Go to My Settings</div>
+    <div ng-click="goFrame()">Build My Wheelchair</div>
+    <div ng-click="goDesign()">Go to My Design</div>
   </div>
 </div>
