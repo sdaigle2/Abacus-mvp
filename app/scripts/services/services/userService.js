@@ -345,10 +345,10 @@ angular.module('abacuApp')
 
         //***********get/sets
         getFname: function () {
-          return fName;
+          return (fName.charAt(0).toUpperCase() + fName.slice(1));
         },
         getLname: function () {
-          return lName;
+          return (lName.charAt(0).toUpperCase() + lName.slice(1));
         },
         getEmail: function () {
           return email;
@@ -376,7 +376,7 @@ angular.module('abacuApp')
         },
 
         getFullName: function () {
-          return fName + ' ' + lName;
+          return this.getFname() + ' ' + this.getLname();
         },
         getFullAddr: function () {
           var a2 = addr2;

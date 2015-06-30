@@ -3,9 +3,29 @@
  */
 
 angular.module('abacuApp')
-  .controller('RegisterCtrl', ['$scope', '$http', '$location', 'User', 'Units',
+  .controller('WelcomeCtrl', ['$scope', '$http', '$location', 'User', 'Units',
     function ($scope, $http, $location, User, Units) {
 
+    function checkLogin(){
+      if(!User.isLoggedIn()){
+        $location.path('register');
+      }
+    }
+    $scope.getName = function(){
+      console.log(User.getFname() + User.getLname());
+      return (User.getFullName());
+    }
+
+    $scope.goSettings = function(){
+      $location.path('settings');
+    }
+
+    $scope.goFrame = function(){
+      $location.path('');
+    }
+    $scope.goDesign = function(){
+      $location.path('cart');
+    }
 
 
     }]);

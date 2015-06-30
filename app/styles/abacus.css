@@ -630,6 +630,11 @@ img.rightButtonNav{
   cursor: pointer;
 }
 
+.sideBar-custom-item-left img
+{
+  cursor: pointer;
+}
+
 .sideBar-custom-item-left img {
   border-right: 1px solid #A7A9Ac;
   padding-right: 10px;
