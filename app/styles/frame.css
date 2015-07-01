@@ -22,21 +22,21 @@
   position: relative;
   clear: left;
   padding-bottom: 3%;
-  margin-top: 2%;
+  margin-top: 1%;
 }
 
 /******main display part*****/
 
 .wrapper .mainDisplay{
   width: 70%;
-  margin: 80px auto 0;
+  margin: 30px auto 0;
 }
 
 .frame-item {
   padding: 10px 0 10px;
   min-height: 300px;
   line-height: 1;
-  display: inline-block;
+  display: inli`ne-block;
   width: 50%;
   margin-bottom: 40px;
 }

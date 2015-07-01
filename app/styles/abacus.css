@@ -67,14 +67,14 @@
 
 #SaveButton {
   width: 10%;
-max-height: 30px;
-background-color: #00A89C;
-border-radius: 0px;
-border-color: transparent;
-text-align: center;
-float: right;
-font-size: 15px;
-font-weight: 700;
+  max-height: 30px;
+  background-color: #00A89C;
+  border-radius: 0px;
+  border-color: transparent;
+  text-align: center;
+  float: right;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 #progressSaveBar .saveButton {
@@ -133,14 +133,15 @@ font-weight: 700;
 }
 
 .display-frame {
-  background-color: #333333;
+  background-color: #939597;
   display: inline-block;
   position: relative;
   width: 75%;
   height: 50%;
   vertical-align: middle;
   padding-left: 7px;
-  cursor: pointer;
+  cursor: pointer;      
+  border: 1px solid #939597;
 }
 
 .display-frame h4 {
@@ -443,7 +444,6 @@ font-weight: 700;
   position: relative;
   background-color: #f1f2f2;
   top: -16px;
-  border-top: 1px solid #f1f2f2 ;
   border-radius: 0px;
   height: calc(100% - 36px);
   border-left: 1px solid #ddd;
@@ -465,15 +465,13 @@ img.leftButtonNav{
   height: 52px;
   position: absolute;
   margin-left: -171px;
-  margin-top: -1px;
  }
 
 img.rightButtonNav{
   width: 30px;
   height: 52px;
   position: absolute;
-  margin-left: 140px;
-  margin-top: -1px;
+  margin-left: 142px;
 }
 
 .leftButtonNav:hover{
@@ -493,6 +491,8 @@ img.rightButtonNav{
   padding-top:18px;
   padding-bottom: 18px;
   background-color: white;
+  border: solid 1px white;
+
 }
 /****************SideBar-Custom********************/
 .sideBar .sideBar-custom {
@@ -535,7 +535,7 @@ img.rightButtonNav{
   top: 10px;
   left: 10px;
   border: none;
-  height: 30px;
+  height: 25px;
 }
 
 .sideBar-custom-item-left .colorOptionsIndicator:hover {

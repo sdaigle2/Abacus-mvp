@@ -1,4 +1,4 @@
-﻿/* ----- CSS FOR INDEX.HTML ----- */
+/* ----- CSS FOR INDEX.HTML ----- */
 
 
 body {
@@ -27,9 +27,7 @@ body {
   font-family: "Oswald" , sans-serif;
   font-weight: 300;
   color: #00A89C;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  font-size: 16px;
   border-bottom: solid 2px #eaeaea;
   background-color: #ffffff;
 }
@@ -146,10 +144,8 @@ body {
 .mainNavbar .mainNavbar-left > li {
   color: #000000;
   font-family: "Oswald",sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  text-transform: Uppercase;
-  letter-spacing: 1px
+  font-size: 16px;
+  font-weight: 300;
 }
 .mainNavbar .mainNavbar-left > li:hover,
 .mainNavbar .mainNavbar-left > li:focus {
@@ -196,8 +192,6 @@ body {
   padding: 20px 15px;
   color: #000000;
   font-size: 14px;
-  text-transform: Uppercase;
-  letter-spacing: 1px;
   border-right: 2px solid #eaeaea;
 }
 
@@ -251,7 +245,6 @@ body {
   color: #000000;
   background-color: white;
   line-height: 1;
-  letter-spacing: 1px;
   width: 240px;
   border: 1px solid black;
   padding: 8px 20px 16px;
@@ -416,16 +409,16 @@ div{
 }
 
 .button{
-  width: 342px;
+  width: 300px;
   display: inline-block;
   color: #60C2B1;
-  height: 60px;
-  line-height: 60px;
+  height: 50px;
+  line-height: 50px;
   margin-top: 30px;
   text-align: center;
-  font-size: 24px;
-  padding-left: 20px;
-  padding-right: 20px;
+  font-size: 19px;
+  padding-left: 15px;
+  padding-right: 15px;
   border: solid;
   border-color: #60C2B1;
 }
