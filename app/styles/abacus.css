@@ -63,94 +63,6 @@
   cursor: default;
 }
 
-
-/*******Save & reveiw drodown buttun***********/
-@keyframes expand {
-  from {top: -200px;}
-  to {top: 0;}
-}
-
-@keyframes leave {
-  from {top: 0;}
-  to {top: -200px;}
-}
-
-
-
-
-
-.dropdownButtonReal {
-  background-color: white;
-}
-
-.dropdownButton {
-  position: relative;
-  background-color: #FFFFFF;
-  height: 200px;
-  width: 100%;
-  z-index: 1;
-  top: 0;
-}
-
-.dropdownButton.ng-enter{
-  animation-name: expand;
-  animation-duration: 0.5s;
-}
-
-.dropdownButton.ng-leave{
-  animation-name: leave;
-  animation-duration: 0.5s;
-}
-
-.dropdownButton .dropdownTable {
-  height: 76%;
-  width: 80%;
-  position: relative;
-  top: 24px;
-  margin: auto ;
-  vertical-align: middle;
-  border-top: 1px solid #939597;
-  border-bottom: 1px solid #939597;
-  border-collapse: separate;
-}
-
-.dropdownButton td {
-  height: 80px;
-  position: relative;
-  margin-right: 20px;
-}
-
-.dropdownButton #panelIcon1{
-  left: -45px;
-}
-
-.dropdownButton #panelIcon3{
-  left: 45px;
-}
-
-.dropdownButton img {
-  position: absolute;
-  top: 18px;
-  left: 129px;
-}
-
-.dropdownButton .iconHover:hover {
-  opacity: 0;
-  cursor: pointer;
-}
-
-.dropdownButton table tr  h4 {
-  position: relative;
-  top: 42px;
-  left: 90px;
-}
-
-.dropdownButton #panelText {
-  left: 82px;
-}
-
-
-
 /******************Save Button********** **********/
 
 #SaveButton {
@@ -1079,4 +991,8 @@ body{
 .nothing{
   position:absolute;
   visibility:hidden;
+}
+
+#appContainer .dropdownButton{
+  z-index: 1;
 }

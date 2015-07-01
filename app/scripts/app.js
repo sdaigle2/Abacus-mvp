@@ -34,9 +34,9 @@ angular
       .when('/cart', {
         templateUrl: 'views/checkout/cart.html',
         controller: 'CartCtrl',
-        resolve: {UserData: function($q, User){
+        resolve: {UserData: ['$q', 'User', function($q, User){
           return User.getPromise();
-        }}
+        }]}
       })
       .when('/checkout', {
         templateUrl: 'views/checkout/checkout.html',
@@ -53,9 +53,9 @@ angular
       .when('/settings', {
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl',
-        resolve: {UserData: function($q, User){
+        resolve: {UserData: ['$q', 'User', function($q, User){
           return User.getPromise();
-        }}
+        }]}
       })
       .when('/save', {
         templateUrl: 'views/save.html',

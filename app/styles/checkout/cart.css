@@ -6,7 +6,9 @@
   overflow-y: hidden;
 }
 
-
+#mainContent{
+  position: relative;
+}
 
 /*************************
 **** Cart Background *****
@@ -55,7 +57,7 @@
 
 #mainContent .addWheelchair{
   position: absolute;
-  top: 159px;
+  top: 119px;
   left: 173px;
   height: 260px;
   background-color: white;

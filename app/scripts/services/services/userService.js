@@ -122,6 +122,7 @@ angular.module('abacuApp')
             console.log(data);
             userID = data.userID;
             if (userID !== -1) {
+              deferred.resolve();
               fName = data.fName;
               lName = data.lName;
               email = in_email;
@@ -133,16 +134,12 @@ angular.module('abacuApp')
               zip = data.zip;
               unitSys = data.unitSys;
 
-              //for (var i = 0; i < data.wheelchairs.length; i++) {
-              //  designedWheelchairs.push(new Wheelchair(data.wheelchairs[i]));
-              //}
-
               for (var i = 0; i < data.orders.length; i++) {
                 orders.push(new Order(0, 0, data.orders[i]));
               }
             }
-
-            deferred.resolve();
+            else
+              deferred.reject('Incorrect email or password');
           })
             .error(function (data) {
               console.log('Request Failed: ' + data);

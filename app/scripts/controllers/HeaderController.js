@@ -5,7 +5,7 @@
 'use strict';
 
 angular.module('abacuApp')
-  .controller('HeaderController', ['$scope', '$location', '$http', 'User', function ($scope, $location, $http, User) {
+  .controller('HeaderController', ['$scope', '$location', '$http', '$timeout', 'User', function ($scope, $location, $http, $timeout, User) {
 
     //Returns true is the current angular URL matches viewLocation
     $scope.isActive = function (viewLocation) {
@@ -50,7 +50,9 @@ angular.module('abacuApp')
     $scope.login = function () {
       User.login($scope.loginModel.email, $scope.loginModel.password)
         .then(function () {
-          //TODO: Something?
+          $timeout(function() {
+            $scope.$apply($scope.loginDropdown = false);
+          });
         }, function (message) {
           window.alert('Login failed: ' + message);
         });
@@ -65,6 +67,13 @@ angular.module('abacuApp')
     $scope.loginSection = function(section){
       User.setContentSection(section);
       $location.path('/settings');
-    }
+    };
+
+    $scope.loginDropdown = false;
+    $scope.settingsDropdown = false;
+
+    $scope.toggleLoginDropdown = function(){
+      $scope.loginDropdown = !$scope.loginDropdown;
+    };
 
 }]);
