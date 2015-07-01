@@ -11,31 +11,23 @@ angular.module('abacuApp')
   .factory('Option', ['Color', function (Color) {
 
     //##########################  Constructor  #########################
-    function Option(optionData, optionJSON) {
+    function Option(optionData) {
 
       this.optionID = optionData.optionID;
       this.price = optionData.price;
 
-      this.name = '';
-      this.thumbnailURL = '';
-      this.desc = '';
-      this.weight = 0;
+      this.name = optionData.name;
+      this.thumbnailURL = optionData.thumbnailURL;
+      this.desc = optionData.desc;
+      this.weight = optionData.weight;
       this.defaultColorID = optionData.defaultColorID;
 
-      for (var i = 0; i < optionJSON.length; i++) {
-        var curOp = optionJSON[i];
-        if (curOp.optionID === this.optionID) {
-          this.name = curOp.name;
-          this.thumbnailURL = curOp.thumbnailURL;
-          this.desc = curOp.desc;
-          this.weight = curOp.weight;
-        }
-      }
 
       this.colors = [];
-
-      for (var i = 0; i < optionData.colors.length; i++)
-        this.colors.push(new Color(optionData.colors[i]));
+      if(optionData.colors) {
+        for (var i = 0; i < optionData.colors.length; i++)
+          this.colors.push(new Color(optionData.colors[i]));
+      }
 
     };
 

@@ -1,5 +1,8 @@
 /* ----- CSS FOR INDEX.HTML ----- */
 
+html{
+  height:100%;
+}
 
 body {
   padding-top: 0;

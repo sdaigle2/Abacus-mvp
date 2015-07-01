@@ -36,13 +36,13 @@
   padding: 10px 0 10px;
   min-height: 300px;
   line-height: 1;
-  display: inli`ne-block;
-  width: 50%;
+  display: inline-block;
+  width: 45%;
   margin-bottom: 40px;
 }
 
 .frame-item.right-border {
-  border-right: solid 1px gray;
+  margin-right: 10%;
 }
 
 .frame-item.bottom-border {

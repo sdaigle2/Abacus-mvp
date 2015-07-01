@@ -18,10 +18,12 @@ angular.module('abacuApp')
 
     //Load in data from database
     var frames = [];
-    var frameData = syncJSON.loadJSON('data/frameDataNew.json');
+    var frameData = syncJSON.loadJSON('data/frameData.json');
     for (var i = 0; i < frameData.length; i++) {
       frames.push(new Frame(frameData[i]));
     }
+
+    console.log(frames);
 
     return {
 

@@ -15,36 +15,22 @@ angular.module('abacuApp')
   .factory('Measure', [function () {
 
     //##########################  Constructor  #########################
-    function Measure(measureData, jsonData) {
+    function Measure(measureData) {
 
       this.measureID = measureData.measureID;
       this.measureOptions = measureData.measureOptions;
       this.weights = measureData.weights;
       this.prices = measureData.prices;
 
-      this.name = '';
-      this.desc = '';
-      this.details = '';
-      this.tip = '';
-      this.units = [];
-      this.videoURL = '';
-      this.imageURLs = [];
-      this.gifURL = '';
+      this.name = measureData.name;
+      this.desc = measureData.desc;
+      this.details = measureData.details;
+      this.tip = measureData.tip;
+      this.units = measureData.units;
+      this.videoURL = measureData.videoURL;
+      this.imageURLs = measureData.imageURLs;
+      this.gifURL = measureData.gifURL;
 
-      for (var i = 0; i < jsonData.length; i++) {
-        var curMes = jsonData[i];
-        if (curMes.measureID === this.measureID) {
-          this.name = curMes.name;
-          this.desc = curMes.desc;
-          this.details = curMes.details;
-          this.tip = curMes.tip;
-          this.units = curMes.units;
-          this.videoURL = curMes.videoURL;
-          this.imageURLs = curMes.imageURLs;
-          this.gifURL = curMes.gifURL;
-          break;
-        }
-      }
     };
 
 

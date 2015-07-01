@@ -16,24 +16,10 @@
       <div class="frame-item-image">
         <div class="img" data-ng-mouseenter="hoverItem = f.getFrameID()"
              data-ng-mouseleave="hoverItem = -1">
-
           <img data-ng-src="{{f.getImageURL()}}" />
-
-
           <div class="frame-item-desc"
                data-ng-class="{ 'frame-item-desc-show' : panelSelected(hoverItem,f.getFrameID()) , 'frame-item-desc-hide' : !panelSelected(hoverItem,f.getFrameID())}">
-
-
-
-
             <div class="hoverBackground frame-item-panel">
-
-
-
-
-
-
-
               <p class="frame-item-title medium" data-ng-bind="f.getName()"></p>
               <br />
               <p class="frame-item-description book" data-ng-bind="f.getDesc()"></p>

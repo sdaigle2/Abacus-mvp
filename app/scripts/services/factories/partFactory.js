@@ -21,9 +21,8 @@ angular.module('abacuApp')
 
       this.options = [];
 
-      var optionJSON = syncJSON.loadJSON('data/optionData.json');
       for (var i = 0; i < partData.options.length; i++)
-        this.options.push(new Option(partData.options[i], optionJSON));
+        this.options.push(new Option(partData.options[i]));
 
     };
 

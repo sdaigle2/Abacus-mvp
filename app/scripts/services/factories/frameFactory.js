@@ -30,10 +30,8 @@ angular.module('abacuApp')
       for (var i = 0; i < frameData.parts.length; i++)
         this.parts.push(new Part(frameData.parts[i]));
 
-
-      var measJSON = syncJSON.loadJSON('data/measureData.json');
       for (var i = 0; i < frameData.measures.length; i++)
-        this.measures.push(new Measure(frameData.measures[i], measJSON));
+        this.measures.push(new Measure(frameData.measures[i]));
     };
 
     //#######################  Instance methods  ##########################
