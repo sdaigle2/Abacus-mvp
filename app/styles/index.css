@@ -525,3 +525,9 @@ div{
 .dropdownButton #panelText {
   left: 82px;
 }
+
+.error-mesg{
+  color: red;
+  font-size: small;
+  padding-top: 5px;
+}

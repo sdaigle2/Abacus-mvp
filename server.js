@@ -129,8 +129,11 @@ app.post('/register', function (req, res) {
   if (!check(data)) {
     res.json({err: 'evil input'});
   }
+  else if (req.body.password.length < 8) {
+    res.json({err: 'password should have at least 8 characters', field:'password'});
+  }
   else if (req.body.password !== req.body.confirm) {
-    res.json({err: 'passwords do not match'});
+    res.json({err: 'passwords do not match', field:'password'});
   }
   else
   users.get(data.email, function (err) {
@@ -150,7 +153,7 @@ app.post('/register', function (req, res) {
       });
     }
       else
-        res.json({err: 'user already exists'});
+        res.json({err: 'user already exists', field: 'email'});
     });
 });
 

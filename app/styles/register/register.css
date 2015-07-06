@@ -88,3 +88,8 @@ input{
 .settingsSidebarButton:last-child {
   margin-right: 0;
 }
+
+.error-mesg{
+  float: left;
+  padding-top: 13px;
+}

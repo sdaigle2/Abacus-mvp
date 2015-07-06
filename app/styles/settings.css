@@ -1,4 +1,43 @@
 
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@-webkit-keyframes fadeInShift {
+  from { opacity: 0; right: -50px; }
+  to { opacity: 1; right: 0}
+}
+
+@keyframes fadeInShift {
+  from { opacity: 0; right: -50px;}
+  to { opacity: 1; right: 0;}
+}
+
+@-webkit-keyframes fadeInShiftPlus {
+  from { opacity: 0; right: 50px; }
+  to { opacity: 1; right: 100px}
+}
+
+@keyframes fadeInShiftPlus {
+  from { opacity: 0; right: 50px;}
+  to { opacity: 1; right: 100px;}
+}
+
+@-webkit-keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
 /*************************
 ********* HEADER *********
 **************************/
@@ -79,15 +118,15 @@
   height: 40px;
   margin-top: 20px;
   color: #fff;
-  opacity: 0;
+  display: none;
 }
 .settingsSidebarButtons.showSettingsSidebarButtons {
-  opacity: 1;
-  transition: .3s;
+  display: initial;
+  animation: fadeIn 0.3s;
 }
 .settingsSidebarButtons.hideSettingsSidebarButtons {
-  opacity: 0;
-  transition: .3s;
+  display: none;
+  animation: fadeOut 0.3s;
 }
 
 .settingsSidebarButton {
@@ -128,16 +167,16 @@
   right: -50px;
   width: 100%;
   line-height: 1;
-  opacity: 0;
+  display: none;
   z-index: 0;
 }
 
 .showSettingsContent {
-  opacity: 1;
+  display: initial;
   top: 0;
   right: 0;
   z-index: 500;
-  transition: .5s;
+  animation: fadeInShift 0.5s;
 }
 
 
@@ -309,14 +348,17 @@
   top: 100px;
   right: 50px;
   width: 400px;
-  opacity: 0;
+  display: none;
   z-index: 0;
 }
 #settingsMeasurementsContent .settingsContentInputMoreInfoSection.active {
   right: 100px;
-  opacity: 1;
+  display: initial;
   z-index: 500;
-  transition: .5s;
+  -webkit-animation-direction: alternate;
+  -moz-animation-direction: alternate;
+  -o-animation-direction: alternate;
+  animation: fadeInShiftPlus 0.5s;
 }
 
 #settingsMeasurementsContent .settingsContentInputMoreInfoSection .settingsContentSectionTitle {
