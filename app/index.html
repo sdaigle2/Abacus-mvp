@@ -63,7 +63,7 @@
           data-ng-src="images/my_design_page/cartIcon/cart_total_3.png" width="17" alt="cartIcon"></li>
         <li class="loginButton" data-ng-if="!user.isLoggedIn()">
           <div data-ng-click="toggleLoginDropdown()" class="login">
-            <div class="loginText medium">LOG IN</div>
+            <div class="loginText medium" data-ng-bind="loginText"></div>
           </div>
         </li>
         <li ng-mouseover="windowPop = true" ng-mouseleave="windowPop = false"
@@ -93,6 +93,8 @@
 
             <p class="oswald fifteen book">Password</p>
             <input type="password" data-ng-model="loginModel.password"/>
+
+            <p class="oswald fifteen book" data-ng-bind="error"></p>
           </td>
           <td id="panelIcon3">
             <div class="login-button button" data-ng-click="login()">

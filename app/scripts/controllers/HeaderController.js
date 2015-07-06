@@ -12,6 +12,9 @@ angular.module('abacuApp')
       return viewLocation === $location.path();
     };
 
+    $scope.loginText = 'Log In';
+
+    $scope.error = '';
     //Model used for login form
     $scope.loginModel = {
       email: '',
@@ -48,15 +51,20 @@ angular.module('abacuApp')
 
     //Log in the user using the data from loginModel
     $scope.login = function () {
+      $scope.loginText = 'Loading..';
+      $scope.error = '';
       User.login($scope.loginModel.email, $scope.loginModel.password)
         .then(function () {
-          $timeout(function() {
+          $timeout(function () {
+            $scope.$apply($scope.loginText = 'Log In');
             $scope.$apply($scope.loginDropdown = false);
           });
         }, function (message) {
-          window.alert('Login failed: ' + message);
+          $timeout(function () {
+            $scope.$apply($scope.loginText = 'Log In');
+            $scope.$apply($scope.error = message);
+          });
         });
-
       $scope.loginModel.password = '';
     };
 
@@ -64,7 +72,7 @@ angular.module('abacuApp')
       User.logout();
     };
 
-    $scope.loginSection = function(section){
+    $scope.loginSection = function (section) {
       User.setContentSection(section);
       $location.path('/settings');
     };
@@ -72,8 +80,9 @@ angular.module('abacuApp')
     $scope.loginDropdown = false;
     $scope.settingsDropdown = false;
 
-    $scope.toggleLoginDropdown = function(){
-      $scope.loginDropdown = !$scope.loginDropdown;
+    $scope.toggleLoginDropdown = function () {
+      if($scope.loginText === 'Log In')
+        $scope.loginDropdown = !$scope.loginDropdown;
     };
 
-}]);
+  }]);
