@@ -91,7 +91,7 @@
       <!-- MEASURE: Video + gif + details -->
       <div class="main-measure" data-ng-show="getCurPageType() == pageType.MEASURE">
         <div class="measure-top">
-          <h1><strong data-ng-bind="getCurMeasureData().name"></strong></h1>
+          <div class="measure-header medium" data-ng-bind="getCurMeasureData().name"></div>
           <h4 data-ng-bind-html="getCurMeasureData().desc"></h4>
 
           <div class="measure-body">
@@ -131,7 +131,7 @@
     <div class="sideBarWrapper">
 
       <!-- Tabs -->
-      <ul class="nav nav-tabs nav-justified shadow-fixer">
+      <ul class="nav nav-tabs nav-justified">
         <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}">
           <a id="shadow-customs" ng-href="#/abacus" data-ng-click="switchPageType(pageType.CUSTOMIZE)">Customize</a>
         </li>
@@ -339,23 +339,23 @@
         </div>
         <div class="sideBar-measure">
           <!-- Measurement Selector -->
-          <div class="sideBar-measure-top">
+          
             <div class="sideBar-measure-select">
-              <h4>CHOOSE YOUR MEASUREMENT</h4>
+              <h3 class="choose-your-measurement medium">Choose your measurement</h3>
               <select data-ng-model="getCurWheelchairMeasure().measureOptionIndex"
                       data-ng-options="idx as mo for (idx, mo) in getCurMeasureData().measureOptions[curUnitSys]"/>
               <span data-ng-bind="getCurMeasureData().units[curUnitSys]"></span>
             </div>
-            <div class="sideBar-measure-tip text-left" data-ng-show="getCurMeasureData().tip">
+         
+          <div class="sideBar-measure-tip text-left" data-ng-show="getCurMeasureData().tip">
               <div class="sideBar-measure-tip-left">
                 <h5 class="heavy tip-lower">TIP:</h5>
               </div>
               <div class="sideBar-measure-tip-right">
-                <h5 class="thin">Important factors to think about are things and whatnot, but don't forget to
+                <h5 class="tip book">Important factors to think about are things and whatnot, but don't forget to
                   remember to not
                   forget seat height. </h5>
               </div>
-            </div>
           </div>
           <!-- Measure Image Carousel -->
           <div class="sideBar-measure-bottom">

@@ -8,8 +8,6 @@ body {
   padding-top: 0;
   padding-bottom: 20px;
   background-color: #FFF;
-
-  font-family: 'Roboto', sans-serif;
   min-width: 1050px;
 }
 
@@ -27,7 +25,6 @@ body {
   width: 100%;
   height: 40px;
   line-height:0;
-  font-family: "Oswald" , sans-serif;
   font-weight: 300;
   color: #00A89C;
   font-size: 16px;
@@ -146,7 +143,6 @@ body {
 }
 .mainNavbar .mainNavbar-left > li {
   color: #000000;
-  font-family: "Oswald",sans-serif;
   font-size: 16px;
   font-weight: 300;
 }
@@ -282,34 +278,6 @@ body {
 }
 
 
-.oswald{
-  font-family: "Oswald", sans-serif;
-  font-weight: 400;
-  font-size: 15pt
-}
-
-.roboto{
-  font-family: "Oswald", sans-serif;
-  font-weight: 400;
-}
-
-.ten{
-  font-size: 10pt;
-}
-
-.fifteen{
-  font-size: 15pt;
-}
-
-.grey-slanted{
-  color: #808284;
-  font-style: italic;
-}
-
-.thick{
-  font-weight: 700;
-}
-
 .ng-cloak{
   display: none;
 }
@@ -335,6 +303,7 @@ body {
 	font-family: 'Gotham A', 'Gotham B';
 	font-weight: 400;
 	font-style: normal;
+    
 }
 
 .book-italic{
@@ -422,7 +391,7 @@ div{
   font-size: 19px;
   padding-left: 15px;
   padding-right: 15px;
-  border: solid;
+  border: solid 2px;
   border-color: #60C2B1;
 }
 
@@ -434,9 +403,9 @@ div{
 
 .login-button{
   height: 30px;
-  line-height: 24px;
-  font-size: 18px;
-  width: 50%;
+  line-height: 27px;
+  font-size: 12pt;
+  width: 60%;
   margin: auto;
 }
 
@@ -468,7 +437,7 @@ div{
 .fixPosition{
   position: absolute;
   background-color: #FFFFFF;
-  height: 200px;
+  height: 230px;
   width: 100%;
   z-index: 99999;
   top: 40px;
@@ -508,4 +477,9 @@ div{
   color: red;
   font-size: small;
   padding-top: 5px;
+}
+
+.paddingtop-fontsize {
+    font-size: 12pt;
+    padding-top: 10px;
 }

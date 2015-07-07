@@ -70,6 +70,7 @@
 #SaveButton {
   width: 10%;
   max-height: 30px;
+  color: #FFFFFF;
   background-color: #00A89C;
   border-radius: 0px;
   border-color: transparent;
@@ -158,12 +159,9 @@
 #display{
   float: right;
   clear: right;
-  margin-right: 5px;
   width: 330px;
   line-height: 1;
   height: 60px;
-  border: 1px solid #ddd;
-  border-bottom: hidden;
   border-left: 1px solid #ddd;
 
 }
@@ -194,7 +192,8 @@
   background-color: #939597;
   display: inline-block;
   position: relative;
-  width: 75%;
+  width: 240px;
+  top: -60px;
   height: 50%;
   vertical-align: middle;
   padding-left: 7px;
@@ -212,9 +211,10 @@
   position: relative;
   display: block;
   float: right;
-  width: 25%;
+  width: 90px;
   height: 100%;
   border-left: solid 1px #ddd;
+  border-right: solid 1px #ddd;
   border-radius: 0px;
 }
 
@@ -227,20 +227,23 @@
   border: medium none;
   color: #666;
   width: 75px;
+  height: 19px;
   font-size: 9pt;
+  padding: 3px;
   border: solid 1px #939597;
 }
 
 .display-toggle h6 {
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 .display-totals {
   position: relative;
   display: inline-block;
-  width: 75%;
-  height: 50%;
-  padding-left: 12px;
+  width: 240px;
+  height: 30px;
+  top: -60px;
+  padding-left: 9px;
 }
 
 .display-totals h4 {
@@ -295,40 +298,40 @@
 
 /*************************Main-Measure******************************/
 .main-measure {
-  width: 65%;
-  margin: 20px;
-  padding-left: 40px;
+  width: calc(100% - 330px);
   float: left;
 }
 
 .main-measure .measure-top{
-  width: 100%;
-  height: 200px;
-  margin-bottom: 20px;
+  width: 711px;
+  height: 100px;
+  margin: auto;
+  padding-top: 3%;
 }
 
 .main-measure .measure-body{
-  width:100%;
-  min-width: 720px;
+  width: 711px;
   height : 500px;
-  background-color: white;
+  background-color: #FFFFFF;
   border: 1px solid #bcbec0;
   border-collapse: collapse;
 
 }
 
 .main-measure .measure-tab{
-  width: 100%;
+  width: 710px;
   height: 60px;
   background-color:#FFFFFF;
-
+  border-collapse: collapse;
+  font-size: 0.95em;
 }
 
 .main-measure .measure-tab .measure-tab-title {
-  width: 33.3%;
+  width: 236px;
   text-align: center;
   border-right: 1px solid #bcbec0;
   border-bottom: 1px solid #bcbec0;
+  border-collapse: collapse;
 }
 
 .main-measure .measure-tab td:hover{
@@ -342,9 +345,10 @@
 }
 
 .main-measure .measure-body .measure-content {
-  width: 585px;
-  height: 85%;
-  margin: 43px auto 0;
+  width: 550px;
+  height: 100%;
+  margin: auto;
+  padding-top: 25px;
 }
 
 
@@ -436,14 +440,10 @@
   margin-right: 10px;
   position: relative;
   top: -8px;
-  line-height: 1.42857143;
-  /*border: 1px solid transparent;*/
-  border-radius: 20px 20px 0px 0px;
   font-size: 1em;
   font-weight: 400;
-  /*text-transform: uppercase;*/
-  letter-spacing: 0.6px;
-  padding: 8px 0;
+  padding: 10px 0;
+  font-size: 0.95em;
 }
 
 .nav-tabs.nav-justified > li > a,
@@ -455,12 +455,14 @@
   cursor: pointer;
   background-color: #FFFFFF;
 
+/*
   box-sizing:border-box;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
+*/
   padding: 8px 0 10px;
   border-radius: 0;
-  border-top: none;
+  border: 1px solid #ddd
 }
 
 .shadow-fixer{
@@ -475,9 +477,11 @@
   background-color: #ffffff;
   border-bottom: solid 4px #60C2B1;
   padding: 8px 0;
+/*
   box-sizing:border-box;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
+*/
   /*-webkit-box-shadow: 0px -2px 3px 2px #999999;*/
   /*-moz-box-shadow:    0px -2px 3px 2px #999999;*/
   /*box-shadow:         0px -2px 3px 2px #999999;*/
@@ -487,21 +491,20 @@
 
 .sideBarWrapper {
   position: relative;
-  right: -19px;
   z-index: 50;
   display: inline-block;
   float: right;
   clear: right;
-  width: 335px;
+  width: 330px;
   max-width: 430px;
-  margin-right: 20px;
   height: calc(100vh - 130px);
+  top: -3px
 }
 
 .sideBar{
   position: relative;
   background-color: #f1f2f2;
-  top: -16px;
+  top: -19px;
   border-radius: 0px;
   height: calc(100% - 36px);
   border-left: 1px solid #ddd;
@@ -513,23 +516,22 @@
 }
 
 .sideBar-header h3 {
-  font-size: 1em;
+  font-size: 12pt;
   font-weight: 700;
-  letter-spacing: 0.4px;
 }
 
 img.leftButtonNav{
   width: 30px;
-  height: 52px;
+  height: 54px;
   position: absolute;
-  margin-left: -171px;
+  margin-left: -169px;
  }
 
 img.rightButtonNav{
   width: 30px;
-  height: 52px;
+  height: 54px;
   position: absolute;
-  margin-left: 142px;
+  margin-left: 138px;
 }
 
 .leftButtonNav:hover{
@@ -549,7 +551,7 @@ img.rightButtonNav{
   padding-top:18px;
   padding-bottom: 18px;
   background-color: white;
-  border: solid 1px white;
+  border: solid 1px #ddd;
 
 }
 /****************SideBar-Custom********************/
@@ -570,7 +572,6 @@ img.rightButtonNav{
 .sideBar-custom-item-selected {
     height: 120px;
     max-height: 120px;
-    border-top: 1px solid #BBB;
     border-bottom: 1px solid #BBB;
     z-index: 9;
     background-color: white;
@@ -617,8 +618,7 @@ img.rightButtonNav{
 
 
 .sideBar-custom-item-right .sideBar-custom-item-name {
-  font-size: 16px;
-  letter-spacing: 0.4px;
+  font-size: 12pt;
   line-height: 19px;
   margin:5px 0px;
   height: 40px;
@@ -628,7 +628,6 @@ img.rightButtonNav{
 
 .sideBar-custom-item-right .sideBar-custom-item-details {
   font-size: 16px;
-  letter-spacing: 0.4px;
   line-height: 19px;
   margin:5px 0px;
   height: 25px;
@@ -649,7 +648,6 @@ img.rightButtonNav{
 
 .sideBar-custom-item-right-selected .sideBar-custom-item-name {
   font-size: 16px;
-  letter-spacing: 0.4px;
   line-height: 19px;
   margin-top:1px;
   margin-left:-2px;
@@ -660,7 +658,6 @@ img.rightButtonNav{
 
 .sideBar-custom-item-right-selected .sideBar-custom-item-details {
   font-size: 16px;
-  letter-spacing: 0.4px;
   line-height: 19px;
   margin-top: -5px;
   margin-left: -3px;
@@ -694,7 +691,6 @@ img.rightButtonNav{
   padding: 8px;
   font-size: 14pt;
   font-weight: 400;
-  letter-spacing: 1px;
 }
 
 .sideBar-custom-item-button-wide-add {
@@ -705,7 +701,6 @@ img.rightButtonNav{
   padding: 8px;
   font-size: 14pt;
   font-weight: 400;
-  letter-spacing: 1px;
 }
 
 .sideBar-custom-item-button:hover {
@@ -728,20 +723,16 @@ img.rightButtonNav{
 /*****************SideBar-Measure********************/
 
 .sideBar .sideBar-measure {
-  overflow-x: hidden;
+    overflow-x: hidden;
   overflow-y: hidden;
-  height: calc(100% - 54px);
-  max-width:350px;
-}
-
-.sideBar-measure-top {
-  /*height: 240px;*/
-  padding: 5px 0px 0px;
-  background-color: #fec44f;
+  height: calc(100% - 60px);
+  max-width: 330px;
 }
 
 .sideBar-measure-select{
-  padding: 10px 30px 9px 30px;
+  padding: 0 0 6px 30px;
+    background-color: #fec44f;
+    height: 80px;
 }
 
 .sideBar-measure-top .btn-group .dropdown-toggle{
@@ -751,7 +742,6 @@ img.rightButtonNav{
 }
 
 .sideBar-measure-tip {
-  margin: 20px 0 0;
   padding: 5px 0px;
   border: 1px solid white;
   border-bottom: 1px solid lightgrey;
@@ -878,7 +868,7 @@ img.rightButtonNav{
 
 /*************** Color Panel ************************/
 .sideBar .colorPanelShow {
-  left: -140px;
+  left: -130px;
   opacity: 1;
   z-index: -10;
 }
@@ -891,7 +881,7 @@ img.rightButtonNav{
 .sideBar .colorPanel {
   position: absolute;
   top: 55px;
-  width: 140px;
+  width: 130px;
   height: auto;
   max-height: calc(100% - 55px);
   overflow-y: auto;
@@ -925,7 +915,7 @@ img.rightButtonNav{
 
 /****************************Detail Panel*****************************/
 .sideBar .detailPanelShow {
-  left: -350px;
+  left: -327px;
   opacity: 1;
   z-index: -10;
 }
@@ -938,7 +928,7 @@ img.rightButtonNav{
 .sideBar .detailPanel {
   position: absolute;
   top: 55px;
-  width: 350px;
+  width: 327px;
   height: auto;
   overflow-y: auto;
   overflow-x: hidden;
@@ -951,46 +941,6 @@ img.rightButtonNav{
   font-size: 11pt;
   padding: 6px 6px;
   font-weight: 500;
-}
-h4{
-  font-weight: 500;
-  padding: 0px;
-  font-size: 10pt;
-}
-
-h4.oswald{
-  font-weight: 400;
-  font-size: 16px;
-  letter-spacing: .1em;
-}
-
-h5.roboto-med{
-
-}
-
-h6.roboto-small{
-  font-weight: 500;
-  font-size: 8pt;
-  letter-spacing: 0.1em;
-  padding-bottom: 3px;
-  margin-top: 0px;
-}
-
-
-
-
-.roboto{
-  font-weight: 400;
-  font-size: 11pt;
-}
-
-.heavy{
-  font-weight:700;
-  letter-spacing: .5pt;
-}
-.thin{
-  font-weight: 300;
-  line-height: 16pt;
 }
 
 .item-description{
@@ -1031,16 +981,16 @@ td.details-special-td{
   margin-top: 14px;
 }
 select{
-font-family: inherit;
-font-size: inherit;
-line-height: inherit;
-border-radius: 0px;
--moz-appearance: none;
--webkit-appearance: none;
-background: #FFF url("../images/icons/dropdown.svg") no-repeat scroll 100% top / 20px 20px;
-border: medium none;
-color: #666;
-width: 100px;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  border-radius: 0px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background: #FFF url("../images/icons/dropdown.svg") no-repeat scroll 100% top / 20px 20px;
+  border: 1px solid #999;
+  color: #666;
+  width: 100px;
 }
 
 body{
@@ -1053,4 +1003,22 @@ body{
 
 #appContainer .dropdownButton{
   z-index: 1;
+}
+
+.measure-header {
+  font-size: 23px;
+  height: 15px;
+  position: relative;
+  clear: left;
+  margin-bottom: 3%;
+  margin-top: 1%;
+}
+
+.choose-your-measurement {
+  font-size: 12pt;
+}
+
+.tip {
+  font-size: 0.95em;
+    line-height: 1.2em;
 }

@@ -67,7 +67,7 @@
           </div>
         </li>
         <li ng-mouseover="windowPop = true" ng-mouseleave="windowPop = false"
-            class="settingsButton" data-ng-if="user.isLoggedIn()"><a ng-href="#/settings" ng-bind="user.getFname()"></a>
+            class="settingsButton medium" data-ng-if="user.isLoggedIn()"><a ng-href="#/settings" ng-bind="user.getFname()"></a>
 
           <div ng-mouseover="windowPop = true" ng-mouseleave="windowPop = false" ng-show="windowPop" class="afterlogin">
             <div ng-click="loginSection('account')"><h4>MY ACCOUNT</h4></div>
@@ -84,17 +84,17 @@
       <table class="dropdownTable">
         <tr>
           <td id="panelIcon1">
-            <p class="oswald fifteen book">Abacus</p>
-            <p class="oswald fifteen book">Login</p>
+            <p class="book">Abacus</p>
+            <p class="book">Login</p>
           </td>
           <td>
-            <p class="oswald fifteen book">Email Address</p>
+            <p class="book paddingtop-fontsize">Email Address</p>
             <input type="text" data-ng-model="loginModel.email"/>
 
-            <p class="oswald fifteen book">Password</p>
+            <p class="book paddingtop-fontsize">Password</p>
             <input type="password" data-ng-model="loginModel.password"/>
 
-            <p class="oswald fifteen book error-mesg" data-ng-bind="error"></p>
+            <p class="book error-mesg" data-ng-bind="error"></p>
           </td>
           <td id="panelIcon3">
             <div class="login-button button" data-ng-click="login()">
