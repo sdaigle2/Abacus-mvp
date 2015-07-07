@@ -71,6 +71,10 @@ angular.module('abacuApp')
       for (var i = 0; i < tempChairs.length; i++) {
         designedWheelchairs.push(new Wheelchair(tempChairs[i]));
       }
+      //var tempOrders = $cookieStore.get('carts') || [];
+      //for (var i = 0; i < tempOrderss.length; i++) {
+      //  orders.push(new Wheelchair(tempOrders[i]));
+      //}
 //*********functions************//
 
       return {
@@ -201,6 +205,13 @@ angular.module('abacuApp')
             tempChairs.push(designedWheelchairs[i].getAll());
           }
           $cookieStore.put('wheelchairs', tempChairs);
+        },
+
+        updataOrderCookie: function(){
+          var tempOrder = [];
+          for(var i = 0; i < orders.length; i++){
+            tempOrder.push(orders[i].getAll());
+          }
         },
         /*************************MY DESIGNS*******************************/
 

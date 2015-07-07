@@ -112,10 +112,10 @@ angular.module('abacuApp')
 
       //Adds the selected wheelchair to curOrder
       $scope.addWheelchairToOrder = function (index) {
-        if ($scope.wheelchairs[index].allMeasuresSet() === false) {
-          alert('All measurements must be set before this can be purchased');
-          return;
-        }
+        //if ($scope.wheelchairs[index].allMeasuresSet() === false) {
+        //  alert('All measurements must be set before this can be purchased');
+        //  return;
+        //}
         curOrder.addWheelchair($scope.wheelchairs[index]);
         $scope.wInOrder[index] = true;
         $scope.wOrderIndex[index] = curOrder.getNumWheelchairs() - 1;

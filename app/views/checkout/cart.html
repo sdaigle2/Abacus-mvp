@@ -113,7 +113,8 @@
       <ol>
         <li class="order-list-element" ng-repeat="wheelchair in orderChairs">
           <div class="order-block">
-            <img class="order-img" data-ng-src="images/mainpic.png" width="250">
+            <h3>{{$index+1}}</h3>
+            <img class="order-img" data-ng-src="images/mainpic.png" width="200">
             <h4><strong data-ng-bind="wheelchair.getTitle()"></strong></h4>
           </div>
         </li>

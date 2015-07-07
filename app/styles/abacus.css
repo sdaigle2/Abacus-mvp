@@ -1,12 +1,14 @@
 
+#wrapper{
+  min-width: 1150px;
 
+}
 
 
 /*************************************************Top Bar*****************************************/
 
 
 #backgrounder {
-  position: fixed;
   min-width: 1180px;
   left: 0px;
   top: 0px;
@@ -82,6 +84,61 @@
   color: #00a89c;
 }
 
+@keyframes expand {
+  from {top: -200px;}
+  to {top: 0;}
+}
+
+@keyframes leave {
+  from {top: 0;}
+  to {top: -200px;}
+}
+
+.dropdownButton {
+  position: relative;
+  background-color: #FFFFFF;
+  height: 200px;
+  width: 100%;
+  z-index: 2;
+  top: 0;
+}
+
+.dropdownButton.ng-enter{
+  animation-name: expand;
+  animation-duration: 0.5s;
+}
+
+.dropdownButton.ng-leave{
+  animation-name: leave;
+  animation-duration: 0.5s;
+}
+
+.dropdownButton td {
+  height: 80px;
+  position: relative;
+  margin-right: 20px;
+}
+
+.dropdownButton img {
+  position: absolute;
+  top: 18px;
+  left: 129px;
+}
+
+.dropdownButton .iconHover:hover {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.dropdownButton table tr  h4 {
+  position: relative;
+  top: 42px;
+  left: 90px;
+}
+
+.dropdownButton #panelText {
+  left: 82px;
+}
 
 .appBody {
   position: relative;
@@ -92,10 +149,11 @@
   animation-duration: 0.5s;
 }
 
-.appBodyShow-remove{
+.appBodyShow-remove {
   animation-name: leave;
   animation-duration: 0.5s;
 }
+
 /******************* Price & Weight Display *****************/
 #display{
   float: right;
@@ -140,7 +198,7 @@
   height: 50%;
   vertical-align: middle;
   padding-left: 7px;
-  cursor: pointer;      
+  cursor: pointer;
   border: 1px solid #939597;
 }
 

@@ -463,26 +463,22 @@ div{
   background-color: white;
 }
 
-.dropdownButton {
-  position: relative;
+
+
+.fixPosition{
+  position: absolute;
   background-color: #FFFFFF;
   height: 200px;
   width: 100%;
-  z-index: 2;
-  top: 0;
+  z-index: 99999;
+  top: 40px;
+
 }
 
-.dropdownButton.ng-enter{
-  animation-name: expand;
-  animation-duration: 0.5s;
-}
 
-.dropdownButton.ng-leave{
-  animation-name: leave;
-  animation-duration: 0.5s;
-}
 
-.dropdownButton .dropdownTable {
+
+.dropdownTable {
   height: 76%;
   width: 80%;
   position: relative;
@@ -494,33 +490,15 @@ div{
   border-collapse: separate;
 }
 
-.dropdownButton td {
-  height: 80px;
-  position: relative;
-  margin-right: 20px;
-}
+
 
 .dropdownTable td{
   width: 30%;
   padding-left: 7.5%;
 }
 
-.dropdownButton img {
-  position: absolute;
-  top: 18px;
-  left: 129px;
-}
 
-.dropdownButton .iconHover:hover {
-  opacity: 0;
-  cursor: pointer;
-}
 
-.dropdownButton table tr  h4 {
-  position: relative;
-  top: 42px;
-  left: 90px;
-}
 
 .dropdownButton #panelText {
   left: 82px;

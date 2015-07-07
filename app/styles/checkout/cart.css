@@ -6,9 +6,7 @@
   overflow-y: hidden;
 }
 
-#mainContent{
-  position: relative;
-}
+
 
 /*************************
 **** Cart Background *****
@@ -57,10 +55,10 @@
 
 #mainContent .addWheelchair{
   position: absolute;
+  min-width: 635px;
   top: 119px;
   left: 173px;
   height: 260px;
-  background-color: white;
   z-index: 0;
 }
 
@@ -206,6 +204,7 @@ a:hover{
 
 .option-desc{
   background-color: #EAEAEA;
+  border-bottom: 2px solid #00A89C;
   padding: 0;
 }
 
@@ -420,27 +419,26 @@ a:hover{
   overflow-y: auto;
   overflow-x: hidden;
   max-height: 263px;
+  text-align: center;
 }
 
-.order-block {
-  margin: 0 0 30px 0;
+
+
+ol{
+  list-style: none;
+  padding-left: 0;
 }
 
-.order-block img {
-  margin: 0 25px;
+
+.order-list-element{
+
+  position: relative;
 }
 
-.order-block h4 {
-  margin: 0 60px;
-}
-
-.ol{
-  list-style-position: inside;
-}
-
-.order-list-element:not(:first-child){
-  padding: 30px 0 0 0;
-  border-top: solid 2px #AAAAAA;
+ol h3{
+  position: absolute;
+  top: -11px;
+  left: 36px;
 }
 
 /****************display Image*********/

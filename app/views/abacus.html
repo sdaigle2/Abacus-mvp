@@ -2,7 +2,8 @@
 
 <div id="offClickArea" ng-click="closeAllPanels()" ng-show="getCurPanelID() != -1"></div>
 
-<div id="background">
+<div id="wrapper">
+  <div id="background">
 
   <!-- Progress Bar and Save Button-->
   <div id="progressSaveBar">
@@ -197,7 +198,7 @@
                   </div>
                   <div class="sideBar-custom-item-button text-center"
                        ng-if="getCurWheelchairPart().optionID !== option.optionID"
-                       ng-click="setCurOption(option.optionID)">Add
+                       ng-click="setCurOption(option.optionID); setPanel(option.optionID, panelTypes.COLOR);">Add
                   </div>
                 </div>
               </td>
@@ -236,7 +237,7 @@
                   </div>
                   <div class="sideBar-custom-item-button text-center"
                        ng-if="getCurWheelchairPart().optionID !== option.optionID"
-                       ng-click="setCurOption(option.optionID);">Add
+                       ng-click="setCurOption(option.optionID); setPanel(option.optionID, panelTypes.COLOR);">Add
                   </div>
                 </div>
               </td>
