@@ -8,8 +8,9 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AboutCtrl', ['$scope', function ($scope) {
+  .controller('AboutCtrl', ['$scope', 'Drop', function ($scope, Drop) {
 
+    Drop.setFalse();
     $scope.employees = [{
       name: 'Marissa Siebel',
       extra: 'Lorem ipsum',

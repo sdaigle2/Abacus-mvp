@@ -10,14 +10,14 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('SettingsCtrl', ['$scope', '$location', 'User', 'Units',
-    function ($scope, $location, User, Units) {
-
+  .controller('SettingsCtrl', ['$scope', '$location', 'User', 'Units', 'Drop',
+    function ($scope, $location, User, Units, Drop) {
+      Drop.setFalse();
     //Kick user off page if not logged in
-    //if (User.isLoggedIn() === false) {
-    //  $location.path('/frames');
-    //  return;
-    //}
+    if (User.isLoggedIn() === false) {
+      $location.path('/frames');
+      return;
+    }
 
     //Model for the 'My Account' inputs
     $scope.accountModel = {

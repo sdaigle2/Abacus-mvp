@@ -80,7 +80,7 @@
         </li>
       </ul>
     </div>
-    <div data-ng-if="loginDropdown === true"  class="fixPosition" >
+    <div data-ng-if="loginDropdown() === true"  class="fixPosition" >
       <table class="dropdownTable">
         <tr>
           <td id="panelIcon1">
@@ -107,10 +107,10 @@
         </tr>
       </table>
     </div>
-
+    <div id="foreground" data-ng-if="loginDropdown() === true"></div>
   </div>
 
-  <div id="appContainer"   ng-view=""></div>
+  <div id="appContainer" ng-view=""></div>
   <!-- Angular App -->
 </div>
 
@@ -194,6 +194,8 @@
 <script src="scripts/services/services/syncJSON.js"></script>
 <script src="scripts/services/services/angleService.js"></script>
 <script src="scripts/services/services/unitService.js"></script>
+<script src="scripts/services/services/dropService.js"></script>
+
 
 <script src="scripts/services/constants/bankConstants.js"></script>
 <script src="scripts/services/constants/costConstants.js"></script>

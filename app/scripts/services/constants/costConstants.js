@@ -14,6 +14,6 @@
 angular.module('abacuApp')
   .constant('Costs', {
       TAX_RATE: 0.097,
-      SHIPPING_FEE: 15,
+      SHIPPING_FEE: 15
   });
 

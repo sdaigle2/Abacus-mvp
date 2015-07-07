@@ -4,7 +4,8 @@
 'use strict';
 
 angular.module('abacuApp')
-  .controller('ConfirmCtrl', ['$scope', '$location', '$http', '$routeParams', 'User', function ($scope, $location, $http, $routeParams, User) {
+  .controller('ConfirmCtrl', ['$scope', '$location', '$http', '$routeParams', 'User', 'Drop', function ($scope, $location, $http, $routeParams, User, Drop) {
+    Drop.setFalse();
     var id = $routeParams.param1;
     console.log(id);
     $http({

@@ -22,6 +22,7 @@ var sProperties = {
   allowedTags: []
 };
 var token = crypto.randomBytes(64).toString('hex');
+var verify = require('./data').verifyOrder;
 
 //Session Management
 var session = require('express-session');
@@ -130,28 +131,28 @@ app.post('/register', function (req, res) {
     res.json({err: 'evil input'});
   }
   else if (req.body.password.length < 8) {
-    res.json({err: 'password should have at least 8 characters', field:'password'});
+    res.json({err: 'password should have at least 8 characters', field: 'password'});
   }
   else if (req.body.password !== req.body.confirm) {
-    res.json({err: 'passwords do not match', field:'password'});
+    res.json({err: 'passwords do not match', field: 'password'});
   }
   else
-  users.get(data.email, function (err) {
-    if (err) {
-      hash(data.password, function (err, salt, hash) {
-        if (err) throw err;
-        // store the salt & hash in the "db"
-        data.salt = salt;
-        data.password = hash;
-        users.insert(data, data.email, function (err, body) {
-          email.to = data.email;
-          email.text = 'Thank you for registering an account with Abacus.';
-          sendgrid.send(email, function (err, json) {
-            res.json({'success': true});
+    users.get(data.email, function (err) {
+      if (err) {
+        hash(data.password, function (err, salt, hash) {
+          if (err) throw err;
+          // store the salt & hash in the "db"
+          data.salt = salt;
+          data.password = hash;
+          users.insert(data, data.email, function (err, body) {
+            email.to = data.email;
+            email.text = 'Thank you for registering an account with Abacus.';
+            sendgrid.send(email, function (err, json) {
+              res.json({'success': true});
+            });
           });
         });
-      });
-    }
+      }
       else
         res.json({err: 'user already exists', field: 'email'});
     });
@@ -209,24 +210,29 @@ app.post('/order', function (req, res) {
 
   var stripeToken = req.body.token;
   console.log(stripeToken);
-  console.log(Math.round(req.body.order.total * 100));
 
-  var charge = stripe.charges.create({
-    amount: Math.round(req.body.order.total * 100), // amount in cents, again
-    currency: "usd",
-    source: stripeToken,
-    description: "Example charge"
-  }, function(err, charge) {
-    if (err) {
-      res.json({err: err.type});
-    }
-    else
-
-      orders.insert(req.body.order, function (err, body) {
-        res.send(body.id);
-      });
-
-  });
+  var total = verify(req.body.order);
+  if (total !== false) {
+    var charge = stripe.charges.create({
+      amount: Math.round(total*100), // amount in cents, again
+      currency: "usd",
+      source: stripeToken,
+      description: "Example charge"
+    }, function (err, charge) {
+      if (err) {
+        console.log(err);
+        res.json({err: err.type});
+      }
+      else {
+        req.body.order.total = total;
+        orders.insert(req.body.order, function (err, body) {
+          res.send(body.id);
+        });
+      }
+    });
+  }
+  else
+    res.send({err: 'Invalid order'});
 });
 
 var port = process.env.PORT || 8080;

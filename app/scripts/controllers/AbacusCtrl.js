@@ -8,9 +8,10 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', ['$scope', '$location', '$cookieStore', 'FrameData', 'User', 'Angles', 'Units',
-    function ($scope, $location, $cookieStore, FrameData, User, Angles, Units) {
+  .controller('AbacusCtrl', ['$scope', '$location', '$cookieStore', 'FrameData', 'User', 'Angles', 'Units', 'Drop',
+    function ($scope, $location, $cookieStore, FrameData, User, Angles, Units, Drop) {
 
+      Drop.setFalse();
       /*********************Enums*******************************/
       //The visitation status for pages (parts/measures)
       var visitstatus = {

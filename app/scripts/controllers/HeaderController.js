@@ -5,7 +5,7 @@
 'use strict';
 
 angular.module('abacuApp')
-  .controller('HeaderController', ['$scope', '$location', '$http', '$timeout', 'User', function ($scope, $location, $http, $timeout, User) {
+  .controller('HeaderController', ['$scope', '$location', '$http', '$timeout', 'User', 'Drop', function ($scope, $location, $http, $timeout, User, Drop) {
 
     //Returns true is the current angular URL matches viewLocation
     $scope.isActive = function (viewLocation) {
@@ -77,12 +77,16 @@ angular.module('abacuApp')
       $location.path('/settings');
     };
 
-    $scope.loginDropdown = false;
+
     $scope.settingsDropdown = false;
+
+    $scope.loginDropdown = function(){
+      return Drop.drop();
+    };
 
     $scope.toggleLoginDropdown = function () {
       if($scope.loginText === 'Log In')
-        $scope.loginDropdown = !$scope.loginDropdown;
+        Drop.toggle();
     };
 
   }]);

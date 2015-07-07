@@ -10,7 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('SaveCtrl', ['$scope', '$location', 'User', 'FrameData', 'Units', 'Angles', function ($scope, $location, User, FrameData, Units, Angles) {
+  .controller('SaveCtrl', ['$scope', '$location', 'User', 'FrameData', 'Units', 'Angles', 'Drop', function ($scope, $location, User, FrameData, Units, Angles, Drop) {
+    Drop.setFalse();
     $scope.wheelchair = User.getCurEditWheelchair();
 
     var fID = $scope.wheelchair.getFrameID();

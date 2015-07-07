@@ -2,8 +2,9 @@
  * Created by Dhruv on 6/22/2015.
  */
 angular.module('abacuApp')
-  .controller('RegisterCtrl', ['$scope', '$http', '$location', 'User', 'Units',
-    function ($scope, $http, $location, User, Units) {
+  .controller('RegisterCtrl', ['$scope', '$http', '$location', 'User', 'Units', 'Drop',
+    function ($scope, $http, $location, User, Units, Drop) {
+      Drop.setFalse();
       $scope.error = '';
       $scope.accountModel = {
         fName: '',

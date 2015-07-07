@@ -8,9 +8,10 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('FrameCtrl', ['$scope', '$location', 'FrameData', 'User', 'Units',
-    function ($scope, $location, FrameData, User, Units) {
+  .controller('FrameCtrl', ['$scope', '$location', 'FrameData', 'User', 'Units', 'Drop',
+    function ($scope, $location, FrameData, User, Units, Drop) {
 
+      Drop.setFalse();
     //An array of all Frames
     $scope.frames = FrameData.getFrames();
 

@@ -100,7 +100,6 @@ angular.module('abacuApp')
           state: this.state,
           zip: this.zip,
           paymethod: this.paymethod,
-          total: this.getTotalCost(),
           wheelchairs: tempChairs
         };
       },
