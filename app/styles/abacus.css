@@ -8,11 +8,11 @@
 /*************************************************Top Bar*****************************************/
 
 
-#backgrounder {
+#background {
   min-width: 1180px;
   left: 0px;
   top: 0px;
-  height: 50%;
+  height: 50vh;
   width: 100%;
   z-index: -5000;
   background: linear-gradient(#EAEAEA,#FFFFFF);
