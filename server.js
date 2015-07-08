@@ -49,10 +49,7 @@ var email = new sendgrid.Email({
 //Payment
 var stripe = require("stripe")(process.env.STRIPE_TKEY);
 
-//HTML to pdf
-var fs = require('fs');
-var pdf = require('wkhtmltopdf');
-pdf.command = 'c:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe';
+var pdfgen = require('./pdfGen').generate;
 
 function restrict(req, res, next) {
   if (req.session.user) {
@@ -226,7 +223,20 @@ app.post('/order', function (req, res) {
       else {
         req.body.order.total = total;
         orders.insert(req.body.order, function (err, body) {
-          res.send(body.id);
+          req.body.order.orderNum = body.id;
+          pdfgen(req.body.order);
+          var invoiceEmail = new sendgrid.Email({
+            from: 'do-not-reply@abacus.fit',
+            subject: 'Abacus Purchase Invoice'
+          });
+          invoiceEmail.to = req.body.order.email;
+          invoiceEmail.text = 'Thank you for using Abacus to purchase your new Wheelchair. We have attached the invoice for your order.';
+          invoiceEmail.addFile({
+            path: 'invoices/invoice_'+body.id+'.pdf'
+          });
+          sendgrid.send(invoiceEmail, function (err, json) {
+            res.send(body.id);
+          });
         });
       }
     });

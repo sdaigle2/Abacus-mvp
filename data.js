@@ -41,16 +41,20 @@ function verifyColor(colorID, colors){
   return false;
 }
 
-function verifyPart(framePart, chairPart){
+function verifyPart(framePart, chairPart, wheelchair){
   var option = getOption(chairPart.optionID, framePart.options);
   if(option){
-    if(verifyColor(chairPart.colorID, option.colors))
+    if(verifyColor(chairPart.colorID, option.colors)) {
+      wheelchair.weight += option.weight;
+      wheelchair.pDetails.push({name: framePart.name, option: option.name, price: option.price});
       return option.price;
+    }
   }
   return false;
 }
 
-function verifyParts(frameParts, chairParts){
+function verifyParts(frameParts, wheelchair){
+  var chairParts = wheelchair.parts;
   if(frameParts.length !== chairParts.length){
     return false;
   }
@@ -60,7 +64,7 @@ function verifyParts(frameParts, chairParts){
     if(!chairPart){
       return false;
     }
-    var price = verifyPart(frameParts[i], chairPart);
+    var price = verifyPart(frameParts[i], chairPart, wheelchair);
     if(!price && price!==0) {
       return false;
     }
@@ -79,14 +83,19 @@ function getMeasure(measureID, measures){
   return false;
 }
 
-function verifyMeasure(frameMeasure, chairMeasure){
+function verifyMeasure(frameMeasure, chairMeasure, wheelchair){
   var index = chairMeasure.measureOptionIndex;
-  if(index >= 0 && index < frameMeasure.measureOptions[0].length)
+  if(index >= 0 && index < frameMeasure.measureOptions[0].length) {
+    wheelchair.weight += frameMeasure.weights[index];
+    var selection = frameMeasure.measureOptions[0][index]+' '+frameMeasure.units[0]+' / '+frameMeasure.measureOptions[1][index]+' '+frameMeasure.units[1];
+    wheelchair.mDetails.push({name: frameMeasure.name, selection: selection});
     return frameMeasure.prices[index];
+  }
   return false;
 }
 
-function verifyMeasures(frameMeasures, chairMeasures){
+function verifyMeasures(frameMeasures, wheelchair){
+  var chairMeasures = wheelchair.measures;
   if(frameMeasures.length !== chairMeasures.length){
     return false;
   }
@@ -96,7 +105,7 @@ function verifyMeasures(frameMeasures, chairMeasures){
     if(!chairMeasure){
       return false;
     }
-    var price = verifyMeasure(frameMeasures[i], chairMeasure);
+    var price = verifyMeasure(frameMeasures[i], chairMeasure, wheelchair);
     if(!price && price!==0) {
       return false;
     }
@@ -107,12 +116,21 @@ function verifyMeasures(frameMeasures, chairMeasures){
 }
 
 function verifyChair(wheelchair){
+  wheelchair.weight = 0;
+  wheelchair.pDetails = [];
+  wheelchair.mDetails = [];
   var frame = getFrame(wheelchair.frameID);
   if(frame){
-    var partsPrice = verifyParts(frame.parts, wheelchair.parts);
-    var measuresPrice = verifyMeasures(frame.measures, wheelchair.measures);
-    if(partsPrice!==false && measuresPrice!==false)
+    var partsPrice = verifyParts(frame.parts, wheelchair);
+    var measuresPrice = verifyMeasures(frame.measures, wheelchair);
+    if(partsPrice!==false && measuresPrice!==false) {
+      wheelchair.manufacturer = frame.manufacturer;
+      wheelchair.model = frame.name;
+      wheelchair.price = frame.basePrice + partsPrice + measuresPrice;
+      wheelchair.weight += frame.baseWeight;
+      wheelchair.wheelIndex = frame.wheelIndex;
       return frame.basePrice + partsPrice + measuresPrice;
+    }
   }
   return false;
 }
