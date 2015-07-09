@@ -1,81 +1,63 @@
-<link href="../../styles/checkout/cart.css" rel="stylesheet"/>
-<link href="../../styles/index.css" rel="stylesheet"/>
+﻿<link href="../../styles/checkout/cart.css" rel="stylesheet"/>
 
 
 <div class="appBody">
 
-    <!-- Header -->
-    <div class="cartHeader medium">
-        <h2>My Design</h2>
-    </div>
-    
   <div class="text-center cartBody" ng-class="{'appBodyOverflow': imageDisplay1 }">
+    <!-- Heading -->
+    <div class="cartHeading">
+      <h3><strong>MY DESIGNS</strong></h3>
+    </div>
 
     <!--comparison table main problem-->
     <div id="mainContent">
       <!-- ng-repeat="wheelchair in wheelchairs"-->
-      
-<table class="myWheelchairDesign">    
-    <tr>
-    <th>&nbsp;</th>
-    <th ng-repeat="w in wheelchairs" id="comparisonImages">
-        <p><h4><strong data-ng-bind="w.getTitle()"></strong></h4></p>
-        <img ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false"
-             data-ng-src="images/mainpic.png" width="185">
-    <table class="wheelchairHover" ng-show="editPanelShow === true"
-               ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false">
-          <tr>
-            <td ng-click="toggleImageDisplay()"><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
-            <td data-ng-click="editWheelchair($index)"><strong>Edit</strong></td>
-            <td data-ng-click="deleteWheelchair($index)"><img data-ng-src="images/my_design_page/delete.png" width="20">
-            </td>
-          </tr>
-    </table>
-    </th>
-    </tr>
-    
-    <tr>
-        <td>&nbsp;</td>
-        <td class="addButton"
-             data-ng-click="addWheelchairToOrder($index)"
-             data-ng-if="wInOrder[$index] === false"
-             data-ng-class="{'inactive': w.allMeasuresSet() === false }">Add to cart
-        </td>
-        <td class="removeButton"
-             data-ng-click="removeWheelchairFromOrder($index)"
-             data-ng-if="wInOrder[$index] === true">
-          Remove from cart
-        </td>
-    </tr>
-</table>
 
-      <table class="addWheelchair">
-        <tr>
-            <th>&nbsp;</th>
-            <th>
-            <a ng-href="#/frame">
-                <img data-ng-src="images/my_design_page/add_icon.png">
-            </a>
-            </th>
-            <th>
-            <a ng-href="#/frame">
-                <img data-ng-src="images/my_design_page/add_icon.png">
-            </a>
-            </th>
-            <th>
-            <a ng-href="#/frame">
-                <img data-ng-src="images/my_design_page/add_icon.png">
-            </a>
-            </th>
-        </tr>
-        <tr>
-            <td>&nbsp;</td>
-            <td><h5>Add another Wheelchair</h5></td>
-            <td><h5>Add another Wheelchair</h5></td>
-            <td><h5>Add another Wheelchair</h5></td>
-        </tr>
-      </table>
-      
+        <div ng-repeat="w in wheelchairs" id="comparisonImages">
+          <p><h4><strong data-ng-bind="w.getTitle()"></strong></h4></p>
+          <img ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false"
+               data-ng-src="images/mainpic.png" width="185">
+          <table ng-show="editPanelShow === true"
+                 ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false">
+            <tr>
+              <td ng-click="toggleImageDisplay()"><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
+              <td data-ng-click="editWheelchair($index)"><strong>Edit</strong></td>
+              <td data-ng-click="deleteWheelchair($index)"><img data-ng-src="images/my_design_page/delete.png" width="20">
+              </td>
+            </tr>
+          </table>
+          <div class="addButton"
+               data-ng-click="addWheelchairToOrder($index)"
+               data-ng-if="wInOrder[$index] === false"
+               data-ng-class="{'inactive': w.allMeasuresSet() === false }">ADD TO CART
+          </div>
+          <div class="removeButton"
+               data-ng-click="removeWheelchairFromOrder($index)"
+               data-ng-if="wInOrder[$index] === true">
+            REMOVE FROM CART
+          </div>
+        </div>
+
+      <div class="addWheelchair">
+        <a ng-show="wheelchairs.length < 1" ng-href="#/frame">
+          <div>
+            <img data-ng-src="images/my_design_page/add_icon.png">
+            <div><h5>Add another Wheelchair</h5></div>
+          </div>
+        </a>
+        <a ng-show="wheelchairs.length < 2" ng-href="#/frame">
+          <div>
+            <img data-ng-src="images/my_design_page/add_icon.png">
+            <div><h5>Add another Wheelchair</h5></div>
+          </div>
+        </a>
+        <a ng-show="wheelchairs.length < 3" ng-href="#/frame">
+          <div>
+            <img data-ng-src="images/my_design_page/add_icon.png">
+            <div><h5>Add another Wheelchair</h5></div>
+          </div>
+        </a>
+      </div>
     </div>
 
 
@@ -84,7 +66,7 @@
     <!--detail part table-->
 
 
-    <table class="mydesign-detail-info" ng-if="wheelchairs.length > 0">
+    <table ng-if="wheelchairs.length > 0">
       <tr class="price-weight-row">
         <td class="title-column">
           <p>Price</p>
@@ -104,8 +86,6 @@
         <td class="value-column" ng-repeat="space in emptyCols"></td>
       </tr>
     </table>
-    
-
     <table class="parts-table" data-ng-init="hoverItem = {index: -1, name: ''}" ng-if="wheelchairs.length > 0">
       <tr class="part-row" ng-repeat="part in parts">
         <td class="title-column">
@@ -129,7 +109,7 @@
 
   <!-- Sidebar -->
   <div class="cartSidebar">
-    <div class="cartSidebarHeader"><h2>Cart</h2></div>
+    <div class="cartSidebarHeading"><strong>CART</strong></div>
     <div id="scroll-order">
       <ol>
         <li class="order-list-element" ng-repeat="wheelchair in orderChairs">
@@ -164,7 +144,7 @@
       </tfoot>
     </table>
     <div class="text-center button-div">
-      <div class="button medium"
+      <div class="button medium checkoutButton"
               data-ng-class="{ 'inactive' : !validCart() }"
               data-ng-click="checkOut()">Check Out
       </div>
@@ -183,6 +163,5 @@
       <img data-ng-src="images/mainpic.png" height="90%">
     </div>
   </div>
-</div>
 
 </div>

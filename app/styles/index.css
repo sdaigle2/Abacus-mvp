@@ -380,7 +380,6 @@ div{
 }
 
 .button{
-  width: 255px;
   display: inline-block;
   color: #60C2B1;
   height: 40px;
@@ -468,10 +467,10 @@ div{
 }
 
 .dropdownTable tr {
-    
+
 }
 
-    
+
 
 .dropdownTable td img {
   top: 18px;
@@ -481,8 +480,8 @@ div{
   text-align: center;
   position: absolute;
 }
-    
-    
+
+
 .dropdownButton table tr  h4 {
   position: relative;
   top: 40px;
@@ -518,8 +517,8 @@ div{
 }
 
 
-    
-    
+
+
 .error-mesg{
   color: red;
   font-size: small;

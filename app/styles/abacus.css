@@ -95,7 +95,6 @@
   to {top: -200px;}
 }
 
-
 .dropdownButton {
   position: relative;
   background-color: #FFFFFF;
@@ -115,17 +114,16 @@
   animation-duration: 0.5s;
 }
 
-.dropdownTable td {
+.dropdownButton td {
   height: 80px;
   position: relative;
-  margin: auto;
-  text-align: center;
+  margin-right: 20px;
 }
 
-.dropdownTable td img {
+.dropdownButton img {
   position: absolute;
   top: 18px;
-  text-align: center;
+  left: 129px;
 }
 
 .dropdownButton .iconHover:hover {
@@ -136,9 +134,12 @@
 .dropdownButton table tr  h4 {
   position: relative;
   top: 42px;
+  left: 90px;
 }
 
-
+.dropdownButton #panelText {
+  left: 82px;
+}
 
 .appBody {
   position: relative;
@@ -162,7 +163,7 @@
   line-height: 1;
   height: 60px;
   border-left: 1px solid #ddd;
-    position: relative;
+
 }
 
 #wheelChairEdit{
@@ -433,74 +434,44 @@
 
 /******************************************************Sidebar*******************************************/
 
-.nav-tabs {
-  width: 330px;
-  height: 40px;
+
+.nav-tabs.nav-justified > li.active,
+.nav-tabs.nav-justified > li {
+  margin-right: 10px;
   position: relative;
+  top: -8px;
   font-size: 1em;
   font-weight: 400;
-    top: 60px;
+  padding: 10px 0;
+  font-size: 0.95em;
 }
 
-.tabs {
-    float: left;
-    clear: both;
-    width: 165px;
-    color: #000000;
-    background-color: #FFFFFF;
-    border: 1px solid #ddd;
-    list-style: none;
-    text-align: center;
-    height: 40px;
-    padding-top: 8px;
-}
-
-.nav-justified > li.active,
-.nav-justified > li {
-    float: left;
-    width: 165px;
-    color: #000000;
-    background-color: #FFFFFF;
-    border: 1px solid #ddd;
-    list-style: none;
-    text-align: center;
-    height: 40px;
-    padding-top: 8px;
-
-}
-
-.nav-justified > li > a,
-.nav-justified > li > a:hover,
-.nav-justified > li > a:focus {
+.nav-tabs.nav-justified > li > a,
+.nav-tabs.nav-justified > li > a:hover,
+.nav-tabs.nav-justified > li > a:focus {
   position: relative;
+  top: 1px;
   color: #000000;
   cursor: pointer;
-    float: left;
-    width: 165px;
-    color: #000000;
-    background-color: #FFFFFF;
-    border: 1px solid #ddd;
-    list-style: none;
-    text-align: center;
-    height: 40px;
-    padding-top: 8px;
-  
+  background-color: #FFFFFF;
 
 /*
   box-sizing:border-box;
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
 */
-
+  padding: 8px 0 10px;
+  border-radius: 0;
+  border: 1px solid #ddd
 }
 
 .shadow-fixer{
   border-left: 1px solid #ddd;
 }
 
-.nav-justified > li.active > a,
-.nav-justified > li.active > a:hover,
-.nav-justified > li.active > a:focus {
+.nav-tabs.nav-justified > li.active > a,
+.nav-tabs.nav-justified > li.active > a:hover,
+.nav-tabs.nav-justified > li.active > a:focus {
   color: #000000;
   cursor: default;
   background-color: #ffffff;
@@ -525,20 +496,22 @@
   float: right;
   clear: right;
   width: 330px;
-  max-width: 330px;
-  height: calc(100vh - 70px);
+  max-width: 430px;
+  height: calc(100vh - 130px);
+  top: -3px
 }
 
 .sideBar{
   position: relative;
   background-color: #f1f2f2;
+  top: -19px;
   border-radius: 0px;
-  height: 40px;
+  height: calc(100% - 36px);
   border-left: 1px solid #ddd;
-   top: 40px;
 }
 
 .sideBar-header {
+  z-index: 1;
   position: relative;
 }
 

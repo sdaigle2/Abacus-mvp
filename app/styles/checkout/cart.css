@@ -1,5 +1,8 @@
 /*Shopping Cart page CSS*/
 
+.appBody{
+  min-width: 1100px;
+}
 
 .appBodyOverflow {
   height: 95vh;
@@ -15,31 +18,36 @@
 
 
 .cartBody {
+  position: relative;
   float: left;
   clear: left;
-  width: 65%;
-  margin-left: 5%;
-  margin-right: 5%;
-  margin-top: 3%;
+  width: 75%;
 }
 
+
+
 /*************************
-****** Cart Header ******
+****** Cart Heading ******
 **************************/
 
-.cartHeader {
+.cartHeading {
   position: relative;
   clear: left;
   float: left;
-  width: 65%;
-  margin-bottom: 20px;
-  margin-top: 30px;
-  font-size: 27px;
-  height: 30px;
+  margin:30px 25px 0;
+
+  width: 96%;
 }
 
 
-.cartHeader a .backButton {
+.cartHeading h3 {
+  clear: left;
+  float: left;
+  margin-top: 36px;
+  text-transform: uppercase;
+}
+
+.cartHeading a .backButton {
   margin-top: 50px;
   clear: right;
   float: right;
@@ -51,61 +59,21 @@
 ****** Comparison table ****
 **************************/
 
-#mainContent {
-  float: left;
-  clear: left;
-  width: 100%;
-  height: 300px;
+#imgBox{
+  margin-right: 20px;
 }
 
-.addWheelchair {
-    position: absolute;
-    float: left;
-  clear: left;
-  width: 65%;
-  height: 300px;
-  background-color: yellow;
+#mainContent{
+  width: 93%;
+  min-width: 800px;
+
 }
-
-.addWheelchair tr {
-    height: 100px;
-    align-content: center;
-    text-align: center;
-    
-}
-
-.addWheelchair th {
-    height: 100px;
-    width: 100px;
-    border: 1px solid #eaeaea;
-    vertical-align: bottom;
-}
-
-.addWheelchair th img {
-    margin: auto;
-    width: 40px;
-    height: 40px;
-    align-content: center;
-    text-align: center;
-    display: block;
-}
-
-.addWheelchair td {
-    height: 100px;
-    width: 100px;
-    border: 1px solid #eaeaea;
-    vertical-align: top;
-}
-
-
-
-/*
 
 #mainContent .addWheelchair{
   position: absolute;
-  min-width: 635px;
+  min-width: 680px;
   top: 119px;
-  left: 173px;
+  left: 20%;
   height: 260px;
   z-index: 0;
 }
@@ -117,10 +85,12 @@
 
 #mainContent .addWheelchair >a>div{
   display: inline-block;
+  margin-right: 20px;
   width: 207px;
   position: relative;
-  margin: auto;
+
   top: 85px;
+  float: right;
 }
 
 #mainContent .addWheelchair >a >div:hover{
@@ -133,106 +103,17 @@ a:hover{
 }
 
 #mainContent .addWheelchair >a>div >div{
-  width: 37%;
-  display: inline-block;
-}
-*/
-
-.myWheelchairDesign {
-    position: absolute;
-    float: left;
-  clear: left;
-    width: 65%;
-  height: 300px;
-    z-index: 10;
-}
-
-.myWheelchairDesign tr {
-    width: 100px;
-    align-content: center;
-    text-align: center;
-    
-}
-
-.myWheelchairDesign th {
-    height: 150px;
-    width: 100px;
-    border: 2px solid blue;
-    background-color: pink;
-}
-
-#comparisonImages {
-    margin: auto;
-    width: 25%;
-    height: 130px;
-    align-content: center;
-    text-align: center;
-    display: block;
-}
-
-#comparisonImages h4{
-  float: left;
-  margin-left: 15px;
-}
-
-
-.myWheelchairDesign td {
-    height: 40px;
-    width: 100px;
-}
-
-.addButton {
-  color: #00A89C;
-  font-size: 1.3em;
-  margin-top: 10px;
-  border-top: 3px solid #00a89c;
-  padding: 10px 0;
-}
-
-.mywheelchairDesign .addButton:hover {
-  background-color: #00a89c;
-  color: white;
-}
-
-.mywheelchairDesign .removeButton {
-  color: #00A89C;
-  font-size: 1.3em;
-  margin-top: 10px;
-  border-top: 3px solid #00a89c;
-  padding: 10px 0;
-}
-
-.mywheelchairDesign .removeButton:hover {
-  background-color: red;
-  color: white;
-}
-
-.wheelchairHover tr {
-    background-color:rgba(256,256,256,0.85);
   width: 100%;
-  padding: 10px 0;
-  position: absolute;
-  bottom: 48px;
 }
 
-.wheelchairHover td {
-    cursor: pointer;
-  padding: 0 15px;
-}
 
-.wheelchairHover td:nth-child(2){
-  border-left: 3px solid black;
-  border-right: 3px solid black;
-}
 
-/*
 #mainContent #comparisonImages{
   display: inline-block;
   position: relative;
   top: 15px;
-  left: 175px;
+  left: 20%;
   float: left;
-  border: 1px solid #EAEAEA;
   margin-right: 20px;
   background-color: white;
   z-index: 1;
@@ -254,7 +135,7 @@ a:hover{
   width: 100%;
   padding: 10px 0;
   position: absolute;
-  bottom: 48px;
+  bottom: 51px;
 }
 
 #mainContent #comparisonImages td{
@@ -270,10 +151,10 @@ a:hover{
 
 
 #mainContent #comparisonImages .addButton {
+  margin-top: 20px ;
   color: #00A89C;
   font-size: 1.3em;
-  margin-top: 10px;
-  border-top: 3px solid #00a89c;
+  border: 1px solid #00a89c;
   padding: 10px 0;
 }
 
@@ -285,8 +166,7 @@ a:hover{
 #mainContent #comparisonImages .removeButton {
   color: #00A89C;
   font-size: 1.3em;
-  margin-top: 10px;
-  border-top: 3px solid #00a89c;
+  border: 3px solid #00a89c;
   padding: 10px 0;
 }
 
@@ -294,25 +174,21 @@ a:hover{
   background-color: red;
   color: white;
 }
-*/
 
 
 
 
 /********detail part table***********/
 
-.mydesign-detail-info{
+.cartBody > table{
+  margin: 20px 25px;
+  float: left;
   clear: left;
-  width: 100%;
-  margin-top: 30px;
-  position: relative;
 }
 
-.parts-table {
-    width: 100%;
-}
-.parts-table, .parts-table td {
-    border-bottom: solid 1px #EAEAEA;
+.parts-table, .parts-table td{
+  border-top: solid 1px #EAEAEA;
+  border-bottom: solid 1px #EAEAEA;
 }
 
 .price-weight-row{
@@ -324,12 +200,12 @@ a:hover{
 }
 
 .title-column{
-      width: 100px;
+  width: 140px;
   font-weight: bold;
 }
 
 .value-column{
-    width: 100px;
+  width: 227px;
   margin: 0 10px;
 }
 
@@ -445,7 +321,8 @@ a:hover{
 }
 
 .button.inactive {
-  border: 1px solid #60C2B1;
+  background-color: #AAAAAA;
+  color: white;
 }
 
 .cartRemoveButton {
@@ -484,23 +361,24 @@ a:hover{
 **************************/
 
 .cartSidebar {
-  background-color: #eaeaea;
+  background-color: #eaeae8;
   clear: right;
   float: right;
   padding-left: 15px;
-  padding-top: 60px;
+  padding-top: 100px;
   padding-bottom: 100px;
-  padding-right: 15px;
-  position: absolute;
-  width: 23%;
+  position: relative;
+  width: 25%;
   height: 100%;
-  right: 0;
 }
 
-.cartSidebarHeader h2 {
-  margin: 0px;
-  font-size: 27px;
-  height: 30px;
+.cartSidebarHeading {
+  font-size: 25px;
+  border-bottom: solid 2px #AAAAAA;
+  padding-bottom: 24px;
+  margin-bottom: 3px;
+  position: relative;
+  top: -25px;
 }
 
 .cartSidebarSubtotals {
@@ -534,23 +412,15 @@ a:hover{
 
 .checkoutButton {
   width: 90%;
-  margin: auto;
-  border: none;
-  background-color: #60C2B1;
-  display:inline-block;
-  font-size: 1.5em;
-  color: #FFFFFF;
-  height: 35px;
+
 }
 
 .checkoutButton.inactive {
-  border: 1px solid #60C2B1;
+  background-color: #A7A9Ac;
 }
 
 .checkoutButton:hover {
   background-color: #60C2B1;
-  border: 1px solid #60C2B1;
-  color: #ffffff;
   cursor: pointer;
 }
 
@@ -570,7 +440,7 @@ ol{
 
 
 .order-list-element{
-  padding-bottom: 15px;
+
   position: relative;
 }
 
@@ -578,8 +448,8 @@ ol h3{
   position: absolute;
   top: -11px;
   left: 36px;
-  font-size: 14pt;
 }
+
 
 /****************display Image*********/
 #displayImage{
