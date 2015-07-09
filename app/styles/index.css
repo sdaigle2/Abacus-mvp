@@ -27,7 +27,7 @@ body {
   line-height:0;
   font-weight: 300;
   color: #00A89C;
-  font-size: 16px;
+  font-size: 14px;
   border-bottom: solid 2px #eaeaea;
   background-color: #ffffff;
 }
@@ -131,7 +131,7 @@ body {
   position: relative;
   height: 40px;
   margin: 0 0 0 0;
-  padding: 18px 10px 0 0;
+  padding: 20px 10px 0 0;
 }
 
 
@@ -143,7 +143,7 @@ body {
 }
 .mainNavbar .mainNavbar-left > li {
   color: #000000;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 300;
 }
 .mainNavbar .mainNavbar-left > li:hover,
@@ -162,18 +162,18 @@ body {
   color: inherit;
 }
 .mainNavbar .mainNavbar-right > li {
-  color: #00a89c;
+  color: #f2bc19;
   font-family:inherit;
 }
 .mainNavbar .mainNavbar-right > li:hover,
 .mainNavbar .mainNavbar-right > li:focus {
   text-decoration: none;
-  color: #00A89C;
+  color: #f2bc19;
 }
 .mainNavbar .mainNavbar-right > .active > a,
 .mainNavbar .mainNavbar-right > .active > a:hover,
 .mainNavbar .mainNavbar-right > .active > a:focus {
-  color: #00A89C;
+  color: #f2bc19;
   text-decoration: none;
 
 }
@@ -246,7 +246,7 @@ body {
   line-height: 1;
   width: 240px;
   border: 1px solid black;
-  padding: 8px 20px 16px;
+  padding: 8px 20px 14px;
   z-index: 100000;
 }
 
@@ -261,7 +261,7 @@ body {
 .afterlogin .logout-button{
   height: 44px;
   text-align: center;
-  margin-top: 16px ;
+  margin-top: 14px ;
   padding-top: 15px;
   background-color: #939597;
   color: white;
@@ -380,18 +380,17 @@ div{
 }
 
 .button{
-  width: 300px;
+  width: 255px;
   display: inline-block;
   color: #60C2B1;
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 40px;
   margin-top: 30px;
   text-align: center;
-  font-size: 19px;
+  font-size: 16px;
   padding-left: 15px;
   padding-right: 15px;
-  border: solid 2px;
-  border-color: #60C2B1;
+  border: solid 1px #60C2B1;
 }
 
 .button:hover {
@@ -455,6 +454,7 @@ div{
 }
 
 
+
 .dropdownTable {
   height: 76%;
   width: 80%;
@@ -462,25 +462,64 @@ div{
   top: 24px;
   margin: auto ;
   vertical-align: middle;
-  border-top: 1px solid #939597;
-  border-bottom: 1px solid #939597;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
   border-collapse: separate;
 }
 
+.dropdownTable tr {
+    
+}
+
+    
+
+.dropdownTable td img {
+  top: 18px;
+  margin: auto;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  position: absolute;
+}
+    
+    
+.dropdownButton table tr  h4 {
+  position: relative;
+  top: 40px;
+  font-size: 12pt;
+  text-align: center;
+}
 
 
-.dropdownTable td{
-  width: 30%;
-  padding-left: 7.5%;
+.dropdownButton {
+  position: relative;
+  background-color: #FFFFFF;
+  height: 200px;
+  width: 100%;
+  z-index: 2;
+  top: 0;
+}
+
+.dropdownButton.ng-enter{
+  animation-name: expand;
+  animation-duration: 0.5s;
+}
+
+.dropdownButton.ng-leave{
+  animation-name: leave;
+  animation-duration: 0.5s;
 }
 
 
 
-
-.dropdownButton #panelText {
-  left: 82px;
+.dropdownButton .iconHover:hover {
+  opacity: 0;
+  cursor: pointer;
 }
 
+
+    
+    
 .error-mesg{
   color: red;
   font-size: small;
@@ -490,4 +529,12 @@ div{
 .paddingtop-fontsize {
     font-size: 12pt;
     padding-top: 10px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  margin-top: 30px;
+  margin-left: 10%;
+  font-size: 27px;
+  height: 30px;
 }

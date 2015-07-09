@@ -16,26 +16,26 @@
       </span>
       </div>
       <button type="button" id="SaveButton" class="btn" data-ng-class="{'saveButton':saveDropdown === true }"
-              data-ng-click="toggleSaveDropDown()">Save & Review
+              data-ng-click="toggleSaveDropDown()">Save &amp; Review
       </button>
     </div>
 
     <div data-ng-if="saveDropdown === true" class="dropdownButton">
       <table class="dropdownTable">
         <tr>
-          <td id="panelIcon1"><img data-ng-click="saveDesign()"
+          <td><img data-ng-click="saveDesign()"
                                    data-ng-src="images/abacus_page/save_review/save_to_my_design_hover.png">
-            <img data-ng-click="saveDesign()" class=" iconHover"
+            <img data-ng-click="saveDesign()" class="iconHover"
                  data-ng-src="images/abacus_page/save_review/save_to_my_design.png">
-            <h4 data-ng-click="saveDesign()">SAVE TO MY DESIGN</h4>
+            <h4 data-ng-click="saveDesign()">Save and compare</h4>
           </td>
           <td><img data-ng-src="images/abacus_page/save_review/save_to_computer_hover.png">
             <img class="iconHover" data-ng-src="images/abacus_page/save_review/save_to_computer.png">
-            <h4 id="panelText">SAVE TO MY COMPUTER</h4>
+            <h4>Save to my computer</h4>
           </td>
-          <td id="panelIcon3"><img data-ng-src="images/abacus_page/save_review/share_with_friends_hover.png">
+          <td><img data-ng-src="images/abacus_page/save_review/share_with_friends_hover.png">
             <img class="iconHover" data-ng-src="images/abacus_page/save_review/share_with_friends.png">
-            <h4>SHARE WITH FRIEND</h4>
+            <h4>Share with friends</h4>
           </td>
         </tr>
       </table>
@@ -43,32 +43,7 @@
 
     <div class="appBody" data-ng-class="{'appBodyShow': saveDropdown === true}">
 
-      <!-- Price & Weight Display -->
-      <div id="display">
-        <div class="display-toggle text-center">
-          <h6>Change Unit</h6>
-          <select data-ng-model="curUnitSys"
-                  data-ng-options="sys.enumVal as sys.name for sys in unitSysList"/>
-        </div>
-        <div class="display-frame" data-ng-click="changeEditState()">
-          <h4 id="wheelChairName" data-ng-if="edit !== true" data-ng-bind="curEditWheelchair.title"></h4>
-
-          <form id="wheelChairEdit" data-ng-submit="editComplete()" data-ng-if="edit === true">
-            <input name="wheelChairName" type="text"
-                   data-ng-model="curEditWheelchair.title" data-ng-click="$event.stopPropagation();"/>
-          </form>
-          <span class="glyphicon glyphicon-pencil edit-button"></span>
-        </div>
-        <div class="display-totals">
-          <h4>
-            <small>PRICE:</small>
-            $<span data-ng-bind="getTotalPrice().toFixed(2)"></span>&nbsp;&nbsp;&nbsp;
-            <small>WEIGHT:</small>
-            <span data-ng-bind="(getTotalWeight()*getCurUnitSysWeightFactor()).toFixed(2)"></span> <span
-            data-ng-bind="getCurUnitSysWeightName()"></span>
-          </h4>
-        </div>
-      </div>
+      
 
 
       <!-- BODY -->
@@ -127,18 +102,46 @@
         </div>
       </div>
 
-      <!-- SIDEBAR -->
-      <div class="sideBarWrapper">
+<!-- SIDEBAR -->
+    <div class="sideBarWrapper">
 
+<!-- Price & Weight Display -->
+      <div id="display">
+        <div class="display-toggle text-center">
+          <h6>Change Unit</h6>
+          <select data-ng-model="curUnitSys"
+                  data-ng-options="sys.enumVal as sys.name for sys in unitSysList"/>
+        </div>
+        <div class="display-frame" data-ng-click="changeEditState()">
+          <h4 id="wheelChairName" data-ng-if="edit !== true" data-ng-bind="curEditWheelchair.title"></h4>
+
+          <form id="wheelChairEdit" data-ng-submit="editComplete()" data-ng-if="edit === true">
+            <input name="wheelChairName" type="text"
+                   data-ng-model="curEditWheelchair.title" data-ng-click="$event.stopPropagation();"/>
+          </form>
+          <span class="glyphicon glyphicon-pencil edit-button"></span>
+        </div>
+        <div class="display-totals">
+          <h4>
+            <small>PRICE:</small>
+            $<span data-ng-bind="getTotalPrice().toFixed(2)"></span>&nbsp;&nbsp;&nbsp;
+            <small>WEIGHT:</small>
+            <span data-ng-bind="(getTotalWeight()*getCurUnitSysWeightFactor()).toFixed(2)"></span> <span
+            data-ng-bind="getCurUnitSysWeightName()"></span>
+          </h4>
+        </div>
+      </div>
+
+      
         <!-- Tabs -->
-        <ul class="nav nav-tabs nav-justified">
-          <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}">
-            <a id="shadow-customs" ng-href="#/abacus" data-ng-click="switchPageType(pageType.CUSTOMIZE)">Customize</a>
-          </li>
-          <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.MEASURE}">
+        <div class="nav-tabs">
+          <div class="tabs" role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}">
+            <a ng-href="#/abacus" data-ng-click="switchPageType(pageType.CUSTOMIZE)">Customize</a>
+          </div>
+          <div class="tabs" role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.MEASURE}">
             <a ng-href="#/abacus" data-ng-click="switchPageType(pageType.MEASURE)">Measure</a>
-          </li>
-        </ul>
+          </div>
+        </div>
 
         <!-- CUSTOMIZE: Sidebar -->
 

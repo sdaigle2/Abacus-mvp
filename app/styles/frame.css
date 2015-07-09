@@ -6,23 +6,11 @@
 }
 
 
-
-.frame-header-row {
-  min-height:80px;
-  margin-bottom: 30px;
-  line-height: 0;
-  margin-left: 5%;
-  margin-right: 5%;
-}
-
-.frame-header {
-  bottom: -60px;
-  font-size: 30px;
-  height: 15px;
+.frame-header h2 {
   position: relative;
   clear: left;
-  padding-bottom: 3%;
-  margin-top: 1%;
+  float: left;
+  width: 65%;
 }
 
 /******main display part*****/
