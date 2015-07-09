@@ -124,8 +124,9 @@ app.post('/register', function (req, res) {
     unitSys: 0,
     orders: []
   };
-  if (!check(data)) {
-    res.json({err: 'evil input'});
+  var err = check(data);
+  if (err!==true) {
+    res.json({err: err});
   }
   else if (req.body.password.length < 8) {
     res.json({err: 'password should have at least 8 characters', field: 'password'});
@@ -216,26 +217,28 @@ app.post('/order', function (req, res) {
       source: stripeToken,
       description: "Example charge"
     }, function (err, charge) {
-      if (err) {
+      if (err && req.body.order.payMethod === 'paypal') {
         console.log(err);
         res.json({err: err.type});
       }
       else {
-        req.body.order.total = total;
         orders.insert(req.body.order, function (err, body) {
           req.body.order.orderNum = body.id;
-          pdfgen(req.body.order);
+          var pdfStream = pdfgen(req.body.order);
           var invoiceEmail = new sendgrid.Email({
             from: 'do-not-reply@abacus.fit',
             subject: 'Abacus Purchase Invoice'
           });
           invoiceEmail.to = req.body.order.email;
           invoiceEmail.text = 'Thank you for using Abacus to purchase your new Wheelchair. We have attached the invoice for your order.';
-          invoiceEmail.addFile({
-            path: 'invoices/invoice_'+body.id+'.pdf'
-          });
-          sendgrid.send(invoiceEmail, function (err, json) {
-            res.send(body.id);
+          pdfStream.on('finish', function(){
+            invoiceEmail.addFile({
+              path: 'invoices/invoice_'+body.id+'.pdf'
+            });
+            sendgrid.send(invoiceEmail, function (err, json) {
+              console.log(err);
+              res.send(body.id);
+            });
           });
         });
       }

@@ -29,13 +29,13 @@
 }
 
 .form-inline{
-  width: 45%;
+  width: 49%;
   display: inline-block;
   border: 0;
 }
 
 .form-group .form-control{
-  width: 100%;
+  width: 98%;
   height: 30px;
   margin-top: 5px;
 }

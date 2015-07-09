@@ -108,8 +108,10 @@ angular.module('abacuApp')
 
 
           case $scope.stages.PAYMENT:
-            if($scope.payForm.method === $scope.payMethods.PAYPAL)
+            if($scope.payForm.method === $scope.payMethods.PAYPAL) {
+              $scope.curOrder.set
               payment();
+            }
             else
               $scope.curStage++;
             break;
@@ -134,7 +136,6 @@ angular.module('abacuApp')
 
 
           case $scope.stages.COMPLETE:
-            $location.path('/invoice');
             break;
         }
       };

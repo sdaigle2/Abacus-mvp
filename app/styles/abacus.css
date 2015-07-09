@@ -134,11 +134,11 @@
 .dropdownButton table tr  h4 {
   position: relative;
   top: 42px;
-  left: 90px;
+  left: -15px;
 }
 
 .dropdownButton #panelText {
-  left: 82px;
+  left: -30px;
 }
 
 .appBody {

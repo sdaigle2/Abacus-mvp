@@ -89,6 +89,71 @@ function measuresPage(doc, wheelchair){
   }
 }
 
+function summaryPage(doc, order){
+  doc.addPage({
+    size: [612, 792]
+  });
+  doc.lineWidth(1).moveTo(207, 50).lineTo(207, 272).stroke();
+  doc.moveTo(36 ,342).lineTo(576, 342).stroke();
+  doc.lineGap(1);
+  doc.font('Book').fontSize(11).text('60 Hazelwood Dr.', 36, 104);
+  doc.text('Suite 110');
+  doc.text('Champaign, IL, 61820');
+  doc.moveDown(1);
+  doc.text('Phone: (217) 903-4563');
+  doc.text('Fax: (217) 332-1560');
+  doc.text('www.intelliwheels.net');
+  doc.font('Medium').fontSize(18).text('SUMMARY', 221, 52);
+  doc.fontSize(11).text('Purchase Date:', 221, 104);
+  doc.text('Terms:');
+  doc.text('Ship Via:');
+  doc.font('Book').text(order.sentDate.substr(0, 10), 405, 104);
+  doc.text('Net 30');
+  doc.text('Best');
+  doc.font('Medium').fontSize(13).text('BILL TO:', 221, 180);
+  doc.text('SHIP TO:', 405, 180);
+  doc.font('Book').fontSize(11).text(order.fName+' '+order.lName, 221, 207);
+  doc.text(order.addr);
+  doc.text(order.addr2);
+  doc.text(order.city+', '+order.state+', '+order.zip);
+  doc.text(order.fName+' '+order.lName, 405, 207);
+  doc.text(order.addr);
+  doc.text(order.addr2);
+  doc.text(order.city+', '+order.state+', '+order.zip);
+  doc.text('Qty', 36, 320);
+  doc.text('Details', 221, 320);
+  doc.text('Price', 0, 320, {align:'right'});
+  doc.lineGap(6);
+  for(var i=0; i<order.wheelchairs.length; i++){
+    if(i === 0){
+      doc.text('1', 36, 359);
+      doc.text(order.wheelchairs[i].title, 221, 359);
+      doc.text('$'+order.wheelchairs[i].price.toFixed(2), 0, 359, {align:'right'});
+    }
+    else{
+      doc.text('1', 36);
+      doc.moveUp(1);
+      doc.text(order.wheelchairs[i].title, 221);
+      doc.moveUp(1);
+      doc.text('$'+order.wheelchairs[i].price.toFixed(2), {align:'right'});
+    }
+  }
+  doc.moveTo(36 ,441).lineTo(576, 441).stroke();
+  doc.text('Sales tax rate:', 36, 458);
+  doc.text('9.70%');
+  doc.font('Medium').text('Subtotal:', 221, 458);
+  doc.text('Shipping:');
+  doc.text('Tax:');
+  doc.text('Discount:');
+  doc.text('Total:', 221, 553);
+  doc.font('Book').text('$'+ (order.subtotal).toFixed(2), 0, 458, {align:'right'});
+  doc.text('$'+ (order.wheelchairs.length*15).toFixed(2), {align:'right'});
+  doc.text('$'+ (0.097*order.subtotal).toFixed(2), {align:'right'});
+  doc.text('$0.00', {align:'right'});
+  doc.text('$'+ order.total.toFixed(2), 0, 553, {align:'right'});
+  doc.moveTo(221, 536).lineTo(576, 536).stroke();
+}
+
 exports.generate = function(order){
   var doc = new pdf({
     size: [612, 792]
@@ -105,5 +170,7 @@ exports.generate = function(order){
     partsPage(doc, order.wheelchairs[i]);
     measuresPage(doc, order.wheelchairs[i]);
   }
+  summaryPage(doc, order);
   doc.end();
+  return stream;
 };

@@ -143,5 +143,7 @@ exports.verifyOrder = function(order){
       return false;
     total += price;
   }
-  return total + total*0.097 + 15*order.wheelchairs.length;
+  order.subtotal = total;
+  order.total = total + total*0.097 + 15*order.wheelchairs.length;
+  return order.total;
 };

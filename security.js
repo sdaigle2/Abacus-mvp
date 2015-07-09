@@ -19,25 +19,25 @@ var iterations = 12000;
 
 function typeCheck(userData){
   if(typeof userData.fName !== 'string')
-    return false;
+    return 'Invalid First Name';
   if(typeof userData.lName !== 'string')
-    return false;
+    return 'Invalid Last Name';
   if(typeof userData.email !== 'string')
-    return false;
+    return 'Invalid Email';
   if(typeof userData.phone !== 'string')
-    return false;
+    return 'Invalid Phone Number';
   if(typeof userData.addr !== 'string')
-    return false;
+    return 'Invalid Address';
   if(typeof userData.addr2 !== 'string')
-    return false;
+    return 'Invalid Address';
   if(typeof userData.city !== 'string')
-    return false;
+    return 'Invalid City';
   if(typeof userData.state !== 'string')
-    return false;
+    return 'Invalid State';
   if(typeof userData.zip !== 'string')
-    return false;
+    return 'Invalid Zip';
   if(typeof userData.password !== 'string')
-    return false;
+    return 'Invalid Password';
   return true;
 }
 
@@ -83,8 +83,9 @@ exports.hash = function (pwd, salt, fn) {
 };
 
 exports.check = function(userData) {
-  if(!typeCheck(userData))
-    return false;
+  var err = typeCheck(userData);
+  if(err!==true)
+    return err;
   //if(!addressCheck(userData))
   //  return false;
   return true;

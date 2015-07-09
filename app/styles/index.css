@@ -411,12 +411,12 @@ div{
 }
 
 /*******Save & reveiw drodown buttun***********/
-@keyframes expand {
+@keyframes expandLogin {
   from {top: -200px;}
   to {top: 40px;}
 }
 
-@keyframes leave {
+@keyframes leaveLogin {
   from {top: 40px;}
   to {top: -200px;}
 }
@@ -435,11 +435,11 @@ div{
 }
 
 .fixPosition.ng-enter{
-  animation: expand 0.5s;
+  animation: expandLogin 0.5s;
 }
 
 .fixPosition.ng-leave{
-  animation: leave 0.5s;
+  animation: leaveLogin 0.5s;
 }
 
 #foreground{
