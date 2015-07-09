@@ -36,9 +36,7 @@ function verifyColor(colorID, colors){
       return true;
     }
   }
-  if(colors.length === 0 && colorID === 0)
-    return true;
-  return false;
+  return colors.length === 0 && colorID === 0;
 }
 
 function verifyPart(framePart, chairPart, wheelchair){

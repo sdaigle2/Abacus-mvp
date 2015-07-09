@@ -207,7 +207,7 @@ angular.module('abacuApp')
           $cookieStore.put('wheelchairs', tempChairs);
         },
 
-        updataOrderCookie: function(){
+        updateOrderCookie: function(){
           var tempOrder = [];
           for(var i = 0; i < orders.length; i++){
             tempOrder.push(orders[i].getAll());

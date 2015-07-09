@@ -18,9 +18,6 @@ var crypto = require('crypto');
 var hash = require('./security').hash;
 var check = require('./security').check;
 var sanitizeHtml = require('sanitize-html');
-var sProperties = {
-  allowedTags: []
-};
 var token = crypto.randomBytes(64).toString('hex');
 var verify = require('./data').verifyOrder;
 
@@ -142,10 +139,10 @@ app.post('/register', function (req, res) {
           // store the salt & hash in the "db"
           data.salt = salt;
           data.password = hash;
-          users.insert(data, data.email, function (err, body) {
+          users.insert(data, data.email, function () {
             email.to = data.email;
             email.text = 'Thank you for registering an account with Abacus.';
-            sendgrid.send(email, function (err, json) {
+            sendgrid.send(email, function () {
               res.json({'success': true});
             });
           });

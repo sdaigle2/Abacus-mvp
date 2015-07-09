@@ -7,15 +7,6 @@ var Address = addressValidator.Address;
 var len = 128;
 var iterations = 12000;
 
-/**
- * Hashes a password with optional `salt`, otherwise
- * generate a salt for `pass` and invoke `fn(err, salt, hash)`.
- *
- * @param {String} password to hash
- * @param {String} optional salt
- * @param {Function} callback
- * @api public
- */
 
 function typeCheck(userData){
   if(typeof userData.fName !== 'string')
@@ -49,7 +40,7 @@ function addressCheck(userData){
     country: 'US'
   });
   addressValidator.validate(address, validator.match.streetAddress, function(err, exact, inexact){
-    console.log('input: ', address.toString())
+    console.log('input: ', address.toString());
     console.log('match: ', _.map(exact, function(a) {
       return a.toString();
     }));

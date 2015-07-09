@@ -109,7 +109,6 @@ angular.module('abacuApp')
 
           case $scope.stages.PAYMENT:
             if($scope.payForm.method === $scope.payMethods.PAYPAL) {
-              $scope.curOrder.set
               payment();
             }
             else
