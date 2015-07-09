@@ -15,6 +15,7 @@
 
 
 .cartBody {
+  position: relative;
   float: left;
   clear: left;
   width: 75%;
@@ -52,6 +53,11 @@
 /*************************
 ****** Comparison table ****
 **************************/
+
+#mainContent{
+  width: 93%;
+
+}
 
 #mainContent .addWheelchair{
   position: absolute;
@@ -97,7 +103,6 @@ a:hover{
   top: 15px;
   left: 175px;
   float: left;
-  border: 1px solid #EAEAEA;
   margin-right: 20px;
   background-color: white;
   z-index: 1;
@@ -119,7 +124,7 @@ a:hover{
   width: 100%;
   padding: 10px 0;
   position: absolute;
-  bottom: 48px;
+  bottom: 51px;
 }
 
 #mainContent #comparisonImages td{
@@ -135,10 +140,10 @@ a:hover{
 
 
 #mainContent #comparisonImages .addButton {
+  margin-top: 20px ;
   color: #00A89C;
   font-size: 1.3em;
-  margin-top: 10px;
-  border-top: 3px solid #00a89c;
+  border: 1px solid #00a89c;
   padding: 10px 0;
 }
 
@@ -150,8 +155,7 @@ a:hover{
 #mainContent #comparisonImages .removeButton {
   color: #00A89C;
   font-size: 1.3em;
-  margin-top: 10px;
-  border-top: 3px solid #00a89c;
+  border: 3px solid #00a89c;
   padding: 10px 0;
 }
 
@@ -440,6 +444,7 @@ ol h3{
   top: -11px;
   left: 36px;
 }
+
 
 /****************display Image*********/
 #displayImage{

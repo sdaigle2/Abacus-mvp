@@ -10,60 +10,91 @@
     </div>
 
     <!--comparison table main problem-->
-    <div id="mainContent">
-      <!-- ng-repeat="wheelchair in wheelchairs"-->
-      <div ng-repeat="w in wheelchairs" id="comparisonImages">
-        <p><h4><strong data-ng-bind="w.getTitle()"></strong></h4></p>
-        <img ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false"
-             data-ng-src="images/mainpic.png" width="185">
-        <table ng-show="editPanelShow === true"
-               ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false">
-          <tr>
-            <td ng-click="toggleImageDisplay()"><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
-            <td data-ng-click="editWheelchair($index)"><strong>Edit</strong></td>
-            <td data-ng-click="deleteWheelchair($index)"><img data-ng-src="images/my_design_page/delete.png" width="20">
-            </td>
-          </tr>
-        </table>
-        <div class="addButton"
-             data-ng-click="addWheelchairToOrder($index)"
-             data-ng-if="wInOrder[$index] === false"
-             data-ng-class="{'inactive': w.allMeasuresSet() === false }">ADD TO CART
-        </div>
-        <div class="removeButton"
-             data-ng-click="removeWheelchairFromOrder($index)"
-             data-ng-if="wInOrder[$index] === true">
-          REMOVE FROM CART
-        </div>
-      </div>
+    <!--<div id="">-->
 
-      <div class="addWheelchair">
-        <a ng-href="#/frame">
-          <div>
-            <img data-ng-src="images/my_design_page/add_icon.png">
-            <div><h5>Add another Wheelchair</h5></div>
-          </div>
-        </a>
-        <a ng-href="#/frame">
-          <div>
-            <img data-ng-src="images/my_design_page/add_icon.png">
-            <div><h5>Add another Wheelchair</h5></div>
-          </div>
-        </a>
-        <a ng-href="#/frame">
-          <div>
-            <img data-ng-src="images/my_design_page/add_icon.png">
-            <div><h5>Add another Wheelchair</h5></div>
-          </div>
-        </a>
-      </div>
-    </div>
+
+      <!--<div >-->
+        <!--<p><h4><strong data-ng-bind="w.getTitle()"></strong></h4></p>-->
+        <!--<img ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false"-->
+             <!--data-ng-src="images/mainpic.png" width="185">-->
+        <!--<table ng-show="editPanelShow === true"-->
+               <!--ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false">-->
+          <!--<tr>-->
+            <!--<td ng-click="toggleImageDisplay()"><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>-->
+            <!--<td data-ng-click="editWheelchair($index)"><strong>Edit</strong></td>-->
+            <!--<td data-ng-click="deleteWheelchair($index)"><img data-ng-src="images/my_design_page/delete.png" width="20">-->
+            <!--</td>-->
+          <!--</tr>-->
+        <!--</table>-->
+        <!--<div class="addButton"-->
+             <!--data-ng-click="addWheelchairToOrder($index)"-->
+             <!--data-ng-if="wInOrder[$index] === false"-->
+             <!--data-ng-class="{'inactive': w.allMeasuresSet() === false }">ADD TO CART-->
+        <!--</div>-->
+        <!--<div class="removeButton"-->
+             <!--data-ng-click="removeWheelchairFromOrder($index)"-->
+             <!--data-ng-if="wInOrder[$index] === true">-->
+          <!--REMOVE FROM CART-->
+        <!--</div>-->
+      <!--</div>-->
+
+
+    <!--</div>-->
 
 
 
 
     <!--detail part table-->
-
+    <table id="mainContent">
+      <tr>
+        <td>
+          <div class="addWheelchair">
+            <a ng-href="#/frame">
+              <div>
+                <img data-ng-src="images/my_design_page/add_icon.png">
+                <div><h5>Add another Wheelchair</h5></div>
+              </div>
+            </a>
+            <a ng-href="#/frame">
+              <div>
+                <img data-ng-src="images/my_design_page/add_icon.png">
+                <div><h5>Add another Wheelchair</h5></div>
+              </div>
+            </a>
+            <a ng-href="#/frame">
+              <div>
+                <img data-ng-src="images/my_design_page/add_icon.png">
+                <div><h5>Add another Wheelchair</h5></div>
+              </div>
+            </a>
+          </div>
+        </td>
+        <td ng-repeat="w in wheelchairs" id="comparisonImages" >
+          <p><h4><strong data-ng-bind="w.getTitle()"></strong></h4></p>
+          <img ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false"
+               data-ng-src="images/mainpic.png" width="185">
+          <table ng-show="editPanelShow === true"
+                 ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false">
+            <tr>
+              <td ng-click="toggleImageDisplay()"><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
+              <td data-ng-click="editWheelchair($index)"><strong>Edit</strong></td>
+              <td data-ng-click="deleteWheelchair($index)"><img data-ng-src="images/my_design_page/delete.png" width="20">
+              </td>
+            </tr>
+          </table>
+          <div class=" addButton"
+               data-ng-click="addWheelchairToOrder($index)"
+               data-ng-if="wInOrder[$index] === false"
+               data-ng-class="{'inactive': w.allMeasuresSet() === false }">ADD TO CART
+          </div>
+          <div class="removeButton"
+               data-ng-click="removeWheelchairFromOrder($index)"
+               data-ng-if="wInOrder[$index] === true">
+            REMOVE FROM CART
+          </div>
+        </td>
+      </tr>
+    </table>
 
     <table ng-if="wheelchairs.length > 0">
       <tr class="price-weight-row">
