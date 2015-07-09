@@ -1,5 +1,6 @@
 ﻿.order {
   line-height: normal;
+  min-width: 1050px;
   width: 100%;
   margin: 0 auto;
 }
@@ -7,10 +8,9 @@
 /**************************HEADER****************************/
 .order-header {
   width: 90%;
-  margin: 50px auto 0;
+  margin: 50px auto 40px;
   border-bottom: solid 2px black;
   text-align: left;
-  margin-bottom: 40px;
 }
 
 .order-header>h5 {
@@ -28,7 +28,7 @@
 }
 
 .order-left {
-  width: 70%;
+  width: 60%;
   margin: 0;
   float: left;
   text-align: left;
@@ -95,18 +95,18 @@
 /*****************************BODY-RIGHT (Sidebar)***********************************/
 
 .order-right {
-  width: 28%;
+  width: 300px;
   /*margin-top: 22px;*/
   margin-left: 20px;
-  float: left;
+  float: right;
   position: relative;
 }
 
-@media screen and (max-width: 1300px) {
-    .order-right {
-        width: 35%;
-    }
-}
+/*@media screen and (max-width: 1300px) {*/
+    /*.order-right {*/
+        /*width: 35%;*/
+    /*}*/
+/*}*/
 
 
 .order-right .progress-bar-label{
