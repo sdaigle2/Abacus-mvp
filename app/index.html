@@ -66,16 +66,9 @@
             <div class="loginText medium" data-ng-bind="loginText"></div>
           </div>
         </li>
-        <li ng-mouseover="windowPop = true" ng-mouseleave="windowPop = false"
-            class="settingsButton medium" data-ng-if="user.isLoggedIn()"><a ng-href="#/settings" ng-bind="user.getFname()"></a>
-
-          <div ng-mouseover="windowPop = true" ng-mouseleave="windowPop = false" ng-show="windowPop" class="afterlogin">
-            <div ng-click="loginSection('account')"><h4>MY ACCOUNT</h4></div>
-            <div ng-click="loginSection('orders')"><h4>MY ORDER</h4></div>
-            <div ng-click="loginSection('measurements')" id="divider"><h4>MY MEASUREMENT</h4></div>
-            <div class="logout-button" data-ng-click="logout()">
-              <p>LOG OUT >></p>
-            </div>
+        <li class="settingsButton" data-ng-if="user.isLoggedIn()">
+          <div data-ng-click="toggleSettingsDropdown()" class="login">
+            <div class="userName medium" data-ng-bind="user.getFname()"></div>
           </div>
         </li>
       </ul>
@@ -83,7 +76,7 @@
     <div data-ng-if="loginDropdown() === true"  class="fixPosition" >
       <table class="dropdownTable">
         <tr>
-          <td id="panelIcon1">
+          <td class="panelIcon1">
             <p class="book">Abacus</p>
             <p class="book">Login</p>
           </td>
@@ -96,7 +89,7 @@
 
             <p class="book error-mesg" data-ng-bind="error"></p>
           </td>
-          <td id="panelIcon3">
+          <td class="panelIcon3">
             <div class="login-button button" data-ng-click="login()">
               <p class="medium">Login</p>
             </div>
@@ -107,7 +100,39 @@
         </tr>
       </table>
     </div>
-    <div id="foreground" data-ng-if="loginDropdown() === true"></div>
+    <div data-ng-if="settingsDropdown() === true"  class="fixPosition" >
+      <table class="dropdownTable">
+        <tr>
+          <td class="panelIcon1">
+            <p class="book">Abacus</p>
+            <p class="book">Settings</p>
+          </td>
+          <td>
+            <p class="book paddingtop-fontsize">Email Address</p>
+            <input type="text" data-ng-model="loginModel.email"/>
+
+            <p class="book paddingtop-fontsize">Password</p>
+            <input type="password" data-ng-model="loginModel.password"/>
+
+            <p class="book error-mesg" data-ng-bind="error"></p>
+          </td>
+          <td class="panelIcon3">
+            <div class="login-button button" data-ng-click="login()">
+              <p class="medium">Login</p>
+            </div>
+            <div class="login-button button" data-ng-click="register()">
+              <p class="medium">Register</p>
+            </div>
+          </td>
+          <td>
+            <div class="button" data-ng-click="logout()">
+              <p class="medium">Logout</p>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div id="foreground" data-ng-if="loginDropdown() === true || settingsDropdown() === true"></div>
   </div>
 
   <div id="appContainer" ng-view=""></div>

@@ -10,8 +10,10 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('CartCtrl', ['$scope', '$location', 'User', 'FrameData', 'Units', 'Wheelchair',
-    function ($scope, $location, User, FrameData, Units, Wheelchair) {
+  .controller('CartCtrl', ['$scope', '$location', 'User', 'FrameData', 'Units', 'Wheelchair', 'Drop',
+    function ($scope, $location, User, FrameData, Units, Wheelchair, Drop) {
+
+      Drop.setFalse();
 
       //Array of wheelchair objects designed by user
       $scope.wheelchairs = User.getDesignedWheelchairs();

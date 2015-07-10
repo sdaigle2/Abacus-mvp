@@ -115,12 +115,14 @@
             <div class="measure-content">
               <h4 class="measure-content-title"><span data-ng-bind="getCurMeasureData().name"></span> Tutorial </h4>
               <iframe
-                data-ng-if="getCurPageType() == pageType.MEASURE"
+                data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL"
                 data-ng-src="{{getCurMeasureData().videoURL}}"
                 frameborder="0"
                 allowfullscreen>
               </iframe>
-              <!--<img src="images/measurement_display/rear_seat_width.gif">-->
+              <img
+                data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.ERGONOMICS"
+                data-ng-src="{{getCurMeasureData().gifURL}}">
             </div>
           </div>
         </div>

@@ -77,16 +77,21 @@ angular.module('abacuApp')
       $location.path('/settings');
     };
 
-
-    $scope.settingsDropdown = false;
-
     $scope.loginDropdown = function(){
-      return Drop.drop();
+      return Drop.loginDropdown();
+    };
+
+    $scope.settingsDropdown = function(){
+      return Drop.settingsDropdown();
     };
 
     $scope.toggleLoginDropdown = function () {
       if($scope.loginText === 'Log In')
-        Drop.toggle();
+        Drop.toggleLogin();
+    };
+
+    $scope.toggleSettingsDropdown = function () {
+        Drop.toggleSettings();
     };
 
   }]);

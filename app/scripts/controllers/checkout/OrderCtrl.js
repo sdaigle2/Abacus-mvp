@@ -9,10 +9,12 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('OrderCtrl', ['$scope', '$location', '$http', 'User', 'FrameData', 'Bank',
-    function ($scope, $location, $http, User, FrameData, Bank) {
+  .controller('OrderCtrl', ['$scope', '$location', '$http', 'User', 'FrameData', 'Bank', 'Drop',
+    function ($scope, $location, $http, User, FrameData, Bank, Drop) {
 
       /*************************** CONTROL VARIABLES *************************/
+
+      Drop.setFalse();
 
       $scope.stages = {
         INFO: 0,

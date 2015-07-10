@@ -3,19 +3,27 @@
  */
 angular.module('abacuApp')
   .service('Drop', [function () {
-    var dropdown = false;
+    var loginDropdown = false;
+    var settingsDropdown = false;
     return {
-      drop: function(){
-        return dropdown;
+      loginDropdown: function(){
+        return loginDropdown;
       },
-      toggle: function(){
-        dropdown = !dropdown;
+      settingsDropdown: function(){
+        return settingsDropdown;
+      },
+      toggleLogin: function(){
+        loginDropdown = !loginDropdown;
+      },
+      toggleSettings: function(){
+        settingsDropdown = !settingsDropdown;
       },
       setTrue: function(){
-        dropdown = true;
+        loginDropdown = true;
       },
       setFalse: function(){
-        dropdown = false;
+        loginDropdown = false;
+        settingsDropdown = false;
       }
     }
   }]);

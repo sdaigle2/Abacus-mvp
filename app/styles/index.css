@@ -158,24 +158,19 @@ body {
 
 /* nav bar right styles */
 
-.mainNavbar .mainNavbar-right > li > a {
-  color: inherit;
-}
-.mainNavbar .mainNavbar-right > li {
+.userName{
   color: #f2bc19;
   font-family:inherit;
 }
-.mainNavbar .mainNavbar-right > li:hover,
-.mainNavbar .mainNavbar-right > li:focus {
-  text-decoration: none;
-  color: #f2bc19;
-}
-.mainNavbar .mainNavbar-right > .active > a,
-.mainNavbar .mainNavbar-right > .active > a:hover,
-.mainNavbar .mainNavbar-right > .active > a:focus {
-  color: #f2bc19;
-  text-decoration: none;
 
+.userName:hover{
+  cursor: pointer;
+}
+
+.userName:hover,
+.userName:focus {
+  text-decoration: none;
+  color: #f2bc19;
 }
 
 /*login session*/

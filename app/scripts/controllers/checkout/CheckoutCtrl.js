@@ -9,7 +9,9 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('CheckoutCtrl', ['$scope', '$location', 'User', function ($scope, $location, User) {
+  .controller('CheckoutCtrl', ['$scope', '$location', 'User', 'Drop', function ($scope, $location, User, Drop) {
+
+    Drop.setFalse();
 
     //Login Form Model
     $scope.loginForm = {
@@ -28,7 +30,7 @@ angular.module('abacuApp')
       //TODO: Make sure curOrder isn't lost - login will overwrite it
 
       User.login($scope.loginForm.email, $scope.loginForm.pass)
-        .then(function () {        
+        .then(function () {
           $location.path('/order');
         }, function (message) {
           alert('Login failed: ' + meassage);
