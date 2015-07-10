@@ -123,7 +123,7 @@
 .dropdownButton img {
   position: absolute;
   top: 18px;
-  left: 129px;
+  left: 48%;
 }
 
 .dropdownButton .iconHover:hover {
@@ -134,11 +134,7 @@
 .dropdownButton table tr  h4 {
   position: relative;
   top: 42px;
-  left: -15px;
-}
-
-.dropdownButton #panelText {
-  left: -30px;
+  left: -4%;
 }
 
 .appBody {

@@ -52,10 +52,11 @@
 }
 
 .form-inline-small{
-  width: 28%;
+  width: 27%;
   display: inline-block;
   border: 0;
   margin-right: 43px;
+  vertical-align: bottom;
 }
 
 .form-inline-small:last-of-type{
