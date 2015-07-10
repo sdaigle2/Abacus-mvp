@@ -158,7 +158,7 @@ exports.generate = function(order){
   var doc = new pdf({
     size: [612, 792]
   });
-  var stream = doc.pipe(fs.createWriteStream('invoices/invoice_'+order.orderNum+'.pdf'));
+  var stream = doc.pipe(fs.createWriteStream('invoice_'+order.orderNum+'.pdf'));
   doc.registerFont('Book', 'fonts/Gotham-Book.ttf');
   doc.registerFont('Medium', 'fonts/Gotham-Medium.ttf');
   for(var i = 0; i<order.wheelchairs.length; i++) {

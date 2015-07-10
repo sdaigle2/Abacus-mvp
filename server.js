@@ -230,7 +230,7 @@ app.post('/order', function (req, res) {
           invoiceEmail.text = 'Thank you for using Abacus to purchase your new Wheelchair. We have attached the invoice for your order.';
           pdfStream.on('finish', function(){
             invoiceEmail.addFile({
-              path: 'invoices/invoice_'+body.id+'.pdf'
+              path: 'invoice_'+body.id+'.pdf'
             });
             sendgrid.send(invoiceEmail, function (err, json) {
               console.log(err);
