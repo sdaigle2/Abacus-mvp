@@ -146,7 +146,7 @@ angular.module('abacuApp')
         $scope.costs.subtotal = curOrder.getSubtotal();
         $scope.costs.tax = curOrder.getTaxCost();
         $scope.costs.shipping = curOrder.getShippingCost();
-        $scope.costs.total = curOrder.getTotalCost();
+        $scope.costs.total = curOrder.getTotalCost().toFixed(2);
       }
 
       /*********************CHECK OUT***********************************/

@@ -321,7 +321,7 @@ angular.module('abacuApp')
           }
         }
 
-        return totalPrice.toFixed(2);
+        return totalPrice;
       },
 
 

@@ -72,7 +72,7 @@
           <p>Price</p>
         </td>
         <td class="value-column" ng-repeat="wheelchair in wheelchairs">
-          <p>$<span data-ng-bind="wheelchair.getTotalPrice()"></span></p>
+          <p>$<span data-ng-bind="wheelchair.getTotalPrice().toFixed(2)"></span></p>
         </td>
         <td class="value-column" ng-repeat="space in emptyCols"></td>
       </tr>
@@ -139,7 +139,7 @@
       <tfoot class="cartSidebarTotal">
       <tr>
         <td class="cartSidebarLabel">Total:</td>
-        <td class="cartSidebarValue">$<span data-ng-bind="costs.total.toFixed(2)"></span></td>
+        <td class="cartSidebarValue">$<span data-ng-bind="costs.total"></span></td>
       </tr>
       </tfoot>
     </table>
