@@ -735,6 +735,11 @@ img.rightButtonNav{
     height: 80px;
 }
 
+#sideBar-measure-select-header{
+  margin-top: 0px;
+  padding-top: 10px;
+}
+
 .sideBar-measure-top .btn-group .dropdown-toggle{
   height: 25px;
   line-height: 0.8;

@@ -466,11 +466,6 @@ div{
   border-collapse: separate;
 }
 
-.dropdownTable tr {
-
-}
-
-
 
 .dropdownTable td img {
   top: 18px;
@@ -481,6 +476,10 @@ div{
   position: absolute;
 }
 
+.dropdownTable td {
+  width: 30%;
+  padding-left: 7.5%;
+}
 
 .dropdownButton table tr  h4 {
   position: relative;

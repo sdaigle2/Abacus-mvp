@@ -506,9 +506,13 @@ angular.module('abacuApp')
         //Saves the current design and updates the database if the user is logged in
       $scope.saveDesign = function () {
         //redirect user to the cart/myDesigns
+        if(User.getNumDesignedWheelchairs()===3) {
+          $scope.saveDropdown = false;
+          alert('You can only have a max of 3 wheelchairs');
+          return;
+        }
         User.pushNewWheelchair();
         $location.path('cart');
-
       };
 
       $scope.saveComputer = function () {
