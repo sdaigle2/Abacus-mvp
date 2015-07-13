@@ -132,7 +132,9 @@
         </tr>
       </table>
     </div>
-    <div id="foreground" data-ng-if="loginDropdown() === true || settingsDropdown() === true"></div>
+    <div id="foreground" data-ng-if="loginDropdown() === true || settingsDropdown() === true"
+         data-ng-click="toggleSettingsDropdown();"
+      ></div>
   </div>
 
   <div id="appContainer" ng-view=""></div>

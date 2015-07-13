@@ -177,9 +177,10 @@
                      ng-class="{ 'panelArrowHidden': ! isPanelIDSelected(option.optionID) , 'panelArrowShow': isPanelIDSelected(option.optionID)}"></div>
                 <img class="colorOptionsIndicator" ng-show="option.colors"
                      src="images/icons/color_option.png" alt="See color options"
-                     ng-click="setPanel(option.optionID, panelTypes.COLOR);" />
-                <img data-ng-src="{{option.thumbnailURL}}" height="100" width="100"
                      ng-click="setPanel(option.optionID, panelTypes.COLOR);"/>
+                <img data-ng-src="{{option.thumbnailURL}}" height="100" width="100"
+                     ng-click="setPanel(option.optionID, panelTypes.COLOR);"
+                     ng-class="{'colorCursor': option.colors.length > 0}"/>
               </td>
               <td class="{{isPanelSelectedTd(option.optionID)}}">
                 <h4 class="sideBar-custom-item-name" title="{{titleForEllipsis(option.name, 45)}}"
@@ -218,7 +219,8 @@
                      src="images/icons/color_option.png" alt="See color options"
                      ng-click="setPanel(option.optionID, panelTypes.COLOR);"/>
                 <img data-ng-src="{{option.thumbnailURL}}" height="100" width="100"
-                     ng-click="setPanel(option.optionID, panelTypes.COLOR);"/>
+                     ng-click="setPanel(option.optionID, panelTypes.COLOR);"
+                     ng-class="{'colorCursor': option.colors.length > 0}"/>
               </td>
               <td class="sideBar-custom-item-right">
                 <h4 class="sideBar-custom-item-name" title="{{titleForEllipsis(option.name, 45)}}"

@@ -599,7 +599,7 @@ img.rightButtonNav{
   cursor: pointer;
 }
 
-.sideBar-custom-item-left img
+.sideBar-custom-item-left .colorCursor
 {
   cursor: pointer;
 }
@@ -890,6 +890,10 @@ img.rightButtonNav{
   overflow-y: auto;
   background-color: #D6D8D8;
   transition: 1s;
+}
+
+.sideBar .colorPanel::-webkit-scrollbar{
+  display: none;
 }
 
 .sideBar .colorPanel .colorPanelItem {
