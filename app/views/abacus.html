@@ -113,7 +113,7 @@
             </table>
 
             <div class="measure-content">
-              <h4 class="measure-content-title"><span data-ng-bind="getCurMeasureData().name"></span> Tutorial </h4>
+              <h4 class="measure-content-title" data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL"><span data-ng-bind="getCurMeasureData().name"></span> Tutorial </h4>
               <iframe
                 data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL"
                 data-ng-src="{{getCurMeasureData().videoURL}}"
@@ -123,6 +123,8 @@
               <img
                 data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.ERGONOMICS"
                 data-ng-src="{{getCurMeasureData().gifURL}}">
+              <div data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.SUMMARY"
+                   data-ng-bind="getCurMeasureData().details"></div>
             </div>
           </div>
         </div>
@@ -353,9 +355,7 @@
                 <h5 class="heavy tip-lower">TIP:</h5>
               </div>
               <div class="sideBar-measure-tip-right">
-                <h5 class="thin">Important factors to think about are things and whatnot, but don't forget to
-                  remember to not
-                  forget seat height. </h5>
+                <h5 class="thin" data-ng-bind="getCurMeasureData().tip"></h5>
               </div>
             </div>
           </div>

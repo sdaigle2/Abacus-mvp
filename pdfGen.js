@@ -4,10 +4,63 @@
 var pdf = require('pdfkit');
 var fs = require('fs');
 
+function getPartPreviewImageURL(wheelchair, curPart, subImageIndex, angle) {
+  var baseURL = 'app/images/chairPic/';
+  var frameIDString = '' + wheelchair.frameID;
+  var partIDString = '' + curPart.partID;
+
+  var optionIDString =     curPart.optionID;
+  var colorString    = '_' + curPart.colorID;
+  var subIndString   = '_' + subImageIndex;
+  var angleString    = '_' + angle;
+  var partURL = baseURL + 'frame' + frameIDString + '/';
+  partURL += 'part' + partIDString + '/';
+  partURL += optionIDString + colorString + subIndString + angleString + '.png';
+
+  return partURL;
+}
+
+function generateImage(doc, wheelchair, index){
+  var angle = '';
+  var angleNum = 0;
+  switch(index){
+    case 0: angle = 'BackRight';
+            angleNum = 1;
+            break;
+    case 1: angle = 'FrontRight';
+            angleNum = 3;
+            break;
+    case 2: angle = 'Right';
+            angleNum = 2;
+            break;
+  }
+  var images = [];
+  //Generate array of images with zRank's
+  for (var i = 0; i < wheelchair.parts.length; i++) {
+    var curPart = wheelchair.parts[i];
+    var curPartData = wheelchair.pDetails[i];
+    var numSubImages = curPartData.numSubImages;
+    for (var j = 0; j < numSubImages; j++) {
+      images.push({
+        URL: getPartPreviewImageURL(wheelchair, curPart, j, angle),
+        zRank: curPartData.zRank[j][angleNum]
+      });
+    }
+  }
+  //Sort array by zRanks
+  images.sort(function (a, b) {
+    return (a.zRank - b.zRank);
+  });
+  for(var k = 0; k<images.length; k++){
+    console.log(images[k].zRank);
+    doc.image(images[k].URL, 306, 228*index + 36, {width: 234, height: 228});
+  }
+}
+
 function titlePage(doc, wheelchair, order){
   doc.lineWidth(4).rect( 36, 36, 540, 684).stroke();
 
-  doc.font('Medium').fontSize(24).text(wheelchair.title, 72, 324);
+  doc.font('Medium').fontSize(24).text(wheelchair.title, 72, 324, {width: 270});
   doc.fontSize(11);
   doc.lineGap(5);
   doc.text('Name:', 72, 370);
@@ -18,12 +71,15 @@ function titlePage(doc, wheelchair, order){
   doc.text('Order Number:');
 
   doc.font('Book');
+  doc.text(order.orderNum);
   doc.text(order.fName +' '+ order.lName, 180, 370);
   doc.text(wheelchair.manufacturer);
   doc.text('$'+wheelchair.price);
   doc.text(wheelchair.model);
   doc.text(wheelchair.weight+'lbs');
-  doc.text(order.orderNum);
+  generateImage(doc, wheelchair, 0);
+  generateImage(doc, wheelchair, 1);
+  generateImage(doc, wheelchair, 2);
 }
 
 function partsPage(doc, wheelchair){
@@ -87,6 +143,10 @@ function measuresPage(doc, wheelchair){
       doc.font('Medium').text(wheelchair.mDetails[i].name, 72);
     doc.font('Book').text(wheelchair.mDetails[i].selection, 90);
   }
+  doc.image('app/images/invoice/diagram1.png', 315, 158, {width: 234, height: 162});
+  doc.image('app/images/invoice/diagram3.png', 117, 468, {width: 131, height: 207});
+  doc.image('app/images/invoice/diagram2.png', 365, 473, {width: 131, height: 204});
+
 }
 
 function summaryPage(doc, order){

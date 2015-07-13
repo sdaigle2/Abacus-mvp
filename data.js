@@ -44,7 +44,7 @@ function verifyPart(framePart, chairPart, wheelchair){
   if(option){
     if(verifyColor(chairPart.colorID, option.colors)) {
       wheelchair.weight += option.weight;
-      wheelchair.pDetails.push({name: framePart.name, option: option.name, price: option.price});
+      wheelchair.pDetails.push({name: framePart.name, option: option.name, price: option.price, zRank: framePart.zRank, numSubImages: framePart.numSubImages});
       return option.price;
     }
   }

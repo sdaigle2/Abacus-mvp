@@ -397,7 +397,7 @@
         "units": ["cm","inches"],
         "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
         "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
-        "gifURL": "images/measurement_display/rear_seat_width.gif",
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [["35", "37", "39", "41"],["13.8", "14.6", "15.4", "16.1"]],
         "weights": [0, 0.1, 0.2, 0.3],
         "prices": [0, 0.1, 0.2, 0.3]
@@ -439,7 +439,7 @@
         "units": ["cm","inches"],
         "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
         "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
-        "gifURL": "images/measurement_display/backrest_height.gif",
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [["24", "26", "28", "30", "32", "34"],["9.4", "10.2", "11", "11.8", "12.6", "13.4"]],
         "weights": [-0.1, -0.05, 0, 0.05, 0.1, 0.15],
         "prices": [-0.1, -0.05, 0, 0.05, 0.1, 0.15]
@@ -453,7 +453,7 @@
         "units": ["cm","inches"],
         "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
         "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
-        "gifURL": "images/measurement_display/rear_seat_height.gif",
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [["40", "41", "42", "43", "44"],["15.7", "16.1", "16.5", "16.9", "17.3"]],
         "weights": [-0.1, -0.05, 0, 0.05, 0.1],
         "prices": [-0.1, -0.05, 0, 0.05, 0.1]

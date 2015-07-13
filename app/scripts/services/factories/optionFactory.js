@@ -28,6 +28,8 @@ angular.module('abacuApp')
         for (var i = 0; i < optionData.colors.length; i++)
           this.colors.push(new Color(optionData.colors[i]));
       }
+      else
+        this.defaultColorID = 0;
 
     };
 

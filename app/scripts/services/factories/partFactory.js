@@ -20,7 +20,9 @@ angular.module('abacuApp')
       this.defaultOptionID = partData.defaultOptionID;
 
       this.options = [];
-
+      if(!this.zRank){
+        this.zRank = [];
+      }
       for (var i = 0; i < partData.options.length; i++)
         this.options.push(new Option(partData.options[i]));
 
