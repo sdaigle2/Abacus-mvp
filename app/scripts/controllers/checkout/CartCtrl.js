@@ -58,9 +58,13 @@ angular.module('abacuApp')
         //}
 
         $scope.orderChairs = curOrder.getWheelchairs();
+        var orderInd = 0;
         for (var i = 0; i < $scope.wheelchairs.length; i++) {
-          $scope.wOrderIndex.push(-1);
-          $scope.wInOrder.push(false);
+          $scope.wInOrder.push($scope.wheelchairs[i].inCurOrder);
+          if($scope.wInOrder[i])
+            $scope.wOrderIndex.push(orderInd++);
+          else
+            $scope.wOrderIndex.push(-1);
           getParts($scope.wheelchairs[i].getFrameID());
         }
 
@@ -138,6 +142,7 @@ angular.module('abacuApp')
         //  return;
         //}
         curOrder.addWheelchair($scope.wheelchairs[index]);
+        User.updateCookie();
         $scope.wInOrder[index] = true;
         $scope.wOrderIndex[index] = curOrder.getNumWheelchairs() - 1;
         updateCosts();
@@ -152,6 +157,7 @@ angular.module('abacuApp')
             $scope.wOrderIndex[i]--;
         $scope.wOrderIndex[index] = -1;
         updateCosts();
+        User.updateCookie();
         User.updateDB();
       };
 

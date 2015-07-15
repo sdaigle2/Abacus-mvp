@@ -78,14 +78,14 @@ angular.module('abacuApp')
     Order.prototype = {
 
       addWheelchair: function (newWheelchair) {
+        newWheelchair.toggleInOrder();
         this.wheelchairs.push(newWheelchair);
-        updateOrderCookie(this.getOrderInfo(), this.getAllWheelchair());
       },
 
       removeWheelchair: function (index) {
         if (index >= 0 && index < this.wheelchairs.length) {
+          this.wheelchairs[index].toggleInOrder();
           return this.wheelchairs.splice(index, 1);
-          updateOrderCookie(this.getOrderInfo(), this.getAllWheelchair());
         }
         return null;
       },
@@ -291,6 +291,8 @@ angular.module('abacuApp')
             curThis.orderNum = -1;
             alert('error processing order:'+ data.err);
           }
+          for(var i=0; i<curThis.wheelchairs.length; i++)
+            curThis.wheelchairs[i].toggleInOrder();
           deferred.resolve();
         });
         return deferred.promise;

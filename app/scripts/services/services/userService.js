@@ -53,10 +53,6 @@ angular.module('abacuApp')
             zip = data.zip;
             unitSys = data.unitSys;
 
-            //for (var i = 0; i < data.wheelchairs.length; i++) {
-            //  designedWheelchairs.push(new Wheelchair(data.wheelchairs[i]));
-            //}
-
             for (var i = 0; i < data.orders.length; i++) {
               orders.push(new Order(0, 0, data.orders[i]));
             }
@@ -74,6 +70,18 @@ angular.module('abacuApp')
         designedWheelchairs.push(new Wheelchair(tempChairs[i]));
       }
 
+      var curOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
+      for(var j = 0; j<designedWheelchairs.length; j++){
+        if(designedWheelchairs[j].inCurOrder){
+          console.log(designedWheelchairs[j]);
+          curOrder.wheelchairs.push(designedWheelchairs[j]);
+        }
+      }
+
+      if(curOrder.wheelchairs.length > 0){
+        orders.push(curOrder);
+      }
+
       var tempCurrentWheelchair = $cookieStore.get('currentWheelchair');
       if (tempCurrentWheelchair != null) {
         if (tempCurrentWheelchair.isNew === true)
@@ -84,15 +92,6 @@ angular.module('abacuApp')
         if (tempCurrentWheelchair.isNew === false) {
           setEditWheelchair(tempCurrentWheelchair.index);
         }
-      }
-
-      var tempCart = $cookieStore.get('cartInfo');
-      var tempCartWheelchairs = $cookieStore.get('cartWheelchairs');
-      for(var i = 0; i < tempCartWheelchairs.length; i++){
-        tempCart.wheelchairs.push(tempCartWheelchairs[i]);
-      }
-      if(tempCart){
-        orders.push (new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, tempCart));
       }
 
       function createCurrentDesign(frameID) {
@@ -250,13 +249,7 @@ angular.module('abacuApp')
           $cookieStore.put('wheelchairs', tempChairs);
         },
 
-        //updateCartCookie: function(){
-        //  var tempCart = [];
-        //  for(var i = 0; i < orders.length; i++){
-        //    tempCart.push(orders[i].getAll());
-        //  }
-        //  $cookieStore.put('cart', tempCart);
-        //},
+
         /*************************MY DESIGNS*******************************/
 
         createCurrentDesign: createCurrentDesign,
@@ -272,7 +265,6 @@ angular.module('abacuApp')
             designedWheelchairs[curEditWheelchairIndex] = jQuery.extend(true, currentWheelchair.editingWheelchair);
           }
           this.updateCookie();
-          this.updateDB();
         },
 
         //Set the given wheelchair index to be edited
@@ -376,6 +368,7 @@ angular.module('abacuApp')
 
           editOrder.send(userID, userData, shippingData, payMethod, token)
             .then(function () {
+              this.updateCookie();
               deferred.resolve();
             }, function (err) {
               deferred.reject(err);
