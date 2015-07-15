@@ -104,13 +104,22 @@
       <table class="dropdownTable">
         <tr>
           <td class="panelIcon1">
-            <div class="button" data-ng-click="loginSection('account')">My Account</div>
+            <div data-ng-click="loginSection('account')" data-ng-mouseenter="accountURL = 'on_my_account_big'" data-ng-mouseleave="accountURL = 'my_account_big'">
+              <img data-ng-src="images/icons/{{accountURL}}.png">
+              <div class="medium">My Account</div>
+            </div>
           </td>
           <td>
-            <div class="button" data-ng-click="loginSection('orders')">My Orders</div>
+            <div data-ng-click="loginSection('orders')" data-ng-mouseenter="orderURL = 'on_my_orders'" data-ng-mouseleave="orderURL = 'my_orders'">
+              <img data-ng-src="images/icons/{{orderURL}}.png">
+              <div class="medium">My Orders</div>
+            </div>
           </td>
           <td class="panelIcon3">
-            <div class="button" data-ng-click="loginSection('measurements')">My Measurements</div>
+            <div data-ng-click="loginSection('measurements')" data-ng-mouseenter="measureURL = 'on_my_measurement'" data-ng-mouseleave="measureURL = 'my_measurement'">
+              <img data-ng-src="images/icons/{{measureURL}}.png">
+              <div class="medium">My Measurements</div>
+            </div>
           </td>
           <td>
             <div class="button" data-ng-click="logout()">

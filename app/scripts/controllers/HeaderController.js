@@ -55,21 +55,19 @@ angular.module('abacuApp')
       $scope.error = '';
       User.login($scope.loginModel.email, $scope.loginModel.password)
         .then(function () {
-          $timeout(function () {
-            $scope.$apply($scope.loginText = 'Log In');
-            $scope.$apply($scope.loginDropdown = false);
-          });
+          $scope.loginText = 'Log In';
+          $scope.loginModel.email = '';
+          $scope.toggleLoginDropdown();
         }, function (message) {
-          $timeout(function () {
-            $scope.$apply($scope.loginText = 'Log In');
-            $scope.$apply($scope.error = message);
-          });
+          $scope.loginText = 'Log In';
+          $scope.error = message;
         });
       $scope.loginModel.password = '';
     };
 
     $scope.logout = function () {
       User.logout();
+      Drop.setFalse();
     };
 
     $scope.loginSection = function (section) {
@@ -87,12 +85,16 @@ angular.module('abacuApp')
     };
 
     $scope.toggleLoginDropdown = function () {
-      if($scope.loginText === 'Log In')
+      if($scope.loginText === 'Log In') {
         Drop.toggleLogin();
+      }
     };
 
     $scope.toggleSettingsDropdown = function () {
         Drop.toggleSettings();
     };
 
+    $scope.accountURL = 'my_account_big';
+    $scope.orderURL = 'my_orders';
+    $scope.measureURL = 'my_measurement';
   }]);

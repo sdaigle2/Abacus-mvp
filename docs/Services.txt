@@ -40,35 +40,122 @@ Contents:
 
 1a) Color (colorFactory.js)
 
-A Color is an available color for an Option.  Color contains an ID, a name, and a hex value stored as a string in the format "#000000".  Once created, Colors should not be modified - only accessed.
+A Color is an available color for an Option. Once a new Color object is created, its members should not be modified - only accessed.
+
+Member Variables:
+colorID - A unique ID used to identify the specific Color object.
+name - The name to be displayed for the color.
+hex - A hex value for the represented color.
+
+public functions:
+Getters: getID(), getName()
+getHex() - Returns hex as a CSS friendly string
+getHexValue() - Returns hex as a javascript hex value
 
 -------------------------------------------------------------------------
 
 1b) Option (optionFactory.js)
 
-An Option is an available Option for a Part.  For example, if a Part is the backrest, then it's options would be carbon fiber, plastic, or upholstery.  Options contain an ID, a name, an image, weight (in lbs), price (in USD), details, an array of Color objects, and a default color.  Once an option is created, it should not be modified - only accessed.
+An Option is an available Option for a Part.  For example, if a Part is the backrest, then it's options would be carbon fiber, plastic, or upholstery.  Once a new Option object is created, its members should not be modified - only accessed.
+
+Member Variables:
+optionID - A unique ID used to identify the specific Option object.
+price - Price difference from the base price, for this option. (in USD)
+name - name displayed for this option.
+thumbnailURL - A URL string for the thumbnail image displayed for this option.
+desc - A description of this option to be displayed in a panel.
+weight - Weight difference from the base weight, for this option. (in lbs)
+colors - An array of Color objects, which are selectable colors for this option.
+defaultColorID - The ID of the default Color object for this option. 0, if colors is empty.
+
+public functions:
+Getters: getID(), getName(), getPrice(), getWeight(), getThumbnailURL(), getDefaultColorID(), getColors()
+getNumColors() - Returns the length of colors array
+getColor(colID) - Searches colors for Color with colorID = colID. If found returns Color object, else returns null
+getColorByName(colName) - Searches colors for Color with name = colName. If found returns Color object, else returns null
+getColorByIndex(index) - Returns colors[index], if index is within array bounds
+getDefaultColor() - Returns color with colorID = defaultColorID
 
 -------------------------------------------------------------------------
 
 1c) Part (partFactory.js)
 
-A Part is an available part for a Frame.  Parts include Backrest, Wheel, Handrail, etc.  Parts contain an ID, a name, an array of Options, and a default Option.  Once a Part is created, it should not be modified - only accessed.
+A Part is an available part for a Frame.  Parts include Backrest, Wheel, Handrail, etc. Once a new Part Object is created, its members should not be modified - only accessed.
 
-Parts also contain two fields used in the construction of the Preview Image: NumSubImages and ZRank.  NumSubImages is the number of images this part will contribute to the full generated image.  For example, if the Part is wheels, each wheel will be it's own layer in the image.  Thus, the wheels Part will have NumSubImages as 2.  If the part doesn't contribute to the image at all, then NumSubImages will be 0.
+Member Variables:
+partID - A unique ID used to identify the specific Part object
+name - The name to be displayed for the part
+numSubImages - The number of images needed to render this part in the configurator image.
+zRank - A 2d array specifying the zRank of the part in the configurator image. zRank[i][j] refers to the zRank of the i-th subImage in the j-th orientation of the configurator image.
+options - An array of Option objects, which are selectable options for this part
+defaultOptionID - The ID of the default Option object for this option.
 
-ZRank is a 2D array of z layer rankings used to order the images.  The first index is the subimage.  The second index is the angle.  The higher zRanking images get put in front.
+public functions:
+Getters: getID(), getName(), getNumSubImages(), getZRanks(), getOptions(), getDefaultOptionID()
+getNumOptions() - Returns the length of options array
+getOption(opID) - Searches options for Option with optionID = opID. If found returns Option object, else returns null
+getOptionByName(oName) - Searches options for Option with name = oName. If found returns Option object, else returns null
+getOptionByIndex(index) - Returns options[index], if index is within array bounds
+getDefaultOption() - Returns option with optionID = defaultOptionID
+getZRank(subImageIndex, angle) - returns zRank[subImageIndex][angle], angle refers to the angle orientation of the configurator image
+getOptionColor(oID, cID) - returns Color object with colorID = cID and part of Option object with objectID = oID
 
 --------------------------------------------------------------------------
 
 1d) Measure (measureFactory.js)
 
-A Measure is a measurement that needs to be taken for a Frame.  Measurements incldue back seat height, wheel radius, seat depth, etc.  Each Measure has an ID, a name, a set of options and their associated weights and prices, and links to relevent media.  Once created, a Measure shouldn't be modified - only accessed.
+A Measure is a measurement that needs to be taken for a Frame.  Measurements incldue back seat height, wheel radius, seat depth, etc. Once created, a Measure object shouldn't be modified - only accessed.
+
+Member variables:
+measureID - A unique Id used to identify the specific measure object
+measureOptions - A 2d array of strings representing the options for the given measurement in different unit systems. measureOptions[i][j] is the j-th option in the i-th system
+weights - An array of weights representing the weight for each measure option. weight[j] is the weight for measureOptions[i][j]
+prices - An array of prices representing the price for each measure option.
+name - The name to be displayed for the given measure
+desc - A short description of the measurement
+details - A more detailed write up of the measurement
+tip - A small tip on how to choose the correct option
+units - An array of the names of the different unit systems
+videoURL - A URL for the tutorial video for this measurement
+imageURLS - An array of urls for an image carousel
+gifURL - A url for a gif summarizing the measurement
+
+Public functions:
+Getters
+getOption(unitSys, index) - Returns measureOptions[unitSys][index]
+getWeight(index) - Returns weights[index]
+getPrice(index) - Returns prices[index]
 
 ---------------------------------------------------------------------------
 
 1e) Frame (frameFactory.js)
 
-A Frame is a set of data for a type of wheelchair.  Each Frame contains both an array of Parts and Measures.  Frames also have an ID, name, manufacturer, weight, price, and image.  Once created, a Frame shouldn't be modified - only accessed.
+A Frame is a set of data for a type of wheelchair. Once created, a Frame shouldn't be modified - only accessed.
+
+Member variables:
+frameID - A unique id used to identify the specific frame object
+manufacturer - Manufacturer of the frame
+name - Name to be displayed for the frame
+desc - Description of the frame
+basePrice - The base price of the frame with default options.
+baseWeight - The base weight of the frame with default options
+imageURL - A Url for the image of the frame
+parts - Array of Part objects for the frame
+measures - Array of Measure objects for the frame
+wheelIndex - Index in the parts array which separates frame parts and wheel parts
+
+Public functions:
+Getters
+getPart(pID) - Searches parts for Part with partID = pID. If found returns Part object, else returns null
+getPartByName(pName) - Searches parts for Part with name = pName. If found returns Part object, else returns null
+getPartByIndex(index) - Returns parts[index], if index is within array bounds
+getMeasure(mID) - Searches measures for Measure with measureID = mID. If found returns Measure object, else returns null
+getMeasureByName(mName) - Searches measures for Measure with name = mName. If found returns Measure object, else returns null
+getMeasureByIndex(index) - Returns measures[index], if index is within array bounds
+getPartOption(partID, optionID) - returns Option object with optionID and part of Part object with partID
+getPartOptionColor(partID, optionID, colorID) - Traverses down object chain to find correct color
+getMeasureOption(measureID, optionIndex) - Returns appropriate option for given measure in the frame
+
 
 ---------------------------------------------------------------------------
 
@@ -76,6 +163,23 @@ A Frame is a set of data for a type of wheelchair.  Each Frame contains both an 
 
 A Wheelchair is a design generated by the user.  When the user chooses a frame on the Frames page, a new Wheelchair object is created.  Given the chosen frame, the wheelchair creates two arrays to track chosen options, colors, and measureOptions.  The Wheelchair then sets these to their default values.  As the user modifies their design on the abacus page, the wheelchair object gets modified.  This class has various methods for modifying its values as well as getting aggregate results such as total weight and total price.  The Wheelchair object does not contain direct references to Frame, Part, Option, Color, and Measure objects - only their IDs.
 
+Member variables:
+frameID - the frameID of the chosen frame
+title - A user given name for the wheelchair
+parts - An array of {partID, optionID, colorID}. Each array element represents a color and option selection for a part
+measures - An array of {measureID, measureOptionIndex}. Each element represents a measurement selection
+previewImageGenerator - A helper object used to render the configurator image
+
+public functions:
+Getters
+getAll() - Returns all members variables except the previewImageGenerator. This is enough to reconstruct the wheelchair object later
+getPart(pID) - Returns {partID, optionID, colorID} from parts where partID = pID
+getPartByIndex(index) - Returns parts[index]
+getOptionIDForPart(pID)- Returns optionID for part with partID = pID
+getColorIDForPart(pID) - Returns colorID for part with partID = pID
+getMeasure(mID) - Returns {measureID, measureOptionIndex] from measures where measureID = mID
+getMeasureByIndex(index) - Returns measures[index]
+getOptionIndexForMeasure(mID) -Returns measureOptionIndex for measure with measureId=mID
 ----------------------------------------------------------------------------
 
 1g) PreviewImage (previewImageFactory.js)

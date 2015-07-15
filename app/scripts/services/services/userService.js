@@ -174,8 +174,15 @@ angular.module('abacuApp')
               zip = data.zip;
               unitSys = data.unitSys;
 
+              var curOrder = this.getCurEditOrder();
+              orders =  [];
+
               for (var i = 0; i < data.orders.length; i++) {
                 orders.push(new Order(0, 0, data.orders[i]));
+              }
+
+              if(curOrder){
+                orders.push(curOrder);
               }
             }
             else
@@ -212,7 +219,6 @@ angular.module('abacuApp')
             .error(function (data) {
               console.log('Request Failed: ' + data);
             });
-          $location.path('frames');
         },
 
         //Returns true if the user is logged in

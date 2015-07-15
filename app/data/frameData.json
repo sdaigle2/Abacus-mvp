@@ -1,8 +1,8 @@
 [
   {
     "manufacturer": "Ti Arrow",
-    "name": "CKF",
-    "desc": "Ti Arrow's Standard Rigid Frame Wheelchair made from Titanium",
+    "name": "CKE",
+    "desc": "TiArrow's flagship frame, the CKE offers the most enjoyable rider experience on the market. The seat, and ergonomic backrest work in concert with the side guards to provide unparalleled stability and the ultralightweight frame is easy to push and gentle on your shoulders. Available in titanium or magnesium (standard sizes only)",
     "basePrice": 2995,
     "baseWeight": 5.5,
     "frameID": 1,
@@ -12,178 +12,318 @@
         "name": "Frame Style",
         "partID": 1,
         "numSubImages": 1,
-        "zRank": [[10,7,6,7,10]],
-        "defaultOptionID": 3,
+        "zRank": [
+          [
+            10,
+            7,
+            6,
+            7,
+            10
+          ]
+        ],
+        "defaultOptionID": 1,
         "options": [
           {
             "name": "Titanium - Unpainted",
-            "optionID": 3,
-            "thumbnailURL": "images/chairPic/frame1/part1/3_0_0_FrontRight.png",
-            "desc": "Titanium is a strong, beautiful material for a wheelchair frame",
+            "optionID": 1,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "Titanium is a strong, beautiful material for a wheelchair frame.",
             "weight": 0,
-            "price": 0,
-            "defaultColorID": 0,
-            "colors": []
+            "price": 0
+          },
+          {
+            "name": "Titanium - Painted",
+            "optionID": 2,
+            "weight": 0.1,
+            "price": 100,
+            "defaultColorID": 11,
+            "colors": [
+              {
+                "name": "Jet Black",
+                "colorID": 2,
+                "hex": "#0a0a0a"
+              },
+              {
+                "name": "Signal White",
+                "colorID": 3,
+                "hex": "#f4f4f4"
+              },
+              {
+                "name": "Traffic Yellow",
+                "colorID": 4,
+                "hex": "#fad201"
+              },
+              {
+                "name": "Olive Yellow",
+                "colorID": 5,
+                "hex": "#999950"
+              },
+              {
+                "name": "Red Orange",
+                "colorID": 6,
+                "hex": "#c93c20"
+              },
+              {
+                "name": "Tomato Red",
+                "colorID": 7,
+                "hex": "#a12312"
+              },
+              {
+                "name": "Black Red",
+                "colorID": 8,
+                "hex": "#412227"
+              },
+              {
+                "name": "Signal Violet",
+                "colorID": 9,
+                "hex": "#924e7d"
+              },
+              {
+                "name": "Ultramarine Blue",
+                "colorID": 10,
+                "hex": "#202140"
+              },
+              {
+                "name": "Sky Blue",
+                "colorID": 11,
+                "hex": "#2271b3"
+              },
+              {
+                "name": "Azure",
+                "colorID": 12,
+                "hex": "#025669"
+              },
+              {
+                "name": "Grass Green",
+                "colorID": 13,
+                "hex": "#35682d"
+              },
+              {
+                "name": "Agate",
+                "colorID": 14,
+                "hex": "#b5b8b1"
+              },
+              {
+                "name": "Pearl Dark Grey",
+                "colorID": 15,
+                "hex": "#828282"
+              }
+            ]
+          },
+          {
+            "name": "Titanium - Painted Custom Color",
+            "optionID": 3,
+            "desc": "Choose any color you want for your Titanium frame.  Browse through the colors at <a href=\"www.ralcolor.com\">www.ralcolor.com</a>.  Just enter your chosen RAL Color number into the notes section at checkout.  ",
+            "weight": 0.1,
+            "price": 200
           },
           {
             "name": "Magnesium - Painted",
             "optionID": 4,
-            "thumbnailURL": "images/chairPic/frame1/part1/4_5_0_FrontRight.png",
-            "desc": "Magnesium is even lighter than Titanium, and it can be painted to any color you want!",
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "Magnesium is even lighter than Titanium.",
             "weight": -0.1,
-            "price": 100,
-            "defaultColorID": 5,
+            "price": 400,
+            "defaultColorID": 36,
             "colors": [
               {
-                "name": "Black",
-                "colorID": 5,
-                "hex": "#000000"
+                "name": "Jet Black",
+                "colorID": 31,
+                "hex": "#0a0a0a"
               },
               {
-                "name": "Gun Metal Gray",
-                "colorID": 6,
-                "hex": "#404040"
+                "name": "Signal White",
+                "colorID": 32,
+                "hex": "#f4f4f4"
               },
               {
-                "name": "White",
-                "colorID": 7,
-                "hex": "#FFFFFF"
+                "name": "Traffic Yellow",
+                "colorID": 33,
+                "hex": "#fad201"
               },
               {
-                "name": "Blue",
-                "colorID": 8,
-                "hex": "#1900FF"
+                "name": "Olive Yellow",
+                "colorID": 34,
+                "hex": "#999950"
               },
               {
-                "name": "Red",
-                "colorID": 9,
-                "hex": "#FF0000"
+                "name": "Red Orange",
+                "colorID": 35,
+                "hex": "#c93c20"
               },
               {
-                "name": "Yellow",
-                "colorID": 10,
-                "hex": "#FFFB00"
+                "name": "Tomato Red",
+                "colorID": 36,
+                "hex": "#a12312"
               },
               {
-                "name": "Purple",
-                "colorID": 11,
-                "hex": "#D400FF"
+                "name": "Black Red",
+                "colorID": 37,
+                "hex": "#412227"
               },
               {
-                "name": "Pink",
-                "colorID": 12,
-                "hex": "#FF00D9"
+                "name": "Signal Violet",
+                "colorID": 38,
+                "hex": "#924e7d"
               },
               {
-                "name": "Other (specify)",
-                "colorID": 13,
-                "hex": "#858585"
+                "name": "Ultramarine Blue",
+                "colorID": 39,
+                "hex": "#202140"
+              },
+              {
+                "name": "Sky Blue",
+                "colorID": 40,
+                "hex": "#2271b3"
+              },
+              {
+                "name": "Azure",
+                "colorID": 41,
+                "hex": "#025669"
+              },
+              {
+                "name": "Grass Green",
+                "colorID": 42,
+                "hex": "#35682d"
+              },
+              {
+                "name": "Agate",
+                "colorID": 43,
+                "hex": "#b5b8b1"
+              },
+              {
+                "name": "Pearl Dark Grey",
+                "colorID": 44,
+                "hex": "#828282"
               }
             ]
-          }
-        ]
-      },
-      {
-        "name": "Accent Color",
-        "partID": 2,
-        "numSubImages": 1,
-        "zRank": [[9,6,5,6,9]],
-        "defaultOptionID": 15,
-        "options": [
+          },
           {
-            "name": "Anodized Aluminum Brackets",
-            "optionID": 15,
-            "thumbnailURL": "images/chairPic/frame1/part2/15_16_0_FrontRight.png",
-            "desc": "These brackets hold the camber tube to the frame.",
-            "weight": 0,
-            "price": 0,
-            "defaultColorID": 16,
-            "colors": [
-              {
-                "name": "Black - Anodized",
-                "colorID": 16,
-                "hex": "#000000"
-              },
-              {
-                "name": "Red - Anodized",
-                "colorID": 17,
-                "hex": "#FF0000"
-              },
-              {
-                "name": "Yellow - Anodized",
-                "colorID": 18,
-                "hex": "#FFFB00"
-              }
-            ]
+            "name": "Magnesium - Painted Custom Color",
+            "optionID": 5,
+            "desc": "Choose any color you want for your Magnesium frame.  Browse through the colors at <a href=\"www.ralcolor.com\">www.ralcolor.com</a>.  Just enter your chosen RAL Color number into the notes section at checkout.  ",
+            "weight": -0.1,
+            "price": 500
           }
         ]
       },
       {
         "name": "Back Rest",
-        "partID": 3,
+        "partID": 2,
         "numSubImages": 1,
-        "zRank": [[11,8,7,8,11]],
-        "defaultOptionID": 20,
+        "zRank": [
+          [
+            11,
+            8,
+            7,
+            8,
+            11
+          ]
+        ],
+        "defaultOptionID": 11,
         "options": [
           {
             "name": "Carbon Fiber",
-            "optionID": 20,
-            "thumbnailURL": "images/chairPic/frame1/part3/20_0_0_Back.png",
-            "desc": "A super light and stiff backrest.",
+            "optionID": 11,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "An ultra lightweight, rigid, carbon fiber backrest, molded to fit the contours of your back and improve chair control. Tension adjustable with velcro straps.",
             "weight": 0,
-            "price": 0,
-            "defaultColorID": 0,
-            "colors": []
+            "price": 0
           },
           {
-            "name": "Plastic",
-            "optionID": 21,
-            "thumbnailURL": "images/chairPic/frame1/part3/21_0_0_Back.png",
-            "desc": "Nothing beats the simplicity and ease of maintenance of a plastic seat back.",
+            "name": "Padded",
+            "optionID": 12,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your back and padded for additional comfort. Tension adjustable with velcro straps.",
             "weight": 0.1,
-            "price": 0,
-            "defaultColorID": 0,
-            "colors": []
+            "price": 0
           },
           {
             "name": "Upholstery",
-            "optionID": 22,
-            "thumbnailURL": "images/chairPic/frame1/part3/22_0_0_Back.png",
-            "desc": "A clasic fabric sling is the lightest option.",
-            "weight": -0.07,
-            "price": 0,
-            "defaultColorID": 0,
-            "colors": []
+            "optionID": 13,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your body, padded for your comfort and upholstered with breathable mesh nylon. Tension adjustable with velcro straps.",
+            "weight": 0.15,
+            "price": 0
           }
         ]
       },
       {
-        "name": "Wheel Rim",
-        "partID": 4,
+        "name": "Wheel",
+        "partID": 3,
         "numSubImages": 2,
-        "zRank": [[5,2,2,5,6],[6,9,9,9,5]],
-        "defaultOptionID": 24,
+        "zRank": [
+          [
+            5,
+            2,
+            2,
+            5,
+            6
+          ],
+          [
+            6,
+            9,
+            9,
+            9,
+            5
+          ]
+        ],
+        "defaultOptionID": 21,
         "options": [
           {
-            "name": "DT Swiss Wheel Rim",
-            "optionID": 24,
-            "thumbnailURL": "images/d_panel_1.png",
-            "desc": "The DT Swiss Wheel Rim is the lightest and most stiff option out there.",
+            "name": "sWeel",
+            "optionID": 21,
+            "desc": "A custom ultra lightweight 24-spoke wheel built around a carbon fiber hub, DT-Revolutions spokes, and a super lightweight rim makes the sWeel the lightest wheel on the market. (note: the sWeel is currently only available in a 25\" (559) size)",
             "weight": 0,
-            "defaultColorID": 25,
-            "price": 0,
+            "price": 0
+          },
+          {
+            "name": "DT Swiss Wheel Rim",
+            "optionID": 22,
+            "desc": "By combining the carbon fiber hub of the sWeel and a slightly more basic wheel rim, the Arrow wheel is a great balance of quality, weight, and price.",
+            "defaultColorID": 51,
             "colors": [
               {
                 "name": "Black",
-                "colorID": 25,
-                "hex": "#000000"
+                "colorID": 51,
+                "zRank": "Black",
+                "weight": 0,
+                "price": -200
               },
               {
                 "name": "White",
-                "colorID": 26,
-                "hex": "#FFFFFF"
+                "colorID": 52,
+                "zRank": "White",
+                "weight": 0,
+                "price": -200
               }
             ]
+          }
+        ]
+      },
+      {
+        "name": "Wheel Size",
+        "partID": 4,
+        "defaultOptionID": 32,
+        "options": [
+          {
+            "name": "24\" (540mm)",
+            "optionID": 31,
+            "weight": -0.025,
+            "price": 0
+          },
+          {
+            "name": "25\" (559mm) - standard",
+            "optionID": 32,
+            "desc": "The standard size wheelchair wheel.  Note: You must choose this size if you want the sWeel.",
+            "weight": 0,
+            "price": 0
+          },
+          {
+            "name": "26\" (590mm)",
+            "optionID": 33,
+            "weight": 0.025,
+            "price": 0
           }
         ]
       },
@@ -191,316 +331,1325 @@
         "name": "Hand Rims",
         "partID": 5,
         "numSubImages": 2,
-        "zRank": [[1,1,1,3,4],[2,13,11,11,3]],
-        "defaultOptionID": 28,
+        "zRank": [
+          [
+            1,
+            1,
+            1,
+            3,
+            4
+          ],
+          [
+            2,
+            13,
+            11,
+            11,
+            3
+          ]
+        ],
+        "defaultOptionID": 42,
         "options": [
           {
             "name": "Titanium",
-            "optionID": 28,
+            "optionID": 41,
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Titanium is strong and light, but easily dented",
             "weight": 0,
-            "price": 0,
-            "defaultColorID": 0,
-            "colors": []
+            "price": 300
           },
           {
             "name": "Black Anodized Aluminum",
-            "optionID": 29,
+            "optionID": 42,
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "The aluminum hand rim is more dent resistant and slightly heavier.",
             "weight": 0.1,
-            "price": 0,
-            "defaultColorID": 0,
-            "colors": []
+            "price": 0
           },
           {
             "name": "Q-Grip from Out-front",
-            "optionID": 30,
+            "optionID": 43,
             "thumbnailURL": "images/d_panel_1.png",
-            "desc": "The Q-Grip hand rim is great for those with low hand dexterity",
+            "desc": "Top quality coated handrim that uses an exclusive anti-slip, latex free, neoprene coating that provides extra grip and control.",
             "weight": 0.2,
-            "price": 300,
-            "defaultColorID": 0,
-            "colors": []
+            "price": 300
+          },
+          {
+            "name": "Magnesium -powder coated",
+            "optionID": 44,
+            "thumbnailURL": "images/d_panel_1.png",
+            "price": 300
+          }
+        ]
+      },
+      {
+        "name": "Axle",
+        "partID": 6,
+        "numSubImages": 2,
+        "defaultOptionID": 51,
+        "options": [
+          {
+            "name": "25mm",
+            "optionID": 51,
+            "desc": "A 25mm axle, secured to the frame with a quick-release clamp on the axle sleeve, provides unparallleled rigidity and responsiveness.",
+            "weight": 0,
+            "price": 0
+          },
+          {
+            "name": "1/2\"",
+            "optionID": 52,
+            "desc": "Standard, push button, quick-release axle.",
+            "weight": 0.05,
+            "price": 0
           }
         ]
       },
       {
         "name": "Tire",
-        "partID": 6,
+        "partID": 7,
         "numSubImages": 2,
-        "zRank": [[3,3,3,4,8],[4,10,10,10,7]],
-        "defaultOptionID": 32,
+        "zRank": [
+          [
+            3,
+            3,
+            3,
+            4,
+            8
+          ],
+          [
+            4,
+            10,
+            10,
+            10,
+            7
+          ]
+        ],
+        "defaultOptionID": 61,
         "options": [
           {
             "name": "Rightrun",
-            "optionID": 32,
+            "optionID": 61,
             "thumbnailURL": "images/d_panel_1.png",
-            "desc": "Rightrun tires offer style and lightness.",
-            "weight": 0.09,
-            "defaultColorID": 33,
-            "price": 0,
+            "desc": "Supreme puncture protection and highly durable.",
+            "defaultColorID": 64,
             "colors": [
               {
                 "name": "Gray",
-                "colorID": 33,
-                "hex": "#404040"
-
+                "colorID": 61,
+                "hex": "#404040",
+                "weight": 0.09,
+                "price": 0
               },
               {
                 "name": "Blue",
-                "colorID": 34,
+                "colorID": 62,
                 "hex": "#1900FF"
               },
               {
                 "name": "Yellow",
-                "colorID": 35,
+                "colorID": 63,
                 "hex": "#FFFB00"
               },
               {
                 "name": "Red",
-                "colorID": 36,
+                "colorID": 64,
                 "hex": "#FF0000"
               }
             ]
           },
           {
             "name": "Schwalbe Low Tread",
-            "optionID": 33,
+            "optionID": 62,
             "thumbnailURL": "images/d_panel_1.png",
-            "desc": "Schwalbe makes an excellent tire",
+            "desc": "Lightweight tires built for performance.",
             "weight": 0,
-            "price": 0,
-            "defaultColorID": 0,
-            "colors": []
+            "price": 0
           }
         ]
       },
       {
         "name": "Inner Tube",
-        "partID": 7,
-        "numSubImages": 0,
-        "defaultOptionID": 36,
+        "partID": 8,
+        "numSubImages": 1,
+        "defaultOptionID": 71,
         "options": [
           {
             "name": "Extra light",
-            "optionID": 36,
+            "optionID": 71,
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "The lightest weight innertube around!",
-            "weight": 0,
-            "price": 0,
-            "defaultColorID": 0,
-            "colors": []
+            "price": 0
           },
           {
             "name": "Standard",
-            "optionID": 37,
+            "optionID": 72,
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "The standard tire is more puncture resistant, but slightly heavier",
             "weight": 0.033,
-            "price": 0,
-            "defaultColorID": 0,
-            "colors": []
+            "price": 0
           }
         ]
       },
       {
-        "name": "Caster Style",
-        "partID": 8,
-        "numSubImages": 2,
-        "zRank": [[7,4,4,1,2],[8,5,8,2,1]],
-        "defaultOptionID": 39,
+        "name": "Casters",
+        "partID": 9,
+        "numSubImages": 1,
+        "zRank": [
+          [
+            7,
+            4,
+            4,
+            1,
+            2
+          ],
+          [
+            8,
+            5,
+            8,
+            2,
+            1
+          ]
+        ],
+        "defaultOptionID": 81,
         "options": [
           {
-            "name": "Aluminum",
-            "optionID": 39,
+            "name": "Monofork with 4\" Wheels",
+            "optionID": 81,
             "thumbnailURL": "images/d_panel_1.png",
-            "desc": "Standard monofork caster",
+            "desc": "Lightweight and simple. The monofork is easy to clean and easy on the eyes.  A standard 4\" caster wheel provides a nice balance between agility and a smooth ride.",
             "weight": 0,
-            "price": 0,
-            "defaultColorID": 0,
-            "colors": []
+            "price": 0
           },
           {
-            "name": "Softroller",
-            "optionID": 40,
+            "name": "Monofork with 5\" Wheels",
+            "optionID": 82,
             "thumbnailURL": "images/d_panel_1.png",
-            "desc": "The Softroller offers some bounce to your ride.",
+            "desc": "Lightweight and simple. The monofork is easy to clean and easy on the eyes.  A bigger 5\" wheel provides a smoother ride, though a little less agility. (Warning: it is not possible to combine a 5\" caster wheel with a 24\" rear wheel)",
             "weight": 0,
-            "price": 0,
-            "defaultColorID": 0,
-            "colors": []
+            "price": 0
+          },
+          {
+            "name": "FrogLegs with 4\" Wheels",
+            "optionID": 83,
+            "desc": "An adjustable suspension caster fork that absorbs the jolts and bumps of the road.  A standard 4\" caster wheel provides a nice balance between agility and a smooth ride.",
+            "weight": 0,
+            "price": 0
+          },
+          {
+            "name": "FrogLegs with 4\" Wheels",
+            "optionID": 84,
+            "desc": "An adjustable suspension caster fork that absorbs the jolts and bumps of the road.  A bigger 5\" wheel provides a smoother ride, though a little less agility. (Warning: it is not possible to combine a 5\" caster wheel with a 24\" rear wheel)",
+            "weight": 0,
+            "price": 0
           }
         ]
       },
       {
-        "name": "Brakes (No Images for Now)",
-        "partID": 9,
-        "numSubImages": 0,
-        "defaultOptionID": 42,
+        "name": "Wheel Locks",
+        "partID": 10,
+        "numSubImages": 1,
+        "defaultOptionID": 91,
         "options": [
           {
-            "name": "Out-Front Brakes",
-            "optionID": 42,
+            "name": "Out-Front Wheel Locks",
+            "optionID": 91,
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Tried and true standard brakes",
             "weight": 0.1,
-            "price": 50,
-            "defaultColorID": 0,
-            "colors": []
+            "price": 50
           },
           {
-            "name": "Single Hand Operating Brakes",
-            "optionID": 43,
+            "name": "Single Hand Operating Wheel Locks",
+            "optionID": 92,
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Compact, reliable, and opperable with just one hand.",
             "weight": 0,
-            "price": 0,
-            "defaultColorID": 0,
-            "colors": []
+            "price": 0
           },
           {
-            "name": "No Brakes",
-            "optionID": 44,
+            "name": "No Wheel Locks",
+            "optionID": 93,
             "thumbnailURL": "images/d_panel_1.png",
-            "desc": "Cutting weight? Live life on the edge with no wheel locksÖ you rebel you.",
+            "desc": "Cutting weight? Live life on the edge with no wheel locks? you rebel you.",
             "weight": -0.2,
-            "price": -50,
-            "defaultColorID": 0,
-            "colors": []
+            "price": -50
+          }
+        ]
+      },
+      {
+        "name": "Side Guard",
+        "partID": 11,
+        "numSubImages": 1,
+        "defaultOptionID": 103,
+        "options": [
+          {
+            "name": "Plastic",
+            "optionID": 101,
+            "desc": "A firm sheet of plastc mounted inside the side tubes to keep your clothes clean.",
+            "weight": 0,
+            "price": -50
+          },
+          {
+            "name": "Titanium",
+            "optionID": 102,
+            "desc": "A thin, strong sheet of titanium welded to the side tubes for maximum rigidity.",
+            "weight": 0,
+            "price": 0
+          },
+          {
+            "name": "Carbon Fiber",
+            "optionID": 103,
+            "desc": "A strong carbon fiber side guard mounted inside the side tubes to improve stability and keep your clothes clean.",
+            "weight": 0,
+            "price": 0
           }
         ]
       }
     ],
     "measures": [
       {
-        "name": "Weight Capacity",
-        "desc": "Description goes here",
-        "details": "Details go here",
-        "tip": "Tip Goes here",
-        "measureID": 45,
-        "units": ["kg","lbs"],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
+        "name": "Rear Seat Width",
+        "measureID": 1,
+        "desc": "The distance between the outside of the seat tube on one side to the outside of the seat tube on the other side. Rear seat width helps determine side to side stability.",
+        "details": "Rear seat width helps determines how the frame fits your body and how much side to side stability you will have. A tighter seat width provides a sleeker appearance and increases your lateral stability. It also gives you easier access to the push rims. TiArrow uses a thin tube to outline the shape of the side guard, however. This adds rigidity to the frame and increases your lateral stability, but it also makes the frame fit your body a little differently. We suggest choosing a seat width that is .5? wider than you would otherwise get to ensure a comfortable fit.",
+        "tip": "An easy way to measure seat width is to press a book firmly against either hip and measure between them.",
+        "gifDesc": "As the seat width narrows, stability increases. As the seat widens, stability decreases.",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
-        "measureOptions": [["<70", "71-95", "96-115"],["<150", "150-210", "210-250"]],
-        "weights": [-0.1, 0, 0.1],
-        "prices": [-0.1, 0, 0.1]
+        "measureOptions": [
+          [
+            "35",
+            "37",
+            "39",
+            "41"
+          ],
+          [
+            "13.8",
+            "14.6",
+            "15.4",
+            "16.1"
+          ]
+        ],
+        "weights": [
+          0,
+          0.1,
+          0.2,
+          0.3
+        ],
+        "prices": [
+          0,
+          0.1,
+          0.2,
+          0.3
+        ]
       },
       {
-        "name": "Seat Width",
-        "desc": "Description goes here",
-        "details": "Details go here",
-        "tip": "Tip Goes here",
-        "measureID": 46,
-        "units": ["cm","inches"],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
+        "name": "Seat Depth - Adjustable",
+        "measureID": 5,
+        "desc": "The distance from your seat back to the front of your seat (typically where your seat cushion ends). Seat depth helps determine how pressure is distributed through your legs.",
+        "details": "To balance comfort and pressure distribution, we recommend a seat depth that is 5-8 cm  (2-3 inches) shorter than the length of your upper leg.  Too short a seat and the pressure may be too concentrated in your upper thighs, however too long a seat may press uncomfortably against the back of your lower leg.",
+        "tip": "We recommend that the seat depth be 5-8 cm (2-3 inces) shorter that the length of your upper leg. This will provide you maximum leg support while allowing you to comfortably adjust your knee angle.",
+        "gifDesc": "As seat depth decreases, pressure increases.  ",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
-        "measureOptions": [["35", "37", "39", "41"],["13.8", "14.6", "15.4", "16.1"]],
-        "weights": [0, 0.1, 0.2, 0.3],
-        "prices": [0, 0.1, 0.2, 0.3]
+        "measureOptions": [
+          [
+            "41",
+            "42",
+            "43",
+            "44"
+          ],
+          [
+            "16.1",
+            "16.5",
+            "16.9",
+            "17.3"
+          ]
+        ],
+        "weights": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "prices": [
+          0,
+          0,
+          0,
+          0
+        ]
       },
       {
-        "name": "Caster Size",
-        "desc": "Description goes here",
-        "details": "Details go here",
-        "tip": "Tip Goes here",
-        "measureID": 47,
-        "units": ["cm","inches"],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
-        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
-        "measureOptions": [["10.16", "12.7"],["4", "5"]],
-        "weights": [0, 0.2],
-        "prices": [0, 0.2]
+        "name": "Back Rest Height",
+        "measureID": 2,
+        "desc": "The distance from the top of the seat tube to the top of the seat post. The height of the seat back plays a role in providing trunk stability.",
+        "details": "The height of the backrest, in combination with the relation between front and rear seat height, helps provide trunk stability.  In determining seatback height it is important to assess your level of trunk control as well as the amount of times you need to lean back to perform an activity of daily living (cooking, cleaning, dressing, undressing, etc.).<br> When measuring seatback height, remember to factor in the height of the cushion you will be sitting on.  On a TiArrow frame it is easier to lower a seatback that is too high than to raise a seatback that is too low.",
+        "tip": "The easiest way to determine backrest height is to assess how satisfied you are with your current backrest height and make the necessary adjustments.",
+        "gifDesc": "As the seatback gets taller, trunk stability increases but range of motion decreases.",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "gifURL": "images/measurement_display/backrest_height.gif",
+        "measureOptions": [
+          [
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33"
+          ],
+          [
+            "9.8",
+            "10.2",
+            "10.6",
+            "11",
+            "11.4",
+            "11.8",
+            "12.2",
+            "12.6",
+            "13"
+          ]
+        ],
+        "weights": [
+          -0.05,
+          -0.05,
+          -0.025,
+          0,
+          0.025,
+          0.05,
+          0.075,
+          0.1,
+          0.0125
+        ],
+        "prices": [
+          -0.05,
+          -0.05,
+          -0.025,
+          0,
+          0.025,
+          0.05,
+          0.075,
+          0.1,
+          0.0125
+        ]
       },
       {
-        "name": "Rear Wheel Size",
-        "desc": "Description goes here",
-        "details": "Details go here",
-        "tip": "Tip Goes here",
-        "measureID": 48,
-        "units": ["cm", "inches"],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
-        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
-        "measureOptions": [["24", "25" , "26" ],["24", "25", "26"]],
-        "weights": [-0.06, 0, 0.06],
-        "prices": [-0.06, 0, 0.06]
+        "name": "Rear Seat Height",
+        "measureID": 3,
+        "desc": "The distance from the back of your seat to the floor.",
+        "details": "The rear seat height effects how you interact with your wheels.  Sitting a little taller will give you an easier push and the research suggests that it is better for the long term health of your shoulders.  However, a lower seat height can really enhance your stability if you have low trunk control. Most therapists say that the correct seat height is one where your fingers touch the rear axle when you hang your arms straight down from your shoulders.  Measure your current rear seat height and see if you would like to make any adjustments.",
+        "tip": "In general, the front seat height should be about 5 cm (2 inches) higher than the rear seat height.  If the front seat height is even higher, it will serve to increase your stability.",
+        "gifDesc": "As the seat height increases, push ergonomics get better, but stability decreases.",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "measureOptions": [
+          ["42.5"],
+          ["16.7"]
+        ],
+        "weights": [],
+        "prices": []
       },
       {
-        "name": "Back Rest Height (cm)",
-        "desc": "Description goes here",
-        "details": "Details go here",
-        "tip": "Tip Goes here",
-        "measureID": 49,
-        "units": ["cm","inches"],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
-        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
-        "measureOptions": [["24", "26", "28", "30", "32", "34"],["9.4", "10.2", "11", "11.8", "12.6", "13.4"]],
-        "weights": [-0.1, -0.05, 0, 0.05, 0.1, 0.15],
-        "prices": [-0.1, -0.05, 0, 0.05, 0.1, 0.15]
+        "name": "Front Seat Height",
+        "measureID": 4,
+        "desc": "The distance from the front of your seat to the floor.",
+        "details": "The interaction between the front seat height and rear seat height creates a seat that tilts back slightly.  Therapists refer to this property as \"Dump\".  If the front seat height is significantly higher than the rear seat height, it will serve hold you in the seat a little better and give you more trunk stability.",
+        "tip": "In general, the front seat height should be about 5 cm (2 inches) higher than the rear seat height.  If the front seat height is even higher, it will serve to increase your stability.",
+        "gifDesc": "As the front seat height increases, stability increases.",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "measureOptions": [
+          ["47.71"],
+          ["18.8"]
+        ],
+        "weights": [],
+        "prices": []
       },
       {
-        "name": "Seat Depth - Adjustable (cm)",
-        "desc": "Description goes here",
-        "details": "Details go here",
-        "tip": "Tip Goes here",
-        "measureID": 50,
-        "units": ["cm","inches"],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
-        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
-        "measureOptions": [["40", "41", "42", "43", "44"],["15.7", "16.1", "16.5", "16.9", "17.3"]],
-        "weights": [-0.1, -0.05, 0, 0.05, 0.1],
-        "prices": [-0.1, -0.05, 0, 0.05, 0.1]
+        "name": "Foot Rest Width",
+        "measureID": 6,
+        "desc": "The width of the flat portion of the foot rest.",
+        "details": "Foot rest width is generally a personal preference.  Some people like the comfort of a wide foot rest, where others prefer the compactness and maneuverability of narrow foot rest.  Make certain that your foot rest is at least as wide as your feet when wearing a pair of shoes.",
+        "tip": "The foot rest should be at least as wide as your feet when wearing a pair of shoes.",
+        "gifDesc": "As the foot rest width increases, the size of the wheelchair increases.",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "measureOptions": [
+          ["25.68"],
+          ["10.1"]
+        ],
+        "weights": [],
+        "prices": []
       },
       {
-        "name": "Foot Rest Height - Adjustable (cm)",
-        "desc": "Description goes here",
-        "details": "Details go here",
-        "tip": "Tip Goes here",
-        "measureID": 51,
-        "units": ["cm","inches"],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
+        "name": "Foot Rest Height - Adjustable",
+        "measureID": 7,
+        "desc": "The distance from the floor to the top of the foot rest.",
+        "details": "A foot rest should be just high enough to hold your feet securely.  This will push your knees up and take pressure off the back of your legs. The height of a foot rest is adjustable so you will be able to fine tune it after your chair has been built.",
+        "tip": "The foot rest should be just high enough so that your feet are properly supported.",
+        "gifDesc": "As the foot rest height increases, pressure on the back of your legs decreases.",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
-        "measureOptions": [["5", "7", "9", "11", "13"],["2", "2.8", "3.5", "4.3", "5.1"]],
-        "weights": [-0.1, -0.05, 0, 0.05, 0.1],
-        "prices": [-0.1, -0.05, 0, 0.05, 0.1]
+        "measureOptions": [
+          [
+            "5",
+            "7",
+            "9",
+            "11",
+            "13"
+          ],
+          [
+            "2",
+            "2.8",
+            "3.5",
+            "4.3",
+            "5.1"
+          ]
+        ],
+        "weights": [
+          -0.1,
+          -0.05,
+          0,
+          0.05,
+          0.1
+        ],
+        "prices": [
+          -0.1,
+          -0.05,
+          0,
+          0.05,
+          0.1
+        ]
       },
       {
-        "name": "Side Guard Height",
-        "desc": "Description goes here",
-        "details": "Details go here",
-        "tip": "Tip Goes here",
-        "measureID": 52,
-        "units": ["cm","inches"],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
+        "name": "Axle Position (Adjustable)",
+        "measureID": 8,
+        "desc": "The distance from the front of the seatback post to the center of the axle. Axle position is one of the most important factors in determining the agility of your wheelchair.",
+        "details": "The axle position affects how easy it is to push and turn your chair (agility) as well as how easy it is for your chair to tip over backwards.  The further forward you place your axle the easier it is to push and turn, though it is also easier for your chair to tip over backwards.  ",
+        "tip": "While your chair will roll better by moving your axle forwards, if you are unsure on an axle position it is always better to err on a position set closer to the back of the chair.  On most TiArrow frames you will be able to make adjustments after you?ve tried your new chair.",
+        "gifDesc": "As the axle position moves forwards, the chair gets more tippy but also more agile.",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
-        "measureOptions": [["-6", "-4", "-2", "0", "2", "4", "6"],["-2.4", "-1.6", "-0.8", "0", "0.8", "1.6", "2.4"]],
-        "weights": [-0.15, -0.1, -0.05, 0, 0.05, 0.1, 0.15],
-        "prices": [-0.15, -0.1, -0.05, 0, 0.05, 0.1, 0.15]
+        "measureOptions": [
+          [
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"
+          ],
+          [
+            "2.4",
+            "2.8",
+            "3.1",
+            "3.5",
+            "3.9",
+            "4.3",
+            "4.7",
+            "5.1",
+            "5.5",
+            "5.9"
+          ]
+        ],
+        "weights": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "prices": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  {
+    "manufacturer": "Ti Arrow",
+    "name": "CKF",
+    "desc": "TiArrow's flagship frame, the CKE offers the most enjoyable rider experience on the market. The seat, and ergonomic backrest work in concert with the side guards to provide unparalleled stability and the ultralightweight frame is easy to push and gentle on your shoulders. Available in titanium or magnesium (standard sizes only)",
+    "basePrice": 2195,
+    "baseWeight": 6,
+    "frameID": 2,
+    "imageURL": "images/frame_page_img/frame1_frame_page.png",
+    "wheelIndex": 3,
+    "parts": [
+      {
+        "name": "Frame Style",
+        "partID": 1,
+        "numSubImages": 1,
+        "zRank": [
+          [
+            10,
+            7,
+            6,
+            7,
+            10
+          ]
+        ],
+        "defaultOptionID": 201,
+        "options": [
+          {
+            "name": "Titanium - Unpainted",
+            "optionID": 201,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "Titanium is a strong, beautiful material for a wheelchair frame.",
+            "weight": 0,
+            "price": 0
+          }
+        ]
       },
       {
-        "name": "Side Guard Length",
-        "desc": "Description goes here",
-        "details": "Details go here",
-        "tip": "Tip Goes here",
-        "measureID": 53,
-        "units": ["cm","inches"],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/rear-seat-height1.jpg", "images/abacus_page/measure/rear-seat-height2.jpg", "images/abacus_page/measure/rear-seat-height3.jpg"],
-        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
-        "measureOptions": [["-6", "-4", "-2", "0", "2", "4", "6"],["-2.4", "-1.6", "-0.8", "0", "0.8", "1.6", "2.4"]],
-        "weights": [-0.15, -0.1, -0.05, 0, 0.05, 0.1, 0.15],
-        "prices": [-0.15, -0.1, -0.05, 0, 0.05, 0.1, 0.15]
+        "name": "Back Rest",
+        "partID": 2,
+        "numSubImages": 1,
+        "zRank": [
+          [
+            11,
+            8,
+            7,
+            8,
+            11
+          ]
+        ],
+        "defaultOptionID": 211,
+        "options": [
+          {
+            "name": "Carbon Fiber",
+            "optionID": 211,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "An ultra lightweight, rigid, carbon fiber backrest, molded to fit the contours of your back and improve chair control. Tension adjustable with velcro straps.",
+            "weight": 0,
+            "price": 0
+          },
+          {
+            "name": "Padded",
+            "optionID": 212,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your back and padded for additional comfort. Tension adjustable with velcro straps.",
+            "weight": 0.1,
+            "price": 0
+          },
+          {
+            "name": "Upholstery",
+            "optionID": 213,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your body, padded for your comfort and upholstered with breathable mesh nylon. Tension adjustable with velcro straps.",
+            "weight": 0.15,
+            "price": 0
+          }
+        ]
+      },
+      {
+        "name": "Wheel",
+        "partID": 3,
+        "numSubImages": 2,
+        "zRank": [
+          [
+            5,
+            2,
+            2,
+            5,
+            6
+          ],
+          [
+            6,
+            9,
+            9,
+            9,
+            5
+          ]
+        ],
+        "defaultOptionID": 221,
+        "options": [
+          {
+            "name": "sWeel",
+            "optionID": 221,
+            "desc": "A custom ultra lightweight 24-spoke wheel built around a carbon fiber hub, DT-Revolutions spokes, and a super lightweight rim makes the sWeel the lightest wheel on the market. (note: the sWeel is currently only available in a 25\" (559) size)",
+            "weight": 0,
+            "price": 0
+          },
+          {
+            "name": "DT Swiss Wheel Rim",
+            "optionID": 222,
+            "desc": "By combining the carbon fiber hub of the sWeel and a slightly more basic wheel rim, the Arrow wheel is a great balance of quality, weight, and price.",
+            "defaultColorID": 51,
+            "weight": 0,
+            "price": -200,
+            "colors": [
+              {
+                "name": "Black",
+                "colorID": 151,
+                "hex": "#ffffff"
+              },
+              {
+                "name": "White",
+                "colorID": 152,
+                "hex": "#000000"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Wheel Size",
+        "partID": 4,
+        "defaultOptionID": 232,
+        "options": [
+          {
+            "name": "24\" (540mm)",
+            "optionID": 231,
+            "weight": -0.025,
+            "price": 0
+          },
+          {
+            "name": "25\" (559mm) - standard",
+            "optionID": 232,
+            "desc": "The standard size wheelchair wheel.  Note: You must choose this size if you want the sWeel.",
+            "weight": 0,
+            "price": 0
+          },
+          {
+            "name": "26\" (590mm)",
+            "optionID": 233,
+            "weight": 0.025,
+            "price": 0
+          }
+        ]
+      },
+      {
+        "name": "Hand Rims",
+        "partID": 5,
+        "numSubImages": 2,
+        "zRank": [
+          [
+            1,
+            1,
+            1,
+            3,
+            4
+          ],
+          [
+            2,
+            13,
+            11,
+            11,
+            3
+          ]
+        ],
+        "defaultOptionID": 242,
+        "options": [
+          {
+            "name": "Titanium",
+            "optionID": 241,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "Titanium is strong and light, but easily dented",
+            "weight": 0,
+            "price": 300
+          },
+          {
+            "name": "Black Anodized Aluminum",
+            "optionID": 242,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "The aluminum hand rim is more dent resistant and slightly heavier.",
+            "weight": 0.1,
+            "price": 0
+          },
+          {
+            "name": "Q-Grip from Out-front",
+            "optionID": 243,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "Top quality coated handrim that uses an exclusive anti-slip, latex free, neoprene coating that provides extra grip and control.",
+            "weight": 0.2,
+            "price": 300
+          },
+          {
+            "name": "Magnesium -powder coated",
+            "optionID": 244,
+            "thumbnailURL": "images/d_panel_1.png",
+            "price": 300
+          }
+        ]
+      },
+      {
+        "name": "Axle",
+        "partID": 6,
+        "numSubImages": 2,
+        "defaultOptionID": 251,
+        "options": [
+          {
+            "name": "25mm",
+            "optionID": 251,
+            "desc": "A 25mm axle, secured to the frame with a quick-release clamp on the axle sleeve, provides unparallleled rigidity and responsiveness.",
+            "weight": 0,
+            "price": 0
+          },
+          {
+            "name": "1/2\"",
+            "optionID": 252,
+            "desc": "Standard, push button, quick-release axle.",
+            "weight": 0.05,
+            "price": 0
+          }
+        ]
+      },
+      {
+        "name": "Tire",
+        "partID": 7,
+        "numSubImages": 2,
+        "zRank": [
+          [
+            3,
+            3,
+            3,
+            4,
+            8
+          ],
+          [
+            4,
+            10,
+            10,
+            10,
+            7
+          ]
+        ],
+        "defaultOptionID": 261,
+        "options": [
+          {
+            "name": "Rightrun",
+            "optionID": 261,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "Supreme puncture protection and highly durable.",
+            "defaultColorID": 64,
+            "weight": 0.09,
+            "price": 0,
+            "colors": [
+              {
+                "name": "Gray",
+                "colorID": 161,
+                "hex": "#404040"
+              },
+              {
+                "name": "Blue",
+                "colorID": 162,
+                "hex": "#1900FF"
+              },
+              {
+                "name": "Yellow",
+                "colorID": 163,
+                "hex": "#FFFB00"
+              },
+              {
+                "name": "Red",
+                "colorID": 164,
+                "hex": "#FF0000"
+              }
+            ]
+          },
+          {
+            "name": "Schwalbe Low Tread",
+            "optionID": 262,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "Lightweight tires built for performance.",
+            "weight": 0,
+            "price": 0
+          }
+        ]
+      },
+      {
+        "name": "Inner Tube",
+        "partID": 8,
+        "numSubImages": 1,
+        "defaultOptionID": 271,
+        "options": [
+          {
+            "name": "Extra light",
+            "optionID": 271,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "The lightest weight innertube around!",
+            "price": 0
+          },
+          {
+            "name": "Standard",
+            "optionID": 272,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "The standard tire is more puncture resistant, but slightly heavier",
+            "weight": 0.033,
+            "price": 0
+          }
+        ]
+      },
+      {
+        "name": "Casters",
+        "partID": 9,
+        "numSubImages": 1,
+        "zRank": [
+          [
+            7,
+            4,
+            4,
+            1,
+            2
+          ],
+          [
+            8,
+            5,
+            8,
+            2,
+            1
+          ]
+        ],
+        "defaultOptionID": 281,
+        "options": [
+          {
+            "name": "Monofork with 4\" Wheels",
+            "optionID": 281,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "Lightweight and simple. The monofork is easy to clean and easy on the eyes.  A standard 4\" caster wheel provides a nice balance between agility and a smooth ride.",
+            "weight": 0,
+            "price": 0
+          },
+          {
+            "name": "Monofork with 5\" Wheels",
+            "optionID": 282,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "Lightweight and simple. The monofork is easy to clean and easy on the eyes.  A bigger 5\" wheel provides a smoother ride, though a little less agility. (Warning: it is not possible to combine a 5\" caster wheel with a 24\" rear wheel)",
+            "weight": 0,
+            "price": 0
+          },
+          {
+            "name": "FrogLegs with 4\" Wheels",
+            "optionID": 283,
+            "desc": "An adjustable suspension caster fork that absorbs the jolts and bumps of the road.  A standard 4\" caster wheel provides a nice balance between agility and a smooth ride.",
+            "weight": 0,
+            "price": 0
+          },
+          {
+            "name": "FrogLegs with 4\" Wheels",
+            "optionID": 284,
+            "desc": "An adjustable suspension caster fork that absorbs the jolts and bumps of the road.  A bigger 5\" wheel provides a smoother ride, though a little less agility. (Warning: it is not possible to combine a 5\" caster wheel with a 24\" rear wheel)",
+            "weight": 0,
+            "price": 0
+          }
+        ]
+      },
+      {
+        "name": "Wheel Locks",
+        "partID": 10,
+        "numSubImages": 1,
+        "defaultOptionID": 291,
+        "options": [
+          {
+            "name": "Out-Front Wheel Locks",
+            "optionID": 291,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "Tried and true standard brakes",
+            "weight": 0.1,
+            "price": 50
+          },
+          {
+            "name": "Single Hand Operating Wheel Locks",
+            "optionID": 292,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "Compact, reliable, and opperable with just one hand.",
+            "weight": 0,
+            "price": 0
+          },
+          {
+            "name": "No Wheel Locks",
+            "optionID": 293,
+            "thumbnailURL": "images/d_panel_1.png",
+            "desc": "Cutting weight? Live life on the edge with no wheel locks? you rebel you.",
+            "weight": -0.2,
+            "price": -50
+          }
+        ]
+      },
+      {
+        "name": "Side Guard",
+        "partID": 11,
+        "numSubImages": 1,
+        "defaultOptionID": 303,
+        "options": [
+          {
+            "name": "Carbon Fiber",
+            "optionID": 303,
+            "desc": "A strong carbon fiber side guard mounted inside the side tubes to improve stability and keep your clothes clean.",
+            "weight": 0,
+            "price": 0
+          }
+        ]
       }
     ],
-    "wheelIndex": 3
+    "measures": [
+      {
+        "name": "Rear Seat Width",
+        "measureID": 101,
+        "desc": "The distance between the outside of the seat tube on one side to the outside of the seat tube on the other side. Rear seat width helps determine side to side stability.",
+        "details": "Rear seat width helps determines how the frame fits your body and how much side to side stability you will have. A tighter seat width provides a sleeker appearance and increases your lateral stability. It also gives you easier access to the push rims. TiArrow uses a thin tube to outline the shape of the side guard, however. This adds rigidity to the frame and increases your lateral stability, but it also makes the frame fit your body a little differently. We suggest choosing a seat width that is .5? wider than you would otherwise get to ensure a comfortable fit.",
+        "tip": "An easy way to measure seat width is to press a book firmly against either hip and measure between them.",
+        "gifDesc": "As the seat width narrows, stability increases. As the seat widens, stability decreases.",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+        "measureOptions": [
+          [
+            "35",
+            "37",
+            "39",
+            "41"
+          ],
+          [
+            "13.8",
+            "14.6",
+            "15.4",
+            "16.1"
+          ]
+        ],
+        "weights": [
+          0,
+          0.1,
+          0.2,
+          0.3
+        ],
+        "prices": [
+          0,
+          0.1,
+          0.2,
+          0.3
+        ]
+      },
+      {
+        "name": "Seat Depth - Adjustable",
+        "measureID": 105,
+        "desc": "The distance from your seat back to the front of your seat (typically where your seat cushion ends). Seat depth helps determine how pressure is distributed through your legs.",
+        "details": "To balance comfort and pressure distribution, we recommend a seat depth that is 5-8 cm  (2-3 inches) shorter than the length of your upper leg.  Too short a seat and the pressure may be too concentrated in your upper thighs, however too long a seat may press uncomfortably against the back of your lower leg.",
+        "tip": "We recommend that the seat depth be 5-8 cm (2-3 inces) shorter that the length of your upper leg. This will provide you maximum leg support while allowing you to comfortably adjust your knee angle.",
+        "gifDesc": "As seat depth decreases, pressure increases.  ",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+        "measureOptions": [
+          [
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44"
+          ],
+          [
+            "15.4",
+            "15.7",
+            "16.1",
+            "16.5",
+            "16.9",
+            "17.3"
+          ]
+        ],
+        "weights": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "prices": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "name": "Back Rest Height",
+        "measureID": 102,
+        "desc": "The distance from the top of the seat tube to the top of the seat post. The height of the seat back plays a role in providing trunk stability.",
+        "details": "The height of the backrest, in combination with the relation between front and rear seat height, helps provide trunk stability.  In determining seatback height it is important to assess your level of trunk control as well as the amount of times you need to lean back to perform an activity of daily living (cooking, cleaning, dressing, undressing, etc.). When measuring seatback height, remember to factor in the height of the cushion you will be sitting on.  On a TiArrow frame it is easier to lower a seatback that is too high than to raise a seatback that is too low.",
+        "tip": "The easiest way to determine backrest height is to assess how satisfied you are with your current backrest height and make the necessary adjustments.",
+        "gifDesc": "As the seatback gets taller, trunk stability increases but range of motion decreases.",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+        "measureOptions": [
+          [
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33"
+          ],
+          [
+            "9.8",
+            "10.2",
+            "10.6",
+            "11",
+            "11.4",
+            "11.8",
+            "12.2",
+            "12.6",
+            "13"
+          ]
+        ],
+        "weights": [
+          -0.025,
+          -0.05,
+          -0.025,
+          0,
+          0.025,
+          0.05,
+          0.075,
+          0.1,
+          0.0125
+        ],
+        "prices": [
+          -0.025,
+          -0.05,
+          -0.025,
+          0,
+          0.025,
+          0.05,
+          0.075,
+          0.1,
+          0.0125
+        ]
+      },
+      {
+        "name": "Rear Seat Height",
+        "measureID": 103,
+        "desc": "The distance from the back of your seat to the floor.",
+        "details": "The rear seat height effects how you interact with your wheels.  Sitting a little taller will give you an easier push and the research suggests that it is better for the long term health of your shoulders.  However, a lower seat height can really enhance your stability if you have low trunk control. Most therapists say that the correct seat height is one where your fingers touch the rear axle when you hang your arms straight down from your shoulders.  Measure your current rear seat height and see if you would like to make any adjustments.",
+        "tip": "In general, the front seat height should be about 5 cm (2 inches) higher than the rear seat height.  If the front seat height is even higher, it will serve to increase your stability.",
+        "gifDesc": "As the seat height increases, push ergonomics get better, but stability decreases.",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "measureOptions": [
+          ["42.7"],
+          ["16.8"]
+        ],
+        "weights": [],
+        "prices": []
+      },
+      {
+        "name": "Front Seat Height",
+        "measureID": 104,
+        "desc": "The distance from the front of your seat to the floor.",
+        "details": "The interaction between the front seat height and rear seat height creates a seat that tilts back slightly.  Therapists refer to this property as \"Dump\".  If the front seat height is significantly higher than the rear seat height, it will serve hold you in the seat a little better and give you more trunk stability.",
+        "tip": "In general, the front seat height should be about 5 cm (2 inches) higher than the rear seat height.  If the front seat height is even higher, it will serve to increase your stability.",
+        "gifDesc": "As the front seat height increases, stability increases.",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "measureOptions": [
+          ["48"],
+          ["18.9"]
+        ],
+        "weights": [],
+        "prices": []
+      },
+      {
+        "name": "Foot Rest Width",
+        "measureID": 106,
+        "desc": "The width of the flat portion of the foot rest.",
+        "details": "Foot rest width is generally a personal preference.  Some people like the comfort of a wide foot rest, where others prefer the compactness and maneuverability of narrow foot rest.  Make certain that your foot rest is at least as wide as your feet when wearing a pair of shoes.",
+        "tip": "The foot rest should be at least as wide as your feet when wearing a pair of shoes.",
+        "gifDesc": "As the foot rest width increases, the size of the wheelchair increases.",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+        "measureOptions": [
+          ["27.8"],
+          ["10.9"]
+        ],
+        "weights": [],
+        "prices": []
+      },
+      {
+        "name": "Foot Rest Height - Adjustable",
+        "measureID": 107,
+        "desc": "The distance from the floor to the top of the foot rest.",
+        "details": "A foot rest should be just high enough to hold your feet securely.  This will push your knees up and take pressure off the back of your legs.The height of a foot rest is adjustable so you will be able to fine tune it after your chair has been built.",
+        "tip": "The foot rest should be just high enough so that your feet are properly supported.",
+        "gifDesc": "As the foot rest height increases, pressure on the back of your legs decreases.",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+        "measureOptions": [
+          [
+            "5",
+            "7",
+            "9",
+            "11",
+            "13"
+          ],
+          [
+            "2",
+            "2.8",
+            "3.5",
+            "4.3",
+            "5.1"
+          ]
+        ],
+        "weights": [
+          -0.1,
+          -0.05,
+          0,
+          0.05,
+          0.1
+        ],
+        "prices": [
+          -0.1,
+          -0.05,
+          0,
+          0.05,
+          0.1
+        ]
+      },
+      {
+        "name": "Axle Position (Adjustable)",
+        "measureID": 108,
+        "desc": "The distance from the front of the seatback post to the center of the axle. Axle position is one of the most important factors in determining the agility of your wheelchair.",
+        "details": "The axle position affects how easy it is to push and turn your chair (agility) as well as how easy it is for your chair to tip over backwards.  The further forward you place your axle the easier it is to push and turn, though it is also easier for your chair to tip over backwards.  ",
+        "tip": "While your chair will roll better by moving your axle forwards, if you are unsure on an axle position it is always better to err on a position set closer to the back of the chair.  On most TiArrow frames you will be able to make adjustments after you?ve tried your new chair.",
+        "gifDesc": "As the axle position moves forwards, the chair gets more tippy but also more agile.",
+        "units": [
+          "cm",
+          "in"
+        ],
+        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+        "measureOptions": [
+          [
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"
+          ],
+          [
+            "2.4",
+            "2.8",
+            "3.1",
+            "3.5",
+            "3.9",
+            "4.3",
+            "4.7",
+            "5.1",
+            "5.5",
+            "5.9"
+          ]
+        ],
+        "weights": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "prices": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
   }
 ]
