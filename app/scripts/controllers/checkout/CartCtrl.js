@@ -10,8 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('CartCtrl', ['$scope', '$location', 'User', 'FrameData', 'Units', 'Wheelchair', 'Drop',
-    function ($scope, $location, User, FrameData, Units, Wheelchair, Drop) {
+  .controller('CartCtrl', ['$scope', '$location','$cookieStore', 'User', 'FrameData', 'Units', 'Wheelchair', 'Drop',
+    function ($scope, $location, $cookieStore, User, FrameData, Units, Wheelchair, Drop) {
 
       Drop.setFalse();
 
@@ -37,9 +37,26 @@ angular.module('abacuApp')
       $scope.orderChairs;
       //Initialize Cart page
       function init() {
-        console.log('I am here');
-        User.createNewOrder();
-        curOrder = User.getCurEditOrder();
+
+        curOrder = User.getCurEditOrder()
+        if(!curOrder){
+          User.createNewOrder();
+          curOrder = User.getCurEditOrder();
+        }else{
+          updateCosts();
+        }
+        //if($cookieStore.get('cart') == null){
+        //  User.createNewOrder();
+        //  curOrder = User.getCurEditOrder();
+        //  console.log("cookie is empty")
+        //} else{
+        //  var tempCurOrder = $cookieStore.get('cart') || [];
+        //  for(var i = 0; i < tempCurOrder.wheelchairs.length; i++){
+        //    curOrder.push(new Wheelchair(tempCurOrder.wheelchairs[i]));
+        //  }
+        //  console.log("cartItem from cookie " + JSON.stringify(curOrder));
+        //}
+
         $scope.orderChairs = curOrder.getWheelchairs();
         for (var i = 0; i < $scope.wheelchairs.length; i++) {
           $scope.wOrderIndex.push(-1);
@@ -71,6 +88,8 @@ angular.module('abacuApp')
         }
         return false;
       }
+
+
 
       $scope.panelSelected = function (hoveritem, index, part) {
         return hoveritem.index === index && hoveritem.name === part.getName();

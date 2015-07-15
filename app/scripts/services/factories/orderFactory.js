@@ -19,7 +19,7 @@
  * Orders can be constructed directly from a JSON object using the Order.fromJSONData() function
  */
 angular.module('abacuApp')
-  .factory('Order', ['$q', '$http', 'Wheelchair', function ($q, $http, Wheelchair) {
+  .factory('Order', ['$q', '$http', 'Wheelchair', '$cookieStore', function ($q, $http, Wheelchair, $cookieStore) {
 
     function Order(taxRate, shippingFee, order) {
       this.wheelchairs = [];
@@ -65,15 +65,28 @@ angular.module('abacuApp')
       }
     }
 
+
+    function updateOrderCookie (orderInfo, wheelchairs) {
+      $cookieStore.put('cartInfo', orderInfo);
+      var tempWheelchairs = [];
+      for (var i = 0; i < wheelchairs.length; i++) {
+        tempWheelchairs. push (wheelchairs[i].getAll());
+      }
+      $cookieStore.put('cartWheelchairs', tempWheelchairs);
+    }
+
     Order.prototype = {
 
       addWheelchair: function (newWheelchair) {
         this.wheelchairs.push(newWheelchair);
+        updateOrderCookie(this.getOrderInfo(), this.getAllWheelchair());
       },
 
       removeWheelchair: function (index) {
-        if (index >= 0 && index < this.wheelchairs.length)
+        if (index >= 0 && index < this.wheelchairs.length) {
           return this.wheelchairs.splice(index, 1);
+          updateOrderCookie(this.getOrderInfo(), this.getAllWheelchair());
+        }
         return null;
       },
 
@@ -103,6 +116,28 @@ angular.module('abacuApp')
           wheelchairs: tempChairs
         };
       },
+
+      getOrderInfo: function () {
+        return {
+          orderNum: this.orderNum,
+          taxRate: this.taxRate,
+          shippingFee: this.shippingFee,
+          sentDate: this.sentDate,
+          userID: this.userID,
+          fName: this.fName,
+          lName: this.lName,
+          email: this.email,
+          phone: this.phone,
+          addr: this.addr,
+          addr2: this.addr2,
+          city: this.city,
+          state: this.state,
+          zip: this.zip,
+          paymethod: this.paymethod,
+          wheelchairs: []
+        };
+      },
+
 
       getPayMethod: function () {
         return this.payMethod;
@@ -185,6 +220,10 @@ angular.module('abacuApp')
           return this.wheelchairs[index];
         return null;
       },
+
+      getAllWheelchair: function () {
+      return this.wheelchairs;
+    },
 
       /*****************Cost Calculators (Aggregate Functions)****************/
 

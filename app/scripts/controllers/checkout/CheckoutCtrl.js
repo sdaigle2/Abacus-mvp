@@ -33,7 +33,7 @@ angular.module('abacuApp')
         .then(function () {
           $location.path('/order');
         }, function (message) {
-          alert('Login failed: ' + meassage);
+          alert('Login failed: ' + message);
         });
 
       $scope.loginForm.pass = '';

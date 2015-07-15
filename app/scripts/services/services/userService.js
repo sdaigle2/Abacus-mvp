@@ -68,6 +68,7 @@ angular.module('abacuApp')
           deferred.resolve();
         });
 
+      //***************Cookie restore***********
       var tempChairs = $cookieStore.get('wheelchairs') || [];
       for (var i = 0; i < tempChairs.length; i++) {
         designedWheelchairs.push(new Wheelchair(tempChairs[i]));
@@ -75,7 +76,6 @@ angular.module('abacuApp')
 
       var tempCurrentWheelchair = $cookieStore.get('currentWheelchair');
       if (tempCurrentWheelchair != null) {
-        console.log(JSON.stringify(tempCurrentWheelchair));
         if (tempCurrentWheelchair.isNew === true)
         {
           createCurrentDesign(tempCurrentWheelchair.frameID);
@@ -84,6 +84,15 @@ angular.module('abacuApp')
         if (tempCurrentWheelchair.isNew === false) {
           setEditWheelchair(tempCurrentWheelchair.index);
         }
+      }
+
+      var tempCart = $cookieStore.get('cartInfo');
+      var tempCartWheelchairs = $cookieStore.get('cartWheelchairs');
+      for(var i = 0; i < tempCartWheelchairs.length; i++){
+        tempCart.wheelchairs.push(tempCartWheelchairs[i]);
+      }
+      if(tempCart){
+        orders.push (new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, tempCart));
       }
 
       function createCurrentDesign(frameID) {
@@ -101,10 +110,7 @@ angular.module('abacuApp')
         $cookieStore.put('currentWheelchair', {frameID:-1, isNew:false, index:index});
       }
 
-      //var tempOrders = $cookieStore.get('carts') || [];
-      //for (var i = 0; i < tempOrderss.length; i++) {
-      //  orders.push(new Wheelchair(tempOrders[i]));
-      //}
+
 //*********functions************//
 
       return {
@@ -233,16 +239,18 @@ angular.module('abacuApp')
           var tempChairs = [];
           for(var i = 0; i < designedWheelchairs.length; i++){
             tempChairs.push(designedWheelchairs[i].getAll());
+            //console.log(JSON.stringify(tempChairs));
           }
           $cookieStore.put('wheelchairs', tempChairs);
         },
 
-        updateOrderCookie: function(){
-          var tempOrder = [];
-          for(var i = 0; i < orders.length; i++){
-            tempOrder.push(orders[i].getAll());
-          }
-        },
+        //updateCartCookie: function(){
+        //  var tempCart = [];
+        //  for(var i = 0; i < orders.length; i++){
+        //    tempCart.push(orders[i].getAll());
+        //  }
+        //  $cookieStore.put('cart', tempCart);
+        //},
         /*************************MY DESIGNS*******************************/
 
         createCurrentDesign: createCurrentDesign,
@@ -325,14 +333,12 @@ angular.module('abacuApp')
 
         //Creates a new "unsent" order - overwriting a previous unset order if one exists
         createNewOrder: function () {
-          if (orders.length > 0) {
-            var lastOrder = orders[orders.length - 1];
-            if (!lastOrder.hasBeenSent())
-              orders.splice(orders.length - 1, 1);
+          var lastOrder = orders[orders.length - 1];
+          if (orders.length === 0 || lastOrder.hasBeenSent() ) {
+            console.log("create a new order")
+            var newOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
+            orders.push(newOrder);
           }
-
-          var newOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
-          orders.push(newOrder);
         },
 
         //Returns the unsent Order set as the "curEditOrder"
