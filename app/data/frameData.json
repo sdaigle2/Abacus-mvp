@@ -305,6 +305,7 @@
         "name": "Wheel Size",
         "partID": 4,
         "defaultOptionID": 32,
+        "numSubImages": 0,
         "options": [
           {
             "name": "24\" (540mm)",
@@ -469,7 +470,7 @@
       {
         "name": "Inner Tube",
         "partID": 8,
-        "numSubImages": 1,
+        "numSubImages": 0,
         "defaultOptionID": 71,
         "options": [
           {
@@ -1172,7 +1173,7 @@
             "optionID": 261,
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Supreme puncture protection and highly durable.",
-            "defaultColorID": 64,
+            "defaultColorID": 164,
             "weight": 0.09,
             "price": 0,
             "colors": [
@@ -1211,7 +1212,7 @@
       {
         "name": "Inner Tube",
         "partID": 8,
-        "numSubImages": 1,
+        "numSubImages": 0,
         "defaultOptionID": 271,
         "options": [
           {
@@ -1320,7 +1321,7 @@
       {
         "name": "Side Guard",
         "partID": 11,
-        "numSubImages": 1,
+        "numSubImages": 0,
         "defaultOptionID": 303,
         "options": [
           {

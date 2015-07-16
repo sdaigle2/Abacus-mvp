@@ -54,6 +54,7 @@
   font-size: 18px;
   height: 40%;
   line-height: 25px;
+  overflow: auto;
 
 
 }
