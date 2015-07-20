@@ -32,7 +32,8 @@ angular.module('abacuApp')
           var defaultPart = {
             partID: p.getID(),
             optionID: p.getDefaultOptionID(),
-            colorID: p.getDefaultOption().getDefaultColorID()
+            colorID: p.getDefaultOption().getDefaultColorID(),
+            sizeIndex: p.getDefaultOption().getDefaultSizeIndex()
           };
           this.parts.push(defaultPart);
           if (i < frame.wheelIndex) {
@@ -67,7 +68,8 @@ angular.module('abacuApp')
           var copyPart = {
             partID: p.partID,
             optionID: p.optionID,
-            colorID: p.colorID
+            colorID: p.colorID,
+            sizeIndex: p.sizeIndex
           };
           this.parts.push(copyPart);
           if (i < frame.wheelIndex) {
@@ -156,6 +158,13 @@ angular.module('abacuApp')
         return -1;
       },
 
+      getSizeIndexForPart: function (pID) {
+        var p = this.getPart(pID);
+        if (p !== null)
+          return p.sizeIndex;
+        return -1;
+      },
+
       getMeasure: function (mID) {
         for (var i = 0; i < this.measures.length; i++)
           if (this.measures[i].measureID === mID)
@@ -184,16 +193,19 @@ angular.module('abacuApp')
             partName: '-',
             optionName: '-',
             colorName: '-',
+            size: '-',
             priceString: '-',
             weightString: '-'
           };
         }
         var oID = curPart.optionID;
         var cID = curPart.colorID;
+        var sizeIndex = curPart.sizeIndex;
 
         var part = FrameData.getFramePart(this.frameID, pID);
         var option = part.getOption(oID);
         var color = option.getColor(cID);
+        var size = option.getSize(sizeIndex);
 
         var colorName = (color === null) ? '' : color.getName();
 
@@ -206,6 +218,7 @@ angular.module('abacuApp')
           partName: part.getName(),
           optionName: option.getName(),
           colorName: colorName,
+          size: size,
           priceString: priceString,
           weightString: weightString
         };
@@ -259,6 +272,7 @@ angular.module('abacuApp')
           var o = FrameData.getFrame(this.frameID).getPartOption(pID, oID);
           p.optionID = oID;
           p.colorID = o.getDefaultColorID();
+          p.sizeID = o.getDefaultSizeIndex();
           this.previewImageGenerator.setOptionForPart(pID, oID);
           this.wheelImageGenerator.setOptionForPart(pID, oID);
           this.frameImageGenerator.setOptionForPart(pID, oID);
@@ -275,6 +289,13 @@ angular.module('abacuApp')
         }
       },
 
+      setSizeForPart: function (pID, sizeIndex) {
+        var p = this.getPart(pID);
+        if (p !== null) {
+          p.sizeIndex = sizeIndex;
+        }
+      },
+
       setOptionAndColorForPart: function (pID, oID, cID) {
         var p = this.getPart(pID);
         if (p !== null) {
@@ -283,6 +304,17 @@ angular.module('abacuApp')
           this.previewImageGenerator.setOptionAndColorForPart(pID, oID, cID);
           this.wheelImageGenerator.setOptionAndColorForPart(pID, oID, cID);
           this.frameImageGenerator.setOptionAndColorForPart(pID, oID, cID);
+        }
+      },
+
+      setOptionAndSizeForPart: function (pID, oID, sizeIndex) {
+        var p = this.getPart(pID);
+        if (p !== null) {
+          p.optionID = oID;
+          p.sizeIndex = sizeIndex;
+          this.previewImageGenerator.setOptionForPart(pID, oID);
+          this.wheelImageGenerator.setOptionForPart(pID, oID);
+          this.frameImageGenerator.setOptionForPart(pID, oID);
         }
       },
 

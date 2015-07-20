@@ -9,6 +9,7 @@ function getFrame(frameID){
       return frameData[i];
     }
   }
+  console.log('Bad frame Id');
   return false;
 }
 
@@ -18,6 +19,7 @@ function getPart(partID, parts){
       return parts[i];
     }
   }
+  console.log('Bad part ID');
   return false;
 }
 
@@ -27,33 +29,46 @@ function getOption(optionID, options){
       return options[i];
     }
   }
+  console.log('Bad option ID');
   return false;
 }
 
+function verifySize(index, sizes){
+  if(index >= 0 && index < sizes.length)
+    return sizes[index];
+  return sizes.length === 0 && index === -1;
+}
+
 function verifyColor(colorID, colors){
-  for(var i=0; i<colors.length; i++){
-    if(colors[i].colorID === colorID){
-      return true;
+  if(colors) {
+    for (var i = 0; i < colors.length; i++) {
+      if (colors[i].colorID === colorID) {
+        return colors[i].hex;
+      }
     }
   }
-  return colors.length === 0 && colorID === 0;
+  return (!colors || colors.length === 0) && colorID === 0;
 }
 
 function verifyPart(framePart, chairPart, wheelchair){
   var option = getOption(chairPart.optionID, framePart.options);
   if(option){
-    if(verifyColor(chairPart.colorID, option.colors)) {
+    var size = verifySize(chairPart.sizeIndex, option.sizes);
+    var hex = verifyColor(chairPart.colorID, option.colors);
+    if(hex && size) {
       wheelchair.weight += option.weight;
-      wheelchair.pDetails.push({name: framePart.name, option: option.name, price: option.price, zRank: framePart.zRank, numSubImages: framePart.numSubImages});
+      wheelchair.pDetails.push({name: framePart.name, option: option.name, color: hex, size: size, price: option.price, zRank: framePart.zRank, numSubImages: framePart.numSubImages});
       return option.price;
     }
   }
+  console.log('Bad option or color');
   return false;
 }
 
 function verifyParts(frameParts, wheelchair){
   var chairParts = wheelchair.parts;
   if(frameParts.length !== chairParts.length){
+    console.log('Number of parts wrong');
     return false;
   }
   var total = 0;
@@ -78,6 +93,7 @@ function getMeasure(measureID, measures){
       return measures[i];
     }
   }
+  console.log('Bad measure');
   return false;
 }
 
@@ -86,25 +102,31 @@ function verifyMeasure(frameMeasure, chairMeasure, wheelchair){
   if(index >= 0 && index < frameMeasure.measureOptions[0].length) {
     wheelchair.weight += frameMeasure.weights[index];
     var selection = frameMeasure.measureOptions[0][index]+' '+frameMeasure.units[0]+' / '+frameMeasure.measureOptions[1][index]+' '+frameMeasure.units[1];
-    wheelchair.mDetails.push({name: frameMeasure.name, selection: selection});
+    var val = frameMeasure.measureOptions[0][index];
+    console.log({name: frameMeasure.name, selection: selection, val: val});
+    wheelchair.mDetails.push({name: frameMeasure.name, selection: selection, val: val});
     return frameMeasure.prices[index];
   }
+  console.log('Bad measure option');
   return false;
 }
 
 function verifyMeasures(frameMeasures, wheelchair){
   var chairMeasures = wheelchair.measures;
   if(frameMeasures.length !== chairMeasures.length){
+    console.log('Wrong number measures');
     return false;
   }
   var total = 0;
   for(var i=0; i<frameMeasures.length; i++){
     var chairMeasure = getMeasure(frameMeasures[i].measureID, chairMeasures);
     if(!chairMeasure){
+      console.log('getMeasure');
       return false;
     }
     var price = verifyMeasure(frameMeasures[i], chairMeasure, wheelchair);
     if(!price && price!==0) {
+      console.log('verifyMeasure');
       return false;
     }
     total += price;
@@ -127,9 +149,13 @@ function verifyChair(wheelchair){
       wheelchair.price = frame.basePrice + partsPrice + measuresPrice;
       wheelchair.weight += frame.baseWeight;
       wheelchair.wheelIndex = frame.wheelIndex;
+      console.log(frame.basePrice);
+      console.log(partsPrice);
+      console.log(measuresPrice);
       return frame.basePrice + partsPrice + measuresPrice;
     }
   }
+  console.log('verify Chair');
   return false;
 }
 
@@ -137,8 +163,10 @@ exports.verifyOrder = function(order){
   var total = 0;
   for(var i=0; i<order.wheelchairs.length; i++){
     var price = verifyChair(order.wheelchairs[i]);
-    if(!price)
+    if(!price) {
+      console.log('order messed up');
       return false;
+    }
     total += price;
   }
   order.subtotal = total;

@@ -179,7 +179,12 @@ getOptionIDForPart(pID)- Returns optionID for part with partID = pID
 getColorIDForPart(pID) - Returns colorID for part with partID = pID
 getMeasure(mID) - Returns {measureID, measureOptionIndex] from measures where measureID = mID
 getMeasureByIndex(index) - Returns measures[index]
-getOptionIndexForMeasure(mID) -Returns measureOptionIndex for measure with measureId=mID
+getOptionIndexForMeasure(mID) - Returns measureOptionIndex for measure with measureId=mID
+getPartDetails(pID, unitSys) - Returns the name of the part, selected option and color, weight(in given unitSys) and price for the part with pID
+getMeasureDetails(mID, unitSys) - Returns name of the measure, the selected option(in unitSys), the eight, the price, and the selected option(in alt unitSys)
+getPreviewImages(angle) - Returns an array of images in zRank order that create the preview image for the given angle orientation.
+setOptionForPart(pID, oID
+
 ----------------------------------------------------------------------------
 
 1g) PreviewImage (previewImageFactory.js)

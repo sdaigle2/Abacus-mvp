@@ -60,6 +60,7 @@ function generateImage(doc, wheelchair, index){
 function titlePage(doc, wheelchair, order){
   doc.lineWidth(4).rect( 36, 36, 540, 684).stroke();
 
+  doc.lineGap(1);
   doc.font('Medium').fontSize(24).text(wheelchair.title, 72, 324, {width: 270});
   doc.fontSize(11);
   doc.lineGap(5);
@@ -102,6 +103,9 @@ function partsPage(doc, wheelchair){
       doc.font('Medium').text(wheelchair.pDetails[i].name, 280, 108);
     else
       doc.font('Medium').text(wheelchair.pDetails[i].name, 280);
+    if(wheelchair.pDetails[i].color !== true)
+      doc.lineWidth(11).moveTo(388, 112+i*39).lineTo(399, 112+i*39).fillAndStroke(wheelchair.pDetails[i].color, wheelchair.pDetails[i].color);
+    doc.fillAndStroke('black', 'black');
     doc.font('Book').text(wheelchair.pDetails[i].option, 298);
     doc.moveUp(1).text('$' + wheelchair.pDetails[i].price, 500);
     subtotal += wheelchair.pDetails[i].price;
@@ -115,6 +119,9 @@ function partsPage(doc, wheelchair){
       doc.font('Medium').text(wheelchair.pDetails[j].name, 280, firstDiv+18);
     else
       doc.font('Medium').text(wheelchair.pDetails[j].name, 280);
+    if(wheelchair.pDetails[j].color !== true)
+      doc.lineWidth(11).moveTo(388, firstDiv+22+(j-wheelchair.wheelIndex)*39).lineTo(399, firstDiv+22+(j-wheelchair.wheelIndex)*39).fillAndStroke(wheelchair.pDetails[j].color, wheelchair.pDetails[j].color);
+    doc.fillAndStroke('black', 'black');
     doc.font('Book').text(wheelchair.pDetails[j].option, 298);
     doc.moveUp(1).text('$' + wheelchair.pDetails[j].price, 500);
     subtotal += wheelchair.pDetails[j].price;
@@ -135,7 +142,7 @@ function measuresPage(doc, wheelchair){
   doc.font('Medium').text('Measurements', 72, 72);
   doc.lineWidth(1).moveTo(54, 90).lineTo(558,90).stroke();
   doc.lineGap(9);
-
+  console.log(1);
   for(var i=0; i<wheelchair.mDetails.length; i++) {
     if (i === 0)
       doc.font('Medium').text(wheelchair.mDetails[i].name, 72, 108);
@@ -143,10 +150,28 @@ function measuresPage(doc, wheelchair){
       doc.font('Medium').text(wheelchair.mDetails[i].name, 72);
     doc.font('Book').text(wheelchair.mDetails[i].selection, 90);
   }
-  doc.image('app/images/invoice/diagram1.png', 315, 158, {width: 234, height: 162});
-  doc.image('app/images/invoice/diagram3.png', 117, 468, {width: 131, height: 207});
-  doc.image('app/images/invoice/diagram2.png', 365, 473, {width: 131, height: 204});
-
+  console.log(2);
+  doc.image('app/images/invoice/diagram1.png', 315, 158, {height: 162});
+  doc.image('app/images/invoice/diagram3.png', 117, 468, {height: 207});
+  doc.image('app/images/invoice/diagram2.png', 365, 473, {height: 204});
+  console.log(3);
+  doc.font('Book');
+  for(var j=0; j<wheelchair.mDetails.length; j++) {
+    console.log(j);
+    if(wheelchair.mDetails[j].name === 'Foot Rest Width'){
+      doc.text(wheelchair.mDetails[j].val, 178, 650);
+    }
+    else if(wheelchair.mDetails[j].name === 'Rear Seat Width'){
+      doc.text(wheelchair.mDetails[j].val, 433, 653);
+    }
+    else if(wheelchair.mDetails[j].name === 'Front Seat Height'){
+      doc.text(wheelchair.mDetails[j].val, 293, 260);
+    }
+    else if(wheelchair.mDetails[j].name === 'Rear Seat Height'){
+      doc.text(wheelchair.mDetails[j].val, 525, 270);
+    }
+  }
+  console.log(4);
 }
 
 function summaryPage(doc, order){
@@ -226,10 +251,14 @@ exports.generate = function(order){
       doc.addPage({
         size: [612, 792]
       });
+    console.log('into title page');
     titlePage(doc, order.wheelchairs[i], order);
+    console.log('into parts page');
     partsPage(doc, order.wheelchairs[i]);
+    console.log('into measures page');
     measuresPage(doc, order.wheelchairs[i]);
   }
+  console.log('into summary page');
   summaryPage(doc, order);
   doc.end();
   return stream;

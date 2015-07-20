@@ -565,6 +565,7 @@ img.rightButtonNav{
   margin: 5px 0px;
   border-top: solid 1px #bbb;
   border-bottom: solid 1px #bbb;
+  z-index: 1;
 }
 
 .sideBar-custom-item-selected {
@@ -1004,8 +1005,7 @@ body{
  overflow:auto;
 }
 .nothing{
-  position:absolute;
-  visibility:hidden;
+  z-index: -1;
 }
 
 #appContainer .dropdownButton{

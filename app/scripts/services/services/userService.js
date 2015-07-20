@@ -368,7 +368,6 @@ angular.module('abacuApp')
 
           editOrder.send(userID, userData, shippingData, payMethod, token)
             .then(function () {
-              this.updateCookie();
               deferred.resolve();
             }, function (err) {
               deferred.reject(err);

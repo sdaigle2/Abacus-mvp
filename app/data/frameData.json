@@ -7,6 +7,7 @@
     "baseWeight": 5.5,
     "frameID": 1,
     "imageURL": "images/frame_page_img/frame1_frame_page.png",
+    "wheelIndex": 3,
     "parts": [
       {
         "name": "Frame Style",
@@ -26,14 +27,21 @@
           {
             "name": "Titanium - Unpainted",
             "optionID": 1,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Titanium is a strong, beautiful material for a wheelchair frame.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "Titanium - Painted",
             "optionID": 2,
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "desc": "Choose any of our standard colors for your Titanium frame.",
             "weight": 0.1,
             "price": 100,
             "defaultColorID": 11,
@@ -113,15 +121,21 @@
           {
             "name": "Titanium - Painted Custom Color",
             "optionID": 3,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "desc": "Choose any color you want for your Titanium frame.  Browse through the colors at <a href=\"www.ralcolor.com\">www.ralcolor.com</a>.  Just enter your chosen RAL Color number into the notes section at checkout.  ",
             "weight": 0.1,
-            "price": 200
+            "price": 200,
+            "defaultColorID": 0
           },
           {
             "name": "Magnesium - Painted",
             "optionID": 4,
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
-            "desc": "Magnesium is even lighter than Titanium.",
+            "desc": "Magnesium is even lighter than Titanium.  Unlike Titanium, Magnesium must be painted.",
             "weight": -0.1,
             "price": 400,
             "defaultColorID": 36,
@@ -201,9 +215,13 @@
           {
             "name": "Magnesium - Painted Custom Color",
             "optionID": 5,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "desc": "Choose any color you want for your Magnesium frame.  Browse through the colors at <a href=\"www.ralcolor.com\">www.ralcolor.com</a>.  Just enter your chosen RAL Color number into the notes section at checkout.  ",
             "weight": -0.1,
-            "price": 500
+            "price": 500,
+            "defaultColorID": 0
           }
         ]
       },
@@ -225,26 +243,38 @@
           {
             "name": "Carbon Fiber",
             "optionID": 11,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "An ultra lightweight, rigid, carbon fiber backrest, molded to fit the contours of your back and improve chair control. Tension adjustable with velcro straps.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "Padded",
             "optionID": 12,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your back and padded for additional comfort. Tension adjustable with velcro straps.",
             "weight": 0.1,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "Upholstery",
             "optionID": 13,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your body, padded for your comfort and upholstered with breathable mesh nylon. Tension adjustable with velcro straps.",
             "weight": 0.15,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           }
         ]
       },
@@ -273,58 +303,41 @@
           {
             "name": "sWeel",
             "optionID": 21,
+            "colors": [],
+            "defaultSizeIndex": 0,
+            "sizes": ["25\""],
             "desc": "A custom ultra lightweight 24-spoke wheel built around a carbon fiber hub, DT-Revolutions spokes, and a super lightweight rim makes the sWeel the lightest wheel on the market. (note: the sWeel is currently only available in a 25\" (559) size)",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "DT Swiss Wheel Rim",
             "optionID": 22,
+            "defaultSizeIndex": 1,
+            "sizes": [
+              "24\"",
+              "25\"",
+              "26\""
+            ],
             "desc": "By combining the carbon fiber hub of the sWeel and a slightly more basic wheel rim, the Arrow wheel is a great balance of quality, weight, and price.",
+            "weight": 0,
+            "price": -200,
             "defaultColorID": 51,
             "colors": [
               {
                 "name": "Black",
                 "colorID": 51,
                 "zRank": "Black",
-                "weight": 0,
-                "price": -200
+                "hex": "#0a0a0a"
               },
               {
                 "name": "White",
                 "colorID": 52,
                 "zRank": "White",
-                "weight": 0,
-                "price": -200
+                "hex": "#f4f4f4"
               }
             ]
-          }
-        ]
-      },
-      {
-        "name": "Wheel Size",
-        "partID": 4,
-        "defaultOptionID": 32,
-        "numSubImages": 0,
-        "options": [
-          {
-            "name": "24\" (540mm)",
-            "optionID": 31,
-            "weight": -0.025,
-            "price": 0
-          },
-          {
-            "name": "25\" (559mm) - standard",
-            "optionID": 32,
-            "desc": "The standard size wheelchair wheel.  Note: You must choose this size if you want the sWeel.",
-            "weight": 0,
-            "price": 0
-          },
-          {
-            "name": "26\" (590mm)",
-            "optionID": 33,
-            "weight": 0.025,
-            "price": 0
           }
         ]
       },
@@ -353,32 +366,50 @@
           {
             "name": "Titanium",
             "optionID": 41,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Titanium is strong and light, but easily dented",
             "weight": 0,
-            "price": 300
+            "price": 300,
+            "defaultColorID": 0
           },
           {
             "name": "Black Anodized Aluminum",
             "optionID": 42,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "The aluminum hand rim is more dent resistant and slightly heavier.",
             "weight": 0.1,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "Q-Grip from Out-front",
             "optionID": 43,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Top quality coated handrim that uses an exclusive anti-slip, latex free, neoprene coating that provides extra grip and control.",
             "weight": 0.2,
-            "price": 300
+            "price": 300,
+            "defaultColorID": 0
           },
           {
             "name": "Magnesium -powder coated",
             "optionID": 44,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
-            "price": 300
+            "desc": "Magnesium is strong and light, but easily dented",
+            "weight": -0.05,
+            "price": 300,
+            "defaultColorID": 0
           }
         ]
       },
@@ -386,21 +417,45 @@
         "name": "Axle",
         "partID": 6,
         "numSubImages": 2,
+        "zRank": [
+          [
+            1,
+            1,
+            1,
+            3,
+            4
+          ],
+          [
+            2,
+            13,
+            11,
+            11,
+            3
+          ]
+        ],
         "defaultOptionID": 51,
         "options": [
           {
-            "name": "25mm",
+            "name": "25mm Clamp Release",
             "optionID": 51,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "desc": "A 25mm axle, secured to the frame with a quick-release clamp on the axle sleeve, provides unparallleled rigidity and responsiveness.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
-            "name": "1/2\"",
+            "name": "1/2\" Quick Release",
             "optionID": 52,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "desc": "Standard, push button, quick-release axle.",
             "weight": 0.05,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           }
         ]
       },
@@ -429,16 +484,19 @@
           {
             "name": "Rightrun",
             "optionID": 61,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Supreme puncture protection and highly durable.",
+            "weight": 0.09,
+            "price": 0,
             "defaultColorID": 64,
             "colors": [
               {
                 "name": "Gray",
                 "colorID": 61,
-                "hex": "#404040",
-                "weight": 0.09,
-                "price": 0
+                "hex": "#404040"
               },
               {
                 "name": "Blue",
@@ -460,6 +518,9 @@
           {
             "name": "Schwalbe Low Tread",
             "optionID": 62,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Lightweight tires built for performance.",
             "weight": 0,
@@ -471,22 +532,32 @@
         "name": "Inner Tube",
         "partID": 8,
         "numSubImages": 0,
+        "zRank": [],
         "defaultOptionID": 71,
         "options": [
           {
             "name": "Extra light",
             "optionID": 71,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "The lightest weight innertube around!",
-            "price": 0
+            "weight": 0,
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "Standard",
             "optionID": 72,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "The standard tire is more puncture resistant, but slightly heavier",
             "weight": 0.033,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           }
         ]
       },
@@ -496,18 +567,11 @@
         "numSubImages": 1,
         "zRank": [
           [
+            10,
             7,
-            4,
-            4,
-            1,
-            2
-          ],
-          [
-            8,
-            5,
-            8,
-            2,
-            1
+            6,
+            7,
+            10
           ]
         ],
         "defaultOptionID": 81,
@@ -515,32 +579,48 @@
           {
             "name": "Monofork with 4\" Wheels",
             "optionID": 81,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Lightweight and simple. The monofork is easy to clean and easy on the eyes.  A standard 4\" caster wheel provides a nice balance between agility and a smooth ride.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "Monofork with 5\" Wheels",
             "optionID": 82,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Lightweight and simple. The monofork is easy to clean and easy on the eyes.  A bigger 5\" wheel provides a smoother ride, though a little less agility. (Warning: it is not possible to combine a 5\" caster wheel with a 24\" rear wheel)",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "FrogLegs with 4\" Wheels",
             "optionID": 83,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "desc": "An adjustable suspension caster fork that absorbs the jolts and bumps of the road.  A standard 4\" caster wheel provides a nice balance between agility and a smooth ride.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "FrogLegs with 4\" Wheels",
             "optionID": 84,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "desc": "An adjustable suspension caster fork that absorbs the jolts and bumps of the road.  A bigger 5\" wheel provides a smoother ride, though a little less agility. (Warning: it is not possible to combine a 5\" caster wheel with a 24\" rear wheel)",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           }
         ]
       },
@@ -548,31 +628,52 @@
         "name": "Wheel Locks",
         "partID": 10,
         "numSubImages": 1,
+        "zRank": [
+          [
+            10,
+            7,
+            6,
+            7,
+            10
+          ]
+        ],
         "defaultOptionID": 91,
         "options": [
           {
             "name": "Out-Front Wheel Locks",
             "optionID": 91,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Tried and true standard brakes",
             "weight": 0.1,
-            "price": 50
+            "price": 50,
+            "defaultColorID": 0
           },
           {
             "name": "Single Hand Operating Wheel Locks",
             "optionID": 92,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Compact, reliable, and opperable with just one hand.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "No Wheel Locks",
             "optionID": 93,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Cutting weight? Live life on the edge with no wheel locks? you rebel you.",
             "weight": -0.2,
-            "price": -50
+            "price": -50,
+            "defaultColorID": 0
           }
         ]
       },
@@ -580,28 +681,49 @@
         "name": "Side Guard",
         "partID": 11,
         "numSubImages": 1,
+        "zRank": [
+          [
+            10,
+            7,
+            6,
+            7,
+            10
+          ]
+        ],
         "defaultOptionID": 103,
         "options": [
           {
             "name": "Plastic",
             "optionID": 101,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "desc": "A firm sheet of plastc mounted inside the side tubes to keep your clothes clean.",
             "weight": 0,
-            "price": -50
+            "price": -50,
+            "defaultColorID": 0
           },
           {
             "name": "Titanium",
             "optionID": 102,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "desc": "A thin, strong sheet of titanium welded to the side tubes for maximum rigidity.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "Carbon Fiber",
             "optionID": 103,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "desc": "A strong carbon fiber side guard mounted inside the side tubes to improve stability and keep your clothes clean.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           }
         ]
       }
@@ -619,7 +741,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           [
@@ -660,7 +782,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           [
@@ -693,7 +815,7 @@
         "name": "Back Rest Height",
         "measureID": 2,
         "desc": "The distance from the top of the seat tube to the top of the seat post. The height of the seat back plays a role in providing trunk stability.",
-        "details": "The height of the backrest, in combination with the relation between front and rear seat height, helps provide trunk stability.  In determining seatback height it is important to assess your level of trunk control as well as the amount of times you need to lean back to perform an activity of daily living (cooking, cleaning, dressing, undressing, etc.).<br> When measuring seatback height, remember to factor in the height of the cushion you will be sitting on.  On a TiArrow frame it is easier to lower a seatback that is too high than to raise a seatback that is too low.",
+        "details": "The height of the backrest, in combination with the relation between front and rear seat height, helps provide trunk stability.  In determining seatback height it is important to assess your level of trunk control as well as the amount of times you need to lean back to perform an activity of daily living (cooking, cleaning, dressing, undressing, etc.). When measuring seatback height, remember to factor in the height of the cushion you will be sitting on.  On a TiArrow frame it is easier to lower a seatback that is too high than to raise a seatback that is too low.",
         "tip": "The easiest way to determine backrest height is to assess how satisfied you are with your current backrest height and make the necessary adjustments.",
         "gifDesc": "As the seatback gets taller, trunk stability increases but range of motion decreases.",
         "units": [
@@ -701,8 +823,8 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
-        "gifURL": "images/measurement_display/backrest_height.gif",
+        "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           [
             "25",
@@ -754,19 +876,22 @@
         "name": "Rear Seat Height",
         "measureID": 3,
         "desc": "The distance from the back of your seat to the floor.",
-        "details": "The rear seat height effects how you interact with your wheels.  Sitting a little taller will give you an easier push and the research suggests that it is better for the long term health of your shoulders.  However, a lower seat height can really enhance your stability if you have low trunk control. Most therapists say that the correct seat height is one where your fingers touch the rear axle when you hang your arms straight down from your shoulders.  Measure your current rear seat height and see if you would like to make any adjustments.",
+        "details": "The rear seat height effects how you interact with your wheels.  Sitting a little taller will give you an easier push and the research suggests that it is better for the long term health of your shoulders.  However, a lower seat height can really enhance your stability if you have low trunk control.Most therapists say that the correct seat height is one where your fingers touch the rear axle when you hang your arms straight down from your shoulders.  Measure your current rear seat height and see if you would like to make any adjustments.",
         "tip": "In general, the front seat height should be about 5 cm (2 inches) higher than the rear seat height.  If the front seat height is even higher, it will serve to increase your stability.",
         "gifDesc": "As the seat height increases, push ergonomics get better, but stability decreases.",
         "units": [
           "cm",
           "in"
         ],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           ["42.5"],
           ["16.7"]
         ],
-        "weights": [],
-        "prices": []
+        "weights": [0],
+        "prices": [0]
       },
       {
         "name": "Front Seat Height",
@@ -779,12 +904,15 @@
           "cm",
           "in"
         ],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           ["47.71"],
           ["18.8"]
         ],
-        "weights": [],
-        "prices": []
+        "weights": [0],
+        "prices": [0]
       },
       {
         "name": "Foot Rest Width",
@@ -798,12 +926,13 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           ["25.68"],
           ["10.1"]
         ],
-        "weights": [],
-        "prices": []
+        "weights": [0],
+        "prices": [0]
       },
       {
         "name": "Foot Rest Height - Adjustable",
@@ -817,7 +946,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           [
@@ -920,7 +1049,7 @@
   {
     "manufacturer": "Ti Arrow",
     "name": "CKF",
-    "desc": "TiArrow's flagship frame, the CKE offers the most enjoyable rider experience on the market. The seat, and ergonomic backrest work in concert with the side guards to provide unparalleled stability and the ultralightweight frame is easy to push and gentle on your shoulders. Available in titanium or magnesium (standard sizes only)",
+    "desc": "The TiArrow CKF combines the impeccable seat ergonomics and smooth ride of the CKE, with the added functionality of removeable side guards and a foldable backrest. Available in titanium only (standard sizes only).  ",
     "basePrice": 2195,
     "baseWeight": 6,
     "frameID": 2,
@@ -945,10 +1074,14 @@
           {
             "name": "Titanium - Unpainted",
             "optionID": 201,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Titanium is a strong, beautiful material for a wheelchair frame.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           }
         ]
       },
@@ -970,26 +1103,38 @@
           {
             "name": "Carbon Fiber",
             "optionID": 211,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "An ultra lightweight, rigid, carbon fiber backrest, molded to fit the contours of your back and improve chair control. Tension adjustable with velcro straps.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "Padded",
             "optionID": 212,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your back and padded for additional comfort. Tension adjustable with velcro straps.",
             "weight": 0.1,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "Upholstery",
             "optionID": 213,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your body, padded for your comfort and upholstered with breathable mesh nylon. Tension adjustable with velcro straps.",
             "weight": 0.15,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           }
         ]
       },
@@ -1018,55 +1163,41 @@
           {
             "name": "sWeel",
             "optionID": 221,
+            "colors": [],
+            "defaultSizeIndex": 0,
+            "sizes": ["25\""],
             "desc": "A custom ultra lightweight 24-spoke wheel built around a carbon fiber hub, DT-Revolutions spokes, and a super lightweight rim makes the sWeel the lightest wheel on the market. (note: the sWeel is currently only available in a 25\" (559) size)",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "DT Swiss Wheel Rim",
             "optionID": 222,
+            "defaultSizeIndex": 1,
+            "sizes": [
+              "24\"",
+              "25\"",
+              "26\""
+            ],
             "desc": "By combining the carbon fiber hub of the sWeel and a slightly more basic wheel rim, the Arrow wheel is a great balance of quality, weight, and price.",
-            "defaultColorID": 51,
             "weight": 0,
             "price": -200,
+            "defaultColorID": 51,
             "colors": [
               {
                 "name": "Black",
                 "colorID": 151,
-                "hex": "#ffffff"
+                "zRank": "Black",
+                "hex": "#0a0a0a"
               },
               {
                 "name": "White",
                 "colorID": 152,
-                "hex": "#000000"
+                "zRank": "White",
+                "hex": "#f4f4f4"
               }
             ]
-          }
-        ]
-      },
-      {
-        "name": "Wheel Size",
-        "partID": 4,
-        "defaultOptionID": 232,
-        "options": [
-          {
-            "name": "24\" (540mm)",
-            "optionID": 231,
-            "weight": -0.025,
-            "price": 0
-          },
-          {
-            "name": "25\" (559mm) - standard",
-            "optionID": 232,
-            "desc": "The standard size wheelchair wheel.  Note: You must choose this size if you want the sWeel.",
-            "weight": 0,
-            "price": 0
-          },
-          {
-            "name": "26\" (590mm)",
-            "optionID": 233,
-            "weight": 0.025,
-            "price": 0
           }
         ]
       },
@@ -1095,32 +1226,50 @@
           {
             "name": "Titanium",
             "optionID": 241,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Titanium is strong and light, but easily dented",
             "weight": 0,
-            "price": 300
+            "price": 300,
+            "defaultColorID": 0
           },
           {
             "name": "Black Anodized Aluminum",
             "optionID": 242,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "The aluminum hand rim is more dent resistant and slightly heavier.",
             "weight": 0.1,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "Q-Grip from Out-front",
             "optionID": 243,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Top quality coated handrim that uses an exclusive anti-slip, latex free, neoprene coating that provides extra grip and control.",
             "weight": 0.2,
-            "price": 300
+            "price": 300,
+            "defaultColorID": 0
           },
           {
             "name": "Magnesium -powder coated",
             "optionID": 244,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
-            "price": 300
+            "desc": "Magnesium is strong and light, but easily dented",
+            "weight": -0.05,
+            "price": 300,
+            "defaultColorID": 0
           }
         ]
       },
@@ -1128,21 +1277,45 @@
         "name": "Axle",
         "partID": 6,
         "numSubImages": 2,
+        "zRank": [
+          [
+            1,
+            1,
+            1,
+            3,
+            4
+          ],
+          [
+            2,
+            13,
+            11,
+            11,
+            3
+          ]
+        ],
         "defaultOptionID": 251,
         "options": [
           {
-            "name": "25mm",
+            "name": "25mm Clamp Release",
             "optionID": 251,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "desc": "A 25mm axle, secured to the frame with a quick-release clamp on the axle sleeve, provides unparallleled rigidity and responsiveness.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
-            "name": "1/2\"",
+            "name": "1/2\" Quick Release",
             "optionID": 252,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "desc": "Standard, push button, quick-release axle.",
             "weight": 0.05,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           }
         ]
       },
@@ -1171,11 +1344,13 @@
           {
             "name": "Rightrun",
             "optionID": 261,
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Supreme puncture protection and highly durable.",
-            "defaultColorID": 164,
             "weight": 0.09,
             "price": 0,
+            "defaultColorID": 164,
             "colors": [
               {
                 "name": "Gray",
@@ -1202,6 +1377,9 @@
           {
             "name": "Schwalbe Low Tread",
             "optionID": 262,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Lightweight tires built for performance.",
             "weight": 0,
@@ -1213,22 +1391,32 @@
         "name": "Inner Tube",
         "partID": 8,
         "numSubImages": 0,
+        "zRank": [],
         "defaultOptionID": 271,
         "options": [
           {
             "name": "Extra light",
             "optionID": 271,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "The lightest weight innertube around!",
-            "price": 0
+            "weight": 0,
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "Standard",
             "optionID": 272,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "The standard tire is more puncture resistant, but slightly heavier",
             "weight": 0.033,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           }
         ]
       },
@@ -1238,18 +1426,11 @@
         "numSubImages": 1,
         "zRank": [
           [
+            10,
             7,
-            4,
-            4,
-            1,
-            2
-          ],
-          [
-            8,
-            5,
-            8,
-            2,
-            1
+            6,
+            7,
+            10
           ]
         ],
         "defaultOptionID": 281,
@@ -1257,32 +1438,48 @@
           {
             "name": "Monofork with 4\" Wheels",
             "optionID": 281,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Lightweight and simple. The monofork is easy to clean and easy on the eyes.  A standard 4\" caster wheel provides a nice balance between agility and a smooth ride.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "Monofork with 5\" Wheels",
             "optionID": 282,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Lightweight and simple. The monofork is easy to clean and easy on the eyes.  A bigger 5\" wheel provides a smoother ride, though a little less agility. (Warning: it is not possible to combine a 5\" caster wheel with a 24\" rear wheel)",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "FrogLegs with 4\" Wheels",
             "optionID": 283,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "desc": "An adjustable suspension caster fork that absorbs the jolts and bumps of the road.  A standard 4\" caster wheel provides a nice balance between agility and a smooth ride.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "FrogLegs with 4\" Wheels",
             "optionID": 284,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "desc": "An adjustable suspension caster fork that absorbs the jolts and bumps of the road.  A bigger 5\" wheel provides a smoother ride, though a little less agility. (Warning: it is not possible to combine a 5\" caster wheel with a 24\" rear wheel)",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           }
         ]
       },
@@ -1290,31 +1487,52 @@
         "name": "Wheel Locks",
         "partID": 10,
         "numSubImages": 1,
+        "zRank": [
+          [
+            10,
+            7,
+            6,
+            7,
+            10
+          ]
+        ],
         "defaultOptionID": 291,
         "options": [
           {
             "name": "Out-Front Wheel Locks",
             "optionID": 291,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Tried and true standard brakes",
             "weight": 0.1,
-            "price": 50
+            "price": 50,
+            "defaultColorID": 0
           },
           {
             "name": "Single Hand Operating Wheel Locks",
             "optionID": 292,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Compact, reliable, and opperable with just one hand.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           },
           {
             "name": "No Wheel Locks",
             "optionID": 293,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "thumbnailURL": "images/d_panel_1.png",
             "desc": "Cutting weight? Live life on the edge with no wheel locks? you rebel you.",
             "weight": -0.2,
-            "price": -50
+            "price": -50,
+            "defaultColorID": 0
           }
         ]
       },
@@ -1322,14 +1540,19 @@
         "name": "Side Guard",
         "partID": 11,
         "numSubImages": 0,
+        "zRank": [],
         "defaultOptionID": 303,
         "options": [
           {
             "name": "Carbon Fiber",
             "optionID": 303,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
             "desc": "A strong carbon fiber side guard mounted inside the side tubes to improve stability and keep your clothes clean.",
             "weight": 0,
-            "price": 0
+            "price": 0,
+            "defaultColorID": 0
           }
         ]
       }
@@ -1346,8 +1569,8 @@
           "cm",
           "in"
         ],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           [
@@ -1387,8 +1610,8 @@
           "cm",
           "in"
         ],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           [
@@ -1436,8 +1659,8 @@
           "cm",
           "in"
         ],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           [
@@ -1497,12 +1720,15 @@
           "cm",
           "in"
         ],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           ["42.7"],
           ["16.8"]
         ],
-        "weights": [],
-        "prices": []
+        "weights": [0],
+        "prices": [0]
       },
       {
         "name": "Front Seat Height",
@@ -1515,12 +1741,15 @@
           "cm",
           "in"
         ],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           ["48"],
           ["18.9"]
         ],
-        "weights": [],
-        "prices": []
+        "weights": [0],
+        "prices": [0]
       },
       {
         "name": "Foot Rest Width",
@@ -1533,7 +1762,9 @@
           "cm",
           "in"
         ],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
+        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           ["27.8"],
           ["10.9"]
@@ -1545,15 +1776,15 @@
         "name": "Foot Rest Height - Adjustable",
         "measureID": 107,
         "desc": "The distance from the floor to the top of the foot rest.",
-        "details": "A foot rest should be just high enough to hold your feet securely.  This will push your knees up and take pressure off the back of your legs.The height of a foot rest is adjustable so you will be able to fine tune it after your chair has been built.",
+        "details": "A foot rest should be just high enough to hold your feet securely.  This will push your knees up and take pressure off the back of your legs. The height of a foot rest is adjustable so you will be able to fine tune it after your chair has been built.",
         "tip": "The foot rest should be just high enough so that your feet are properly supported.",
         "gifDesc": "As the foot rest height increases, pressure on the back of your legs decreases.",
         "units": [
           "cm",
           "in"
         ],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           [
@@ -1597,8 +1828,8 @@
           "cm",
           "in"
         ],
-        "videoURL": "https://www.youtube.com/embed/Lu_mVOJroZg",
-        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1"],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           [

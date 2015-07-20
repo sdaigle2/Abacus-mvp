@@ -21,6 +21,8 @@ angular.module('abacuApp')
       this.desc = optionData.desc;
       this.weight = optionData.weight;
       this.defaultColorID = optionData.defaultColorID;
+      this.sizes = optionData.sizes;
+      this.defaultSizeIndex = optionData.defaultSizeIndex;
 
 
       this.colors = [];
@@ -44,8 +46,16 @@ angular.module('abacuApp')
       getWeight: function () { return this.weight; },
       getThumbnailURL: function () { return this.thumbnailURL; },
       getDefaultColorID: function () { return this.defaultColorID; },
+      getDefaultSizeIndex: function () { return this.defaultSizeIndex},
+      getSizes: function () { return this.sizes},
       getColors: function () { return this.colors; },
+      getNumSizes: function () { return this.sizes.length},
       getNumColors: function () { return this.colors.length; },
+
+      getSize: function (index) {
+        if(index >= 0 && index < this.sizes.length)
+          return this.sizes[index];
+      },
 
       getColor: function (colID) {
         for (var i = 0; i < this.colors.length; i++)
@@ -69,6 +79,10 @@ angular.module('abacuApp')
 
       getDefaultColor: function () {
         return this.getColor(this.defaultColorID);
+      },
+
+      getDefaultSize: function () {
+        return this.getSize(this.defaultSizeIndex);
       }
 
     };

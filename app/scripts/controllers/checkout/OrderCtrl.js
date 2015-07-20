@@ -129,6 +129,7 @@ angular.module('abacuApp')
                 if($scope.orderNum !== -1) {
                   $scope.curStage++;
                   User.updateDB();
+                  User.updateCookie();
                 }
               }, function () {
                 alert('Error sending order');

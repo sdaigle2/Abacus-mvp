@@ -425,7 +425,8 @@ angular.module('abacuApp')
 
       $scope.panelReset = function(){
         curPanel.panelID=-1;
-      }
+      };
+
       $scope.isPanelSelectedTr = function(id){
         if(curPanel.panelID===-1){
            $scope.darkenerClass="nothing";
@@ -436,7 +437,7 @@ angular.module('abacuApp')
 
         }
         return "nothing";
-      }
+      };
 
 
       $scope.isPanelSelectedTd = function(id){
@@ -449,7 +450,7 @@ angular.module('abacuApp')
 
         }
         return "sideBar-custom-item-right";
-      }
+      };
 
 
       //Checks if a panel with the given ID is selected
