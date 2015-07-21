@@ -44,6 +44,7 @@ angular.module('abacuApp')
       getName: function () { return this.name; },
       getPrice: function () { return this.price; },
       getWeight: function () { return this.weight; },
+      getDesc: function () { return this.desc; },
       getThumbnailURL: function () { return this.thumbnailURL; },
       getDefaultColorID: function () { return this.defaultColorID; },
       getDefaultSizeIndex: function () { return this.defaultSizeIndex},

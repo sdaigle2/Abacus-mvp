@@ -20,20 +20,7 @@ function getPartPreviewImageURL(wheelchair, curPart, subImageIndex, angle) {
   return partURL;
 }
 
-function generateImage(doc, wheelchair, index){
-  var angle = '';
-  var angleNum = 0;
-  switch(index){
-    case 0: angle = 'BackRight';
-            angleNum = 1;
-            break;
-    case 1: angle = 'FrontRight';
-            angleNum = 3;
-            break;
-    case 2: angle = 'Right';
-            angleNum = 2;
-            break;
-  }
+function getImageArray(wheelchair, angle, angleNum){
   var images = [];
   //Generate array of images with zRank's
   for (var i = 0; i < wheelchair.parts.length; i++) {
@@ -51,20 +38,46 @@ function generateImage(doc, wheelchair, index){
   images.sort(function (a, b) {
     return (a.zRank - b.zRank);
   });
+  return images;
+}
+
+function generateImage(doc, wheelchair, index){
+  var angle = '';
+  var angleNum = 0;
+  switch(index){
+    case 0: angle = 'Back';
+            angleNum = 0;
+            break;
+    case 1: angle = 'FrontRight';
+            angleNum = 3;
+            break;
+    case 2: angle = 'Right';
+            angleNum = 2;
+            break;
+  }
+  var images = getImageArray(wheelchair, angle, angleNum);
+
   for(var k = 0; k<images.length; k++){
     console.log(images[k].zRank);
-    doc.image(images[k].URL, 306, 228*index + 36, {width: 234, height: 228});
+    doc.image(images[k].URL, 486, 73*index + 36, {width: 90});
+  }
+}
+
+function generateMainImage(doc, wheelchair){
+  var images = getImageArray(wheelchair, 'BackRight', 1);
+  for(var i = 0; i<images.length; i++){
+    doc.image(images[i].URL, 36, 36, {width: 450});
   }
 }
 
 function titlePage(doc, wheelchair, order){
-  doc.lineWidth(4).rect( 36, 36, 540, 684).stroke();
-
+  doc.lineWidth(4).rect( 36, 504, 540, 216).stroke();
   doc.lineGap(1);
-  doc.font('Medium').fontSize(24).text(wheelchair.title, 72, 324, {width: 270});
-  doc.fontSize(11);
+  doc.font('Medium').fontSize(22).text(wheelchair.title.toUpperCase(), 72, 535);
+  doc.lineWidth(1).moveTo(72, 562).lineTo(540,562).stroke();
+  doc.fontSize(12);
   doc.lineGap(5);
-  doc.text('Name:', 72, 370);
+  doc.text('Name:', 72, 581);
   doc.text('Manufacturer:');
   doc.text('Price:');
   doc.text('Model:');
@@ -72,15 +85,16 @@ function titlePage(doc, wheelchair, order){
   doc.text('Order Number:');
 
   doc.font('Book');
-  doc.text(order.orderNum);
-  doc.text(order.fName +' '+ order.lName, 180, 370);
+  doc.text(order.fName +' '+ order.lName, 207, 581);
   doc.text(wheelchair.manufacturer);
   doc.text('$'+wheelchair.price);
   doc.text(wheelchair.model);
   doc.text(wheelchair.weight+'lbs');
+  doc.text(order.orderNum);
   generateImage(doc, wheelchair, 0);
   generateImage(doc, wheelchair, 1);
   generateImage(doc, wheelchair, 2);
+  generateMainImage(doc, wheelchair);
 }
 
 function partsPage(doc, wheelchair){
@@ -91,7 +105,7 @@ function partsPage(doc, wheelchair){
   });
   doc.lineWidth(4).rect( 36, 36, 540, 684).stroke();
 
-  doc.font('Book').text('Type', 72, 72);
+  doc.font('Book').fontSize(11).text('Type', 72, 72);
   doc.text('Details', 280, 72);
   doc.text('Price', 500, 72);
 

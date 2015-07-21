@@ -272,7 +272,7 @@ angular.module('abacuApp')
           var o = FrameData.getFrame(this.frameID).getPartOption(pID, oID);
           p.optionID = oID;
           p.colorID = o.getDefaultColorID();
-          p.sizeID = o.getDefaultSizeIndex();
+          p.sizeIndex = o.getDefaultSizeIndex();
           this.previewImageGenerator.setOptionForPart(pID, oID);
           this.wheelImageGenerator.setOptionForPart(pID, oID);
           this.frameImageGenerator.setOptionForPart(pID, oID);
@@ -290,6 +290,7 @@ angular.module('abacuApp')
       },
 
       setSizeForPart: function (pID, sizeIndex) {
+        console.log(sizeIndex);
         var p = this.getPart(pID);
         if (p !== null) {
           p.sizeIndex = sizeIndex;
@@ -299,8 +300,10 @@ angular.module('abacuApp')
       setOptionAndColorForPart: function (pID, oID, cID) {
         var p = this.getPart(pID);
         if (p !== null) {
+          var o = FrameData.getFrame(this.frameID).getPartOption(pID, oID);
           p.optionID = oID;
           p.colorID = cID;
+          p.sizeIndex = o.getDefaultSizeIndex();
           this.previewImageGenerator.setOptionAndColorForPart(pID, oID, cID);
           this.wheelImageGenerator.setOptionAndColorForPart(pID, oID, cID);
           this.frameImageGenerator.setOptionAndColorForPart(pID, oID, cID);
@@ -310,8 +313,10 @@ angular.module('abacuApp')
       setOptionAndSizeForPart: function (pID, oID, sizeIndex) {
         var p = this.getPart(pID);
         if (p !== null) {
+          var o = FrameData.getFrame(this.frameID).getPartOption(pID, oID);
           p.optionID = oID;
           p.sizeIndex = sizeIndex;
+          p.colorID = o.getDefaultColorID();
           this.previewImageGenerator.setOptionForPart(pID, oID);
           this.wheelImageGenerator.setOptionForPart(pID, oID);
           this.frameImageGenerator.setOptionForPart(pID, oID);

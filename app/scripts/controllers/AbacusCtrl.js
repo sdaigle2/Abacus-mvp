@@ -28,11 +28,6 @@ angular.module('abacuApp')
         MEASURE: 1
       };
 
-      //The two types of panels that can open from the sidebar
-      $scope.panelTypes = {
-        COLOR: 'color',
-        DETAIL: 'detail'
-      };
 
       $scope.MeasureTabs = {
         TUTORIAL: 'tutorial',
@@ -365,6 +360,7 @@ angular.module('abacuApp')
       /*****************Sidebar Tabs***************/
 
       $scope.switchPageType = function (newPageType) {
+        $scope.closeAllPanels();
         $scope.setCurPageType(newPageType);
         $scope.getCurPage().visitstatus = visitstatus.CURRENT;
       };
@@ -384,84 +380,57 @@ angular.module('abacuApp')
         }
       };
 
+      $scope.setCurOptionSize = function (newSizeIndex) {
+        if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
+          $scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, newSizeIndex);
+          console.log('Changed size option');
+        }
+      };
+
       /*****************Panels*********************/
 
       $scope.edit = false;
+      $scope.curOption = $scope.getCurPartData().getDefaultOption();
 
       //Indicates the current panel
       //ID = -1 indicates no panel open
-      var curPanel = {
-        panelID: -1,
-        panelType: $scope.panelTypes.COLOR
-      };
+      var curPanel = -1;
 
       //Sets curPanel to the chosen panel
       //Closes the panel if id and type match curPanel
-      $scope.setPanel = function (id, type) {
-        if(id===-1 || FrameData.getFramePartOption($scope.curEditWheelchair.getFrameID(),$scope.getCurPartData().partID,id).defaultColorID !== 0
-          || (type !== $scope.panelTypes.COLOR)){
-
-          if ($scope.isPanelSelected(id, type)) {
-            curPanel.panelID = -1;
+      $scope.setPanel = function (id) {
+          if ($scope.isPanelSelected(id)) {
+            curPanel = -1;
+            $scope.curOption = $scope.getCurPartData().getDefaultOption();
           }
           else {
-            curPanel.panelID = id;
+            curPanel = id;
+            var partID = $scope.getCurPage().partID;
+            var part = $scope.curFrameData.getPart(partID);
+            $scope.curOption = part.getOption(id);
           }
-          curPanel.panelType = type;
           console.log("set");
-        }
       };
 
       //Closes any open panel
       $scope.closeAllPanels = function () {
-        $scope.setPanel(-1, $scope.panelTypes.COLOR);
+        $scope.setPanel(-1);
+        $scope.curOption = $scope.getCurPartData().getDefaultOption();
       };
 
       //Check if the panel with the given id and type is selected
-      $scope.isPanelSelected = function (id, type) {
-        return (curPanel.panelID === id && curPanel.panelType === type);
+      $scope.isPanelSelected = function (id) {
+        return (curPanel === id);
       };
 
 
       $scope.panelReset = function(){
-        curPanel.panelID=-1;
+        curPanel=-1;
+        $scope.curOption = $scope.getCurPartData().getDefaultOption();
       };
-
-      $scope.isPanelSelectedTr = function(id){
-        if(curPanel.panelID===-1){
-           $scope.darkenerClass="nothing";
-        }
-        if(curPanel.panelID===id){
-            $scope.darkenerClass="darkener";
-         return "sideBar-custom-item-selected";
-
-        }
-        return "nothing";
-      };
-
-
-      $scope.isPanelSelectedTd = function(id){
-        if(curPanel.panelID===-1){
-           $scope.darkenerClass="sideBar-custom-item-right";
-        }
-        if(curPanel.panelID===id){
-            $scope.darkenerClass="darkener";
-         return "sideBar-custom-item-right-selected";
-
-        }
-        return "sideBar-custom-item-right";
-      };
-
-
-      //Checks if a panel with the given ID is selected
-      $scope.isPanelIDSelected = function (id) {
-        return curPanel.panelID === id;
-      };
-
-
 
       $scope.getCurPanelID = function () {
-        return curPanel.panelID;
+        return curPanel;
       };
 
       $scope.changeEditState = function () {
