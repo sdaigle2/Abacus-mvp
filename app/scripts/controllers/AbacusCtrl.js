@@ -357,6 +357,10 @@ angular.module('abacuApp')
         $scope.saveDropdown = !$scope.saveDropdown;
       };
 
+      $scope.closeSaveDropDown = function () {
+        $scope.saveDropdown = false;
+      };
+
       /*****************Sidebar Tabs***************/
 
       $scope.switchPageType = function (newPageType) {

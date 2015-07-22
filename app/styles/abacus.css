@@ -1022,9 +1022,6 @@ img.rightButtonNav{
   transition: 1s;
 }
 
-.sideBar .colorPanel::-webkit-scrollbar{
-  display: none;
-}
 
 .colorPanelItem {
   width: 40px;
@@ -1080,6 +1077,7 @@ img.rightButtonNav{
 }
 
 .item-description{
+  overflow: auto;
   text-align: left;
   margin-top: 3px;
   margin-left: 5px;

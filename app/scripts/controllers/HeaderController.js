@@ -94,6 +94,10 @@ angular.module('abacuApp')
         Drop.toggleSettings();
     };
 
+    $scope.closeDropdown = function () {
+      Drop.setFalse();
+    };
+
     $scope.accountURL = 'my_account_big';
     $scope.orderURL = 'my_orders';
     $scope.measureURL = 'my_measurement';

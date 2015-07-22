@@ -223,21 +223,21 @@ app.post('/order', function (req, res) {
           req.body.order.orderNum = body.id;
           var pdfStream = pdfgen(req.body.order);
           res.send(body.id);
-          //var invoiceEmail = new sendgrid.Email({
-          //  from: 'do-not-reply@abacus.fit',
-          //  subject: 'Abacus Purchase Invoice'
-          //});
-          //invoiceEmail.to = req.body.order.email;
-          //invoiceEmail.text = 'Thank you for using Abacus to purchase your new Wheelchair. We have attached the invoice for your order.';
-          //pdfStream.on('finish', function(){
-          //  invoiceEmail.addFile({
-          //    path: 'invoice_'+body.id+'.pdf'
-          //  });
-          //  sendgrid.send(invoiceEmail, function (err, json) {
-          //    console.log(err);
-          //    res.send(body.id);
-          //  });
-          //});
+          var invoiceEmail = new sendgrid.Email({
+            from: 'do-not-reply@abacus.fit',
+            subject: 'Abacus Purchase Invoice'
+          });
+          invoiceEmail.to = req.body.order.email;
+          invoiceEmail.text = 'Thank you for using Abacus to purchase your new Wheelchair. We have attached the invoice for your order.';
+          pdfStream.on('finish', function(){
+            invoiceEmail.addFile({
+              path: 'invoice_'+body.id+'.pdf'
+            });
+            sendgrid.send(invoiceEmail, function (err, json) {
+              console.log(err);
+              res.send(body.id);
+            });
+          });
         });
       }
     });
