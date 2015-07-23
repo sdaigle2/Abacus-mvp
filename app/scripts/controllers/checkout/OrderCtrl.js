@@ -28,19 +28,19 @@ angular.module('abacuApp')
 
       $scope.display = [
         { //INFO
-          title: "YOUR INFO",
+          title: "Your Info",
           button: "PAYMENT >"
         },
         { //PAYMENT
-          title: "PAYMENT",
+          title: "Payment",
           button: "CONFIRM >"
         },
         { //CONFIRM
-          title: "ORDER CONFIRMATION",
+          title: "Order Confirmation",
           button: "COMPLETE >"
         },
         { //COMPLETE
-          title: "COMPLETE",
+          title: "Complete",
           button: "GO TO MY ORDER >>"
         }
       ];

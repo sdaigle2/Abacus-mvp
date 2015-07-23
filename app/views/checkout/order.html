@@ -3,9 +3,7 @@
 <div class="order text-center">
   <!--HEADER-->
   <div class="order-header">
-    <h2 class="medium" data-ng-bind="display[curStage].title"></h2>
-    <h5 class="book" data-ng-click="returnToCart()"
-        data-ng-hide="curStage == stages.COMPLETE">&lt&lt Go Back to Shopping Cart</h5>
+    <h2 class="book" data-ng-bind="display[curStage].title"></h2>
   </div>
 
   <!--BODY-->
@@ -44,74 +42,51 @@
 
     <!--MAIN-PAYMENT-->
     <div class="order-left" data-ng-if="curStage === stages.PAYMENT">
-      <div class="order-form">
+      <div class="order-form payment">
         <div class="order-form-header">Choose your payment method</div>
-        <input type="radio" data-ng-model="payForm.method" data-ng-value="payMethods.PAYPAL"/>
-        <img width="50" height="50" src="../../images/icons/paypal_logo.gif" />
-        <br />
-        <input type="radio" data-ng-model="payForm.method" data-ng-value="payMethods.ADVANCE"/>
-        <strong>Pay in advance</strong>
-        <br />
-      </div>
-      <form id="payment-form" data-ng-show="payForm.method===payMethods.PAYPAL">
-        <span class="payment-errors" data-ng-bind="payment_errors"></span>
-        <div class="form-row">
-          <label>
-            <span>Card Number</span>
-            <input type="text" size="20" data-ng-model="card.number"/>
-          </label>
+        <div class="paymentWindow">
+          <div class="paymentMethod">
+            <input class="paymentOption" type="radio" data-ng-model="payForm.method" data-ng-value="payMethods.PAYPAL"/>
+            <strong>Pay by Credit Card</strong>
+            <div >
+              <form  data-ng-show="payForm.method===payMethods.PAYPAL">
+                <span class="payment-errors" data-ng-bind="payment_errors"></span>
+                <div class="form-row">
+                  <label>
+                    <span>Card Number<br></span>
+                    <input type="text" size="20" data-ng-model="card.number"/>
+                  </label>
+                </div>
+                <div class="form-row">
+                  <label>
+                    <span>CVC</span>
+                    <input type="text" size="4" data-ng-model="card.cvc"/>
+                  </label>
+                </div>
+                <div class="form-row">
+                  <label>
+                    <span>Expiration (MM/YYYY)<br></span>
+                    <input type="text" size="2" data-ng-model="card.exp_month"/>
+                    <span> / </span>
+                    <input type="text" size="4" data-ng-model="card.exp_year"/>
+                  </label>
+                <div id="paymentInfo" >
+                  30% will be charged to your credit card now . When your chair is ready to be shipped, you will be
+                 contacted to pay the other 70%
+                </div>
+
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="paymentMethod">
+            <input class="paymentOption" type="radio" data-ng-model="payForm.method" data-ng-value="payMethods.ADVANCE"/>
+            <strong>Bill by Insurance</strong>
+            <div data-ng-show="payForm.method === payMethods.ADVANCE">
+              Customer representative from Tiarrow will be in touch with you shortly
+            </div>
+          </div>
         </div>
-        <div class="form-row">
-          <label>
-            <span>CVC</span>
-            <input type="text" size="4" data-ng-model="card.cvc"/>
-          </label>
-        </div>
-        <div class="form-row">
-          <label>
-            <span>Expiration (MM/YYYY)</span>
-            <input type="text" size="2" data-ng-model="card.exp_month"/>
-          </label>
-          <span> / </span>
-          <input type="text" size="4" data-ng-model="card.exp_year"/>
-        </div>
-      </form>
-      <div class="order-form" data-ng-show="payForm.method === payMethods.ADVANCE">
-        <div class="order-form-header"></div>
-        <table class="order-form-table">
-          <tbody>
-            <tr>
-              <td><strong>Account Holder</strong></td>
-              <td data-ng-bind="bankData.ACCOUNT_HOLDER"></td>
-            </tr>
-            <tr>
-              <td><strong>Account Number</strong></td>
-              <td data-ng-bind="bankData.ACCOUNT_NUMBER"></td>
-            </tr>
-            <tr>
-              <td><strong>BLZ</strong></td>
-              <td data-ng-bind="bankData.BLZ"></td>
-            </tr>
-            <tr>
-              <td><strong>Bank Name</strong></td>
-              <td data-ng-bind="bankData.BANK_NAME"></td>
-            </tr>
-          </tbody>
-        </table>
-        <br />
-        <div class="order-form-label">For International transfers please use the following data:</div>
-        <table class="order-form-table">
-          <tbody>
-            <tr>
-              <td><strong>IBAN</strong></td>
-              <td data-ng-bind="bankData.IBAN"></td>
-            </tr>
-            <tr>
-              <td><strong>BIC</strong></td>
-              <td data-ng-bind="bankData.BIC"></td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
 

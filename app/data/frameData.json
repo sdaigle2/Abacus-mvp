@@ -433,8 +433,8 @@
           [
             2,
             13,
-            11,
-            11,
+            14,
+            14,
             3
           ]
         ],
@@ -445,8 +445,8 @@
             "optionID": 51,
             "colors": [],
             "defaultSizeIndex": -1,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail images /axle/25mm.png",
             "sizes": [],
+            "thumbnailURL": "images/abacus_page/customize/thumbnail images /axle/25mm.png",
             "desc": "A 25mm axle, secured to the frame with a quick-release clamp on the axle sleeve, provides unparallleled rigidity and responsiveness.",
             "weight": 0,
             "price": 0,
@@ -457,8 +457,8 @@
             "optionID": 52,
             "colors": [],
             "defaultSizeIndex": -1,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail images /axle/half_inch.png",
             "sizes": [],
+            "thumbnailURL": "images/abacus_page/customize/thumbnail images /axle/half_inch.png",
             "desc": "Standard, push button, quick-release axle.",
             "weight": 0.05,
             "price": 0,
@@ -1198,7 +1198,7 @@
             "weight": 0,
             "price": -200,
             "thumbnailURL": "images/abacus_page/customize/thumbnail images /wheel/wheel.png",
-            "defaultColorID": 51,
+            "defaultColorID": 151,
             "colors": [
               {
                 "name": "Black",

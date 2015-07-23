@@ -9,7 +9,6 @@
 .order-header {
   width: 90%;
   margin: 50px auto 40px;
-  border-bottom: solid 2px black;
   text-align: left;
 }
 
@@ -39,10 +38,16 @@
 .order-form {
   font-family: 'Gotham A', 'Gotham B';
   margin-bottom: 15px;
+  border: 1px solid #eaeaea;
+  padding: 20px 40px;
+}
+
+.payment{
+  height: 330px;
 }
 
 .order-form-header {
-  color: #999999;
+  color: #00a89c;
   font-size: 20px;
   border-bottom: solid 1px grey;
   margin-bottom: 15px;
@@ -59,7 +64,7 @@
 }
 
 .order-form .text-input {
-  width: 40%;
+  width: 60%;
 }
 
 .order-form-table {
@@ -91,6 +96,33 @@
   overflow-y: scroll;
   max-height: 100px;
 }
+
+ .paymentWindow{
+  margin: auto;
+  padding: 10px 20px;
+}
+
+ .paymentWindow .paymentMethod{
+  width: 49%;
+  float: left;
+  display: inline-block;
+  height: 270px;
+}
+
+.paymentWindow .paymentOption{
+  text-align: center;
+}
+
+
+.paymentMethod >div{
+  margin: 18px ;
+}
+#paymentInfo {
+  margin-top: 20px;
+}
+
+
+
 
 /*****************************BODY-RIGHT (Sidebar)***********************************/
 

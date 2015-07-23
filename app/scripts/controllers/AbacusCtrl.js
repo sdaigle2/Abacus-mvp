@@ -238,7 +238,7 @@ angular.module('abacuApp')
       $scope.curMeasureCarouselIndex = 0;
 
       function resetSelectedMeasureImageIndex() {
-        $scope.selectedMeasureImageIndex = 0;
+        $scope.curMeasureCarouselIndex = 0;
       }
 
       //Cycles the carousel in the direction of dir (+-1)
