@@ -281,14 +281,19 @@ angular.module('abacuApp')
         }
         else if ($scope.getCurPageType() === $scope.pageType.CUSTOMIZE && dir === 1 && $scope.getCurPage().index === pages.customizePages.length - 1) {
           $scope.setCurPageType($scope.pageType.MEASURE);
-          $scope.getCurPage().visitstatus = visitstatus.VISITED;
+          if($scope.getCurWheelchairMeasure().measureOptionIndex !== -1)
+            $scope.getCurPage().visitstatus = visitstatus.VISITED;
+          else
+            $scope.getCurPage().visitstatus = visitstatus.UNVISITED;
           $scope.setCurPage(0);
         }
         else {
-          $scope.getCurPage().visitstatus = visitstatus.VISITED;
+          if($scope.getCurWheelchairMeasure().measureOptionIndex !== -1 || $scope.getCurPageType() === $scope.pageType.CUSTOMIZE)
+            $scope.getCurPage().visitstatus = visitstatus.VISITED;
+          else
+            $scope.getCurPage().visitstatus = visitstatus.UNVISITED;
           $scope.setCurPage($scope.getCurPage().index + dir);
         }
-
         $scope.getCurPage().visitstatus = visitstatus.CURRENT;
         $scope.closeAllPanels();
         resetSelectedMeasureImageIndex();
@@ -296,7 +301,10 @@ angular.module('abacuApp')
 
       //Jump to the given page
       $scope.pageSwitchJump = function (page) {
-        $scope.getCurPage().visitstatus = visitstatus.VISITED; //set current page to visit status: visited
+        if($scope.getCurWheelchairMeasure().measureOptionIndex !== -1 || $scope.getCurPageType() === $scope.pageType.CUSTOMIZE)
+          $scope.getCurPage().visitstatus = visitstatus.VISITED;
+        else
+          $scope.getCurPage().visitstatus = visitstatus.UNVISITED;  //set current page to visit status: visited
         $scope.setCurPage(page.index); //set new current page
         $scope.getCurPage().visitstatus = visitstatus.CURRENT; //set new current page to visit status : current
         $scope.closeAllPanels(); //close any panels we may have opened

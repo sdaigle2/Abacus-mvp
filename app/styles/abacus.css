@@ -780,6 +780,8 @@ img.rightButtonNav{
 .sideBar-measure-tip-right{
   width: 70%;
   margin: 0 70px;
+  max-height: 12vh;
+  overflow-y: scroll;
 }
 
 .sideBar-measure-bottom {
