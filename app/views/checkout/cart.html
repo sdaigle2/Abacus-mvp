@@ -6,11 +6,11 @@
   <div class="text-center cartBody" ng-class="{'appBodyOverflow': imageDisplay1 }">
     <!-- Heading -->
     <div class="cartHeading">
-      <h3 ><strong>MY DESIGNS</strong></h3>
+      <h3><strong>MY DESIGNS</strong></h3>
     </div>
 
     <!--comparison table main problem-->
-    <div id="mainContent">
+    <div id="mainContent" ng-if="wheelchairs.length > 0">
       <!-- ng-repeat="wheelchair in wheelchairs"-->
 
         <div ng-repeat="w in wheelchairs" id="comparisonImages">
@@ -39,27 +39,32 @@
         </div>
 
       <div class="addWheelchair">
-        <a ng-show="wheelchairs.length < 1" ng-href="#/frame">
-          <div>
-            <img data-ng-src="images/my_design_page/add_icon.png">
-            <div><h5>Add another Wheelchair</h5></div>
-          </div>
+        <a ng-show="wheelchairs.length < 1" class="add-chair" data-ng-mouseenter="hoverImage = 'add_icon_hover'"
+           data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frame">
+          <img class="add-icon" data-ng-src="images/my_design_page/{{hoverImage}}.png">
+          <span class="medium">Add a Wheelchair</span>
         </a>
-        <a ng-show="wheelchairs.length < 2" ng-href="#/frame">
-          <div>
-            <img data-ng-src="images/my_design_page/add_icon.png">
-            <div><h5>Add another Wheelchair</h5></div>
-          </div>
+        <a ng-show="wheelchairs.length < 2" class="add-chair" data-ng-mouseenter="hoverImage = 'add_icon_hover'"
+           data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frame">
+          <img class="add-icon" data-ng-src="images/my_design_page/{{hoverImage}}.png">
+          <span class="medium">Add a Wheelchair</span>
         </a>
-        <a ng-show="wheelchairs.length < 3" ng-href="#/frame">
-          <div>
-            <img data-ng-src="images/my_design_page/add_icon.png">
-            <div><h5>Add another Wheelchair</h5></div>
-          </div>
+        <a ng-show="wheelchairs.length < 3" class="add-chair" data-ng-mouseenter="hoverImage = 'add_icon_hover'"
+           data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frame">
+          <img class="add-icon" data-ng-src="images/my_design_page/{{hoverImage}}.png">
+          <span class="medium">Add a Wheelchair</span>
         </a>
       </div>
     </div>
 
+    <div class="empty-designs" ng-if="wheelchairs.length === 0">
+      <p>You currently do not have any saved design</p>
+      <a class="add-chair" data-ng-mouseenter="hoverImage = 'add_icon_hover'"
+         data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frame">
+        <img class="add-icon" data-ng-src="images/my_design_page/{{hoverImage}}.png">
+        <span class="medium">Add a Wheelchair</span>
+      </a>
+    </div>
 
 
 
@@ -96,7 +101,9 @@
             data-ng-mouseleave="hoverItem.index=-1; hoverItem.name=''">
           <div class="option-desc" data-ng-if="hoverItem.index === $index && hoverItem.name === part.getName()">
             <p class="option-desc-head" data-ng-bind="getPartOption(wheelchair, part)"></p>
-            <p><span data-ng-bind="getPartDetails(wheelchair, part).priceString"></span> | <span data-ng-bind="getPartDetails(wheelchair, part).weightString"></span></p>
+
+            <p><span data-ng-bind="getPartDetails(wheelchair, part).priceString"></span> | <span
+              data-ng-bind="getPartDetails(wheelchair, part).weightString"></span></p>
           </div>
           <p data-ng-bind="getPartOption(wheelchair, part)"
              data-ng-if="hoverItem.index !== $index || hoverItem.name !== part.getName()"></p>
@@ -120,6 +127,10 @@
           </div>
         </li>
       </ol>
+      <div data-ng-if="orderChairs.length === 0">
+        <img class="add-icon" data-ng-src="images/my_design_page/cart_empty.png">
+        <span class="medium">Your cart is currently empty</span>
+      </div>
     </div>
     <table class="cartSidebarSubtotals">
       <tbody>
@@ -145,8 +156,8 @@
     </table>
     <div class="text-center button-div">
       <div class="button medium checkoutButton"
-              data-ng-class="{ 'inactive' : !validCart() }"
-              data-ng-click="checkOut()">Check Out
+           data-ng-class="{ 'inactive' : !validCart() }"
+           data-ng-click="checkOut()">Check Out
       </div>
     </div>
   </div>

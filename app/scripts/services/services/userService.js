@@ -33,7 +33,7 @@ angular.module('abacuApp')
       var unitSys = Units.unitSys.IMPERIAL;
       var contentSection = 'orders';
       var deferred = $q.defer();
-      $http   ({
+      $http({
         url: '/session'
         , method: 'POST'
       })
@@ -71,25 +71,23 @@ angular.module('abacuApp')
       }
 
       var curOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
-      for(var j = 0; j<designedWheelchairs.length; j++){
-        if(designedWheelchairs[j].inCurOrder){
+      for (var j = 0; j < designedWheelchairs.length; j++) {
+        if (designedWheelchairs[j].inCurOrder) {
           console.log(designedWheelchairs[j]);
           curOrder.wheelchairs.push(designedWheelchairs[j]);
         }
       }
 
-      if(curOrder.wheelchairs.length > 0){
+      if (curOrder.wheelchairs.length > 0) {
         orders.push(curOrder);
       }
 
       var tempCurrentWheelchair = $cookieStore.get('currentWheelchair');
       if (tempCurrentWheelchair != null) {
-        if (tempCurrentWheelchair.isNew === true)
-        {
+        if (tempCurrentWheelchair.isNew === true) {
           createCurrentDesign(tempCurrentWheelchair.frameID);
         }
-        else
-        if (tempCurrentWheelchair.isNew === false) {
+        else if (tempCurrentWheelchair.isNew === false) {
           setEditWheelchair(tempCurrentWheelchair.index);
         }
       }
@@ -97,16 +95,16 @@ angular.module('abacuApp')
       function createCurrentDesign(frameID) {
         currentWheelchair.editingWheelchair = new Wheelchair(frameID);
         currentWheelchair.isNew = true;
-        $cookieStore.put('currentWheelchair', {frameID:frameID, isNew:true, index:-1});
+        $cookieStore.put('currentWheelchair', {frameID: frameID, isNew: true, index: -1});
       }
 
-      function setEditWheelchair (index) {
+      function setEditWheelchair(index) {
         if (index >= 0 && index < designedWheelchairs.length) {
           curEditWheelchairIndex = index;
         }
         currentWheelchair.editingWheelchair = jQuery.extend(true, designedWheelchairs[index]);
         currentWheelchair.isNew = false;
-        $cookieStore.put('currentWheelchair', {frameID:-1, isNew:false, index:index});
+        $cookieStore.put('currentWheelchair', {frameID: -1, isNew: false, index: index});
       }
 
 
@@ -174,13 +172,13 @@ angular.module('abacuApp')
               unitSys = data.unitSys;
 
               var curOrder = this.getCurEditOrder();
-              orders =  [];
+              orders = [];
 
               for (var i = 0; i < data.orders.length; i++) {
                 orders.push(new Order(0, 0, data.orders[i]));
               }
 
-              if(curOrder){
+              if (curOrder) {
                 orders.push(curOrder);
               }
             }
@@ -242,7 +240,7 @@ angular.module('abacuApp')
 
         updateCookie: function () {
           var tempChairs = [];
-          for(var i = 0; i < designedWheelchairs.length; i++){
+          for (var i = 0; i < designedWheelchairs.length; i++) {
             tempChairs.push(designedWheelchairs[i].getAll());
             //console.log(JSON.stringify(tempChairs));
           }
@@ -297,7 +295,12 @@ angular.module('abacuApp')
           return designedWheelchairs.length;
         },
 
+        saveComputer: function () {
+          $http.post('/save', {wheelchair: this.getCurEditWheelchair()}, {responseType: 'arraybuffer'})
+            .success(function (response) {
 
+            });
+        },
         /******************************MY MEASUREMENTS*******************************/
 
         commonMeasures: {
@@ -332,7 +335,7 @@ angular.module('abacuApp')
         //Creates a new "unsent" order - overwriting a previous unset order if one exists
         createNewOrder: function () {
           var lastOrder = orders[orders.length - 1];
-          if (orders.length === 0 || lastOrder.hasBeenSent() ) {
+          if (orders.length === 0 || lastOrder.hasBeenSent()) {
             console.log("create a new order")
             var newOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
             orders.push(newOrder);
@@ -342,7 +345,7 @@ angular.module('abacuApp')
         //Returns the unsent Order set as the "curEditOrder"
         //If no such Order exists, returns null
         getCurEditOrder: function () {
-        	console.log(orders.length);
+          console.log(orders.length);
           if (orders.length > 0) {
             var lastOrder = orders[orders.length - 1];
             if (!lastOrder.hasBeenSent())
@@ -417,7 +420,7 @@ angular.module('abacuApp')
             a2 = ' ' + a2;
           return addr + a2;
         },
-        getContentSection: function(){
+        getContentSection: function () {
           return contentSection;
         },
         setFname: function (newFName) {
@@ -450,7 +453,7 @@ angular.module('abacuApp')
         setUnitSys: function (newUnitSys) {
           unitSys = newUnitSys;
         },
-        setContentSection: function(newSection){
+        setContentSection: function (newSection) {
           contentSection = newSection;
         }
       };

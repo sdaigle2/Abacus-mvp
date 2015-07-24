@@ -31,7 +31,7 @@ angular.module('abacuApp')
 
       $scope.imageDisplay1 = false;
 
-
+      $scope.hoverImage = 'add_icon';
       //A reference to User.curEditOrder (set during init())
       var curOrder = null;
       $scope.orderChairs;

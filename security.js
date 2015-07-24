@@ -55,6 +55,16 @@ function addressCheck(userData){
   return true;
 }
 
+function passwordCheck(password, confirm, res){
+  if (password.length < 8) {
+    return 'Password should have atleast 8 characters';
+  }
+  else if (password !== confirm) {
+    return 'Passwords do not match';
+  }
+  return true;
+}
+
 exports.hash = function (pwd, salt, fn) {
   if (3 == arguments.length) {
     crypto.pbkdf2(pwd, salt, iterations, len, function(err, hash){
@@ -74,7 +84,7 @@ exports.hash = function (pwd, salt, fn) {
 };
 
 exports.check = function(userData) {
-  var err = typeCheck(userData);
+  var err = typeCheck(userData) && passwordCheck(userData.password, userData.confirm);
   if(err!==true)
     return err;
   //if(!addressCheck(userData))

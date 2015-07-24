@@ -265,19 +265,28 @@
 
 .main-custom .main-custom-wheelchairDisplay {
   margin-top: 40px;
-  margin-left: 10vw;
+  margin-left: calc(20vw - 66px);
   min-width: 600px;
   min-height: 450px;
-  height: 40vw;
+  width: calc(60vw - 198px);
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 0;
 }
+
+.main-custom .main-custom-wheelchairDisplay.wide-screen {
+  height: calc(90vh - 126px);
+  width: auto;
+}
+
 
 .main-custom-rotatebuttons {
   position: relative;
-  top: 46vw;
-  left: 34vw;
+  top: calc(46.3vw - 113px);
+  left: 40vw;
+}
+
+.main-custom-rotatebuttons.wide-screen {
+  top: calc(100vh - 140px);
 }
 
 
@@ -494,7 +503,7 @@
   clear: right;
   width: 330px;
   max-width: 430px;
-  height: calc(100vh - 130px);
+  height: calc(100vh - 144px);
   top: -3px
 }
 
@@ -503,7 +512,7 @@
   background-color: #f1f2f2;
   top: -19px;
   border-radius: 0px;
-  height: calc(100% - 36px);
+  height: calc(100% - 41px);
   border-left: 1px solid #ddd;
 }
 
@@ -854,7 +863,7 @@ img.rightButtonNav{
 
 @keyframes slideRight {
   0% {left: -300px; top: -57px}
-  60% {left: 0; top: -57px}
+  40% {left: -300px; top: 5px}
   100% {left: 0; top: 5px}
 }
 

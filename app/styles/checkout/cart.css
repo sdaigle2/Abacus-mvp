@@ -80,7 +80,6 @@
 
 #mainContent .addWheelchair img{
   display: inline-block;
-  width: 30%;
 }
 
 #mainContent .addWheelchair >a>div{
@@ -508,4 +507,22 @@ h4{
   font-size:15px;
 }
 
+.empty-designs{
+  position: relative;
+  top: 25vh;
+  color: #939597;
+}
 
+.add-icon{
+  display: inline-block;
+  height: 30px;
+  width: 30px;
+}
+
+.add-chair{
+  color: inherit;
+}
+
+.add-chair:hover{
+  color: #88cbc3;
+}

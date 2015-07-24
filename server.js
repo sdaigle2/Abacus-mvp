@@ -19,7 +19,8 @@ var hash = require('./security').hash;
 var check = require('./security').check;
 var sanitizeHtml = require('sanitize-html');
 var token = crypto.randomBytes(64).toString('hex');
-var verify = require('./data').verifyOrder;
+var verifyOrder = require('./data').verifyOrder;
+var verifyChair = require('./data').verifyWheelchair;
 
 //Session Management
 var session = require('express-session');
@@ -46,7 +47,8 @@ var email = new sendgrid.Email({
 //Payment
 var stripe = require("stripe")(process.env.STRIPE_TKEY);
 
-var pdfgen = require('./pdfGen').generate;
+var genInvoice = require('./pdfGen').generateInvoice;
+var genSave = require('./pdfGen').generateSave;
 
 function restrict(req, res, next) {
   if (req.session.user) {
@@ -118,18 +120,13 @@ app.post('/register', function (req, res) {
     state: req.body.state,
     zip: req.body.zip,
     password: req.body.password,
+    confirm: req.body.confirm,
     unitSys: 0,
     orders: []
   };
   var err = check(data);
   if (err!==true) {
     res.json({err: err});
-  }
-  else if (req.body.password.length < 8) {
-    res.json({err: 'password should have at least 8 characters', field: 'password'});
-  }
-  else if (req.body.password !== req.body.confirm) {
-    res.json({err: 'passwords do not match', field: 'password'});
   }
   else
     users.get(data.email, function (err) {
@@ -139,6 +136,7 @@ app.post('/register', function (req, res) {
           // store the salt & hash in the "db"
           data.salt = salt;
           data.password = hash;
+          delete data.confirm;
           users.insert(data, data.email, function () {
             email.to = data.email;
             email.text = 'Thank you for registering an account with Abacus.';
@@ -183,21 +181,83 @@ app.post('/confirm', function (req, res) {
 });
 
 app.post('/update', restrict, function (req, res) {
-  update(req.body, req.session.user, function (err, body) {
-    res.json({'success': err});
+  var data = {
+    fName: req.body.fName,
+    lName: req.body.lName,
+    email: req.body.email,
+    phone: req.body.phone,
+    addr: req.body.addr,
+    addr2: req.body.addr2,
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip,
+    password: req.body.newPass1,
+    confirm: req.body.newPass2,
+    unitSys: 0,
+    orders: []
+  };
+  users.get(req.body.email, function (error, existing){
+    if(error)
+      update(req.body, req.session.user, function (err, body) {
+        req.session.regenerate(function () {
+          req.session.user = body.email;
+          res.json({'success': err});
+        });
+      });
+    else
+      res.json({'err': 'Email already exists'});
   });
 });
 
-update = function (obj, key, password, callback) {
+update = function (obj, key, callback) {
   users.get(key, function (error, existing) {
+    obj._rev = existing._rev;
+    obj.password = existing.password;
+    obj.salt = existing.salt;
+    obj.orders = existing.orders;
     if (!error) {
-      obj._rev = existing._rev;
-      obj.password = existing.password;
-      obj.salt = existing.salt;
-      users.insert(obj, key, callback);
+      if(obj.newPass1.length < 8 || obj.newPass1 !== obj.newPass2) {
+        delete obj.oldPass;
+        delete obj.newPass1;
+        delete obj.newPass2;
+        users.insert(obj, key, callback);
+      }
+      else
+        hash(obj.oldPass, body.salt, function (err, hash) {
+          if(hash !== existing.password){
+            delete obj.oldPass;
+            delete obj.newPass1;
+            delete obj.newPass2;
+            users.insert(obj, key, callback);
+          }
+          else {
+            hash(obj.newPass1, function (err, salt, hash) {
+              if (err) throw err;
+              // store the salt & hash in the "db"
+              obj.password = hash;
+              obj.salt = salt;
+              delete obj.oldPass;
+              delete obj.newPass1;
+              delete obj.newPass2;
+              users.insert(obj, key, callback);
+            });
+          }
+        });
     }
   });
 };
+
+app.post('/save', function (req, res){
+
+  var total = verifyChair(req.body.wheelchair);
+  if(total!==false){
+    res.download('mus_reading.pdf');
+    //genSave(req.body.wheelchair, res);
+    //res.send('huza');
+  }
+  else
+    res.send('Invalid chair');
+});
 
 app.post('/order', function (req, res) {
   delete req.body.order.orderNum;
@@ -206,7 +266,7 @@ app.post('/order', function (req, res) {
   var stripeToken = req.body.token;
   console.log(stripeToken);
 
-  var total = verify(req.body.order);
+  var total = verifyOrder(req.body.order, true);
   if (total !== false) {
     var charge = stripe.charges.create({
       amount: Math.round(total*100), // amount in cents, again
@@ -221,7 +281,7 @@ app.post('/order', function (req, res) {
       else {
         orders.insert(req.body.order, function (err, body) {
           req.body.order.orderNum = body.id;
-          var pdfStream = pdfgen(req.body.order);
+          var pdfStream = genInvoice(req.body.order);
           res.send(body.id);
           var invoiceEmail = new sendgrid.Email({
             from: 'do-not-reply@abacus.fit',

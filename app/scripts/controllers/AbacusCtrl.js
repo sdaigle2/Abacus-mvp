@@ -490,7 +490,7 @@ angular.module('abacuApp')
       };
 
       $scope.saveComputer = function () {
-        $location.path('save');
+        User.saveComputer();
       };
 
       /*****************General Use Functions*********************/
@@ -514,5 +514,15 @@ angular.module('abacuApp')
           return '';
         }
       };
+
+      angular.element($(window)).bind('resize', function() {
+        $scope.$apply();
+      });
+
+      $scope.screenWideQuery = function(){
+        var width = $(window).width();
+        var height = $(window). height();
+        return 0.463*(width-330) > 0.9*(height-140);
+      }
 
     }]);
