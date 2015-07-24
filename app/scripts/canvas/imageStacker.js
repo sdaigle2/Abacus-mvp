@@ -9,14 +9,14 @@
 // ----------------------------------------
 
 function stackImages(canvy, image_dirs, width, height) {
-
+  console.log(height);
   //interval is set so if image fails to load at first it would retry.
+  var ctx = canvy.getContext("2d");
+  ctx.clearRect(0, 0, canvy.width, canvy.height);
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, canvy.width, canvy.height);
   setInterval(function () {
-
-    var ctx = canvy.getContext("2d");
     //console.log("stacking images");
-    ctx.fillStyle = "white";
-    ctx.fillRect(0, 0, canvy.width, canvy.height);
     for (var i = 0; i < image_dirs.length; i++) {
       var image = new Image();
       image.src = image_dirs[i].URL;

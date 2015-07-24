@@ -3,7 +3,7 @@
 
 <div class="appBody">
 
-  <div class="text-center cartBody" ng-class="{'appBodyOverflow': imageDisplay1 }">
+  <div class="text-center cartBody" ng-class="{'appBodyOverflow': imageDisplay1 >= 0 }">
     <!-- Heading -->
     <div class="cartHeading">
       <h3><strong>MY DESIGNS</strong></h3>
@@ -21,7 +21,7 @@
         <table ng-show="editPanelShow === true"
                ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false">
           <tr>
-            <td ng-click="toggleImageDisplay()"><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
+            <td ng-click="toggleImageDisplay($index)"><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
             <td data-ng-click="editWheelchair($index)"><strong>Edit</strong></td>
             <td data-ng-click="deleteWheelchair($index)"><img data-ng-src="images/my_design_page/delete.png" width="20">
             </td>
@@ -111,7 +111,9 @@
         <li class="order-list-element" ng-repeat="wheelchair in orderChairs">
           <div class="order-block">
             <h3>{{$index+1}}</h3>
-            <img class="order-img" data-ng-src="images/mainpic.png" width="200">
+            <canvas my-canvas img_arr={{wheelchair.getPreviewImages(3)}}
+                    class="order-img"
+                    width="200"></canvas>
             <h4><strong data-ng-bind="wheelchair.getTitle()"></strong></h4>
           </div>
         </li>
@@ -152,15 +154,16 @@
   </div>
 
 
-  <div ng-show="imageDisplay1" id="displayImage">
-    <div id="offClickArea" ng-show="imageDisplay1" data-ng-click="toggleImageDisplay()"></div>
+  <div ng-repeat="w in wheelchairs" ng-if="imageDisplay1 == $index" id="displayImage">
+    <div id="offClickArea" ng-show="imageDisplay1 >= 0" data-ng-click="toggleImageDisplay(-1)"></div>
     <div class="mainDisplay">
       <div id="designTitle"><h3>DESIGN FOR BRIAN</h3></div>
       <img class="leftButton" src="images/icons/left_button.svg" alt="Previous" width="30" height="30"
-           data-ng-click=""/>
+           data-ng-click="rotate(-1)"/>
       <img class="rightButton" src="images/icons/right_button.svg" alt="Next" width="30" height="30"
-           data-ng-click=""/>
-      <img data-ng-src="images/mainpic.png" height="90%">
+           data-ng-click="rotate(1)"/>
+      <canvas my-canvas img_arr="{{w.getPreviewImages(3)}}"
+              width="583" height="450"></canvas>
     </div>
   </div>
 

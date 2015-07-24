@@ -29,7 +29,7 @@ angular.module('abacuApp')
       //If j === -1 then $scope.wheelchairs[i] is not in curOrder
       $scope.wOrderIndex = [];
 
-      $scope.imageDisplay1 = false;
+      $scope.imageDisplay1 = -1;
 
       $scope.hoverImage = 'add_icon';
       //A reference to User.curEditOrder (set during init())
@@ -195,8 +195,8 @@ angular.module('abacuApp')
         return curOrder.getNumWheelchairs() > 0;
       };
 
-      $scope.toggleImageDisplay = function () {
-        $scope.imageDisplay1 = !$scope.imageDisplay1;
+      $scope.toggleImageDisplay = function (index) {
+        $scope.imageDisplay1 = index;
       };
 
       /********************DETAIL PANEL*********************************/
@@ -220,6 +220,16 @@ angular.module('abacuApp')
         return wheelchair.getMeasureDetails(measure.measureID, User.getUnitSys());
       };
 
+      $scope.rotate = function (dir) {
+        if($scope.imageDisplay1 + dir === -1)
+          $scope.imageDisplay1 = $scope.wheelchairs.length - 1;
+        else
+        if($scope.imageDisplay1 + dir === $scope.wheelchairs.length)
+          $scope.imageDisplay1 = 0;
+        else
+          $scope.imageDisplay1 += dir;
+        console.log($scope.imageDisplay1);
+      };
 
       init();
 
