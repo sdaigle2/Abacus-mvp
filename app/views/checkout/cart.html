@@ -1,5 +1,5 @@
 ﻿<link href="../../styles/checkout/cart.css" rel="stylesheet"/>
-
+<script src='../../scripts/canvas/imageStacker.js'></script>
 
 <div class="appBody">
 
@@ -13,48 +13,38 @@
     <div id="mainContent" ng-if="wheelchairs.length > 0">
       <!-- ng-repeat="wheelchair in wheelchairs"-->
 
-        <div ng-repeat="w in wheelchairs" id="comparisonImages">
-          <p><h4><strong data-ng-bind="w.getTitle()"></strong></h4></p>
-          <img ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false"
-               data-ng-src="images/mainpic.png" width="185">
-          <table ng-show="editPanelShow === true"
-                 ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false">
-            <tr>
-              <td ng-click="toggleImageDisplay()"><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
-              <td data-ng-click="editWheelchair($index)"><strong>Edit</strong></td>
-              <td data-ng-click="deleteWheelchair($index)"><img data-ng-src="images/my_design_page/delete.png" width="20">
-              </td>
-            </tr>
-          </table>
-          <div class="addButton"
-               data-ng-click="addWheelchairToOrder($index)"
-               data-ng-if="wInOrder[$index] === false"
-               data-ng-class="{'inactive': w.allMeasuresSet() === false }">Add to cart
-          </div>
-          <div class="removeButton"
-               data-ng-click="removeWheelchairFromOrder($index)"
-               data-ng-if="wInOrder[$index] === true">
-            Remove from cart
-          </div>
+      <div ng-repeat="w in wheelchairs" class="comparisonImages">
+        <p><h4><strong data-ng-bind="w.getTitle()"></strong></h4></p>
+        <canvas my-canvas img_arr={{w.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
+                ng-mouseleave="editPanelShow = false"
+                width="185"></canvas>
+        <table ng-show="editPanelShow === true"
+               ng-mouseover="editPanelShow = true" ng-mouseleave="editPanelShow = false">
+          <tr>
+            <td ng-click="toggleImageDisplay()"><img data-ng-src="images/my_design_page/zoom_in.png" width="20"></td>
+            <td data-ng-click="editWheelchair($index)"><strong>Edit</strong></td>
+            <td data-ng-click="deleteWheelchair($index)"><img data-ng-src="images/my_design_page/delete.png" width="20">
+            </td>
+          </tr>
+        </table>
+        <div class="addButton"
+             data-ng-click="addWheelchairToOrder($index)"
+             data-ng-if="wInOrder[$index] === false"
+             data-ng-class="{'inactive': w.allMeasuresSet() === false }">Add to cart
         </div>
-
-      <div class="addWheelchair">
-        <a ng-show="wheelchairs.length < 1" class="add-chair" data-ng-mouseenter="hoverImage = 'add_icon_hover'"
-           data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frame">
-          <img class="add-icon" data-ng-src="images/my_design_page/{{hoverImage}}.png">
-          <span class="medium">Add a Wheelchair</span>
-        </a>
-        <a ng-show="wheelchairs.length < 2" class="add-chair" data-ng-mouseenter="hoverImage = 'add_icon_hover'"
-           data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frame">
-          <img class="add-icon" data-ng-src="images/my_design_page/{{hoverImage}}.png">
-          <span class="medium">Add a Wheelchair</span>
-        </a>
-        <a ng-show="wheelchairs.length < 3" class="add-chair" data-ng-mouseenter="hoverImage = 'add_icon_hover'"
-           data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frame">
-          <img class="add-icon" data-ng-src="images/my_design_page/{{hoverImage}}.png">
-          <span class="medium">Add a Wheelchair</span>
-        </a>
+        <div class="removeButton"
+             data-ng-click="removeWheelchairFromOrder($index)"
+             data-ng-if="wInOrder[$index] === true">
+          Remove from cart
+        </div>
       </div>
+
+
+      <a ng-show="wheelchairs.length < 3" class="add-chair" data-ng-mouseenter="hoverImage = 'add_icon_hover'"
+         data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frame">
+        <img class="add-icon" data-ng-src="images/my_design_page/{{hoverImage}}.png">
+        <span class="medium">Add a Wheelchair</span>
+      </a>
     </div>
 
     <div class="empty-designs" ng-if="wheelchairs.length === 0">
@@ -65,7 +55,6 @@
         <span class="medium">Add a Wheelchair</span>
       </a>
     </div>
-
 
 
     <!--detail part table-->

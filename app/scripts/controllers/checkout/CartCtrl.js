@@ -10,7 +10,7 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('CartCtrl', ['$scope', '$location','$cookieStore', 'User', 'FrameData', 'Units', 'Wheelchair', 'Drop',
+  .controller('CartCtrl', ['$scope', '$location', '$cookieStore', 'User', 'FrameData', 'Units', 'Wheelchair', 'Drop',
     function ($scope, $location, $cookieStore, User, FrameData, Units, Wheelchair, Drop) {
 
       Drop.setFalse();
@@ -39,10 +39,10 @@ angular.module('abacuApp')
       function init() {
 
         curOrder = User.getCurEditOrder()
-        if(!curOrder){
+        if (!curOrder) {
           User.createNewOrder();
           curOrder = User.getCurEditOrder();
-        }else{
+        } else {
           updateCosts();
         }
         //if($cookieStore.get('cart') == null){
@@ -61,7 +61,7 @@ angular.module('abacuApp')
         var orderInd = 0;
         for (var i = 0; i < $scope.wheelchairs.length; i++) {
           $scope.wInOrder.push($scope.wheelchairs[i].inCurOrder);
-          if($scope.wInOrder[i])
+          if ($scope.wInOrder[i])
             $scope.wOrderIndex.push(orderInd++);
           else
             $scope.wOrderIndex.push(-1);
@@ -92,7 +92,6 @@ angular.module('abacuApp')
         }
         return false;
       }
-
 
 
       $scope.panelSelected = function (hoveritem, index, part) {
@@ -214,7 +213,7 @@ angular.module('abacuApp')
 
       $scope.getPartOption = function (wheelchair, part) {
         return $scope.getPartDetails(wheelchair, part).optionName;
-      }
+      };
 
       //Returns an object of display-friendly strings regarding the given measure
       $scope.getMeasureDetails = function (wheelchair, measure) {
@@ -225,3 +224,4 @@ angular.module('abacuApp')
       init();
 
     }]);
+

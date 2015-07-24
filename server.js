@@ -197,7 +197,7 @@ app.post('/update', restrict, function (req, res) {
     orders: []
   };
   users.get(req.body.email, function (error, existing){
-    if(error)
+    if(error || req.body.email===req.session.user)
       update(req.body, req.session.user, function (err, body) {
         req.session.regenerate(function () {
           req.session.user = body.email;
@@ -217,14 +217,16 @@ update = function (obj, key, callback) {
     obj.orders = existing.orders;
     if (!error) {
       if(obj.newPass1.length < 8 || obj.newPass1 !== obj.newPass2) {
+        console.log('bad newpass');
         delete obj.oldPass;
         delete obj.newPass1;
         delete obj.newPass2;
         users.insert(obj, key, callback);
       }
       else
-        hash(obj.oldPass, body.salt, function (err, hash) {
-          if(hash !== existing.password){
+        hash(obj.oldPass, existing.salt, function (err, oldHash) {
+          if(oldHash !== existing.password){
+            console.log('wrong pass');
             delete obj.oldPass;
             delete obj.newPass1;
             delete obj.newPass2;
@@ -234,6 +236,7 @@ update = function (obj, key, callback) {
             hash(obj.newPass1, function (err, salt, hash) {
               if (err) throw err;
               // store the salt & hash in the "db"
+              console.log('password changed');
               obj.password = hash;
               obj.salt = salt;
               delete obj.oldPass;

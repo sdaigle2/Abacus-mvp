@@ -105,13 +105,17 @@ a:hover{
   width: 100%;
 }
 
+#mainContent .add-chair{
+  position: absolute;
+  left: 55%;
+  top: 23%;
+}
 
-
-#mainContent #comparisonImages{
+#mainContent .comparisonImages{
   display: inline-block;
   position: relative;
   top: 15px;
-  left: 20%;
+  left: 16%;
   float: left;
   margin-right: 20px;
   background-color: white;
@@ -119,17 +123,17 @@ a:hover{
 }
 
 
-#mainContent #comparisonImages h4{
+#mainContent .comparisonImages h4{
   float: left;
   margin-left: 15px;
 }
 
 
-#mainContent #comparisonImages img{
+#mainContent .comparisonImages canvas{
   margin: 0 10px 5px;
 }
 
-#mainContent #comparisonImages tr{
+#mainContent .comparisonImages tr{
   background-color:rgba(256,256,256,0.85);
   width: 100%;
   padding: 10px 0;
@@ -137,38 +141,38 @@ a:hover{
   bottom: 51px;
 }
 
-#mainContent #comparisonImages td{
+#mainContent .comparisonImages td{
   cursor: pointer;
   padding: 0 15px;
 }
 
-#mainContent #comparisonImages td:nth-child(2){
+#mainContent .comparisonImages td:nth-child(2){
   border-left: 3px solid black;
   border-right: 3px solid black;
 }
 
 
 
-#mainContent #comparisonImages .addButton {
+#mainContent .comparisonImages .addButton {
   color: #00A89C;
   font-size: 1.3em;
   border: 1px solid #00a89c;
   padding: 10px 0;
 }
 
-#mainContent #comparisonImages .addButton:hover {
+#mainContent .comparisonImages .addButton:hover {
   background-color: #00a89c;
   color: white;
 }
 
-#mainContent #comparisonImages .removeButton {
+#mainContent .comparisonImages .removeButton {
   color: #00A89C;
   font-size: 1.3em;
   border: 3px solid #00a89c;
   padding: 10px 0;
 }
 
-#mainContent #comparisonImages .removeButton:hover {
+#mainContent .comparisonImages .removeButton:hover {
   background-color: red;
   color: white;
 }
