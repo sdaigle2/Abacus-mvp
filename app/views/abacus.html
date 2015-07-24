@@ -208,9 +208,9 @@
 
         <div class="panel" data-ng-class="{'hidden': isPanelSelected(-1)}" data-ng-if="!isPanelSelected(-1)">
           <div class="panel-block">
-            <img data-ng-src="{{curOption.thumbnailURL}}" height="150" width="230"/>
+            <img data-ng-src="{{curOption.thumbnailURL}}" height="220"/>
 
-            <h4 class="medium" data-ng-bind="curOption.name"></h4>
+            <h5 class="medium" data-ng-bind="curOption.name"></h5>
 
             <div class="button" data-ng-click="setCurOption(curOption.optionID)"
                  data-ng-if="getCurWheelchairPart().optionID !== curOption.optionID">Select
@@ -220,7 +220,7 @@
             </div>
           </div>
           <div class="panel-block">
-            <h4>Details</h4>
+            <h5>Details</h5>
 
             <div class="detail-block">
               <table>
@@ -237,7 +237,7 @@
             </div>
           </div>
           <div class="panel-block" data-ng-if="curOption.colors.length>0">
-            <h4>Color</h4>
+            <h5>Color</h5>
 
             <div class="color-block">
               <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"

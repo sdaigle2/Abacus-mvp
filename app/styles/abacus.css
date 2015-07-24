@@ -913,7 +913,6 @@ img.rightButtonNav{
   text-align: center;
   border: solid #939597 1px;
   border-bottom: none;
-  padding: 5px;
   background-color: white;
   color: black;
 }
@@ -922,9 +921,12 @@ img.rightButtonNav{
   width: 250px;
   margin-left: 25px;
   padding-left: 10px;
-  padding-bottom: 15px;
-  margin-bottom: 15px;
+  padding-bottom: 7px;
   border-bottom: solid #939597 1px;
+}
+
+.panel-block h5{
+  margin: 7px 0;
 }
 
 .panel-block:nth-of-type(2){
@@ -1041,7 +1043,7 @@ img.rightButtonNav{
   box-shadow: 0px 0px 23px 9px rgba(230,194,16,1);
   */
   background-image: url("../images/icons/color_check.svg");
-  background-size: 50px 50px;
+  background-size: 25px 25px;
   background-repeat: no-repeat;
   background-position: center;
 }
