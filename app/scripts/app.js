@@ -23,6 +23,10 @@ angular
         templateUrl: 'views/frame.html',
         controller: 'FrameCtrl'
       })
+      .when('/landing', {
+        templateUrl: 'views/landing.html',
+        controller: 'LandingCtrl'
+      })
       .when('/abacus', {
         templateUrl: 'views/abacus.html',
         controller: 'AbacusCtrl'

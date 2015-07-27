@@ -542,3 +542,7 @@ div{
   color: #ffffff;
   cursor: pointer;
 }
+
+button:focus{
+  outline:none;
+}

@@ -99,11 +99,7 @@
   border-right: 2px solid #686968;
   cursor: pointer;
 }
-.settingsSidebarOption:hover {
-  background-color: rgba(234, 234, 232, 1);
-}
 .settingsSidebarOption.active {
-  background-color: rgba(234, 234, 232, 1);
   border-right: 8px solid rgba(11, 158, 144, 1);
   transition: .5s;
   font-weight: 500;
@@ -239,60 +235,72 @@
   height: auto;
   margin-bottom: 20px;
   border-bottom: 1px solid rgba(182, 184, 182, 1);
+  width: 92%;
+
 }
 
 #settingsOrdersContent .settingsOrdersContentItem-image {
   clear: left;
   float: left;
   width: 25%;
+  vertical-align: middle;
 }
 
-#settingsOrdersContent .settingsOrdersContentItemMid {
-  float: left;
-  width: 45%;
-  margin: 0 0 0 5%;
-}
-
-#settingsOrdersContent .settingsOrdersContentItem-cost {
+#settingsOrdersContent canvas{
+  clear: left;
   float: left;
   width: 25%;
-  margin: 20px 0 0 0;
-}
-
-#settingsOrdersContent .settingsOrdersContentItem-name {
-  clear: left;
-  float: left;
-  width: 100%;
-  margin: 10px 0 0 0;
-  font-size: 16px;
-  font-weight: bold;
-}
-
-#settingsOrdersContent .settingsOrdersContentItem-date {
-  clear: left;
-  float: left;
-  width: 100%;
-  margin: 5px 0 0 0;
-  font-size: 14px;
-  font-weight: normal;
-}
-
-#settingsOrdersContent .settingsOrdersContentItem-detailsButton {
-  clear: left;
-  float: left;
-  width: 50%;
-  height: 40px;
-  margin: 40px 0 0 0;
-  font-weight: bold;
-  background-color: rgba(158, 159, 158, 1);
-  border: none;
-}
-#settingsOrdersContent .settingsOrdersContentItem-detailsButton:hover {
-  background-color: rgba(11, 158, 144, 1);
-  transition: .5s;
+  vertical-align: middle;
+  margin-bottom: 7px;
 }
 
 
+
+.settingsOrdersContentItem td, p{
+  padding: 5px 50px 5px 0;
+  font-size: 1.1em;
+  margin-bottom: 0;
+}
+
+.settingsOrdersContentItem thead{
+  padding: 5px 15px 5px 0;
+  font-size: 1.1em;
+}
+
+.settingsOrdersContentItem button{
+  border-radius: 0;
+  padding: 10px;
+  color: #00a89c;
+  font-size: 1.2em;
+  background-color: white;
+  margin-top:10px;
+  border: 1px solid #939597;
+  vertical-align: top;
+}
+
+.settingsOrdersContentItem button:hover{
+  color: white;
+  background-color: #00A89C;
+}
+
+
+
+
+
+#contactInfo{
+  position: relative;
+  display: inline-block;
+  margin-left: 30px;
+
+}
+
+#contactInfo p{
+  position: relative;
+  padding: 10px 10px;
+  background-color: #eaeaea;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
 
 
 

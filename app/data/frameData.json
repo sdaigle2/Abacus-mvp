@@ -140,76 +140,76 @@
             "desc": "Magnesium is even lighter than Titanium.  Unlike Titanium, Magnesium must be painted.",
             "weight": -0.1,
             "price": 400,
-            "defaultColorID": 36,
+            "defaultColorID": 2,
             "colors": [
               {
                 "name": "Jet Black",
-                "colorID": 31,
+                "colorID": 2,
                 "hex": "#0a0a0a"
               },
               {
                 "name": "Signal White",
-                "colorID": 32,
+                "colorID": 3,
                 "hex": "#f4f4f4"
               },
               {
                 "name": "Traffic Yellow",
-                "colorID": 33,
+                "colorID": 4,
                 "hex": "#fad201"
               },
               {
                 "name": "Olive Yellow",
-                "colorID": 34,
+                "colorID": 5,
                 "hex": "#999950"
               },
               {
                 "name": "Red Orange",
-                "colorID": 35,
+                "colorID": 6,
                 "hex": "#c93c20"
               },
               {
                 "name": "Tomato Red",
-                "colorID": 36,
+                "colorID": 7,
                 "hex": "#a12312"
               },
               {
                 "name": "Black Red",
-                "colorID": 37,
+                "colorID": 8,
                 "hex": "#412227"
               },
               {
                 "name": "Signal Violet",
-                "colorID": 38,
+                "colorID": 9,
                 "hex": "#924e7d"
               },
               {
                 "name": "Ultramarine Blue",
-                "colorID": 39,
+                "colorID": 10,
                 "hex": "#202140"
               },
               {
                 "name": "Sky Blue",
-                "colorID": 40,
+                "colorID": 11,
                 "hex": "#2271b3"
               },
               {
                 "name": "Azure",
-                "colorID": 41,
+                "colorID": 12,
                 "hex": "#025669"
               },
               {
                 "name": "Grass Green",
-                "colorID": 42,
+                "colorID": 13,
                 "hex": "#35682d"
               },
               {
                 "name": "Agate",
-                "colorID": 43,
+                "colorID": 14,
                 "hex": "#b5b8b1"
               },
               {
                 "name": "Pearl Dark Grey",
-                "colorID": 44,
+                "colorID": 15,
                 "hex": "#828282"
               }
             ]
@@ -576,7 +576,7 @@
           [
             10,
             7,
-            6,
+            8,
             7,
             10
           ]
@@ -639,9 +639,9 @@
         "numSubImages": 1,
         "zRank": [
           [
-            10,
+            11,
+            8,
             7,
-            6,
             7,
             10
           ]
@@ -835,8 +835,8 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": "images/abacus_page/measure/measurement_jpg/back-rest-height.jpg,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
-        "gifURL": ["images/abacus_page/measure/measurement_gif/backrest_height.gif"],
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/back-rest-height.jpg,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1"],
+        "gifURL": "images/abacus_page/measure/measurement_gif/backrest_height.gif",
         "measureOptions": [
           [
             "25",
@@ -1445,7 +1445,7 @@
           [
             10,
             7,
-            6,
+            8,
             7,
             10
           ]
@@ -1508,9 +1508,9 @@
         "numSubImages": 1,
         "zRank": [
           [
-            10,
+            11,
+            8,
             7,
-            6,
             7,
             10
           ]

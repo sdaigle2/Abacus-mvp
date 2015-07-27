@@ -134,14 +134,40 @@
          ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ORDERS}">
       <ul id="settingsOrdersContentItems">
         <li class="settingsOrdersContentItem" data-ng-repeat="o in orders">
-          <img class="settingsOrdersContentItem-image" src="../images/mainpic.png" alt="Wheelchair"/>
-          <div class="settingsOrdersContentItemMid">
-            <div class="settingsOrdersContentItem-name" data-ng-bind="o.orderNum"></div>
-            <div class="settingsOrdersContentItem-date book">Order Placed: <span data-ng-bind="o.sentDate.toLocaleDateString()"></span></div>
-            <button class="settingsOrdersContentItem-detailsButton book"
-                    data-ng-click="openOrderDetails($index)">View Order Details <i class="fa fa-arrow-circle-down"></i></button>
-          </div>
-          <div class="settingsOrdersContentItem-cost">$<span data-ng-bind="o.getTotalCost().toFixed(2)"></span></div>
+          <p><h4><strong></strong></h4></p>
+          <canvas my-canvas img_arr={{o.getWheelchair(0).getPreviewImages(3)}} width="200"></canvas>
+          <section>
+            <p>Order number: {{o.orderNum}}</p>
+            <table class="orderTable book">
+              <tbody>
+              <tr>
+                <td>Order Date: <span data-ng-bind="o.getSentDate().toLocaleDateString()"></span></td>
+                <td>Frame: {{}}</td>
+              </tr>
+              <tr>
+                <td>Total: ${{o.getTotalCost().toFixed(2)}}</td>
+                <td>Manufacturer: Ti Arrow</td>
+              </tr>
+              <tr>
+                <td>Ship to: {{o.getFname()}} {{o.getLname()}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </section>
+          <button>View Invoice</button>
+          <section id="contactInfo">
+            <button ng-init="infoShow = false" ng-click="infoShow = !infoShow">Contact Manufacturer</button>
+            <p ng-show="infoShow">
+              Ti arrow<br> Tel: 08-420 566 73 <br> Mobile: 070-453 9655 <br> vigand@tiarrow.com
+            </p>
+
+          </section>
+
+          <!--<div class="settingsOrdersContentItemMid">-->
+            <!--<div class="settingsOrdersContentItem-date book">Order Placed: <span data-ng-bind="o.sentDate.toLocaleDateString()"></span></div>-->
+            <!--<button class="settingsOrdersContentItem-detailsButton book"-->
+                    <!--data-ng-click="openOrderDetails($index)">View Order Details <i class="fa fa-arrow-circle-down"></i></button>-->
+          <!--</div>-->
         </li>
       </ul>
     </div>
@@ -172,7 +198,7 @@
                     data-ng-options="sys.enumVal as sys.name for sys in unitSysList"  > Metric<br>
             <input type="checkbox"  class="sexy-checkbox" data-ng-model="curUnitSys"
                     data-ng-options="sys.enumVal as sys.name for sys in unitSysList"  > Imperial<br>
-           
+
           </div>
         </form>
       </div>

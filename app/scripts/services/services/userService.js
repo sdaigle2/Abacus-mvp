@@ -176,7 +176,7 @@ angular.module('abacuApp')
               for (var i = 0; i < data.orders.length; i++) {
                 orders.push(new Order(0, 0, data.orders[i]));
               }
-              console.log(orders);
+
               if (curOrder) {
                 orders.push(curOrder);
               }
