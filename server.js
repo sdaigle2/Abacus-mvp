@@ -234,8 +234,8 @@ app.post('/save', function (req, res) {
 
   var total = verifyChair(req.body.wheelchair);
   if (total !== false) {
-    res.download('mus_reading.pdf');
-    //genSave(req.body.wheelchair, res);
+    //res.download('mus_reading.pdf');
+    genSave(req.body.wheelchair, res);
     //res.send('huza');
   }
   else

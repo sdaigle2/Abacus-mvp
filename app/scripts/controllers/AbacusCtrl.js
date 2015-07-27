@@ -498,6 +498,7 @@ angular.module('abacuApp')
       };
 
       $scope.saveComputer = function () {
+        $scope.saveDropdown = false;
         User.saveComputer();
       };
 

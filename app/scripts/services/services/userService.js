@@ -51,7 +51,6 @@ angular.module('abacuApp')
             city = data.city;
             state = data.state;
             zip = data.zip;
-            unitSys = data.unitSys;
 
             for (var i = 0; i < data.orders.length; i++) {
               orders.push(new Order(0, 0, data.orders[i]));
@@ -170,7 +169,6 @@ angular.module('abacuApp')
               city = data.city;
               state = data.state;
               zip = data.zip;
-              unitSys = data.unitSys;
 
               var curOrder = curThis.getCurEditOrder();
               orders = [];
@@ -301,9 +299,10 @@ angular.module('abacuApp')
         },
 
         saveComputer: function () {
-          $http.post('/save', {wheelchair: this.getCurEditWheelchair()}, {responseType: 'arraybuffer'})
+          var curThis = this;
+          $http.post('/save', {wheelchair: this.getCurEditWheelchair()}, {responseType: 'blob'})
             .success(function (response) {
-
+              saveAs(response, curThis.getCurEditWheelchair().title+'.pdf');
             });
         },
         /******************************MY MEASUREMENTS*******************************/

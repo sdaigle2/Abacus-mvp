@@ -268,11 +268,11 @@ function genPdf(doc, pageNum, wheelchair, order, isInvoice) {
       size: [612, 792]
     });
   console.log('into title page');
-  //titlePage(doc, wheelchair, order, isInvoice);
+  titlePage(doc, wheelchair, order, isInvoice);
   console.log('into parts page');
   partsPage(doc, wheelchair);
   console.log('into measures page');
-  //measuresPage(doc, wheelchair);
+  measuresPage(doc, wheelchair);
 }
 
 exports.generateSave = function (wheelchair, res) {
