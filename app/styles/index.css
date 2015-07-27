@@ -528,12 +528,10 @@ div{
   display: inline-block;
   color: #60C2B1;
   height: 40px;
-  line-height: 40px;
   margin-top: 30px;
   text-align: center;
   font-size: 16px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding: 10px 15px;
   border: solid 1px #60C2B1;
 }
 
