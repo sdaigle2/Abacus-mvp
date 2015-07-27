@@ -151,6 +151,7 @@ angular.module('abacuApp')
         login: function (in_email, pass) {
 
           var deferred = $q.defer();
+          var curThis = this;
           $http({
             url: '/login'
             , data: {email: in_email, password: pass}
@@ -171,13 +172,13 @@ angular.module('abacuApp')
               zip = data.zip;
               unitSys = data.unitSys;
 
-              var curOrder = this.getCurEditOrder();
+              var curOrder = curThis.getCurEditOrder();
               orders = [];
 
               for (var i = 0; i < data.orders.length; i++) {
                 orders.push(new Order(0, 0, data.orders[i]));
               }
-
+              console.log(orders);
               if (curOrder) {
                 orders.push(curOrder);
               }
@@ -204,7 +205,11 @@ angular.module('abacuApp')
           state = '';
           zip = '';
           unitSys = Units.unitSys.IMPERIAL;
+          var curOrder = this.getCurEditOrder();
           orders = [];
+          if(curOrder){
+            orders.push(curOrder);
+          }
           designedWheelchairs = [];
           curEditWheelchairIndex = -1;
           $http({

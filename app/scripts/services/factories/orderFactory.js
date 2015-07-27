@@ -46,7 +46,7 @@ angular.module('abacuApp')
         this.orderNum = order.orderNum;
         this.taxRate = order.taxRate;
         this.shippingFee = order.shippingFee;
-        this.sentDate = order.sentDate;
+        this.sentDate = new Date(order.sentDate);
         this.userID = order.userID;
         this.fName = order.fName;
         this.lName = order.lName;
@@ -278,7 +278,6 @@ angular.module('abacuApp')
         this.zip = shippingData.zip;
         this.payMethod = payMethod;
         this.sentDate = new Date(); //Set date to now - doing this marks this Order as "sent"
-
         $http   ({
           url: '/order',
           data: {order: this.getAll(), token: token},

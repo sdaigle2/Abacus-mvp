@@ -32,7 +32,8 @@ angular.module('abacuApp')
         zip: User.getZip(),
         oldPass: '',
         newPass1: '',
-        newPass2: ''
+        newPass2: '',
+        orders: User.getSentOrders()
       };
 
       //Sidebar options

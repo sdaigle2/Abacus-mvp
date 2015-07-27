@@ -125,7 +125,7 @@ app.post('/register', function (req, res) {
     orders: []
   };
   var err = check(data);
-  if (err!==true) {
+  if (err !== true) {
     res.json({err: err});
   }
   else
@@ -181,42 +181,22 @@ app.post('/confirm', function (req, res) {
 });
 
 app.post('/update', restrict, function (req, res) {
-  var data = {
-    fName: req.body.fName,
-    lName: req.body.lName,
-    email: req.body.email,
-    phone: req.body.phone,
-    addr: req.body.addr,
-    addr2: req.body.addr2,
-    city: req.body.city,
-    state: req.body.state,
-    zip: req.body.zip,
-    password: req.body.newPass1,
-    confirm: req.body.newPass2,
-    unitSys: 0,
-    orders: []
-  };
-  users.get(req.body.email, function (error, existing){
-    if(error || req.body.email===req.session.user)
-      update(req.body, req.session.user, function (err, body) {
-        req.session.regenerate(function () {
-          req.session.user = body.email;
-          res.json({'success': err});
-        });
-      });
-    else
-      res.json({'err': 'Email already exists'});
+  update(req.body, req.session.user, function (err, body) {
+    req.session.regenerate(function () {
+      req.session.user = body.id;
+      res.json({'success': err});
+    });
   });
 });
 
 update = function (obj, key, callback) {
+  delete obj.wheelchairs;
   users.get(key, function (error, existing) {
     obj._rev = existing._rev;
     obj.password = existing.password;
     obj.salt = existing.salt;
-    obj.orders = existing.orders;
     if (!error) {
-      if(obj.newPass1.length < 8 || obj.newPass1 !== obj.newPass2) {
+      if (!obj.newPass1 || obj.newPass1.length < 8 || obj.newPass1 !== obj.newPass2) {
         console.log('bad newpass');
         delete obj.oldPass;
         delete obj.newPass1;
@@ -225,7 +205,7 @@ update = function (obj, key, callback) {
       }
       else
         hash(obj.oldPass, existing.salt, function (err, oldHash) {
-          if(oldHash !== existing.password){
+          if (oldHash !== existing.password) {
             console.log('wrong pass');
             delete obj.oldPass;
             delete obj.newPass1;
@@ -250,10 +230,10 @@ update = function (obj, key, callback) {
   });
 };
 
-app.post('/save', function (req, res){
+app.post('/save', function (req, res) {
 
   var total = verifyChair(req.body.wheelchair);
-  if(total!==false){
+  if (total !== false) {
     res.download('mus_reading.pdf');
     //genSave(req.body.wheelchair, res);
     //res.send('huza');
@@ -272,7 +252,7 @@ app.post('/order', function (req, res) {
   var total = verifyOrder(req.body.order, true);
   if (total !== false) {
     var charge = stripe.charges.create({
-      amount: Math.round(total*100), // amount in cents, again
+      amount: Math.round(total * 100), // amount in cents, again
       currency: "usd",
       source: stripeToken,
       description: "Example charge"
@@ -285,16 +265,15 @@ app.post('/order', function (req, res) {
         orders.insert(req.body.order, function (err, body) {
           req.body.order.orderNum = body.id;
           var pdfStream = genInvoice(req.body.order);
-          res.send(body.id);
           var invoiceEmail = new sendgrid.Email({
             from: 'do-not-reply@abacus.fit',
             subject: 'Abacus Purchase Invoice'
           });
           invoiceEmail.to = req.body.order.email;
           invoiceEmail.text = 'Thank you for using Abacus to purchase your new Wheelchair. We have attached the invoice for your order.';
-          pdfStream.on('finish', function(){
+          pdfStream.on('finish', function () {
             invoiceEmail.addFile({
-              path: 'invoice_'+body.id+'.pdf'
+              path: 'invoice_' + body.id + '.pdf'
             });
             sendgrid.send(invoiceEmail, function (err, json) {
               console.log(err);
