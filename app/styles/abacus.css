@@ -273,33 +273,19 @@
   top: 0;
 }
 
-.main-custom .main-custom-wheelchairDisplay.wide-screen {
-  height: calc(90vh - 126px);
-  width: auto;
-}
-
-
 .main-custom-rotatebuttons {
   position: relative;
   top: calc(46.3vw - 113px);
   left: 40vw;
 }
 
-.main-custom-rotatebuttons.wide-screen {
-  top: calc(100vh - 140px);
-}
 
-
-@media screen and (max-width: 1110px) {
+@media screen and (max-width: 1320px) {
     .main-custom-rotatebuttons {
       position: relative;
-      top: 480px;
-      left: 340px;
+      top: 498px;
     }
 }
-
-
-
 
 
 /*************************Main-Measure******************************/
