@@ -1,3 +1,15 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.1.62/jquery.inputmask.bundle.js"></script>
+<script>
+$(window).load(function()
+{
+   var phones = [{ "mask": "(###) ###-####"}, { "mask": "(###) ###-##############"}];
+    $('#textbox').inputmask({ 
+        mask: phones, 
+        greedy: false, 
+        definitions: { '#': { validator: "[0-9]", cardinality: 1}} });
+});
+</script>
 <link href="../../styles/register/register.css" rel="stylesheet"/>
 <div id="wrapper">
   <h3 class='bold'>REGISTER</h3>
@@ -17,11 +29,24 @@
           <input id="settingsContentInput-contact-lastName" name="lastName" type="text"
                  class="form-control" data-ng-model="accountModel.lName"/>
         </div>
+
         <div class="form-group">
           <label for="settingsContentInput-contact-email" class="book">Email Address</label>
           <input id="settingsContentInput-contact-email" name="email" type="email" class="form-control"
                  data-ng-model="accountModel.email"/>
         </div>
+
+        <div class="form-group">
+          <label for="settingsContentInput-contact-phone" class="book">Phone Number</label>
+          <input 
+                 id="settingsContentInput-contact-phone"
+                 name="phone" 
+                 type="text" 
+                 class="form-control"
+                 phone-input
+                 ng-model="accountModel.phone"/>
+        </div>
+
         <div class="form-group form-inline">
           <label for="settingsContentInput-contact-pass" class="book">Password</label><br>
           <input id="settingsContentInput-contact-pass" name="password" type="password"

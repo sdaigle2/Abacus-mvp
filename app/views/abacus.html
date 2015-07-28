@@ -96,7 +96,7 @@
         <div class="main-measure" data-ng-if="getCurPageType() == pageType.MEASURE">
           <div class="measure-top">
             <h1><strong data-ng-bind="getCurMeasureData().name"></strong></h1>
-            <h4 data-ng-bind-html="getCurMeasureData().desc"></h4>
+           
 
             <div class="measure-body">
               <table class="measure-tab">
@@ -130,8 +130,11 @@
                   data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.ERGONOMICS"
                   data-ng-src="{{getCurMeasureData().gifURL}}">
 
+                 <h4 data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.SUMMARY" data-ng-bind-html="getCurMeasureData().desc"></h4>
                 <div data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.SUMMARY"
-                     data-ng-bind-html="getCurMeasureData().details"></div>
+                     data-ng-bind-html="getCurMeasureData().details">
+
+                   </div>
               </div>
             </div>
           </div>
