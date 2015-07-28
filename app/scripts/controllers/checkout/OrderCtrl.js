@@ -128,7 +128,6 @@ angular.module('abacuApp')
                 $scope.orderNum = $scope.curOrder.getOrderNum();
                 if($scope.orderNum !== -1) {
                   $scope.curStage++;
-                  User.updateDB();
                   User.updateCookie();
                 }
               }, function () {
@@ -246,15 +245,10 @@ angular.module('abacuApp')
 
 
 //HTML code inserted into the Terms & Conditions box
-var termsAndConditionsHTML = "By agreeing to the following terms and conditions, you (hereby referred to as WHEELCHAIREE) give up the \
-following rights to Intelliwheels (hereby referred to as WHEELCHAIRER):<br /> \
-1) WHEELCHAIREE agrees that all information provided on this page has been verified, and any mistakes \
-contained on this page are not the fault of WHEELCHAIRER.  Any problems and inconvieniences caused by \
-these errors are the fault of WHEELCHAIREE.<br /> \
-2) Any sock worn on WHEELCHAIREE's left foot while using the product must not be brown.  WHEELCHAIREE \
-agrees to follow this rule, with punishments for being caught include up to 3 years of imprisonment, as \
-well as being stalked and harassed on social media for up to 6 months.<br /> \
-3) Reading this paragraph voids all future complaints WHEELCHAIREE may have with regards to this agreement.  This \
-includes all provisions outlined in sections 2.<br /> \
-Thank you for deciding to purchase a wheelchair through the Intelliwheels Abacus system.  Have a nice day \
-and remember to watch your future clothing decisions.";
+var termsAndConditionsHTML = "The TINKER<sup>TM</sup> wheelchair customization system is designed and managed by IntelliWheels, Inc. " +
+  "Intelliwheels acts only as a broker for your purchase with the manufacturer of the wheelchair. " +
+  "By making a purchase with the TINKER<sup>TM</sup> system, you are agreeing to the terms and conditions of the manufacturer of the wheelchair. " +
+  "IntelliWheels is not liable for any manufacturing defects, lead times, warrantee issues, or features of your new wheelchair that are different than expected. " +
+  "When you place your order, the TINKER<sup>TM</sup> system will put you in touch with someone from that manufacturer and it is up to you and the" +
+  " manufacturer to work out all of the details of your custom purchase.  " +
+  "Check with the manufacturer to find out their return policy, and modification policy. ";

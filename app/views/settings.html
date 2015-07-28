@@ -40,7 +40,7 @@
          ng-class="{'showSettingsSidebarButtons' : getContentSection() !== ContentSection.ORDERS, 'hideSettingsSidebarButtons' : getContentSection() === ContentSection.ORDERS}">
       <button class="settingsSidebarButton medium"
               id="settingsSidebarSaveButton"
-              data-ng-click="save()">SAVE &gt;&gt;</button>
+              data-ng-click="save()" data-ng-bind="saveMessage"></button>
     </div>
 
   </div>
@@ -65,10 +65,6 @@
             <li>
               <label for="settingsContentInput-contact-lastName book">Last Name</label>
               <input id="settingsContentInput-contact-lastName" name="lastName" type="text" data-ng-model="accountModel.lName" />
-            </li>
-            <li>
-              <label for="settingsContentInput-contact-email book">Email Address</label>
-              <input id="settingsContentInput-contact-email" name="email" type="text" data-ng-model="accountModel.email" />
             </li>
             <li>
               <label for="settingsContentInput-contact-phone book">Phone</label>
@@ -108,7 +104,7 @@
 
       <div class="settingsContentInputSection">
         <form action="" id="settingsContentForm-password">
-          <div class="settingsContentSectionTitle book">Change Password</div>
+          <div class="settingsContentSectionTitle book">Change Password <span data-ng-bind="errMessage"></span></div>
           <ul>
             <li>
               <label for="settingsContentInput-password-oldPassword book">Current Password</label>
@@ -133,23 +129,23 @@
     <div class="settingsContent" id="settingsOrdersContent"
          ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ORDERS}">
       <ul id="settingsOrdersContentItems">
-        <li class="settingsOrdersContentItem" data-ng-repeat="o in orders">
-          <p><h4><strong></strong></h4></p>
-          <canvas my-canvas img_arr={{o.getWheelchair(0).getPreviewImages(3)}} width="200"></canvas>
+        <li class="settingsOrdersContentItem" data-ng-repeat="w in wheelchairs">
+          <p><h4><strong data-ng-bind="w.getTitle()"></strong></h4></p>
+          <canvas my-canvas img_arr={{w.getPreviewImages(3)}} width="200"></canvas>
           <section>
-            <p>Order number: {{o.orderNum}}</p>
+            <p>Order number: {{w.orderNum}}</p>
             <table class="orderTable book">
               <tbody>
               <tr>
-                <td>Order Date: <span data-ng-bind="o.getSentDate().toLocaleDateString()"></span></td>
+                <td>Order Date: <span data-ng-bind="w.date.toLocaleDateString()"></span></td>
                 <td>Frame: {{}}</td>
               </tr>
               <tr>
-                <td>Total: ${{o.getTotalCost().toFixed(2)}}</td>
+                <td>Total: ${{w.getTotalPrice().toFixed(2)}}</td>
                 <td>Manufacturer: Ti Arrow</td>
               </tr>
               <tr>
-                <td>Ship to: {{o.getFname()}} {{o.getLname()}}</td>
+                <td>Ship to: {{w.fName}} {{w.lName}}</td>
               </tr>
               </tbody>
             </table>

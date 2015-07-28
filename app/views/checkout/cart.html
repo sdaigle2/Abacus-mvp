@@ -162,7 +162,7 @@
   <div ng-repeat="w in wheelchairs" ng-if="imageDisplay1 == $index" id="displayImage">
     <div id="offClickArea" ng-show="imageDisplay1 >= 0" data-ng-click="toggleImageDisplay(-1)"></div>
     <div class="mainDisplay">
-      <div id="designTitle"><h3>DESIGN FOR BRIAN</h3></div>
+      <div id="designTitle"><h3 data-ng-bind="w.getTitle()"></h3></div>
       <img class="leftButton" src="images/icons/left_button.svg" alt="Previous" width="30" height="30"
            data-ng-click="rotate(-1)"/>
       <img class="rightButton" src="images/icons/right_button.svg" alt="Next" width="30" height="30"

@@ -130,7 +130,6 @@ angular.module('abacuApp')
         //Remove wheelchair from My Designs
         User.deleteWheelchair(index);
         $scope.emptyCols.push({});
-        User.updateDB();
       };
 
 
@@ -157,7 +156,6 @@ angular.module('abacuApp')
         $scope.wOrderIndex[index] = -1;
         updateCosts();
         User.updateCookie();
-        User.updateDB();
       };
 
       /********************SIDEBAR CALCULATIONS************************/

@@ -56,9 +56,12 @@ angular.module('abacuApp')
 
       /***************** SIDEBAR BUTTONS ***************************************/
 
+      $scope.saveMessage = 'SAVE >>';
+      $scope.errMessage = '';
       $scope.save = function () {
         switch (User.getContentSection()) {
           case $scope.ContentSection.ACCOUNT:
+            $scope.saveMessage = 'SAVING ...';
             $http({
               url: '/update'
               , data: $scope.accountModel
@@ -66,13 +69,18 @@ angular.module('abacuApp')
             }).success(function (data) {
               User.setFname($scope.accountModel.fName);
               User.setLname($scope.accountModel.lName);
-              User.setEmail($scope.accountModel.email);
               User.setPhone($scope.accountModel.phone);
               User.setAddr($scope.accountModel.addr);
               User.setAddr2($scope.accountModel.addr2);
               User.setCity($scope.accountModel.city);
               User.setState($scope.accountModel.state);
               User.setZip($scope.accountModel.zip);
+              $scope.accountModel.oldPass = '';
+              $scope.accountModel.newPass1 = '';
+              $scope.accountModel.newPass2 = '';
+              $scope.saveMessage = 'SAVED';
+              $scope.errMessage = data.message;
+              setTimeout(function(){$scope.$apply($scope.saveMessage = 'SAVE >>'); $scope.$apply($scope.errMessage = '')},3000);
             });
             break;
 
@@ -87,7 +95,6 @@ angular.module('abacuApp')
             User.commonMeasures.SEAT_DEPTH = $scope.measDisplay.seatDepth.optionSelected;
 
             User.setUnitSys($scope.curUnitSys);
-            User.updateDB();
 
             break;
         }
@@ -132,7 +139,19 @@ angular.module('abacuApp')
 
         //Array of orders
         //TODO: needs to be integrated with the Order factory
-      $scope.orders = User.getSentOrders();
+      var orders = User.getSentOrders();
+
+      $scope.wheelchairs = [];
+      for(var i=0; i<orders.length; i++){
+        var wheelchairs = orders[i].getWheelchairs();
+        for(var j=0; j<wheelchairs.length; j++){
+          wheelchairs[j].orderNum = orders[i].orderNum;
+          wheelchairs[j].date = orders[i].getSentDate();
+          wheelchairs[j].fName = orders[i].getFname();
+          wheelchairs[j].lName = orders[i].getLname();
+          $scope.wheelchairs.push(wheelchairs[j]);
+        }
+      }
 
       $scope.openOrderDetails = function (index) {
         //TODO: Display order details from the User service
