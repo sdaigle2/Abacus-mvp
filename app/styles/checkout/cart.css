@@ -34,9 +34,9 @@
   position: relative;
   clear: left;
   float: left;
-  margin:30px 25px 0;
+  margin:30px 0 0;
 
-  width: 96%;
+  width: 100%;
 }
 
 
@@ -44,6 +44,7 @@
   clear: left;
   float: left;
   margin-top: 36px;
+  margin-left: calc(50% - 410px);
   text-transform: uppercase;
 }
 
@@ -64,7 +65,7 @@
 }
 
 #mainContent{
-  width: 93%;
+  width: 100%;
   min-width: 800px;
 
 }
@@ -106,18 +107,22 @@ a:hover{
 }
 
 #mainContent .add-chair{
-  position: absolute;
-  left: 55%;
-  top: 23%;
+  position: relative;
+  display: inline-block;
+  width: 227px;
+  top: 120px;
+  left: 74px;
+  color: #939597;
 }
 
 #mainContent .comparisonImages{
   display: inline-block;
   position: relative;
   top: 15px;
-  left: 16%;
+  left: calc(50% - 270px);
   float: left;
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   background-color: white;
   z-index: 1;
 }
@@ -125,7 +130,7 @@ a:hover{
 
 #mainContent .comparisonImages h4{
   float: left;
-  margin-left: 15px;
+  margin-left: 30px;
 }
 
 
@@ -183,7 +188,7 @@ a:hover{
 /********detail part table***********/
 
 .cartBody > table{
-  margin: 20px 25px;
+  margin: 20px calc(50% - 410px);
   float: left;
   clear: left;
 }
@@ -429,10 +434,13 @@ a:hover{
 #scroll-order {
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: 263px;
+  height: 263px;
   text-align: center;
 }
 
+#scroll-order>div {
+  margin-top: 116px;
+}
 
 
 ol{
@@ -523,10 +531,7 @@ h4{
   width: 30px;
 }
 
-.add-chair{
-  color: inherit;
-}
 
-.add-chair:hover{
+#mainContent .add-chair:hover{
   color: #88cbc3;
 }
