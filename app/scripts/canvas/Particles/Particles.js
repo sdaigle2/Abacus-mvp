@@ -10,13 +10,13 @@ canvas = null;
 ctx = null;
 var mouseX=0;
 var mouseY=0;
-var num_particles = 500;
+var num_particles = 100;
 var particles = new Array();
 // ----------------------------------------
 
 function fillCircle(ctx , x, y, radius){
 	ctx.beginPath();
-    ctx.fillStyle="#FF000F"; 
+    ctx.fillStyle="#FFFFFF"; 
     ctx.arc(x, y, radius, 0, 2 * Math.PI);
 	ctx.fill();
 }
@@ -26,9 +26,9 @@ var Particle = function () {
 	var FRICTION = .995;
 	this.x = Math.random()*canvas.width;
 	this.y = Math.random()*canvas.height/2;
-	this.xVel = Math.random()*5-2.5;
+	this.xVel = Math.random()*3-1.5;
 	this.yVel = Math.random()*.2-.1;
-	this.radius = .5;
+	this.radius = 5;
 	var me = this;
 	function onEvent(){
 		fillCircle(ctx , me.x, me.y, me.radius);
