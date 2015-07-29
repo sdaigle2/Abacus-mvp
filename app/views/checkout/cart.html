@@ -40,13 +40,13 @@
 
 
       <a ng-show="wheelchairs.length < 2" class="add-chair" data-ng-mouseenter="hoverImage = 'add_icon_hover'"
-         data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frame">
+         data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frames">
         <img class="add-icon" data-ng-src="images/my_design_page/{{hoverImage}}.png">
         <span class="medium">Add a Wheelchair</span>
       </a>
 
       <a ng-show="wheelchairs.length < 3" class="add-chair" data-ng-mouseenter="hoverImage = 'add_icon_hover'"
-         data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frame">
+         data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frames">
         <img class="add-icon" data-ng-src="images/my_design_page/{{hoverImage}}.png">
         <span class="medium">Add a Wheelchair</span>
       </a>
@@ -55,7 +55,7 @@
     <div class="empty-designs" ng-if="wheelchairs.length === 0">
       <p>You currently do not have any saved design</p>
       <a class="add-chair" data-ng-mouseenter="hoverImage = 'add_icon_hover'"
-         data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frame">
+         data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frames">
         <img class="add-icon" data-ng-src="images/my_design_page/{{hoverImage}}.png">
         <span class="medium">Add a Wheelchair</span>
       </a>
@@ -88,7 +88,7 @@
     <table class="parts-table" data-ng-init="hoverItem = {index: -1, name: ''}" ng-if="wheelchairs.length > 0">
       <tr class="part-row" ng-repeat="part in parts">
         <td class="title-column">
-          <img src={{part.getIconImage()}} width="30">
+          <img data-ng-src="{{part.getIconImage()}}" width="30"/>
           <p  data-ng-bind="part.getName()"></p>
         </td>
         <td class="value-column hover-column" ng-repeat="wheelchair in wheelchairs"

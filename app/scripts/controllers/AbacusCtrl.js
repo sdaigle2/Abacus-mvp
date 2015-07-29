@@ -8,8 +8,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', ['$scope', '$location', '$cookieStore', 'FrameData', 'User', 'Angles', 'Units', 'Drop',
-    function ($scope, $location, $cookieStore, FrameData, User, Angles, Units, Drop) {
+  .controller('AbacusCtrl', ['$scope', '$location', '$cookieStore', '$routeParams', 'FrameData', 'User', 'Angles', 'Units', 'Drop',
+    function ($scope, $location, $cookieStore, $routeParams, FrameData, User, Angles, Units, Drop) {
 
       Drop.setFalse();
       /*********************Enums*******************************/
@@ -95,7 +95,11 @@ angular.module('abacuApp')
 
       //Initialize the page - called on pageLoad
       function init() {
-
+        var id = parseInt($routeParams.param1);
+        console.log(id);
+        if(id && FrameData.getFrame(id)) {
+          User.createCurrentDesign(id);
+        }
         //Send the user back to Frames if no curEditWheelchair set
         $scope.curEditWheelchair = User.getCurEditWheelchair();
         if ($scope.curEditWheelchair === null) {

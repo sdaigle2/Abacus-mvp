@@ -31,6 +31,10 @@ angular
         templateUrl: 'views/abacus.html',
         controller: 'AbacusCtrl'
       })
+      .when('/abacus/:param1', {
+        templateUrl: 'views/abacus.html',
+        controller: 'AbacusCtrl'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
