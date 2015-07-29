@@ -4,8 +4,10 @@
 function printMousePos(e) {
     var cursorY = e.clientY;
     if(cursorY>280){
-      console.log("closing..");
-      $("#SaveButton").trigger("click");
+      var dropdown = document.getElementsByClassName("dropdownTable");
+      if(dropdown.length>0){
+        $("#SaveButton").trigger("click");
+      }
     }
 }
 document.addEventListener("click", printMousePos);
