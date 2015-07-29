@@ -9,7 +9,7 @@ angular.module('abacuApp')
       Drop.setFalse();
     function checkLogin(){
       if(!User.isLoggedIn()){
-        $location.path('register');
+        $location.path('/register');
       }
     }
     $scope.getName = function(){
@@ -18,14 +18,14 @@ angular.module('abacuApp')
     };
 
     $scope.goSettings = function(){
-      $location.path('settings');
+      $location.path('/settings');
     };
 
     $scope.goFrame = function(){
       $location.path('');
     };
     $scope.goDesign = function(){
-      $location.path('cart');
+      $location.path('/cart');
     };
 
 

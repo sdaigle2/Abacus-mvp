@@ -21,7 +21,7 @@ angular.module('abacuApp')
       User.createCurrentDesign(frameID);
 
       //Send the user to Abacus
-      $location.path('abacus');
+      $location.path('/abacus');
     };
 
     //Determines if the given frame picture is being hovered over

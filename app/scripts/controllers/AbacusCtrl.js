@@ -96,15 +96,10 @@ angular.module('abacuApp')
       //Initialize the page - called on pageLoad
       function init() {
 
-        //redirect if we have no wheelchair to edit
-        if (User.getCurEditWheelchair() === null) {
-          $location.path('frame');
-        }
-
         //Send the user back to Frames if no curEditWheelchair set
         $scope.curEditWheelchair = User.getCurEditWheelchair();
         if ($scope.curEditWheelchair === null) {
-          $location.path('frames');
+          $location.path('/frames');
           return;
         }
 
@@ -368,7 +363,7 @@ angular.module('abacuApp')
       $scope.closeSaveDropDown = function () {
         $scope.saveDropdown = false;
       };
-      
+
       /*****************Sidebar Tabs***************/
 
       $scope.switchPageType = function (newPageType) {
@@ -489,7 +484,7 @@ angular.module('abacuApp')
       $scope.saveDesign = function () {
         //redirect user to the cart/myDesigns
         User.pushNewWheelchair();
-        $location.path('cart');
+        $location.path('/cart');
       };
 
       $scope.saveComputer = function () {

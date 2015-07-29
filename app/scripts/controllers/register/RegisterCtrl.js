@@ -45,7 +45,7 @@ angular.module('abacuApp')
           }
           else {
             User.login($scope.accountModel.email, $scope.accountModel.password);
-            $location.path('welcome');
+            $location.path('/welcome');
           }
         })
           .error(function (data) {
