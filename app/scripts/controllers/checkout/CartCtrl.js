@@ -102,7 +102,7 @@ angular.module('abacuApp')
       //Sends the user back to abacus with the selected wheelchair
       $scope.editWheelchair = function (index) {
         User.setEditWheelchair(index, $scope.wOrderIndex[index]);
-        $location.path('abacus');
+        $location.path('/abacus');
       };
 
 
@@ -124,10 +124,10 @@ angular.module('abacuApp')
 
       //Adds the selected wheelchair to curOrder
       $scope.addWheelchairToOrder = function (index) {
-        //if ($scope.wheelchairs[index].allMeasuresSet() === false) {
-        //  alert('All measurements must be set before this can be purchased');
-        //  return;
-        //}
+        if ($scope.wheelchairs[index].allMeasuresSet() === false) {
+          alert('All measurements must be set before this can be purchased');
+          return;
+        }
         curOrder.addWheelchair($scope.wheelchairs[index]);
         User.updateCookie();
         $scope.wInOrder[index] = true;
@@ -172,9 +172,9 @@ angular.module('abacuApp')
         }
 
         if (User.isLoggedIn())
-          $location.path('order'); //Send to Order if logged in
+          $location.path('/order'); //Send to Order if logged in
         else
-          $location.path('checkout'); //Send to Checkout if not logged in
+          $location.path('/checkout'); //Send to Checkout if not logged in
       };
 
       //Determines if the current cart is valid

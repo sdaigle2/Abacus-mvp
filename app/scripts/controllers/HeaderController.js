@@ -68,7 +68,7 @@ angular.module('abacuApp')
     $scope.logout = function () {
       User.logout();
       if($location.path() === '/settings')
-        $location.path('/#')
+        $location.path('/frames');
       Drop.setFalse();
     };
 

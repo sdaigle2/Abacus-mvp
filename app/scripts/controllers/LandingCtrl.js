@@ -5,6 +5,6 @@ angular.module('abacuApp')
   .controller('LandingCtrl', ['$scope', '$location',
     function ($scope, $location) {
       $scope.toFramePage = function(){
-        $location.path('/frame');
+        $location.path('/frames');
       }
     }]);

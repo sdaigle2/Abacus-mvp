@@ -20,12 +20,12 @@ angular
   .config(function ($routeProvider, $sceDelegateProvider, $httpProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/frame.html',
-        controller: 'FrameCtrl'
-      })
-      .when('/landing', {
         templateUrl: 'views/landing.html',
         controller: 'LandingCtrl'
+      })
+      .when('/frames', {
+        templateUrl: 'views/frame.html',
+        controller: 'FrameCtrl'
       })
       .when('/abacus', {
         templateUrl: 'views/abacus.html',

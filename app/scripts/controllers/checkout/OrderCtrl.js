@@ -52,11 +52,11 @@ angular.module('abacuApp')
 
       //Send user to My Designs if orders page reached without having an unsent order
       if ($scope.curOrder === null) {
-        $location.path('\cart');
+        $location.path('/cart');
         return;
       }
       else if ($scope.curOrder.getNumWheelchairs() === 0) {
-        $location.path('\cart');
+        $location.path('/cart');
         return;
       }
 
