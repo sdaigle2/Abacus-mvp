@@ -1,5 +1,12 @@
+<script src='scripts/canvas/Particles/JareUtils.js'></script>
+<script src='scripts/canvas/Particles/FPSMeter.js'></script>
+<script src='scripts/canvas/Particles/GameLoopManager.js'></script>
+<script src='scripts/canvas/Particles/Particles.js'></script>
+
 <link href="styles/landing.css" rel="stylesheet" />
 <div id="wrapper">
+  
+ <canvas id='canvy' width='550' height='400'></canvas>
   <img id="mainLogo" data-ng-src="images/landing_page/tinker_logo2.png" width="700">
   <div class="medium" id="text2"><h1>DESIGN <span class="book">FOR</span> YOUR LIFE</h1></div>
   <section class="medium text3">
@@ -7,4 +14,5 @@
     On our Website, you can build a customizable wheelchair
   </section>
   <button ng-click="toFramePage()" class="medium button">Start a New Design</button>
+  <div id="fpscontainer"></div>
 </div>
