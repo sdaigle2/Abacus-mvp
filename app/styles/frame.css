@@ -1,8 +1,8 @@
 
 
 .wrapper{
-  margin: 0 auto;
-  width: 100%;
+  max-width: 1300px;
+  margin:auto;
 }
 
 
@@ -16,7 +16,7 @@
 /******main display part*****/
 
 .wrapper .mainDisplay{
-  width: 70%;
+  width: 80%;
   margin: 30px auto 0;
 }
 
@@ -78,6 +78,7 @@
 .frame-item-image {
   position: relative;
   border: solid 2px #eaeaea;
+  width: 450px;
 }
 
 
@@ -99,6 +100,7 @@
   top: 0;
   padding: 0 20px;
 }
+
 
 
 .img .frame-item-desc {

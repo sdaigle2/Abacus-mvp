@@ -36,8 +36,8 @@
             <h4 data-ng-click="saveComputer()" id="panelText">SAVE TO MY COMPUTER</h4>
           </td>
           <td id="panelIcon3"><img data-ng-src="images/abacus_page/save_review/share_with_friends_hover.png">
-            <img class="iconHover" data-ng-src="images/abacus_page/save_review/share_with_friends.png">
-            <h4>SHARE WITH FRIEND</h4>
+            <img class="iconHover" style="opacity: 0; cursor: auto;" data-ng-src="images/abacus_page/save_review/share_with_friends.png">
+            <h4 style="color: grey;">SHARE WITH FRIEND</h4>
           </td>
         </tr>
       </table>
@@ -240,7 +240,7 @@
                   </td>
                 </tr>
               </table>
-              <div data-ng-bind="curOption.getDesc()"></div>
+              <div data-ng-bind-html="curOption.getDesc()"></div>
             </div>
           </div>
           <div class="panel-block" data-ng-if="curOption.colors.length>0">

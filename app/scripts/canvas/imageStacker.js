@@ -13,7 +13,7 @@ function stackImages(canvy, image_dirs, width, height) {
   //interval is set so if image fails to load at first it would retry.
   var ctx = canvy.getContext("2d");
   ctx.clearRect(0, 0, canvy.width, canvy.height);
-  ctx.fillStyle = "white";
+  ctx.fillStyle = "transparent";
   ctx.fillRect(0, 0, canvy.width, canvy.height);
   //console.log("stacking images");
   var images = [];

@@ -6,7 +6,7 @@
     "basePrice": 2995,
     "baseWeight": 5.5,
     "frameID": 1,
-    "imageURL": "images/frame_page_img/frame1_frame_page.png",
+    "imageURL": "images/frame_page_img/CKE_Blue2.jpg",
     "wheelIndex": 3,
     "parts": [
       {
@@ -1066,7 +1066,7 @@
     "basePrice": 2195,
     "baseWeight": 6,
     "frameID": 2,
-    "imageURL": "images/frame_page_img/frame1_frame_page.png",
+    "imageURL": "images/frame_page_img/CKF_Red_Tires.jpg",
     "wheelIndex": 3,
     "parts": [
       {

@@ -148,6 +148,10 @@
         <td class="cartSidebarLabel">Total:</td>
         <td class="cartSidebarValue">$<span data-ng-bind="costs.total"></span></td>
       </tr>
+      <tr>
+        <td class="cartSidebarLabel">30% Down payment (optional) </td>
+        <td class="cartSidebarValue verticalTop" >${{(costs.total * 0.3).toFixed(2)}}</td>
+      </tr>
       </tfoot>
     </table>
     <div class="text-center button-div">

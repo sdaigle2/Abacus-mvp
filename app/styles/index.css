@@ -73,13 +73,15 @@ body {
 .mainNavbar .mainNavbar-left > li.frameNavButton.active,
 .mainNavbar .mainNavbar-left > li.frameNavButton.active:hover,
 .mainNavbar .mainNavbar-left > li.frameNavButton.active:focus {
-  background-image: url("../images/icons/frames.png");
+  color:#00a89c;
+  background-image:url("../images/icons/on_frames.png");
 }
 .mainNavbar .mainNavbar-left > li.aboutNavButton:hover,
 .mainNavbar .mainNavbar-left > li.aboutNavButton:focus,
 .mainNavbar .mainNavbar-left > li.aboutNavButton.active,
 .mainNavbar .mainNavbar-left > li.aboutNavButton.active:hover,
 .mainNavbar .mainNavbar-left > li.aboutNavButton.active:focus {
+  color:#00a89c;
   background-image: url("../images/icons/on_about_us.png");
 }
 
@@ -191,6 +193,7 @@ body {
 
 .login .loginText:hover{
   cursor: pointer;
+  color: #00A89C;
 }
 
 .login .window{
