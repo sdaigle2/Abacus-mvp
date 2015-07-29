@@ -20,6 +20,46 @@ function getPartPreviewImageURL(wheelchair, curPart, subImageIndex, angle) {
   return partURL;
 }
 
+function getPartImageArray(wheelchair, angle, angleNum) {
+  var images = [];
+  for (var i = 0; i < wheelchair.wheelIndex; i++) {
+    var curPart = wheelchair.parts[i];
+    var curPartData = wheelchair.pDetails[i];
+    var numSubImages = curPartData.numSubImages;
+    for (var j = 0; j < numSubImages; j++) {
+      images.push({
+        URL: getPartPreviewImageURL(wheelchair, curPart, j, angle),
+        zRank: curPartData.zRank[j][angleNum]
+      });
+    }
+  }
+//Sort array by zRanks
+  images.sort(function (a, b) {
+    return (a.zRank - b.zRank);
+  });
+  return images;
+}
+
+function getWheelImageArray(wheelchair, angle, angleNum) {
+  var images = [];
+  for (var i = wheelchair.wheelIndex; i < wheelchair.parts.length; i++) {
+    var curPart = wheelchair.parts[i];
+    var curPartData = wheelchair.pDetails[i];
+    var numSubImages = curPartData.numSubImages;
+    for (var j = 0; j < numSubImages; j++) {
+      images.push({
+        URL: getPartPreviewImageURL(wheelchair, curPart, j, angle),
+        zRank: curPartData.zRank[j][angleNum]
+      });
+    }
+  }
+//Sort array by zRanks
+  images.sort(function (a, b) {
+    return (a.zRank - b.zRank);
+  });
+  return images;
+}
+
 function getImageArray(wheelchair, angle, angleNum) {
   var images = [];
   //Generate array of images with zRank's
@@ -121,6 +161,14 @@ function partsPage(doc, wheelchair) {
   doc.lineWidth(1).moveTo(54, 90).lineTo(558, 90).stroke();
   doc.lineGap(9);
 
+  doc.font('Medium').text('Frame', 72, 108);
+
+  var partImages = getPartImageArray(wheelchair, 'FrontRight', 3);
+  for (var k = 0; k < partImages.length; k++) {
+    console.log(partImages[k].zRank);
+    doc.image(partImages[k].URL, 72, 126, {width: 153});
+  }
+
   for (var i = 0; i < wheelchair.wheelIndex; i++) {
     if (i === 0)
       doc.font('Medium').text(wheelchair.pDetails[i].name, 280, 108);
@@ -136,6 +184,14 @@ function partsPage(doc, wheelchair) {
 
   var firstDiv = 90 + Math.max(40 * wheelchair.wheelIndex + 18, 234);
   doc.lineWidth(1).moveTo(54, firstDiv).lineTo(558, firstDiv).stroke();
+
+  doc.font('Medium').text('Wheel', 72, firstDiv + 18);
+
+  var wheelImages = getWheelImageArray(wheelchair, 'Right', 2);
+  for (k = 0; k < wheelImages.length; k++) {
+    console.log(wheelImages[k].zRank);
+    doc.image(wheelImages[k].URL, 72, firstDiv + 36, {width: 153});
+  }
 
   for (var j = wheelchair.wheelIndex; j < wheelchair.pDetails.length; j++) {
     if (j === wheelchair.wheelIndex)
@@ -213,10 +269,13 @@ function summaryPage(doc, order) {
   doc.text('www.intelliwheels.net');
   doc.font('Medium').fontSize(18).text('SUMMARY', 221, 52);
   doc.fontSize(11).text('Purchase Date:', 221, 104);
-  doc.text('Terms:');
+  doc.text('Payment Terms:');
   doc.text('Ship Via:');
   doc.font('Book').text(order.sentDate.substr(0, 10), 405, 104);
-  doc.text('Net 30');
+  if (order.payMethod === 'paypal')
+    doc.text('30% down/70% before delivery');
+  else
+    doc.text('Bill Insurance');
   doc.text('Best');
   doc.font('Medium').fontSize(13).text('BILL TO:', 221, 180);
   doc.text('SHIP TO:', 405, 180);

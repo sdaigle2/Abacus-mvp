@@ -264,6 +264,7 @@ angular.module('abacuApp')
           }
           else if (currentWheelchair.isNew === false) {
             designedWheelchairs[curEditWheelchairIndex] = jQuery.extend(true, currentWheelchair.editingWheelchair);
+
           }
           this.updateCookie();
         },

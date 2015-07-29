@@ -194,6 +194,11 @@
   border-bottom: 2px solid rgba(138, 139, 138, 1);
 }
 
+#settingsAccountContent .settingsContentSectionTitle span {
+  font-size: 15px;
+  color: red;
+}
+
 #settingsAccountContent .settingsContentInputSection ul {
   margin: 0 0 0 30px;
   padding: 0;

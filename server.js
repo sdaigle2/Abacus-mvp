@@ -181,27 +181,75 @@ app.post('/confirm', function (req, res) {
 });
 
 app.post('/update', restrict, function (req, res) {
-  update(req.body, req.session.user, function (err, body) {
+  var data = {
+    fName: req.body.fName,
+    lName: req.body.lName,
+    email: req.body.email,
+    phone: req.body.phone,
+    addr: req.body.addr,
+    addr2: req.body.addr2,
+    city: req.body.city,
+    state: req.body.state,
+    zip: req.body.zip,
+    oldPass: req.body.oldPass,
+    newPass1: req.body.newPass1,
+    newPass2: req.body.newPass2,
+    unitSys: 0
+  };
+  update(data, req.session.user, function (err, body, errNo) {
     req.session.regenerate(function () {
       req.session.user = body.id;
-      res.json({'success': err});
+      var message = '';
+      switch(errNo){
+        case 1: message = 'New password is not valid';
+              break;
+        case 2: message = 'Current password is incorrect';
+              break;
+        case 3: message = 'Password Changed';
+              break;
+      }
+      res.json({'err': err, 'message': message});
     });
   });
 });
 
+function fixObject(obj, existing){
+  if(typeof obj.fName !== 'string' || !obj.fName)
+    obj.fName = existing.fName;
+  if(typeof obj.lName !== 'string' || !obj.lName)
+    obj.lName = existing.lName;
+  if(typeof obj.email !== 'string' || !obj.email)
+    obj.email = existing.email;
+  if(typeof obj.phone !== 'string' || !obj.phone)
+    obj.phone = existing.phone;
+  if(typeof obj.addr !== 'string' || !obj.addr)
+    obj.addr = existing.addr;
+  if(typeof obj.addr2 !== 'string' || !obj.addr2)
+    obj.addr2 = existing.addr2;
+  if(typeof obj.city !== 'string' || !obj.city)
+    obj.city = existing.city;
+  if(typeof obj.state !== 'string' || !obj.state)
+    obj.state = existing.state;
+  if(typeof obj.zip !== 'string' || !obj.zip)
+    obj.zip = existing.zip;
+}
+
 update = function (obj, key, callback) {
-  delete obj.wheelchairs;
   users.get(key, function (error, existing) {
+    fixObject(obj, existing);
     obj._rev = existing._rev;
     obj.password = existing.password;
     obj.salt = existing.salt;
+    obj.orders = existing.orders;
     if (!error) {
       if (!obj.newPass1 || obj.newPass1.length < 8 || obj.newPass1 !== obj.newPass2) {
         console.log('bad newpass');
         delete obj.oldPass;
         delete obj.newPass1;
         delete obj.newPass2;
-        users.insert(obj, key, callback);
+        users.insert(obj, key, function(err, body){
+          callback(err, body, 1);
+        });
       }
       else
         hash(obj.oldPass, existing.salt, function (err, oldHash) {
@@ -210,7 +258,9 @@ update = function (obj, key, callback) {
             delete obj.oldPass;
             delete obj.newPass1;
             delete obj.newPass2;
-            users.insert(obj, key, callback);
+            users.insert(obj, key, function(err, body){
+              callback(err, body, 2);
+            });
           }
           else {
             hash(obj.newPass1, function (err, salt, hash) {
@@ -222,7 +272,9 @@ update = function (obj, key, callback) {
               delete obj.oldPass;
               delete obj.newPass1;
               delete obj.newPass2;
-              users.insert(obj, key, callback);
+              users.insert(obj, key, function(err, body){
+                callback(err, body, 3);
+              });
             });
           }
         });
@@ -252,7 +304,7 @@ app.post('/order', function (req, res) {
   var total = verifyOrder(req.body.order, true);
   if (total !== false) {
     var charge = stripe.charges.create({
-      amount: Math.round(total * 100), // amount in cents, again
+      amount: Math.round(total * 30), // amount in cents, again
       currency: "usd",
       source: stripeToken,
       description: "Example charge"
@@ -269,6 +321,12 @@ app.post('/order', function (req, res) {
             from: 'do-not-reply@abacus.fit',
             subject: 'Abacus Purchase Invoice'
           });
+          users.get(req.session.user, function(err, existing){
+            existing.orders.push(req.body.order);
+            users.insert(existing, function(err, body){
+              console.log(err);
+            });
+          });
           invoiceEmail.to = req.body.order.email;
           invoiceEmail.text = 'Thank you for using Abacus to purchase your new Wheelchair. We have attached the invoice for your order.';
           pdfStream.on('finish', function () {
@@ -277,9 +335,9 @@ app.post('/order', function (req, res) {
             });
             sendgrid.send(invoiceEmail, function (err, json) {
               console.log(err);
-              res.send(body.id);
             });
           });
+          res.send(body.id);
         });
       }
     });
