@@ -4,6 +4,9 @@
 angular.module('abacuApp')
   .controller('RegisterCtrl', ['$scope', '$http', '$location', 'User', 'Units', 'Drop',
     function ($scope, $http, $location, User, Units, Drop) {
+      if(User.isLoggedIn()){
+        $location.path('/');
+      }
       Drop.setFalse();
       $scope.error = '';
       $scope.accountModel = {

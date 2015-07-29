@@ -64,7 +64,8 @@ function verifyPart(framePart, chairPart, wheelchair) {
         size: size,
         price: option.price,
         zRank: framePart.zRank,
-        numSubImages: framePart.numSubImages
+        numSubImages: framePart.numSubImages,
+        onFrame: framePart.onFrame
       });
       return option.price;
     }

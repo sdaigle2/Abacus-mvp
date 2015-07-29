@@ -38,24 +38,13 @@ angular.module('abacuApp')
       //Initialize Cart page
       function init() {
 
-        curOrder = User.getCurEditOrder()
+        curOrder = User.getCurEditOrder();
         if (!curOrder) {
           User.createNewOrder();
           curOrder = User.getCurEditOrder();
         } else {
           updateCosts();
         }
-        //if($cookieStore.get('cart') == null){
-        //  User.createNewOrder();
-        //  curOrder = User.getCurEditOrder();
-        //  console.log("cookie is empty")
-        //} else{
-        //  var tempCurOrder = $cookieStore.get('cart') || [];
-        //  for(var i = 0; i < tempCurOrder.wheelchairs.length; i++){
-        //    curOrder.push(new Wheelchair(tempCurOrder.wheelchairs[i]));
-        //  }
-        //  console.log("cartItem from cookie " + JSON.stringify(curOrder));
-        //}
 
         $scope.orderChairs = curOrder.getWheelchairs();
         var orderInd = 0;
@@ -112,7 +101,7 @@ angular.module('abacuApp')
 
       //Sends the user back to abacus with the selected wheelchair
       $scope.editWheelchair = function (index) {
-        User.setEditWheelchair(index);
+        User.setEditWheelchair(index, $scope.wOrderIndex[index]);
         $location.path('abacus');
       };
 

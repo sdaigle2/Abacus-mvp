@@ -317,6 +317,7 @@ app.post('/order', function (req, res) {
         orders.insert(req.body.order, function (err, body) {
           req.body.order.orderNum = body.id;
           var pdfStream = genInvoice(req.body.order);
+          res.send(body.id);
           var invoiceEmail = new sendgrid.Email({
             from: 'do-not-reply@abacus.fit',
             subject: 'Abacus Purchase Invoice'
@@ -337,7 +338,6 @@ app.post('/order', function (req, res) {
               console.log(err);
             });
           });
-          res.send(body.id);
         });
       }
     });

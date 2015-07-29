@@ -12,6 +12,7 @@
       {
         "name": "Frame Style",
         "partID": 1,
+        "onFrame": true,
         "numSubImages": 1,
         "zRank": [
           [
@@ -231,6 +232,7 @@
       {
         "name": "Back Rest",
         "partID": 2,
+        "onFrame": true,
         "numSubImages": 1,
         "zRank": [
           [
@@ -284,6 +286,7 @@
       {
         "name": "Wheel",
         "partID": 3,
+        "onFrame": false,
         "numSubImages": 2,
         "zRank": [
           [
@@ -349,6 +352,7 @@
       {
         "name": "Hand Rims",
         "partID": 5,
+        "onFrame": false,
         "numSubImages": 2,
         "zRank": [
           [
@@ -421,6 +425,7 @@
       {
         "name": "Axle",
         "partID": 6,
+        "onFrame": false,
         "numSubImages": 2,
         "zRank": [
           [
@@ -469,6 +474,7 @@
       {
         "name": "Tire",
         "partID": 7,
+        "onFrame": false,
         "numSubImages": 2,
         "zRank": [
           [
@@ -538,6 +544,7 @@
       {
         "name": "Inner Tube",
         "partID": 8,
+        "onFrame": false,
         "numSubImages": 0,
         "zRank": [],
         "defaultOptionID": 71,
@@ -571,6 +578,7 @@
       {
         "name": "Casters",
         "partID": 9,
+        "onFrame": false,
         "numSubImages": 1,
         "zRank": [
           [
@@ -636,6 +644,7 @@
       {
         "name": "Wheel Locks",
         "partID": 10,
+        "onFrame": false,
         "numSubImages": 1,
         "zRank": [
           [
@@ -689,6 +698,7 @@
       {
         "name": "Side Guard",
         "partID": 11,
+        "onFrame": true,
         "numSubImages": 1,
         "zRank": [
           [
@@ -1072,6 +1082,7 @@
       {
         "name": "Frame Style",
         "partID": 1,
+        "onFrame": true,
         "numSubImages": 1,
         "zRank": [
           [
@@ -1101,6 +1112,7 @@
       {
         "name": "Back Rest",
         "partID": 2,
+        "onFrame": true,
         "numSubImages": 1,
         "zRank": [
           [
@@ -1154,6 +1166,7 @@
       {
         "name": "Wheel",
         "partID": 3,
+        "onFrame": false,
         "numSubImages": 2,
         "zRank": [
           [
@@ -1219,6 +1232,7 @@
       {
         "name": "Hand Rims",
         "partID": 5,
+        "onFrame": false,
         "numSubImages": 2,
         "zRank": [
           [
@@ -1291,6 +1305,7 @@
       {
         "name": "Axle",
         "partID": 6,
+        "onFrame": false,
         "numSubImages": 2,
         "zRank": [
           [
@@ -1339,6 +1354,7 @@
       {
         "name": "Tire",
         "partID": 7,
+        "onFrame": false,
         "numSubImages": 2,
         "zRank": [
           [
@@ -1407,6 +1423,7 @@
       {
         "name": "Inner Tube",
         "partID": 8,
+        "onFrame": false,
         "numSubImages": 0,
         "zRank": [],
         "defaultOptionID": 271,
@@ -1440,6 +1457,7 @@
       {
         "name": "Casters",
         "partID": 9,
+        "onFrame": false,
         "numSubImages": 1,
         "zRank": [
           [
@@ -1505,6 +1523,7 @@
       {
         "name": "Wheel Locks",
         "partID": 10,
+        "onFrame": false,
         "numSubImages": 1,
         "zRank": [
           [
@@ -1558,6 +1577,7 @@
       {
         "name": "Side Guard",
         "partID": 11,
+        "onFrame": true,
         "numSubImages": 0,
         "zRank": [],
         "defaultOptionID": 303,
@@ -1740,7 +1760,7 @@
           "cm",
           "in"
         ],
-        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "videoURL": "videos/Rear_Seat_Height.mp4",
         "imageURLs": ["images/abacus_page/measure/measurement_jpg/rear-seat-height.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/rear_seat_height.gif",
         "measureOptions": [

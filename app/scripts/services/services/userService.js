@@ -97,12 +97,13 @@ angular.module('abacuApp')
         $cookieStore.put('currentWheelchair', {frameID: frameID, isNew: true, index: -1});
       }
 
-      function setEditWheelchair(index) {
+      function setEditWheelchair(index, orderInd) {
         if (index >= 0 && index < designedWheelchairs.length) {
           curEditWheelchairIndex = index;
         }
         currentWheelchair.editingWheelchair = jQuery.extend(true, designedWheelchairs[index]);
         currentWheelchair.isNew = false;
+        currentWheelchair.orderInd = orderInd;
         $cookieStore.put('currentWheelchair', {frameID: -1, isNew: false, index: index});
       }
 
@@ -257,15 +258,20 @@ angular.module('abacuApp')
 
         //Create a new wheelchair object of given frame type and set edit pointer to it
         pushNewWheelchair: function () {
-          if (currentWheelchair.isNew === true) {
+          if (currentWheelchair.isNew === true && designedWheelchairs.length < 3) {
             designedWheelchairs.push(currentWheelchair.editingWheelchair);
             curEditWheelchairIndex = designedWheelchairs.length - 1;
 
           }
           else if (currentWheelchair.isNew === false) {
             designedWheelchairs[curEditWheelchairIndex] = jQuery.extend(true, currentWheelchair.editingWheelchair);
-
+            var order = this.getCurEditOrder();
+            if(order && currentWheelchair.orderInd >= 0) {
+              order.wheelchairs[currentWheelchair.orderInd] = designedWheelchairs[curEditWheelchairIndex];
+            }
           }
+          else
+            alert('You may only save 3 wheelchairs');
           this.updateCookie();
         },
 
