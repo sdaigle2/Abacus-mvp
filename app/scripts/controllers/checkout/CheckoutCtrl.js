@@ -52,8 +52,7 @@ angular.module('abacuApp')
 
     //Register a new user account
     $scope.register = function () {
-      //TODO: Register the user
-      alert('COMING SOON!!!');
+      $location.path('/register');
     };
 
   }]);

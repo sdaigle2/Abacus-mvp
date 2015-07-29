@@ -245,6 +245,10 @@
         <div class="order-button medium"
              data-ng-style="(curStage === stages.COMPLETE) && {'width': '80%'}"
              data-ng-click="next()" data-ng-bind="display[curStage].button"></div>
+        <div class="order-button medium"
+             data-ng-show="curStage === stages.COMPLETE && !loggedIn"
+             data-ng-style="(curStage === stages.COMPLETE) && {'width': '80%'}"
+             data-ng-click="register()">Register</div>
       </div>
     </div>
   </div>

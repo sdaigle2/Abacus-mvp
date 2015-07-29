@@ -112,7 +112,7 @@ document.addEventListener("click", printMousePos);
         <div class="main-measure" data-ng-if="getCurPageType() == pageType.MEASURE">
           <div class="measure-top">
             <h1><strong data-ng-bind="getCurMeasureData().name"></strong></h1>
-           
+
 
             <div class="measure-body">
               <table class="measure-tab">
@@ -136,12 +136,10 @@ document.addEventListener("click", printMousePos);
                 <h4 class="measure-content-title"
                     data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">
                   <span data-ng-bind="getCurMeasureData().name"></span> Tutorial </h4>
-                <iframe
-                  data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL"
-                  data-ng-src="{{getCurMeasureData().videoURL}}"
-                  frameborder="0"
-                  allowfullscreen>
-                </iframe>
+                <video
+                  data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">
+                  <source data-ng-src="{{getCurMeasureData().videoURL}}" type="video/mp4">
+                </video>
                 <img
                   data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.ERGONOMICS"
                   data-ng-src="{{getCurMeasureData().gifURL}}">

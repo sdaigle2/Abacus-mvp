@@ -45,6 +45,7 @@ angular.module('abacuApp')
         }
       ];
 
+      $scope.loggedIn = User.isLoggedIn();
       /*************************** LOADING CUREDITORDER ****************************/
 
       $scope.curOrder = User.getCurEditOrder();
@@ -137,6 +138,8 @@ angular.module('abacuApp')
 
 
           case $scope.stages.COMPLETE:
+            User.setContentSection('orders');
+            $location.path('/settings');
             break;
         }
       };
@@ -160,6 +163,9 @@ angular.module('abacuApp')
         return allFilled;
       }
 
+      $scope.register = function(){
+        $location.path('/register');
+      };
       /*************************** INFO ******************************/
 
 
