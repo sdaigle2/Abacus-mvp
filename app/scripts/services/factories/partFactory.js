@@ -8,7 +8,7 @@
 * Part contains numSubImages and zRank, which are used by PreviewImage
 */
 angular.module('abacuApp')
-  .factory('Part', ['Option', 'syncJSON', function (Option, syncJSON) {
+  .factory('Part', ['Option', 'syncJSON', function (Option) {
 
     //##########################  Constructor  #########################
     function Part(partData) {
@@ -18,6 +18,7 @@ angular.module('abacuApp')
       this.numSubImages    = partData.numSubImages;
       this.zRank           = partData.zRank;
       this.defaultOptionID = partData.defaultOptionID;
+      this.iconImage       = partData.iconImage;
 
       this.options = [];
       if(!this.zRank){
@@ -35,6 +36,7 @@ angular.module('abacuApp')
 
       getID: function () { return this.partID; },
       getName: function () { return this.name; },
+      getIconImage: function() {return this.iconImage},
       getNumSubImages: function () { return this.numSubImages; },
       getZRanks: function () { return this.zRank; },
       getDefaultOptionID: function () { return this.defaultOptionID; },

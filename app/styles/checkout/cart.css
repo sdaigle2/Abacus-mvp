@@ -208,8 +208,13 @@ a:hover{
 }
 
 .title-column{
-  width: 140px;
+  width: 145px;
   font-weight: bold;
+  text-align: left;
+}
+
+.title-column p{
+  display: inline-block;
 }
 
 .value-column{
