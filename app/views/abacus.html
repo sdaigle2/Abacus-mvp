@@ -137,8 +137,9 @@ document.addEventListener("click", printMousePos);
                     data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">
                   <span data-ng-bind="getCurMeasureData().name"></span> Tutorial </h4>
                 <video
-                  data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">
-                  <source data-ng-src="{{getCurMeasureData().videoURL}}" type="video/mp4">
+                  width="550" controls
+                  data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL"
+                  data-ng-src="{{getCurMeasureData().videoURL}}">
                 </video>
                 <img
                   data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.ERGONOMICS"
