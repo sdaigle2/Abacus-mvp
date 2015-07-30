@@ -324,10 +324,12 @@ app.post('/order', function (req, res) {
             subject: 'Abacus Purchase Invoice'
           });
           users.get(req.session.user, function(err, existing){
-            existing.orders.push(req.body.order);
-            users.insert(existing, function(err, body){
-              console.log(err);
-            });
+            if(existing.orders) {
+              existing.orders.push(req.body.order);
+              users.insert(existing, function (err, body) {
+                console.log(err);
+              });
+            }
           });
           invoiceEmail.to = req.body.order.email;
           invoiceEmail.text = 'Thank you for using Abacus to purchase your new Wheelchair. We have attached the invoice for your order.';
