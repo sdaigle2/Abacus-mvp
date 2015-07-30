@@ -111,7 +111,7 @@ document.addEventListener("click", printMousePos);
         <!-- MEASURE: Video + gif + details -->
         <div class="main-measure" data-ng-if="getCurPageType() == pageType.MEASURE">
           <div class="measure-top">
-            <h1><strong data-ng-bind="getCurMeasureData().name"></strong></h1>
+            <h3><strong data-ng-bind="getCurMeasureData().name"></strong></h3>
 
 
             <div class="measure-body">
@@ -317,9 +317,9 @@ document.addEventListener("click", printMousePos);
             </div>
             <!-- Measure Image Carousel -->
             <div class="sideBar-measure-bottom">
-              <!--<img class="help-image" ng-repeat="image in getCurMeasureData().imageURLs"-->
-              <!--ng-show="curMeasureCarouselIndex === $index"-->
-              <!--ng-src="{{image}}" width="350" height="340">-->
+              <img class="help-image" ng-repeat="image in getCurMeasureData().imageURLs"
+              ng-show="curMeasureCarouselIndex === $index"
+              ng-src="{{image}}" width="350" height="340">
 
               <img class="leftButton" src="images/icons/circle_left_button.svg" alt="Previous" width="30" height="30"
                    data-ng-click="rotateMeasureCarouselIndex(-1)"/>

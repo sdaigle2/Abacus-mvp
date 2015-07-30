@@ -697,7 +697,7 @@
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
-            "thumbnailURL": "",
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/not_available.png",
             "desc": "Cutting weight? Live life on the edge with no wheel locks? you rebel you.",
             "weight": -0.2,
             "price": -50,
@@ -1712,7 +1712,7 @@
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": ["images/abacus_page/measure/measurement_jpg/backrest_height.jpg", "images/abacus_page/measure/measurement_jpg/backrest_height2.jpg"],
-        "gifURL": ["images/abacus_page/measure/measurement_gif/backrest_height.gif"],
+        "gifURL": "images/abacus_page/measure/measurement_gif/backrest_height.gif",
         "measureOptions": [
           [
             "25",
@@ -1882,7 +1882,7 @@
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": ["images/abacus_page/measure/measurement_jpg/axle_position.jpg", "images/abacus_page/measure/measurement_jpg/axle_position2.jpg"],
-        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+        "gifURL": "images/abacus_page/measure/measurement_gif/axle_position.gif",
         "measureOptions": [
           [
             "6",

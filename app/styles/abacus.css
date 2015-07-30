@@ -301,9 +301,15 @@
   padding-top: 3%;
 }
 
+.main-measure .measure-top>h3{
+  font-size: 27px;
+  padding-bottom: 10px;
+
+}
+
 .main-measure .measure-body{
   width: 711px;
-  height : 500px;
+  height : 481px;
   background-color: #FFFFFF;
   border: 1px solid #bcbec0;
   border-collapse: collapse;
