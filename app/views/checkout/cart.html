@@ -88,7 +88,8 @@
     <table class="parts-table" data-ng-init="hoverItem = {index: -1, name: ''}" ng-if="wheelchairs.length > 0">
       <tr class="part-row" ng-repeat="part in parts">
         <td class="title-column">
-          <p data-ng-bind="part.getName()"></p>
+          <img src={{part.getIconImage()}} width="30">
+          <p  data-ng-bind="part.getName()"></p>
         </td>
         <td class="value-column hover-column" ng-repeat="wheelchair in wheelchairs"
             data-ng-mouseenter="hoverItem.index = $index; hoverItem.name = part.getName()"

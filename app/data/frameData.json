@@ -14,6 +14,7 @@
         "partID": 1,
         "onFrame": true,
         "numSubImages": 1,
+        "iconImage": "images/cart_page/frame.png",
         "zRank": [
           [
             10,
@@ -234,6 +235,7 @@
         "partID": 2,
         "onFrame": true,
         "numSubImages": 1,
+        "iconImage": "images/cart_page/backrest.png",
         "zRank": [
           [
             11,
@@ -288,6 +290,8 @@
         "partID": 3,
         "onFrame": false,
         "numSubImages": 2,
+        "iconImage": "images/cart_page/wheel.png",
+
         "zRank": [
           [
             5,
@@ -354,6 +358,7 @@
         "partID": 5,
         "onFrame": false,
         "numSubImages": 2,
+        "iconImage": "images/cart_page/hand_rim.png",
         "zRank": [
           [
             1,
@@ -425,6 +430,7 @@
       {
         "name": "Axle",
         "partID": 6,
+        "iconImage": "images/cart_page/frame.png",
         "onFrame": false,
         "numSubImages": 2,
         "zRank": [
@@ -474,6 +480,7 @@
       {
         "name": "Tire",
         "partID": 7,
+        "iconImage": "images/cart_page/tire.png",
         "onFrame": false,
         "numSubImages": 2,
         "zRank": [
@@ -544,6 +551,7 @@
       {
         "name": "Inner Tube",
         "partID": 8,
+        "iconImage": "images/cart_page/inner_tube.png",
         "onFrame": false,
         "numSubImages": 0,
         "zRank": [],
@@ -578,6 +586,7 @@
       {
         "name": "Casters",
         "partID": 9,
+        "iconImage": "images/cart_page/caster_style.png",
         "onFrame": false,
         "numSubImages": 1,
         "zRank": [
@@ -644,6 +653,7 @@
       {
         "name": "Wheel Locks",
         "partID": 10,
+        "iconImage": "images/cart_page/frame.png",
         "onFrame": false,
         "numSubImages": 1,
         "zRank": [
@@ -698,6 +708,7 @@
       {
         "name": "Side Guard",
         "partID": 11,
+        "iconImage": "images/cart_page/side_guard.png",
         "onFrame": true,
         "numSubImages": 1,
         "zRank": [
@@ -763,7 +774,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/measurement_jpg/rear-seat-width.jpg","images/abacus_page/measure/measurement_jpg/rear-seat-width-person.jpg","images/abacus_page/measure/measurement_jpg/rear-seat-width-person2.jpg"],
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/rear_seat_width.jpg","images/abacus_page/measure/measurement_jpg/rear_seat_width2.jpg","images/abacus_page/measure/measurement_jpg/rear_seat_width3.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/rear_seat_height.gif",
         "measureOptions": [
           [
@@ -804,7 +815,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/measurement_jpg/seat-depth.jpg","images/abacus_page/measure/measurement_jpg/seat-depth-person.jpg","images/abacus_page/measure/measurement_jpg/seat-depth-person2.jpg"],
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/seat_depth.jpg","images/abacus_page/measure/measurement_jpg/seat_depth2.jpg","images/abacus_page/measure/measurement_jpg/seat_depth3.jpg", "images/abacus_page/measure/measurement_jpg/seat_depth4.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/seat_depth.gif",
         "measureOptions": [
           [
@@ -845,7 +856,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/measurement_jpg/back-rest-height.jpg,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1"],
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/backrest_height.jpg", "images/abacus_page/measure/measurement_jpg/backrest_height2.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/backrest_height.gif",
         "measureOptions": [
           [
@@ -905,8 +916,8 @@
           "cm",
           "in"
         ],
-        "videoURL": "videos/Rear_Seat_Height.mp4",
-        "imageURLs": ["images/abacus_page/measure/measurement_jpg/rear-seat-height.jpg"],
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/rear_seat_height.jpg", "images/abacus_page/measure/measurement_jpg/rear_seat_height2.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/rear_seat_height.gif",
         "measureOptions": [
           ["42.5"],
@@ -927,7 +938,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/measurement_jpg/front-seat-height.jpg"],
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/front_seat_height.jpg", "images/abacus_page/measure/measurement_jpg/front_seat_height2.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/front_seat_height.gif",
         "measureOptions": [
           ["47.71"],
@@ -948,7 +959,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/measurement_jpg/foot-rest-width.jpg","images/abacus_page/measure/measurement_jpg/foot-rest-width-person.jpg","images/abacus_page/measure/measurement_jpg/foot-rest-width-person2.jpg"],
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/footrest_width.jpg","images/abacus_page/measure/measurement_jpg/footrest_width2.jpg","images/abacus_page/measure/measurement_jpg/footrest_width3.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/footrest_width.gif",
         "measureOptions": [
           ["25.68"],
@@ -969,7 +980,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs":["images/abacus_page/measure/measurement_jpg/foot-rest-height.jpg","images/abacus_page/measure/measurement_jpg/foot-rest-height-person.jpg", "images/abacus_page/measure/measurement_jpg/foot-rest-height-person2.jpg"],
+        "imageURLs":["images/abacus_page/measure/measurement_jpg/footrest_height.jpg","images/abacus_page/measure/measurement_jpg/footrest_height2.jpg", "images/abacus_page/measure/measurement_jpg/footrest_height3.jpg", "images/abacus_page/measure/measurement_jpg/footrest_height4.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/footrest_height.gif",
         "measureOptions": [
           [
@@ -1014,7 +1025,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/measurement_jpg/axel-position.jpg"],
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/axle_position.jpg", "images/abacus_page/measure/measurement_jpg/axle_position2.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/axle_position.gif",
         "measureOptions": [
           [
@@ -1610,7 +1621,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/measurement_jpg/rear-seat-width.jpg","images/abacus_page/measure/measurement_jpg/rear-seat-width-person.jpg","images/abacus_page/measure/measurement_jpg/rear-seat-width-person2.jpg"],
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/rear_seat_width.jpg","images/abacus_page/measure/measurement_jpg/rear_seat_width2.jpg","images/abacus_page/measure/measurement_jpg/rear_seat_width3.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/rear_seat_height.gif",
         "measureOptions": [
           [
@@ -1651,7 +1662,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/measurement_jpg/seat-depth.jpg","images/abacus_page/measure/measurement_jpg/seat-depth-person.jpg","images/abacus_page/measure/measurement_jpg/seat-depth-person2.jpg"],
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/seat_depth.jpg","images/abacus_page/measure/measurement_jpg/seat_depth2.jpg","images/abacus_page/measure/measurement_jpg/seat_depth3.jpg", "images/abacus_page/measure/measurement_jpg/seat_depth4.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/seat_depth.gif",
         "measureOptions": [
           [
@@ -1700,7 +1711,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": "images/abacus_page/measure/measurement_jpg/back-rest-height.jpg,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/backrest_height.jpg", "images/abacus_page/measure/measurement_jpg/backrest_height2.jpg"],
         "gifURL": ["images/abacus_page/measure/measurement_gif/backrest_height.gif"],
         "measureOptions": [
           [
@@ -1760,8 +1771,9 @@
           "cm",
           "in"
         ],
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/rear_seat_height.jpg", "images/abacus_page/measure/measurement_jpg/rear_seat_height2.jpg"],
         "videoURL": "videos/Rear_Seat_Height.mp4",
-        "imageURLs": ["images/abacus_page/measure/measurement_jpg/rear-seat-height.jpg"],
+
         "gifURL": "images/abacus_page/measure/measurement_gif/rear_seat_height.gif",
         "measureOptions": [
           ["42.7"],
@@ -1782,7 +1794,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/measurement_jpg/front-seat-height.jpg"],
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/front_seat_height.jpg", "images/abacus_page/measure/measurement_jpg/front_seat_height2.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/front_seat_height.gif",
         "measureOptions": [
           ["48"],
@@ -1803,7 +1815,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["images/abacus_page/measure/measurement_jpg/foot-rest-width.jpg","images/abacus_page/measure/measurement_jpg/foot-rest-width-person.jpg","images/abacus_page/measure/measurement_jpg/foot-rest-width-person2.jpg"],
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/footrest_width.jpg","images/abacus_page/measure/measurement_jpg/footrest_width2.jpg","images/abacus_page/measure/measurement_jpg/footrest_width3.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/footrest_width.gif",
         "measureOptions": [
           ["27.8"],
@@ -1824,7 +1836,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs":["images/abacus_page/measure/measurement_jpg/foot-rest-height.jpg","images/abacus_page/measure/measurement_jpg/foot-rest-height-person.jpg", "images/abacus_page/measure/measurement_jpg/foot-rest-height-person2.jpg"],
+        "imageURLs":["images/abacus_page/measure/measurement_jpg/footrest_height.jpg","images/abacus_page/measure/measurement_jpg/footrest_height2.jpg", "images/abacus_page/measure/measurement_jpg/footrest_height3.jpg", "images/abacus_page/measure/measurement_jpg/footrest_height4.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/footrest_height.gif",
         "measureOptions": [
           [
@@ -1869,7 +1881,7 @@
           "in"
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
+        "imageURLs": ["images/abacus_page/measure/measurement_jpg/axle_position.jpg", "images/abacus_page/measure/measurement_jpg/axle_position2.jpg"],
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
         "measureOptions": [
           [
