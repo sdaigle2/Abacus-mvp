@@ -70,7 +70,6 @@ angular.module('abacuApp')
       while ($cookieStore.get('wheelchair' + wIndex)){
         designedWheelchairs.push(new Wheelchair($cookieStore.get('wheelchair' + wIndex)));
         wIndex ++;
-
       }
 
       var curOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
@@ -247,9 +246,10 @@ angular.module('abacuApp')
         },
 
         updateCookie: function () {
-
+          console.log('wheelchair'+designedWheelchairs.length);
+          $cookieStore.remove('wheelchair'+designedWheelchairs.length);
           for (var i = 0; i < designedWheelchairs.length; i++) {
-            $cookieStore.put('wheelchair' + i, designedWheelchairs[i].getAll() )
+            $cookieStore.put('wheelchair' + i, designedWheelchairs[i].getAll());
           }
         },
 
