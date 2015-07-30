@@ -538,6 +538,7 @@
           {
             "name": "Schwalbe Low Tread",
             "optionID": 62,
+            "defaultColorID": 0,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
@@ -686,7 +687,7 @@
             "defaultSizeIndex": -1,
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/break/one_hand_operating.png",
-            "desc": "Compact, reliable, and opperable with just one hand.",
+            "desc": "Compact, reliable, and operable with just one hand.",
             "weight": 0,
             "price": 0,
             "defaultColorID": 0
@@ -775,7 +776,7 @@
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": ["images/abacus_page/measure/measurement_jpg/rear_seat_width.jpg","images/abacus_page/measure/measurement_jpg/rear_seat_width2.jpg","images/abacus_page/measure/measurement_jpg/rear_seat_width3.jpg"],
-        "gifURL": "images/abacus_page/measure/measurement_gif/rear_seat_height.gif",
+        "gifURL": "images/abacus_page/measure/measurement_gif/rear_seat_width.gif",
         "measureOptions": [
           [
             "35",
@@ -916,7 +917,7 @@
           "cm",
           "in"
         ],
-        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "videoURL": "videos/rear_seat_height.mp4",
         "imageURLs": ["images/abacus_page/measure/measurement_jpg/rear_seat_height.jpg", "images/abacus_page/measure/measurement_jpg/rear_seat_height2.jpg"],
         "gifURL": "images/abacus_page/measure/measurement_gif/rear_seat_height.gif",
         "measureOptions": [
@@ -1421,6 +1422,7 @@
           {
             "name": "Schwalbe Low Tread",
             "optionID": 262,
+            "defaultColorID": 0,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
@@ -1622,7 +1624,7 @@
         ],
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": ["images/abacus_page/measure/measurement_jpg/rear_seat_width.jpg","images/abacus_page/measure/measurement_jpg/rear_seat_width2.jpg","images/abacus_page/measure/measurement_jpg/rear_seat_width3.jpg"],
-        "gifURL": "images/abacus_page/measure/measurement_gif/rear_seat_height.gif",
+        "gifURL": "images/abacus_page/measure/measurement_gif/rear_seat_width.gif",
         "measureOptions": [
           [
             "35",
@@ -1772,7 +1774,7 @@
           "in"
         ],
         "imageURLs": ["images/abacus_page/measure/measurement_jpg/rear_seat_height.jpg", "images/abacus_page/measure/measurement_jpg/rear_seat_height2.jpg"],
-        "videoURL": "videos/Rear_Seat_Height.mp4",
+        "videoURL": "videos/rear_seat_height.mp4",
 
         "gifURL": "images/abacus_page/measure/measurement_gif/rear_seat_height.gif",
         "measureOptions": [
@@ -1821,8 +1823,8 @@
           ["27.8"],
           ["10.9"]
         ],
-        "weights": [],
-        "prices": []
+        "weights": [0],
+        "prices": [0]
       },
       {
         "name": "Foot Rest Height - Adjustable",

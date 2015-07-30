@@ -162,10 +162,10 @@ document.addEventListener("click", printMousePos);
         <!-- Tabs -->
         <ul class="nav nav-tabs nav-justified shadow-fixer">
           <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}">
-            <a id="shadow-customs" ng-href="#/abacus" data-ng-click="switchPageType(pageType.CUSTOMIZE)">Customize</a>
+            <a id="shadow-customs" data-ng-click="switchPageType(pageType.CUSTOMIZE)">Customize</a>
           </li>
           <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.MEASURE}">
-            <a ng-href="#/abacus" data-ng-click="switchPageType(pageType.MEASURE); setMeasureTabs(MeasureTabs.ERGONOMICS)">Measure</a>
+            <a data-ng-click="switchPageType(pageType.MEASURE); setMeasureTabs(MeasureTabs.ERGONOMICS)">Measure</a>
           </li>
         </ul>
 

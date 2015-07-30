@@ -849,15 +849,15 @@ img.rightButtonNav{
 }
 
 @keyframes slideLeft {
-  0% {left: 0; top: 5px}
-  60% {left: -300px; top: 5px}
-  100% {left: -300px; top: -57px}
+  0% {left: 0; top: 5px; height: calc(100% - 7px);}
+  60% {left: -300px; top: 5px; height: calc(100% - 7px);}
+  100% {left: -300px; top: -57px; height: calc(100% + 57px);}
 }
 
 @keyframes slideRight {
   0% {left: -300px; top: -57px}
-  40% {left: -300px; top: 5px}
-  100% {left: 0; top: 5px}
+  40% {left: -300px; top: 5px; height: calc(100% - 7px);}
+  100% {left: 0; top: 5px; height: calc(100% - 7px);}
 }
 
 .panel { /* so that the panel won't visibly fade out upon load */
