@@ -30,7 +30,7 @@ angular.module('abacuApp')
       this.videoURL = measureData.videoURL;
       this.imageURLs = measureData.imageURLs;
       this.gifURL = measureData.gifURL;
-
+      console.log(this.prices.length === this.measureOptions[0].length);
     };
 
 
