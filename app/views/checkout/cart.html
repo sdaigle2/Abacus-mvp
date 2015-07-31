@@ -13,7 +13,7 @@
       <!-- ng-repeat="wheelchair in wheelchairs"-->
 
       <div ng-repeat="w in wheelchairs" class="comparisonImages">
-        <p><h4><strong data-ng-bind="w.getTitle()"></strong></h4></p>
+        <h4><strong data-ng-bind="w.getTitle()"></strong></h4>
         <canvas my-canvas img_arr={{w.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
                 ng-mouseleave="editPanelShow = false"
                 width="187"></canvas>

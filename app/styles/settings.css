@@ -168,6 +168,7 @@
 }
 
 .showSettingsContent {
+  display: block;
   display: initial;
   top: 0;
   right: 0;
