@@ -10,8 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('SettingsCtrl', ['$scope', '$location', '$http', 'User', 'Units', 'Drop',
-    function ($scope, $location, $http, User, Units, Drop) {
+  .controller('SettingsCtrl', ['$scope', '$location', '$http', 'User', 'Units', 'Drop', 'FrameData',
+    function ($scope, $location, $http, User, Units, Drop, FrameData) {
       Drop.setFalse();
       //Kick user off page if not logged in
       if (User.isLoggedIn() === false) {
@@ -35,6 +35,7 @@ angular.module('abacuApp')
         newPass2: '',
         orders: User.getSentOrders()
       };
+
 
       //Sidebar options
       $scope.ContentSection = {
@@ -161,33 +162,39 @@ angular.module('abacuApp')
 
         //Options for each measure - Can be called using $scope.measOptions['rearSeatHeight'] to take advantage of enum
 
-      $.getJSON("../../../data/frameData.json", function(json) {
-          
-          var frameData = json[1].measures;
-          console.log(frameData);
+     
+         
+          var rearSeatH = FrameData.getFrameByID(1).measures[3];
+          var rearSeatW = FrameData.getFrameByID(1).measures[0];
+          var backrestH = FrameData.getFrameByID(1).measures[2];
+          var seatD = FrameData.getFrameByID(1).measures[1];
+          //console.log(rearSeatH);
+          //console.log(rearSeatW);
+          //console.log(backrestH);
+          //console.log(seatD);
           $scope.measDisplay = {  
             rearSeatHeight: {
-              name: frameData[3].name,
-              options: frameData[3].measureOptions[1],
+              name: rearSeatH.name,
+              options: rearSeatH.measureOptions[1],
               optionSelected: User.commonMeasures.REAR_SEAT_HEIGHT,
-              desc: frameData[3].desc,
-              imgURLs: frameData[3].imageURLs,
+              desc: rearSeatH.desc,
+              imgURLs: rearSeatH.imageURLs,
               imgIndex: 0
             },
             rearSeatWidth: {
-              name: frameData[0].name,
-              options: frameData[0].measureOptions[1],
+              name:rearSeatW.name,
+              options: rearSeatW.measureOptions[1],
               optionSelected: User.commonMeasures.REAR_SEAT_WIDTH,
-              desc: frameData[0].desc,
-              imgURLs: frameData[0].imageURLs,
+              desc: rearSeatW.desc,
+              imgURLs: rearSeatW.imageURLs,
               imgIndex: 0
             },
             foldingBackrestHeight: {
-              name: frameData[2].name,
-              options: frameData[2].measureOptions[1],
+              name: backrestH.name,
+              options: backrestH.measureOptions[1],
               optionSelected: User.commonMeasures.FOLDING_BACKREST_HEIGHT,
-              desc: frameData[2].desc,
-              imgURLs: frameData[2].imageURLs,
+              desc: backrestH.desc,
+              imgURLs: backrestH.imageURLs,
               imgIndex: 0
             },
             axelPosition: {
@@ -199,15 +206,15 @@ angular.module('abacuApp')
               imgIndex: 0
             },
             seatDepth: {
-              name: frameData[1].name,
-              options: frameData[1].measureOptions[1],
+              name: seatD.name,
+              options: seatD.measureOptions[1],
               optionSelected: User.commonMeasures.SEAT_DEPTH,
-              desc: frameData[1].desc,
-              imgURLs: frameData[1].imageURLs,
+              desc: seatD.desc,
+              imgURLs: seatD.imageURLs,
               imgIndex: 0
             }
           };
-      });
+    
       $scope.curUnitSys = User.getUnitSys();
 
       $scope.unitSysList = [

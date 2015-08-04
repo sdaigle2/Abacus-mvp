@@ -79,7 +79,9 @@ angular.module('abacuApp')
         //     this.getFrame(fID).getPart(pID).getOptionColor(oID, cID);
         //     this.getFrame(fID).getPart(pID).getOption(oID).getColor(cID);
       },
-
+      getFrameByID: function(fID){
+         return this.getFrame(fID);
+      },
       getFrameMeasure: function (fID, mID) {
         return this.getFrame(fID).getMeasure(mID);
       },
