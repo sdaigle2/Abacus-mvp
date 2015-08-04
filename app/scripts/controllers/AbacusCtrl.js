@@ -526,6 +526,15 @@ angular.module('abacuApp')
         var width = $(window).width();
         var height = $(window). height();
         return 0.463*(width-330) > 0.9*(height-140);
-      }
+      };
+
+      $(".swiper").on("swiperight",function(){
+        console.log('swiperight');
+        $scope.rotatePreview(1);
+      });
+
+      $(".swiper").on("swipeleft",function(){
+        $scope.rotatePreview(-1);
+      });
 
     }]);

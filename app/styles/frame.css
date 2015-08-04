@@ -21,20 +21,26 @@
 }
 
 .frame-item {
-  padding: 10px 0 10px;
   min-height: 300px;
   line-height: 1;
   display: inline-block;
-  width: 45%;
+  width: 450px;
   margin-bottom: 40px;
+  border: solid 1px #eaeaea;
 }
 
 .frame-item.right-border {
   margin-right: 10%;
+  border-left: solid 1px #eaeaea;
 }
 
 .frame-item.bottom-border {
   /*border-bottom: solid 1px gray;*/
+}
+
+.frame-item.horizontal {
+  margin-bottom: 0;
+  width: 100%;
 }
 
 .frame-item-title {
@@ -52,17 +58,23 @@
   background: white;
   padding: 20px;
   font-size: 18px;
-  height: 40%;
+  height: 100%;
   line-height: 25px;
   overflow: auto;
+}
 
+.horizontal .frame-item-description{
+  text-align: left;
+  padding-left: 0;
+}
 
+.horizontal .frame-item-desc{
+  height: 190px;
 }
 
 .frame-item-price {
   font-size: 17px;
   background-color: white;
-  width: 50%;
   padding-top: 10px;
   padding-bottom: 10px;
   margin: auto;
@@ -75,18 +87,26 @@
   padding-bottom: 10px;
 }
 
+.horizontal .frame-item-price, .horizontal .frame-item-weight {
+  font-size: 27px;
+}
+
 .frame-item-image {
   position: relative;
-  border: solid 2px #eaeaea;
   width: 450px;
 }
 
+.horizontal .frame-item-image {
+  display: inline-block;
+  width: 400px;
+  float: left;
+}
 
 
 .frame-item-image .img{
   position: relative;
   margin: 0 auto;
-  width: 100%;
+  width: 99%;
   z-index: 1;
   overflow:hidden;
 }
@@ -107,10 +127,14 @@
   width: 102%;
   transition: all 0.2s ease 0s;
   margin-left: -2%;
+  height: 100%;
+  opacity: 0.9;
 }
+
 .img .frame-item-desc-hide{
   top: -404px;
 }
+
 .img .frame-item-desc-show{
   top: 0;
 }
@@ -122,7 +146,6 @@
   background-color: #60C2B1;
   opacity: 0.9;
   z-index:2;
-
 }
 
 
@@ -153,6 +176,36 @@
   cursor: pointer;
 }
 
+.frame-item-footer {
+  border: solid 1px #eaeaea;
+  padding: 30px;
+}
+
+.frame-item-footer>span {
+  font-size: 27px;
+  float: left;
+}
+
+.horizontal .frame-item-footer>span {
+  padding-top: 10px;
+}
+
+.frame-item-footer-details {
+  margin-top: 37px;
+}
+
+.horizontal .frame-item-footer-details {
+  display: inline-block;
+  margin-left: calc(100% - 320px);
+  margin-top: 0;
+}
+
+.horizontal .frame-item-footer {
+  display: inline-block;
+  border: none;
+  width: calc(100% - 400px);
+  height: 100%;
+}
 
 p{
   margin: 0 0 0;
@@ -161,14 +214,14 @@ p{
 .frame-info-table{
   font-size: 17px;
   background-color: #FFF;
-  height: 10%;
-  opacity: 0.75;
-  padding-top: 4%;
-  width: 100%;
 }
-td{
-  width:150px;
 
+td {
+  width: 85px;
+}
+
+.horizontal td {
+  width: 125px;
 }
 
 td.blue-line{
@@ -176,5 +229,16 @@ td.blue-line{
 }
 
 .addButton{
-  width: 300px;
+  width: 100px;
+  padding: 5px 15px;
+  height: 26px;
+  margin: 0;
+  float: right;
+}
+
+.horizontal .addButton{
+  width: 200px;
+  height: 45px;
+  font-size: 23px;
+  padding-top: 10px;
 }

@@ -1,16 +1,15 @@
 <link href="styles/abacus.css" rel="stylesheet"/>
-
 <script>
-function printMousePos(e) {
+  function printMousePos(e) {
     var cursorY = e.clientY;
-    if(cursorY>280){
+    if (cursorY > 280) {
       var dropdown = document.getElementsByClassName("dropdownTable");
-      if(dropdown.length>0){
+      if (dropdown.length > 0) {
         $("#SaveButton").trigger("click");
       }
     }
-}
-document.addEventListener("click", printMousePos);
+  }
+  document.addEventListener("click", printMousePos);
 </script>
 
 
@@ -52,7 +51,8 @@ document.addEventListener("click", printMousePos);
             <h4 data-ng-click="saveComputer()" id="panelText">SAVE TO MY COMPUTER</h4>
           </td>
           <td id="panelIcon3"><img data-ng-src="images/abacus_page/save_review/share_with_friends_hover.png">
-            <img class="iconHover" style="opacity: 0; cursor: auto;" data-ng-src="images/abacus_page/save_review/share_with_friends.png">
+            <img class="iconHover" style="opacity: 0; cursor: auto;"
+                 data-ng-src="images/abacus_page/save_review/share_with_friends.png">
             <h4 style="color: grey;">SHARE WITH FRIEND</h4>
           </td>
         </tr>
@@ -100,6 +100,7 @@ document.addEventListener("click", printMousePos);
             <img class="rightButton" src="images/icons/rotate_right.png" alt="Next" width="30" height="30"
                  data-ng-click="rotatePreview(1)"/>
           </div>
+          <div class="swiper"></div>
           <img class="main-custom-wheelchairDisplay"
                ng-repeat="img in getPreviewImages()"
                ng-src="{{img.URL}}"
@@ -145,11 +146,13 @@ document.addEventListener("click", printMousePos);
                   data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.ERGONOMICS"
                   data-ng-src="{{getCurMeasureData().gifURL}}">
 
-                 <h4 data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.SUMMARY" data-ng-bind-html="getCurMeasureData().desc"></h4>
+                <h4 data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.SUMMARY"
+                    data-ng-bind-html="getCurMeasureData().desc"></h4>
+
                 <div data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.SUMMARY"
                      data-ng-bind-html="getCurMeasureData().details">
 
-                   </div>
+                </div>
               </div>
             </div>
           </div>
@@ -194,12 +197,13 @@ document.addEventListener("click", printMousePos);
               <tr class="sideBar-custom-item"
                   data-ng-repeat="option in getCurPartData().options"
                   data-ng-style="(isSidebarColored(option.optionID)) && {'border-left': 'solid 5px ' + getSidebarColor(option.optionID) }"
-                  data-ng-click="setPanel(option.optionID); ">
+                >
                 <td class="sideBar-custom-item-left">
                   <img class="colorOptionsIndicator" ng-show="option.colors"
                        src="images/icons/color_option.png" alt="See color options"/>
                   <img data-ng-src="{{option.thumbnailURL}}" height="100" width="100"
-                       ng-class="{'colorCursor': option.colors.length > 0}"/>
+                       ng-class="{'colorCursor': option.colors.length > 0}"
+                       data-ng-click="setPanel(option.optionID);"/>
                 </td>
                 <td class="sideBar-custom-item-right">
                   <h4 class="sideBar-custom-item-name" title="{{titleForEllipsis(option.name, 45)}}"
@@ -212,7 +216,8 @@ document.addEventListener("click", printMousePos);
 
                   <div class="sideBar-custom-item-buttonRow">
                     <div class="sideBar-custom-item-button text-center"
-                         ng-class="{'detailsSelected': isPanelSelected(option.optionID)}">Details
+                         ng-class="{'detailsSelected': isPanelSelected(option.optionID)}"
+                         data-ng-click="setPanel(option.optionID);">Details
                     </div>
                     <div class="sideBar-custom-item-button text-center selected"
                          ng-if="getCurWheelchairPart().optionID === option.optionID">Selected
@@ -318,8 +323,8 @@ document.addEventListener("click", printMousePos);
             <!-- Measure Image Carousel -->
             <div class="sideBar-measure-bottom">
               <img class="help-image" ng-repeat="image in getCurMeasureData().imageURLs"
-              ng-show="curMeasureCarouselIndex === $index"
-              ng-src="{{image}}" width="350" height="340">
+                   ng-show="curMeasureCarouselIndex === $index"
+                   ng-src="{{image}}" width="350" height="340">
 
               <img class="leftButton" src="images/icons/circle_left_button.svg" alt="Previous" width="30" height="30"
                    data-ng-click="rotateMeasureCarouselIndex(-1)"/>

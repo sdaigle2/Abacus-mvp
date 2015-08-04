@@ -54,7 +54,9 @@
   border-bottom: 2px solid #686968;
 }
 
-
+.appBody {
+  width: 80%;
+}
 
 
 /*************************

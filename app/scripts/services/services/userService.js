@@ -104,7 +104,9 @@ angular.module('abacuApp')
         if (index >= 0 && index < designedWheelchairs.length) {
           curEditWheelchairIndex = index;
         }
-        currentWheelchair.editingWheelchair = jQuery.extend(true, designedWheelchairs[index]);
+        console.log(designedWheelchairs[index]);
+        currentWheelchair.editingWheelchair = $.extend(true, designedWheelchairs[index]);
+        console.log(currentWheelchair.editingWheelchair);
         currentWheelchair.isNew = false;
         currentWheelchair.orderInd = orderInd;
         $cookieStore.put('currentWheelchair', {frameID: -1, isNew: false, index: index});
@@ -266,7 +268,7 @@ angular.module('abacuApp')
 
           }
           else if (currentWheelchair.isNew === false) {
-            designedWheelchairs[curEditWheelchairIndex] = jQuery.extend(true, currentWheelchair.editingWheelchair);
+            designedWheelchairs[curEditWheelchairIndex] = $.extend(true, currentWheelchair.editingWheelchair);
             var order = this.getCurEditOrder();
             if(order && currentWheelchair.orderInd >= 0) {
               order.wheelchairs[currentWheelchair.orderInd] = designedWheelchairs[curEditWheelchairIndex];
@@ -309,7 +311,7 @@ angular.module('abacuApp')
 
         saveComputer: function () {
           var curThis = this;
-          $http.post('/save', {wheelchair: this.getCurEditWheelchair()}, {responseType: 'blob'})
+          $http.post('/save', {wheelchair: this.getCurEditWheelchair().getAll()}, {responseType: 'blob'})
             .success(function (response) {
               saveAs(response, curThis.getCurEditWheelchair().title+'.pdf');
             });

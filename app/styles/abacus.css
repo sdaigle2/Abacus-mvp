@@ -273,6 +273,17 @@
   top: 0;
 }
 
+.swiper {
+  margin-top: 40px;
+  margin-left: calc(20vw - 66px);
+  min-width: 600px;
+  min-height: 450px;
+  width: calc(60vw - 198px);
+  position: absolute;
+  top: 0;
+  z-index: 200;
+}
+
 .main-custom-rotatebuttons {
   position: relative;
   top: calc(46.3vw - 113px);
@@ -571,7 +582,7 @@ img.rightButtonNav{
   z-index: 1;
 }
 
-.sideBar-custom-item:hover {
+.sideBar-custom-item-button:hover {
   cursor: pointer;
 }
 
@@ -614,6 +625,10 @@ img.rightButtonNav{
 
 .sideBar-custom-item-left img {
   border-right: 1px solid #A7A9Ac;
+}
+
+.sideBar-custom-item-left img:hover {
+  cursor: pointer;
 }
 
 .sideBar-custom-item .sideBar-custom-item-right {

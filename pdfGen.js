@@ -117,7 +117,6 @@ function generateMainImage(doc, wheelchair) {
 }
 
 function titlePage(doc, wheelchair, order, isInvoice) {
-  doc.lineWidth(4).rect(36, 504, 540, 216).stroke();
   doc.lineGap(1);
   doc.font('Medium').fontSize(22).text(wheelchair.title.toUpperCase(), 72, 535);
   doc.lineWidth(1).moveTo(72, 562).lineTo(540, 562).stroke();
@@ -147,15 +146,18 @@ function titlePage(doc, wheelchair, order, isInvoice) {
   generateImage(doc, wheelchair, 1);
   generateImage(doc, wheelchair, 2);
   generateMainImage(doc, wheelchair);
+
+  doc.fontSize(11).text('Powered By', 400, 735);
+  doc.image('app/images/tinker_logo_small.png', 468, 729, {width: 72});
 }
 
 function partsPage(doc, wheelchair) {
   var subtotal = 0;
 
   doc.addPage({
-    size: [612, 792]
+    size: [612, 792],
+    margin: 0
   });
-  doc.lineWidth(4).rect(36, 36, 540, 684).stroke();
 
   doc.font('Book').fontSize(11).text('Type', 72, 72);
   doc.text('Details', 280, 72);
@@ -220,13 +222,16 @@ function partsPage(doc, wheelchair) {
 
   doc.font('Medium').text('Subtotal', 280, secondDiv + 18);
   doc.font('Book').text('$' + subtotal, 500, secondDiv + 18);
+
+  doc.text('Powered By', 400, 735);
+  doc.image('app/images/tinker_logo_small.png', 468, 729, {width: 72});
 }
 
 function measuresPage(doc, wheelchair) {
   doc.addPage({
-    size: [612, 792]
+    size: [612, 792],
+    margin: 0
   });
-  doc.lineWidth(4).rect(36, 36, 540, 684).stroke();
   doc.font('Medium').text('Measurements', 72, 72);
   doc.lineWidth(1).moveTo(54, 90).lineTo(558, 90).stroke();
   doc.lineGap(9);
@@ -255,11 +260,15 @@ function measuresPage(doc, wheelchair) {
       doc.text(wheelchair.mDetails[j].val, 525, 270);
     }
   }
+
+  doc.text('Powered By', 400, 735);
+  doc.image('app/images/tinker_logo_small.png', 468, 729, {width: 72});
 }
 
 function summaryPage(doc, order) {
   doc.addPage({
-    size: [612, 792]
+    size: [612, 792],
+    margin: 0
   });
   doc.lineWidth(1).moveTo(207, 50).lineTo(207, 272).stroke();
   doc.moveTo(36, 342).lineTo(576, 342).stroke();
@@ -323,12 +332,16 @@ function summaryPage(doc, order) {
   doc.text('$0.00', {align: 'right'});
   doc.text('$' + order.total.toFixed(2), 0, 553, {align: 'right'});
   doc.moveTo(221, 536).lineTo(576, 536).stroke();
+
+  doc.text('Powered By', 400, 735);
+  doc.image('app/images/tinker_logo_small.png', 468, 729, {width: 72});
 }
 
 function genPdf(doc, pageNum, wheelchair, order, isInvoice) {
   if (pageNum !== 0)
     doc.addPage({
-      size: [612, 792]
+      size: [612, 792],
+      margin: 0
     });
   titlePage(doc, wheelchair, order, isInvoice);
   partsPage(doc, wheelchair);
@@ -337,7 +350,8 @@ function genPdf(doc, pageNum, wheelchair, order, isInvoice) {
 
 exports.generateSave = function (wheelchair, res) {
   var doc = new pdf({
-    size: [612, 792]
+    size: [612, 792],
+    margin: 0
   });
   var tempFile = wheelchair.title + '.pdf';
   var stream = doc.pipe(res);
@@ -352,7 +366,8 @@ exports.generateSave = function (wheelchair, res) {
 
 exports.generateInvoice = function (order) {
   var doc = new pdf({
-    size: [612, 792]
+    size: [612, 792],
+    margin: 0
   });
   var stream = doc.pipe(fs.createWriteStream('invoice_' + order.orderNum + '.pdf'));
   doc.registerFont('Book', 'fonts/Gotham-Book.ttf');

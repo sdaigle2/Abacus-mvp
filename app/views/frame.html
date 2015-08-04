@@ -1,43 +1,73 @@
-<link href="../styles/frame.css" rel="stylesheet" />
+<link href="../styles/frame.css" rel="stylesheet"/>
 
 
 <div class="wrapper">
-    <div class="frame-header medium">
-      <h2 class="pageTitle">Frames</h2>
-    </div>
+  <div class="frame-header medium">
+    <h2 class="pageTitle">Frames</h2>
+  </div>
 
   <div class="mainDisplay" data-ng-init="hoverItem = -1">
 
     <div class="frame-item text-center"
          data-ng-repeat="f in frames"
-         data-ng-class="{'right-border': ($even && ($index !== frames.length-1)), 'bottom-border': ($index < frames.length-2)}">
+         data-ng-class="{'right-border': ($even && ($index !== frames.length-1)), 'bottom-border': ($index < frames.length-2)}"
+         data-ng-if="orientation === 'vertical'">
       <div class="frame-item-image">
         <div class="img" data-ng-mouseenter="hoverItem = f.getFrameID()"
              data-ng-mouseleave="hoverItem = -1">
-          <img data-ng-src="{{f.getImageURL()}}" width="450" />
+          <img data-ng-src="{{f.getImageURL()}}" width="450"/>
+
           <div class="frame-item-desc"
                data-ng-class="{ 'frame-item-desc-show' : panelSelected(hoverItem,f.getFrameID()) , 'frame-item-desc-hide' : !panelSelected(hoverItem,f.getFrameID())}">
-            <div class="hoverBackground frame-item-panel">
-              <p class="frame-item-title medium" data-ng-bind="f.getName()"></p>
-              <br />
-              <p class="frame-item-description book" data-ng-bind="f.getDesc()"></p>
-              <table class="frame-info-table">
-              <td class="blue-line">
-              <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
-              </td>
-              <td>
-              <p class="frame-item-weight medium" data-ng-bind="getWeightString(f)"></p>
-              </td>
-              </table>
-            </div>
+            <p class="frame-item-description book" data-ng-bind="f.getDesc()"></p>
           </div>
         </div>
       </div>
-      <div class="button medium addButton"
-           data-ng-click="selectFrame(f.frameID)">
-       Select This Frame
+      <div class="frame-item-footer">
+        <span class="medium" data-ng-bind="f.name"></span>
+
+        <div class="button addButton" data-ng-click="selectFrame(f.frameID)">Select</div>
+        <div class="frame-item-footer-details">
+          <table class="frame-info-table">
+            <td class="blue-line">
+              <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
+            </td>
+            <td>
+              <p class="frame-item-weight medium" data-ng-bind="getWeightString(f)"></p>
+            </td>
+          </table>
+        </div>
       </div>
     </div>
 
+    <div class="frame-item text-center horizontal"
+         data-ng-repeat="f in frames"
+         data-ng-class="{'right-border': ($even && ($index !== frames.length-1)), 'bottom-border': ($index < frames.length-2)}"
+         data-ng-if="orientation === 'horizontal'">
+      <div class="frame-item-image">
+        <div class="img" data-ng-mouseenter="hoverItem = f.getFrameID()"
+             data-ng-mouseleave="hoverItem = -1">
+          <img data-ng-src="{{f.getImageURL()}}" width="400"/>
+        </div>
+      </div>
+      <div class="frame-item-footer">
+        <span class="medium" data-ng-bind="f.name"></span>
+
+        <div class="frame-item-footer-details">
+          <table class="frame-info-table">
+            <td class="blue-line">
+              <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
+            </td>
+            <td>
+              <p class="frame-item-weight medium" data-ng-bind="getWeightString(f)"></p>
+            </td>
+          </table>
+        </div>
+        <div class="frame-item-desc">
+          <p class="frame-item-description book" data-ng-bind="f.getDesc()"></p>
+        </div>
+        <div class="button addButton" data-ng-click="selectFrame(f.frameID)">Select</div>
+      </div>
+    </div>
   </div>
 </div>
