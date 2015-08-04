@@ -120,12 +120,16 @@ angular.module('abacuApp')
 
 
           case $scope.stages.CONFIRM:
+
             if (!$scope.termsForm.hasReadTerms) {
               alert("You must accept the Terms and Conditions to continue");
               return;
             }
+
+            //div show
             User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.payForm.method, token)
               .then(function () {
+                //div go
                 $scope.orderNum = $scope.curOrder.getOrderNum();
                 if($scope.orderNum !== -1) {
                   $scope.curStage++;

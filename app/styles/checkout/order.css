@@ -19,6 +19,26 @@
   cursor: pointer;
 }
 
+/****************************ALERT DIV*********************************/
+.purchase_pending_fade{
+  position:absolute;
+  width: 100%;
+  height:100%;
+  opacity: 0.5;
+  background-color:black;
+  visibility: hidden;
+}
+.purchase_pending_alertBox{
+  position:absolute;
+  top: 35%;
+  left:35%;
+  width: 30%;
+  height:25%;
+  opacity: 0.95;
+  background-color:white;
+  text-align: center;
+  visibility:hidden;
+}
 
 /****************************BODY****************************************/
 .order-body {
