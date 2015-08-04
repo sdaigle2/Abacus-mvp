@@ -13,7 +13,10 @@
       <!-- ng-repeat="wheelchair in wheelchairs"-->
 
       <div ng-repeat="w in wheelchairs" class="comparisonImages">
-        <h4><strong data-ng-bind="w.getTitle()"></strong></h4>
+       
+         
+          <input placeholder="Wheelchair Name" data-ng-if="edit !== true" class="wheelchair_name_input" ng-model="w.title" ng-value="w.title"></input><br>
+
         <canvas my-canvas img_arr={{w.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
                 ng-mouseleave="editPanelShow = false"
                 width="187"></canvas>

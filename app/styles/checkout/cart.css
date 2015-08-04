@@ -15,7 +15,10 @@
 **** Cart Background *****
 **************************/
 
-
+.wheelchair_name_input{
+  text-align:center;
+  margin: 15px 0px;
+}
 
 .cartBody {
   position: relative;
