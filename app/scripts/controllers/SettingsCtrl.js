@@ -48,7 +48,7 @@ angular.module('abacuApp')
         REAR_SEAT_HEIGHT: 'rearSeatHeight',
         REAR_SEAT_WIDTH: 'rearSeatWidth',
         FOLDING_BACKREST_HEIGHT: 'foldingBackrestHeight',
-        AXEL_POSITION: 'axelPosition',
+        //AXEL_POSITION: 'axelPosition',
         SEAT_DEPTH: 'seatDepth'
       };
       var curMeasureType = $scope.MeasurementTypes.REAR_SEAT_HEIGHT;
@@ -91,7 +91,7 @@ angular.module('abacuApp')
             User.commonMeasures.REAR_SEAT_HEIGHT = $scope.measDisplay.rearSeatHeight.optionSelected;
             User.commonMeasures.REAR_SEAT_WIDTH = $scope.measDisplay.rearSeatWidth.optionSelected;
             User.commonMeasures.FOLDING_BACKREST_HEIGHT = $scope.measDisplay.foldingBackrestHeight.optionSelected;
-            User.commonMeasures.AXEL_POSITION = $scope.measDisplay.axelPosition.optionSelected;
+            //User.commonMeasures.AXEL_POSITION = $scope.measDisplay.axelPosition.optionSelected;
             User.commonMeasures.SEAT_DEPTH = $scope.measDisplay.seatDepth.optionSelected;
 
             User.setUnitSys($scope.curUnitSys);
@@ -160,49 +160,54 @@ angular.module('abacuApp')
       /***************** MY MEASURES *********************************************/
 
         //Options for each measure - Can be called using $scope.measOptions['rearSeatHeight'] to take advantage of enum
-      $scope.measDisplay = {
-        rearSeatHeight: {
-          name: 'Rear Seat Height',
-          options: ['1', '2', '3'],
-          optionSelected: User.commonMeasures.REAR_SEAT_HEIGHT,
-          desc: 'Distance from the ground up to back corner of your seat',
-          imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
-          imgIndex: 0
-        },
-        rearSeatWidth: {
-          name: 'Rear Seat Width',
-          options: ['A', 'B', 'C'],
-          optionSelected: User.commonMeasures.REAR_SEAT_WIDTH,
-          desc: 'The distance between armrests at the back of the seat',
-          imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
-          imgIndex: 0
-        },
-        foldingBackrestHeight: {
-          name: 'Folding Backrest Height',
-          options: ['Do', 'Re', 'Mi'],
-          optionSelected: User.commonMeasures.FOLDING_BACKREST_HEIGHT,
-          desc: 'Distance from the seat to the top of the backrest',
-          imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
-          imgIndex: 0
-        },
-        axelPosition: {
-          name: 'Axel Position',
-          options: ['Uno', 'Dos', 'Tres'],
-          optionSelected: User.commonMeasures.AXEL_POSITION,
-          desc: 'The position of the axel',
-          imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
-          imgIndex: 0
-        },
-        seatDepth: {
-          name: 'Seat Depth',
-          options: ['I', 'II', 'III'],
-          optionSelected: User.commonMeasures.SEAT_DEPTH,
-          desc: 'Distance from the back of the seat to the front',
-          imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
-          imgIndex: 0
-        }
-      };
 
+      $.getJSON("../../../data/frameData.json", function(json) {
+          
+          var frameData = json[1].measures;
+          console.log(frameData);
+          $scope.measDisplay = {  
+            rearSeatHeight: {
+              name: frameData[3].name,
+              options: frameData[3].measureOptions[1],
+              optionSelected: User.commonMeasures.REAR_SEAT_HEIGHT,
+              desc: frameData[3].desc,
+              imgURLs: frameData[3].imageURLs,
+              imgIndex: 0
+            },
+            rearSeatWidth: {
+              name: frameData[0].name,
+              options: frameData[0].measureOptions[1],
+              optionSelected: User.commonMeasures.REAR_SEAT_WIDTH,
+              desc: frameData[0].desc,
+              imgURLs: frameData[0].imageURLs,
+              imgIndex: 0
+            },
+            foldingBackrestHeight: {
+              name: frameData[2].name,
+              options: frameData[2].measureOptions[1],
+              optionSelected: User.commonMeasures.FOLDING_BACKREST_HEIGHT,
+              desc: frameData[2].desc,
+              imgURLs: frameData[2].imageURLs,
+              imgIndex: 0
+            },
+            axelPosition: {
+              name: 'Axel Position',
+              options: ['Uno', 'Dos', 'Tres'],
+              optionSelected: User.commonMeasures.AXEL_POSITION,
+              desc: 'The position of the axel',
+              imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
+              imgIndex: 0
+            },
+            seatDepth: {
+              name: frameData[1].name,
+              options: frameData[1].measureOptions[1],
+              optionSelected: User.commonMeasures.SEAT_DEPTH,
+              desc: frameData[1].desc,
+              imgURLs: frameData[1].imageURLs,
+              imgIndex: 0
+            }
+          };
+      });
       $scope.curUnitSys = User.getUnitSys();
 
       $scope.unitSysList = [
