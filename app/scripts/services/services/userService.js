@@ -305,6 +305,10 @@ angular.module('abacuApp')
           return currentWheelchair.editingWheelchair;
         },
 
+        isNewWheelchair: function () {
+          return currentWheelchair.isNew;
+        },
+
         getNumDesignedWheelchairs: function () {
           return designedWheelchairs.length;
         },

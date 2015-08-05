@@ -1,13 +1,16 @@
 /**
  * Created by Dhruv on 6/16/2015.
  */
+
+//Security library. Validates client sent data and implements password hashing
+
 var crypto = require('crypto');
 var addressValidator = require('address-validator');
 var Address = addressValidator.Address;
 var len = 128;
 var iterations = 12000;
 
-
+//Checks that all parameters are strings
 function typeCheck(userData){
   if(typeof userData.fName !== 'string')
     return 'Invalid First Name';
@@ -65,16 +68,17 @@ function passwordCheck(password, confirm, res){
   return true;
 }
 
+//Function to hash a password
 exports.hash = function (pwd, salt, fn) {
-  if (3 == arguments.length) {
-    crypto.pbkdf2(pwd, salt, iterations, len, function(err, hash){
+  if (3 == arguments.length) {//salt provided
+    crypto.pbkdf2(pwd, salt, iterations, len, function(err, hash){//hash password with given salt
       fn(err, hash.toString('base64'));
     });
   } else {
     fn = salt;
     crypto.randomBytes(len, function(err, salt){
       if (err) return fn(err);
-      salt = salt.toString('base64');
+      salt = salt.toString('base64');//generate random salt
       crypto.pbkdf2(pwd, salt, iterations, len, function(err, hash){
         if (err) return fn(err);
         fn(null, salt, hash.toString('base64'));
@@ -83,11 +87,10 @@ exports.hash = function (pwd, salt, fn) {
   }
 };
 
+//Function to check register data
 exports.check = function(userData) {
   var err = typeCheck(userData) && passwordCheck(userData.password, userData.confirm);
   if(err!==true)
     return err;
-  //if(!addressCheck(userData))
-  //  return false;
   return true;
 };

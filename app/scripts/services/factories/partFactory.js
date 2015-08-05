@@ -26,8 +26,7 @@ angular.module('abacuApp')
       }
       for (var i = 0; i < partData.options.length; i++)
         this.options.push(new Option(partData.options[i]));
-
-    };
+    }
 
 
     /************instance functions**************/

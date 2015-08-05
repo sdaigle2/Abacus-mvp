@@ -45,6 +45,7 @@ GifURL                                                   | The URL of a .gif reg
 ~~~Part~~~                                               |
 PartID                                                   | The Part's unique ID
 Name                                                     | The name of the Part
+IconImage                                                | The url of the icon image of the part in the comparison table
 NumSubImages                                             | The number of images this Part takes up in the generated Preview Image
 ZRank[[<Int>]]                                           | A 2D array of z-index rankings.  The first dimension is subimageIndex, the second is Angle
 DefaultOptionID                                          | The ID of the default Option associated with this Part
@@ -60,6 +61,8 @@ Desc                                                     | A description of this
 ThumbnailURL                                             | A URL of a thumbnail image associated with this Option
 DefaultColorID                                           | The ID of the default Color for this Option (0 if no color options)
 Colors[<Color>]                                          | An array of Colors available for this Option (can be empty)
+DefaultSizeIndex                                         |  The index of the default Size for this option (-1 if no size options)
+Sizes                                                    |  An array of strings representing the different possible sizes for this option
                                                          |
                                                          |
 ~~~Color~~~                                              |
@@ -79,19 +82,22 @@ Addr2                                                    | An additional address
 City                                                     | The city of the User
 State                                                    | The state of the User
 Zip                                                      | The Zipcode of the User
-UnitSys                                                  | The Unit System the User is using for the site (See "Units") 
+UnitSys                                                  | The Unit System the User is using for the site (See "Units")
 Orders[<Order>]                                          | An array of Orders associated with the User (both sent and unsent)
 DesignedWheelchairs[<Wheelchair>]                        | An array of Wheelchairs designed by the User
 CurEditWheelchairIndex                                   | The index of the Wheelchair designated as the "CurEditWheelchair"
 CommonMeasures                                           | An object consisting of the User's default choice for some common Measures
+CurrentWheelchair                                        | A copy of the wheelchair being edited along with an indicator whether it is new
+contentSection                                           | The current content section which is visited in the settings page
                                                          |
                                                          |
 ~~~Wheelchair~~~                                         |
 FrameID                                                  | The ID of the Frame this Wheelchair is modeling
 Title                                                    | The title given to this Wheelchair by the User
-Parts[{PartID, OptionID, ColorID}]                       | An array of Part ID's, Option ID's, and Color ID's that model the User's design decisions
+Parts[{PartID, OptionID, ColorID, sizeIndex}]            | An array of Part ID's, Option ID's, Color ID's and Size Index that model the User's design decisions
 Measures[{MeasureID, MeasureOptionIndex}]                | An array of Measure ID's and Option indices that model the User's chosen measurements
 PreviewImageGenerator                                    | A reference to a helper class that generates this Wheelchair's Preview Image
+inCurOrder                                               | Boolean indicating whether the wheelchair is in the current order
                                                          |
                                                          |
 ~~~Order~~~                                              |
