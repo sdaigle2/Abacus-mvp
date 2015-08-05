@@ -242,3 +242,27 @@ td.blue-line{
   font-size: 23px;
   padding-top: 10px;
 }
+
+.horizontal_icon_horizontal{
+  position:absolute;
+  top:105px;
+  left: calc(50% + 485px);
+}
+.gallary_icon_horizontal{
+  position:absolute;
+  position:absolute;
+  top:105px;
+  left: calc(50% + 440px);
+}
+
+.horizontal_icon_vertical{
+  position:absolute;
+  top:105px;
+  left: calc(50% + 450px);
+}
+.gallary_icon_vertical{
+  position:absolute;
+  position:absolute;
+  top:105px;
+  left: calc(50% + 405px);
+}
