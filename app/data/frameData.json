@@ -1019,7 +1019,7 @@
         "measureID": 8,
         "desc": "The distance from the front of the seatback post to the center of the axle. Axle position is one of the most important factors in determining the agility of your wheelchair.",
         "details": "The axle position affects how easy it is to push and turn your chair (agility) as well as how easy it is for your chair to tip over backwards.  The further forward you place your axle the easier it is to push and turn, though it is also easier for your chair to tip over backwards.  ",
-        "tip": "While your chair will roll better by moving your axle forwards, if you are unsure on an axle position it is always better to err on a position set closer to the back of the chair.  On most TiArrow frames you will be able to make adjustments after you?ve tried your new chair.",
+        "tip": "While your chair will roll better by moving your axle forwards, if you are unsure on an axle position it is always better to err on a position set closer to the back of the chair.  On most TiArrow frames you will be able to make adjustments after you've tried your new chair.",
         "gifDesc": "As the axle position moves forwards, the chair gets more tippy but also more agile.",
         "units": [
           "cm",
@@ -1876,7 +1876,7 @@
         "measureID": 108,
         "desc": "The distance from the front of the seatback post to the center of the axle. Axle position is one of the most important factors in determining the agility of your wheelchair.",
         "details": "The axle position affects how easy it is to push and turn your chair (agility) as well as how easy it is for your chair to tip over backwards.  The further forward you place your axle the easier it is to push and turn, though it is also easier for your chair to tip over backwards.  ",
-        "tip": "While your chair will roll better by moving your axle forwards, if you are unsure on an axle position it is always better to err on a position set closer to the back of the chair.  On most TiArrow frames you will be able to make adjustments after you?ve tried your new chair.",
+        "tip": "While your chair will roll better by moving your axle forwards, if you are unsure on an axle position it is always better to err on a position set closer to the back of the chair.  On most TiArrow frames you will be able to make adjustments after you've tried your new chair.",
         "gifDesc": "As the axle position moves forwards, the chair gets more tippy but also more agile.",
         "units": [
           "cm",

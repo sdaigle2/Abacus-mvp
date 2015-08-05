@@ -28,7 +28,7 @@
               ng-show="showProgressSegmentTooltip" data-ng-bind="getProgressBarSegmentTooltipText(page)"></span>
       </span>
       </div>
-      <button type="button" id="SaveButton" class="btn" data-ng-class="{'saveButton':saveDropdown === true }"
+      <button type="button" id="SaveButton" class="btn" data-ng-class="{'saveButton':saveDropdown === true, 'complete': completed() === null}"
               data-ng-click="toggleSaveDropDown()">Save & Review
       </button>
 

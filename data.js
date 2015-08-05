@@ -1,8 +1,13 @@
 /**
  * Created by Dhruv on 7/7/2015.
  */
+
+//Verify wheelchair and order data sent from the client.
+
+//The json containing all the correct frame data
 var frameData = require('./app/data/frameData.json');
 
+//Return the frame with given frameID
 function getFrame(frameID) {
   for (var i = 0; i < frameData.length; i++) {
     if (frameData[i].frameID === frameID) {
@@ -13,6 +18,8 @@ function getFrame(frameID) {
   return false;
 }
 
+/************************************PARTS***************************************/
+//Return part with the given partID
 function getPart(partID, parts) {
   for (var i = 0; i < parts.length; i++) {
     if (parts[i].partID === partID) {
@@ -23,6 +30,7 @@ function getPart(partID, parts) {
   return false;
 }
 
+//Return option with given optionID
 function getOption(optionID, options) {
   for (var i = 0; i < options.length; i++) {
     if (options[i].optionID === optionID) {
@@ -33,12 +41,14 @@ function getOption(optionID, options) {
   return false;
 }
 
+//Verify size with given index exists
 function verifySize(index, sizes) {
   if (index >= 0 && index < sizes.length)
     return sizes[index];
   return sizes.length === 0 && index === -1;
 }
 
+//Verify color with given id exists
 function verifyColor(colorID, colors) {
   if (colors) {
     for (var i = 0; i < colors.length; i++) {
@@ -50,13 +60,15 @@ function verifyColor(colorID, colors) {
   return (!colors || colors.length === 0) && colorID === 0;
 }
 
+//Verify that all the details of the given part are correct
 function verifyPart(framePart, chairPart, wheelchair) {
-  var option = getOption(chairPart.optionID, framePart.options);
+  var option = getOption(chairPart.optionID, framePart.options);  //Check JSON for corresponding option
   if (option) {
-    var size = verifySize(chairPart.sizeIndex, option.sizes);
-    var hex = verifyColor(chairPart.colorID, option.colors);
+    var size = verifySize(chairPart.sizeIndex, option.sizes); //Check JSON for corresponding size
+    var hex = verifyColor(chairPart.colorID, option.colors);  //Check JSON for corresponding color
     if (hex && size) {
       wheelchair.weight += option.weight;
+      //Append additional part details to the wheelchair
       wheelchair.pDetails.push({
         name: framePart.name,
         option: option.name,
@@ -65,7 +77,10 @@ function verifyPart(framePart, chairPart, wheelchair) {
         price: option.price,
         zRank: framePart.zRank,
         numSubImages: framePart.numSubImages,
-        onFrame: framePart.onFrame
+        onFrame: framePart.onFrame,
+        optionID: option.optionID,
+        partID: framePart.partID,
+        colorID: chairPart.colorID
       });
       return option.price;
     }
@@ -74,6 +89,7 @@ function verifyPart(framePart, chairPart, wheelchair) {
   return false;
 }
 
+//Verify each part
 function verifyParts(frameParts, wheelchair) {
   var chairParts = wheelchair.parts;
   if (frameParts.length !== chairParts.length) {
@@ -96,6 +112,8 @@ function verifyParts(frameParts, wheelchair) {
   return total;
 }
 
+/***************************MEASURES***********************************/
+//Finds measure with given measureID
 function getMeasure(measureID, measures) {
   for (var i = 0; i < measures.length; i++) {
     if (measures[i].measureID === measureID) {
@@ -106,9 +124,10 @@ function getMeasure(measureID, measures) {
   return false;
 }
 
+//Verify a measure selection
 function verifyMeasure(frameMeasure, chairMeasure, wheelchair, isInvoice) {
   var index = chairMeasure.measureOptionIndex;
-  if (index === -1 && !isInvoice) {
+  if (index === -1 && !isInvoice) {   //Measure does not need to be selected if not part of order
     wheelchair.mDetails.push({name: frameMeasure.name, selection: 'NOT SELECTED', val: '0.00'});
     return 0;
   }
@@ -117,29 +136,28 @@ function verifyMeasure(frameMeasure, chairMeasure, wheelchair, isInvoice) {
     var selection = frameMeasure.measureOptions[0][index] + ' ' + frameMeasure.units[0] + ' / ' + frameMeasure.measureOptions[1][index] + ' ' + frameMeasure.units[1];
     var val = frameMeasure.measureOptions[0][index];
     console.log({name: frameMeasure.name, selection: selection, val: val});
-    wheelchair.mDetails.push({name: frameMeasure.name, selection: selection, val: val});
+    wheelchair.mDetails.push({name: frameMeasure.name, selection: selection, val: val});  //Append details to wheelchair
     return frameMeasure.prices[index];
   }
   console.log('Bad measure option');
   return false;
 }
 
+//Verify all the measures of a wheelchair
 function verifyMeasures(frameMeasures, wheelchair, isInvoice) {
-  var chairMeasures = wheelchair.measures;
-  if (frameMeasures.length !== chairMeasures.length) {
+  var chairMeasures = wheelchair.measures;  //Client submitted measures
+  if (frameMeasures.length !== chairMeasures.length) {  //Are all measures set
     console.log('Wrong number measures');
     return false;
   }
   var total = 0;
-  for (var i = 0; i < frameMeasures.length; i++) {
+  for (var i = 0; i < frameMeasures.length; i++) {  //For each measurement for the frame
     var chairMeasure = getMeasure(frameMeasures[i].measureID, chairMeasures);
-    if (!chairMeasure) {
-      console.log('getMeasure');
+    if (!chairMeasure) {  //Is the measure set
       return false;
     }
     var price = verifyMeasure(frameMeasures[i], chairMeasure, wheelchair, isInvoice);
-    if (!price && price !== 0) {
-      console.log('verifyMeasure');
+    if (!price && price !== 0) {  //returned value is false, but not 0
       return false;
     }
     total += price;
@@ -148,15 +166,19 @@ function verifyMeasures(frameMeasures, wheelchair, isInvoice) {
   return total;
 }
 
+/******************************************************************************************/
+
+//Verify a chair. Also add extra information to help with pdf generation
 function verifyChair(wheelchair, isInvoice) {
   wheelchair.weight = 0;
-  wheelchair.pDetails = [];
-  wheelchair.mDetails = [];
+  wheelchair.pDetails = [];   //More detailed part info
+  wheelchair.mDetails = [];   //More detailed measurement info
   var frame = getFrame(wheelchair.frameID);
-  if (frame) {
+  if (frame) {                //Is the frame valid
     var partsPrice = verifyParts(frame.parts, wheelchair);
     var measuresPrice = verifyMeasures(frame.measures, wheelchair, isInvoice);
-    if (partsPrice !== false && measuresPrice !== false) {
+    if (partsPrice !== false && measuresPrice !== false) {  //Was parts check and measurement check successful
+      //Append more wheelchair info
       wheelchair.manufacturer = frame.manufacturer;
       wheelchair.model = frame.name;
       wheelchair.price = frame.basePrice + partsPrice + measuresPrice;
@@ -172,6 +194,7 @@ function verifyChair(wheelchair, isInvoice) {
   return false;
 }
 
+//Exported function which verifies and calculates the price for a single wheelchair
 exports.verifyWheelchair = function (wheelchair) {
   var price = verifyChair(wheelchair, false);
   if(!price)
@@ -180,6 +203,7 @@ exports.verifyWheelchair = function (wheelchair) {
     return price;
 };
 
+//Exported function which verifies and calculates the price for an order
 exports.verifyOrder = function (order) {
   var total = 0;
   for (var i = 0; i < order.wheelchairs.length; i++) {

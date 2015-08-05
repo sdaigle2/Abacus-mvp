@@ -81,6 +81,9 @@ angular.module('abacuApp')
             measureID: $scope.curFrameData.measures[j].measureID,
             visitstatus: visitstatus.UNVISITED
           };
+          var optionIndex = $scope.curEditWheelchair.getOptionIndexForMeasure(mPage.measureID);
+          if(optionIndex !== -1)
+            mPage.visitstatus = visitstatus.VISITED;
           pages.measurePages.push(mPage);
         }
 
@@ -368,6 +371,16 @@ angular.module('abacuApp')
         $scope.saveDropdown = false;
       };
 
+      $scope.completed = function() {
+        for(var i=0; i<pages.measurePages.length; i++){
+          if(pages.measurePages[i].visitstatus === visitstatus.UNVISITED)
+            return pages.measurePages[i];
+          if(pages.measurePages[i].visitstatus === visitstatus.CURRENT && $scope.getCurWheelchairMeasure().measureOptionIndex === -1)
+            return pages.measurePages[i];
+        }
+        return null;
+      };
+
       /*****************Sidebar Tabs***************/
 
       $scope.switchPageType = function (newPageType) {
@@ -487,8 +500,17 @@ angular.module('abacuApp')
         //Saves the current design and updates the database if the user is logged in
       $scope.saveDesign = function () {
         //redirect user to the cart/myDesigns
-        User.pushNewWheelchair();
-        $location.path('/cart');
+        var page = $scope.completed();
+        if(page === null) {
+          User.pushNewWheelchair();
+          $location.path('/cart');
+        }
+        else{
+          alert('Please fill out all measurements');
+          $scope.switchPageType($scope.pageType.MEASURE);
+          $scope.pageSwitchJump(page);
+          $scope.saveDropdown = false;
+        }
       };
 
       $scope.saveComputer = function () {
@@ -528,13 +550,13 @@ angular.module('abacuApp')
         return 0.463*(width-330) > 0.9*(height-140);
       };
 
-      $(".swiper").on("swiperight",function(){
+      $(".swiper").on("swipreright",function(){
         console.log('swiperight');
-        $scope.rotatePreview(1);
+        $scope.rotatePreview(-1);
       });
 
       $(".swiper").on("swipeleft",function(){
-        $scope.rotatePreview(-1);
+        $scope.rotatePreview(1);
       });
 
     }]);

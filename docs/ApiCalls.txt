@@ -1,0 +1,50 @@
+Abacus Project
+Intelliwheels 2015
+
+NodeJS API Documentation
+
+-------------------------------------------------------------------------
+
+Change Log:
+8/5/15 - Dhruv Vajpeyi - Created File
+
+-------------------------------------------------------------------------
+
+This documentation will cover all of the possible API calls. All these calls are set up in server.js
+
+-------------------------------------------------------------------------
+
+1) POST /login
+	Request Parameters- email, password
+	Query database for user with email. If found and if passwords match, set a session cookie and responds with user details, else responds with parameter userID: -1
+	
+2) POST /session
+	Request Parameters- none
+	Checks the user's session cookie and queries the database with it. Responds with user details if the session exists, else responds with userID: -1
+	
+3) POST /logout
+	Request Parameters- none
+	Checks the user's session cookie. Destroys it if it exists.
+	
+4) POST /register
+	Request Parameters- fName, lName, email, phone, addr, addr2, city, state, zip, password, confirm
+	Performs error checking on the parameters, and checks database for existing email. If checks are all passed, hashes the password and inserts data into the database. Sends an email to provided email address.
+	If successful responds with success: true, else responds with err
+	
+5) POST /update
+	Request Parameters- fName, lName, email, phone, addr, addr2, city, state, zip, oldPass, newPass1, newPass2
+	Queries the database using the session cookie. Replaces any bad parameters with values from the database. Performs checks on the passwords. If all checks are passed, replaces the password with a hashed newPass.
+	Inserts new user object into the database.
+	Responds with err: database error, and message: Password status
+	
+6) POST /save
+	Request Parameters- wheelchair
+	Verifies all values of the wheelchair, and then generates a pdf.
+	Responds with pdf as a blob.
+	
+7)POST /order
+	Request Parameters- order
+	Verifies all wheelchairs in the order. If successful, creates a stripe payment.
+	Inserts the order into the database, generates a pdf and emails the pdf to the user.
+	
+	
