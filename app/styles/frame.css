@@ -20,11 +20,14 @@
   margin: 30px auto 0;
 }
 
+section{
+  margin-left: 34px;
+}
+
 .frame-item {
-  min-height: 300px;
   line-height: 1;
   display: inline-block;
-  width: 450px;
+  width: 400px;
   margin-bottom: 40px;
   border: solid 1px #eaeaea;
 }
@@ -56,8 +59,8 @@
 
 .frame-item-description {
   background: white;
-  padding: 20px;
-  font-size: 18px;
+  padding: 10px;
+  font-size: 16px;
   height: 100%;
   line-height: 25px;
   overflow: auto;
@@ -69,7 +72,7 @@
 }
 
 .horizontal .frame-item-desc{
-  height: 190px;
+  height: 136px;
 }
 
 .frame-item-price {
@@ -77,6 +80,7 @@
   background-color: white;
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-right: 8px;
   margin: auto;
 }
 
@@ -93,19 +97,17 @@
 
 .frame-item-image {
   position: relative;
-  width: 450px;
 }
 
 .horizontal .frame-item-image {
   display: inline-block;
-  width: 400px;
   float: left;
 }
 
 
 .frame-item-image .img{
   position: relative;
-  margin: 0 auto;
+  margin-top: 15px;
   width: 99%;
   z-index: 1;
   overflow:hidden;
@@ -178,7 +180,7 @@
 
 .frame-item-footer {
   border: solid 1px #eaeaea;
-  padding: 30px;
+  padding:20px;
 }
 
 .frame-item-footer>span {
@@ -196,7 +198,7 @@
 
 .horizontal .frame-item-footer-details {
   display: inline-block;
-  margin-left: calc(100% - 320px);
+  margin-left: calc(100% - 325px);
   margin-top: 0;
 }
 
@@ -237,19 +239,19 @@ td.blue-line{
 }
 
 .horizontal .addButton{
-  width: 200px;
-  height: 45px;
+  width: 150px;
+  height: 33px;
   font-size: 23px;
-  padding-top: 10px;
+  padding-top: 5px;
+  margin-top: 16px;
 }
 
 .horizontal_icon_horizontal{
   position:absolute;
   top:105px;
-  left: calc(50% + 485px);
+  left: calc(50% + 470px);
 }
 .gallary_icon_horizontal{
-  position:absolute;
   position:absolute;
   top:105px;
   left: calc(50% + 440px);
@@ -258,11 +260,10 @@ td.blue-line{
 .horizontal_icon_vertical{
   position:absolute;
   top:105px;
-  left: calc(50% + 450px);
+  left: calc(50% + 470px);
 }
 .gallary_icon_vertical{
   position:absolute;
-  position:absolute;
   top:105px;
-  left: calc(50% + 405px);
+  left: calc(50% + 440px);
 }

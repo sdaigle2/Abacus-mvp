@@ -6,64 +6,66 @@
     <h2 class="pageTitle">Frames</h2>
   </div>
   <div class="horizontal-layout-icons" data-ng-if="getOrientation() === 'horizontal'">
-  <img src="images/frame_page_img/box_style.png"  
-       ng-click="setOrientation('vertical')" 
-       width="30"
+  <img src="images/frame_page_img/box_style.png"
+       ng-click="setOrientation('vertical')"
+       width="25"
        class="gallary_icon_horizontal"
   >
-  <img src="images/frame_page_img/list_style_hover.png" 
-       width="30" 
+  <img src="images/frame_page_img/list_style_hover.png"
+       width="25"
        class="horizontal_icon_horizontal"
-       ng-click="setOrientation('horizontal')" 
+       ng-click="setOrientation('horizontal')"
   >
   </div>
 
   <div class="horizontal-layout-icons" data-ng-if="getOrientation() === 'vertical'">
-  <img src="images/frame_page_img/box_style_hover.png"  
-       ng-click="setOrientation('vertical')" 
-       width="30"
+  <img src="images/frame_page_img/box_style_hover.png"
+       ng-click="setOrientation('vertical')"
+       width="25"
        class="gallary_icon_vertical"
   >
-  <img src="images/frame_page_img/list_style.png" 
-       width="30" 
+  <img src="images/frame_page_img/list_style.png"
+       width="25"
        class="horizontal_icon_vertical"
-       ng-click="setOrientation('horizontal')" 
+       ng-click="setOrientation('horizontal')"
   >
   </div>
 
   <div class="mainDisplay" data-ng-init="hoverItem = -1">
 
-    <div class="frame-item text-center"
-         data-ng-repeat="f in frames"
-         data-ng-class="{'right-border': ($even && ($index !== frames.length-1)), 'bottom-border': ($index < frames.length-2)}"
-         data-ng-if="orientation === 'vertical'">
-      <div class="frame-item-image">
-        <div class="img" data-ng-mouseenter="hoverItem = f.getFrameID()"
-             data-ng-mouseleave="hoverItem = -1">
-          <img data-ng-src="{{f.getImageURL()}}" width="450"/>
+    <section>
+        <div class="frame-item text-center"
+           data-ng-repeat="f in frames"
+           data-ng-class="{'right-border': ($even && ($index !== frames.length-1)), 'bottom-border': ($index < frames.length-2)}"
+           data-ng-if="orientation === 'vertical'">
+        <div class="frame-item-image">
+          <div class="img" data-ng-mouseenter="hoverItem = f.getFrameID()"
+               data-ng-mouseleave="hoverItem = -1">
+            <img data-ng-src="{{f.getImageURL()}}" width="400"/>
 
-          <div class="frame-item-desc"
-               data-ng-class="{ 'frame-item-desc-show' : panelSelected(hoverItem,f.getFrameID()) , 'frame-item-desc-hide' : !panelSelected(hoverItem,f.getFrameID())}">
-            <p class="frame-item-description book" data-ng-bind="f.getDesc()"></p>
+            <div class="frame-item-desc"
+                 data-ng-class="{ 'frame-item-desc-show' : panelSelected(hoverItem,f.getFrameID()) , 'frame-item-desc-hide' : !panelSelected(hoverItem,f.getFrameID())}">
+              <p class="frame-item-description book" data-ng-bind="f.getDesc()"></p>
+            </div>
+          </div>
+        </div>
+        <div class="frame-item-footer">
+          <span class="medium" data-ng-bind="f.name"></span>
+
+          <div class="button addButton" data-ng-click="selectFrame(f.frameID)">Select</div>
+          <div class="frame-item-footer-details">
+            <table class="frame-info-table">
+              <td class="blue-line">
+                <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
+              </td>
+              <td>
+                <p class="frame-item-weight medium" data-ng-bind="getWeightString(f)"></p>
+              </td>
+            </table>
           </div>
         </div>
       </div>
-      <div class="frame-item-footer">
-        <span class="medium" data-ng-bind="f.name"></span>
-
-        <div class="button addButton" data-ng-click="selectFrame(f.frameID)">Select</div>
-        <div class="frame-item-footer-details">
-          <table class="frame-info-table">
-            <td class="blue-line">
-              <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
-            </td>
-            <td>
-              <p class="frame-item-weight medium" data-ng-bind="getWeightString(f)"></p>
-            </td>
-          </table>
-        </div>
-      </div>
-    </div>
+    </section>
 
     <div class="frame-item text-center horizontal"
          data-ng-repeat="f in frames"
@@ -72,7 +74,7 @@
       <div class="frame-item-image">
         <div class="img" data-ng-mouseenter="hoverItem = f.getFrameID()"
              data-ng-mouseleave="hoverItem = -1">
-          <img data-ng-src="{{f.getImageURL()}}" width="400"/>
+          <img data-ng-src="{{f.getImageURL()}}" width="250"/>
         </div>
       </div>
       <div class="frame-item-footer">
