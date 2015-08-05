@@ -536,6 +536,7 @@ div{
   font-size: 16px;
   padding: 10px 15px;
   border: solid 1px #60C2B1;
+  border-radius: 4px;
 }
 
 .button:hover {

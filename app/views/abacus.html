@@ -28,11 +28,10 @@
               ng-show="showProgressSegmentTooltip" data-ng-bind="getProgressBarSegmentTooltipText(page)"></span>
       </span>
       </div>
-      <button type="button" id="SaveButton" class="btn" data-ng-class="{'saveButton':saveDropdown === true, 'complete': completed() === null}"
+      <button type="button" id="SaveButton" class="btn"
+              data-ng-class="{'saveButton':saveDropdown === true, 'complete': completed() === null}"
               data-ng-click="toggleSaveDropDown()">Save & Review
       </button>
-
-
     </div>
 
     <div data-ng-if="saveDropdown === true" class="dropdownButton">
@@ -62,32 +61,14 @@
     <div class="appBody" data-ng-class="{'appBodyShow': saveDropdown === true}">
 
       <!-- Price & Weight Display -->
-      <div id="display">
-        <div class="display-toggle text-center">
-          <h6>Change Unit</h6>
-          <select data-ng-model="curUnitSys"
-                  data-ng-options="sys.enumVal as sys.name for sys in unitSysList"/>
-        </div>
-        <div class="display-frame" data-ng-click="changeEditState()">
-          <h4 id="wheelChairName" data-ng-if="edit !== true" data-ng-bind="curEditWheelchair.title"></h4>
-
-          <form id="wheelChairEdit" data-ng-submit="editComplete()" data-ng-if="edit === true">
-            <input name="wheelChairName" type="text"
-                   data-ng-model="curEditWheelchair.title" data-ng-click="$event.stopPropagation();"/>
-          </form>
-          <span class="glyphicon glyphicon-pencil edit-button"></span>
-        </div>
-        <div class="display-totals">
-          <h4>
-            <small>PRICE:</small>
-            $<span data-ng-bind="getTotalPrice().toFixed(2)"></span>&nbsp;&nbsp;&nbsp;
-            <small>WEIGHT:</small>
-            <span data-ng-bind="(getTotalWeight()*getCurUnitSysWeightFactor()).toFixed(2)"></span> <span
-            data-ng-bind="getCurUnitSysWeightName()"></span>
-          </h4>
+      <div id="display" class="Book">
+        <div>Frame: <span class="medium" data-ng-bind="curFrameData.name"></span></div>
+        <div>Price: <span class="medium" data-ng-bind="getTotalPrice().toFixed(2)"></span></div>
+        <div>Weight:
+          <span class="medium" data-ng-bind="getCurUnitSysWeightName()"></span>
+          <span class="medium" data-ng-bind="(getTotalWeight()*getCurUnitSysWeightFactor()).toFixed(2)"></span>
         </div>
       </div>
-
 
       <!-- BODY -->
       <div class="main">
@@ -162,16 +143,6 @@
       <!-- SIDEBAR -->
       <div class="sideBarWrapper">
 
-        <!-- Tabs -->
-        <ul class="nav nav-tabs nav-justified shadow-fixer">
-          <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.CUSTOMIZE}">
-            <a id="shadow-customs" data-ng-click="switchPageType(pageType.CUSTOMIZE)">Customize</a>
-          </li>
-          <li role="presentation" data-ng-class="{ 'active' : getCurPageType() == pageType.MEASURE}">
-            <a data-ng-click="switchPageType(pageType.MEASURE); setMeasureTabs(MeasureTabs.ERGONOMICS)">Measure</a>
-          </li>
-        </ul>
-
         <!-- CUSTOMIZE: Sidebar -->
 
         <div class="sideBar" data-ng-if="getCurPageType() == pageType.CUSTOMIZE">
@@ -191,7 +162,7 @@
           <div class="sideBar-custom">
 
             <!-- Options List -->
-            <table class="table">
+            <table>
               <!-- Option Display block   isPanelSelectedTd(option.optionID);-->
 
               <tr class="sideBar-custom-item"

@@ -171,14 +171,30 @@
 
 /******************* Price & Weight Display *****************/
 #display {
-  float: right;
   clear: right;
-  width: 330px;
   line-height: 1;
   height: 60px;
   border-left: 1px solid #ddd;
   z-index: 50;
+  padding-top: 25px;
+  padding-left: 25px;
+  width: 42vw;
+  min-width: 625px;
+}
 
+#display>div{
+  display: inline-block;
+  height: 35px;
+  line-height: 35px;
+  width: 30%;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding-left: 20px;
+  padding-right: 26px;
+}
+
+#display span{
+  font-size: 20px;
+  float: right;
 }
 
 #wheelChairEdit {
@@ -282,7 +298,7 @@
 }
 
 .main-custom .main-custom-wheelchairDisplay {
-  margin-top: 40px;
+  margin-top: 25px;
   margin-left: calc(20vw - 66px);
   min-width: 600px;
   min-height: 450px;
@@ -304,7 +320,7 @@
 
 .main-custom-rotatebuttons {
   position: relative;
-  top: calc(46.3vw - 113px);
+  top: calc(46.3vw - 138px);
   left: 40vw;
   z-index: 21;
 }
@@ -521,7 +537,7 @@
   background-color: #f1f2f2;
   top: -19px;
   border-radius: 0px;
-  height: calc(100% - 41px);
+  height: calc(100% + 18px);
   border-left: 1px solid #ddd;
 }
 
@@ -698,8 +714,9 @@ img.rightButtonNav {
 .sideBar-custom-item-button {
   border: 1px solid #A7A9Ac;
   display: inline-block;
-  width: 50%;
-  margin-right: -5px;
+  width: 47%;
+  margin-right: 1%;
+  border-radius: 2px;
 }
 
 .sideBar-custom-item-button-wide {
