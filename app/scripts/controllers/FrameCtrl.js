@@ -14,8 +14,8 @@ angular.module('abacuApp')
       Drop.setFalse();
       //An array of all Frames
       $scope.frames = FrameData.getFrames();
-      
-      $scope.orientation = 'horizontal'; //change to vertical
+
+      $scope.orientation = 'vertical'; //change to vertical
       //Create a new Wheelchair of the chosen frame type and send the user to Abacus with it
       $scope.selectFrame = function (frameID) {
         //Create a new wheelchair and set is as curEditWheelchair
