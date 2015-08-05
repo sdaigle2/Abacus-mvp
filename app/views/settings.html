@@ -184,7 +184,7 @@
                      ng-class="{'active' : getMeasurementType() === val}">
                      <span data-ng-bind="measDisplay[val].name"></span> <i class="fa fa-arrow-circle-right" title="Learn More"></i>
               </label>
-              <select class="sexy-toggle" data-ng-options="o for o in measDisplay[val].options" data-ng-model="measDisplay[val].optionSelected"></select>
+              <select ng-click="setMeasurementType(val)" class="sexy-toggle" data-ng-options="o for o in measDisplay[val].options" data-ng-model="measDisplay[val].optionSelected"></select>
             </li>
           </ul>
           <div>
@@ -207,7 +207,7 @@
         <div class="settingsContentSectionTitle" data-ng-bind="measDisplay[val].name"></div>
         <div class="settingsContentSectionDescription" data-ng-bind="measDisplay[val].desc"></div>
         <div class="settingsContentSectionGraphic">
-          <img ng-src="{{measDisplay[val].imgURLs[measDisplay[val].imgIndex]}}" width="350" height="340">
+          <img ng-src="{{measDisplay[val].imgURLs[measDisplay[val].imgIndex]}}" width="300" height="288">
           <div class="dots">
             <i class="fa fa-circle-o"
                data-ng-class="{'fa-circle': measDisplay[val].imgIndex === $index}"

@@ -20,13 +20,13 @@
 }
 
 @-webkit-keyframes fadeInShiftPlus {
-  from { opacity: 0; right: 50px; }
-  to { opacity: 1; right: 100px}
+  from { opacity: 0; right: -50px; }
+  to { opacity: 1; right: 0px}
 }
 
 @keyframes fadeInShiftPlus {
-  from { opacity: 0; right: 50px;}
-  to { opacity: 1; right: 100px;}
+  from { opacity: 0; right: -50px;}
+  to { opacity: 1; right: 0px;}
 }
 
 @-webkit-keyframes fadeOut {
@@ -368,7 +368,7 @@
   z-index: 0;
 }
 #settingsMeasurementsContent .settingsContentInputMoreInfoSection.active {
-  right: 100px;
+  right: 0px;
   display: initial;
   z-index: 500;
   -webkit-animation-direction: alternate;
