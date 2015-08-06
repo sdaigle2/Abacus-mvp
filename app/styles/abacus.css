@@ -555,16 +555,14 @@ img.leftButtonNav {
   width: 30px;
   height: 54px;
   position: absolute;
-  margin-left: -169px;
-  left: 165px;
+  left: 10px;
 }
 
 img.rightButtonNav {
   width: 30px;
   height: 54px;
   position: absolute;
-  margin-left: 138px;
-  right: -4px;
+  right: 10px;
 }
 
 .leftButtonNav:hover {
@@ -768,9 +766,9 @@ img.rightButtonNav {
 }
 
 .sideBar-measure-select {
-  padding: 0 0 6px 30px;
-  background-color: #fec44f;
-  height: 80px;
+  padding: 0 0 0 30px;
+  height: 61px;
+  text-align: center;
 }
 
 #sideBar-measure-select-header {
@@ -785,10 +783,9 @@ img.rightButtonNav {
 }
 
 .sideBar-measure-tip {
-  padding: 5px 0px;
+  padding-bottom: 5px;
   border-bottom: 1px solid lightgrey;
-  border-top: 1px solid lightgrey;
-  min-height: 90px;
+  min-height: 120px;
   background-color: #F0F0F0;
 }
 
@@ -805,7 +802,8 @@ img.rightButtonNav {
   width: 70%;
   margin: 0 70px;
   max-height: 12vh;
-  overflow-y: scroll;
+  overflow-y: auto;
+  padding-top: 5px;
 }
 
 .sideBar-measure-bottom {

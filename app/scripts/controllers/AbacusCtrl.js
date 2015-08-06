@@ -37,8 +37,8 @@ angular.module('abacuApp')
 
       /**********************Main Variables****************************/
 
-      $scope.left_button = 'left_button.svg';
-      $scope.right_button = 'right_button.svg';
+      $scope.left_button = 'circle_left_button.svg';
+      $scope.right_button = 'circle_right_button.svg';
         //All the data about the current frame (loaded by init)
       $scope.curFrameData = null;
 

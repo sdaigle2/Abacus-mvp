@@ -59,8 +59,7 @@ section{
 
 .frame-item-description {
   background: white;
-  padding: 10px;
-  font-size: 16px;
+  font-size: 15px;
   height: 100%;
   line-height: 25px;
   overflow: auto;
@@ -241,8 +240,8 @@ td.blue-line{
 .horizontal .addButton{
   width: 150px;
   height: 33px;
-  font-size: 23px;
-  padding-top: 5px;
+  font-size: 19px;
+  padding-top: 6px;
   margin-top: 16px;
 }
 
