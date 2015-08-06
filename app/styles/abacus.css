@@ -180,6 +180,7 @@
   padding-left: 25px;
   width: 42vw;
   min-width: 625px;
+  display: inline-block;
 }
 
 #display>div{
@@ -187,13 +188,18 @@
   height: 35px;
   line-height: 35px;
   width: 30%;
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.6);
   padding-left: 20px;
   padding-right: 26px;
 }
 
 #display span{
   font-size: 20px;
+  float: right;
+}
+
+#unit-select{
+  display: inline-block;
   float: right;
 }
 
@@ -321,7 +327,7 @@
 .main-custom-rotatebuttons {
   position: relative;
   top: calc(46.3vw - 138px);
-  left: 40vw;
+  left: 38vw;
   z-index: 21;
 }
 
@@ -334,7 +340,7 @@
 
 /*************************Main-Measure******************************/
 .main-measure {
-  width: calc(100% - 330px);
+  width: calc(100% - 390px);
   float: left;
 }
 
@@ -353,27 +359,27 @@
 
 .main-measure .measure-body {
   width: 711px;
-  height: 481px;
+  height: 421px;
   background-color: #FFFFFF;
-  border: 1px solid #bcbec0;
+  border: 1px solid #eaeaea;
   border-collapse: collapse;
 
 }
 
 .main-measure .measure-tab {
-  width: 710px;
+  width: 473px;
   height: 60px;
-  background-color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.6);
   border-collapse: collapse;
   font-size: 0.95em;
 }
 
 .main-measure .measure-tab .measure-tab-title {
-  width: 236px;
+  width: 118px;
   text-align: center;
-  border-right: 1px solid #bcbec0;
-  border-bottom: 1px solid #bcbec0;
+  border: 1px solid #eaeaea;
   border-collapse: collapse;
+  border-bottom: none;
 }
 
 .main-measure .measure-tab td:hover {
@@ -383,8 +389,9 @@
 
 .main-measure .measure-tab .active {
   cursor: pointer;
-  border-bottom: solid 4px #60C2B1;
+  box-shadow: inset 0px -4px #60C2B1;
   background-color: white;
+  width: 236px;
 }
 
 .main-measure .measure-body .measure-content {
@@ -528,8 +535,9 @@
   clear: right;
   width: 330px;
   max-width: 430px;
-  height: calc(100vh - 144px);
-  top: -3px
+  height: calc(100vh - 190px);
+  top: 19px;
+  margin-right: 60px;
 }
 
 .sideBar {
@@ -537,8 +545,8 @@
   background-color: #f1f2f2;
   top: -19px;
   border-radius: 0px;
-  height: calc(100% + 18px);
-  border-left: 1px solid #ddd;
+  height: 100%;
+  border: 1px solid #EAEAEA;
 }
 
 .sideBar-header {
@@ -582,23 +590,23 @@ img.rightButtonNav {
   padding-top: 18px;
   padding-bottom: 18px;
   background-color: white;
-  border: solid 1px #ddd;
-
+  border: solid 1px #eaeaea;
+  border-bottom: none;
 }
 
 /****************SideBar-Custom********************/
 .sideBar .sideBar-custom {
   overflow-y: auto;
   height: calc(100% - 54px);
-  border-left: 1px solid #ddd;
+  border: 1px solid #eaeaea;
+  border-top: none;
 }
 
 .sideBar-custom-item {
   height: 120px;
   max-height: 120px;
-  margin: 5px 0px;
-  border-top: solid 1px #bbb;
-  border-bottom: solid 1px #bbb;
+  margin: 5px 0;
+  border-bottom: solid 1px #eaeaea;
   z-index: 1;
 }
 
@@ -761,8 +769,10 @@ img.rightButtonNav {
 .sideBar .sideBar-measure {
   overflow-x: hidden;
   overflow-y: hidden;
-  height: calc(100% - 60px);
+  height: calc(100% - 54px);
   max-width: 330px;
+  border: solid 1px #eaeaea;
+  border-top: none;
 }
 
 .sideBar-measure-select {
@@ -784,9 +794,7 @@ img.rightButtonNav {
 
 .sideBar-measure-tip {
   padding-bottom: 5px;
-  border-bottom: 1px solid lightgrey;
   min-height: 120px;
-  background-color: #F0F0F0;
 }
 
 .sideBar-measure-tip-left {
@@ -878,37 +886,20 @@ img.rightButtonNav {
 }
 
 @keyframes slideLeft {
-  0% {
+  from {
     left: 0;
-    top: 5px;
-    height: calc(100% - 7px);
   }
-  60% {
+  to{
     left: -300px;
-    top: 5px;
-    height: calc(100% - 7px);
-  }
-  100% {
-    left: -300px;
-    top: -57px;
-    height: calc(100% + 57px);
   }
 }
 
 @keyframes slideRight {
-  0% {
+  from {
     left: -300px;
-    top: -57px
   }
-  40% {
-    left: -300px;
-    top: 5px;
-    height: calc(100% - 7px);
-  }
-  100% {
-    left: 0;
-    top: 5px;
-    height: calc(100% - 7px);
+  to {
+    left: 0px;
   }
 }
 
@@ -916,10 +907,10 @@ img.rightButtonNav {
   /* so that the panel won't visibly fade out upon load */
   z-index: -10 !important;
   position: absolute;
-  top: -57px;
+  top: -18px;
   left: -300px;
   width: 300px;
-  height: calc(100% + 57px);
+  height: 99%;
   margin-bottom: 0;
   background-color: #59524D;
   opacity: .9;

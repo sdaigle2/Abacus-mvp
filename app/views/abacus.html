@@ -76,9 +76,9 @@
         <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE"
              style="position:relative;">
           <div class="main-custom-rotatebuttons" ng-class="{'wide-screen': screenWideQuery()}">
-            <img class="leftButton" src="images/icons/rotate_left.png" alt="Previous" width="30" height="30"
+            <img class="leftButton" src="images/icons/rotate_left.jpg" alt="Previous" width="30" height="30"
                  data-ng-click="rotatePreview(-1)"/>
-            <img class="rightButton" src="images/icons/rotate_right.png" alt="Next" width="30" height="30"
+            <img class="rightButton" src="images/icons/rotate_right.jpg" alt="Next" width="30" height="30"
                  data-ng-click="rotatePreview(1)"/>
           </div>
           <div class="swiper"></div>
@@ -95,24 +95,29 @@
           <div class="measure-top">
             <h3><strong data-ng-bind="getCurMeasureData().name"></strong></h3>
 
-
+            <table class="measure-tab">
+              <tr>
+                <td class="measure-tab-title"
+                    ng-click="setMeasureTabs(MeasureTabs.TUTORIAL)"
+                    ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.TUTORIAL}">
+                  <img width="30" src="images/icons/tutorial.png">
+                  <span class="medium" ng-if="getMeasureTabs() === MeasureTabs.TUTORIAL">Tutorial</span>
+                </td>
+                <td class="measure-tab-title"
+                    ng-click="setMeasureTabs(MeasureTabs.ERGONOMICS)"
+                    ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.ERGONOMICS}">
+                  <img width="30" src="images/icons/ergonomics.png">
+                  <span class="medium" ng-if="getMeasureTabs() === MeasureTabs.ERGONOMICS">Ergonomics/body impact</span>
+                </td>
+                <td class="measure-tab-title"
+                    ng-click="setMeasureTabs(MeasureTabs.SUMMARY)"
+                    ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.SUMMARY}">
+                  <img width="30" src="images/icons/summary.png">
+                  <span class="medium" ng-if="getMeasureTabs() === MeasureTabs.SUMMARY">Summary</span>
+                </td>
+              </tr>
+            </table>
             <div class="measure-body">
-              <table class="measure-tab">
-                <tr>
-                  <td class="measure-tab-title"
-                      ng-click="setMeasureTabs(MeasureTabs.TUTORIAL)"
-                      ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.TUTORIAL}"> Tutorial
-                  </td>
-                  <td class="measure-tab-title"
-                      ng-click="setMeasureTabs(MeasureTabs.ERGONOMICS)"
-                      ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.ERGONOMICS}"> Ergonomics/body impact
-                  </td>
-                  <td class="measure-tab-title"
-                      ng-click="setMeasureTabs(MeasureTabs.SUMMARY)"
-                      ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.SUMMARY}"> Summary
-                  </td>
-                </tr>
-              </table>
 
               <div class="measure-content">
                 <h4 class="measure-content-title"
@@ -259,17 +264,17 @@
         </div>
         <!-- MEASURE: Sidebar-->
 
-        <div class="sideBar" data-ng-show="getCurPageType() == pageType.MEASURE">
+        <div class="sideBar" data-ng-if="getCurPageType() == pageType.MEASURE">
           <div class="sideBar-header text-center">
-            <img class="leftButtonNav" src="images/icons/{{left_button}}" alt="Previous" width="30" height="30"
-                 data-ng-mouseenter="left_button='left_button_hover.svg'"
-                 data-ng-mouseleave="left_button='left_button.svg'"
-                 data-ng-click="pageSwitchStep(-1)"/>
-            <img class="rightButtonNav" src="images/icons/{{right_button}}" alt="Next" width="30" height="30"
-                 data-ng-mouseenter="right_button='right_button_hover.svg'"
-                 data-ng-mouseleave="right_button='right_button.svg'"
-                 data-ng-click="pageSwitchStep(1)"
-                 data-ng-show="getCurPage().index < getCurPages().length - 1"/>
+            <!--<img class="leftButtonNav" src="images/icons/{{left_button}}" alt="Previous" width="30" height="30"-->
+                 <!--data-ng-mouseenter="left_button='left_button_hover.svg'"-->
+                 <!--data-ng-mouseleave="left_button='left_button.svg'"-->
+                 <!--data-ng-click="pageSwitchStep(-1)"/>-->
+            <!--<img class="rightButtonNav" src="images/icons/{{right_button}}" alt="Next" width="30" height="30"-->
+                 <!--data-ng-mouseenter="right_button='right_button_hover.svg'"-->
+                 <!--data-ng-mouseleave="right_button='right_button.svg'"-->
+                 <!--data-ng-click="pageSwitchStep(1)"-->
+                 <!--data-ng-show="getCurPage().index < getCurPages().length - 1"/>-->
 
             <h3 class="curPage-header" data-ng-bind="getCurMeasureData().name"></h3>
           </div>
