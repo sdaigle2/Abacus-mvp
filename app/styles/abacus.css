@@ -199,8 +199,10 @@
 }
 
 #unit-select{
+  position: absolute;
+  top: 30px;
+  right: 180px;
   display: inline-block;
-  float: right;
 }
 
 #wheelChairEdit {
@@ -380,6 +382,7 @@
   border: 1px solid #eaeaea;
   border-collapse: collapse;
   border-bottom: none;
+  transition: 0.5s;
 }
 
 .main-measure .measure-tab td:hover {
@@ -776,7 +779,7 @@ img.rightButtonNav {
 }
 
 .sideBar-measure-select {
-  padding: 0 0 0 30px;
+  padding: 15px 0 0 5px;
   height: 61px;
   text-align: center;
 }
@@ -795,6 +798,7 @@ img.rightButtonNav {
 .sideBar-measure-tip {
   padding-bottom: 5px;
   min-height: 120px;
+  padding-top: 29px;
 }
 
 .sideBar-measure-tip-left {
@@ -802,16 +806,20 @@ img.rightButtonNav {
   margin: 0px 10px 0px 30px;
   color: #60C2B1;
   font-style: italic;
-  height: 100%
-
+  height: 100%;
+  padding-top: 5px;
 }
 
 .sideBar-measure-tip-right {
   width: 70%;
   margin: 0 70px;
-  max-height: 12vh;
+  max-height: 14vh;
   overflow-y: auto;
   padding-top: 5px;
+}
+
+.sideBar-measure-tip-right>h5{
+  margin-top: 0;
 }
 
 .sideBar-measure-bottom {
@@ -1161,7 +1169,7 @@ td.details-special-td {
 }
 
 .tip-lower {
-  margin-top: 14px;
+  margin-top: 0;
 }
 
 select {

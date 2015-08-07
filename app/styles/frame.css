@@ -256,6 +256,14 @@ td.blue-line{
   left: calc(50% + 440px);
 }
 
+.gallary_icon_horizontal:hover{
+  cursor: pointer;
+}
+
+.horizontal_icon_vertical{
+  cursor: pointer;
+}
+
 .horizontal_icon_vertical{
   position:absolute;
   top:105px;

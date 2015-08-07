@@ -70,6 +70,7 @@
         </div>
       </div>
 
+      <div id="unit-select" class="Book">Change Unit:</div>
       <!-- BODY -->
       <div class="main">
         <!-- CUSTOMIZE: Wheelchair Display and controls -->
@@ -81,7 +82,6 @@
             <img class="rightButton" src="images/icons/rotate_right.jpg" alt="Next" width="30" height="30"
                  data-ng-click="rotatePreview(1)"/>
           </div>
-          <div class="swiper"></div>
           <img class="main-custom-wheelchairDisplay"
                ng-repeat="img in getPreviewImages()"
                ng-src="{{img.URL}}"
@@ -107,7 +107,7 @@
                     ng-click="setMeasureTabs(MeasureTabs.ERGONOMICS)"
                     ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.ERGONOMICS}">
                   <img width="30" src="images/icons/ergonomics.png">
-                  <span class="medium" ng-if="getMeasureTabs() === MeasureTabs.ERGONOMICS">Ergonomics/body impact</span>
+                  <span class="medium" ng-if="getMeasureTabs() === MeasureTabs.ERGONOMICS">Ergonomics</span>
                 </td>
                 <td class="measure-tab-title"
                     ng-click="setMeasureTabs(MeasureTabs.SUMMARY)"
@@ -266,15 +266,15 @@
 
         <div class="sideBar" data-ng-if="getCurPageType() == pageType.MEASURE">
           <div class="sideBar-header text-center">
-            <!--<img class="leftButtonNav" src="images/icons/{{left_button}}" alt="Previous" width="30" height="30"-->
-                 <!--data-ng-mouseenter="left_button='left_button_hover.svg'"-->
-                 <!--data-ng-mouseleave="left_button='left_button.svg'"-->
-                 <!--data-ng-click="pageSwitchStep(-1)"/>-->
-            <!--<img class="rightButtonNav" src="images/icons/{{right_button}}" alt="Next" width="30" height="30"-->
-                 <!--data-ng-mouseenter="right_button='right_button_hover.svg'"-->
-                 <!--data-ng-mouseleave="right_button='right_button.svg'"-->
-                 <!--data-ng-click="pageSwitchStep(1)"-->
-                 <!--data-ng-show="getCurPage().index < getCurPages().length - 1"/>-->
+            <img class="leftButtonNav" data-ng-src="images/icons/{{left_button}}"
+                 data-ng-mouseenter="left_button='left_button_hover.svg'" alt="Previous" width="30" height="30"
+                 data-ng-mouseleave="left_button='circle_left_button.svg'"
+                 data-ng-click="pageSwitchStep(-1)"/>
+            <img class="rightButtonNav" data-ng-src="images/icons/{{right_button}}" alt="Next" width="30" height="30"
+                 data-ng-mouseenter="right_button='right_button_hover.svg'"
+                 data-ng-mouseleave="right_button='circle_right_button.svg'"
+                 data-ng-click="pageSwitchStep(1)"
+                 data-ng-show="getCurPage().index < getCurPages().length - 1"/>
 
             <h3 class="curPage-header" data-ng-bind="getCurMeasureData().name"></h3>
           </div>

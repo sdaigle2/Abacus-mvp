@@ -51,7 +51,7 @@ angular.module('abacuApp')
       //The current part customization page
       var    curPage = {
         page: [null, null], //has a current page for each page type
-        type: $scope.pageType.MEASURE //keeps track of which page type we are currently looking at
+        type: $scope.pageType.CUSTOMIZE //keeps track of which page type we are currently looking at
       };
 
       //The current angle the wheelchair is being viewed from
