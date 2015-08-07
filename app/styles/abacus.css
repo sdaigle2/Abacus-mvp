@@ -1214,3 +1214,9 @@ body {
   font-size: 0.95em;
   line-height: 1.2em;
 }
+
+
+#NavigationBar{
+  position:absolute;
+  top: 50px;
+}

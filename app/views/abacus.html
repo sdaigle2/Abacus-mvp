@@ -1,6 +1,34 @@
 <link href="styles/abacus.css" rel="stylesheet"/>
+
+<script src="scripts/canvas/createJS/easeljs-0.8.1.min.js"></script>
+<script src="scripts/canvas/createJS/tweenjs-0.6.1.min.js"></script>
+<script src="scripts/canvas/createJS/movieclip-0.8.1.min.js"></script>
+<script src="scripts/canvas/Navigation/navBar.js"></script>
+<script src="scripts/canvas/Navigation/additionalJS.js"></script>
+<script src="scripts/canvas/Navigation/js/Code.js"></script>
 <script>
-  function printMousePos(e) {
+console.log("properly init");
+var canvas, stage, exportRoot;
+
+document.body.onload=function(){
+  console.log(createjs);
+  initNavBar();
+}
+ 
+
+function initNavBar() {
+  console.log("continuing init");
+  canvas = document.getElementById("NavigationBar");
+  exportRoot = new lib.navBar();
+  stage = new createjs.Stage(canvas);
+  stage.addChild(exportRoot);
+  stage.update();
+
+  createjs.Ticker.setFPS(lib.properties.fps);
+  createjs.Ticker.addEventListener("tick", stage);
+}
+
+function printMousePos(e) {
     var cursorY = e.clientY;
     if (cursorY > 280) {
       var dropdown = document.getElementsByClassName("dropdownTable");
@@ -8,8 +36,9 @@
         $("#SaveButton").trigger("click");
       }
     }
-  }
-  document.addEventListener("click", printMousePos);
+}
+document.addEventListener("click", printMousePos);
+
 </script>
 
 
@@ -20,7 +49,11 @@
 
     <!-- Progress Bar and Save Button-->
     <div id="progressSaveBar">
+
+
+
       <div class="progressBar">
+
       <span class="progress-segment" ng-repeat="page in getCurPages()" ng-mouseover="progressSegmentHoverIn()"
             ng-mouseleave="progressSegmentHoverOut()">
         <img class="progress-segment-arrow" ng-click="pageSwitchJump(page)" data-ng-src="{{getProgBarImage(page)}}">
@@ -28,6 +61,13 @@
               ng-show="showProgressSegmentTooltip" data-ng-bind="getProgressBarSegmentTooltipText(page)"></span>
       </span>
       </div>
+
+      <!-- canvas Navigation Bar -->
+
+        <canvas id="NavigationBar" width="1000" height="29" style="background-color:#FFFFFF"></canvas>
+      <!-- canvas Navigation Bar -->
+
+
       <button type="button" id="SaveButton" class="btn"
               data-ng-class="{'saveButton':saveDropdown === true, 'complete': completed() === null}"
               data-ng-click="toggleSaveDropDown()">Save & Review
