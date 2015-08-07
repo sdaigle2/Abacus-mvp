@@ -56,7 +56,7 @@ angular.module('abacuApp')
 
       //The current angle the wheelchair is being viewed from
       var curAngle = Angles.angleType.FRONTRIGHT;
-      var measureTabs = $scope.MeasureTabs.TUTORIAL;
+      var measureTabs = $scope.MeasureTabs.ERGONOMICS;
 
       //The current measurement system being used
       $scope.curUnitSys = User.getUnitSys();
@@ -371,6 +371,7 @@ angular.module('abacuApp')
         $scope.saveDropdown = false;
       };
 
+      //Return null if all measures are set, otherwise return page for first unset measure
       $scope.completed = function() {
         for(var i=0; i<pages.measurePages.length; i++){
           if(pages.measurePages[i].visitstatus === visitstatus.UNVISITED)
@@ -413,7 +414,6 @@ angular.module('abacuApp')
 
       /*****************Panels*********************/
 
-      $scope.edit = false;
       $scope.curOption = $scope.getCurPartData().getDefaultOption();
 
       //Indicates the current panel
@@ -457,13 +457,6 @@ angular.module('abacuApp')
         return curPanel;
       };
 
-      $scope.changeEditState = function () {
-        $scope.edit = !$scope.edit;
-      };
-
-      $scope.editComplete = function () {
-        $scope.edit = false;
-      };
       /*******************Sidebar Colors***************/
 
         //Returns true if the current option is selected and has color options
@@ -550,13 +543,5 @@ angular.module('abacuApp')
         return 0.463*(width-330) > 0.9*(height-140);
       };
 
-      $(".swiper").on("swipreright",function(){
-        console.log('swiperight');
-        $scope.rotatePreview(-1);
-      });
-
-      $(".swiper").on("swipeleft",function(){
-        $scope.rotatePreview(1);
-      });
 
     }]);

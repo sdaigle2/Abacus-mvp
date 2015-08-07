@@ -62,15 +62,14 @@
 
       <!-- Price & Weight Display -->
       <div id="display" class="Book">
-        <div>Frame: <span class="medium" data-ng-bind="curFrameData.name"></span></div>
-        <div>Price: <span class="medium" data-ng-bind="getTotalPrice().toFixed(2)"></span></div>
         <div>Weight:
           <span class="medium" data-ng-bind="getCurUnitSysWeightName()"></span>
           <span class="medium" data-ng-bind="(getTotalWeight()*getCurUnitSysWeightFactor()).toFixed(2)"></span>
         </div>
+        <div>Price: $<span class="medium" data-ng-bind="getTotalPrice().toFixed(2)"></span></div>
+        <div><span class="medium" data-ng-bind="curFrameData.name"></span></div>
       </div>
 
-      <div id="unit-select" class="Book">Change Unit:</div>
       <!-- BODY -->
       <div class="main">
         <!-- CUSTOMIZE: Wheelchair Display and controls -->
@@ -123,11 +122,12 @@
                 <h4 class="measure-content-title"
                     data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">
                   <span data-ng-bind="getCurMeasureData().name"></span> Tutorial </h4>
-                <video
-                  width="550" controls
+                <iframe
                   data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL"
-                  data-ng-src="{{getCurMeasureData().videoURL}}">
-                </video>
+                  data-ng-src="{{getCurMeasureData().videoURL}}"
+                  frameborder="0"
+                  allowfullscreen>
+                </iframe>
                 <img
                   data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.ERGONOMICS"
                   data-ng-src="{{getCurMeasureData().gifURL}}">
