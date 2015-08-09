@@ -178,23 +178,25 @@
   z-index: 50;
   padding-top: 25px;
   padding-left: 25px;
-  width: 42vw;
   min-width: 625px;
-  display: inline-block;
+  width: calc(100vw - 65px);
 }
 
 #display>div{
   display: inline-block;
   height: 35px;
   line-height: 35px;
-  width: 30%;
-  background-color: rgba(255, 255, 255, 0.6);
   padding-left: 20px;
-  padding-right: 26px;
+  float: right;
+  width: 143px;
+}
+
+#display>div:last-child{
+  /* float: none; */
 }
 
 #display span{
-  font-size: 20px;
+  font-size: 16px;
   float: right;
 }
 

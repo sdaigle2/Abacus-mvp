@@ -43,7 +43,10 @@ section{
 
 .frame-item.horizontal {
   margin-bottom: 0;
-  width: 100%;
+  width: 87.5%;
+  margin-left: 6.25%;
+  padding-left: 20px;
+  padding-top: 15px;
 }
 
 .frame-item-title {
@@ -91,7 +94,7 @@ section{
 }
 
 .horizontal .frame-item-price, .horizontal .frame-item-weight {
-  font-size: 27px;
+  font-size: 22px;
 }
 
 .frame-item-image {
@@ -183,7 +186,7 @@ section{
 }
 
 .frame-item-footer>span {
-  font-size: 27px;
+  font-size: 22px;
   float: left;
 }
 
@@ -204,7 +207,7 @@ section{
 .horizontal .frame-item-footer {
   display: inline-block;
   border: none;
-  width: calc(100% - 400px);
+  width: calc(100% - 327px);
   height: 100%;
 }
 
