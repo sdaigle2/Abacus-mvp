@@ -543,5 +543,7 @@ angular.module('abacuApp')
         return 0.463*(width-330) > 0.9*(height-140);
       };
 
-
+      $scope.nothing = function(){
+        return
+      }
     }]);

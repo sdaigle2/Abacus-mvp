@@ -1220,5 +1220,18 @@ body {
 
 #NavigationBar{
   position:absolute;
-  top: 50px;
+  top: 100px;
+  left: 0px;
+}
+
+#nav_span{
+
+  position: absolute;
+  background-color: #000000;
+  color: #FFFFFF;
+  border-radius: 3px;
+  padding: 11px 5px;
+  top: 35px;
+  z-index: 100;
+
 }

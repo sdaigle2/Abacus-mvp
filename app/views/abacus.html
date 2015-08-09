@@ -10,12 +10,17 @@
 console.log("properly init");
 var canvas, stage, exportRoot;
 
+/*
 document.body.onload=function(){
-  console.log(createjs);
   initNavBar();
-}
- 
-
+}*/
+//TODO: This need to execute on load rather on timeout
+setTimeout(initNavBar,700);
+/*
+$(window).load(function(e) {
+    initNavBar();
+});
+ */
 function initNavBar() {
   console.log("continuing init");
   canvas = document.getElementById("NavigationBar");
@@ -57,14 +62,26 @@ document.addEventListener("click", printMousePos);
       <span class="progress-segment" ng-repeat="page in getCurPages()" ng-mouseover="progressSegmentHoverIn()"
             ng-mouseleave="progressSegmentHoverOut()">
         <img class="progress-segment-arrow" ng-click="pageSwitchJump(page)" data-ng-src="{{getProgBarImage(page)}}">
+
         <span class="progress-segment-tooltip"
               ng-show="showProgressSegmentTooltip" data-ng-bind="getProgressBarSegmentTooltipText(page)"></span>
+
       </span>
       </div>
 
-      <!-- canvas Navigation Bar -->
 
-        <canvas id="NavigationBar" width="1000" height="29" style="background-color:#FFFFFF"></canvas>
+      <!-- canvas Navigation Bar -->
+        <canvas ng-mouseover="nothing()"  
+                ng-mouseleave="nothing()"
+                ng-click="nothing()"
+                id="NavigationBar" 
+                width="1000" 
+                height="29" 
+                style="background-color:#FFFFFF">
+        </canvas>
+        <div id="nav_span">HEllo</div>
+              
+      </span>
       <!-- canvas Navigation Bar -->
 
 
