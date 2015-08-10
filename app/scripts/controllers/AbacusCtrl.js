@@ -278,11 +278,14 @@ angular.module('abacuApp')
       $scope.pageSwitchStep = function (dir) {
         if ($scope.getCurPageType() === $scope.pageType.MEASURE && dir === -1 && $scope.getCurPage().index === 0) {
           $scope.setCurPageType($scope.pageType.CUSTOMIZE);
+          //set to customize
           $scope.getCurPage().visitstatus = visitstatus.VISITED;
           $scope.setCurPage(pages.customizePages.length - 1);
         }
         else if ($scope.getCurPageType() === $scope.pageType.CUSTOMIZE && dir === 1 && $scope.getCurPage().index === pages.customizePages.length - 1) {
           $scope.setCurPageType($scope.pageType.MEASURE);
+          //set to measure
+            switchToMeasurement();
           if($scope.getCurWheelchairMeasure().measureOptionIndex !== -1)
             $scope.getCurPage().visitstatus = visitstatus.VISITED;
           else
@@ -299,6 +302,7 @@ angular.module('abacuApp')
         $scope.getCurPage().visitstatus = visitstatus.CURRENT;
         $scope.closeAllPanels();
         resetSelectedMeasureImageIndex();
+        navigateArrows(dir)
       };
 
       //Jump to the given page
@@ -546,4 +550,10 @@ angular.module('abacuApp')
       $scope.nothing = function(){
         return
       }
+
+      $scope.$on('$viewContentLoaded', function() {
+          initNavBar();
+      });
+
+
     }]);

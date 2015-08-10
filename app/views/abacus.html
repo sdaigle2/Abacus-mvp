@@ -6,45 +6,6 @@
 <script src="scripts/canvas/Navigation/navBar.js"></script>
 <script src="scripts/canvas/Navigation/additionalJS.js"></script>
 <script src="scripts/canvas/Navigation/js/Code.js"></script>
-<script>
-console.log("properly init");
-var canvas, stage, exportRoot;
-
-/*
-document.body.onload=function(){
-  initNavBar();
-}*/
-//TODO: This need to execute on load rather on timeout
-setTimeout(initNavBar,700);
-/*
-$(window).load(function(e) {
-    initNavBar();
-});
- */
-function initNavBar() {
-  console.log("continuing init");
-  canvas = document.getElementById("NavigationBar");
-  exportRoot = new lib.navBar();
-  stage = new createjs.Stage(canvas);
-  stage.addChild(exportRoot);
-  stage.update();
-
-  createjs.Ticker.setFPS(lib.properties.fps);
-  createjs.Ticker.addEventListener("tick", stage);
-}
-
-function printMousePos(e) {
-    var cursorY = e.clientY;
-    if (cursorY > 280) {
-      var dropdown = document.getElementsByClassName("dropdownTable");
-      if (dropdown.length > 0) {
-        $("#SaveButton").trigger("click");
-      }
-    }
-}
-document.addEventListener("click", printMousePos);
-
-</script>
 
 
 <div id="offClickArea" ng-click="closeAllPanels()" ng-show="getCurPanelID() != -1"></div>
@@ -379,3 +340,45 @@ document.addEventListener("click", printMousePos);
 
   </div>
 </div>
+
+
+
+<script>
+console.log("properly init");
+var canvas, stage, exportRoot;
+/*
+document.body.onload=function(){
+  initNavBar();
+}*/
+//TODO: This need to execute on load rather on timeout
+//setTimeout(initNavBar,700);
+/*
+$(window).load(function(e) {
+    initNavBar();
+});
+ */
+
+function initNavBar() {
+  console.log("continuing init");
+  canvas = document.getElementById("NavigationBar");
+  exportRoot = new lib.navBar();
+  stage = new createjs.Stage(canvas);
+  stage.addChild(exportRoot);
+  stage.update();
+
+  createjs.Ticker.setFPS(lib.properties.fps);
+  createjs.Ticker.addEventListener("tick", stage);
+}
+
+function printMousePos(e) {
+    var cursorY = e.clientY;
+    if (cursorY > 280) {
+      var dropdown = document.getElementsByClassName("dropdownTable");
+      if (dropdown.length > 0) {
+        $("#SaveButton").trigger("click");
+      }
+    }
+}
+document.addEventListener("click", printMousePos);
+
+</script>
