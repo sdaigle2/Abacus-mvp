@@ -176,7 +176,7 @@
   height: 60px;
   border-left: 1px solid #ddd;
   z-index: 50;
-  padding-top: 25px;
+  padding-top: 15px;
   padding-left: 25px;
   min-width: 625px;
   width: calc(100vw - 65px);
@@ -186,19 +186,19 @@
   display: inline-block;
   height: 35px;
   line-height: 35px;
-  padding-left: 20px;
+  padding-left: 12px;
   float: right;
-  width: 143px;
+  width: 126px;
 }
+
+
 
 #display>div:last-child{
   /* float: none; */
+  width: 78px;
+  font-size: 20px;
 }
 
-#display span{
-  font-size: 16px;
-  float: right;
-}
 
 #unit-select{
   position: absolute;
@@ -371,7 +371,6 @@
 }
 
 .main-measure .measure-tab {
-  width: 473px;
   height: 60px;
   background-color: rgba(255, 255, 255, 0.6);
   border-collapse: collapse;
@@ -384,12 +383,13 @@
   border: 1px solid #eaeaea;
   border-collapse: collapse;
   border-bottom: none;
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .main-measure .measure-tab td:hover {
   cursor: pointer;
   background-color: white;
+  width: 235px;
 }
 
 .main-measure .measure-tab .active {
@@ -398,6 +398,8 @@
   background-color: white;
   width: 236px;
 }
+
+
 
 .main-measure .measure-body .measure-content {
   width: 550px;

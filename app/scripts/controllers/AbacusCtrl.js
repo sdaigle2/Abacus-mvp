@@ -70,8 +70,16 @@ angular.module('abacuApp')
 
         //part customization pages generation
         for (var i = 0; i < $scope.curFrameData.parts.length; i++) {
-          var pPage = {index: i, partID: $scope.curFrameData.parts[i].partID, visitstatus: visitstatus.UNVISITED};
-          pages.customizePages.push(pPage);
+          var partID = $scope.curFrameData.parts[i].partID
+          var optionIndexC = $scope.curEditWheelchair.getOptionIDForPart(partID)
+          if(optionIndexC === -1) {
+            var pPage = {index: i, partID: partID, visitstatus: visitstatus.UNVISITED};
+            pages.customizePages.push(pPage);
+          }
+          else {
+            var pPage = {index: i, partID: partID, visitstatus: visitstatus.VISITED};
+            pages.customizePages.push(pPage);
+          }
         }
 
         //measure pages generation
