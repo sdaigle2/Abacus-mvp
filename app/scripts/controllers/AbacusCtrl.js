@@ -17,7 +17,8 @@ angular.module('abacuApp')
       var visitstatus = {
         VISITED: 'visited',
         UNVISITED: 'unvisited',
-        CURRENT: 'current'
+        CURRENT: 'current',
+        Warning: 'warning'
       };
 
       $scope.saveDropdown = false;
@@ -70,8 +71,16 @@ angular.module('abacuApp')
 
         //part customization pages generation
         for (var i = 0; i < $scope.curFrameData.parts.length; i++) {
-          var pPage = {index: i, partID: $scope.curFrameData.parts[i].partID, visitstatus: visitstatus.UNVISITED};
-          pages.customizePages.push(pPage);
+          var partID = $scope.curFrameData.parts[i].partID
+          var optionIndexC = $scope.curEditWheelchair.getOptionIDForPart(partID)
+          if(optionIndexC === -1) {
+            var pPage = {index: i, partID: partID, visitstatus: visitstatus.UNVISITED};
+            pages.customizePages.push(pPage);
+          }
+          else {
+            var pPage = {index: i, partID: partID, visitstatus: visitstatus.VISITED};
+            pages.customizePages.push(pPage);
+          }
         }
 
         //measure pages generation
@@ -384,7 +393,7 @@ angular.module('abacuApp')
         $scope.saveDropdown = false;
       };
 
-      //Return null if all measures are set, otherwise return page for first unset measure
+      //complete check on HTML
       $scope.completed = function() {
         for(var i=0; i<pages.measurePages.length; i++){
           if(pages.measurePages[i].visitstatus === visitstatus.UNVISITED)
@@ -394,6 +403,27 @@ angular.module('abacuApp')
         }
         return null;
       };
+
+      //Complete check for save to design function:  Return null if all measures are set, otherwise return page for first unset measure
+      $scope.completedCheck = function() {
+        var unfinishedPages = [];
+        for(var i=0; i<pages.measurePages.length; i++){
+          if(pages.measurePages[i].visitstatus === visitstatus.UNVISITED){
+            unfinishedPages.push(pages.measurePages[i]);
+          }
+          if(pages.measurePages[i].visitstatus === visitstatus.CURRENT && $scope.getCurWheelchairMeasure().measureOptionIndex === -1){
+            unfinishedPages.push(pages.measurePages[i]);
+          }
+        }
+
+        for(var i = 0; i < unfinishedPages.length; i++){
+          unfinishedPages[i].visitstatus = visitstatus.CURRENT
+        }
+        console.log(JSON.stringify(unfinishedPages))
+        return unfinishedPages[0];
+      };
+
+
 
       /*****************Sidebar Tabs***************/
 
@@ -506,7 +536,7 @@ angular.module('abacuApp')
         //Saves the current design and updates the database if the user is logged in
       $scope.saveDesign = function () {
         //redirect user to the cart/myDesigns
-        var page = $scope.completed();
+        var page = $scope.completedCheck();
         if(page === null) {
           User.pushNewWheelchair();
           $location.path('/cart');
@@ -516,6 +546,7 @@ angular.module('abacuApp')
           $scope.switchPageType($scope.pageType.MEASURE);
           $scope.pageSwitchJump(page);
           $scope.saveDropdown = false;
+
         }
       };
 
