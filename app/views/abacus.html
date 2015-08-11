@@ -78,8 +78,22 @@
 
     <div class="appBody" data-ng-class="{'appBodyShow': saveDropdown === true}">
 
+     
       <!-- Price & Weight Display -->
       <div id="display" class="Book">
+
+         <!--Unit Toggle-->
+      <div class="unit-toggle">
+      <div class="onoffswitch">
+          <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
+          <label class="onoffswitch-label" for="myonoffswitch">
+              <span class="onoffswitch-inner"></span>
+              <span class="onoffswitch-switch"></span>
+          </label>
+        </div>
+      </div><br><br><br>
+
+
         <div>Weight:
           <span class="medium" data-ng-bind="(getTotalWeight()*getCurUnitSysWeightFactor()).toFixed(2)"></span>
           <span class="medium" data-ng-bind="getCurUnitSysWeightName()"></span>
