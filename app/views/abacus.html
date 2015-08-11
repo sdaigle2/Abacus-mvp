@@ -38,20 +38,20 @@
       <table class="dropdownTable">
         <tr>
           <td id="panelIcon1"><img data-ng-click="saveDesign()"
-                                   data-ng-src="images/abacus_page/save_review/save_to_my_design_hover.png">
+                                   data-ng-src="images/abacus_page/save_review/on_save_to_my_design.png">
             <img data-ng-click="saveDesign()" class=" iconHover"
                  data-ng-src="images/abacus_page/save_review/save_to_my_design.png">
             <h4 data-ng-click="saveDesign()">SAVE TO MY DESIGN</h4>
           </td>
           <td><img data-ng-click="saveComputer()"
-                   data-ng-src="images/abacus_page/save_review/save_to_computer_hover.png">
+                   data-ng-src="images/abacus_page/save_review/on_save_to_computer.png">
             <img data-ng-click="saveComputer()" class="iconHover"
                  data-ng-src="images/abacus_page/save_review/save_to_computer.png">
-            <h4 data-ng-click="saveComputer()" id="panelText">SAVE TO MY COMPUTER</h4>
+            <h4 data-ng-click="saveComputer()" id="panelText">Download a PDF</h4>
           </td>
-          <td id="panelIcon3"><img data-ng-src="images/abacus_page/save_review/share_with_friends_hover.png">
+          <td id="panelIcon3"><img data-ng-src="images/abacus_page/save_review/share.png">
             <img class="iconHover" style="opacity: 0; cursor: auto;"
-                 data-ng-src="images/abacus_page/save_review/share_with_friends.png">
+                 data-ng-src="images/abacus_page/save_review/share.png">
             <h4 style="color: grey;">SHARE WITH FRIEND</h4>
           </td>
         </tr>
@@ -101,7 +101,8 @@
                     ng-mouseover="activePanel = 1"
                     ng-mouseleave="activePanel = -1"
                     ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.TUTORIAL }">
-                  <img width="30" src="images/icons/tutorial.png">
+                  <img ng-hide="getMeasureTabs() === MeasureTabs.TUTORIAL || activePanel === 1" width="30" ng-src="images/abacus_page/measure/icon/video.png">
+                  <img ng-show="getMeasureTabs() === MeasureTabs.TUTORIAL || activePanel === 1" width="30" ng-src="images/abacus_page/measure/icon/video_on.png">
                   <span class="medium" ng-if="getMeasureTabs() === MeasureTabs.TUTORIAL || activePanel === 1">Tutorial</span>
                 </td>
                 <td class="measure-tab-title"
@@ -109,7 +110,8 @@
                     ng-mouseover="activePanel = 2"
                     ng-mouseleave="activePanel = -1"
                     ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.ERGONOMICS }">
-                  <img width="30" src="images/icons/ergonomics.png">
+                  <img ng-hide="getMeasureTabs() === MeasureTabs.ERGONOMICS || activePanel === 2" width="30" ng-src="images/abacus_page/measure/icon/text.png">
+                  <img ng-show="getMeasureTabs() === MeasureTabs.ERGONOMICS || activePanel === 2" width="30" ng-src="images/abacus_page/measure/icon/text_on.png">
                   <span class="medium" ng-if="getMeasureTabs() === MeasureTabs.ERGONOMICS || activePanel === 2">Ergonomics</span>
                 </td>
                 <td class="measure-tab-title"
@@ -117,7 +119,8 @@
                     ng-mouseover="activePanel = 3"
                     ng-mouseleave="activePanel = -1"
                     ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.SUMMARY }">
-                  <img width="30" src="images/icons/summary.png">
+                  <img ng-hide="getMeasureTabs() === MeasureTabs.SUMMARY || activePanel === 3" width="30" ng-src="images/abacus_page/measure/icon/ergonomics.png">
+                  <img ng-show="getMeasureTabs() === MeasureTabs.SUMMARY || activePanel === 3" width="30" ng-src="images/abacus_page/measure/icon/ergonomics_on.png">
                   <span class="medium" ng-if="getMeasureTabs() === MeasureTabs.SUMMARY || activePanel === 3">Summary</span>
                 </td>
               </tr>
@@ -132,6 +135,7 @@
                   data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL"
                   data-ng-src="{{getCurMeasureData().videoURL}}"
                   frameborder="0"
+                  autoplay=0
                   allowfullscreen>
                 </iframe>
                 <img
@@ -217,48 +221,43 @@
 
         <div class="panel" data-ng-class="{'hidden': isPanelSelected(-1)}" data-ng-if="!isPanelSelected(-1)">
           <div class="panel-block">
-            <img data-ng-src="{{curOption.thumbnailURL}}" height="220"/>
 
-            <h5 class="medium" data-ng-bind="curOption.name"></h5>
-
-            <div class="button" data-ng-click="setCurOption(curOption.optionID)"
-                 data-ng-if="getCurWheelchairPart().optionID !== curOption.optionID">Select
+            <div id="imgBlock" ng-class="{'noColor': curOption.colors.length === 0}" >
+              <img data-ng-src="{{curOption.thumbnailURL}}" height="220"/>
+              <section data-ng-if="curOption.colors.length>0">
+                <p>Color</p>
+                <div>
+                  <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
+                     data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
+                     data-ng-style="{'background-color': color.hex, 'max-height':90}"
+                     data-ng-click="setCurOption(curOption.optionID); setCurOptionColor(color.colorID);"
+                     title="{{color.name}}">
+                  </div>
+                </div>
+              </section>
             </div>
-            <div class="active-button button" data-ng-if="getCurWheelchairPart().optionID === curOption.optionID">
-              Selected
-            </div>
-          </div>
-          <div class="panel-block">
-            <h5>Details</h5>
+            <div id="middlePanel">
+              <h4 class="medium" data-ng-bind="curOption.name"></h4>
 
-            <div class="detail-block">
-              <table>
-                <tr>
-                  <td>
-                    $<span data-ng-bind="curOption.getPrice()"></span>
-                  </td>
-                  <td>
-                    <span data-ng-bind="curOption.getWeight()"></span> lbs
-                  </td>
-                </tr>
-              </table>
-              <div data-ng-bind-html="curOption.getDesc()"></div>
-            </div>
-          </div>
-          <div class="panel-block" data-ng-if="curOption.colors.length>0">
-            <h5>Color</h5>
-
-            <div class="color-block">
-              <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
-                   data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
-                   data-ng-style="{'background-color': color.hex, 'max-height':90}"
-                   data-ng-click="setCurOption(curOption.optionID); setCurOptionColor(color.colorID);"
-                   title="{{color.name}}">
+              <div class="button" data-ng-click="setCurOption(curOption.optionID)"
+                   data-ng-if="getCurWheelchairPart().optionID !== curOption.optionID">Select
+              </div>
+              <div class="active-button button" data-ng-if="getCurWheelchairPart().optionID === curOption.optionID">
+                Selected
               </div>
             </div>
           </div>
+          <div class="panel-block" id="lowerPanel">
+            <div>
+              <h5>Details</h5>
+              <h5 class="pAndW">
+                $<span data-ng-bind="curOption.getPrice()"></span> |  <span data-ng-bind="curOption.getWeight()"></span> lbs
+              </h5>
+            </div>
+            <div data-ng-bind-html="curOption.getDesc()"></div>
+          </div>
           <div class="panel-block" data-ng-if="curOption.sizes.length>0">
-            <h4>Size</h4>
+            <h5>Size</h5>
 
             <div data-ng-repeat="size in curOption.sizes"
                  data-ng-bind="size"
