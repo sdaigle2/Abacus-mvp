@@ -2,17 +2,35 @@ var span = document.getElementById("nav_span");
 span.style.visibility = "hidden";
 var margin = 4;
 var ARROW_WIDTH = 90;
-var arrows = new Array();
+var customArrows = new Array();
+var measureArrows = new Array();
+var arrows = null;
 var myScope;
 var arrowFocus = null;
 var focusedIndex = 0;
-var Arrow = function(frame, name, index, page){
+var mBtn;
+var cBtn;
+var pageType = "CUSTOMIZE";
+var tweenSpeed = 800;
+var tweenType = createjs.Ease.getElasticInOut(2, 5);
+var arrowWidth = 70;
+var lastCustomArrow;
+var lastMeasureArrow;
+var done_txt;
+var Arrow = function(frame, name, index, page, custom){
+	this.complete = false;
 	this.page = page;
 	this.index = index;
 	this.name = name;
+	this.custom = custom;
 	this.mc = new lib.Arrow();
 	stage.addChild(this.mc);
-	this.mc.x = arrows.length*(85+margin);
+	if(custom){
+		this.mc.x = customArrows.length*(arrowWidth+margin)+155;
+	}else{
+		this.mc.x = 950;
+	}
+	this.mc.y = 1;
 	this.frame = frame;
 	var mc = this.mc;
 	mc.addEventListener("click", highlightArrow);
@@ -27,10 +45,17 @@ var Arrow = function(frame, name, index, page){
 			arrowFocus.gotoAndStop(1);
 		}
 		arrowFocus = me;
+		if(custom){
+			lastCustomArrow = me;
+		}else{
+			lastMeasureArrow = me;
+		}
 		focusedIndex= index;
-		frame = 0;
+		frame = 3;
 		mc.gotoAndStop(frame);
 		myScope.pageSwitchJump(page);
+		me.complete = true;
+		calcCompleteness();
 	}
 	this.highlightArrow = highlightArrow;
 	function hover_on(m){
@@ -55,24 +80,60 @@ var Arrow = function(frame, name, index, page){
 }
 
 function initArrows(){
-	var pages = myScope.getCurPages();
-	for(var i=0; i<pages.length; i++){
-		//console.log(mySCope..pageSwitchJump(pages[i]))
+	
+	var customizePages = myScope.getCustomizePages();
+	var measurementPages = myScope.getMeasurePages();
+
+	//Initialize customPages
+	for(var i=0; i<customizePages.length; i++){
 		if(i===0){
-			var arrow = new Arrow(0, myScope.getProgressBarSegmentTooltipText(pages[i]), i, pages[i]);
+			var arrow = new Arrow(3, myScope.getProgressBarSegmentTooltipText(customizePages[i]), i, customizePages[i], true);
 			arrowFocus = arrow;
-			arrows.push(arrow);	
+			customArrows.push(arrow);	
 		}else{
-			var arrow = new Arrow(4, myScope.getProgressBarSegmentTooltipText(pages[i]), i,  pages[i]);
-			arrows.push(arrow);	
+			var arrow = new Arrow(2, myScope.getProgressBarSegmentTooltipText(customizePages[i]), i,  customizePages[i], true);
+			customArrows.push(arrow);	
 		}
 	}
+
+
+
+	//Initialize measurementPages
+	for(var i=0; i<measurementPages.length; i++){
+		if(i===0){
+			var arrow = new Arrow(3, myScope.getCustomizeTooltipText(measurementPages[i]), i, measurementPages[i], false);
+			measureArrows.push(arrow);	
+		}else{
+			var arrow = new Arrow(2, myScope.getMeasurementTooltipText(measurementPages[i]), i,  measurementPages[i], false);
+			measureArrows.push(arrow);	
+		}
+	}
+
+
+
+	arrows = customArrows;
+	lastCustomArrow = customArrows[0];
+	lastMeasureArrow = measureArrows[0];
+
 }
 
 function initStuff(container){
+	done_txt = container.done;
 	myScope = angular.element(document.getElementById("NavigationBar")).scope();
 	console.log(myScope);
 	initArrows();
+	mBtn = container.mBtn;
+	cBtn = new lib.cBtn;
+	stage.addChild(cBtn);
+	cBtn.x = -20;
+	cBtn.y = 1;
+
+	mBtn = new lib.mBtn;
+	stage.addChild(mBtn);
+	mBtn.x = 895;
+
+	mBtn.addEventListener("click", switchToMeasurement);
+	cBtn.addEventListener("click", switchToCustomize);
 	document.getElementById("NavigationBar").addEventListener("mousemove", changeCursorPointer);
 	document.getElementById("NavigationBar").addEventListener("mouseout", changeCursorDefault);
 }
@@ -87,18 +148,69 @@ function changeCursorDefault(m){
 	document.body.style.cursor = "default";
 }
 
-function switchToMeasurement(){
-	console.log("switching to measurement");
-	deleteAllArrows();
-	arrows = new Array();
-	initArrows();
+function switchToMeasurement(m){
+	
+	if(pageType === "CUSTOMIZE"){
+		console.log("switching to measurement");
+		for(var i=0; i<customArrows.length; i++){
+			createjs.Tween.get(customArrows[i].mc)
+			.to({
+				x: 50,
+			}, tweenSpeed, tweenType);
+		}
+
+		for(var i=0; i<measureArrows.length; i++){
+			createjs.Tween.get(measureArrows[i].mc)
+			.to({
+				x: 325+i*(arrowWidth+margin),
+			}, tweenSpeed, tweenType);
+		}
+
+		createjs.Tween.get(mBtn)
+		.to({
+			x: mBtn.x-740,
+		}, tweenSpeed, tweenType);
+		pageType = "MEASUREMENT";
+	}
+	arrowFocus = measureArrows[0];
+
+	myScope.setCurPageType(myScope.pageType.MEASURE);
+	myScope.setCurPage(0);
+	lastMeasureArrow.highlightArrow();
 }
 
-function deleteAllArrows(){
-	for(var i=0; i<arrows.length; i++){
-		stage.removeChild(arrows[i].mc);
+function switchToCustomize(m){
+
+
+	if(pageType === "MEASUREMENT"){
+		console.log("switching to customize");
+		for(var i=0; i<customArrows.length; i++){
+			createjs.Tween.get(customArrows[i].mc)
+			.to({
+				x: i*(arrowWidth+margin)+155,
+			}, tweenSpeed, tweenType);
+		}
+
+		for(var i=0; i<measureArrows.length; i++){
+			createjs.Tween.get(measureArrows[i].mc)
+			.to({
+				x: 950,
+			}, tweenSpeed, tweenType);
+		}
+
+		createjs.Tween.get(mBtn)
+		.to({
+			x: 895,
+		}, tweenSpeed, tweenType);
+		pageType = "CUSTOMIZE";
 	}
+
+	myScope.setCurPageType(myScope.pageType.CUSTOMIZE);
+	myScope.setCurPage(0);
+	lastCustomArrow.highlightArrow();
 }
+
+
 
 function navigateArrows(dir){
 	focusedIndex+=dir;
@@ -106,6 +218,31 @@ function navigateArrows(dir){
 	console.log(arrows[focusedIndex]);
 	arrows[focusedIndex].highlightArrow();
 }
+
+
+
+function calcCompleteness(){
+	var numArrows = measureArrows.length+customArrows.length;
+	var numComplete = 0;
+	for(var i=0; i<measureArrows.length; i++){
+		if(measureArrows[i].complete){
+			numComplete++;
+		}
+	}
+	for(var i=0; i<customArrows.length; i++){
+		if(customArrows[i].complete){
+			numComplete++;
+		}
+	}
+	done_txt.text = Math.round(numComplete/numArrows*100)+6+"%";
+}
+
+
+
+
+
+
+
 //TODO: make pointer more presise
 /*
 var mouseX = m.offsetX;

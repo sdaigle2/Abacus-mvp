@@ -170,6 +170,7 @@ angular.module('abacuApp')
       };
 
       /****************Page Functions******************/
+
       $scope.getCurPages = function () {
 
         if (curPage.type === $scope.pageType.CUSTOMIZE) {
@@ -285,7 +286,7 @@ angular.module('abacuApp')
         else if ($scope.getCurPageType() === $scope.pageType.CUSTOMIZE && dir === 1 && $scope.getCurPage().index === pages.customizePages.length - 1) {
           $scope.setCurPageType($scope.pageType.MEASURE);
           //set to measure
-            switchToMeasurement();
+         
           if($scope.getCurWheelchairMeasure().measureOptionIndex !== -1)
             $scope.getCurPage().visitstatus = visitstatus.VISITED;
           else
@@ -365,6 +366,14 @@ angular.module('abacuApp')
         }
         return 'ERROR: Invalid page type';
       };
+
+      $scope.getCustomizeTooltipText = function (page){
+           return $scope.curEditWheelchair.getPartDetails(page.partID, 0).partName;
+      }
+
+      $scope.getMeasurementTooltipText = function (page){
+          return $scope.curEditWheelchair.getMeasureDetails(page.measureID, 0).name;
+      }
 
       /*********Save $ review Dropdown*********/
       $scope.toggleSaveDropDown = function () {

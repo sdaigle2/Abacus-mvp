@@ -1219,8 +1219,8 @@ body {
 
 
 #NavigationBar{
-  position:absolute;
-  top: 60px;
+  width: 90%;
+  top: 50px;
   left: 0px;
 }
 
@@ -1233,5 +1233,7 @@ body {
   padding: 11px 5px;
   top: 35px;
   z-index: 100;
+}
+#ggg{
 
 }
