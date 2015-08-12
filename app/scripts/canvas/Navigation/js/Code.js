@@ -1,31 +1,36 @@
 
 
-var span = document.getElementById("nav_span");
+var span = document.getElementById("nav_span"); //Div DOM Elment
 span.style.visibility = "hidden";
-var margin = 4;
-var ARROW_WIDTH = 90;
+var margin = 4;                                 // Margin Between Arrows
+var ARROW_WIDTH = 90;                           // "Arrows WIDTH"
 var customArrows = new Array();
 var measureArrows = new Array();
 var arrows = null;
 var myScope;
 var arrowFocus = null;
-var focusedIndex = 0;
+var focusedIndex = 0;   //TODO OBSOLETE
 var mBtn;
 var cBtn;
-var pageType = "CUSTOMIZE";
+var pageType = "CUSTOMIZE"; //TODO OBSO
 var tweenSpeed = 800;
 var tweenType = createjs.Ease.getElasticInOut(2, 5);
-var arrowWidth = 70;
-var lastCustomArrow;
-var lastMeasureArrow;
-var done_txt;
+var arrowWidth = 70;  //TODO OBSOLETE
+var lastCustomArrow;  //TODO OBSO
+var lastMeasureArrow; //TODO OBSO
+var done_txt;          //complete percentage
 var spanShift = 150;
 
 //Arrow Object, Handles all arrow eventHandlers and graphic changes.
-var Arrow = function(frame, name, index, page, custom){
+// Image : The image of the arrow
+// Name : The name of the Arrow
+// Page : The page
+// Custom : Is it custom or Measure
+var Arrow = function(image, name, page, custom){
 	this.complete = false;
 	this.page = page;
-	this.index = index;
+	this.index = page.index;
+  var index = page.index;
 	this.name = name;
 	this.custom = custom;
 	this.mc = new lib.Arrow();
@@ -36,16 +41,16 @@ var Arrow = function(frame, name, index, page, custom){
 		this.mc.x = 950;
 	}
 	this.mc.y = 1;
-	this.frame = frame;
+	this.image = image;
 	var mc = this.mc;
-	mc.addEventListener("click", highlightArrow);
+	mc.addEventListener("click", pressed);
 	mc.addEventListener("mouseover", hover_on);
 	mc.addEventListener("rollout", hover_off);
-	
-	var frame = this.frame;
+
+	var image = this.image;
 	var me = this;
-	gotoAndStop(frame);
-	function highlightArrow(){
+	gotoAndStop(image);
+	function pressed(m){
 
 		if(custom){
 			lastCustomArrow = me;
@@ -53,8 +58,9 @@ var Arrow = function(frame, name, index, page, custom){
 			lastMeasureArrow = me;
 		}
 		focusedIndex= index;
-		
+
 		myScope.pageSwitchJump(page);
+    //TODO better completion detection
 		me.complete = true;
 		calcCompleteness();
 
@@ -70,38 +76,38 @@ var Arrow = function(frame, name, index, page, custom){
 		}
 		arrowFocus = me;
 
-		frame = 3;
-		mc.gotoAndStop(frame);
-		
+		image = 3;
+		mc.gotoAndStop(image);
+
 	}
-	this.highlightArrow = highlightArrow;
+	this.pressed = pressed;
 	function hover_on(m){
 
 		span.style.visibility = "visible";
-		if(frame === 4){
+		if(image === 4){
 			mc.gotoAndStop(5);
 		}
 		span.innerHTML = name;
 		span.style.left = spanShift+index*(ARROW_WIDTH-15)+"px";
 	}
 	function hover_off(m){
-		mc.gotoAndStop(frame);
+		mc.gotoAndStop(image);
 		span.style.visibility = "hidden";
 	}
 
 	function gotoAndStop(integer){
-		frame = integer;
+		image = integer;
 		mc.gotoAndStop(integer);
 	}
 	this.gotoAndStop = gotoAndStop;
 
 	function flash(){
-		mc.flasher.play();
+		mc.flasher.gotoAndPlay(1);
 	}
 	this.flash = flash;
 }
 
-//Initializes all the DOM Elements/MovieClips 
+//Initializes all the DOM Elements/MovieClips
 function initStuff(container){
 	done_txt = container.done;
 	myScope = angular.element(document.getElementById("NavigationBar")).scope();
@@ -127,26 +133,25 @@ function initArrows(){
 	//Initialize customPages
 	for(var i=0; i<customizePages.length; i++){
 		if(i===0){
-			var arrow = new Arrow(3, myScope.getProgressBarSegmentTooltipText(customizePages[i]), i, customizePages[i], true);
+			var arrow = new Arrow(3, myScope.getProgressBarSegmentTooltipText(customizePages[i]),  customizePages[i], true);
 			arrowFocus = arrow;
-			customArrows.push(arrow);	
+			customArrows.push(arrow);
 		}else{
-			var arrow = new Arrow(2, myScope.getProgressBarSegmentTooltipText(customizePages[i]), i,  customizePages[i], true);
-			customArrows.push(arrow);	
+			var arrow = new Arrow(2, myScope.getProgressBarSegmentTooltipText(customizePages[i]),  customizePages[i], true);
+			customArrows.push(arrow);
 		}
 	}
 
 	//Initialize measurementPages
 	for(var i=0; i<measurementPages.length; i++){
 		if(i===0){
-			var arrow = new Arrow(3, "Rear Seat Width", i, measurementPages[i], false);
-			measureArrows.push(arrow);	
+			var arrow = new Arrow(3, "Rear Seat Width",  measurementPages[i], false);
+			measureArrows.push(arrow);
 		}else{
-			var arrow = new Arrow(2, myScope.getMeasurementTooltipText(measurementPages[i]), i,  measurementPages[i], false);
-			measureArrows.push(arrow);	
+			var arrow = new Arrow(2, myScope.getMeasurementTooltipText(measurementPages[i]), measurementPages[i], false);
+			measureArrows.push(arrow);
 		}
 	}
-
 	arrows = customArrows;
 	lastCustomArrow = customArrows[0];
 	lastMeasureArrow = measureArrows[0];
@@ -189,8 +194,7 @@ function switchToMeasurement(m){
 	}
 	arrowFocus = measureArrows[0];
 	myScope.setCurPageType(myScope.pageType.MEASURE);
-	myScope.setCurPage(0);
-	lastMeasureArrow.highlightArrow();
+	lastMeasureArrow.pressed();
 	arrows = measureArrows;
 }
 
@@ -218,8 +222,7 @@ function switchToCustomize(m){
 		pageType = "CUSTOMIZE";
 	}
 	myScope.setCurPageType(myScope.pageType.CUSTOMIZE);
-	myScope.setCurPage(0);
-	lastCustomArrow.highlightArrow();
+	lastCustomArrow.pressed();
 	arrows = customArrows;
 }
 
@@ -235,7 +238,7 @@ function navigateArrows(dir){
 		switchToCustomize(null);
 		focusedIndex=customArrows.length-1;
 	}
-	arrows[focusedIndex].highlightArrow();
+	arrows[focusedIndex].pressed();
 }
 
 
@@ -271,7 +274,7 @@ function highlightUnfilledArrows(){
 	var unFinPages = myScope.completedCheck();
 	for(var i=0; i<unFinPages.length; i++){
 		if(i===0){
-			arrows[unFinPages[0].index].highlightArrow();
+			arrows[unFinPages[0].index].pressed();
 		}
 		measureArrows[unFinPages[i].index].flash();
 	}

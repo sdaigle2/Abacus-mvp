@@ -61,9 +61,21 @@ angular.module('abacuApp')
 
       //The current measurement system being used
       $scope.curUnitSys = User.getUnitSys();
+      $scope.curUnit = null;
 
-      //whether the darkener on the options panel gets shown
-      $scope.darkenerClass="nothing";
+
+
+      $scope.unityToggle = function (){
+        if ($scope.curUnit === true){
+            $scope.curUnitSys = $scope.unitSysList[0].enumVal
+        }
+        if ($scope.curUnit === false) {
+          $scope.curUnitSys = $scope.unitSysList[1].enumVal
+
+        }
+      }
+      console.log($scope.curUnit);
+
       /***************************Initialization****************************/
 
       //Generates the page arrays inside of pages
@@ -148,6 +160,11 @@ angular.module('abacuApp')
           name: 'Imperial',
           enumVal: Units.unitSys.IMPERIAL
         }];
+
+      if($scope.curUnitSys === $scope.unitSysList[0].enumVal){
+        $scope.curUnit = false;
+      }else {
+        $scope.curUnit =true;}
 
       //Returns the appropriate weight unit name
       $scope.getCurUnitSysWeightName = function () {
@@ -295,7 +312,7 @@ angular.module('abacuApp')
         else if ($scope.getCurPageType() === $scope.pageType.CUSTOMIZE && dir === 1 && $scope.getCurPage().index === pages.customizePages.length - 1) {
           $scope.setCurPageType($scope.pageType.MEASURE);
           //set to measure
-         
+
           if($scope.getCurWheelchairMeasure().measureOptionIndex !== -1)
             $scope.getCurPage().visitstatus = visitstatus.VISITED;
           else
@@ -386,7 +403,7 @@ angular.module('abacuApp')
 
       /*********Save $ review Dropdown*********/
       $scope.toggleSaveDropDown = function () {
-        
+
         if(highlightUnfilledArrows()){
           $scope.saveDropdown = !$scope.saveDropdown;
         }
@@ -426,7 +443,7 @@ angular.module('abacuApp')
         return unfinishedPages;
       };
 
-    
+
       /*****************Sidebar Tabs***************/
 
       $scope.switchPageType = function (newPageType) {
@@ -538,7 +555,8 @@ angular.module('abacuApp')
         //Saves the current design and updates the database if the user is logged in
       $scope.saveDesign = function () {
         //redirect user to the cart/myDesigns
-        var page = $scope.completedCheck();
+        //var page = $scope.completedCheck();
+        var page = null
         if(page === null) {
           User.pushNewWheelchair();
           $location.path('/cart');
