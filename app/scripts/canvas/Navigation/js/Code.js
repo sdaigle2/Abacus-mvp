@@ -96,7 +96,7 @@ var Arrow = function(frame, name, index, page, custom){
 	this.gotoAndStop = gotoAndStop;
 
 	function flash(){
-		mc.flasher.play();
+		mc.flasher.gotoAndPlay(1);
 	}
 	this.flash = flash;
 }
