@@ -1,3 +1,5 @@
+
+
 var span = document.getElementById("nav_span");
 span.style.visibility = "hidden";
 var margin = 4;
@@ -17,6 +19,9 @@ var arrowWidth = 70;
 var lastCustomArrow;
 var lastMeasureArrow;
 var done_txt;
+var spanShift = 150;
+
+//Arrow Object, Handles all arrow eventHandlers and graphic changes.
 var Arrow = function(frame, name, index, page, custom){
 	this.complete = false;
 	this.page = page;
@@ -41,21 +46,33 @@ var Arrow = function(frame, name, index, page, custom){
 	var me = this;
 	gotoAndStop(frame);
 	function highlightArrow(){
-		if(arrowFocus){
-			arrowFocus.gotoAndStop(1);
-		}
-		arrowFocus = me;
+
 		if(custom){
 			lastCustomArrow = me;
 		}else{
 			lastMeasureArrow = me;
 		}
 		focusedIndex= index;
-		frame = 3;
-		mc.gotoAndStop(frame);
+		
 		myScope.pageSwitchJump(page);
 		me.complete = true;
 		calcCompleteness();
+
+		if(custom && arrowFocus){
+			arrowFocus.gotoAndStop(1);
+		}
+		if(!custom){
+			if(arrowFocus.page.visitstatus==="visited"){
+				arrowFocus.gotoAndStop(1);
+			}else{
+				arrowFocus.gotoAndStop(2);
+			}
+		}
+		arrowFocus = me;
+
+		frame = 3;
+		mc.gotoAndStop(frame);
+		
 	}
 	this.highlightArrow = highlightArrow;
 	function hover_on(m){
@@ -65,7 +82,7 @@ var Arrow = function(frame, name, index, page, custom){
 			mc.gotoAndStop(5);
 		}
 		span.innerHTML = name;
-		span.style.left = index*ARROW_WIDTH+"px";
+		span.style.left = spanShift+index*(ARROW_WIDTH-15)+"px";
 	}
 	function hover_off(m){
 		mc.gotoAndStop(frame);
@@ -77,13 +94,36 @@ var Arrow = function(frame, name, index, page, custom){
 		mc.gotoAndStop(integer);
 	}
 	this.gotoAndStop = gotoAndStop;
+
+	function flash(){
+		mc.flasher.play();
+	}
+	this.flash = flash;
+}
+
+//Initializes all the DOM Elements/MovieClips 
+function initStuff(container){
+	done_txt = container.done;
+	myScope = angular.element(document.getElementById("NavigationBar")).scope();
+	initArrows();
+	mBtn = container.mBtn;
+	cBtn = new lib.cBtn;
+	stage.addChild(cBtn);
+	cBtn.x = -20;
+	cBtn.y = 1;
+	mBtn = new lib.mBtn;
+	stage.addChild(mBtn);
+	mBtn.x = 895;
+	mBtn.addEventListener("click", switchToMeasurement);
+	cBtn.addEventListener("click", switchToCustomize);
+	document.getElementById("NavigationBar").addEventListener("mousemove", changeCursorPointer);
+	document.getElementById("NavigationBar").addEventListener("mouseout", changeCursorDefault);
+	fixFirefox();
 }
 
 function initArrows(){
-	
 	var customizePages = myScope.getCustomizePages();
 	var measurementPages = myScope.getMeasurePages();
-
 	//Initialize customPages
 	for(var i=0; i<customizePages.length; i++){
 		if(i===0){
@@ -96,12 +136,10 @@ function initArrows(){
 		}
 	}
 
-
-
 	//Initialize measurementPages
 	for(var i=0; i<measurementPages.length; i++){
 		if(i===0){
-			var arrow = new Arrow(3, myScope.getCustomizeTooltipText(measurementPages[i]), i, measurementPages[i], false);
+			var arrow = new Arrow(3, "Rear Seat Width", i, measurementPages[i], false);
 			measureArrows.push(arrow);	
 		}else{
 			var arrow = new Arrow(2, myScope.getMeasurementTooltipText(measurementPages[i]), i,  measurementPages[i], false);
@@ -109,38 +147,16 @@ function initArrows(){
 		}
 	}
 
-
-
 	arrows = customArrows;
 	lastCustomArrow = customArrows[0];
 	lastMeasureArrow = measureArrows[0];
 
 }
 
-function initStuff(container){
-	done_txt = container.done;
-	myScope = angular.element(document.getElementById("NavigationBar")).scope();
-	console.log(myScope);
-	initArrows();
-	mBtn = container.mBtn;
-	cBtn = new lib.cBtn;
-	stage.addChild(cBtn);
-	cBtn.x = -20;
-	cBtn.y = 1;
 
-	mBtn = new lib.mBtn;
-	stage.addChild(mBtn);
-	mBtn.x = 895;
-
-	mBtn.addEventListener("click", switchToMeasurement);
-	cBtn.addEventListener("click", switchToCustomize);
-	document.getElementById("NavigationBar").addEventListener("mousemove", changeCursorPointer);
-	document.getElementById("NavigationBar").addEventListener("mouseout", changeCursorDefault);
-}
 
 function changeCursorPointer(m){
 	document.body.style.cursor = "pointer";
-
 }
 
 
@@ -149,9 +165,8 @@ function changeCursorDefault(m){
 }
 
 function switchToMeasurement(m){
-	
+	spanShift = 320;
 	if(pageType === "CUSTOMIZE"){
-		console.log("switching to measurement");
 		for(var i=0; i<customArrows.length; i++){
 			createjs.Tween.get(customArrows[i].mc)
 			.to({
@@ -173,17 +188,15 @@ function switchToMeasurement(m){
 		pageType = "MEASUREMENT";
 	}
 	arrowFocus = measureArrows[0];
-
 	myScope.setCurPageType(myScope.pageType.MEASURE);
 	myScope.setCurPage(0);
 	lastMeasureArrow.highlightArrow();
+	arrows = measureArrows;
 }
 
 function switchToCustomize(m){
-
-
+	spanShift = 150;
 	if(pageType === "MEASUREMENT"){
-		console.log("switching to customize");
 		for(var i=0; i<customArrows.length; i++){
 			createjs.Tween.get(customArrows[i].mc)
 			.to({
@@ -204,18 +217,24 @@ function switchToCustomize(m){
 		}, tweenSpeed, tweenType);
 		pageType = "CUSTOMIZE";
 	}
-
 	myScope.setCurPageType(myScope.pageType.CUSTOMIZE);
 	myScope.setCurPage(0);
 	lastCustomArrow.highlightArrow();
+	arrows = customArrows;
 }
 
 
 
 function navigateArrows(dir){
 	focusedIndex+=dir;
-	console.log(focusedIndex);
-	console.log(arrows[focusedIndex]);
+	if( focusedIndex=== arrows.length ){
+		switchToMeasurement(null);
+		focusedIndex = 0;
+	}
+	if(focusedIndex === -1){
+		switchToCustomize(null);
+		focusedIndex=customArrows.length-1;
+	}
 	arrows[focusedIndex].highlightArrow();
 }
 
@@ -234,30 +253,28 @@ function calcCompleteness(){
 			numComplete++;
 		}
 	}
-	done_txt.text = Math.round(numComplete/numArrows*100)+6+"%";
+	done_txt.text = Math.round(numComplete/numArrows*100)+"%";
 }
 
 
 
 
+function fixFirefox(){
+	var canvy = document.getElementById("NavigationBar");
+	var ctx = canvy.getContext("2d");
+	ctx.textBaseline = "alphabetic";
+}
 
 
-
-//TODO: make pointer more presise
-/*
-var mouseX = m.offsetX;
-var mouseY = m.offsetY;
-var no_hover = true;
-console.log("mouseMoved{x: "+mouseX+","+mouseY+"}");
-for(var i=0; i<arrows.length; i++){
-	if(arrows[i].mc.hitTest(mouseX,mouseY)){
-		//change pointer to pointer
-		document.body.style.cursor = "pointer";
-		no_hover= false;
+function highlightUnfilledArrows(){
+	switchToMeasurement();
+	var unFinPages = myScope.completedCheck();
+	for(var i=0; i<unFinPages.length; i++){
+		if(i===0){
+			arrows[unFinPages[0].index].highlightArrow();
+		}
+		measureArrows[unFinPages[i].index].flash();
 	}
+	return unFinPages.length === 0;
 }
-//console.log(no_hover);
-if(no_hover){
-	//change pointer to normal
-	document.body.style.cursor = "default";
-}*/
+

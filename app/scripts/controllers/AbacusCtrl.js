@@ -386,7 +386,10 @@ angular.module('abacuApp')
 
       /*********Save $ review Dropdown*********/
       $scope.toggleSaveDropDown = function () {
-        $scope.saveDropdown = !$scope.saveDropdown;
+        
+        if(highlightUnfilledArrows()){
+          $scope.saveDropdown = !$scope.saveDropdown;
+        }
       };
 
       $scope.closeSaveDropDown = function () {
@@ -420,11 +423,10 @@ angular.module('abacuApp')
           unfinishedPages[i].visitstatus = visitstatus.CURRENT
         }
         console.log(JSON.stringify(unfinishedPages))
-        return unfinishedPages[0];
+        return unfinishedPages;
       };
 
-
-
+    
       /*****************Sidebar Tabs***************/
 
       $scope.switchPageType = function (newPageType) {
@@ -476,7 +478,7 @@ angular.module('abacuApp')
             var part = $scope.curFrameData.getPart(partID);
             $scope.curOption = part.getOption(id);
           }
-          console.log("set");
+          //console.log("set");
       };
 
       //Closes any open panel
