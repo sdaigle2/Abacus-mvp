@@ -17,31 +17,31 @@
     <div id="progressSaveBar">
 
 
-<!--
-      <div class="progressBar">
 
-      <span class="progress-segment" ng-repeat="page in getCurPages()" ng-mouseover="progressSegmentHoverIn()"
-            ng-mouseleave="progressSegmentHoverOut()">
-        <img class="progress-segment-arrow" ng-click="pageSwitchJump(page)" data-ng-src="{{getProgBarImage(page)}}">
+      <!--<div class="progressBar">-->
 
-        <span class="progress-segment-tooltip"
-              ng-show="showProgressSegmentTooltip" data-ng-bind="getProgressBarSegmentTooltipText(page)"></span>
+      <!--<span class="progress-segment" ng-repeat="page in getCurPages()" ng-mouseover="progressSegmentHoverIn()"-->
+            <!--ng-mouseleave="progressSegmentHoverOut()">-->
+        <!--<img class="progress-segment-arrow" ng-click="pageSwitchJump(page)" data-ng-src="{{getProgBarImage(page)}}">-->
 
-      </span>
-      </div>
--->
+        <!--<span class="progress-segment-tooltip"-->
+              <!--ng-show="showProgressSegmentTooltip" data-ng-bind="getProgressBarSegmentTooltipText(page)"></span>-->
+
+      <!--</span>-->
+      <!--</div>-->
+
 
       <!-- canvas Navigation Bar -->
-        <canvas ng-mouseover="nothing()"  
+        <canvas ng-mouseover="nothing()"
                 ng-mouseleave="nothing()"
                 ng-click="nothing()"
-                id="NavigationBar" 
-                width="1280" 
-                height="31" 
+                id="NavigationBar"
+                width="1280"
+                height="31"
                 style="background-color:#FFFFFF">
         </canvas>
         <div id="nav_span">HEllo</div>
-              
+
       </span>
       <!-- canvas Navigation Bar -->
 
@@ -78,21 +78,9 @@
 
     <div class="appBody" data-ng-class="{'appBodyShow': saveDropdown === true}">
 
-     
+
       <!-- Price & Weight Display -->
       <div id="display" class="Book">
-
-         <!--Unit Toggle-->
-      <div class="unit-toggle">
-      <div class="onoffswitch">
-          <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked>
-          <label class="onoffswitch-label" for="myonoffswitch">
-              <span class="onoffswitch-inner"></span>
-              <span class="onoffswitch-switch"></span>
-          </label>
-        </div>
-      </div><br><br><br>
-
 
         <div>Weight:
           <span class="medium" data-ng-bind="(getTotalWeight()*getCurUnitSysWeightFactor()).toFixed(2)"></span>
@@ -356,8 +344,17 @@
           </div>
         </div>
       </div>
-    </div>
-
+      <!--Unit Toggle-->
+      <div class="unit-toggle">
+        <div class="onoffswitch">
+          <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked
+                 data-ng-model="curUnit" ng-click="unityToggle()">
+          <label class="onoffswitch-label" for="myonoffswitch">
+            <span class="onoffswitch-inner"></span>
+            <span class="onoffswitch-switch"></span>
+          </label>
+        </div>
+      </div>
 
   </div>
 </div>
