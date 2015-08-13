@@ -48,6 +48,7 @@ var Arrow = function(frame, name, index, page, custom){
 	function highlightArrow(){
 
 		if(custom){
+			customChanged();
 			lastCustomArrow = me;
 		}else{
 			lastMeasureArrow = me;
@@ -278,3 +279,17 @@ function highlightUnfilledArrows(){
 	return unFinPages.length === 0;
 }
 
+
+function measureChanged(){
+	var unFinPages = myScope.completed();
+	if(!unFinPages){
+		mBtn.gotoAndStop(1);
+	}
+}
+
+function customChanged(){
+	var unFinPages = myScope.completed();
+	if(!unFinPages){
+		cBtn.gotoAndStop(1);
+	}
+}

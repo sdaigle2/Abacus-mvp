@@ -244,6 +244,7 @@ angular.module('abacuApp')
       };
 
 
+
       /****************Measure Carousel****************/
 
         //The current index of the image shown in the Measure Carousel
@@ -592,7 +593,9 @@ angular.module('abacuApp')
       $scope.nothing = function(){
         return
       }
-
+      $scope.measureChanged = function(){
+        measureChanged();
+      }
       $scope.$on('$viewContentLoaded', function() {
           initNavBar();
       });
