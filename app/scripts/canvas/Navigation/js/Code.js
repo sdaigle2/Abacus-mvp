@@ -108,12 +108,12 @@ var Arrow = function(image, name, page, custom){
 	this.flash = flash;
 }
 
+
 //Initializes all the DOM Elements/MovieClips
 function initStuff(container){
 	done_txt = container.done;
 	myScope = angular.element(document.getElementById("NavigationBar")).scope();
 	initArrows();
-	mBtn = container.mBtn;
 	cBtn = new lib.cBtn;
 	stage.addChild(cBtn);
 	cBtn.x = -20;
@@ -126,7 +126,10 @@ function initStuff(container){
 	document.getElementById("NavigationBar").addEventListener("mousemove", changeCursorPointer);
 	document.getElementById("NavigationBar").addEventListener("mouseout", changeCursorDefault);
 	fixFirefox();
-}
+  customChanged();
+  measureChanged();
+  calcCompleteness()
+  }
 
 function initArrows(){
 	var customizePages = myScope.getCustomizePages();
@@ -138,8 +141,15 @@ function initArrows(){
 			arrowFocus = arrow;
 			customArrows.push(arrow);
 		}else{
-			var arrow = new Arrow(2, myScope.getProgressBarSegmentTooltipText(customizePages[i]),  customizePages[i], true);
-			customArrows.push(arrow);
+      var optionIndexM = myScope.curEditWheelchair.getOptionIDForPart(customizePages[i].partID);
+
+      if (optionIndexM !== -1){
+        var arrow = new Arrow(1, myScope.getProgressBarSegmentTooltipText(customizePages[i]),  customizePages[i], true);
+        customArrows.push(arrow);
+      }else {
+        var arrow = new Arrow(2, myScope.getProgressBarSegmentTooltipText(customizePages[i]), customizePages[i], true);
+        customArrows.push(arrow);
+      }
 		}
 	}
 
@@ -149,14 +159,19 @@ function initArrows(){
 			var arrow = new Arrow(3, "Rear Seat Width",  measurementPages[i], false);
 			measureArrows.push(arrow);
 		}else{
-			var arrow = new Arrow(2, myScope.getMeasurementTooltipText(measurementPages[i]), measurementPages[i], false);
-			measureArrows.push(arrow);
+      var optionIndexC = myScope.curEditWheelchair.getOptionIndexForMeasure(measurementPages[i].measureID);
+      if(optionIndexC !== -1){
+        var arrow = new Arrow(1, myScope.getMeasurementTooltipText(measurementPages[i]), measurementPages[i], false);
+        measureArrows.push(arrow);
+      } else {
+        var arrow = new Arrow(2, myScope.getMeasurementTooltipText(measurementPages[i]), measurementPages[i], false);
+        measureArrows.push(arrow);
+      }
 		}
 	}
 	arrows = customArrows;
 	lastCustomArrow = customArrows[0];
 	lastMeasureArrow = measureArrows[0];
-
 }
 
 
@@ -176,20 +191,20 @@ function switchToMeasurement(m){
 		for(var i=0; i<customArrows.length; i++){
 			createjs.Tween.get(customArrows[i].mc)
 			.to({
-				x: 50,
+				x: 50
 			}, tweenSpeed, tweenType);
 		}
 
 		for(var i=0; i<measureArrows.length; i++){
 			createjs.Tween.get(measureArrows[i].mc)
 			.to({
-				x: 325+i*(arrowWidth+margin),
+				x: 325+i*(arrowWidth+margin)
 			}, tweenSpeed, tweenType);
 		}
 
 		createjs.Tween.get(mBtn)
 		.to({
-			x: mBtn.x-740,
+			x: mBtn.x-740
 		}, tweenSpeed, tweenType);
 		pageType = "MEASUREMENT";
 	}
@@ -205,20 +220,20 @@ function switchToCustomize(m){
 		for(var i=0; i<customArrows.length; i++){
 			createjs.Tween.get(customArrows[i].mc)
 			.to({
-				x: i*(arrowWidth+margin)+155,
+				x: i*(arrowWidth+margin)+155
 			}, tweenSpeed, tweenType);
 		}
 
 		for(var i=0; i<measureArrows.length; i++){
 			createjs.Tween.get(measureArrows[i].mc)
 			.to({
-				x: 950,
+				x: 950
 			}, tweenSpeed, tweenType);
 		}
 
 		createjs.Tween.get(mBtn)
 		.to({
-			x: 895,
+			x: 895
 		}, tweenSpeed, tweenType);
 		pageType = "CUSTOMIZE";
 	}
@@ -230,8 +245,8 @@ function switchToCustomize(m){
 
 
 function navigateArrows(dir){
-	focusedIndex+=dir;
-	if( focusedIndex=== arrows.length ){
+	focusedIndex += dir;
+	if( focusedIndex === arrows.length ){
 		switchToMeasurement(null);
 		focusedIndex = 0;
 	}
@@ -245,19 +260,8 @@ function navigateArrows(dir){
 
 
 function calcCompleteness(){
-	var numArrows = measureArrows.length+customArrows.length;
-	var numComplete = 0;
-	for(var i=0; i<measureArrows.length; i++){
-		if(measureArrows[i].complete){
-			numComplete++;
-		}
-	}
-	for(var i=0; i<customArrows.length; i++){
-		if(customArrows[i].complete){
-			numComplete++;
-		}
-	}
-	done_txt.text = Math.round(numComplete/numArrows*100)+"%";
+
+	done_txt.text = myScope.completePercentage()+"%";
 }
 
 
@@ -291,8 +295,10 @@ function measureChanged(){
 }
 
 function customChanged(){
-	var unFinPages = myScope.completed();
+	var unFinPages = myScope.completedC();
 	if(!unFinPages){
 		cBtn.gotoAndStop(1);
 	}
+
+
 }

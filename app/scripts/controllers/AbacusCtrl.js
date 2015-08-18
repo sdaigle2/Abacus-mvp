@@ -38,8 +38,10 @@ angular.module('abacuApp')
 
       /**********************Main Variables****************************/
 
-      $scope.left_button = 'circle_left_button.svg';
-      $scope.right_button = 'circle_right_button.svg';
+
+
+      $scope.left_button = 'circle_left_button.png';
+      $scope.right_button = 'circle_right_button.png';
         //All the data about the current frame (loaded by init)
       $scope.curFrameData = null;
 
@@ -74,7 +76,6 @@ angular.module('abacuApp')
 
         }
       }
-      console.log($scope.curUnit);
 
       /***************************Initialization****************************/
 
@@ -414,6 +415,9 @@ angular.module('abacuApp')
         $scope.saveDropdown = false;
       };
 
+
+      /****complete check function ***/
+
       //complete check on HTML
       $scope.completed = function() {
         for(var i=0; i<pages.measurePages.length; i++){
@@ -424,6 +428,16 @@ angular.module('abacuApp')
         }
         return null;
       };
+
+      $scope.completedC = function() {
+        for(var i=0; i<pages.customizePages.length; i++){
+          if(pages.customizePages[i].visitstatus === visitstatus.UNVISITED)
+            return pages.customizePages[i];
+          if(pages.customizePages[i].visitstatus === visitstatus.CURRENT && $scope.getCurPartData().optionID === -1)
+            return pages.customizePages[i];
+        }
+        return null;
+      }
 
       //Complete check for save to design function:  Return null if all measures are set, otherwise return page for first unset measure
       $scope.completedCheck = function() {
@@ -442,6 +456,12 @@ angular.module('abacuApp')
         }
         console.log(JSON.stringify(unfinishedPages))
         return unfinishedPages;
+      };
+
+      $scope.completePercentage = function (){
+        var completeNum = ($scope.completedCheck()).length;
+        var total = pages.customizePages.length + pages.measurePages.length;
+        return Math.round((total - completeNum) / total * 100);
       };
 
 
@@ -617,6 +637,12 @@ angular.module('abacuApp')
       $scope.$on('$viewContentLoaded', function() {
           initNavBar();
       });
+
+
+
+
+    /*********** canvas function*********/
+
 
 
     }]);

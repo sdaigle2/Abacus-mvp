@@ -453,7 +453,7 @@
         "options": [
           {
             "name": "25mm Clamp Release",
-            "optionID": 51,
+            "optionID": 52,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
@@ -465,7 +465,7 @@
           },
           {
             "name": "1/2\" Quick Release",
-            "optionID": 52,
+            "optionID": 51,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
@@ -1339,7 +1339,7 @@
         "options": [
           {
             "name": "25mm Clamp Release",
-            "optionID": 251,
+            "optionID": 252,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
@@ -1351,7 +1351,7 @@
           },
           {
             "name": "1/2\" Quick Release",
-            "optionID": 252,
+            "optionID": 251,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],

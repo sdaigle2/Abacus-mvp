@@ -93,8 +93,7 @@
       <!-- BODY -->
       <div class="main">
         <!-- CUSTOMIZE: Wheelchair Display and controls -->
-        <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE"
-             style="position:relative;">
+        <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
           <div class="main-custom-rotatebuttons" ng-class="{'wide-screen': screenWideQuery()}">
             <img class="leftButton" src="images/icons/rotate_left.jpg" alt="Previous" width="30" height="30"
                  data-ng-click="rotatePreview(-1)"/>
@@ -121,27 +120,27 @@
                     ng-mouseover="activePanel = 1"
                     ng-mouseleave="activePanel = -1"
                     ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.TUTORIAL }">
-                  <img ng-hide="getMeasureTabs() === MeasureTabs.TUTORIAL || activePanel === 1" width="30" ng-src="images/abacus_page/measure/icon/video.png">
-                  <img ng-show="getMeasureTabs() === MeasureTabs.TUTORIAL || activePanel === 1" width="30" ng-src="images/abacus_page/measure/icon/video_on.png">
-                  <span class="medium" ng-if="getMeasureTabs() === MeasureTabs.TUTORIAL || activePanel === 1">Tutorial</span>
+                  <img ng-hide="getMeasureTabs() === MeasureTabs.TUTORIAL || activePanel === 1"  width="25" ng-src="images/abacus_page/measure/icon/video.png">
+                  <img ng-show="getMeasureTabs() === MeasureTabs.TUTORIAL || activePanel === 1" width="25" ng-src="images/abacus_page/measure/icon/video_on.png">
+                  <span class="medium">Tutorial</span>
                 </td>
                 <td class="measure-tab-title"
                     ng-click="setMeasureTabs(MeasureTabs.ERGONOMICS)"
                     ng-mouseover="activePanel = 2"
                     ng-mouseleave="activePanel = -1"
                     ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.ERGONOMICS }">
-                  <img ng-hide="getMeasureTabs() === MeasureTabs.ERGONOMICS || activePanel === 2" width="30" ng-src="images/abacus_page/measure/icon/text.png">
-                  <img ng-show="getMeasureTabs() === MeasureTabs.ERGONOMICS || activePanel === 2" width="30" ng-src="images/abacus_page/measure/icon/text_on.png">
-                  <span class="medium" ng-if="getMeasureTabs() === MeasureTabs.ERGONOMICS || activePanel === 2">Ergonomics</span>
+                  <img ng-hide="getMeasureTabs() === MeasureTabs.ERGONOMICS || activePanel === 2" width="25" ng-src="images/abacus_page/measure/icon/ergonomics.png">
+                  <img ng-show="getMeasureTabs() === MeasureTabs.ERGONOMICS || activePanel === 2" width="25" ng-src="images/abacus_page/measure/icon/ergonomics_on.png">
+                  <span class="medium" >Ergonomics</span>
                 </td>
                 <td class="measure-tab-title"
                     ng-click="setMeasureTabs(MeasureTabs.SUMMARY)"
                     ng-mouseover="activePanel = 3"
                     ng-mouseleave="activePanel = -1"
                     ng-class="{ 'active' : getMeasureTabs() === MeasureTabs.SUMMARY }">
-                  <img ng-hide="getMeasureTabs() === MeasureTabs.SUMMARY || activePanel === 3" width="30" ng-src="images/abacus_page/measure/icon/ergonomics.png">
-                  <img ng-show="getMeasureTabs() === MeasureTabs.SUMMARY || activePanel === 3" width="30" ng-src="images/abacus_page/measure/icon/ergonomics_on.png">
-                  <span class="medium" ng-if="getMeasureTabs() === MeasureTabs.SUMMARY || activePanel === 3">Summary</span>
+                  <img ng-hide="getMeasureTabs() === MeasureTabs.SUMMARY || activePanel === 3" width="25" ng-src="images/abacus_page/measure/icon/text.png">
+                  <img ng-show="getMeasureTabs() === MeasureTabs.SUMMARY || activePanel === 3" width="25" ng-src="images/abacus_page/measure/icon/text_on.png">
+                  <span class="medium" >Summary</span>
                 </td>
               </tr>
             </table>
@@ -183,13 +182,13 @@
         <div class="sideBar" data-ng-if="getCurPageType() == pageType.CUSTOMIZE">
           <div class="sideBar-header text-center">
             <img class="leftButtonNav" data-ng-src="images/icons/{{left_button}}"
-                 data-ng-mouseenter="left_button='circle_left_button_hover.svg'" alt="Previous" width="30" height="30"
-                 data-ng-mouseleave="left_button='circle_left_button.svg'"
+                 data-ng-mouseenter="left_button='circle_left_button_hover.png'" alt="Previous" width="30" height="30"
+                 data-ng-mouseleave="left_button='circle_left_button.png'"
                  data-ng-click="pageSwitchStep(-1)"
                  data-ng-show="getCurPage().index > 0"/>
             <img class="rightButtonNav" data-ng-src="images/icons/{{right_button}}" alt="Next" width="30" height="30"
-                 data-ng-mouseenter="right_button='circle_right_button_hover.svg'"
-                 data-ng-mouseleave="right_button='circle_right_button.svg'"
+                 data-ng-mouseenter="right_button='circle_right_button_hover.png'"
+                 data-ng-mouseleave="right_button='circle_right_button.png'"
                  data-ng-click="pageSwitchStep(1)"/>
 
             <h3 class="curPage-header" data-ng-bind="getCurPartData().name"></h3>
@@ -292,12 +291,12 @@
         <div class="sideBar" data-ng-if="getCurPageType() == pageType.MEASURE">
           <div class="sideBar-header text-center">
             <img class="leftButtonNav" data-ng-src="images/icons/{{left_button}}"
-                 data-ng-mouseenter="left_button='circle_left_button_hover.svg'" alt="Previous" width="30" height="30"
-                 data-ng-mouseleave="left_button='circle_left_button.svg'"
+                 data-ng-mouseenter="left_button='circle_left_button_hover.png'" alt="Previous" width="30" height="30"
+                 data-ng-mouseleave="left_button='circle_left_button.png'"
                  data-ng-click="pageSwitchStep(-1)"/>
             <img class="rightButtonNav" data-ng-src="images/icons/{{right_button}}" alt="Next" width="30" height="30"
-                 data-ng-mouseenter="right_button='circle_right_button_hover.svg'"
-                 data-ng-mouseleave="right_button='circle_right_button.svg'"
+                 data-ng-mouseenter="right_button='circle_right_button_hover.png'"
+                 data-ng-mouseleave="right_button='circle_right_button.png'"
                  data-ng-click="pageSwitchStep(1)"
                  data-ng-show="getCurPage().index < getCurPages().length - 1"/>
 
@@ -329,9 +328,9 @@
                    ng-show="curMeasureCarouselIndex === $index"
                    ng-src="{{image}}" width="350" height="340">
 
-              <img class="leftButton" src="images/icons/circle_left_button.svg" alt="Previous" width="30" height="30"
+              <img class="leftButton" src="images/icons/circle_left_button.png" alt="Previous" width="30" height="30"
                    data-ng-click="rotateMeasureCarouselIndex(-1)"/>
-              <img class="rightButton" src="images/icons/circle_right_button.svg" alt="Next" width="30" height="30"
+              <img class="rightButton" src="images/icons/circle_right_button.png" alt="Next" width="30" height="30"
                    data-ng-click="rotateMeasureCarouselIndex(1)"/>
 
 
@@ -364,18 +363,6 @@
 <script>
 console.log("properly init");
 var canvas, stage, exportRoot;
-/*
-document.body.onload=function(){
-  initNavBar();
-}*/
-//TODO: This need to execute on load rather on timeout
-//setTimeout(initNavBar,700);
-/*
-$(window).load(function(e) {
-    initNavBar();
-});
- */
-
 function initNavBar() {
   console.log("continuing init");
   canvas = document.getElementById("NavigationBar");
