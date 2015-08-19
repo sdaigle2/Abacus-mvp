@@ -18,17 +18,6 @@
 
 
 
-      <!--<div class="progressBar">-->
-
-      <!--<span class="progress-segment" ng-repeat="page in getCurPages()" ng-mouseover="progressSegmentHoverIn()"-->
-            <!--ng-mouseleave="progressSegmentHoverOut()">-->
-        <!--<img class="progress-segment-arrow" ng-click="pageSwitchJump(page)" data-ng-src="{{getProgBarImage(page)}}">-->
-
-        <!--<span class="progress-segment-tooltip"-->
-              <!--ng-show="showProgressSegmentTooltip" data-ng-bind="getProgressBarSegmentTooltipText(page)"></span>-->
-
-      <!--</span>-->
-      <!--</div>-->
 
 
       <!-- canvas Navigation Bar -->
@@ -50,6 +39,7 @@
               data-ng-class="{'saveButton':saveDropdown === true, 'complete': completed() === null}"
               data-ng-click="toggleSaveDropDown()">Save & Review
       </button>
+      {{completePercentage()}}
     </div>
 
     <div data-ng-if="saveDropdown === true" class="dropdownButton">
@@ -59,7 +49,7 @@
                                    data-ng-src="images/abacus_page/save_review/on_save_to_my_design.png">
             <img data-ng-click="saveDesign()" class=" iconHover"
                  data-ng-src="images/abacus_page/save_review/save_to_my_design.png">
-            <h4 data-ng-click="saveDesign()">SAVE TO MY DESIGN</h4>
+            <h4 data-ng-click="saveDesign()">Add to My Design</h4>
           </td>
           <td><img data-ng-click="saveComputer()"
                    data-ng-src="images/abacus_page/save_review/on_save_to_computer.png">
@@ -70,7 +60,7 @@
           <td id="panelIcon3"><img data-ng-src="images/abacus_page/save_review/share.png">
             <img class="iconHover" style="opacity: 0; cursor: auto;"
                  data-ng-src="images/abacus_page/save_review/share.png">
-            <h4 style="color: grey;">SHARE WITH FRIEND</h4>
+            <h4 style="color: grey;">Share with Friend</h4>
           </td>
         </tr>
       </table>
@@ -298,7 +288,10 @@
                  data-ng-mouseenter="right_button='circle_right_button_hover.png'"
                  data-ng-mouseleave="right_button='circle_right_button.png'"
                  data-ng-click="pageSwitchStep(1)"
-                 data-ng-show="getCurPage().index < getCurPages().length - 1"/>
+                 data-ng-if="getCurPage().index < getCurPages().length - 1"/>
+            <img class="rightButtonNav" data-ng-src="images/icons/complete_check.png" alt="Next" width="30" height="30"
+                 data-ng-click="toggleSaveDropDown()"
+                 data-ng-if="getCurPage().index === getCurPages().length - 1"/>
 
             <h3 class="curPage-header" data-ng-bind="getCurMeasureData().name"></h3>
           </div>

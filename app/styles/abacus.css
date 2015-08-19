@@ -1228,7 +1228,7 @@ body {
 }
 
 .onoffswitch {
-    position: absolute; width: 96px;
+    position: relative; width: 96px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
 }
 .onoffswitch-checkbox {

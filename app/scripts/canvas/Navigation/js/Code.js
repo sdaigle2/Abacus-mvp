@@ -112,8 +112,10 @@ var Arrow = function(image, name, page, custom){
 //Initializes all the DOM Elements/MovieClips
 function initStuff(container){
 	done_txt = container.done;
-	myScope = angular.element(document.getElementById("NavigationBar")).scope();
-	initArrows();
+  myScope = angular.element(document.getElementById("NavigationBar")).scope();
+  done_txt.text = myScope.completePercentage()+"%";
+
+  initArrows();
 	cBtn = new lib.cBtn;
 	stage.addChild(cBtn);
 	cBtn.x = -20;
@@ -128,7 +130,6 @@ function initStuff(container){
 	fixFirefox();
   customChanged();
   measureChanged();
-  calcCompleteness()
   }
 
 function initArrows(){
@@ -141,9 +142,9 @@ function initArrows(){
 			arrowFocus = arrow;
 			customArrows.push(arrow);
 		}else{
-      var optionIndexM = myScope.curEditWheelchair.getOptionIDForPart(customizePages[i].partID);
+      var optionIndexC = myScope.curEditWheelchair.getOptionIDForPart(customizePages[i].partID);
 
-      if (optionIndexM !== -1){
+      if (optionIndexC !== -1){
         var arrow = new Arrow(1, myScope.getProgressBarSegmentTooltipText(customizePages[i]),  customizePages[i], true);
         customArrows.push(arrow);
       }else {
@@ -159,8 +160,8 @@ function initArrows(){
 			var arrow = new Arrow(3, "Rear Seat Width",  measurementPages[i], false);
 			measureArrows.push(arrow);
 		}else{
-      var optionIndexC = myScope.curEditWheelchair.getOptionIndexForMeasure(measurementPages[i].measureID);
-      if(optionIndexC !== -1){
+      var optionIndexM = myScope.curEditWheelchair.getOptionIndexForMeasure(measurementPages[i].measureID);
+      if(optionIndexM !== -1){
         var arrow = new Arrow(1, myScope.getMeasurementTooltipText(measurementPages[i]), measurementPages[i], false);
         measureArrows.push(arrow);
       } else {

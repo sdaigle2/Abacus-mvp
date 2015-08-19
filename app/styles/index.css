@@ -67,6 +67,9 @@ body {
 .mainNavbar .mainNavbar-left > li.aboutNavButton {
   background-image: url("../images/icons/about_us.png");
 }
+.mainNavbar .mainNavbar-left > li.compareNavButton {
+  background-image: url("../images/icons/compare.png");
+}
 
 .mainNavbar .mainNavbar-left > li.frameNavButton:hover,
 .mainNavbar .mainNavbar-left > li.frameNavButton:focus,
@@ -83,6 +86,15 @@ body {
 .mainNavbar .mainNavbar-left > li.aboutNavButton.active:focus {
   color:#00a89c;
   background-image: url("../images/icons/on_about_us.png");
+}
+
+.mainNavbar .mainNavbar-left > li.compareNavButton:hover,
+.mainNavbar .mainNavbar-left > li.compareNavButton:focus,
+.mainNavbar .mainNavbar-left > li.compareNavButton.active,
+.mainNavbar .mainNavbar-left > li.compareNavButton.active:hover,
+.mainNavbar .mainNavbar-left > li.compareNavButton.active:focus {
+  color:#00a89c;
+  background-image: url("../images/icons/on_compare.png");
 }
 
 .mainNavbar .mainNavbar-left > li > a {

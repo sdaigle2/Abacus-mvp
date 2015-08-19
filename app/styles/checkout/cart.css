@@ -138,6 +138,7 @@ a:hover{
 
 #mainContent .comparisonImages canvas{
   margin: 0 10px 5px;
+  cursor: pointer;
 }
 
 #mainContent .comparisonImages tr{
@@ -150,7 +151,7 @@ a:hover{
 
 #mainContent .comparisonImages td{
   cursor: pointer;
-  padding: 0 15px;
+  padding: 0 21px;
 }
 
 #mainContent .comparisonImages td:nth-child(2){
@@ -511,12 +512,14 @@ ol h3{
 
 
 #displayImage .mainDisplay .leftButton{
+  cursor: pointer;
   position: absolute;
   top: 48%;
   left: 0;
 }
 
 #displayImage .mainDisplay .rightButton{
+  cursor: pointer;
   position: absolute;
   top: 48%;
   right: 0;

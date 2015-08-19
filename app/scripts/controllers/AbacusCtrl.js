@@ -106,12 +106,13 @@ angular.module('abacuApp')
           var optionIndex = $scope.curEditWheelchair.getOptionIndexForMeasure(mPage.measureID);
           if(optionIndex !== -1)
             mPage.visitstatus = visitstatus.VISITED;
+          console.log("page pushed" + JSON.stringify(mPage));
           pages.measurePages.push(mPage);
         }
 
-        //reset visit statuses
-        pages.customizePages[0].visitstatus = visitstatus.CURRENT;
-        pages.measurePages[0].visitstatus = visitstatus.CURRENT;
+        ////reset visit statuses
+        //pages.customizePages[0].visitstatus = visitstatus.CURRENT;
+        //pages.measurePages[0].visitstatus = visitstatus.CURRENT;
 
         //set our current pages to the beginning
         curPage.page[$scope.pageType.CUSTOMIZE] = pages.customizePages[0];
@@ -406,7 +407,7 @@ angular.module('abacuApp')
       /*********Save $ review Dropdown*********/
       $scope.toggleSaveDropDown = function () {
 
-        if(highlightUnfilledArrows()){
+        if(1){
           $scope.saveDropdown = !$scope.saveDropdown;
         }
       };
@@ -421,32 +422,32 @@ angular.module('abacuApp')
       //complete check on HTML
       $scope.completed = function() {
         for(var i=0; i<pages.measurePages.length; i++){
-          if(pages.measurePages[i].visitstatus === visitstatus.UNVISITED)
+          var optionIndexM = $scope.curEditWheelchair.getOptionIndexForMeasure(pages.measurePages[i].measureID);
+          if (optionIndexM === -1){
             return pages.measurePages[i];
-          if(pages.measurePages[i].visitstatus === visitstatus.CURRENT && $scope.getCurWheelchairMeasure().measureOptionIndex === -1)
-            return pages.measurePages[i];
+          }
         }
         return null;
       };
 
       $scope.completedC = function() {
-        for(var i=0; i<pages.customizePages.length; i++){
-          if(pages.customizePages[i].visitstatus === visitstatus.UNVISITED)
+        for(var i=0; i<pages.customizePages.length; i++) {
+          var optionIndexC = $scope.curEditWheelchair.getOptionIDForPart(pages.customizePages[i].partID);
+          if (optionIndexC === -1) {
             return pages.customizePages[i];
-          if(pages.customizePages[i].visitstatus === visitstatus.CURRENT && $scope.getCurPartData().optionID === -1)
-            return pages.customizePages[i];
+          }
         }
+
         return null;
-      }
+      };
 
       //Complete check for save to design function:  Return null if all measures are set, otherwise return page for first unset measure
       $scope.completedCheck = function() {
         var unfinishedPages = [];
         for(var i=0; i<pages.measurePages.length; i++){
-          if(pages.measurePages[i].visitstatus === visitstatus.UNVISITED){
-            unfinishedPages.push(pages.measurePages[i]);
-          }
-          if(pages.measurePages[i].visitstatus === visitstatus.CURRENT && $scope.getCurWheelchairMeasure().measureOptionIndex === -1){
+          var optionIndexM = $scope.curEditWheelchair.getOptionIndexForMeasure(pages.measurePages[i].measureID);
+
+          if(optionIndexM === -1){
             unfinishedPages.push(pages.measurePages[i]);
           }
         }
@@ -454,7 +455,6 @@ angular.module('abacuApp')
         for(var i = 0; i < unfinishedPages.length; i++){
           unfinishedPages[i].visitstatus = visitstatus.CURRENT
         }
-        console.log(JSON.stringify(unfinishedPages))
         return unfinishedPages;
       };
 
@@ -567,7 +567,6 @@ angular.module('abacuApp')
         var part = $scope.curFrameData.getPart(partID);
         var option = part.getOption(optionID);
         var wPart = $scope.curEditWheelchair.getPart(partID);
-        console.log(option.getColor(wPart.colorID).getHexString());
         return option.getColor(wPart.colorID).getHexString();
       };
 
@@ -575,20 +574,11 @@ angular.module('abacuApp')
 
         //Saves the current design and updates the database if the user is logged in
       $scope.saveDesign = function () {
-        //redirect user to the cart/myDesigns
-        //var page = $scope.completedCheck();
-        var page = null
-        if(page === null) {
+        if(highlightUnfilledArrows()) {
           User.pushNewWheelchair();
           $location.path('/cart');
         }
-        else{
-          alert('Please fill out all measurements');
-          $scope.switchPageType($scope.pageType.MEASURE);
-          $scope.pageSwitchJump(page);
-          $scope.saveDropdown = false;
 
-        }
       };
 
       $scope.saveComputer = function () {
