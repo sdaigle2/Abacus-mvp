@@ -1229,6 +1229,7 @@ body {
 
 .onoffswitch {
     position: relative; width: 96px;
+  display: inline-block;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
 }
 .onoffswitch-checkbox {
@@ -1261,7 +1262,7 @@ body {
 .onoffswitch-switch {
     display: block; width: 13px; margin: 3.5px;
     background: #FFFFFF;
-    position: absolute; top: 0; bottom: 0;
+    position: absolute; top: 0; bottom: 5px;
     right: 72px;
     border: 0px solid #FFFFFF; border-radius: 21px;
     transition: all 0.3s ease-in 0s;
@@ -1278,4 +1279,9 @@ body {
     float: right;
   clear: right;
   margin: 20px 58px 0 0;
+}
+#unitLabel {
+  display: inline-block;
+  position: relative;
+  bottom: 9px;
 }
