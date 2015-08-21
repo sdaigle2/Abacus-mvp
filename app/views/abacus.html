@@ -39,7 +39,8 @@
               data-ng-class="{'saveButton':saveDropdown === true, 'complete': completed() === null}"
               data-ng-click="toggleSaveDropDown()">Save & Review
       </button>
-      {{completePercentage()}}
+
+     <!-- {{completePercentage()}} -->
     </div>
 
     <div data-ng-if="saveDropdown === true" class="dropdownButton">
@@ -194,11 +195,17 @@
                   data-ng-style="(isSidebarColored(option.optionID)) && {'border-left': 'solid 5px ' + getSidebarColor(option.optionID) }"
                 >
                 <td class="sideBar-custom-item-left">
-                  <img class="colorOptionsIndicator" ng-show="option.colors"
-                       src="images/icons/color_option.png" alt="See color options"/>
-                  <img data-ng-src="{{option.thumbnailURL}}" height="100" width="100"
+                  <img class="colorOptionsIndicator" 
+                       ng-show="option.colors"
+                       src="images/icons/color_option.png" 
+                       alt="See color options"
+                    />
+                  
+                  <img data-ng-src="{{option.thumbnailURL}}" 
+                       height="100" width="100"
                        ng-class="{'colorCursor': option.colors.length > 0}"
-                       data-ng-click="setPanel(option.optionID);"/>
+                       data-ng-click="setPanel(option.optionID);"
+                    />
                 </td>
                 <td class="sideBar-custom-item-right">
                   <h4 class="sideBar-custom-item-name" title="{{titleForEllipsis(option.name, 45)}}"
@@ -233,18 +240,21 @@
 
             <div id="imgBlock" ng-class="{'noColor': curOption.colors.length === 0}" >
               <img data-ng-src="{{curOption.thumbnailURL}}" height="220"/>
+              </div>
               <section data-ng-if="curOption.colors.length>0">
                 <p>Color</p>
-                <div>
+                
                   <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
                      data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
                      data-ng-style="{'background-color': color.hex, 'max-height':90}"
                      data-ng-click="setCurOption(curOption.optionID); setCurOptionColor(color.colorID);"
                      title="{{color.name}}">
                   </div>
-                </div>
+                
               </section>
-            </div>
+
+            
+
             <div id="middlePanel">
               <h4 class="medium" data-ng-bind="curOption.name"></h4>
 
@@ -303,6 +313,7 @@
                 <select data-ng-model="getCurWheelchairMeasure().measureOptionIndex"
                         data-ng-options="idx as mo for (idx, mo) in getCurMeasureData().measureOptions[curUnitSys]"
                         ng-change="measureChanged()"
+
                         />
                 <span data-ng-bind="getCurMeasureData().units[curUnitSys]"></span>
               </div>
