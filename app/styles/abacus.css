@@ -1067,15 +1067,12 @@ img.rightButtonNav {
 }
 
 .colorPanel {
-  position: absolute;
+  position: relative;
   width: 154px;
-  max-height: 146px;
-  overflow-y: auto;
-  background-color: #D6D8D8;
-  transition: 1s;
 }
 
 .colorPanelItem {
+  position: absolute;
   width: 30px;
   height: 30px;
 }

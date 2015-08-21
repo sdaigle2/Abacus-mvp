@@ -623,6 +623,7 @@ angular.module('abacuApp')
       }
       $scope.measureChanged = function(){
         measureChanged();
+        calcCompleteness();
       }
       $scope.$on('$viewContentLoaded', function() {
           initNavBar();
