@@ -39,7 +39,6 @@
               data-ng-class="{'saveButton':saveDropdown === true, 'complete': completed() === null}"
               data-ng-click="toggleSaveDropDown()">Save & Review
       </button>
-      {{completePercentage()}}
     </div>
 
     <div data-ng-if="saveDropdown === true" class="dropdownButton">
@@ -195,7 +194,8 @@
                 >
                 <td class="sideBar-custom-item-left">
                   <img class="colorOptionsIndicator" ng-show="option.colors"
-                       src="images/icons/color_option.png" alt="See color options"/>
+                       src="images/icons/color_option.png" alt="See color options"
+                       data-ng-click="setPanel(option.optionID);"/>
                   <img data-ng-src="{{option.thumbnailURL}}" height="100" width="100"
                        ng-class="{'colorCursor': option.colors.length > 0}"
                        data-ng-click="setPanel(option.optionID);"/>
