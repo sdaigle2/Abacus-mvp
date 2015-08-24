@@ -987,6 +987,7 @@ img.rightButtonNav {
 
 
 .panel-block:nth-of-type(3) {
+  margin-top: 10px;
   border: none;
 }
 
@@ -1054,25 +1055,10 @@ img.rightButtonNav {
 }
 
 /*************** Color Panel ************************/
-.colorPanelShow {
-  left: -170px;
-  opacity: 1;
-  z-index: -10;
-}
 
-.colorPanelHidden {
-  left: 0;
-  opacity: 0;
-  z-index: -10;
-}
 
-.colorPanel {
-  position: relative;
-  width: 154px;
-}
 
 .colorPanelItem {
-  position: absolute;
   width: 30px;
   height: 30px;
 }

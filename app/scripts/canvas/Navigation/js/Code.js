@@ -3,7 +3,6 @@
 var span = document.getElementById("nav_span"); //Div DOM Elment
 span.style.visibility = "hidden";
 var margin = 4;                                 // Margin Between Arrows
-var ARROW_WIDTH = 90;                           // "Arrows WIDTH"
 var customArrows = new Array();
 var measureArrows = new Array();
 var arrows = null;
@@ -19,13 +18,25 @@ var arrowWidth = 70;  //TODO OBSOLETE
 var lastCustomArrow;  //TODO OBSO
 var lastMeasureArrow; //TODO OBSO
 var done_txt;          //complete percentage
-var spanShift = 150;
+var ratio = $(window).width() * 0.9 /1280;
+var ARROW_WIDTH = 90 * ratio;                           // "Arrows WIDTH"
+var spanShift = 150 * ratio;
+var measureShift = 320 * ratio;
+var customizeShift = 150 *ratio;
 
 //Arrow Object, Handles all arrow eventHandlers and graphic changes.
 // Image : The image of the arrow
 // Name : The name of the Arrow
 // Page : The page
 // Custom : Is it custom or Measure
+
+window.onresize = function(event) {
+  ratio = $(window).width() * 0.9 /1280;
+  ARROW_WIDTH = 90 * ratio;                           // "Arrows WIDTH"
+  spanShift = 150 * ratio;
+  measureShift = 320 * ratio;
+  customizeShift = 150 *ratio;
+}
 var Arrow = function(image, name, page, custom){
 	this.complete = false;
 	this.page = page;
@@ -187,7 +198,7 @@ function changeCursorDefault(m){
 }
 
 function switchToMeasurement(m){
-	spanShift = 320;
+	spanShift = measureShift;
 	if(pageType === "CUSTOMIZE"){
 		for(var i=0; i<customArrows.length; i++){
 			createjs.Tween.get(customArrows[i].mc)
@@ -216,7 +227,7 @@ function switchToMeasurement(m){
 }
 
 function switchToCustomize(m){
-	spanShift = 150;
+	spanShift = customizeShift;
 	if(pageType === "MEASUREMENT"){
 		for(var i=0; i<customArrows.length; i++){
 			createjs.Tween.get(customArrows[i].mc)

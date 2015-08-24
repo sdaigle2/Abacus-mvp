@@ -143,7 +143,7 @@
                   data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL"
                   data-ng-src="{{getCurMeasureData().videoURL}}"
                   frameborder="0"
-                  autoplay=0
+                  autoplay="0"
                   allowfullscreen>
                 </iframe>
                 <img
@@ -193,9 +193,9 @@
                   data-ng-style="(isSidebarColored(option.optionID)) && {'border-left': 'solid 5px ' + getSidebarColor(option.optionID) }"
                 >
                 <td class="sideBar-custom-item-left">
-                  <img class="colorOptionsIndicator" 
+                  <img class="colorOptionsIndicator"
                        ng-show="option.colors"
-                       src="images/icons/color_option.png" 
+                       src="images/icons/color_option.png"
                        alt="See color options"
                        data-ng-click="setPanel(option.optionID);"/>
                   <img data-ng-src="{{option.thumbnailURL}}" height="100" width="100"
@@ -236,21 +236,18 @@
 
             <div id="imgBlock" ng-class="{'noColor': curOption.colors.length === 0}" >
               <img data-ng-src="{{curOption.thumbnailURL}}" height="220"/>
-              </div>
               <section data-ng-if="curOption.colors.length>0">
                 <p>Color</p>
-                
+                <div>
                   <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
                      data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
                      data-ng-style="{'background-color': color.hex, 'max-height':90}"
                      data-ng-click="setCurOption(curOption.optionID); setCurOptionColor(color.colorID);"
                      title="{{color.name}}">
                   </div>
-                
+                </div>
               </section>
-
-            
-
+            </div>
             <div id="middlePanel">
               <h4 class="medium" data-ng-bind="curOption.name"></h4>
 
