@@ -59,7 +59,7 @@ angular.module('abacuApp')
 
       //The current angle the wheelchair is being viewed from
       var curAngle = Angles.angleType.FRONTRIGHT;
-      var measureTabs = $scope.MeasureTabs.ERGONOMICS;
+      var measureTabs = $scope.MeasureTabs.TUTORIAL;
 
       //The current measurement system being used
       $scope.curUnitSys = User.getUnitSys();
@@ -273,6 +273,7 @@ angular.module('abacuApp')
         $scope.curMeasureCarouselIndex = 0;
       }
 
+
       //Cycles the carousel in the direction of dir (+-1)
       $scope.rotateMeasureCarouselIndex = function (dir) {
         var len = $scope.getCurMeasureData().getNumImages();
@@ -333,6 +334,7 @@ angular.module('abacuApp')
         $scope.closeAllPanels();
         resetSelectedMeasureImageIndex();
         navigateArrows(dir)
+        $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL);
       };
 
       //Jump to the given page

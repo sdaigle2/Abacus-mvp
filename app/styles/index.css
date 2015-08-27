@@ -164,11 +164,11 @@ body {
 .mainNavbar .mainNavbar-left > li:focus {
   color: #00A89C;
 }
-.mainNavbar .mainNavbar-left > .active > a,
-.mainNavbar .mainNavbar-left > .active > a:hover,
-.mainNavbar .mainNavbar-left > .active > a:focus {
-  color: #000000;
-}
+/*.mainNavbar .mainNavbar-left > .active > a,*/
+/*.mainNavbar .mainNavbar-left > .active > a:hover,*/
+/*.mainNavbar .mainNavbar-left > .active > a:focus {*/
+  /*color: #000000;*/
+/*}*/
 
 /* nav bar right styles */
 
