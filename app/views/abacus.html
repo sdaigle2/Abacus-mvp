@@ -84,10 +84,10 @@
         <!-- CUSTOMIZE: Wheelchair Display and controls -->
         <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
           <div class="main-custom-rotatebuttons" ng-class="{'wide-screen': screenWideQuery()}">
-            <!--<img class="leftButton" src="images/icons/rotate_left.jpg" alt="Previous" width="30" height="30"-->
-                 <!--data-ng-click="rotatePreview(-1)"/>-->
-            <!--<img class="rightButton" src="images/icons/rotate_right.jpg" alt="Next" width="30" height="30"-->
-                 <!--data-ng-click="rotatePreview(1)"/>-->
+            <img class="leftButton" src="images/icons/rotate_left.jpg" alt="Previous" width="30" height="30"
+                 data-ng-click="rotatePreview(-1)"/>
+            <img class="rightButton" src="images/icons/rotate_right.jpg" alt="Next" width="30" height="30"
+                 data-ng-click="rotatePreview(1)"/>
           </div>
           <img class="main-custom-wheelchairDisplay"
                ng-repeat="img in getPreviewImages()"
@@ -98,6 +98,7 @@
           <img class="main-custom-wheelchairDisplay"
                ng-src="images/abacus_page/customize/shadow.png"
                ng-class="{'wide-screen': screenWideQuery()}"
+               style="top: -33px;"
                />
 
         </div>

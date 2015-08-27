@@ -45,7 +45,7 @@ var orders = cloudant.use('orders');
 var sendgrid = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
 var email = new sendgrid.Email({
   from: 'tinker@intelliwheels.net',
-  subject: 'Abacus Registration'
+  subject: 'Tinker Registration'
 });
 
 //Stripe Payment API
