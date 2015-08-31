@@ -19,6 +19,13 @@
   margin-bottom: 20px;
   font-size: 1.5em;
 }
+.text4{
+  position:absolute;
+  text-align: center;
+  bottom: 5px;
+  width: 100vw;
+  font-size: 1.0em;
+}
 
 #wrapper button{
   height: auto;
