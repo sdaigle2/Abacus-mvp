@@ -39,7 +39,8 @@
            data-ng-class="{'right-border': ($even && ($index !== frames.length-1)), 'bottom-border': ($index < frames.length-2)}"
            data-ng-if="orientation === 'vertical'">
         <div class="frame-item-image">
-          <div class="img" data-ng-mouseenter="hoverItem = f.getFrameID()"
+          <div class="img"
+               data-ng-mouseenter="hoverItem = f.getFrameID()"
                data-ng-mouseleave="hoverItem = -1">
             <img data-ng-src="{{f.getImageURL()}}" width="400"/>
 

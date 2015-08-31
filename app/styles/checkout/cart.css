@@ -194,7 +194,6 @@ a:hover{
 .cartBody > table{
   margin: 20px calc(50% - 410px);
   float: left;
-  clear: left;
 }
 
 .parts-table, .parts-table td{
@@ -426,7 +425,6 @@ a:hover{
 
 .button-div{
   position: relative;
-  top: 39px;
 }
 
 .checkoutButton {

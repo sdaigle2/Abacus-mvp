@@ -106,13 +106,8 @@ angular.module('abacuApp')
           var optionIndex = $scope.curEditWheelchair.getOptionIndexForMeasure(mPage.measureID);
           if(optionIndex !== -1)
             mPage.visitstatus = visitstatus.VISITED;
-          console.log("page pushed" + JSON.stringify(mPage));
           pages.measurePages.push(mPage);
         }
-
-        ////reset visit statuses
-        //pages.customizePages[0].visitstatus = visitstatus.CURRENT;
-        //pages.measurePages[0].visitstatus = visitstatus.CURRENT;
 
         //set our current pages to the beginning
         curPage.page[$scope.pageType.CUSTOMIZE] = pages.customizePages[0];
@@ -337,6 +332,9 @@ angular.module('abacuApp')
         $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL);
       };
 
+
+
+
       //Jump to the given page
       $scope.pageSwitchJump = function (page) {
         if($scope.getCurWheelchairMeasure().measureOptionIndex !== -1 || $scope.getCurPageType() === $scope.pageType.CUSTOMIZE)
@@ -348,7 +346,9 @@ angular.module('abacuApp')
         $scope.closeAllPanels(); //close any panels we may have opened
         if ($scope.getCurPageType() === $scope.pageType.MEASURE) { //resets the selected image in the measure panel
           resetSelectedMeasureImageIndex();
+          $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL);
         }
+
       };
 
       //Returns the image for the given progress bar segment based on visit status and index

@@ -190,14 +190,14 @@
   line-height: 35px;
   padding-left: 12px;
   float: right;
-  width: 129px;
+  width: 135px;
 }
 
 
 
 #display>div:last-child{
   /* float: none; */
-  width: 78px;
+  width: 65px;
   font-size: 20px;
 }
 
@@ -1293,4 +1293,10 @@ body {
   display: inline-block;
   position: relative;
   bottom: 9px;
+}
+
+#siteCredit {
+  position: fixed;
+  bottom: 5px;
+  left: 5px;
 }

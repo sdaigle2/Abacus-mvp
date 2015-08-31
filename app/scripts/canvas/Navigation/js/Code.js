@@ -19,10 +19,18 @@ var lastCustomArrow;  //TODO OBSO
 var lastMeasureArrow; //TODO OBSO
 var done_txt;          //complete percentage
 var ratio = $(window).width() * 0.9 /1280;
-var ARROW_WIDTH = 90 * ratio;                           // "Arrows WIDTH"
-var spanShift = 150 * ratio;
-var measureShift = 320 * ratio;
-var customizeShift = 150 *ratio;
+var minRatio = 1185 * 0.9 / 1280;
+if($(window).width() > 1185) {
+  var ARROW_WIDTH = 90 * ratio;                           // "Arrows WIDTH"
+  var spanShift = 150 * ratio;
+  var measureShift = 320 * ratio;
+  var customizeShift = 150 * ratio;
+} else {
+  var ARROW_WIDTH = 90 * minRatio;                           // "Arrows WIDTH"
+  var spanShift = 150 * minRatio;
+  var measureShift = 320 * minRatio;
+  var customizeShift = 150 * minRatio;
+}
 
 //Arrow Object, Handles all arrow eventHandlers and graphic changes.
 // Image : The image of the arrow
@@ -31,11 +39,12 @@ var customizeShift = 150 *ratio;
 // Custom : Is it custom or Measure
 
 window.onresize = function(event) {
+  if($(window).width() > 1185){
   ratio = $(window).width() * 0.9 /1280;
   ARROW_WIDTH = 90 * ratio;                           // "Arrows WIDTH"
   spanShift = 150 * ratio;
   measureShift = 320 * ratio;
-  customizeShift = 150 *ratio;
+  customizeShift = 150 *ratio;}
 }
 var Arrow = function(image, name, page, custom){
 	this.complete = false;
@@ -90,6 +99,7 @@ var Arrow = function(image, name, page, custom){
 
 		image = 3;
 		mc.gotoAndStop(image);
+
 
 	}
 	this.pressed = pressed;

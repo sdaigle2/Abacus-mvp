@@ -391,7 +391,7 @@ div{
 
 .login-button{
   height: 30px;
-  line-height: 27px;
+  line-height: 19px;
   font-size: 12pt;
   width: 60%;
   margin: auto;
@@ -480,7 +480,7 @@ div{
 
 .dropdownTable td > div:hover{
   cursor: pointer;
-  color: #f2bc19;
+  color: white;
 }
 
 .dropdownButton table tr  h4 {
@@ -553,7 +553,7 @@ div{
 
 .button:hover {
   background-color: #60C2B1;
-  color: #ffffff;
+  color: white;
   cursor: pointer;
 }
 

@@ -61,11 +61,13 @@ section{
 }
 
 .frame-item-description {
-  background: white;
+  background-color: #88cbc3 ;
   font-size: 15px;
   height: 100%;
   line-height: 25px;
   overflow: auto;
+  padding: 2% 5% 0;
+  text-align: left;
 }
 
 .horizontal .frame-item-description{
@@ -75,6 +77,10 @@ section{
 
 .horizontal .frame-item-desc{
   height: 136px;
+}
+
+.horizontal .frame-item-desc .frame-item-description{
+background: white;
 }
 
 .frame-item-price {
@@ -109,8 +115,8 @@ section{
 
 .frame-item-image .img{
   position: relative;
-  margin-top: 15px;
-  width: 99%;
+  padding-top: 15px;
+  width: 100%;
   z-index: 1;
   overflow:hidden;
 }
@@ -128,9 +134,8 @@ section{
 
 .img .frame-item-desc {
   position: absolute;
-  width: 102%;
+  width: 100%;
   transition: all 0.2s ease 0s;
-  margin-left: -2%;
   height: 100%;
   opacity: 0.9;
 }
