@@ -245,7 +245,7 @@
             11
           ]
         ],
-        "defaultOptionID": 11,
+        "defaultOptionID": 13,
         "options": [
           {
             "name": "Carbon Fiber",
@@ -255,31 +255,31 @@
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/backrest/backrest_carbon_fiber.png",
             "desc": "An ultra lightweight, rigid, carbon fiber backrest, molded to fit the contours of your back and improve chair control. Tension adjustable with velcro straps.",
-            "weight": 0,
+            "weight": -0.15,
             "price": 0,
             "defaultColorID": 0
           },
           {
-            "name": "Padded",
+            "name": "Carbon Fiber With Upholstry",
             "optionID": 12,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/backrest/backrest_padded.png",
             "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your back and padded for additional comfort. Tension adjustable with velcro straps.",
-            "weight": 0.1,
+            "weight": -0.1,
             "price": 0,
             "defaultColorID": 0
           },
           {
-            "name": "Upholstery",
+            "name": "Plastic With Upholstery",
             "optionID": 13,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/backrest/backrest_upholstery.png",
-            "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your body, padded for your comfort and upholstered with breathable mesh nylon. Tension adjustable with velcro straps.",
-            "weight": 0.15,
+            "desc": "An ultra lightweight, rigid, plastic backrest contoured to fit your body, padded for your comfort and upholstered with breathable mesh nylon. Tension adjustable with velcro straps.",
+            "weight": 0,
             "price": 0,
             "defaultColorID": 0
           }
@@ -1135,7 +1135,7 @@
             11
           ]
         ],
-        "defaultOptionID": 211,
+        "defaultOptionID": 213,
         "options": [
           {
             "name": "Carbon Fiber",
@@ -1145,31 +1145,31 @@
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/backrest/backrest_carbon_fiber.png",
             "desc": "An ultra lightweight, rigid, carbon fiber backrest, molded to fit the contours of your back and improve chair control. Tension adjustable with velcro straps.",
-            "weight": 0,
+            "weight": -0.15,
             "price": 0,
             "defaultColorID": 0
           },
           {
-            "name": "Padded",
+            "name": "Carbon Fiber With Upholstery",
             "optionID": 212,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/backrest/backrest_padded.png",
             "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your back and padded for additional comfort. Tension adjustable with velcro straps.",
-            "weight": 0.1,
+            "weight": -0.1,
             "price": 0,
             "defaultColorID": 0
           },
           {
-            "name": "Upholstery",
+            "name": "Plastic With Upholstery",
             "optionID": 213,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/backrest/backrest_upholstery.png",
-            "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your body, padded for your comfort and upholstered with breathable mesh nylon. Tension adjustable with velcro straps.",
-            "weight": 0.15,
+            "desc": "An ultra lightweight, rigid, plastic backrest contoured to fit your body, padded for your comfort and upholstered with breathable mesh nylon. Tension adjustable with velcro straps.",
+            "weight": 0,
             "price": 0,
             "defaultColorID": 0
           }
