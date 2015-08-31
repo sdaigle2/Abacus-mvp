@@ -2,9 +2,9 @@
   {
     "manufacturer": "Ti Arrow",
     "name": "CKE",
-    "desc": "TiArrow's flagship frame, the CKE offers the most enjoyable rider experience on the market. The seat, and ergonomic backrest work in concert with the side guards to provide unparalleled stability and the ultralightweight frame is easy to push and gentle on your shoulders. Available in titanium or magnesium (standard sizes only)",
+    "desc": "TiArrow's flagship frame, the CKE offers the most enjoyable rider experience on the market. The seat, and ergonomic backrest work in concert with the side guards to provide unparalleled stability and the ultralightweight frame is easy to push and gentle on your shoulders. Available in titanium or magnesium (standard sizes only).  WARNING: The TiArrow CKE is not available in US yet due to a long FDA process.  Until then, feel free to play and customize it as much as you like.",
     "basePrice": 2995,
-    "baseWeight": 5.5,
+    "baseWeight": 5.8,
     "frameID": 1,
     "imageURL": "images/frame_page_img/CKE_Blue2.jpg",
     "wheelIndex": 3,
@@ -255,31 +255,31 @@
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/backrest/backrest_carbon_fiber.png",
             "desc": "An ultra lightweight, rigid, carbon fiber backrest, molded to fit the contours of your back and improve chair control. Tension adjustable with velcro straps.",
-            "weight": 0,
+            "weight": -0.15,
             "price": 0,
             "defaultColorID": 0
           },
           {
-            "name": "Padded",
+            "name": "Carbon Fiber With Upholstry",
             "optionID": 12,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/backrest/backrest_padded.png",
             "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your back and padded for additional comfort. Tension adjustable with velcro straps.",
-            "weight": 0.1,
+            "weight": -0.1,
             "price": 0,
             "defaultColorID": 0
           },
           {
-            "name": "Upholstery",
+            "name": "Plastic With Upholstery",
             "optionID": 13,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/backrest/backrest_upholstery.png",
-            "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your body, padded for your comfort and upholstered with breathable mesh nylon. Tension adjustable with velcro straps.",
-            "weight": 0.15,
+            "desc": "An ultra lightweight, rigid, plastic backrest contoured to fit your body, padded for your comfort and upholstered with breathable mesh nylon. Tension adjustable with velcro straps.",
+            "weight": 0,
             "price": 0,
             "defaultColorID": 0
           }
@@ -716,7 +716,7 @@
           [
             10,
             7,
-            6,
+            9,
             7,
             10
           ]
@@ -1084,7 +1084,7 @@
   {
     "manufacturer": "Ti Arrow",
     "name": "CKF",
-    "desc": "The TiArrow CKF combines the impeccable seat ergonomics and smooth ride of the CKE, with the added functionality of removeable side guards and a foldable backrest. Available in titanium only (standard sizes only).  ",
+    "desc": "The TiArrow CKF combines the impeccable seat ergonomics and smooth ride of the CKE, with the added functionality of removeable side guards and a foldable backrest. Available in titanium only (standard sizes only).  WARNING: The TiArrow CKF is not available in US yet due to a long FDA process.  Until then, feel free to play and customize it as much as you like.",
     "basePrice": 2195,
     "baseWeight": 6,
     "frameID": 2,
@@ -1145,31 +1145,31 @@
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/backrest/backrest_carbon_fiber.png",
             "desc": "An ultra lightweight, rigid, carbon fiber backrest, molded to fit the contours of your back and improve chair control. Tension adjustable with velcro straps.",
-            "weight": 0,
+            "weight": -0.15,
             "price": 0,
             "defaultColorID": 0
           },
           {
-            "name": "Padded",
+            "name": "Carbon Fiber With Upholstery",
             "optionID": 212,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/backrest/backrest_padded.png",
             "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your back and padded for additional comfort. Tension adjustable with velcro straps.",
-            "weight": 0.1,
+            "weight": -0.1,
             "price": 0,
             "defaultColorID": 0
           },
           {
-            "name": "Upholstery",
+            "name": "Plastic With Upholstery",
             "optionID": 213,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/backrest/backrest_upholstery.png",
-            "desc": "An ultra lightweight, rigid, carbon fiber backrest contoured to fit your body, padded for your comfort and upholstered with breathable mesh nylon. Tension adjustable with velcro straps.",
-            "weight": 0.15,
+            "desc": "An ultra lightweight, rigid, plastic backrest contoured to fit your body, padded for your comfort and upholstered with breathable mesh nylon. Tension adjustable with velcro straps.",
+            "weight": 0,
             "price": 0,
             "defaultColorID": 0
           }
