@@ -34,9 +34,9 @@ angular.module('abacuApp')
       getWeightFactor: function (myUnitSys) {
         switch (myUnitSys) {
           case this.unitSys.IMPERIAL:
-            return 1;
+            return 2.20462;
           case this.unitSys.METRIC:
-            return 0.453592;
+            return 1;
           default:
             return 1;
         }
