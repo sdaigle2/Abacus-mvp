@@ -2,7 +2,7 @@
   {
     "manufacturer": "Ti Arrow",
     "name": "CKE",
-    "desc": "TiArrow's flagship frame, the CKE offers the most enjoyable rider experience on the market. The seat, and ergonomic backrest work in concert with the side guards to provide unparalleled stability and the ultralightweight frame is easy to push and gentle on your shoulders. Available in titanium or magnesium (standard sizes only)",
+    "desc": "TiArrow's flagship frame, the CKE offers the most enjoyable rider experience on the market. The seat, and ergonomic backrest work in concert with the side guards to provide unparalleled stability and the ultralightweight frame is easy to push and gentle on your shoulders. Available in titanium or magnesium (standard sizes only).  WARNING: The TiArrow CKE is not available in US yet due to a long FDA process.  Until then, feel free to play and customize it as much as you like.",
     "basePrice": 2995,
     "baseWeight": 5.8,
     "frameID": 1,
@@ -245,7 +245,7 @@
             11
           ]
         ],
-        "defaultOptionID": 13,
+        "defaultOptionID": 11,
         "options": [
           {
             "name": "Carbon Fiber",
@@ -1084,7 +1084,7 @@
   {
     "manufacturer": "Ti Arrow",
     "name": "CKF",
-    "desc": "The TiArrow CKF combines the impeccable seat ergonomics and smooth ride of the CKE, with the added functionality of removeable side guards and a foldable backrest. Available in titanium only (standard sizes only).  ",
+    "desc": "The TiArrow CKF combines the impeccable seat ergonomics and smooth ride of the CKE, with the added functionality of removeable side guards and a foldable backrest. Available in titanium only (standard sizes only).  WARNING: The TiArrow CKF is not available in US yet due to a long FDA process.  Until then, feel free to play and customize it as much as you like.",
     "basePrice": 2195,
     "baseWeight": 6,
     "frameID": 2,
@@ -1135,7 +1135,7 @@
             11
           ]
         ],
-        "defaultOptionID": 213,
+        "defaultOptionID": 211,
         "options": [
           {
             "name": "Carbon Fiber",
