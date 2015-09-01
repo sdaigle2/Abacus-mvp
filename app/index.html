@@ -2,7 +2,7 @@
 <html class="no-js">
 <head>
   <meta charset="utf-8">
-  <title>Abacus</title>
+  <title>Tinker</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -35,9 +35,9 @@
   <div data-ng-controller="HeaderController">
     <div class="mainNavbar" data-ng-if="!isActive('/')">
       <div class="preload">
-        <img ng-href="#/frames" src="images/icons/on_frames.png"/>
-        <img ng-href="#/about" src="images/icons/on_about_us.png"/>
-        <img ng-href="#/cart" src="images/icons/on_compare.png"/>
+        <img src="images/icons/on_frames.png"/>
+        <img src="images/icons/on_about_us.png"/>
+        <img src="images/icons/on_compare.png"/>
 
       </div>
 
@@ -47,14 +47,14 @@
         </a>
       </div>
       <ul class="mainNavbar-left">
-        <li class="frameNavButton" ng-class="{ active: isActive('/frames')}">
-          <a ng-href="#/frames" class="medium">Frames</a>
+        <li ng-click="jumpFrame()" class="frameNavButton" ng-class="{ active: isActive('/frames')}">
+          <a class="medium">Frames</a>
         </li>
-        <li class="aboutNavButton" ng-class="{ active: isActive('/about')}">
-          <a ng-href="#/about" class="medium">About us</a>
+        <li ng-click="jumpAbout()" class="aboutNavButton" ng-class="{ active: isActive('/about')}">
+          <a class="medium">About us</a>
         </li>
-        <li class="compareNavButton" ng-class="{ active: isActive('/cart')}">
-          <a ng-href="#/cart" class="medium">Compare</a>
+        <li ng-click="jumpCart()" class="compareNavButton" ng-class="{ active: isActive('/cart')}">
+          <a class="medium">Compare</a>
         </li>
 
       </ul>

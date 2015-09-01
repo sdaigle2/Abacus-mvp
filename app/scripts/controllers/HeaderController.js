@@ -103,4 +103,18 @@ angular.module('abacuApp')
     $scope.accountURL = 'my_account_big';
     $scope.orderURL = 'my_orders';
     $scope.measureURL = 'my_measurement';
+
+    $scope.jumpFrame = function(){
+      $location.path('/frames');
+    };
+    $scope.jumpAbout = function(){
+      $location.path('/about');
+    };
+    $scope.jumpCart = function(){
+      $location.path('/cart');
+    };
+
+
+
+
   }]);
