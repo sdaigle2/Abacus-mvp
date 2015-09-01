@@ -282,3 +282,10 @@ td.blue-line{
   top:105px;
   left: calc(50% + 440px);
 }
+
+#siteCredit {
+  position: fixed;
+  bottom: 5px;
+  left: 5px;
+  font-size: 0.75em;
+}
