@@ -1,40 +1,77 @@
 ﻿/*About Us page CSS*/
 
-#aboutUsDiv {
-  line-height: 1;
+#wrapper{
+  position:absolute;
+  text-align: center;
+  background: linear-gradient(to bottom,  rgba(136,203,195,0.5), rgba(255,255,255,1));
+  height: 100vh;
+  width:100vw;
 }
 
-/*.about-block h2 {
-  -webkit-transform-origin: 50% 50%;
-  -moz-transform-origin: 50% 50%;
-  -o-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-  -webkit-animation: spin1 20s infinite linear;
-  -moz-animation: spin1 20s infinite linear;
-  -o-animation: spin1 20s infinite linear;
-  -ms-animation: spin1 20s infinite linear;
-  animation: spin1 20s infinite linear;
-  width: 300px !important;
-  height: 300px !important;
+#body{
+    position:relative;
+    max-width: 800px;
+    text-align: left;
+    margin-left:auto;
+    margin-right:auto;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
-@-webkit-keyframes spin1 {
-0% { -webkit-transform: rotate(0deg);}
-100% { -webkit-transform: rotate(360deg);}
+#mainLogo{
+  width: 380px;
+  margin-top: 97px;
 }
-@-moz-keyframes spin1 {
-0% { -moz-transform: rotate(0deg);}
-100% { -moz-transform: rotate(360deg);}
+.text1{
+  color: #00A89C;
+  margin-top: 69px;
+  font-size:2.5em;
 }
-@-o-keyframes spin1 {
-0% { -o-transform: rotate(0deg);}
-100% { -o-transform: rotate(360deg);}
+
+.text2{
+  color: #00A89C;
+  margin-top: 30px;
+  font-size: 2em;
 }
-@-ms-keyframes spin1 {
-0% { -ms-transform: rotate(0deg);}
-100% { -ms-transform: rotate(360deg);}
+.text3{
+  margin-top: 16px;
+  margin-bottom: 20px;
+  font-size: 1.5em;
 }
-@-keyframes spin1 {
-0% { transform: rotate(0deg);}
-100% { transform: rotate(360deg);}
-} */
+.text4{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 1.0em;
+}
+
+#wrapper button{
+  height: auto;
+  font-size: 1.2em;
+  background-color: transparent;
+  padding: 10px 20px 10px 20px;
+  text-align: center;
+}
+
+#firstButton{
+  margin: 0px 50px 0px 50px;
+}
+
+#wrapper button:hover{
+  background-color: #00A89C;
+  color: white;
+}
+
+#canvy{
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  left: 0;
+}
+
+#siteCredit {
+  position: relative;
+  bottom: 5px;
+  left: 5px;
+  font-size: 0.75em; 
+}
