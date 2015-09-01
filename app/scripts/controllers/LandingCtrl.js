@@ -7,4 +7,10 @@ angular.module('abacuApp')
       $scope.toFramePage = function(){
         $location.path('/frames');
       }
+      $scope.toAboutPage = function () {
+          $location.path('/about');
+      }
+      $scope.toComparePage = function () {
+          $location.path('/cart');
+      }
     }]);
