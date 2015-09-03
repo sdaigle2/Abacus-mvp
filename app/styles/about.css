@@ -1,11 +1,12 @@
 ﻿/*About Us page CSS*/
 
 #wrapper{
-  position:absolute;
+  position: absolute;
   text-align: center;
-  background: linear-gradient(to bottom,  rgba(136,203,195,0.5), rgba(255,255,255,1));
+  background: linear-gradient(to bottom, rgba(136,203,195,0.5), rgba(255,255,255,1));
   height: 100vh;
   width:100vw;
+  top: 0px;
 }
 
 #body{
@@ -16,6 +17,7 @@
     margin-right:auto;
     padding-left: 50px;
     padding-right: 50px;
+    padding-top: 60px;
 }
 
 #mainLogo{
@@ -74,4 +76,6 @@
   bottom: 5px;
   left: 5px;
   font-size: 0.75em; 
+  padding-top: 20px;
+  padding-bottom: 40px;
 }
