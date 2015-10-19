@@ -5,7 +5,7 @@
 'use strict';
 
 angular.module('abacuApp')
-  .controller('HeaderController', ['$scope', '$location', '$http', '$timeout', 'User', 'Drop', function ($scope, $location, $http, $timeout, User, Drop) {
+  .controller('HeaderController', ['$scope', '$location', '$http', '$timeout', 'User', 'Drop', '$window', function ($scope, $location, $http, $timeout, User, Drop, window) {
 
     //Returns true is the current angular URL matches viewLocation
     $scope.isActive = function (viewLocation) {
@@ -114,6 +114,9 @@ angular.module('abacuApp')
       $location.path('/cart');
     };
 
+    $scope.$on('$viewContentLoaded', function(event) {
+      $window.ga('send', 'pageview', { page: $location.url() });
+    });
 
 
   }]);

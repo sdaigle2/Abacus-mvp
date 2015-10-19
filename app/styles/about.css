@@ -1,81 +1,149 @@
 ﻿/*About Us page CSS*/
 
+
+
 #wrapper{
-  position: absolute;
-  text-align: center;
-  background: linear-gradient(to bottom, rgba(136,203,195,0.5), rgba(255,255,255,1));
-  height: 100vh;
-  width:100vw;
-  top: 0px;
-}
-
-#body{
-    position:relative;
-    max-width: 800px;
-    text-align: left;
-    margin-left:auto;
-    margin-right:auto;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 60px;
-}
-
-#mainLogo{
-  width: 380px;
-  margin-top: 97px;
-}
-.text1{
-  color: #00A89C;
-  margin-top: 69px;
-  font-size:2.5em;
-}
-
-.text2{
-  color: #00A89C;
-  margin-top: 30px;
-  font-size: 2em;
-}
-.text3{
-  margin-top: 16px;
-  margin-bottom: 20px;
-  font-size: 1.5em;
-}
-.text4{
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-size: 1.0em;
-}
-
-#wrapper button{
-  height: auto;
-  font-size: 1.2em;
-  background-color: transparent;
-  padding: 10px 20px 10px 20px;
-  text-align: center;
-}
-
-#firstButton{
-  margin: 0px 50px 0px 50px;
-}
-
-#wrapper button:hover{
-  background-color: #00A89C;
-  color: white;
-}
-
-#canvy{
-  position: absolute;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  left: 0;
-}
-
-#siteCredit {
   position: relative;
-  bottom: 5px;
-  left: 5px;
-  font-size: 0.75em; 
-  padding-top: 20px;
-  padding-bottom: 40px;
+  background: linear-gradient(to bottom,rgba(255,255,255,1), rgba(136,203,195,0.5));
+  height: 100vh;
+  line-height: 1;
+  top: -20px;
 }
+
+#main{
+  width: 1000px;
+  margin: 100px auto 0;
+}
+
+#tabMenu {
+  width: 30%;
+  display: inline-block;
+  text-align: end;
+  float: left;
+
+}
+
+#tabMenu section>p {
+  font-size: 1.5em;
+  font-weight: 500;
+  font-style: italic;
+  color: #939597;
+  border-bottom: 2px solid #939597;
+  padding: 26px 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+#tabMenu section>p:hover,
+#tabMenu .highlight
+{
+  color: #00A89C;
+}
+
+#tabMenu div {
+  padding-top: 25px;
+
+}
+
+#mainContent {
+  padding-top: 26px;
+  display: inline-block;
+  width: 60%;
+  float: right;
+}
+
+#mainContent p {
+  font-weight: 400;
+  margin-bottom: 38px;
+  font-size: 1.5em;
+  line-height: 1.4;
+}
+
+
+
+
+
+
+
+
+
+
+/*#wrapper{*/
+  /*position: absolute;*/
+  /*text-align: center;*/
+  /*background: linear-gradient(to bottom, rgba(136,203,195,0.5), rgba(255,255,255,1));*/
+  /*height: 100vh;*/
+  /*width:100vw;*/
+  /*top: 0px;*/
+/*}*/
+
+/*#body{*/
+    /*position:relative;*/
+    /*max-width: 800px;*/
+    /*text-align: left;*/
+    /*margin-left:auto;*/
+    /*margin-right:auto;*/
+    /*padding-left: 50px;*/
+    /*padding-right: 50px;*/
+    /*padding-top: 60px;*/
+/*}*/
+
+/*#mainLogo{*/
+  /*width: 380px;*/
+  /*margin-top: 97px;*/
+/*}*/
+/*.text1{*/
+  /*color: #00A89C;*/
+  /*margin-top: 69px;*/
+  /*font-size:2.5em;*/
+/*}*/
+
+/*.text2{*/
+  /*color: #00A89C;*/
+  /*margin-top: 30px;*/
+  /*font-size: 2em;*/
+/*}*/
+/*.text3{*/
+  /*margin-top: 16px;*/
+  /*margin-bottom: 20px;*/
+  /*font-size: 1.5em;*/
+/*}*/
+/*.text4{*/
+  /*margin-top: 20px;*/
+  /*margin-bottom: 20px;*/
+  /*font-size: 1.0em;*/
+/*}*/
+
+/*#wrapper button{*/
+  /*height: auto;*/
+  /*font-size: 1.2em;*/
+  /*background-color: transparent;*/
+  /*padding: 10px 20px 10px 20px;*/
+  /*text-align: center;*/
+/*}*/
+
+/*#firstButton{*/
+  /*margin: 0px 50px 0px 50px;*/
+/*}*/
+
+/*#wrapper button:hover{*/
+  /*background-color: #00A89C;*/
+  /*color: white;*/
+/*}*/
+
+/*#canvy{*/
+  /*position: absolute;*/
+  /*z-index: -1;*/
+  /*width: 100%;*/
+  /*height: 100%;*/
+  /*left: 0;*/
+/*}*/
+
+/*#siteCredit {*/
+  /*position: relative;*/
+  /*bottom: 5px;*/
+  /*left: 5px;*/
+  /*font-size: 0.75em; */
+  /*padding-top: 20px;*/
+  /*padding-bottom: 40px;*/
+/*}*/

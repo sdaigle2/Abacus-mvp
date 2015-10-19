@@ -88,5 +88,7 @@ angular
       'http://www.youtube.com/embed/**'
     ]);
     $httpProvider.defaults.useXDomain = true;
+
+
   });
 

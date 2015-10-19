@@ -196,7 +196,7 @@ angular.module('abacuApp')
         var priceString = (option.getPrice() < 0) ? '-$' : '$';
         priceString += Math.abs(option.getPrice()).toFixed(2);
 
-        var weightString = (option.getWeight() * Units.getWeightFactor(unitSys)) + ' ' + Units.getWeightName(unitSys);
+        var weightString = (option.getWeight() * Units.getWeightFactor(unitSys)).toFixed(2) + ' ' + Units.getWeightName(unitSys);
 
         return {
           partName: part.getName(),

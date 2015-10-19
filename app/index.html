@@ -24,6 +24,16 @@
 </head>
 <body ng-app="abacuApp" ng-cloak>
 
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5BJDWF"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5BJDWF');</script>
+<!-- End Google Tag Manager -->
+
 <div id="backgrounder"></div>
 
 <!--[if lt IE 7]>
@@ -31,8 +41,8 @@
   your browser</a> to improve your experience.</p>
 <![endif]-->
 
-<div>
-  <div data-ng-controller="HeaderController">
+<div data-ng-controller="HeaderController">
+  <div >
     <div class="mainNavbar" data-ng-if="!isActive('/')">
       <div class="preload">
         <img src="images/icons/on_frames.png"/>
@@ -43,7 +53,7 @@
 
       <div class="mainNavbar-header">
         <a class="mainNavbar-brand" href="#">
-          <img alt="Brand" src="images/tinker_logo_small_beta1.png" width="100"/>
+          <img alt="Tinker" src="images/tinker_logo_small_beta1.png" width="100"/>
         </a>
       </div>
       <ul class="mainNavbar-left">
@@ -186,6 +196,7 @@
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/file-saver.js/FileSaver.js"></script>
+<script src="bower_components/angularytics/dist/angularytics.min.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -218,7 +229,6 @@
 <script src="scripts/services/factories/orderFactory.js"></script>
 <script src="scripts/services/factories/wheelchairFactory.js"></script>
 <script src="scripts/services/factories/previewImageFactory.js"></script>
-
 <script src="scripts/services/services/userService.js"></script>
 <script src="scripts/services/services/frameDataService.js"></script>
 <script src="scripts/services/services/syncJSON.js"></script>

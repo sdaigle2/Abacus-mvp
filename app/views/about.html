@@ -1,59 +1,145 @@
 ﻿﻿<link href="styles/about.css" rel="stylesheet" />
-<div id="wrapper">
-  <div id="body">
-    <div class="text2"><h1>Can You Use Tinker in the US?</h1></div>
-    <div class="text4">
-        <p>
-            Not quite yet, but we’re working on it every day. Right now, we're in Beta mode in the US, so try it out! 
-            We need your help telling the current system manufacturers and dealers to make the Tinker design system available everywhere.
-            Show your support by signing our petition or liking our facebook page.
-        </p>
-        <a href="https://www.facebook.com/tinkerwheelchairs" target="_blank"><button class="medium button" id="firstButton">Like on Facebook</button></a>
-        <a href="http://www.ipetitions.com/petition/tinker-wheelchairs" target="_blank"><button ng-click="toAboutPage()" class="medium button">Sign the Petition</button></a>
-    </div>
-    <div class="text2"><h1>What is Project Tinker?</h1></div>
-    <div class="text4">
-        <p>
-            Modern wheelchairs offer you thousands of customizable choices.  
-            Color, size, and style can all be changed to your liking.  
-            Unfortunately, the process of making those choices is still trapped in the stone age.  
-            It is heavily reliant on paper order forms, endless phone calls, and long meetings with the vendor.  
-            It’s inevitable that there will be a miscommunication on at least one detail that you specifically wanted on your chair.
-        </p>
-        <p>
-            Tinker is the answer to these challenges.  
-            For the first time, you can design your wheelchair start to finish in a visual and fun way.  
-            Tinker is about choice and giving you the power to build the chair that you want.
-        </p>
-    </div>
-    <div class="text2"><h1>How does Tinker Work?</h1></div>
-    <div class="text4">
-        <p>
-            Tinker is simply a catalog of all of the options that a manufacturer makes available.  
-            Right now, we only have two chairs made by TiArrow in Sweden, but with your support we’ll grow to have more manufacturers based in the US and the rest of the world.
-        </p>
-        <p>
-            The best part about Tinker is that it works with the system of experts that are already here to help you choose the best equipment for your disability.  
-            Your dealer, ATPs, and therapists can all log in and see the chair that you want.  
-        </p>
-    </div>
-    <div class="text2"><h1>Partner with us!</h1></div>
-    <div class="text4">
-        <p>
-            We’re looking for new manufacturers who want to help us shake up the industry.  
-            Tinker can be a standalone website, or it can be customized to run as though it was part of the manufacturer's website.  
-            Just contact us at sales@intelliwheels.net to see how we can work together.
-        </p>
-    </div>
-    <div id="siteCredit">
-        <!--<a ng-href="#/about"><img ng-src="images/tinker_logo_small.png"></a>-->
-        <a ng-href="http://www.intelliwheels.net/" target="_blank">
+
+
+
+<div id="wrapper">&nbsp
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5BJDWF"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5BJDWF');</script>
+  <!-- End Google Tag Manager -->
+  <div id="main">
+    <div id="tabMenu">
+      <section ng-init="page = 1">
+        <p ng-click="page = 1" data-ng-class="{'highlight':page === 1}">Tinker in the US</p>
+        <p ng-click="page = 2" data-ng-class="{'highlight':page === 2}">What is Tinker?</p>
+        <p ng-click="page = 3" data-ng-class="{'highlight':page === 3}">How does it work?</p>
+        <p ng-click="page = 4" data-ng-class="{'highlight':page === 4}">Partnership</p>
+        <div id="siteCredit">
+          <!--<a ng-href="#/about"><img ng-src="images/tinker_logo_small.png"></a>-->
+          <a ng-href="http://www.intelliwheels.net/" target="_blank">
             <img ng-src="images/iw_logo_small.png">
             <p>&copy; IntelliWheels, Inc. 2015</p>
-        </a>
+          </a>
+        </div>
+      </section>
+
+    </div>
+    <div id="mainContent">
+      <section ng-show="page === 1"  >
+        <p>Can you use Tinker in the US?</p>
+        <p>Not quite yet, but we’re working on it every day. Right now, we're in Beta mode in the US, so try it out!</p>
+        <p>We need your help telling the current system manufacturers and dealers to make the Tinker design system available everywhere.
+        <p>Show your support by signing our petition or liking our facebook page.</p>
+      </section>
+      <section ng-show="page === 2">
+        <p>Modern wheelchairs offer you thousands of customizable choices. Color, size, and style can all be changed to your liking. Unfortunately, the process of making those choices is still trapped in the stone age. It is heavily reliant on paper order forms, endless phone calls, and long meetings with the vendor. It’s inevitable that there will be a miscommunication on at least one detail that you specifically wanted on your chair.</p>
+        <p>Tinker is the answer to these challenges. For the first time, you can design your wheelchair start to finish in a visual and fun way. Tinker is about choice and giving you the power to build the chair that you want.</p>
+      </section>
+      <section ng-show="page === 3">
+        <p>Tinker is simply a catalog of all of the options that a manufacturer makes available. Right now, we only have two chairs made by TiArrow in Sweden, but with your support we’ll grow to have more manufacturers based in the US and the rest of the world.</p>
+        <p>The best part about Tinker is that it works with the system of experts that are already here to help you choose the best equipment for your disability. Your dealer, ATPs, and therapists can all log in and see the chair that you want.</p>
+      </section>
+      <section ng-show="page === 4">
+        <p>We’re looking for new manufacturers who want to help us shake up the industry. </p>
+        <p>Tinker can be a standalone website, or it can be customized to run as though it was part of the manufacturer's website. Just contact us at sales@intelliwheels.net to see how we can work together.</p>
+      </section>
     </div>
   </div>
-
-    <!--<div id="fpscontainer"></div>-->
 </div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-64294275-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div id="wrapper">-->
+  <!--<div id="body">-->
+    <!--<div class="text2"><h1>Can You Use Tinker in the US?</h1></div>-->
+    <!--<div class="text4">-->
+        <!--<p>-->
+            <!--Not quite yet, but we’re working on it every day. Right now, we're in Beta mode in the US, so try it out! -->
+            <!--We need your help telling the current system manufacturers and dealers to make the Tinker design system available everywhere.-->
+            <!--Show your support by signing our petition or liking our facebook page.-->
+        <!--</p>-->
+        <!--<a href="https://www.facebook.com/tinkerwheelchairs" target="_blank"><button class="medium button" id="firstButton">Like on Facebook</button></a>-->
+        <!--<a href="http://www.ipetitions.com/petition/tinker-wheelchairs" target="_blank"><button ng-click="toAboutPage()" class="medium button">Sign the Petition</button></a>-->
+    <!--</div>-->
+    <!--<div class="text2"><h1>What is Project Tinker?</h1></div>-->
+    <!--<div class="text4">-->
+        <!--<p>-->
+            <!--Modern wheelchairs offer you thousands of customizable choices.  -->
+            <!--Color, size, and style can all be changed to your liking.  -->
+            <!--Unfortunately, the process of making those choices is still trapped in the stone age.  -->
+            <!--It is heavily reliant on paper order forms, endless phone calls, and long meetings with the vendor.  -->
+            <!--It’s inevitable that there will be a miscommunication on at least one detail that you specifically wanted on your chair.-->
+        <!--</p>-->
+        <!--<p>-->
+            <!--Tinker is the answer to these challenges.  -->
+            <!--For the first time, you can design your wheelchair start to finish in a visual and fun way.  -->
+            <!--Tinker is about choice and giving you the power to build the chair that you want.-->
+        <!--</p>-->
+    <!--</div>-->
+    <!--<div class="text2"><h1>How does Tinker Work?</h1></div>-->
+    <!--<div class="text4">-->
+        <!--<p>-->
+            <!--Tinker is simply a catalog of all of the options that a manufacturer makes available.  -->
+            <!--Right now, we only have two chairs made by TiArrow in Sweden, but with your support we’ll grow to have more manufacturers based in the US and the rest of the world.-->
+        <!--</p>-->
+        <!--<p>-->
+            <!--The best part about Tinker is that it works with the system of experts that are already here to help you choose the best equipment for your disability.  -->
+            <!--Your dealer, ATPs, and therapists can all log in and see the chair that you want.  -->
+        <!--</p>-->
+    <!--</div>-->
+    <!--<div class="text2"><h1>Partner with us!</h1></div>-->
+    <!--<div class="text4">-->
+        <!--<p>-->
+            <!--We’re looking for new manufacturers who want to help us shake up the industry.  -->
+            <!--Tinker can be a standalone website, or it can be customized to run as though it was part of the manufacturer's website.  -->
+            <!--Just contact us at sales@intelliwheels.net to see how we can work together.-->
+        <!--</p>-->
+    <!--</div>-->
+    <!--<div id="siteCredit">-->
+        <!--&lt;!&ndash;<a ng-href="#/about"><img ng-src="images/tinker_logo_small.png"></a>&ndash;&gt;-->
+        <!--<a ng-href="http://www.intelliwheels.net/" target="_blank">-->
+            <!--<img ng-src="images/iw_logo_small.png">-->
+            <!--<p>&copy; IntelliWheels, Inc. 2015</p>-->
+        <!--</a>-->
+    <!--</div>-->
+  <!--</div>-->
+
+    <!--&lt;!&ndash;<div id="fpscontainer"></div>&ndash;&gt;-->
+<!--</div>-->
 

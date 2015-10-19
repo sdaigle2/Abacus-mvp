@@ -5,23 +5,43 @@
 
 <link href="styles/landing.css" rel="stylesheet" />
 <div id="wrapper">
+  <!-- Google Tag Manager -->
+  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5BJDWF"
+                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-5BJDWF');</script>
+  <!-- End Google Tag Manager -->
 
 <!--<canvas id='canvy' width='550' height='400'></canvas>-->
-  <img id="mainLogo" data-ng-src="images/landing_page/tinker_logo_beta1.png" width="700">
+  <img id="mainLogo" data-ng-src="images/landing_page/tinker_logo_beta1.png" alt="Tinker" width="700">
   <div class="medium" id="text2"><h1>DESIGN <span class="book">FOR</span> YOUR LIFE</h1></div>
   <section class="medium text3">
     Customize the look, style, and measurements of your ultralight wheelchair.<br>
   </section>
   <button ng-click="toFramePage()" class="medium button" id="startButton">Start a New Design</button>
   <button ng-click="toAboutPage()" class="medium button">Help Bring Tinker to the US</button>
-  
+
   <section class="medium text4">
     Designed by
-    <a href="http://www.intelliwheels.net" target="_blank"> <img data-ng-src="images/landing_page/iw_logo_blue.png"></a>
+    <a href="http://www.intelliwheels.net" target="_blank"> <img data-ng-src="images/landing_page/iw_logo_blue.png" alt="Intelliwheels"></a>
     featuring
-    <a href="http://www.tiarrow.com/" target="_blank"> <img data-ng-src="images/landing_page/tiarrow_logo.png"></a>
+    <a href="http://www.tiarrow.com/" target="_blank"> <img data-ng-src="images/landing_page/tiarrow_logo.png" alt="Tiarrow"></a>
   </section>
 
 
   <!--<div id="fpscontainer"></div>-->
 </div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-64294275-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
