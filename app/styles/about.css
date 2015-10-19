@@ -114,22 +114,22 @@
   /*font-size: 1.0em;*/
 /*}*/
 
-/*#wrapper button{*/
-  /*height: auto;*/
-  /*font-size: 1.2em;*/
-  /*background-color: transparent;*/
-  /*padding: 10px 20px 10px 20px;*/
-  /*text-align: center;*/
-/*}*/
+#wrapper button{
+  height: auto;
+  font-size: 1.2em;
+  background-color: transparent;
+  padding: 10px 20px 10px 20px;
+  text-align: center;
+}
 
-/*#firstButton{*/
-  /*margin: 0px 50px 0px 50px;*/
-/*}*/
+#firstButton{
+  margin: 0px 50px 0px 50px;
+}
 
-/*#wrapper button:hover{*/
-  /*background-color: #00A89C;*/
-  /*color: white;*/
-/*}*/
+#wrapper button:hover{
+  background-color: #00A89C;
+  color: white;
+}
 
 /*#canvy{*/
   /*position: absolute;*/
