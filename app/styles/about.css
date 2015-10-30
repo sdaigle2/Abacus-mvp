@@ -11,12 +11,15 @@
 }
 
 #main{
-  width: 1000px;
+  width: 80%;
+  max-width: 1200px;
+  min-width: 800px;
   margin: 100px auto 0;
 }
 
 #tabMenu {
-  width: 30%;
+  width: 25%;
+  max-width: 265px;
   display: inline-block;
   text-align: end;
   float: left;

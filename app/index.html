@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>Tinker</title>
-  <meta name="description" content="Build your wheelchair">
+  <meta name="description" content="Build and customize your wheelchair">
   <meta name="Keyword" content="wheelchair tinker customize build">
   <meta name="author" content="Intelliwheels,Inc.">
-  <meta name="viewport" content="width=1200px">
+  <meta name="robots" content="index, follow">
+  <!--<meta name="viewport" content="width=1200px">-->
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
@@ -123,13 +124,13 @@
         <tr>
           <td class="panelIcon1">
             <div data-ng-click="loginSection('account')" data-ng-mouseenter="accountURL = 'on_my_account_big'" data-ng-mouseleave="accountURL = 'my_account_big'">
-              <img data-ng-src="images/icons/{{accountURL}}.png">
+              <img data-ng-src="images/icons/{{accountURL}}.png" alt="account">
               <div class="medium">My Account</div>
             </div>
           </td>
           <td>
             <div data-ng-click="loginSection('orders')" data-ng-mouseenter="orderURL = 'on_my_orders'" data-ng-mouseleave="orderURL = 'my_orders'">
-              <img data-ng-src="images/icons/{{orderURL}}.png">
+              <img data-ng-src="images/icons/{{orderURL}}.png" alt="order">
               <div class="medium">My Orders</div>
             </div>
           </td>
@@ -152,7 +153,7 @@
       ></div>
   </div>
 
-  <div id="appContainer" ng-view=""></div>
+  <div id="appContainer" ng-cloak ng-view=""></div>
   <!-- Angular App -->
 </div>
 

@@ -27,7 +27,7 @@ angular
         templateUrl: 'views/frame.html',
         controller: 'FrameCtrl'
       })
-      .when('/abacus', {
+      .when('/tinker', {
         templateUrl: 'views/abacus.html',
         controller: 'AbacusCtrl'
       })

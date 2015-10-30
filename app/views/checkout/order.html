@@ -209,7 +209,7 @@
       <div class="order-form">
         <div class="order-form-header">Terms & Conditions</div>
         <div class="order-form-label">You must agree to Abacus Terms and Conditions before completing your order:</div>
-        <div class="order-form-well" data-ng-bind-html="termsAndConditionsHTML" />
+        <div class="order-form-well" data-ng-bind-html="termsAndConditionsHTML"> </div>
         <input type="checkbox" data-ng-model="termsForm.hasReadTerms" />
         <strong>I have read and agree to the Terms and Conditions</strong>
       </div>
@@ -243,7 +243,7 @@
           </div>
         </div>
         <img width="28" height="auto" src="images/checkout/progress_bar_image.png"
-             data-ng-style="{'left': 23+(71*curStage) + 'px' }">
+             data-ng-style="{'left': 23+(71*curStage) + 'px' }" alt="Progress bar">
       </div>
       <div class="progress-bar-label-text book">
         <span data-ng-style="(curStage === stages.INFO) && {'color':'#000'}">info</span>

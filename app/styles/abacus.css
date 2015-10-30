@@ -423,6 +423,7 @@
   margin: auto;
   height: 325px;
   width: inherit;
+  border:none;
 }
 
 
@@ -1299,5 +1300,5 @@ body {
   position: fixed;
   bottom: 5px;
   left: 5px;
-  font-size: 0.75em; 
+  font-size: 0.75em;
 }

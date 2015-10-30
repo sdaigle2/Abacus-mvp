@@ -1,7 +1,11 @@
 <link href="../styles/frame.css" rel="stylesheet"/>
 
+<head>
+
+</head>
 
 <div class="wrapper">
+
   <!-- Google Tag Manager -->
   <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5BJDWF"
                     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -11,6 +15,7 @@
     '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-5BJDWF');</script>
   <!-- End Google Tag Manager -->
+
   <div class="frame-header medium">
     <h2 class="pageTitle">Frames</h2>
   </div>
@@ -19,12 +24,14 @@
        ng-click="setOrientation('vertical')"
        width="25"
        class="gallary_icon_horizontal"
+       alt="Vertical Display"
   >
   <img src="images/frame_page_img/list_style_hover.png"
        width="25"
        class="horizontal_icon_horizontal"
        ng-click="setOrientation('horizontal')"
-  >
+       alt="Horizontal Display"
+    >
   </div>
 
   <div class="horizontal-layout-icons" data-ng-if="getOrientation() === 'vertical'">
@@ -32,12 +39,15 @@
        ng-click="setOrientation('vertical')"
        width="25"
        class="gallary_icon_vertical"
-  >
+       alt="Vertical Display"
+
+    >
   <img src="images/frame_page_img/list_style.png"
        width="25"
        class="horizontal_icon_vertical"
        ng-click="setOrientation('horizontal')"
-  >
+       alt="Horizontal Display"
+    >
   </div>
 
   <div class="mainDisplay" data-ng-init="hoverItem = -1">
@@ -51,7 +61,7 @@
           <div class="img"
                data-ng-mouseenter="hoverItem = f.getFrameID()"
                data-ng-mouseleave="hoverItem = -1">
-            <img data-ng-src="{{f.getImageURL()}}" width="400"/>
+            <img data-ng-src="{{f.getImageURL()}}" width="400" alt="{{f.manufacturer}} {{f.name}}"/>
 
             <div class="frame-item-desc"
                  data-ng-class="{ 'frame-item-desc-show' : panelSelected(hoverItem,f.getFrameID()) , 'frame-item-desc-hide' : !panelSelected(hoverItem,f.getFrameID())}">
@@ -65,12 +75,14 @@
           <div class="button addButton" data-ng-click="selectFrame(f.frameID)">Select</div>
           <div class="frame-item-footer-details">
             <table class="frame-info-table">
-              <td class="blue-line">
-                <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
-              </td>
-              <td>
-                <p class="frame-item-weight medium" data-ng-bind="getWeightString(f)"></p>
-              </td>
+              <tr>
+                <td class="blue-line">
+                  <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
+                </td>
+                <td>
+                  <p class="frame-item-weight medium" data-ng-bind="getWeightString(f)"></p>
+                </td>
+              </tr>
             </table>
           </div>
         </div>
@@ -84,7 +96,7 @@
       <div class="frame-item-image">
         <div class="img" data-ng-mouseenter="hoverItem = f.getFrameID()"
              data-ng-mouseleave="hoverItem = -1">
-          <img data-ng-src="{{f.getImageURL()}}" width="250"/>
+          <img data-ng-src="{{f.getImageURL()}}" width="250" alt="{{f.manufacturer}} {{f.name}}"/>
         </div>
       </div>
       <div class="frame-item-footer">
@@ -92,12 +104,14 @@
 
         <div class="frame-item-footer-details">
           <table class="frame-info-table">
-            <td class="blue-line">
-              <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
-            </td>
-            <td>
-              <p class="frame-item-weight medium" data-ng-bind="getWeightString(f)"></p>
-            </td>
+            <tr>
+              <td class="blue-line">
+                <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
+              </td>
+              <td>
+                <p class="frame-item-weight medium" data-ng-bind="getWeightString(f)"></p>
+              </td>
+              </tr>
           </table>
         </div>
         <div class="frame-item-desc">
@@ -108,7 +122,7 @@
     </div>
   </div>
   <div id="siteCredit">
-    <a href="http://www.intelliwheels.net/" target="_blank"><img ng-src="images/iw_logo_small.png">
+    <a href="http://www.intelliwheels.net/" target="_blank"><img ng-src="images/iw_logo_small.png" alt="Intelliwheels, Inc.">
       <p>&copy; IntelliWheels, Inc. 2015</p></a>
   </div>
 </div>
