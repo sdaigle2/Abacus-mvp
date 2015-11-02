@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider, $sceDelegateProvider, $httpProvider) {
+  .config(function ($routeProvider, $sceDelegateProvider, $httpProvider, $locationProvider) {
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/landing.html',
@@ -88,6 +89,10 @@ angular
       'http://www.youtube.com/embed/**'
     ]);
     $httpProvider.defaults.useXDomain = true;
+
+    $locationProvider.hashPrefix('!');
+    $locationProvider.html5Mode(true);
+
 
 
   });
