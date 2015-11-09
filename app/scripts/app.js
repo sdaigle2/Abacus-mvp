@@ -91,7 +91,7 @@ angular
     $httpProvider.defaults.useXDomain = true;
 
     $locationProvider.hashPrefix('!');
-    $locationProvider.html5Mode(true);
+    //$locationProvider.html5Mode(true);
 
 
 

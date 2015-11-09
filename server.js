@@ -16,6 +16,20 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+//Initial request to server
+
+//app.use('/', express.static(__dirname + '/app'));
+//
+//app.get('/[^\.]+$', function(req, res){
+//  res.set('Content-Type', 'text/html')
+//    .sendfile('./app/index.html');
+//});
+
+app.get('*', function (req, res) {
+  res.writeHead(200, {"Content-Type": "text/html"});
+  res.sendFile('./app/index.html');
+});
+
 
 app.use(require('prerender-node').set('prerenderServiceUrl', 'http://localhost:3000/').set('prerenderToken', 'b0WrJfE13BbRGlHxHaIm'));
 ////rout handling: detect _escaped_fragment_ then replace it
@@ -98,11 +112,7 @@ function restrict(req, res, next) {
   }
 }
 
-//Initial request to server
-app.get('*', function (req, res) {
-  res.writeHead(200, {"Content-Type": "text/html"});
-  res.sendFile('./app/index.html');
-});
+
 
 //LOGIN
 app.post('/login', function (req, res) {
