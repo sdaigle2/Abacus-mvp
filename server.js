@@ -15,6 +15,7 @@ app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(require('prerender-node').set('prerenderToken', 'b0WrJfE13BbRGlHxHaIm'));
 
 //Initial request to server
 
@@ -31,7 +32,7 @@ app.get('*', function (req, res) {
 });
 
 
-app.use(require('prerender-node').set('prerenderServiceUrl', 'http://localhost:3000/').set('prerenderToken', 'b0WrJfE13BbRGlHxHaIm'));
+
 ////rout handling: detect _escaped_fragment_ then replace it
 //app.use(function(req, res, next) {
 //  var fragment = req.query._escaped_fragment_;
