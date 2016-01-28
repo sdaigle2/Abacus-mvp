@@ -47,7 +47,7 @@ angular.module('abacuApp')
       }
 
       else {
-        var wheelchair = frameID;
+        var wheelchair = frameID; //in this case frameID is a wheelchair json
         //####################### COPY CONSTRUCTOR ############################
 
         this.frameID = wheelchair.frameID;
@@ -82,6 +82,9 @@ angular.module('abacuApp')
 
     //#######################  Instance methods  ##########################
     Wheelchair.prototype = {
+
+
+
       //GETS
       getAll: function () {
         return {

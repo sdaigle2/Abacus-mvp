@@ -136,6 +136,13 @@ body {
     padding-right: 10px;
     padding-left: 0px;
 }
+
+.mainNavbar .mainNavbar-right .cartButton:hover {
+  cursor: pointer;
+}
+
+
+
 .mainNavbar .mainNavbar-right .loginButton {
   height: 100%;
   margin: 0 0 0 0;

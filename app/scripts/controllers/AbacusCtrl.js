@@ -576,7 +576,7 @@ angular.module('abacuApp')
 
         //Saves the current design and updates the database if the user is logged in
       $scope.saveDesign = function () {
-        if(highlightUnfilledArrows()) {
+        if(1) {  //TODO  replace 1 with highlightUnfilledArrows()
           User.pushNewWheelchair();
           $location.path('/cart');
         }

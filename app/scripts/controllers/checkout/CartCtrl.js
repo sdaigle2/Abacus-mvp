@@ -15,7 +15,7 @@ angular.module('abacuApp')
 
       Drop.setFalse();
 
-      //Array of wheelchair objects designed by user
+      //Array of wheelchair instances in the shopping cart
       $scope.wheelchairs = User.getDesignedWheelchairs();
 
 
@@ -34,29 +34,28 @@ angular.module('abacuApp')
       $scope.hoverImage = 'add_icon';
       //A reference to User.curEditOrder (set during init())
       var curOrder = null;
-      $scope.orderChairs;
       //Initialize Cart page
       function init() {
 
-        curOrder = User.getCurEditOrder();
+        curOrder = User.getCurEditOrder();   //return order instance
         if (!curOrder) {
           User.createNewOrder();
           curOrder = User.getCurEditOrder();
         } else {
-          updateCosts();
+          updateCosts();   // TODO update needed after modify
         }
 
-        $scope.orderChairs = curOrder.getWheelchairs();
-        var orderInd = 0;
+        //$scope.wheelchairs = curOrder.getWheelchairs();    // return array of chair instance
+        //var orderInd = 0;
         for (var i = 0; i < $scope.wheelchairs.length; i++) {
-          $scope.wInOrder.push($scope.wheelchairs[i].inCurOrder);
-          if ($scope.wInOrder[i])
-            $scope.wOrderIndex.push(orderInd++);
-          else
-            $scope.wOrderIndex.push(-1);
+        //  $scope.wInOrder.push($scope.wheelchairs[i].inCurOrder);  //push status of each chair in wheelchairs[]
+        //  if ($scope.wInOrder[i])
+        //    $scope.wOrderIndex.push(orderInd++);   // mark the chair that is already in the order
+        //  else
+        //    $scope.wOrderIndex.push(-1);
           getParts($scope.wheelchairs[i].getFrameID());
         }
-
+z
         for (var j = $scope.wheelchairs.length; j < 3; j++) {
           $scope.emptyCols.push({});
         }
