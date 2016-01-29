@@ -52,7 +52,7 @@ angular.module('abacuApp')
       };
 
       //The current part customization page
-      var    curPage = {
+      var curPage = {
         page: [null, null], //has a current page for each page type
         type: $scope.pageType.CUSTOMIZE //keeps track of which page type we are currently looking at
       };
