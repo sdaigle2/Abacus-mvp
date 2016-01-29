@@ -15,11 +15,11 @@ angular.module('abacuApp')
   .service('User', ['$http', '$location', '$q', '$cookieStore', 'Order', 'Wheelchair', 'Units', 'Costs',
     function ($http, $location, $q, $cookieStore, Order, Wheelchair, Units, Costs) {
 
-      var orders = [];
-      var currentWheelchair = {isNew: false, editingWheelchair: null};
+      var orders = [];     // TODO: only keep order variable.
+      var currentWheelchair = {isNew: false, editingWheelchair: null};   // indicate the status of current design
       var designedWheelchairs = [];
-
-      var curEditWheelchairIndex = -1;
+      var curEditWheelchairIndex = -1;  //Index associate with designedWheelchair i.e cartwheelchair
+      //var savedChairIndex = -1;      //Index associate with savedWheelchair. might not be necessary if we use uniform ID and user check at the end
       var userID = -1; //-1 means not logged in
       var fName = '';
       var lName = '';
@@ -147,6 +147,26 @@ angular.module('abacuApp')
             'orders': tempOrders,
             'wheelchairs': tempDesignedWheelchairs
           }
+        },
+
+        /**********design share/coEdit with ID*********/
+        fetchDesign:function(id){
+          var deferred = $q.defer();
+          $http({
+            url:'fetchDesign',
+            data:{designID:id},
+            method:'POST'
+          }).success(function(data){
+            console.log('fetch chair design' + JSON(data));
+            //TODO load the design into current editing wheelchair variable
+            var currentDesign = new Wheelchair(data);
+
+          })
+            .err(function(data){
+              console.log('design fetch failed' + data);
+              deferred.reject('did not find matching wheelchair');
+            });
+          return deferred.promise;
         },
 
         /************************LOGIN AND LOGOUT****************************/

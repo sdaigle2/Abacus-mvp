@@ -9,6 +9,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+var shortid = require('shortid');
 
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/app'));
@@ -19,12 +20,6 @@ app.use(require('prerender-node').set('prerenderToken', 'b0WrJfE13BbRGlHxHaIm'))
 
 //Initial request to server
 
-//app.use('/', express.static(__dirname + '/app'));
-//
-//app.get('/[^\.]+$', function(req, res){
-//  res.set('Content-Type', 'text/html')
-//    .sendfile('./app/index.html');
-//});
 
 app.get('*', function (req, res) {
   res.writeHead(200, {"Content-Type": "text/html"});
@@ -33,37 +28,6 @@ app.get('*', function (req, res) {
 
 
 
-////rout handling: detect _escaped_fragment_ then replace it
-//app.use(function(req, res, next) {
-//  var fragment = req.query._escaped_fragment_;
-//
-//  // If there is no fragment in the query params
-//  // then we're not serving a crawler
-//  if (!fragment) return next();
-//
-//  // If the fragment is empty, serve the
-//  // index page
-//  if (fragment === "" || fragment === "/")
-//    fragment = "/index.html";
-//
-//  // If fragment does not start with '/'
-//  // prepend it to our fragment
-//  if (fragment.charAt(0) !== "/")
-//    fragment = '/' + fragment;
-//
-//  // If fragment does not end with '.html'
-//  // append it to the fragment
-//  if (fragment.indexOf('.html') == -1)
-//    fragment += ".html";
-//
-//  // Serve the static html snapshot
-//  try {
-//    var file =  + "./app/snapshots" + fragment;
-//    res.sendfile(file);
-//  } catch (err) {
-//    res.send(404);
-//  }
-//});
 
 //Security
 var crypto = require('crypto');
@@ -89,6 +53,7 @@ app.use(session({
 var cloudant = require('cloudant')({account: process.env.CLOUDANT_USERNAME, password: process.env.CLOUDANT_PASSWORD});
 var users = cloudant.use('users');
 var orders = cloudant.use('orders');
+var designs = cloudant.use('designs');
 
 //Sendgrid Email API
 var sendgrid = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
@@ -113,7 +78,19 @@ function restrict(req, res, next) {
   }
 }
 
+// fetch design
+app.post('/fetchDesign',function(req,res){
+  var id = req.body.designID;
 
+  //query the database
+  designs.get(id,function(err,body){
+    if(!err){
+      res.json(body); //load the design if id is correct
+    }
+    else
+      res.json({err: 'Did not find the matching design, please try again'});
+  });
+});
 
 //LOGIN
 app.post('/login', function (req, res) {

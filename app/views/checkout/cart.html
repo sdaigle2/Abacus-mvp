@@ -53,7 +53,7 @@
 
 
       <a ng-show="wheelchairs.length < 2" class="add-chair" data-ng-mouseenter="hoverImage = 'add_icon_hover'"
-         data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#/frames">
+         data-ng-mouseleave="hoverImage = 'add_icon'" ng-href="#!/frames">
         <img class="add-icon" data-ng-src="images/my_design_page/{{hoverImage}}.png">
         <span class="medium">Add a Wheelchair</span>
       </a>
@@ -127,7 +127,7 @@
     <div class="cartSidebarHeading"><strong>CART</strong></div>
     <div id="scroll-order">
       <ol>
-        <li class="order-list-element" ng-repeat="wheelchair in orderChairs">
+        <li class="order-list-element" ng-repeat="wheelchair in wheelchairs">
           <div class="order-block">
             <h3>{{$index+1}}</h3>
             <canvas my-canvas img_arr={{wheelchair.getPreviewImages(3)}}
