@@ -5,7 +5,7 @@
 'use strict';
 
 angular.module('abacuApp')
-  .controller('HeaderController', ['$scope', '$location', '$http', '$timeout', 'User', 'Drop', '$window', function ($scope, $location, $http, $timeout, User, Drop, window) {
+  .controller('HeaderController', ['$scope', '$location', '$http', '$timeout', 'User', 'Drop', '$window', function ($scope, $location, $http, $timeout, User, Drop, $window) {
 
     //Returns true is the current angular URL matches viewLocation
     $scope.isActive = function (viewLocation) {

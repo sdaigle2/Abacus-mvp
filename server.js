@@ -78,9 +78,11 @@ function restrict(req, res, next) {
   }
 }
 
+var REQUIRED_DESIGN_PROPERTIES = [];
+
 // fetch design
-app.post('/fetchDesign',function(req,res){
-  var id = req.body.designID;
+app.get('/design/:id',function(req,res){
+  var id = req.param['id'];
 
   //query the database
   designs.get(id,function(err,body){
@@ -90,6 +92,36 @@ app.post('/fetchDesign',function(req,res){
     else
       res.json({err: 'Did not find the matching design, please try again'});
   });
+});
+
+// post design
+app.post('/design', function (req, res) {
+  var userDesign = req.body;
+  // Check that uploaded design has some required properties
+  var hasRequiredProps = REQUIRED_DESIGN_PROPERTIES.every(function (property) => {
+    return property in userDesign;
+  });
+
+  if (hasRequiredProps) {
+    // Save the design in cloudant
+    var id = shortid.generate(); // Should generate a unique id
+    designs.insert(userDesign, id, function (err, body, header) {
+      if (err) {
+        console.log(err);
+        res.status(400);
+        res.json({err: 'Couldn\'t save design data into databse'});
+      } else {
+        // design save was a success; send the design info back to the client
+        res.json(body);
+      }
+    });
+  } else {
+    res.status(400);
+    res.json({
+      err: 'Missing some required Properties. Must have following: ' + JSON.stringify(REQUIRED_DESIGN_PROPERTIES)
+    });
+  }
+
 });
 
 //LOGIN
@@ -181,8 +213,12 @@ app.post('/register', function (req, res) {
           delete data.confirm; //Do not want copy of password
 
           //Insert new user into database
-          users.insert(data, data.email, function () {
-
+          users.insert(data, data.email, function (err, body) {
+            if (err) {
+              res.status(500);
+              res.json({err: 'Couldn\'t save user in the Database'});
+              return;
+            }
             //Send an email to the user using the sendgrid API
             email.to = data.email;
             email.text = 'Thank you for registering an account with Abacus.';

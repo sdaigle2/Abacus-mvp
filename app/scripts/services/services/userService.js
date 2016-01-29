@@ -150,24 +150,28 @@ angular.module('abacuApp')
         },
 
         /**********design share/coEdit with ID*********/
-        fetchDesign:function(id){
-          var deferred = $q.defer();
-          $http({
-            url:'fetchDesign',
+        fetchDesign:function(id) {
+          return $http({
+            url:'/design/' + id,
             data:{designID:id},
-            method:'POST'
-          }).success(function(data){
+            method:'GET'
+          })
+          .then(function(data){
             console.log('fetch chair design' + JSON(data));
             //TODO load the design into current editing wheelchair variable
             var currentDesign = new Wheelchair(data);
-
-          })
-            .err(function(data){
-              console.log('design fetch failed' + data);
-              deferred.reject('did not find matching wheelchair');
-            });
-          return deferred.promise;
+            return currentDesign;
+          });
         },
+
+        saveDesign:function(wheelchair) {
+          // $http({ ... }) returns a promise
+          return $http({
+            url:'/design',
+            data: wheelchair,
+            method: 'POST'
+          });
+        }
 
         /************************LOGIN AND LOGOUT****************************/
 
