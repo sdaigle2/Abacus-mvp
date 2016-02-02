@@ -525,6 +525,7 @@ angular.module('abacuApp')
       $scope.closeAllPanels = function () {
         $scope.setPanel(-1);
         $scope.curOption = $scope.getCurPartData().getDefaultOption();
+        $scope.closeSaveDropDown();
       };
 
       //Check if the panel with the given id and type is selected

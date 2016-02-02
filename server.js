@@ -82,7 +82,7 @@ var REQUIRED_DESIGN_PROPERTIES = [];
 
 // fetch design
 app.get('/design/:id',function(req,res){
-  var id = req.param['id'];
+  var id = req.param.id;
 
   //query the database
   designs.get(id,function(err,body){

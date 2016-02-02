@@ -16,10 +16,11 @@ angular.module('abacuApp')
     function ($http, $location, $q, $cookieStore, Order, Wheelchair, Units, Costs) {
 
       var orders = [];     // TODO: only keep order variable.
-      var currentWheelchair = {isNew: false, editingWheelchair: null};   // indicate the status of current design
-      var designedWheelchairs = [];
+      var currentWheelchair = {isNew: false, editingWheelchair: null};   // indicate the status of current design and hold the wheelchair instance
+      var designedWheelchairs = [];     //array of chairs in cart
       var curEditWheelchairIndex = -1;  //Index associate with designedWheelchair i.e cartwheelchair
-      //var savedChairIndex = -1;      //Index associate with savedWheelchair. might not be necessary if we use uniform ID and user check at the end
+      var savedChairs = [];                    // array of saved wheelchair
+      var savedChairIndex = -1;      //Index associate with savedchairs.
       var userID = -1; //-1 means not logged in
       var fName = '';
       var lName = '';
@@ -161,7 +162,9 @@ angular.module('abacuApp')
             //TODO load the design into current editing wheelchair variable
             var currentDesign = new Wheelchair(data);
             return currentDesign;
-          });
+          }, function(data){
+              console.log("fetch failed")
+            });
         },
 
         saveDesign:function(wheelchair) {
@@ -171,7 +174,7 @@ angular.module('abacuApp')
             data: wheelchair,
             method: 'POST'
           });
-        }
+        },
 
         /************************LOGIN AND LOGOUT****************************/
 
