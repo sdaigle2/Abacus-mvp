@@ -98,7 +98,7 @@ app.get('/design/:id',function(req,res){
 app.post('/design', function (req, res) {
   var userDesign = req.body;
   // Check that uploaded design has some required properties
-  var hasRequiredProps = REQUIRED_DESIGN_PROPERTIES.every(function (property) => {
+  var hasRequiredProps = REQUIRED_DESIGN_PROPERTIES.every(function (property) {
     return property in userDesign;
   });
 
