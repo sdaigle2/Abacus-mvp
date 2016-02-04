@@ -10,13 +10,15 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('CartCtrl', ['$scope', '$location', '$cookieStore', 'User', 'FrameData', 'Units', 'Wheelchair', 'Drop',
-    function ($scope, $location, $cookieStore, User, FrameData, Units, Wheelchair, Drop) {
-
+  .constant('WHEELCHAIR_CANVAS_WIDTH', 187) // width of canvas that renders wheelchair
+  .controller('Cart2Ctrl', ['$scope', '$location', '$cookieStore', 'User', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH',
+    function ($scope, $location, $cookieStore, User, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH) {
+      $scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
       Drop.setFalse();
 
       //Array of wheelchair instances in the shopping cart
       $scope.wheelchairs = User.getDesignedWheelchairs();
+      $scope.wheelchairUIOpts = [];
 
 
       $scope.emptyCols = [];
@@ -104,6 +106,14 @@ angular.module('abacuApp')
         $location.path('/tinker');
       };
 
+      // removes wheelchair from cart and puts it into the users wishlist
+      $scope.moveToWishlist = function (index) {
+        alert('TODO: moveToWishlist implementation');
+      };
+
+      $scope.duplicateWheelchair = function (index) {
+        alert('TODO: duplicateWheelchair implementation');
+      };
 
       //Deletes wheelchair from user's My Designs
       $scope.deleteWheelchair = function (index) {
@@ -114,6 +124,7 @@ angular.module('abacuApp')
         }
         $scope.wOrderIndex.splice(index, 1);
         $scope.wInOrder.splice(index, 1);
+        $scope.wheelchairUIOpts.splice(index, 1);
 
         //Remove wheelchair from My Designs
         User.deleteWheelchair(index);
@@ -199,6 +210,15 @@ angular.module('abacuApp')
 
       $scope.getPartOption = function (wheelchair, part) {
         return $scope.getPartDetails(wheelchair, part).optionName;
+      };
+
+      // Get all the names for all the measured parts
+      $scope.getWheelchairMeasures = function (wheelchair) {
+        var frameID = wheelchair.getFrameID();
+        var frame = FrameData.getFrame(frameID);
+        var measures = frame.getMeasures();
+
+        return measures;
       };
 
       //Returns an object of display-friendly strings regarding the given measure

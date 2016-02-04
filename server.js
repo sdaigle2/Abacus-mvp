@@ -78,7 +78,7 @@ function restrict(req, res, next) {
   }
 }
 
-var REQUIRED_DESIGN_PROPERTIES = [];
+var REQUIRED_DESIGN_PROPERTIES = []; // TODO: Fill list with required properties
 
 // fetch design
 app.get('/design/:id',function(req,res){

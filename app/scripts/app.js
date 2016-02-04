@@ -43,9 +43,20 @@ angular
       .when('/cart', {
         templateUrl: 'views/checkout/cart.html',
         controller: 'CartCtrl',
-        resolve: {UserData: ['$q', 'User', function($q, User){
-          return User.getPromise();
-        }]}
+        resolve: {
+          UserData: ['$q', 'User', function($q, User) {
+            return User.getPromise();
+          }]
+        }
+      })
+      .when('/cart2', { // replace all references to 'Cart2' to just 'cart' when ready
+        templateUrl: 'views/checkout/cart2.html',
+        controller: 'Cart2Ctrl',
+        resolve: {
+          UserData: ['$q', 'User', function($q, User) {
+            return User.getPromise();
+          }]
+        }
       })
       .when('/checkout', {
         templateUrl: 'views/checkout/checkout.html',

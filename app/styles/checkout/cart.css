@@ -27,7 +27,14 @@
   width: 75%;
 }
 
+.trash_icon {
+  float: right;
+  margin-top: 20px;
+}
 
+.wheelchair_canvas {
+  width: 187;
+}
 
 /*************************
 ****** Cart Heading ******
