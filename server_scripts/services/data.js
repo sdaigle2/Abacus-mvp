@@ -1,11 +1,12 @@
 /**
  * Created by Dhruv on 7/7/2015.
  */
+"use strict";
 
 //Verify wheelchair and order data sent from the client.
 
 //The json containing all the correct frame data
-var frameData = require('./app/data/frameData.json');
+var frameData = require('../../app/data/frameData.json');
 
 //Return the frame with given frameID
 function getFrame(frameID) {

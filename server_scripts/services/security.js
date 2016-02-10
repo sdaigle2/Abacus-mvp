@@ -1,11 +1,13 @@
 /**
  * Created by Dhruv on 6/16/2015.
  */
+"use strict";
 
 //Security library. Validates client sent data and implements password hashing
 
 var crypto = require('crypto');
 var addressValidator = require('address-validator');
+var _ = require('lodash');
 var Address = addressValidator.Address;
 var len = 128;
 var iterations = 12000;
@@ -42,7 +44,7 @@ function addressCheck(userData){
     state: userData.state,
     country: 'US'
   });
-  addressValidator.validate(address, validator.match.streetAddress, function(err, exact, inexact){
+  addressValidator.validate(address, addressValidator.match.streetAddress, function(err, exact, inexact){
     console.log('input: ', address.toString());
     console.log('match: ', _.map(exact, function(a) {
       return a.toString();

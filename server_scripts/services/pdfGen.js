@@ -1,6 +1,7 @@
 /**
  * Created by Dhruv on 7/8/2015.
  */
+"use strict";
 
 //Library for pdf generation. Uses pdfkit API to write scripts to generate pdf page by page
 //Coordinate system: 72 = 1 in
