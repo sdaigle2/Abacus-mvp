@@ -35,19 +35,24 @@ angular.module('abacuApp')
 
       $scope.hoverImage = 'add_icon';
       //A reference to User.curEditOrder (set during init())
-      var curOrder = null;
+      $scope.curOrder = null;
+
+      $scope.zipcode = null;
+
       //Initialize Cart page
       function init() {
 
-        curOrder = User.getCurEditOrder();   //return order instance
-        if (!curOrder) {
+        $scope.curOrder = User.getCurEditOrder();   //return order instance
+        if (!$scope.curOrder) {
           User.createNewOrder();
-          curOrder = User.getCurEditOrder();
+          $scope.curOrder = User.getCurEditOrder();
         } else {
           updateCosts();   // TODO update needed after modify
         }
 
-        //$scope.wheelchairs = curOrder.getWheelchairs();    // return array of chair instance
+        $scope.zipcode = $scope.curOrder.zip;
+
+        //$scope.wheelchairs = $scope.curOrder.getWheelchairs();    // return array of chair instance
         //var orderInd = 0;
         for (var i = 0; i < $scope.wheelchairs.length; i++) {
         //  $scope.wInOrder.push($scope.wheelchairs[i].inCurOrder);  //push status of each chair in wheelchairs[]
@@ -120,7 +125,7 @@ angular.module('abacuApp')
         //Remove wheelchair from order if in order
         var orderInd = $scope.wOrderIndex[index];
         if (orderInd !== -1) {
-          curOrder.removeWheelchair(orderInd);
+          $scope.curOrder.removeWheelchair(orderInd);
         }
         $scope.wOrderIndex.splice(index, 1);
         $scope.wInOrder.splice(index, 1);
@@ -138,16 +143,16 @@ angular.module('abacuApp')
           alert('All measurements must be set before this can be purchased');
           return;
         }
-        curOrder.addWheelchair($scope.wheelchairs[index]);
+        $scope.curOrder.addWheelchair($scope.wheelchairs[index]);
         User.updateCookie();
         $scope.wInOrder[index] = true;
-        $scope.wOrderIndex[index] = curOrder.getNumWheelchairs() - 1;
+        $scope.wOrderIndex[index] = $scope.curOrder.getNumWheelchairs() - 1;
         updateCosts();
       };
 
       //Removes the selected wheelchair from curOrder
       $scope.removeWheelchairFromOrder = function (index) {
-        curOrder.removeWheelchair($scope.wOrderIndex[index]);
+        $scope.curOrder.removeWheelchair($scope.wOrderIndex[index]);
         $scope.wInOrder[index] = false;
         for (var i = 0; i < $scope.wOrderIndex.length; i++)
           if ($scope.wOrderIndex[i] > $scope.wOrderIndex[index])
@@ -166,17 +171,46 @@ angular.module('abacuApp')
       };
 
       function updateCosts() {
-        $scope.costs.subtotal = curOrder.getSubtotal();
-        $scope.costs.tax = curOrder.getTaxCost();
-        $scope.costs.shipping = curOrder.getShippingCost();
-        $scope.costs.total = curOrder.getTotalCost().toFixed(2);
+        $scope.costs.subtotal = $scope.curOrder.getSubtotal();
+        $scope.costs.tax = $scope.curOrder.getTaxCost();
+        $scope.costs.shipping = $scope.curOrder.getShippingCost();
+        $scope.costs.total = $scope.curOrder.getTotalCost().toFixed(2);
       }
 
       /*********************CHECK OUT***********************************/
 
+      $scope.choosePayment = function (paymentMethod) {
+        var paymentMethodCases = {
+          'insurance': function () {
+            alert('TODO: insurance payment handler');
+          },
+          'downPayment': function () {
+            alert('TODO: downPayment payment handler');
+          },
+          'payFull': function () {
+            alert('TODO: payFull payment handler');
+          }
+        };
+
+        var invalidPaymentMethodHandler = function () {
+          alert('The selected payment method is invalid');
+        };
+
+        var paymentHandler = paymentMethodCases[paymentMethod] || invalidPaymentMethodHandler;
+        paymentHandler();
+      };
+
+      $scope.applyPaymentMethod = function () {
+        alert('TODO: applyPaymentMethod implementation');
+      };
+
+      $scope.applyZipcode = function () {
+        $scope.curOrder.zip = $scope.zipcode;
+      };
+
         //Validates the user's "cart" and sends the user to Checkout or Order if valid
       $scope.checkOut = function () {
-        if (curOrder.getNumWheelchairs() === 0) {
+        if ($scope.curOrder.getNumWheelchairs() === 0) {
           alert('Your cart is empty');
           return;
         }
@@ -189,7 +223,7 @@ angular.module('abacuApp')
 
       //Determines if the current cart is valid
       $scope.validCart = function () {
-        return curOrder.getNumWheelchairs() > 0;
+        return $scope.curOrder.getNumWheelchairs() > 0;
       };
 
       $scope.toggleImageDisplay = function (index) {
@@ -238,6 +272,11 @@ angular.module('abacuApp')
       };
 
       init();
+
+      // Every time a change happens to the order, update the costs that go along with it
+      $scope.$watch('curOrder', function (updatedCurOrder) {
+        updateCosts();
+      });
 
     }]);
 

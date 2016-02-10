@@ -17,6 +17,31 @@
   color: #4896FF;
 }
 
+.apply-button {
+  background-color: #4896FF;
+  color: #FFFFFF;
+}
+
+.apply-button:hover {
+  background-color: white;
+  color: #4896FF;
+}
+
+.invalidated-apply-button {
+  background-color: white;
+  color: #4896FF;
+}
+
+.invalidated-apply-button:hover {
+  background-color: white;
+  color: #4896FF;
+}
+
+.apply-form {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
 /*************************
 **** Cart Background *****
 **************************/
@@ -403,6 +428,20 @@ a:hover{
 }
 
 /*************************
+****** Zipcode Area ******
+**************************/
+
+.zipcode-area {
+  background-color: white;
+  color: #4896FF;
+  padding: 15px;
+  margin: 15px;
+}
+
+.zipcode-input {
+}
+
+/*************************
 ****** Detail Table ******
 **************************/
 
@@ -479,15 +518,20 @@ a:hover{
 
 .checkoutButton {
   width: 90%;
-
+  background-color: #4896FF;
+  color: white;
+  padding: 15px;
+  margin: 15px;
 }
 
 .checkoutButton.inactive {
-  background-color: #A7A9Ac;
+  background-color: white;
+  color: #4896FF;
 }
 
 .checkoutButton:hover {
-  background-color: #60C2B1;
+  background-color: white;
+  color: #4896FF;
   cursor: pointer;
 }
 

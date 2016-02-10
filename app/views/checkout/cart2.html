@@ -55,9 +55,9 @@
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <a ng-click="wheelchairUIOpts[$index].showParts = !wheelchairUIOpts[$index].showParts">Parts</a></li>
+                    <a ng-click="wheelchairUIOpts[$index].showParts = !wheelchairUIOpts[$index].showParts">Parts {{wheelchairUIOpts[$index].showParts ? '✓' : ''}}</a></li>
                   <li>
-                    <a ng-click="wheelchairUIOpts[$index].showMeasurements = !wheelchairUIOpts[$index].showMeasurements">Measurements</a>
+                    <a ng-click="wheelchairUIOpts[$index].showMeasurements = !wheelchairUIOpts[$index].showMeasurements">Measurements {{wheelchairUIOpts[$index].showMeasurements ? '✓' : ''}}</a>
                   </li>
                 </ul>
               </div>
@@ -127,7 +127,7 @@
             </tr>
             <tr class="part-row">
               <td class="value-column">
-                <hr class="pull-right">
+                <hr class="pull-right"></hr>
               </td>
             </tr>
             <tr class="part-row">
@@ -143,7 +143,36 @@
 
         <div class="payment-table">
           <p>Choose a payment method</p>
+          <div class="apply-form">
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" data-toggle="dropdown">
+                Select<span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li>
+                  <a ng-click="choosePayment('insurance')">Insurance</a></li>
+                <li>
+                  <a ng-click="choosePayment('downPayment')">30% down payment</a>
+                </li>
+                <li>
+                  <a ng-click="choosePayment('payFull')">Pay in full</a>
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-default apply-button pull-right" ng-click="applyPaymentMethod()">Apply</button>
+          </div>
+        </div>
 
+        <div class="zipcode-area">
+          <p>Enter zip code to estimate shipping cost</p>
+          <div class="apply-form">
+            <input type="number" placeholder="Enter zipcode" class="zipcode-input" ng-model="zipcode"></input>
+            <button type="button" class="btn btn-default pull-right {{zipcode === curOrder.zip ? 'apply-button' : 'invalidated-apply-button'}}" ng-click="applyZipcode()">Apply</button>
+          </div>
+        </div>
+
+        <div>
+          <button type="button" class="btn btn-default checkoutButton" ng-click="checkOut()">Checkout</button>
         </div>
       </div>
     </div>

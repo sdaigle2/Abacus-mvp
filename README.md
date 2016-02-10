@@ -19,7 +19,7 @@ For instance, all login,logout,registration, and session endpoints are under `se
 
 Each of the files under `server_scripts/routes` expose an instance of an [express.Router()](http://expressjs.com/en/4x/api.html#router). These routers are then all merged into a central router in `server_scripts/routes/index.js` which is then used in the `server.js` script.
 
-To add a new endpoint, either add the endpoint to an existing script in `server_scripts/routes` or create a new controller under the same directory. If you create a new controller, it will automatically be found by index.js and included when the server is launched.
+To add a new endpoint, either add the endpoint to an existing script in `server_scripts/routes` or create a new controller script under the same directory. If you create a new controller, it will automatically be found by `server_scripts/routes/index.js` and included when the server is launched.
 
 ### server_scripts/policies
 This directory contains all middleware policies. These are small checks that happen before a request gets sent to its designated request handler. To use them, just import them with `require` wherever you want them to be referenced.

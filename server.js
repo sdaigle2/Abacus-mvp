@@ -36,6 +36,7 @@ app.use(session({
   secret: token
 }));
 
+// mainRouter contains all custom endpoints in controllers from server_scripts/routes
 var mainRouter = require('./server_scripts/routes');
 app.use(mainRouter);
 
