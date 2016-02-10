@@ -36,7 +36,6 @@ app.use(session({
   secret: token
 }));
 
-app.post('/hi', (req, res) => {res.json({message: 'hi'})});
 var mainRouter = require('./server_scripts/routes');
 app.use(mainRouter);
 

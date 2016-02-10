@@ -17,89 +17,138 @@
       <img class="add-icon" data-ng-src="images/my_design_page/cart_empty.png">
       <span class="medium">Your cart is currently empty</span>
     </div>
-    <ul class="media-list" ng-if="wheelchairs.length" style="max-width: 500px;">
-      <li ng-repeat="w in wheelchairs" class="media" style="overflow: visible;">
-        <!-- Shows Wheelchair Image in canvas on left -->
-        <div class="pull-left">
-          <div class="media-object">
-            <canvas my-canvas img_arr={{w.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
-                ng-mouseleave="editPanelShow = false"
-                ng-click="toggleImageDisplay($index)"
-                width="{{WHEELCHAIR_CANVAS_WIDTH}}">
-            </canvas>
-          </div>
-        </div>
-        <!-- All content related to wheelchair -->
-        <div class="media-body" style="overflow: visible;">
-          <div>
-            <input placeholder="Wheelchair Name" data-ng-if="edit !== true" class="wheelchair_name_input" ng-model="w.title" ng-value="w.title">
-            </input>
-            <img class="trash_icon"
-              data-ng-src="images/my_design_page/delete.png"
-              width="20"
-              ng-click="deleteWheelchair($index)">
-          </div>
-          <!-- Buttons that edit the wheelchair -->
-          <ul style="list-style-type: none; padding:0; margin:0;">
-            <li ng-click="editWheelchair($index)"><a>Edit</a></li>
-            <li ng-click="moveToWishlist($index)"><a>Move to Wishlist</a></li>
-            <li ng-click="duplicateWheelchair($index)"><a>Duplicate</a></li>
-          </ul>
-          <br>
-          <!-- Dropdown -->
-          <div>
-            <div class="btn-group">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                More info on... <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu">
-                <li>
-                  <a ng-click="wheelchairUIOpts[$index].showParts = !wheelchairUIOpts[$index].showParts">Parts</a></li>
-                <li>
-                  <a ng-click="wheelchairUIOpts[$index].showMeasurements = !wheelchairUIOpts[$index].showMeasurements">Measurements</a>
-                </li>
-              </ul>
+    <div style="width: 100%;">
+      <ul class="media-list" ng-if="wheelchairs.length" style="max-width: 500px;">
+        <li ng-repeat="w in wheelchairs" class="media cart-item" style="overflow: visible;">
+          <!-- Shows Wheelchair Image in canvas on left -->
+          <div class="pull-left">
+            <div class="media-object">
+              <canvas my-canvas img_arr={{w.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
+                  ng-mouseleave="editPanelShow = false"
+                  ng-click="toggleImageDisplay($index)"
+                  width="{{WHEELCHAIR_CANVAS_WIDTH}}">
+              </canvas>
             </div>
-            <h4 style="float: right;">${{w.getTotalPrice()}}</h4>
           </div>
-          <br>
-
-          <!-- Tables showing Part & Measurement configurations -->
-          <div style="padding: {{WHEELCHAIR_CANVAS_WIDTH}};">
-            <!-- Parts Table...only shown if toggled -->
-            <h3 ng-if="wheelchairUIOpts[$index].showParts">Parts</h3>
-            <table ng-if="wheelchairUIOpts[$index].showParts">
-              <tr class="part-row" ng-repeat="part in parts">
-                <td class="title-column">
-                  <p data-ng-bind="part.getName()"></p>
-                </td>
-                <td class="value-column">
-                  <p data-ng-bind="getPartOption(w, part)"></p>
-                </td>
-              </tr>
-            </table>
+          <!-- All content related to wheelchair -->
+          <div class="media-body" style="overflow: visible;">
+            <div>
+              <input placeholder="Wheelchair Name" data-ng-if="edit !== true" class="wheelchair_name_input" ng-model="w.title" ng-value="w.title">
+              </input>
+              <img class="trash_icon"
+                data-ng-src="images/my_design_page/delete.png"
+                width="20"
+                ng-click="deleteWheelchair($index)">
+            </div>
+            <!-- Buttons that edit the wheelchair -->
+            <ul style="list-style-type: none; padding:0; margin:0;">
+              <li ng-click="editWheelchair($index)"><a>Edit</a></li>
+              <li ng-click="moveToWishlist($index)"><a>Move to Wishlist</a></li>
+              <li ng-click="duplicateWheelchair($index)"><a>Duplicate</a></li>
+            </ul>
+            <br>
+            <!-- Dropdown -->
+            <div>
+              <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" data-toggle="dropdown">
+                  More info on... <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                  <li>
+                    <a ng-click="wheelchairUIOpts[$index].showParts = !wheelchairUIOpts[$index].showParts">Parts</a></li>
+                  <li>
+                    <a ng-click="wheelchairUIOpts[$index].showMeasurements = !wheelchairUIOpts[$index].showMeasurements">Measurements</a>
+                  </li>
+                </ul>
+              </div>
+              <h4 style="float: right;">${{w.getTotalPrice()}}</h4>
+            </div>
             <br>
 
-            <!-- Measurements Table...only shown if toggled -->
-            <h3 ng-if="wheelchairUIOpts[$index].showMeasurements">Measurements</h3>
-            <table ng-if="wheelchairUIOpts[$index].showMeasurements">
-              <tr class="part-row" ng-repeat="measure in getWheelchairMeasures(w)">
-                <td class="title-column">
-                  <p data-ng-bind="measure.getName()"></p>
-                </td>
-                <td class="value-column">
-                  <p data-ng-bind="getMeasureDetails(w, measure).optionString"></p>
-                </td>
-              </tr>
-            </table>
+            <!-- Tables showing Part & Measurement configurations -->
+            <div style="padding: {{WHEELCHAIR_CANVAS_WIDTH}};">
+              <!-- Parts Table...only shown if toggled -->
+              <h3 ng-if="wheelchairUIOpts[$index].showParts">Parts</h3>
+              <table ng-if="wheelchairUIOpts[$index].showParts">
+                <tr class="part-row" ng-repeat="part in parts">
+                  <td class="title-column">
+                    <p data-ng-bind="part.getName()"></p>
+                  </td>
+                  <td class="value-column">
+                    <p data-ng-bind="getPartOption(w, part)"></p>
+                  </td>
+                </tr>
+              </table>
+              <br>
+
+              <!-- Measurements Table...only shown if toggled -->
+              <h3 ng-if="wheelchairUIOpts[$index].showMeasurements">Measurements</h3>
+              <table ng-if="wheelchairUIOpts[$index].showMeasurements">
+                <tr class="part-row" ng-repeat="measure in getWheelchairMeasures(w)">
+                  <td class="title-column">
+                    <p data-ng-bind="measure.getName()"></p>
+                  </td>
+                  <td class="value-column">
+                    <p data-ng-bind="getMeasureDetails(w, measure).optionString"></p>
+                  </td>
+                </tr>
+              </table>
+            </div>
           </div>
+        </li>
+      </ul>
+
+      <div style="float: left;">
+        <div class="pricing-table">
+          <table>
+            <tr class="part-row">
+              <td class="title-column">
+                <p>Subtotal</p>
+              </td>
+              <td class="value-column">
+                <p>${{costs.subtotal >= 0 ? costs.subtotal : '--'}}</p>
+              </td>
+            </tr>
+            <tr class="part-row">
+              <td class="title-column">
+                <p>Shipping Est.</p>
+              </td>
+              <td class="value-column">
+                <p>${{costs.shipping >= 0 ? costs.shipping : '--'}}</p>
+              </td>
+            </tr>
+            <tr class="part-row">
+              <td class="title-column">
+                <p>Tax</p>
+              </td>
+              <td class="value-column">
+                <p>${{costs.tax >= 0 ? costs.tax : '--'}}</p>
+              </td>
+            </tr>
+            <tr class="part-row">
+              <td class="value-column">
+                <hr class="pull-right">
+              </td>
+            </tr>
+            <tr class="part-row">
+              <td class="title-column">
+                <p><strong>Total</strong></p>
+              </td>
+              <td class="value-column">
+                <p><strong>${{costs.total >= 0 ? costs.total : '--'}}</strong></p>
+              </td>
+            </tr>
+          </table>
         </div>
-      </li>
-    </ul>
+
+        <div class="payment-table">
+          <p>Choose a payment method</p>
+
+        </div>
+      </div>
+    </div>
 
   </div>
-
-
 
 
   <!-- Shows wheelchair on Modal Dialog if small canvas is clicked -->

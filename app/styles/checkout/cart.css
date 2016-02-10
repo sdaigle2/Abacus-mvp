@@ -9,7 +9,13 @@
   overflow-y: hidden;
 }
 
+/*************************
+***** Shared Styles ******
+**************************/
 
+.cartpage-dropdown {
+  color: #4896FF;
+}
 
 /*************************
 **** Cart Background *****
@@ -24,7 +30,8 @@
   position: relative;
   float: left;
   clear: left;
-  width: 75%;
+  width: 100%;
+  background-color: #F1F1F1;
 }
 
 .trash_icon {
@@ -45,7 +52,6 @@
   clear: left;
   float: left;
   margin:30px 0 0;
-
   width: 100%;
 }
 
@@ -227,6 +233,7 @@ a:hover{
   width: 145px;
   font-weight: bold;
   text-align: left;
+  color: #4896FF;
 }
 
 .title-column p{
@@ -236,6 +243,7 @@ a:hover{
 .value-column{
   width: 227px;
   margin: 0 10px;
+  font-weight: bold;
 }
 
 .hover-column:hover{
@@ -269,6 +277,12 @@ a:hover{
 
 .emptyCartMessage {
   margin-top: 30px;
+}
+
+.cart-item {
+  background-color: white;
+  padding: 15px;
+  margin: 15px;
 }
 
 .cartItems {
@@ -364,6 +378,28 @@ a:hover{
 .cartRemoveButton:hover {
   background-color: #b11b1b;
   cursor: pointer;
+}
+
+/*************************
+****** Pricing Table *****
+**************************/
+
+.pricing-table {
+  background-color: white;
+  padding: 15px;
+  margin: 15px;
+  float: right;
+}
+
+/*************************
+****** Payment Table *****
+**************************/
+
+.payment-table {
+  background-color: white;
+  color: #4896FF;
+  padding: 15px;
+  margin: 15px;
 }
 
 /*************************

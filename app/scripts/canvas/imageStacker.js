@@ -15,6 +15,7 @@ function stackImages(canvy, image_dirs, width, height) {
   ctx.clearRect(0, 0, canvy.width, canvy.height);
   ctx.fillStyle = "transparent";
   ctx.fillRect(0, 0, canvy.width, canvy.height);
+  ctx.imageSmoothingEnabled = true; // turns on anti-aliasing
   //console.log("stacking images");
   var images = [];
   var loaded = [];
