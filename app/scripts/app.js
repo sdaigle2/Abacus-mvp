@@ -58,6 +58,15 @@ angular
           }]
         }
       })
+      .when('/searchid', {
+        templateUrl: 'views/searchid.html',
+        controller: 'SearchIDCtrl',
+        resolve: {
+          UserData: ['$q', 'User', function($q, User) {
+            return User.getPromise();
+          }]
+        }
+      })
       .when('/checkout', {
         templateUrl: 'views/checkout/checkout.html',
         controller: 'CheckoutCtrl'

@@ -7,12 +7,12 @@
 var cloudant = require('cloudant')({account: process.env.CLOUDANT_USERNAME, password: process.env.CLOUDANT_PASSWORD});
 var users = cloudant.use('users');
 var orders = cloudant.use('orders');
-var designs = cloudant.use('designs');
+var design = cloudant.use('design');
 
 // Expose logged in cloudant instance along with DB models
 module.exports = {
 	cloudant: cloudant,
 	users: users,
 	orders: orders,
-	designs: designs
+	design: design
 };

@@ -1,0 +1,111 @@
+/* Styles for Search ID page */
+
+
+/*************************
+***** Shared Styles ******
+**************************/
+
+.searchid-page-body {
+	background-color: #F1F1F1;
+	text-align: center;
+	height: 100vh;
+}
+
+.container-block {
+	width: 100%;
+}
+
+/*************************
+******* Top Banner *******
+**************************/
+
+.top-banner {
+	width: 100%;
+	background-color: #808184;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin-bottom: 20px;
+}
+
+.banner-text {
+	text-align: left;
+	color: white;
+	padding-left: 400px; 
+	font-size: 25px;
+}
+
+/*************************
+*** Search Form Styles ***
+**************************/
+
+.search-form-container {
+	padding: 70px;
+	padding-left: 100px;
+	padding-right: 100px;
+	margin: 15px;
+	background-color: white;
+	display: inline-block; 
+}
+
+.search-input {
+	text-align: center;
+	background-color: #F1F1F1;
+	margin-right: 0px;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.search-button {
+	background-color: #4896FF;
+	color: white;
+	margin-left: 0px;
+	border: 1px solid #4896FF;
+	border-radius: 0;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.search-button:hover {
+	background-color: white;
+	color: #4896FF;
+	margin-left: 0px;
+	border: 1px solid #4896FF;
+}
+
+.search-button:disabled {
+	background-color: #F1F1F1;
+	color: #4896FF;
+	margin-left: 0px;
+	border: 1px solid #4896FF;
+}
+
+/*************************
+**** Explaination Box ****
+**************************/
+
+.explanation-container {
+	padding: 70px;
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-bottom: 130px;
+	margin: 15px;
+	background-color: white;
+	display: inline-block; 
+}
+
+/*************************
+***** No Results Box *****
+**************************/
+
+.no-results-container {
+	padding: 70px;
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-bottom: 130px;
+	margin: 15px;
+	background-color: white;
+	display: inline-block; 
+}

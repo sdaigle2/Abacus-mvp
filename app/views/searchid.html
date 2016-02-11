@@ -1,0 +1,37 @@
+<link href="../../styles/searchid.css" rel="stylesheet"/>
+<div class="searchid-page-body">
+	<div class="top-banner">
+		<p class="banner-text">SEARCH DESIGN ID</p>
+	</div>
+
+	<div class="container-block">
+		<div class="search-form-container">
+			<p style="padding-top: 10px; padding-bottom: 10px;">Look up DesignID and find a wheelchair design</p>
+			<form name="searchForm.form" class="css-form" ng-submit="search()" novalidate>
+				<input type="text" class="search-input" ng-model="searchForm.searchInput" required>
+				<button type="submit" class="search-button" id="submit" ng-disabled="searchForm.form.$invalid">SEARCH</button>
+			</form>
+		</div>
+	</div>
+	
+	<!-- This block is shown before the user ever submits a search query -->
+	<div ng-if="!searchSubmitted" class="container-block">
+		<div class="explanation-container">
+			<p>Please type in a DesignID</p>
+			<p><a href="#">What is a DesignID?</a></p>
+		</div>
+	</div>
+
+	<!-- This block is shown if a given query found no results -->
+	<div ng-if="searchSubmitted && searchResult === null" class="container-block">
+		<div class="no-results-container">
+			<p>Design Not Found.</p>
+			<p>Please check DesignID</p>
+			<p><a href="#">What is a DesignID?</a></p>
+		</div>
+	</div>
+
+	<!-- This block is shown if a given query found a result -->
+	<div ng-if="searchSubmitted && searchResult !== null" class="container-block">
+	</div>
+</div>

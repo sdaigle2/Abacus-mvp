@@ -17,19 +17,17 @@ router.get('/design/:id',function(req,res){
   var id = req.param.id;
 
   //query the database
-  dbService.designs.get(id,function(err,body){
-    if(!err){
+  dbService.design.get(id,function(err,body){
+    if (err) {
+      res.status(404);
+      res.json({
+        msg: 'Did not find the matching design, please try again',
+        err: err
+      });
+    } else {
+      console.log('body:\n' + JSON.stringify(body, null, 2));
       res.json(body); //load the design if id is correct
     }
-    else
-      res.json({err: 'Did not find the matching design, please try again'});
-  });
-});
-
-
-router.get('/mydesign', (req, res) => {
-  res.json({
-    msg: 'hers your design bro'
   });
 });
 
@@ -44,7 +42,7 @@ router.post('/design', function (req, res) {
   if (hasRequiredProps) {
     // Save the design in cloudant
     var id = shortid.generate(); // Should generate a unique id
-    dbService.designs.insert(userDesign, id, function (err, body, header) {
+    dbService.design.insert(userDesign, id, function (err, body, header) {
       if (err) {
         console.log(err);
         res.status(400);
