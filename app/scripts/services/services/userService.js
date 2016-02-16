@@ -17,8 +17,8 @@ angular.module('abacuApp')
 
       var orders = [];     // TODO: only keep order variable.
       var currentWheelchair = {isNew: false, editingWheelchair: null};   // indicate the status of current design and hold the wheelchair instance
-      var designedWheelchairs = [];     //array of chairs in cart
-      var curEditWheelchairIndex = -1;  //Index associate with designedWheelchair i.e cartwheelchair
+      var cartWheelchairs = [];     //array of chairs in cart
+      var curCartWheelchairIndex = -1;  //Index associate with cartWheelchairs i.e cartwheelchair
       var savedChairs = [];                    // array of saved wheelchair
       var savedChairIndex = -1;      //Index associate with savedchairs.
       var userID = -1; //-1 means not logged in
@@ -69,15 +69,15 @@ angular.module('abacuApp')
 
       var wIndex = 0;
       while ($cookieStore.get('wheelchair' + wIndex)){
-        designedWheelchairs.push(new Wheelchair($cookieStore.get('wheelchair' + wIndex)));
+        cartWheelchairs.push(new Wheelchair($cookieStore.get('wheelchair' + wIndex)));
         wIndex ++;
       }
 
       var curOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
-      for (var j = 0; j < designedWheelchairs.length; j++) {
-        if (designedWheelchairs[j].inCurOrder) {
-          console.log(designedWheelchairs[j]);
-          curOrder.wheelchairs.push(designedWheelchairs[j]);
+      for (var j = 0; j < cartWheelchairs.length; j++) {
+        if (cartWheelchairs[j].inCurOrder) {
+          console.log(cartWheelchairs[j]);
+          curOrder.wheelchairs.push(cartWheelchairs[j]);
         }
       }
 
@@ -102,11 +102,11 @@ angular.module('abacuApp')
       }
 
       function setEditWheelchair(index, orderInd) {
-        if (index >= 0 && index < designedWheelchairs.length) {
-          curEditWheelchairIndex = index;
+        if (index >= 0 && index < cartWheelchairs.length) {
+          curCartWheelchairIndex = index;
         }
-        console.log(designedWheelchairs[index]);
-        currentWheelchair.editingWheelchair = $.extend(true, designedWheelchairs[index]);
+        console.log(cartWheelchairs[index]);
+        currentWheelchair.editingWheelchair = $.extend(true, cartWheelchairs[index]);
         console.log(currentWheelchair.editingWheelchair);
         currentWheelchair.isNew = false;
         currentWheelchair.orderInd = orderInd;
@@ -123,9 +123,9 @@ angular.module('abacuApp')
         },
 
         allDetails: function () {
-          var tempDesignedWheelchairs = [];
-          for (var i = 0; i < designedWheelchairs.length; i++) {
-            tempDesignedWheelchairs.push(designedWheelchairs[i].getAll());
+          var tempcartWheelchairs = [];
+          for (var i = 0; i < cartWheelchairs.length; i++) {
+            tempcartWheelchairs.push(cartWheelchairs[i].getAll());
           }
 
           var tempOrders = [];
@@ -146,7 +146,7 @@ angular.module('abacuApp')
             'zip': zip,
             'unitSys': unitSys,
             'orders': tempOrders,
-            'wheelchairs': tempDesignedWheelchairs
+            'wheelchairs': tempcartWheelchairs
           }
         },
 
@@ -241,8 +241,8 @@ angular.module('abacuApp')
           if(curOrder){
             orders.push(curOrder);
           }
-          designedWheelchairs = [];
-          curEditWheelchairIndex = -1;
+          cartWheelchairs = [];
+          curCartWheelchairIndex = -1;
           $http({
             url: '/logout',
             method: 'POST'
@@ -275,10 +275,10 @@ angular.module('abacuApp')
         },
 
         updateCookie: function () {
-          console.log('wheelchair'+designedWheelchairs.length);
-          $cookieStore.remove('wheelchair'+designedWheelchairs.length);
-          for (var i = 0; i < designedWheelchairs.length; i++) {
-            $cookieStore.put('wheelchair' + i, designedWheelchairs[i].getAll());
+          console.log('wheelchair'+cartWheelchairs.length);
+          $cookieStore.remove('wheelchair'+cartWheelchairs.length);
+          for (var i = 0; i < cartWheelchairs.length; i++) {
+            $cookieStore.put('wheelchair' + i, cartWheelchairs[i].getAll());
           }
         },
 
@@ -289,16 +289,15 @@ angular.module('abacuApp')
 
         //Create a new wheelchair object of given frame type and set edit pointer to it
         pushNewWheelchair: function () {
-          if (currentWheelchair.isNew === true && designedWheelchairs.length < 3) {
-            designedWheelchairs.push(currentWheelchair.editingWheelchair);
-            curEditWheelchairIndex = designedWheelchairs.length - 1;
-
+          if (currentWheelchair.isNew === true && cartWheelchairs.length < 3) {
+            cartWheelchairs.push(currentWheelchair.editingWheelchair);
+            curCartWheelchairIndex = cartWheelchairs.length - 1;
           }
           else if (currentWheelchair.isNew === false) {
-            designedWheelchairs[curEditWheelchairIndex] = $.extend(true, currentWheelchair.editingWheelchair);
+            cartWheelchairs[curCartWheelchairIndex] = $.extend(true, currentWheelchair.editingWheelchair);
             var order = this.getCurEditOrder();
             if(order && currentWheelchair.orderInd >= 0) {
-              order.wheelchairs[currentWheelchair.orderInd] = designedWheelchairs[curEditWheelchairIndex];
+              order.wheelchairs[currentWheelchair.orderInd] = cartWheelchairs[curCartWheelchairIndex];
             }
           }
           else
@@ -311,19 +310,32 @@ angular.module('abacuApp')
 
         //Removes the wheelchair at the given index from the user's myDesign
         deleteWheelchair: function (index) {
-          designedWheelchairs.splice(index, 1);
+          cartWheelchairs.splice(index, 1);
           this.updateCookie();
         },
 
         //Returns the full array of user-defined wheelchairs
-        getDesignedWheelchairs: function () {
-          return designedWheelchairs;
+        getCartWheelchairs: function () {
+          return cartWheelchairs;
         },
 
         getWheelchair: function (index) {
-          if (index >= 0 && index < designedWheelchairs.length)
-            return designedWheelchairs[index];
+          if (index >= 0 && index < cartWheelchairs.length)
+            return cartWheelchairs[index];
           return null;
+        },
+
+        // returns full array of users wishlist/my design wheelchairs
+        getSavedChairs: function () {
+          return savedChairs;
+        },
+
+        getSavedChair: function (index) {
+          if (index >= 0 && index < savedChairs.length) {
+            return savedChairs[index];
+          } else {
+            return null;
+          }
         },
 
         //Returns the wheelchair currently set as "curEditWheelchair"
@@ -336,8 +348,8 @@ angular.module('abacuApp')
           return currentWheelchair.isNew;
         },
 
-        getNumDesignedWheelchairs: function () {
-          return designedWheelchairs.length;
+        getNumCartWheelchairs: function () {
+          return cartWheelchairs.length;
         },
 
         saveComputer: function () {

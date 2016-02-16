@@ -16,8 +16,7 @@ angular.module('abacuApp')
       Drop.setFalse();
 
       //Array of wheelchair instances in the shopping cart
-      $scope.wheelchairs = User.getDesignedWheelchairs();
-
+      $scope.wheelchairs = User.getCartWheelchairs();
 
       $scope.emptyCols = [];
 

@@ -19,10 +19,11 @@
     </div>
     <div style="width: 100%;">
       <ul class="media-list" ng-if="wheelchairs.length" style="max-width: 500px;">
-        <li ng-repeat="w in wheelchairs" class="media cart-item" style="overflow: visible;">
+        <li ng-repeat="w in wheelchairs" class="media cart-item {{wheelchairUIOpts[$index].checked ? 'checked-item' : ''}}" style="overflow: visible;">
           <!-- Shows Wheelchair Image in canvas on left -->
           <div class="pull-left">
             <div class="media-object">
+              <input type="checkbox" class="checkbox-button" ng-model="wheelchairUIOpts[$index].checked">
               <canvas my-canvas img_arr={{w.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
                   ng-mouseleave="editPanelShow = false"
                   ng-click="toggleImageDisplay($index)"
@@ -33,8 +34,7 @@
           <!-- All content related to wheelchair -->
           <div class="media-body" style="overflow: visible;">
             <div>
-              <input placeholder="Wheelchair Name" data-ng-if="edit !== true" class="wheelchair_name_input" ng-model="w.title" ng-value="w.title">
-              </input>
+              <h3>{{w.title}}</h3>
               <img class="trash_icon"
                 data-ng-src="images/my_design_page/delete.png"
                 width="20"
@@ -49,18 +49,7 @@
             <br>
             <!-- Dropdown -->
             <div>
-              <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" data-toggle="dropdown">
-                  More info on... <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li>
-                    <a ng-click="wheelchairUIOpts[$index].showParts = !wheelchairUIOpts[$index].showParts">Parts {{wheelchairUIOpts[$index].showParts ? '✓' : ''}}</a></li>
-                  <li>
-                    <a ng-click="wheelchairUIOpts[$index].showMeasurements = !wheelchairUIOpts[$index].showMeasurements">Measurements {{wheelchairUIOpts[$index].showMeasurements ? '✓' : ''}}</a>
-                  </li>
-                </ul>
-              </div>
+              <p class="clickable-text {{wheelchairUIOpts[$index].showInfo ? 'dropup' : ''}}" ng-click="wheelchairUIOpts[$index].showInfo = !wheelchairUIOpts[$index].showInfo">{{wheelchairUIOpts[$index].showInfo ? 'LESS' : 'MORE'}} INFO <span class="caret"></span></p>
               <h4 style="float: right;">${{w.getTotalPrice()}}</h4>
             </div>
             <br>
@@ -68,8 +57,8 @@
             <!-- Tables showing Part & Measurement configurations -->
             <div style="padding: {{WHEELCHAIR_CANVAS_WIDTH}};">
               <!-- Parts Table...only shown if toggled -->
-              <h3 ng-if="wheelchairUIOpts[$index].showParts">Parts</h3>
-              <table ng-if="wheelchairUIOpts[$index].showParts">
+              <h3 ng-if="wheelchairUIOpts[$index].showInfo">Parts</h3>
+              <table ng-if="wheelchairUIOpts[$index].showInfo">
                 <tr class="part-row" ng-repeat="part in parts">
                   <td class="title-column">
                     <p data-ng-bind="part.getName()"></p>
@@ -82,8 +71,8 @@
               <br>
 
               <!-- Measurements Table...only shown if toggled -->
-              <h3 ng-if="wheelchairUIOpts[$index].showMeasurements">Measurements</h3>
-              <table ng-if="wheelchairUIOpts[$index].showMeasurements">
+              <h3 ng-if="wheelchairUIOpts[$index].showInfo">Measurements</h3>
+              <table ng-if="wheelchairUIOpts[$index].showInfo">
                 <tr class="part-row" ng-repeat="measure in getWheelchairMeasures(w)">
                   <td class="title-column">
                     <p data-ng-bind="measure.getName()"></p>

@@ -17,7 +17,7 @@ angular.module('abacuApp')
       Drop.setFalse();
 
       //Array of wheelchair instances in the shopping cart
-      $scope.wheelchairs = User.getDesignedWheelchairs();
+      $scope.wheelchairs = [];
       $scope.wheelchairUIOpts = [];
 
 
@@ -52,16 +52,20 @@ angular.module('abacuApp')
 
         $scope.zipcode = $scope.curOrder.zip;
 
-        //$scope.wheelchairs = $scope.curOrder.getWheelchairs();    // return array of chair instance
-        //var orderInd = 0;
-        for (var i = 0; i < $scope.wheelchairs.length; i++) {
-        //  $scope.wInOrder.push($scope.wheelchairs[i].inCurOrder);  //push status of each chair in wheelchairs[]
-        //  if ($scope.wInOrder[i])
-        //    $scope.wOrderIndex.push(orderInd++);   // mark the chair that is already in the order
-        //  else
-        //    $scope.wOrderIndex.push(-1);
-          getParts($scope.wheelchairs[i].getFrameID());
-        }
+        $scope.wheelchairs = User.getCartWheelchairs();    // return array of chair instance
+        
+        // download the parts in $scope.parts
+        $scope.wheelchairs.forEach(function (wheelchair) {
+          getParts(wheelchair.getFrameID());
+        });
+
+        // initialize the ui variables to a default value
+        $scope.wheelchairUIOpts = $scope.wheelchairs.map(function () {
+          return {
+            'checked': false, // whether the checkbox in each cart item is marked
+            'showInfo': false // whether to show the table of wheelchair parts
+          };
+        });
 
         for (var j = $scope.wheelchairs.length; j < 3; j++) {
           $scope.emptyCols.push({});

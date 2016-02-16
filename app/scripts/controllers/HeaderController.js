@@ -26,13 +26,13 @@ angular.module('abacuApp')
 
     //cartIcon image controll
     $scope.cartIconShown = function () {
-      if (User.getNumDesignedWheelchairs() === 1) {
+      if (User.getNumCartWheelchairs() === 1) {
         return 1;
       }
-      if (User.getNumDesignedWheelchairs() === 2) {
+      if (User.getNumCartWheelchairs() === 2) {
         return 2;
       }
-      if (User.getNumDesignedWheelchairs() === 3) {
+      if (User.getNumCartWheelchairs() === 3) {
         return 3;
       }
 
