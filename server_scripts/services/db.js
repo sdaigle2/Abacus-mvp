@@ -5,7 +5,8 @@
 
 //Cloudant Database API
 var cloudant = require('cloudant')({account: process.env.CLOUDANT_USERNAME, password: process.env.CLOUDANT_PASSWORD});
-var users = cloudant.use('users');
+
+var users  = cloudant.use('users');
 var orders = cloudant.use('orders');
 var design = cloudant.use('design');
 

@@ -118,16 +118,6 @@ angular.module('abacuApp')
         },
 
         allDetails: function () {
-          var tempcartWheelchairs = [];
-          for (var i = 0; i < cartWheelchairs.length; i++) {
-            tempcartWheelchairs.push(cartWheelchairs[i].getAll());
-          }
-
-          var tempOrders = [];
-          for (i = 0; i < orders.length; i++) {
-            tempOrders.push(orders[i].getAll());
-          }
-
           return {
             'userID': userID,
             'fName': fName,
@@ -140,8 +130,12 @@ angular.module('abacuApp')
             'state': state,
             'zip': zip,
             'unitSys': unitSys,
-            'orders': tempOrders,
-            'wheelchairs': tempcartWheelchairs
+            'orders': orders.map(function (order) {
+              return order.getAll();
+            }),
+            'wheelchairs': cartwheelchair.map(function (wheelchair) {
+              return wheelchair.getAll();
+            })
           }
         },
 
@@ -260,12 +254,13 @@ angular.module('abacuApp')
               url: '/update',
               data: this.allDetails(),
               method: 'POST'
-            }).success(function (data) {
+            })
+            .success(function (data) {
               console.log(data);
             })
-              .error(function (data) {
-                console.log('Request Failed: ' + data);
-              });
+            .error(function (data) {
+              console.log('Request Failed: ' + data);
+            });
           }
         },
 
