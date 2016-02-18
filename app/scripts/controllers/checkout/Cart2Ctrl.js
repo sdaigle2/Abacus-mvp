@@ -18,10 +18,10 @@ angular.module('abacuApp')
 
       //Array of wheelchair instances in the shopping cart
       $scope.wheelchairs = [];
-      $scope.wheelchairUIOpts = [];
+      $scope.wheelchairUIOpts = []; //what does this variable do?
 
 
-      $scope.emptyCols = [];
+
 
       $scope.parts = [];
       //Array tracking if wheelchair is in curOrder
@@ -46,6 +46,7 @@ angular.module('abacuApp')
         if (!$scope.curOrder) {
           User.createNewOrder();
           $scope.curOrder = User.getCurEditOrder();
+          updateCosts();
         } else {
           updateCosts();   // TODO update needed after modify
         }
@@ -53,7 +54,7 @@ angular.module('abacuApp')
         $scope.zipcode = $scope.curOrder.zip;
 
         $scope.wheelchairs = User.getCartWheelchairs();    // return array of chair instance
-        
+
         // download the parts in $scope.parts
         $scope.wheelchairs.forEach(function (wheelchair) {
           getParts(wheelchair.getFrameID());
@@ -67,9 +68,7 @@ angular.module('abacuApp')
           };
         });
 
-        for (var j = $scope.wheelchairs.length; j < 3; j++) {
-          $scope.emptyCols.push({});
-        }
+
 
       }
 
@@ -127,44 +126,43 @@ angular.module('abacuApp')
       //Deletes wheelchair from user's My Designs
       $scope.deleteWheelchair = function (index) {
         //Remove wheelchair from order if in order
-        var orderInd = $scope.wOrderIndex[index];
-        if (orderInd !== -1) {
-          $scope.curOrder.removeWheelchair(orderInd);
+        //var orderInd = $scope.wOrderIndex[index];
+        if (index !== -1) {
+          $scope.curOrder.removeWheelchair(index);
         }
-        $scope.wOrderIndex.splice(index, 1);
-        $scope.wInOrder.splice(index, 1);
+        //$scope.wOrderIndex.splice(index, 1);
         $scope.wheelchairUIOpts.splice(index, 1);
-
-        //Remove wheelchair from My Designs
+        //
+        ////Remove wheelchair from My Designs
         User.deleteWheelchair(index);
-        $scope.emptyCols.push({});
+
       };
 
 
-      //Adds the selected wheelchair to curOrder
-      $scope.addWheelchairToOrder = function (index) {
-        if ($scope.wheelchairs[index].allMeasuresSet() === false) {
-          alert('All measurements must be set before this can be purchased');
-          return;
-        }
-        $scope.curOrder.addWheelchair($scope.wheelchairs[index]);
-        User.updateCookie();
-        $scope.wInOrder[index] = true;
-        $scope.wOrderIndex[index] = $scope.curOrder.getNumWheelchairs() - 1;
-        updateCosts();
-      };
+      ////Adds the selected wheelchair to curOrder
+      //$scope.addWheelchairToOrder = function (index) {
+      //  if ($scope.wheelchairs[index].allMeasuresSet() === false) {
+      //    alert('All measurements must be set before this can be purchased');
+      //    return;
+      //  }
+      //  $scope.curOrder.addWheelchair($scope.wheelchairs[index]);
+      //  User.updateCookie();
+      //  $scope.wInOrder[index] = true;
+      //  $scope.wOrderIndex[index] = $scope.curOrder.getNumWheelchairs() - 1;
+      //  updateCosts();
+      //};
 
       //Removes the selected wheelchair from curOrder
-      $scope.removeWheelchairFromOrder = function (index) {
-        $scope.curOrder.removeWheelchair($scope.wOrderIndex[index]);
-        $scope.wInOrder[index] = false;
-        for (var i = 0; i < $scope.wOrderIndex.length; i++)
-          if ($scope.wOrderIndex[i] > $scope.wOrderIndex[index])
-            $scope.wOrderIndex[i]--;
-        $scope.wOrderIndex[index] = -1;
-        updateCosts();
-        User.updateCookie();
-      };
+      //$scope.removeWheelchairFromOrder = function (index) {
+      //  $scope.curOrder.removeWheelchair($scope.wOrderIndex[index]);
+      //  $scope.wInOrder[index] = false;
+      //  for (var i = 0; i < $scope.wOrderIndex.length; i++)
+      //    if ($scope.wOrderIndex[i] > $scope.wOrderIndex[index])
+      //      $scope.wOrderIndex[i]--;
+      //  $scope.wOrderIndex[index] = -1;
+      //  updateCosts();
+      //  User.updateCookie();
+      //};
 
       /********************SIDEBAR CALCULATIONS************************/
       $scope.costs = {

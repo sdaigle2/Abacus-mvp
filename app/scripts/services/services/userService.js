@@ -18,7 +18,7 @@ angular.module('abacuApp')
       var orders = [];     // TODO: only keep order variable.
       var currentWheelchair = {isNew: false, editingWheelchair: null};   // indicate the status of current design and hold the wheelchair instance
       var cartWheelchairs = [];     //array of chairs in cart
-      var curCartWheelchairIndex = -1;  //Index associate with cartWheelchairs i.e cartwheelchair
+      var cartWheelchairIndex = -1;  //Index associate with cartWheelchairs i.e cartwheelchair
       var savedChairs = [];                    // array of saved wheelchair
       var savedChairIndex = -1;      //Index associate with savedchairs.
       var userID = -1; //-1 means not logged in
@@ -65,20 +65,17 @@ angular.module('abacuApp')
         });
 
       //***************Cookie restore***********
-
-
+      //TODO modify cookie policy
       var wIndex = 0;
       while ($cookieStore.get('wheelchair' + wIndex)){
         cartWheelchairs.push(new Wheelchair($cookieStore.get('wheelchair' + wIndex)));
         wIndex ++;
       }
 
+      //cart variable
       var curOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
       for (var j = 0; j < cartWheelchairs.length; j++) {
-        if (cartWheelchairs[j].inCurOrder) {
-          console.log(cartWheelchairs[j]);
-          curOrder.wheelchairs.push(cartWheelchairs[j]);
-        }
+        curOrder.wheelchairs.push(cartWheelchairs[j]);
       }
 
       if (curOrder.wheelchairs.length > 0) {
@@ -103,11 +100,9 @@ angular.module('abacuApp')
 
       function setEditWheelchair(index, orderInd) {
         if (index >= 0 && index < cartWheelchairs.length) {
-          curCartWheelchairIndex = index;
+          cartWheelchairIndex = index;
         }
-        console.log(cartWheelchairs[index]);
         currentWheelchair.editingWheelchair = $.extend(true, cartWheelchairs[index]);
-        console.log(currentWheelchair.editingWheelchair);
         currentWheelchair.isNew = false;
         currentWheelchair.orderInd = orderInd;
         $cookieStore.put('currentWheelchair', {frameID: -1, isNew: false, index: index});
@@ -242,7 +237,7 @@ angular.module('abacuApp')
             orders.push(curOrder);
           }
           cartWheelchairs = [];
-          curCartWheelchairIndex = -1;
+          cartWheelchairIndex = -1;
           $http({
             url: '/logout',
             method: 'POST'
@@ -289,19 +284,17 @@ angular.module('abacuApp')
 
         //Create a new wheelchair object of given frame type and set edit pointer to it
         pushNewWheelchair: function () {
-          if (currentWheelchair.isNew === true && cartWheelchairs.length < 3) {
+          if (currentWheelchair.isNew === true ) {
             cartWheelchairs.push(currentWheelchair.editingWheelchair);
-            curCartWheelchairIndex = cartWheelchairs.length - 1;
+            cartWheelchairIndex = cartWheelchairs.length - 1;
           }
           else if (currentWheelchair.isNew === false) {
-            cartWheelchairs[curCartWheelchairIndex] = $.extend(true, currentWheelchair.editingWheelchair);
+            cartWheelchairs[cartWheelchairIndex] = $.extend(true, currentWheelchair.editingWheelchair);
             var order = this.getCurEditOrder();
             if(order && currentWheelchair.orderInd >= 0) {
-              order.wheelchairs[currentWheelchair.orderInd] = cartWheelchairs[curCartWheelchairIndex];
+              order.wheelchairs[currentWheelchair.orderInd] = cartWheelchairs[cartWheelchairIndex];
             }
           }
-          else
-            alert('You may only save 3 wheelchairs');
           this.updateCookie();
         },
 
@@ -403,10 +396,8 @@ angular.module('abacuApp')
         //Returns the unsent Order set as the "curEditOrder"
         //If no such Order exists, returns null
         getCurEditOrder: function () {
-          console.log(orders.length);
-          if (orders.length > 0) {
+          if (!curOrder.hasBeenSent()) {
             var lastOrder = orders[orders.length - 1];
-            if (!lastOrder.hasBeenSent())
               return lastOrder;
           }
           return null;
