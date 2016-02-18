@@ -8,14 +8,14 @@ var shortid = require('shortid');
 
 // Import services
 var dbService = require('../services/db');
+var generateUniqueID = require('../services/generateUniqueID');
 
 
 var REQUIRED_DESIGN_PROPERTIES = []; // TODO: Fill list with required properties
 
 // fetch design
 router.get('/design/:id',function(req,res){
-  var id = req.param.id;
-
+  var id = req.params.id;
   //query the database
   dbService.design.get(id,function(err,body){
     if (err) {
@@ -25,7 +25,6 @@ router.get('/design/:id',function(req,res){
         err: err
       });
     } else {
-      console.log('body:\n' + JSON.stringify(body, null, 2));
       res.json(body); //load the design if id is correct
     }
   });
@@ -41,17 +40,19 @@ router.post('/design', function (req, res) {
 
   if (hasRequiredProps) {
     // Save the design in cloudant
-    var id = shortid.generate(); // Should generate a unique id
-    dbService.design.insert(userDesign, id, function (err, body, header) {
-      if (err) {
-        console.log(err);
-        res.status(400);
-        res.json({err: 'Couldn\'t save design data into databse'});
-      } else {
-        // design save was a success; send the design info back to the client
-        res.json(body);
-      }
+    generateUniqueID(dbService.design, function (err, uniqueID) {
+      dbService.design.insert(userDesign, uniqueID, function (err, body, header) {
+        if (err) {
+          console.log(err);
+          res.status(400);
+          res.json({err: 'Couldn\'t save design data into databse'});
+        } else {
+          // design save was a success; send the design info back to the client
+          res.json(body);
+        }
+      });
     });
+    
   } else {
   	// Missing some required attribute
     res.status(400);
