@@ -1,4 +1,5 @@
 <link href="../../styles/checkout/cart.css" rel="stylesheet"/>
+<link href="../../styles/checkout/cart2.css" rel="stylesheet"/>
 
 <div class="appBody">
   <!-- Google Tag Manager -->
@@ -11,18 +12,70 @@
   })(window,document,'script','dataLayer','GTM-5BJDWF');</script>
   <!-- End Google Tag Manager -->
 
+
+  <div id="wrapper">
+    <div id="mainDisplay">
+      <div id="header">
+        <p>MY CART</p>
+        <button class="button compareButton">COMPARE</button>
+      </div>
+      <div id="mainContent">
+        <div data-ng-if="wheelchairs.length === 0">
+          <img class="add-icon" data-ng-src="images/my_design_page/cart_empty.png">
+          <span class="medium">Your cart is currently empty</span>
+        </div>
+        <ul class="chairBlock" ng-if="wheelchairs.length">
+          <li ng-repeat="w in wheelchairs" class="cart-item {{wheelchairUIOpts[$index].checked ? 'checked-item' : ''}}">
+            <div class="media-object">
+              <input type="checkbox" class="checkbox-button" ng-model="wheelchairUIOpts[$index].checked">
+              <canvas my-canvas img_arr={{w.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
+                      ng-mouseleave="editPanelShow = false"
+                      ng-click="toggleImageDisplay($index)"
+                      width="{{WHEELCHAIR_CANVAS_WIDTH}}"
+                      alt="wheelchairImage">
+              </canvas>
+            </div>
+            <section class="media-body">
+              <div class="firstLine">
+                <span class="pull-left">Design ID: xxxxxxx</span>
+                <span class="pull-right">${{w.getTotalPrice().toFixed(2)}}</span>
+              </div>
+              <div>
+                <table>
+                  <tbody>
+                    <tr>
+                      <td>EDIT</td>
+                      <td>SAVE FOR LATER</td>
+                      <td>DOWNLOAD PDF</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+            </section>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+    <div id="summary">
+
+    </div>
+  </div>
+
+
+
+
+
   <div class="cartBody" ng-class="{'appBodyOverflow': imageDisplay1 >= 0 }">
 
-    <div data-ng-if="wheelchairs.length === 0">
-      <img class="add-icon" data-ng-src="images/my_design_page/cart_empty.png">
-      <span class="medium">Your cart is currently empty</span>
-    </div>
+
     <div style="width: 100%;">
       <ul class="media-list" ng-if="wheelchairs.length" style="max-width: 500px;">
         <li ng-repeat="w in wheelchairs" class="media cart-item {{wheelchairUIOpts[$index].checked ? 'checked-item' : ''}}" style="overflow: visible;">
           <!-- Shows Wheelchair Image in canvas on left -->
           <div class="pull-left">
-            <div class="media-object">
+           <div class="media-object">
               <input type="checkbox" class="checkbox-button" ng-model="wheelchairUIOpts[$index].checked">
               <canvas my-canvas img_arr={{w.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
                   ng-mouseleave="editPanelShow = false"
