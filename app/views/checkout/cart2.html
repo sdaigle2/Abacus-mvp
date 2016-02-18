@@ -50,7 +50,7 @@
             <!-- Dropdown -->
             <div>
               <p class="clickable-text {{wheelchairUIOpts[$index].showInfo ? 'dropup' : ''}}" ng-click="wheelchairUIOpts[$index].showInfo = !wheelchairUIOpts[$index].showInfo">{{wheelchairUIOpts[$index].showInfo ? 'LESS' : 'MORE'}} INFO <span class="caret"></span></p>
-              <h4 style="float: right;">${{w.getTotalPrice()}}</h4>
+              <h4 style="float: right;">${{w.getTotalPrice().toFixed(2)}}</h4>
             </div>
             <br>
 
@@ -95,7 +95,7 @@
                 <p>Subtotal</p>
               </td>
               <td class="value-column">
-                <p>${{costs.subtotal >= 0 ? costs.subtotal : '--'}}</p>
+                <p>${{curOrder.getSubtotal() >= 0 ? curOrder.getSubtotal().toFixed(2) : '--'}}</p>
               </td>
             </tr>
             <tr class="part-row">
@@ -103,7 +103,7 @@
                 <p>Shipping Est.</p>
               </td>
               <td class="value-column">
-                <p>${{costs.shipping >= 0 ? costs.shipping : '--'}}</p>
+                <p>${{curOrder.getShippingCost() >= 0 ? curOrder.getShippingCost().toFixed(2) : '--'}}</p>
               </td>
             </tr>
             <tr class="part-row">
@@ -111,7 +111,7 @@
                 <p>Tax</p>
               </td>
               <td class="value-column">
-                <p>${{costs.tax >= 0 ? costs.tax : '--'}}</p>
+                <p>${{curOrder.getTaxCost() >= 0 ? curOrder.getTaxCost().toFixed(2) : '--'}}</p>
               </td>
             </tr>
             <tr class="part-row">
@@ -124,7 +124,7 @@
                 <p><strong>Total</strong></p>
               </td>
               <td class="value-column">
-                <p><strong>${{costs.total >= 0 ? costs.total : '--'}}</strong></p>
+                <p><strong>${{curOrder.getTotalCost() >= 0 ? curOrder.getTotalCost().toFixed(2) : '--'}}</strong></p>
               </td>
             </tr>
           </table>

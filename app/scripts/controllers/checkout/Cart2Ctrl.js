@@ -20,12 +20,9 @@ angular.module('abacuApp')
       $scope.wheelchairs = [];
       $scope.wheelchairUIOpts = []; //what does this variable do?
 
-
-
-
       $scope.parts = [];
       //Array tracking if wheelchair is in curOrder
-      $scope.wInOrder = [];
+      // $scope.wInOrder = [];
 
       //Array tracking wheelchairs in current order (wInOrder[i] = j means $scope.wheelchairs[i] is at index j in curOrder)
       //If j === -1 then $scope.wheelchairs[i] is not in curOrder
@@ -42,18 +39,16 @@ angular.module('abacuApp')
       //Initialize Cart page
       function init() {
 
+        $scope.wheelchairs = User.getCartWheelchairs();    // return array of chair instance
+
         $scope.curOrder = User.getCurEditOrder();   //return order instance
         if (!$scope.curOrder) {
           User.createNewOrder();
           $scope.curOrder = User.getCurEditOrder();
-          updateCosts();
-        } else {
-          updateCosts();   // TODO update needed after modify
+          $scope.curOrder.wheelchairs = $scope.wheelchairs;
         }
 
         $scope.zipcode = $scope.curOrder.zip;
-
-        $scope.wheelchairs = User.getCartWheelchairs();    // return array of chair instance
 
         // download the parts in $scope.parts
         $scope.wheelchairs.forEach(function (wheelchair) {
@@ -67,9 +62,6 @@ angular.module('abacuApp')
             'showInfo': false // whether to show the table of wheelchair parts
           };
         });
-
-
-
       }
 
       function getParts(fID) {
@@ -135,7 +127,6 @@ angular.module('abacuApp')
         //
         ////Remove wheelchair from My Designs
         User.deleteWheelchair(index);
-
       };
 
 
@@ -165,19 +156,7 @@ angular.module('abacuApp')
       //};
 
       /********************SIDEBAR CALCULATIONS************************/
-      $scope.costs = {
-        subtotal: 0,
-        tax: 0,
-        shipping: 0,
-        total: 0
-      };
 
-      function updateCosts() {
-        $scope.costs.subtotal = $scope.curOrder.getSubtotal();
-        $scope.costs.tax = $scope.curOrder.getTaxCost();
-        $scope.costs.shipping = $scope.curOrder.getShippingCost();
-        $scope.costs.total = $scope.curOrder.getTotalCost().toFixed(2);
-      }
 
       /*********************CHECK OUT***********************************/
 
@@ -275,9 +254,8 @@ angular.module('abacuApp')
 
       init();
 
-      // Every time a change happens to the order, update the costs that go along with it
-      $scope.$watch('curOrder', function (updatedCurOrder) {
-        updateCosts();
+      $scope.$watchCollection('wheelchairs', function (updatedWheelchairs) {
+        $scope.curOrder.wheelchairs = updatedWheelchairs;
       });
 
     }]);

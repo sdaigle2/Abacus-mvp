@@ -20,10 +20,13 @@
 .apply-button {
   background-color: #4896FF;
   color: #FFFFFF;
+  border-color: #4896FF;
+  border-radius: 0px;
 }
 
 .apply-button:hover {
   background-color: white;
+  border-color: #4896FF;
   color: #4896FF;
 }
 
@@ -536,6 +539,8 @@ a:hover{
 
 .checkoutButton {
   width: 90%;
+  border-radius: 0px;
+  border-color: #4896FF;
   background-color: #4896FF;
   color: white;
   padding: 15px;
@@ -550,6 +555,7 @@ a:hover{
 .checkoutButton:hover {
   background-color: white;
   color: #4896FF;
+  border-color: #4896FF;
   cursor: pointer;
 }
 

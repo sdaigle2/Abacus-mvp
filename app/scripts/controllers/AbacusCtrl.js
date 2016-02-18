@@ -77,6 +77,8 @@ angular.module('abacuApp')
         }
       }
 
+      $scope.currChairIsNew = User.isNewWheelchair();
+
       /***************************Initialization****************************/
 
       //Generates the page arrays inside of pages
