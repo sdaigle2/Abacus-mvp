@@ -19,7 +19,7 @@ function generateUniqueID(db, cb) {
 			}
 		} else {
 			// try to generate another ID...this is tail recursion so wont lead to stack overflow even in worst case
-			generateUniqueID(cb);	
+			generateUniqueID(db, cb);	
 		}
 	});
 }
