@@ -126,11 +126,11 @@
   margin-right: 20px;
 }
 
-#mainContent{
-  width: 100%;
-  min-width: 800px;
+/*#mainContent{*/
+  /*width: 100%;*/
+  /*min-width: 800px;*/
 
-}
+/*}*/
 
 #mainContent .addWheelchair{
   position: absolute;
@@ -325,11 +325,7 @@ a:hover{
   margin-top: 30px;
 }
 
-.cart-item {
-  background-color: white;
-  padding: 15px;
-  margin: 15px;
-}
+
 
 .cartItems {
   position: relative;

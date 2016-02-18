@@ -1,0 +1,71 @@
+#wrapper{
+  min-width: 900px;
+  margin: auto;
+}
+
+.button{
+  margin-top: 0;
+  height: 35px;
+}
+#mainDisplay{
+  width: 800px;
+  margin: auto;
+}
+#header{
+  position: relative;
+  height: 80px;
+}
+.compareButton{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+/********* wheelchair content display***/
+#mainContent{
+  width: 100%;
+}
+
+.chairBlock{
+  width: 100%;
+  height: 200px;
+  background-color:lightblue;
+  list-style-type: none;
+
+}
+
+
+
+.cart-item{
+  background-color: white;
+}
+
+.media-object{
+  width: 30%;
+  position: relative;
+  display:inline-block;
+}
+
+.checkbox-button {
+  position: absolute;
+  margin-right: 30px ;
+  top: 45%;
+}
+
+.media-body {
+  overflow: visible;
+  display: inline-block;
+  width: 65%;
+  vertical-align: top;
+  background-color: lightcoral;
+}
+.media-body .firstLine{
+  margin-bottom: ;
+}
+
+.media-body td{
+  padding-right: 15px;
+  border-right: 1px solid black;
+}
+
