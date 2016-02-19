@@ -1,6 +1,14 @@
 #wrapper{
-  min-width: 900px;
+  background-color: #F1F1F1;
+  overflow: auto;
+}
+
+#contentWrapper{
+  max-width: 1200px;
+  min-width: 800px;
+  height: 100vh;
   margin: auto;
+
 }
 
 .button{
@@ -8,8 +16,8 @@
   height: 35px;
 }
 #mainDisplay{
-  width: 800px;
-  margin: auto;
+  width: 700px;
+  float: left;
 }
 #header{
   position: relative;
@@ -25,14 +33,15 @@
 /********* wheelchair content display***/
 #mainContent{
   width: 100%;
+  display: inline-block;
 }
 
 .chairBlock{
   width: 100%;
-  height: 200px;
   background-color:lightblue;
   list-style-type: none;
-
+  padding: 10px 15px;
+  margin-right: 20px;
 }
 
 
@@ -58,14 +67,83 @@
   display: inline-block;
   width: 65%;
   vertical-align: top;
-  background-color: lightcoral;
 }
 .media-body .firstLine{
-  margin-bottom: ;
+  margin-bottom: 25px;;
 }
 
-.media-body td{
-  padding-right: 15px;
-  border-right: 1px solid black;
+.media-body .actions table{
+  margin-bottom: 20px;
+}
+.media-body .actions td{
+  padding: 0 15px;
+  border-right: 2px solid black;
+}
+
+.media-body .actions td:first-of-type{
+  padding-left: 0;
+}
+
+.moreInfo .clickable-text{
+  display: inline-block;
+  border-radius: 0px;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.moreInfo table{
+  width: 100%;
+}
+
+.moreInfo .title-column{
+  color: #939597;
+}
+
+
+
+
+
+/********Summary*******/
+#summary{
+  width: 300px;
+  display: inline-block;
+  position: relative;
+  top: 71px;
+  margin-left: 29px;
+}
+
+#summary table{
+  background-color: white;
+  width: 100%;
+  padding: 10px;
+}
+
+
+
+#summary section{
+  background-color: white;
+  margin-top: 20px;
+  padding: 15px;
+}
+
+#summary section:first-of-type{
+  overflow: auto;
+}
+
+#summary section {
+  color: #00A89C;
+  text-decoration: underline;
+}
+
+
+#summary section div {
+  overflow: auto;
+}
+
+#summary section .totalPrice {
+  border-top: 1px solid black;
+  padding-top: 10px;
+  margin-top: 10px;;
 }
 
