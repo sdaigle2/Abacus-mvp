@@ -15,87 +15,46 @@ angular.module('abacuApp')
   .service('User', ['$http', '$location', '$q', '$cookieStore', 'Order', 'Wheelchair', 'Units', 'Costs',
     function ($http, $location, $q, $cookieStore, Order, Wheelchair, Units, Costs) {
 
-      var orders = [];     // TODO: only keep order variable.
-      var currentWheelchair = {isNew: false, editingWheelchair: null};   // indicate the status of current design and hold the wheelchair instance
-      var cartWheelchairs = [];     //array of chairs in cart
-      var cartWheelchairIndex = -1;  //Index associate with cartWheelchairs i.e cartwheelchair
-      var savedChairs = [];                    // array of saved wheelchair
-      var savedChairIndex = -1;      //Index associate with savedchairs.
-      var userID = -1; //-1 means not logged in
-      var fName = '';
-      var lName = '';
-      var email = '';
-      var phone = '';
-      var addr = '';
-      var addr2 = '';
-      var city = '';
-      var state = '';
-      var zip = '';
-      var unitSys = Units.unitSys.IMPERIAL;
-      var contentSection = 'orders';
-      var deferred = $q.defer();
-      $http({
-        url: '/session'
-        , method: 'POST'
-      })
-        .success(function (data) {
-          console.log(data);
-          userID = data.userID;
+      // declare all User variables here
+      var orders, currentWheelchair, cartWheelchairs, cartWheelchairIndex, savedChairs,
+      savedChairIndex, userID, fName, lName, email, phone, addr, addr2, city, state,
+      zip, unitSys, contentSection, curOrder;
 
-          if (userID !== -1) {
-            fName = data.fName;
-            lName = data.lName;
-            email = data.email;
-            phone = data.phone;
-            addr = data.addr;
-            addr2 = data.addr2;
-            city = data.city;
-            state = data.state;
-            zip = data.zip;
-
-            for (var i = 0; i < data.orders.length; i++) {
-              orders.push(new Order(0, 0, data.orders[i]));
-            }
-          }
-          deferred.resolve();
-        })
-        .error(function (data) {
-          console.log('Request Failed: ' + data);
-          deferred.resolve();
-        });
-
-      //***************Cookie restore***********
-      //TODO modify cookie policy
-      var wIndex = 0;
-      while ($cookieStore.get('wheelchair' + wIndex)){
-        cartWheelchairs.push(new Wheelchair($cookieStore.get('wheelchair' + wIndex)));
-        wIndex ++;
+      // initialize all user variables here
+      function init() {
+        orders = [];     // TODO: only keep order variable.
+        currentWheelchair = {isNew: false, editingWheelchair: null};   // indicate the status of current design and hold the wheelchair instance
+        cartWheelchairs = [];     //array of chairs in cart
+        cartWheelchairIndex = -1;  //Index associate with cartWheelchairs i.e cartwheelchair
+        savedChairs = [];                    // array of saved wheelchair
+        savedChairIndex = -1;      //Index associate with savedchairs.
+        userID = -1; //-1 means not logged in
+        fName = '';
+        lName = '';
+        email = '';
+        phone = '';
+        addr = '';
+        addr2 = '';
+        city = '';
+        state = '';
+        zip = '';
+        unitSys = Units.unitSys.IMPERIAL;
+        contentSection = 'orders';
+        curOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
       }
 
-      //cart variable
-      var curOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
-      for (var j = 0; j < cartWheelchairs.length; j++) {
-        curOrder.wheelchairs.push(cartWheelchairs[j]);
-      }
-
-      if (curOrder.wheelchairs.length > 0) {
-        orders.push(curOrder);
-      }
-
-      var tempCurrentWheelchair = $cookieStore.get('currentWheelchair');
-      if (tempCurrentWheelchair != null) {
-        if (tempCurrentWheelchair.isNew === true) {
-          createCurrentDesign(tempCurrentWheelchair.frameID);
-        }
-        else if (tempCurrentWheelchair.isNew === false) {
-          setEditWheelchair(tempCurrentWheelchair.index);
-        }
-      }
+      init(); // initialize all the user variables
 
       function createCurrentDesign(frameID) {
         currentWheelchair.editingWheelchair = new Wheelchair(frameID);
         currentWheelchair.isNew = true;
-        $cookieStore.put('currentWheelchair', {frameID: frameID, isNew: true, index: -1});
+
+        // decide where to persist the currentWheelchair based on whether the user is logged in
+        if (this.isLoggedIn()) {
+          this.updateDB();
+        } else {
+          $cookieStore.put('currentWheelchair', {frameID: frameID, isNew: true, index: -1});
+        }
       }
 
       function setEditWheelchair(index, orderInd) {
@@ -105,8 +64,90 @@ angular.module('abacuApp')
         currentWheelchair.editingWheelchair = $.extend(true, cartWheelchairs[index]);
         currentWheelchair.isNew = false;
         currentWheelchair.orderInd = orderInd;
-        $cookieStore.put('currentWheelchair', {frameID: -1, isNew: false, index: index});
+
+        // decide where to persist the currentWheelchair based on whether the user is logged in
+        if (this.isLoggedIn()) {
+          this.updateDB();
+        } else {
+          $cookieStore.put('currentWheelchair', {frameID: -1, isNew: false, index: index});
+        }
+      }      
+
+      function restoreUserFromCookies() {
+        //***************Cookie restore***********
+        //TODO modify cookie policy
+        var wIndex = 0;
+        while ($cookieStore.get('wheelchair' + wIndex)){
+          cartWheelchairs.push(new Wheelchair($cookieStore.get('wheelchair' + wIndex)));
+          wIndex ++;
+        }
+
+        //add current cart items to curOrder
+        for (var j = 0; j < cartWheelchairs.length; j++) {
+          curOrder.wheelchairs.push(cartWheelchairs[j]);
+        }
+
+        if (curOrder.wheelchairs.length > 0) {
+          orders.push(curOrder);
+        }
+
+        var tempCurrentWheelchair = $cookieStore.get('currentWheelchair');
+        if (tempCurrentWheelchair != null) {
+          if (tempCurrentWheelchair.isNew === true) {
+            createCurrentDesign(tempCurrentWheelchair.frameID);
+          }
+          else if (tempCurrentWheelchair.isNew === false) {
+            setEditWheelchair(tempCurrentWheelchair.index);
+          }
+        }
       }
+
+      function restoreUserFromBackend(data) {
+        console.log(data);
+        userID = data.userID;
+
+        if (userID !== -1) {
+          fName = data.fName;
+          lName = data.lName;
+          email = data.email;
+          phone = data.phone;
+          addr = data.addr;
+          addr2 = data.addr2;
+          city = data.city;
+          state = data.state;
+          zip = data.zip;
+          currentWheelchair = data.currentWheelchair || currentWheelchair;
+          currentWheelchair.editingWheelchair = currentWheelchair.editingWheelchair ? new Wheelchair(currentWheelchair.editingWheelchair) : currentWheelchair.editingWheelchair;
+          cartWheelchairs = data.cartWheelchairs ? data.cartWheelchairs.map(function (wheelchair) {
+            return new Wheelchair(wheelchair);
+          }) : cartWheelchairs;
+
+          //add current cart items to curOrder
+          for (var j = 0; j < cartWheelchairs.length; j++) {
+            curOrder.wheelchairs.push(cartWheelchairs[j]);
+          }
+
+          for (var i = 0; i < data.orders.length; i++) {
+            orders.push(new Order(0, 0, data.orders[i]));
+          }
+        }
+      }
+
+      // Make a request to /session. If it succeeds, restore user from response, otherwise, restore from settings
+      var updatePromise = $http({
+        url: '/session'
+        , method: 'POST'
+      })
+        .then(function (response) {
+          if (response.data.userID === -1) {
+            // this means user is not logged in
+            restoreUserFromCookies();
+          } else {
+            restoreUserFromBackend(response.data);
+          }
+
+          return response.data;
+        });
 
 
 //*********functions************//
@@ -114,7 +155,7 @@ angular.module('abacuApp')
       return {
 
         getPromise: function () {
-          return deferred.promise;
+          return updatePromise;
         },
 
         allDetails: function () {
@@ -130,10 +171,11 @@ angular.module('abacuApp')
             'state': state,
             'zip': zip,
             'unitSys': unitSys,
+            'currentWheelchair': currentWheelchair,
             'orders': orders.map(function (order) {
               return order.getAll();
             }),
-            'wheelchairs': cartwheelchair.map(function (wheelchair) {
+            'cartWheelchairs': cartWheelchairs.map(function (wheelchair) {
               return wheelchair.getAll();
             })
           }
@@ -151,9 +193,10 @@ angular.module('abacuApp')
             //TODO load the design into current editing wheelchair variable
             var currentDesign = new Wheelchair(data);
             return currentDesign;
-          }, function(data){
+          })
+          .catch(function(data){
               console.log("fetch failed")
-            });
+          });
         },
 
         saveDesign:function(wheelchair) {
@@ -170,77 +213,46 @@ angular.module('abacuApp')
         //Attempt to login as the given username with the given password
         //If successful - should load in appropriate user data
         login: function (in_email, pass) {
-
-          var deferred = $q.defer();
           var curThis = this;
-          $http({
-            url: '/login'
-            , data: {email: in_email, password: pass}
-            , method: 'POST'
-          }).success(function (data) {
+          return $http({
+            url: '/login',
+            data: {email: in_email, password: pass},
+            method: 'POST'
+          })
+          .then(function (response) {
+            var data = response.data;
             console.log(data);
             userID = data.userID;
             if (userID !== -1) {
-              deferred.resolve();
-              fName = data.fName;
-              lName = data.lName;
-              email = in_email;
-              phone = data.phone;
-              addr = data.addr;
-              addr2 = data.addr2;
-              city = data.city;
-              state = data.state;
-              zip = data.zip;
-
-              var curOrder = curThis.getCurEditOrder();
-              orders = [];
-
-              for (var i = 0; i < data.orders.length; i++) {
-                orders.push(new Order(0, 0, data.orders[i]));
-              }
-
-              if (curOrder) {
-                orders.push(curOrder);
-              }
+              restoreUserFromBackend(data);
+            } else {
+              throw new Error('Incorrect email or password');
             }
-            else
-              deferred.reject('Incorrect email or password');
           })
-            .error(function (data) {
-              console.log('Request Failed: ' + data);
-              deferred.reject('Error loading user data');
-            });
-          return deferred.promise;
+          .catch(function (err) {
+            console.log('Request Failed: ' + err);
+          });
         },
 
         logout: function () {
-          userID = -1; //-1 means not logged in
-          fName = '';
-          lName = '';
-          email = '';
-          phone = '';
-          addr = '';
-          addr2 = '';
-          city = '';
-          state = '';
-          zip = '';
-          unitSys = Units.unitSys.IMPERIAL;
+          init(); //restore user variables to intial value
+
+          // If there is a current order the user is working on, dont lose it
           var curOrder = this.getCurEditOrder();
           orders = [];
-          if(curOrder){
+          if (curOrder) {
             orders.push(curOrder);
           }
-          cartWheelchairs = [];
-          cartWheelchairIndex = -1;
+          
           $http({
             url: '/logout',
             method: 'POST'
           }).success(function (data) {
             console.log(data);
           })
-            .error(function (data) {
-              console.log('Request Failed: ' + data);
-            });
+          .error(function (data) {
+            console.log('Request Failed: ' + data);
+          });
         },
 
         //Returns true if the user is logged in
@@ -250,25 +262,31 @@ angular.module('abacuApp')
 
         updateDB: function () {
           if (userID !== -1) {
-            $http({
+            return $http({
               url: '/update',
               data: this.allDetails(),
               method: 'POST'
             })
-            .success(function (data) {
+            .then(function (data) {
               console.log(data);
             })
-            .error(function (data) {
+            .catch(function (data) {
               console.log('Request Failed: ' + data);
             });
           }
         },
 
-        updateCookie: function () {
+        updateCart: function () {
           console.log('wheelchair'+cartWheelchairs.length);
-          $cookieStore.remove('wheelchair'+cartWheelchairs.length);
-          for (var i = 0; i < cartWheelchairs.length; i++) {
-            $cookieStore.put('wheelchair' + i, cartWheelchairs[i].getAll());
+
+          if (this.isLoggedIn()) {
+            return this.updateDB();
+          } else {
+            // sync in memory cart with cookie storage
+            $cookieStore.remove('wheelchair'+cartWheelchairs.length);
+            for (var i = 0; i < cartWheelchairs.length; i++) {
+              $cookieStore.put('wheelchair' + i, cartWheelchairs[i].getAll());
+            }
           }
         },
 
@@ -290,7 +308,7 @@ angular.module('abacuApp')
               order.wheelchairs[currentWheelchair.orderInd] = cartWheelchairs[cartWheelchairIndex];
             }
           }
-          this.updateCookie();
+          this.updateCart();
         },
 
         //Set the given wheelchair index to be edited
@@ -299,7 +317,7 @@ angular.module('abacuApp')
         //Removes the wheelchair at the given index from the user's myDesign
         deleteWheelchair: function (index) {
           cartWheelchairs.splice(index, 1);
-          this.updateCookie();
+          this.updateCart();
         },
 
         //Returns the full array of user-defined wheelchairs

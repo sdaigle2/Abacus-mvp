@@ -1,6 +1,6 @@
 /**
  * Given a cloudant DB, generates a unique, human readable ID.
- * This is done by generating random short IDs and checking the DB whether that ID exists.
+ * This is done by generating random short IDs and checking in the DB whether that ID exists.
  * If a id which doesnt currently exist in the DB is generated, that ID is returned via the callback
  */
 

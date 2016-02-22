@@ -12,7 +12,7 @@ function fixObject(obj, existing) {
   // All the properties that need to be checked
   var STRING_PROPS = ['fName' ,'lName' ,'email' ,'phone' ,'addr' ,'addr2' ,'city' ,'state' ,'zip'];
 
-  // Loop through the required properties, set them to the existing property if the new obj has a bad value for it
+  // Loop through the required string properties, set them to the existing property if the new obj has a bad value for it
   STRING_PROPS.forEach(function (property) {
     if (typeof obj[property] !== 'string' || !obj[property]) {
       obj[property] = existing[property];
@@ -45,8 +45,7 @@ exports.update = function (obj, key, callback) {
         dbService.users.insert(obj, key, function(err, body){
           callback(err, body, 1);
         });
-      }
-      else
+      } else {
         //Check the old password as we would for login
         hash(obj.oldPass, existing.salt, function (err, oldHash) {
           if (oldHash !== existing.password) { //Hashes do no match
@@ -58,8 +57,7 @@ exports.update = function (obj, key, callback) {
             dbService.users.insert(obj, key, function(err, body){
               callback(err, body, 2);
             });
-          }
-          else {
+          } else {
             //Hash the new password with a new salt
             hash(obj.newPass1, function (err, salt, hash) {
               if (err) throw err;
@@ -76,6 +74,7 @@ exports.update = function (obj, key, callback) {
             });
           }
         });
+      }
     }
   });
 };
