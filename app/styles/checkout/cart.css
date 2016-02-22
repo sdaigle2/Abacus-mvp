@@ -45,13 +45,7 @@
   padding-bottom: 25px;
 }
 
-.clickable-text {
-  color: #4896FF;
-  border-radius: 0px;
-  border: none;
-  box-shadow: none;
-  outline: none;
-}
+
 
 /*************************
 **** Cart Background *****
@@ -67,7 +61,7 @@
   float: left;
   clear: left;
   width: 100%;
-  background-color: #F1F1F1;
+  /*background-color: #F1F1F1;*/
 }
 
 .trash_icon {

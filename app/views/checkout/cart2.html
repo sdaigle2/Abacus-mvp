@@ -1,5 +1,5 @@
-<link href="../../styles/checkout/cart.css" rel="stylesheet"/>
 <link href="../../styles/checkout/cart2.css" rel="stylesheet"/>
+<link href="../../styles/checkout/cart.css" rel="stylesheet"/>
 
 <div class="appBody">
   <!-- Google Tag Manager -->
@@ -12,8 +12,8 @@
   })(window,document,'script','dataLayer','GTM-5BJDWF');</script>
   <!-- End Google Tag Manager -->
 
-
-  <div id="wrapper">
+<div id="wrapper">
+  <div id="contentWrapper">
     <div id="mainDisplay">
       <div id="header">
         <p>MY CART</p>
@@ -40,28 +40,109 @@
                 <span class="pull-left">Design ID: xxxxxxx</span>
                 <span class="pull-right">${{w.getTotalPrice().toFixed(2)}}</span>
               </div>
-              <div>
-                <table>
-                  <tbody>
-                    <tr>
-                      <td>EDIT</td>
-                      <td>SAVE FOR LATER</td>
-                      <td>DOWNLOAD PDF</td>
-                    </tr>
-                  </tbody>
+              <table class="actions">
+                <tbody>
+                  <tr>
+                    <td ng-click="editWheelchair($index)"><a>EDIT</a></td>
+                    <td ng-click="moveToWishlist($index)"><a>SAVE FOR LATER</a></td>
+                    <td ng-click="duplicateWheelchair($index)"><a>DOWNLOAD PDF</a></td>
+                  </tr>
+                </tbody>
+              </table>
+              <section class="moreInfo">
+                <p class="clickable-text {{wheelchairUIOpts[$index].showInfo ? 'dropup' : ''}}" ng-click="wheelchairUIOpts[$index].showInfo = !wheelchairUIOpts[$index].showInfo">{{wheelchairUIOpts[$index].showInfo ? 'LESS' : 'MORE'}} INFO <span class="caret"></span></p>
+                <a class="pull-right">
+                  <img data-ng-src="images/my_design_page/delete.png"
+                     width="20"
+                     ng-click="deleteWheelchair($index)"></a>
+              </section>
+              <div class="moreInfo" style="padding:{{WHEELCHAIR_CANVAS_WIDTH}};">
+                <!-- Parts Table...only shown if toggled -->
+                <h3 ng-if="wheelchairUIOpts[$index].showInfo">Parts</h3>
+                <table ng-if="wheelchairUIOpts[$index].showInfo">
+                  <tr class="part-row" ng-repeat="part in parts">
+                    <td class="title-column">
+                      <p data-ng-bind="part.getName()"></p>
+                    </td>
+                    <td class="value-column pull-right">
+                      <p data-ng-bind="getPartOption(w, part)"></p>
+                    </td>
+                  </tr>
+                </table>
+                <br>
+
+                <!-- Measurements Table...only shown if toggled -->
+                <h3 ng-if="wheelchairUIOpts[$index].showInfo">Measurements</h3>
+                <table ng-if="wheelchairUIOpts[$index].showInfo">
+                  <tr class="part-row" ng-repeat="measure in getWheelchairMeasures(w)">
+                    <td class="title-column">
+                      <p data-ng-bind="measure.getName()"></p>
+                    </td>
+                    <td class="value-column pull-right">
+                      <p data-ng-bind="getMeasureDetails(w, measure).optionString"></p>
+                    </td>
+                  </tr>
                 </table>
               </div>
-
             </section>
           </li>
         </ul>
       </div>
-
     </div>
+
+
     <div id="summary">
+      <section>
+        <div>
+          <div>
+            <span class="pull-left">Subtotal</span>
+            <span class="pull-right">${{curOrder.getSubtotal() >= 0 ? curOrder.getSubtotal().toFixed(2) : '--'}}</span>
+          </div>
+          <div>
+            <span class="pull-left">Tax</span>
+            <span class="pull-right">${{curOrder.getTaxCost() >= 0 ? curOrder.getTaxCost().toFixed(2) : '--'}}</span>
+          </div>
+          <div>
+            <span class="pull-left">Shipping Est</span>
+            <span class="pull-right">${{curOrder.getShippingCost() >= 0 ? curOrder.getShippingCost().toFixed(2) : '--'}}</span>
+          </div>
+          <div class="totalPrice">
+            <span class="pull-left"><strong>Total</strong></span>
+            <span class="pull-right"><strong>${{curOrder.getTotalCost() >= 0 ? curOrder.getTotalCost().toFixed(2) : '--'}}</strong></span>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <p class="sectionTitle">Choose Order Type*</p>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" data-toggle="dropdown">
+            Select<span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li>
+              <a ng-click="choosePayment('insurance')">Insurance</a></li>
+            <li>
+              <a ng-click="choosePayment('downPayment')">30% down payment</a>
+            </li>
+            <li>
+              <a ng-click="choosePayment('payFull')">Pay in full</a>
+            </li>
+          </ul>
+        </div>
+        <button type="button" class="btn btn-default apply-button pull-right" ng-click="applyPaymentMethod()">Apply</button>
+      </section>
+      <section>
+        <p class="sectionTitle">Enter zip code to estimate shipping cost</p>
+        <input type="number" placeholder="Enter zipcode" class="zipcode-input" ng-model="zipcode"></input>
+        <button type="button" class="btn btn-default pull-right {{zipcode === curOrder.zip ? 'apply-button' : 'invalidated-apply-button'}}" ng-click="applyZipcode()">Apply</button>
+
+      </section>
+
 
     </div>
   </div>
+</div>
 
 
 
@@ -108,7 +189,7 @@
             <br>
 
             <!-- Tables showing Part & Measurement configurations -->
-            <div style="padding: {{WHEELCHAIR_CANVAS_WIDTH}};">
+            <div style="padding:{{WHEELCHAIR_CANVAS_WIDTH}};">
               <!-- Parts Table...only shown if toggled -->
               <h3 ng-if="wheelchairUIOpts[$index].showInfo">Parts</h3>
               <table ng-if="wheelchairUIOpts[$index].showInfo">
