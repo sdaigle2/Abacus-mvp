@@ -10,8 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('CartCtrl', ['$scope', '$location', '$cookieStore', 'User', 'FrameData', 'Units', 'Wheelchair', 'Drop',
-    function ($scope, $location, $cookieStore, User, FrameData, Units, Wheelchair, Drop) {
+  .controller('CartCtrl', ['$scope', '$location', 'localJSONStorage', 'User', 'FrameData', 'Units', 'Wheelchair', 'Drop',
+    function ($scope, $location, localJSONStorage, User, FrameData, Units, Wheelchair, Drop) {
 
       Drop.setFalse();
 

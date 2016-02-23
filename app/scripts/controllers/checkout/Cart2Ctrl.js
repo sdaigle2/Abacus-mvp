@@ -11,8 +11,8 @@
  */
 angular.module('abacuApp')
   .constant('WHEELCHAIR_CANVAS_WIDTH', 187) // width of canvas that renders wheelchair
-  .controller('Cart2Ctrl', ['$scope', '$location', '$cookieStore', 'User', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH',
-    function ($scope, $location, $cookieStore, User, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH) {
+  .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH',
+    function ($scope, $location, localJSONStorage, User, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH) {
       $scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
       Drop.setFalse();
 

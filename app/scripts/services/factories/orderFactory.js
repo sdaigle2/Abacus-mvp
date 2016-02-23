@@ -19,7 +19,7 @@
  * Orders can be constructed directly from a JSON object using the Order.fromJSONData() function
  */
 angular.module('abacuApp')
-  .factory('Order', ['$q', '$http', 'Wheelchair', '$cookieStore', function ($q, $http, Wheelchair, $cookieStore) {
+  .factory('Order', ['$q', '$http', 'Wheelchair', 'localJSONStorage', function ($q, $http, Wheelchair, localJSONStorage) {
 
     function Order(taxRate, shippingFee, order) {
       this.wheelchairs = [];
@@ -67,12 +67,12 @@ angular.module('abacuApp')
 
 
     function updateOrderCookie (orderInfo, wheelchairs) {
-      $cookieStore.put('cartInfo', orderInfo);
+      localJSONStorage.put('cartInfo', orderInfo);
       var tempWheelchairs = [];
       for (var i = 0; i < wheelchairs.length; i++) {
         tempWheelchairs. push (wheelchairs[i].getAll());
       }
-      $cookieStore.put('cartWheelchairs', tempWheelchairs);
+      localJSONStorage.put('cartWheelchairs', tempWheelchairs);
     }
 
     Order.prototype = {

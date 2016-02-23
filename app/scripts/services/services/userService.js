@@ -12,8 +12,8 @@
  *
  */
 angular.module('abacuApp')
-  .service('User', ['$http', '$location', '$q', '$cookieStore', 'Order', 'Wheelchair', 'Units', 'Costs',
-    function ($http, $location, $q, $cookieStore, Order, Wheelchair, Units, Costs) {
+  .service('User', ['$http', '$location', '$q', 'localJSONStorage', 'Order', 'Wheelchair', 'Units', 'Costs',
+    function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Costs) {
 
       // declare all User variables here
       var orders, currentWheelchair, cartWheelchairs, cartWheelchairIndex, savedChairs,
@@ -94,7 +94,7 @@ angular.module('abacuApp')
         if (userID !== -1) {
           updateDB();
         } else {
-          $cookieStore.put('currentWheelchair', {frameID: frameID, isNew: true, index: -1});
+          localJSONStorage.put('currentWheelchair', {frameID: frameID, isNew: true, index: -1});
         }
       }
 
@@ -110,7 +110,7 @@ angular.module('abacuApp')
         if (userID !== -1) {
           updateDB();
         } else {
-          $cookieStore.put('currentWheelchair', {frameID: -1, isNew: false, index: index});
+          localJSONStorage.put('currentWheelchair', {frameID: -1, isNew: false, index: index});
         }
       }      
 
@@ -118,8 +118,8 @@ angular.module('abacuApp')
         //***************Cookie restore***********
         //TODO modify cookie policy
         var wIndex = 0;
-        while ($cookieStore.get('wheelchair' + wIndex)){
-          cartWheelchairs.push(new Wheelchair($cookieStore.get('wheelchair' + wIndex)));
+        while (localJSONStorage.get('wheelchair' + wIndex)){
+          cartWheelchairs.push(new Wheelchair(localJSONStorage.get('wheelchair' + wIndex)));
           wIndex ++;
         }
 
@@ -132,7 +132,7 @@ angular.module('abacuApp')
           orders.push(curOrder);
         }
 
-        var tempCurrentWheelchair = $cookieStore.get('currentWheelchair');
+        var tempCurrentWheelchair = localJSONStorage.get('currentWheelchair');
         if (tempCurrentWheelchair != null) {
           if (tempCurrentWheelchair.isNew === true) {
             createCurrentDesign(tempCurrentWheelchair.frameID);
@@ -188,6 +188,10 @@ angular.module('abacuApp')
           }
 
           return response.data;
+        })
+        .catch(function (err) {
+          console.log(err);
+          restoreUserFromCookies();
         });
 
 
@@ -289,9 +293,9 @@ angular.module('abacuApp')
             return this.updateDB();
           } else {
             // sync in memory cart with cookie storage
-            $cookieStore.remove('wheelchair'+cartWheelchairs.length);
+            localJSONStorage.remove('wheelchair'+cartWheelchairs.length);
             for (var i = 0; i < cartWheelchairs.length; i++) {
-              $cookieStore.put('wheelchair' + i, cartWheelchairs[i].getAll());
+              localJSONStorage.put('wheelchair' + i, cartWheelchairs[i].getAll());
             }
           }
         },

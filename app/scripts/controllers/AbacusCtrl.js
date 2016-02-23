@@ -8,8 +8,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', ['$scope', '$location', '$cookieStore', '$routeParams', 'FrameData', 'User', 'Angles', 'Units', 'Drop',
-    function ($scope, $location, $cookieStore, $routeParams, FrameData, User, Angles, Units, Drop) {
+  .controller('AbacusCtrl', ['$scope', '$location', 'localJSONStorage', '$routeParams', 'FrameData', 'User', 'Angles', 'Units', 'Drop',
+    function ($scope, $location, localJSONStorage, $routeParams, FrameData, User, Angles, Units, Drop) {
 
       Drop.setFalse();
       /*********************Enums*******************************/
