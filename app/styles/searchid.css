@@ -13,6 +13,7 @@
 
 .container-block {
 	width: 100%;
+	margin: auto;
 }
 
 /*************************
@@ -39,7 +40,7 @@
 **************************/
 
 .search-form-container {
-	padding: 70px;
+	padding: 50px;
 	padding-left: 100px;
 	padding-right: 100px;
 	margin: 15px;
@@ -75,25 +76,39 @@
 	border: 1px solid #4896FF;
 }
 
-.search-button:disabled {
+/*.search-button:disabled {
 	background-color: #F1F1F1;
 	color: #4896FF;
 	margin-left: 0px;
 	border: 1px solid #4896FF;
+}*/
+
+.search-header-text {
+	font-weight: bold;
+	font-size: 150%;
+}
+
+.explanation-text {
+	padding: 20px;
+	max-width: 800px;
 }
 
 /*************************
-**** Explaination Box ****
+**** Results Box ****
 **************************/
 
-.explanation-container {
+.results-container {
 	padding: 70px;
 	padding-left: 100px;
 	padding-right: 100px;
 	padding-bottom: 130px;
 	margin: 15px;
 	background-color: white;
-	display: inline-block; 
+	display: inline-block;
+}
+
+.result-body {
+	display: inline-block;
 }
 
 /*************************

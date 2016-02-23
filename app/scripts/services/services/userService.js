@@ -212,14 +212,11 @@ angular.module('abacuApp')
             data:{designID:id},
             method:'GET'
           })
-          .then(function(data){
-            console.log('fetch chair design' + JSON(data));
+          .then(function(response){
             //TODO load the design into current editing wheelchair variable
-            var currentDesign = new Wheelchair(data);
+            var currentDesign = new Wheelchair(response.data);
+            currentDesign.designID = response.data._id || id; // add this extra variable
             return currentDesign;
-          })
-          .catch(function(data){
-              console.log("fetch failed")
           });
         },
 

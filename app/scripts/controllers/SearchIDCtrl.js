@@ -2,8 +2,8 @@
  * Created by sourabhd on 2/10/16.
  */
 angular.module('abacuApp')
-  .controller('SearchIDCtrl', ['$scope', 'UserData', '$http',
-    function ($scope, UserData, $http) {
+  .controller('SearchIDCtrl', ['$scope', 'UserData', '$http', 'User', '_', 'Wheelchair',
+    function ($scope, UserData, $http, User, _, Wheelchair) {
       $scope.currentUser = UserData;
       $scope.searchForm = {
       	searchInput: ''
@@ -20,11 +20,11 @@ angular.module('abacuApp')
        * Queries backend for design that has this id and then renders it
        */
       $scope.search = function () {
-      	var input = $scope.searchForm.searchInput;
-      	$http.get('/design/' + input)
-      	.then(function (design) {
+      	var input = $scope.searchForm.searchInput.trim();
+      	User.fetchDesign(input)
+      	.then(function (designWheelchair) {
       		$scope.searchSubmitted = true;
-      		$scope.searchResult = design;
+      		$scope.searchResult = designWheelchair;
       	})
       	.catch(function (err) {
       		$scope.searchSubmitted = true;
