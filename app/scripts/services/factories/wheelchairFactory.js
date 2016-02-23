@@ -21,6 +21,7 @@ angular.module('abacuApp')
 
         //Get data from FrameData
         var frame = FrameData.getFrame(frameID);
+        this.name = frame.getName();
         var parts = frame.getParts();
         var meas = frame.getMeasures();
 
@@ -53,6 +54,7 @@ angular.module('abacuApp')
         this.frameID = wheelchair.frameID;
         this.title = wheelchair.title;
         var frame = FrameData.getFrame(this.frameID);
+        this.name = frame.getName();
         this.inCurOrder = wheelchair.inCurOrder;
         //Copy Parts
         for (var i = 0; i < wheelchair.parts.length; i++) {
@@ -101,6 +103,9 @@ angular.module('abacuApp')
       },
       getTitle: function () {
         return this.title;
+      },
+      getName: function() {
+        return this.name;
       },
       getParts: function () {
         return this.parts;

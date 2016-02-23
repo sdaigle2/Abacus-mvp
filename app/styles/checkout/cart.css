@@ -528,14 +528,14 @@ a:hover{
 }
 
 .checkoutButton {
-  width: 90%;
-  border-radius: 0px;
-  border-color: #4896FF;
-  background-color: #4896FF;
-  color: white;
-  padding: 15px;
-  margin: 15px;
-}
+    width: 90%;
+    border-radius: 0px;
+    border-color: #4896FF;
+    background-color: #4896FF;
+    color: white;
+    padding: 15px;
+    margin: 15px;
+  }
 
 .checkoutButton.inactive {
   background-color: white;

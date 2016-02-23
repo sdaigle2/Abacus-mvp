@@ -1,11 +1,29 @@
+/*******font******/
+.oBold{
+  font-family: 'oswald-bold';
+  font-size: 1em;
+}
+.oReg{
+  font-family: 'oswald-regular';
+  font-size: 1em;
+}
+
+.gBook{
+  font-family: 'gotham-book';
+  font-size: 1em;
+}
+
+
+
+
+
 #wrapper{
   background-color: #F1F1F1;
   overflow: auto;
 }
 
 #contentWrapper{
-  max-width: 1200px;
-  min-width: 800px;
+  max-width: 1100px;
   height: 100vh;
   margin: auto;
 
@@ -14,14 +32,32 @@
 .button{
   margin-top: 0;
   height: 35px;
+  background-color: #4896FF;
+  color: #FFFFFF;
+  border-color: #4896FF;
+  border-radius: 0px;
+  padding: 0 10px;
+
+}
+
+.button:hover {
+  background-color: white;
+  border-color: #4896FF;
+  color: #4896FF;
 }
 #mainDisplay{
   width: 700px;
   float: left;
+  margin-top: 30px;
 }
 #header{
   position: relative;
-  height: 80px;
+  margin: 0 15px 0;
+}
+
+#header p{
+  font-size: 1.7em;
+
 }
 .compareButton{
   position: absolute;
@@ -38,16 +74,27 @@
 
 .chairBlock{
   width: 100%;
-  background-color:lightblue;
   list-style-type: none;
   padding: 10px 15px;
   margin-right: 20px;
+}
+
+.chairBlock .chairTitle{
+  width: 100%;
+  background-color: darkgrey;
+  font-size: 1.1em;
+  padding:0 20px;
+}
+
+.chairBlock .selectedChair {
+  background-color:#4f9dff;
 }
 
 
 
 .cart-item{
   background-color: white;
+  margin-bottom: 20px;
 }
 
 .media-object{
@@ -57,9 +104,7 @@
 }
 
 .checkbox-button {
-  position: absolute;
-  margin-right: 30px ;
-  top: 45%;
+
 }
 
 .media-body {
@@ -69,9 +114,12 @@
   vertical-align: top;
 }
 .media-body .firstLine{
-  margin-bottom: 25px;;
+  margin: 10px 0 58px;
 }
 
+.media-body a{
+  color: #4f9dff;
+}
 .media-body .actions table{
   margin-bottom: 20px;
 }
@@ -84,7 +132,12 @@
   padding-left: 0;
 }
 
-.moreInfo .clickable-text{
+.media-body .moreInfoTitle{
+  margin-top: 27px;
+  color: #4f9dff;
+
+}
+.moreInfoTitle .clickable-text{
   display: inline-block;
   border-radius: 0px;
   border: none;
@@ -107,10 +160,19 @@
 /********Summary*******/
 #summary{
   width: 300px;
-  display: inline-block;
   position: relative;
   top: 71px;
-  margin-left: 29px;
+  margin:0 29px;
+  float: right;
+}
+
+@media  (max-width: 1060px) {
+  #summary{
+    float: left;
+    clear: left;
+    margin-left: 15px;
+    top: 0;
+  }
 }
 
 #summary table{
@@ -121,18 +183,24 @@
 
 
 
-#summary section{
+#summary>section{
   background-color: white;
   margin-top: 20px;
   padding: 15px;
 }
 
-#summary section:first-of-type{
+@media  (max-width: 1060px) {
+  #summary>section{
+    margin-top: 0;
+  }
+}
+
+#summary>section:first-of-type{
   overflow: auto;
 }
 
 #summary section {
-  color: #00A89C;
+  color: black;
   text-decoration: underline;
 }
 
@@ -141,9 +209,82 @@
   overflow: auto;
 }
 
+
+#summary #orderType {
+  margin: 20px 0 10px;
+  color: #4f9dff;
+  font-size: 13px;
+}
+
+#summary #shippingPanel{
+  margin-bottom: 20px;
+  color: #4f9dff;
+  font-size: 13px;
+
+
+}
+
 #summary section .totalPrice {
   border-top: 1px solid black;
   padding-top: 10px;
   margin-top: 10px;;
 }
 
+.checkoutButton {
+  width: 100%;
+  margin-top: 15px;
+}
+
+
+/****************display Image*********/
+#displayImage{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(64,64,65,0.6);
+}
+
+#offClickArea{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 25;
+}
+
+#displayImage .mainDisplay{
+  position: absolute;
+  height: 500px;
+  top: 25.2%;
+  left: 26.3%;
+  background-color: white;
+  z-index: 50;
+
+}
+
+#displayImage .mainDisplay #designTitle{
+  height: 10%;
+  width: 85%;
+  text-align: center;
+  margin: auto;
+  border-bottom: 1px solid #939597;
+}
+
+
+#displayImage .mainDisplay .leftButton{
+  cursor: pointer;
+  position: absolute;
+  top: 48%;
+  left: 0;
+}
+
+#displayImage .mainDisplay .rightButton{
+  cursor: pointer;
+  position: absolute;
+  top: 48%;
+  right: 0;
+
+}
