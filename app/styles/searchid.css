@@ -44,6 +44,7 @@
 	padding-left: 100px;
 	padding-right: 100px;
 	margin: 15px;
+	margin-bottom: 0px;
 	background-color: white;
 	display: inline-block; 
 }
@@ -57,6 +58,7 @@
     outline: none;
     padding-top: 6px;
     padding-bottom: 6px;
+    min-width: 200px;
 }
 
 .search-button {
@@ -93,6 +95,16 @@
 	max-width: 800px;
 }
 
+.arrow-down {
+	width: 0; 
+	height: 0; 
+	margin-top: 0px;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid #fff;
+	display: inline-block;
+}
+
 /*************************
 **** Results Box ****
 **************************/
@@ -102,13 +114,33 @@
 	padding-left: 100px;
 	padding-right: 100px;
 	padding-bottom: 130px;
-	margin: 15px;
+	margin: 25px;
 	background-color: white;
 	display: inline-block;
 }
 
 .result-body {
 	display: inline-block;
+	text-align: left;
+}
+
+.continue-button {
+	background-color: #4896FF;
+	color: white;
+	margin-left: 0px;
+	margin-top: 15px;
+	border: 1px solid #4896FF;
+	border-radius: 0;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    float: right;
+}
+
+.continue-button:hover {
+	background-color: white;
+	color: #4896FF;
+	margin-left: 0px;
+	border: 1px solid #4896FF;
 }
 
 /*************************

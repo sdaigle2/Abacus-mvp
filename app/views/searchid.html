@@ -5,7 +5,7 @@
 	</div>
 
 	<div class="container-block">
-		<div class="search-form-container">
+		<div class="search-form-container" id="searchContainer">
 			<p class="search-header-text">Look up a DesignID</p>
 			<form name="searchForm.form" class="css-form" ng-submit="search()" novalidate>
 				<input type="text" class="search-input" ng-model="searchForm.searchInput" required>
@@ -14,10 +14,11 @@
 			<p class="explanation-text">Every design saved in this website has a unique Design ID.  If you would like to share your design with someone else, simply give them your Design ID.  If someone has given you a Design ID, you can enter it here.</p>
 		</div>
 	</div>
+	<div class="arrow-down"></div>
 	
 	<!-- This block is shown before the user ever submits a search query -->
 	<div ng-if="!searchSubmitted" class="container-block">
-		<div class="results-container">
+		<div class="results-container" style="min-width: {{getWidth()}}px;">
 			<p>Please type in a DesignID</p>
 			<p><a href="#">What is a DesignID?</a></p>
 		</div>
@@ -25,7 +26,7 @@
 
 	<!-- This block is shown if a given query found no results -->
 	<div ng-if="searchSubmitted && searchResult === null" class="container-block">
-		<div class="results-container">
+		<div class="results-container" style="min-width: {{getWidth()}}px;">
 			<p>Oops!</p>
 			<p>Design Not Found.</p>
 		</div>
@@ -33,7 +34,7 @@
 
 	<!-- This block is shown if a given query found a result -->
 	<div ng-if="searchSubmitted && searchResult !== null" class="container-block">
-		<div class="results-container">
+		<div class="results-container" style="min-width: {{getWidth()}}px;">
 			<div class="media-object" style="display: inline-block;">
 				<canvas my-canvas img_arr={{searchResult.getPreviewImages(3)}}
 		                width="187"></canvas>
@@ -41,6 +42,7 @@
             <div class="media-body result-body">
             	<p>Search Result</p>
             	<p><span style="font-weight: lighter;">DesignID:</span> <span style="font-weight: bold;">{{searchResult.designID}}</span></p>
+            	<button type="submit" class="continue-button" ng-click="editWheelchairDesign()">CONTINUE</button>
             </div>
         </div>
 	</div>

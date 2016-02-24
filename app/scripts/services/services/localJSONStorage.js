@@ -17,7 +17,7 @@
 angular.module('abacuApp')
   .service('localJSONStorage', ['$cookieStore', '_', function ($cookieStore, _) {
     if (!_.has(window, 'localStorage')) {
-      return $cookieStore;
+      return $cookieStore; // fallback to $cookieStore...has same get,put,remove methods as localJSONStorage
     }
 
   	var localJSONStorage = function () {

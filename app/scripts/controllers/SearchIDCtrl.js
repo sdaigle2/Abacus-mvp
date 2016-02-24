@@ -2,8 +2,8 @@
  * Created by sourabhd on 2/10/16.
  */
 angular.module('abacuApp')
-  .controller('SearchIDCtrl', ['$scope', 'UserData', '$http', 'User', '_', 'Wheelchair',
-    function ($scope, UserData, $http, User, _, Wheelchair) {
+  .controller('SearchIDCtrl', ['$scope', 'UserData', '$http', 'User', '_', 'Wheelchair', '$location', 'Design',
+    function ($scope, UserData, $http, User, _, Wheelchair, $location, Design) {
       $scope.currentUser = UserData;
       $scope.searchForm = {
       	searchInput: ''
@@ -32,5 +32,23 @@ angular.module('abacuApp')
       	});
       	
       };
+
+      $scope.editWheelchairDesign = function () {
+        if ($scope.searchResult) {
+          User.createCurrentDesign($scope.searchResult);
+          $location.path('/tinker');
+        }
+      };
+
+      // The results container must always be same width of search container.
+      // This is a more 'responsive' solution than setting a static size
+      $scope.getWidth = function () {
+        return document.getElementById('searchContainer').clientWidth;
+      };
+
+      // This is to update the width of the result containers...comment out the $scope.$digest() to see what I mean
+      setTimeout(function () {
+        $scope.$digest();
+      }, 10);
 
     }]);
