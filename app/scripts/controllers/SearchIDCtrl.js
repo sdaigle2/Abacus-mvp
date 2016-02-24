@@ -22,9 +22,9 @@ angular.module('abacuApp')
       $scope.search = function () {
       	var input = $scope.searchForm.searchInput.trim();
       	User.fetchDesign(input)
-      	.then(function (designWheelchair) {
+      	.then(function (design) {
       		$scope.searchSubmitted = true;
-      		$scope.searchResult = designWheelchair;
+      		$scope.searchResult = design;
       	})
       	.catch(function (err) {
       		$scope.searchSubmitted = true;

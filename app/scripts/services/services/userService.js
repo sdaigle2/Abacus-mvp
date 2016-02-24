@@ -12,8 +12,8 @@
  *
  */
 angular.module('abacuApp')
-  .service('User', ['$http', '$location', '$q', 'localJSONStorage', 'Order', 'Wheelchair', 'Units', 'Costs',
-    function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Costs) {
+  .service('User', ['$http', '$location', '$q', 'localJSONStorage', 'Order', 'Wheelchair', 'Units', 'Costs', 'Design',
+    function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Costs, Design) {
 
       // declare all User variables here
       var orders, currentWheelchair, cartWheelchairs, cartWheelchairIndex, savedChairs,
@@ -214,8 +214,7 @@ angular.module('abacuApp')
           })
           .then(function(response){
             //TODO load the design into current editing wheelchair variable
-            var currentDesign = new Wheelchair(response.data);
-            currentDesign.designID = response.data._id || id; // add this extra variable
+            var currentDesign = new Design(response.data);
             return currentDesign;
           });
         },

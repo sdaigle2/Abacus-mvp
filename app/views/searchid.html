@@ -36,12 +36,12 @@
 	<div ng-if="searchSubmitted && searchResult !== null" class="container-block">
 		<div class="results-container" style="min-width: {{getWidth()}}px;">
 			<div class="media-object" style="display: inline-block;">
-				<canvas my-canvas img_arr={{searchResult.getPreviewImages(3)}}
+				<canvas my-canvas img_arr={{searchResult.wheelchair.getPreviewImages(3)}}
 		                width="187"></canvas>
             </div>
             <div class="media-body result-body">
             	<p>Search Result</p>
-            	<p><span style="font-weight: lighter;">DesignID:</span> <span style="font-weight: bold;">{{searchResult.designID}}</span></p>
+            	<p><span style="font-weight: lighter;">DesignID:</span> <span style="font-weight: bold;">{{searchResult.id}}</span></p>
             	<button type="submit" class="continue-button" ng-click="editWheelchairDesign()">CONTINUE</button>
             </div>
         </div>

@@ -10,7 +10,9 @@ angular.module('abacuApp')
   .factory('Design', ['Wheelchair', function (Wheelchair) {
   	var Design = function (designObj) {
   		this.id = designObj._id;
-  		this.creator = new Wheelchair(designObj.creator);
-  		this.wheelchair = designObj.wheelchair;
+  		this.creator = designObj.creator;
+  		this.wheelchair = new Wheelchair(designObj.wheelchair);
   	};
+
+  	return Design;
   }]);
