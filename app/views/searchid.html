@@ -1,9 +1,8 @@
 <link href="../../styles/searchid.css" rel="stylesheet"/>
 <div class="searchid-page-body">
-	<div class="top-banner">
+<!-- 	<div class="top-banner">
 		<p class="banner-text">SEARCH DESIGN ID</p>
-	</div>
-
+	</div> -->
 	<div class="container-block">
 		<div class="search-form-container" id="searchContainer">
 			<p class="search-header-text">Look up a DesignID</p>
@@ -34,16 +33,20 @@
 
 	<!-- This block is shown if a given query found a result -->
 	<div ng-if="searchSubmitted && searchResult !== null" class="container-block">
-		<div class="results-container" style="min-width: {{getWidth()}}px;">
+		<div class="search-result-container" style="min-width: {{getWidth()}}px;">
 			<div class="media-object" style="display: inline-block;">
 				<canvas my-canvas img_arr={{searchResult.wheelchair.getPreviewImages(3)}}
-		                width="187"></canvas>
+		                width="200"></canvas>
             </div>
-            <div class="media-body result-body">
+            <div class="media-body result-body" style="padding-top: 0px;">
             	<p>Search Result</p>
             	<p><span style="font-weight: lighter;">DesignID:</span> <span style="font-weight: bold;">{{searchResult.id}}</span></p>
+            	<br>
+            	<p>This wheelchair design belongs to <span style="font-weight: bold;">{{searchResult.creator}}</span>,</p>
+            	<p>Do you want to view the design?</p>
             	<button type="submit" class="continue-button" ng-click="editWheelchairDesign()">CONTINUE</button>
             </div>
         </div>
 	</div>
+	<div class="bottom-banner"></div>
 </div>

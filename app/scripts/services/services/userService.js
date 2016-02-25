@@ -18,12 +18,16 @@ angular.module('abacuApp')
       // declare all User variables here
       var orders, currentWheelchair, cartWheelchairs, cartWheelchairIndex, savedChairs,
       savedChairIndex, userID, fName, lName, email, phone, addr, addr2, city, state,
-      zip, unitSys, contentSection, curOrder;
+      zip, unitSys, contentSection, curOrder, isAdmin;
 
       // initialize all user variables here
       function init() {
         orders = [];     // TODO: only keep order variable.
-        currentWheelchair = {isNew: false, editingWheelchair: null};   // indicate the status of current design and hold the wheelchair instance
+        currentWheelchair = { // indicate the status of current design and hold the wheelchair instance
+          isNew: false,
+          editingWheelchair: null,
+          design: null
+        };
         cartWheelchairs = [];     //array of chairs in cart
         cartWheelchairIndex = -1;  //Index associate with cartWheelchairs i.e cartwheelchair
         savedChairs = [];                    // array of saved wheelchair
@@ -41,6 +45,7 @@ angular.module('abacuApp')
         unitSys = Units.unitSys.IMPERIAL;
         contentSection = 'orders';
         curOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
+        isAdmin = false;
       }
       
       var instance = this;
@@ -66,7 +71,8 @@ angular.module('abacuApp')
           }),
           'cartWheelchairs': cartWheelchairs.map(function (wheelchair) {
             return wheelchair.getAll();
-          })
+          }),
+          'isAdmin': isAdmin
         };
       }
 
@@ -74,7 +80,7 @@ angular.module('abacuApp')
         if (userID !== -1) {
           return $http({
             url: '/update',
-            data: this.allDetails(),
+            data: allDetails(),
             method: 'POST'
           })
           .then(function (data) {
@@ -87,8 +93,17 @@ angular.module('abacuApp')
       }
 
       function createCurrentDesign(frameID) {
-        currentWheelchair.editingWheelchair = new Wheelchair(frameID);
-        currentWheelchair.isNew = true;
+        if (frameID instanceof Design) {
+          var design = frameID; // frameID is actually a design instance
+          currentWheelchair.editingWheelchair = design.wheelchair;
+          currentWheelchair.isNew = userID === -1 || design.creator !== userID;
+          currentWheelchair.design = design;
+        } else {
+          // its either an integer respresenting a frame id or a wheelchair object
+          currentWheelchair.editingWheelchair = new Wheelchair(frameID);
+          currentWheelchair.isNew = true;
+          currentWheelchair.design = null;
+        }
 
         // decide where to persist the currentWheelchair based on whether the user is logged in
         if (userID !== -1) {
@@ -162,6 +177,7 @@ angular.module('abacuApp')
           cartWheelchairs = data.cartWheelchairs ? data.cartWheelchairs.map(function (wheelchair) {
             return new Wheelchair(wheelchair);
           }) : cartWheelchairs;
+          isAdmin = data.isAdmin;
 
           //add current cart items to curOrder
           for (var j = 0; j < cartWheelchairs.length; j++) {

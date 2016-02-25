@@ -20,7 +20,7 @@
 ******* Top Banner *******
 **************************/
 
-.top-banner {
+/*.top-banner {
 	width: 100%;
 	background-color: #808184;
 	padding-top: 30px;
@@ -33,6 +33,19 @@
 	color: white;
 	padding-left: 400px; 
 	font-size: 25px;
+}*/
+
+/*************************
+****** Bottom Banner ******
+**************************/
+
+.bottom-banner {
+	width: 100%;
+	background-color: #4896FF;
+	height: 50px;
+	position: fixed;
+    bottom: 0;
+    right: 0;
 }
 
 /*************************
@@ -40,7 +53,7 @@
 **************************/
 
 .search-form-container {
-	padding: 50px;
+	padding: 15px;
 	padding-left: 100px;
 	padding-right: 100px;
 	margin: 15px;
@@ -120,6 +133,7 @@
 }
 
 .result-body {
+	position: -50px;
 	display: inline-block;
 	text-align: left;
 }
@@ -141,6 +155,14 @@
 	color: #4896FF;
 	margin-left: 0px;
 	border: 1px solid #4896FF;
+}
+
+.search-result-container {
+	padding: 70px;
+	padding-bottom: 100px;
+	margin: 25px;
+	background-color: white;
+	display: inline-block;
 }
 
 /*************************
