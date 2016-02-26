@@ -119,9 +119,7 @@ angular.module('abacuApp')
       $scope.deleteWheelchair = function (index) {
         //Remove wheelchair from order if in order
         //var orderInd = $scope.wOrderIndex[index];
-        if (index !== -1) {
-          $scope.curOrder.removeWheelchair(index);
-        }
+
         //$scope.wOrderIndex.splice(index, 1);
         $scope.wheelchairUIOpts.splice(index, 1);
         //

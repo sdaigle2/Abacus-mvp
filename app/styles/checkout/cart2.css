@@ -50,6 +50,15 @@
   float: left;
   margin-top: 30px;
 }
+
+#emptyCart{
+  position: relative;
+  top: 80px;
+  left: 130px;
+  margin-bottom: 110px;
+
+
+}
 #header{
   position: relative;
   margin: 0 15px 0;
@@ -187,6 +196,7 @@
   background-color: white;
   margin-top: 20px;
   padding: 15px;
+  overflow: visible;
 }
 
 @media  (max-width: 1060px) {
@@ -209,15 +219,38 @@
   overflow: auto;
 }
 
+#orderType .dropDown{
+  width: 78%;
+  border-radius: 0;
+  overflow: visible;
+}
+
+#orderType .dropDown button {
+  width: 100%;
+  text-align: left;
+}
+
+.dropDown .dropdown-menu a{
+  padding: 2px 20px;
+  cursor: pointer;
+}
+
+#orderType .dropDown .caretShape {
+  position: relative;
+  top: 9px;
+  color: green;
+}
+
 
 #summary #orderType {
   margin: 20px 0 10px;
   color: #4f9dff;
   font-size: 13px;
+  overflow: visible;
 }
 
 #summary #shippingPanel{
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   color: #4f9dff;
   font-size: 13px;
 
@@ -226,7 +259,7 @@
 
 #summary section .totalPrice {
   border-top: 1px solid black;
-  padding-top: 10px;
+  padding-top: 15px;
   margin-top: 10px;;
 }
 
