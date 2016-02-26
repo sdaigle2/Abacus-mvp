@@ -17,10 +17,10 @@
     <div id="mainDisplay">
       <div id="header">
         <p class="bold">MY CART</p>
-        <button class="button compareButton oReg">COMPARE</button>
+        <button data-ng-if="wheelchairs.length !== 0" class="button compareButton oReg">COMPARE</button>
       </div>
       <div id="mainContent">
-        <div data-ng-if="wheelchairs.length === 0">
+        <div id="emptyCart" data-ng-if="wheelchairs.length === 0">
           <img class="add-icon" data-ng-src="images/my_design_page/cart_empty.png">
           <span class="medium">Your cart is currently empty</span>
         </div>
@@ -114,9 +114,9 @@
 
           <section id="orderType" class="oReg">
             <p class="sectionTitle" data-ng-init="orderTypePanel = false"  ng-click="orderTypePanel = !orderTypePanel">Choose Order Type*</p>
-            <div class="btn-group"  ng-show="orderTypePanel === true">
+            <div class="btn-group dropDown"  ng-show="orderTypePanel === true">
               <button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" data-toggle="dropdown">
-                Select<span class="caret"></span>
+                Select<span class="pull-right caret caretShape"></span>
               </button>
               <ul class="dropdown-menu" role="menu">
                 <li>
