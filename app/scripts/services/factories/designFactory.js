@@ -7,11 +7,25 @@
 
 
 angular.module('abacuApp')
-  .factory('Design', ['Wheelchair', function (Wheelchair) {
+  .factory('Design', ['Wheelchair', '_', function (Wheelchair, _) {
   	var Design = function (designObj) {
-  		this.id = designObj._id;
+  		this.id = designObj._id || designObj.id;
   		this.creator = designObj.creator;
   		this.wheelchair = new Wheelchair(designObj.wheelchair);
+
+  		Design.prototype.allDetails = function() {
+  			var instance = this;
+  			var details = {
+  				'creator': instance.creator,
+  				'wheelchair': instance.wheelchair.getAll()
+  			};
+
+  			if (!_.isUndefined(this.id) && !_.isNull(this.id)) {
+  				details.id = this.id;
+  			}
+
+  			return details;
+  		};
   	};
 
   	return Design;

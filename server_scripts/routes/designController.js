@@ -5,6 +5,7 @@
 
 var router  = require('express').Router();
 var shortid = require('shortid');
+var _       = require('lodash');
 
 // Import services
 var dbService = require('../services/db');
@@ -48,7 +49,7 @@ router.post('/design', function (req, res) {
           res.json({err: 'Couldn\'t save design data into databse'});
         } else {
           // design save was a success; send the design info back to the client
-          res.json(body);
+          res.json(_.merge(body, userDesign));
         }
       });
     });

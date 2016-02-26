@@ -8,8 +8,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', ['$scope', '$location', 'localJSONStorage', '$routeParams', 'FrameData', 'User', 'Angles', 'Units', 'Drop',
-    function ($scope, $location, localJSONStorage, $routeParams, FrameData, User, Angles, Units, Drop) {
+  .controller('AbacusCtrl', ['$scope', '$location', 'localJSONStorage', '$routeParams', 'FrameData', 'User', 'Angles', 'Units', 'Drop', 'Design','_',
+    function ($scope, $location, localJSONStorage, $routeParams, FrameData, User, Angles, Units, Drop, Design, _) {
 
       Drop.setFalse();
       /*********************Enums*******************************/
@@ -589,6 +589,28 @@ angular.module('abacuApp')
       $scope.saveComputer = function () {
         $scope.saveDropdown = false;
         User.saveComputer();
+      };
+
+      /*******************Sharing***********************/
+
+      $scope.saveToDesignDB = function () {
+        var design = User.getCurEditWheelchairDesign();
+
+        if (_.isNull(design)) {
+          design = new Design({
+            'creator': User.getID(),
+            'wheelchair': $scope.curEditWheelchair
+          });
+        }
+
+        design.wheelchair = $scope.curEditWheelchair;
+        User.saveDesign(design)
+        .then(function (design) {
+          alert('saved with design ID: ' + design.id);
+        })
+        .catch(function (err) {
+          alert('Error: ' + JSON.stringify(err, null, 2));
+        });
       };
 
       /*****************General Use Functions*********************/

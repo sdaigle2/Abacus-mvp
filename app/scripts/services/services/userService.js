@@ -160,7 +160,7 @@ angular.module('abacuApp')
 
       function restoreUserFromBackend(data) {
         console.log(data);
-        userID = data.userID;
+        userID = data.userID || data.email;
 
         if (userID !== -1) {
           fName = data.fName;
@@ -235,12 +235,20 @@ angular.module('abacuApp')
           });
         },
 
-        saveDesign:function(wheelchair) {
+        saveDesign:function(design) {
+          if (!this.isLoggedIn()) {
+            var deferred = $q.defer();
+            deferred.reject(new Error("Must Be Logged In"));
+            return deferred.promise;
+          }
           // $http({ ... }) returns a promise
           return $http({
             url:'/design',
-            data: wheelchair,
+            data: design instanceof Design ? design.allDetails() : design,
             method: 'POST'
+          })
+          .then(function (designObj) {
+            return new Design(designObj.data);
           });
         },
 
@@ -372,6 +380,10 @@ angular.module('abacuApp')
           return currentWheelchair.editingWheelchair;
         },
 
+        getCurEditWheelchairDesign: function () {
+          return currentWheelchair.design;
+        },
+
         isNewWheelchair: function () {
           return currentWheelchair.isNew;
         },
@@ -464,6 +476,9 @@ angular.module('abacuApp')
         },
 
         //***********get/sets
+        getID: function () {
+          return userID;
+        },
         getFname: function () {
           return (fName.charAt(0).toUpperCase() + fName.slice(1));
         },
