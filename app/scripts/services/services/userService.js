@@ -46,7 +46,7 @@ angular.module('abacuApp')
         curOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
         isAdmin = false;
       }
-      
+
       var instance = this;
 
       init(); // initialize all the user variables
@@ -126,11 +126,10 @@ angular.module('abacuApp')
         } else {
           localJSONStorage.put('currentWheelchair', {frameID: -1, isNew: false, index: index});
         }
-      }      
+      }
 
       function restoreUserFromCookies() {
         //***************Cookie restore***********
-        //TODO modify cookie policy
         var wIndex = 0;
         while (localJSONStorage.get('wheelchair' + wIndex)){
           cartWheelchairs.push(new Wheelchair(localJSONStorage.get('wheelchair' + wIndex)));
@@ -311,7 +310,7 @@ angular.module('abacuApp')
           if (curOrder) {
             orders.push(curOrder);
           }
-          
+
           $http({
             url: '/logout',
             method: 'POST'
