@@ -8,8 +8,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', ['$scope', '$location', 'localJSONStorage', '$routeParams', 'FrameData', 'User', 'Angles', 'Units', 'Drop', 'Design','_',
-    function ($scope, $location, localJSONStorage, $routeParams, FrameData, User, Angles, Units, Drop, Design, _) {
+  .controller('AbacusCtrl', ['$scope', '$location', 'localJSONStorage', '$routeParams', 'FrameData', 'User', 'Angles', 'Units', 'Drop', 'Design', '_', '$q', 'ngDialog',
+    function ($scope, $location, localJSONStorage, $routeParams, FrameData, User, Angles, Units, Drop, Design, _, $q, ngDialog) {
 
       Drop.setFalse();
       /*********************Enums*******************************/
@@ -593,7 +593,9 @@ angular.module('abacuApp')
 
       /*******************Sharing***********************/
 
-      $scope.saveToDesignDB = function () {
+      // Creates a design from the current wheelchair configuration and saves it in the DB (must be logged in)
+      // 
+      function generateDesignIDForCurrentChair() {
         var design = User.getCurEditWheelchairDesign();
 
         if (_.isNull(design)) {
@@ -604,13 +606,102 @@ angular.module('abacuApp')
         }
 
         design.wheelchair = $scope.curEditWheelchair;
-        User.saveDesign(design)
+
+        // If the design doesn't have an ID, generate one by saving it to the backend
+        var designPromise = design.hasID() ? User.updateDesign(design) : User.saveDesign(design);
+
+        return designPromise;
+      }
+
+      $scope.shareDesignID = function () {
+        generateDesignIDForCurrentChair()
         .then(function (design) {
-          alert('saved with design ID: ' + design.id);
+          $scope.modalDesign = design;
+          User.createCurrentDesign(design);
+          return ngDialog.open({
+            'template': 'views/modals/designIDModal.html',
+            'scope': $scope
+          })
+          .closePromise;
+        })
+        .then(function () {
+          $scope.modalDesign = null;
         })
         .catch(function (err) {
           alert('Error: ' + JSON.stringify(err, null, 2));
         });
+      };
+
+      /*********************Saving For Later*********************/
+
+      // save the current wheelchair to the wishlist and make sure its not the currently editing wheelchair anymore
+      $scope.saveForLater = function () {
+        if (!User.isLoggedIn()) {
+          ngDialog.open({
+            'template': 'views/modals/loginPromptModal.html'
+          });
+          return;
+        } else {
+          var design = User.getCurEditWheelchairDesign();
+
+          if (_.isNull(design)) {
+            design = new Design({
+              'creator': User.getID(),
+              'wheelchair': $scope.curEditWheelchair
+            });
+          }
+
+          design.wheelchair = $scope.curEditWheelchair;
+
+          var designPromise = null;
+          if (design.hasID()) {
+            // prompt if they want to create a copy or overwrite
+            designPromise = ngDialog.open({
+              'template': 'views/modals/saveDesignMethodModal.html'
+            })
+            .closePromise.then(function (saveMethod) {
+              // can either choose to create a copy, or overwrite the existing design in the DB
+              switch (saveMethod) {
+                case 'copy': {
+                  delete design.id; // remove the id
+                  designPromise = User.saveDesign(design);
+                  break;
+                }
+                case 'overwrite': {
+                  if (User.getID() === design.creator || User.isAdmin()) {
+                    designPromise = User.updateDesign(design);
+                  } else {
+                    ngDialog.open({
+                      template: '<div><h2>Sorry, you can\'t create a copy</h2></div>',
+                      plain: true
+                    });
+                  }
+                  break;
+                }
+                default: {
+                  throw new Error("Invalid saveMethod: " + saveMethod);
+                }
+              }
+            });
+          } else {
+            // just go ahead and save the design to the DB, its new anyways
+            designPromise = User.saveDesign(design);
+          }
+
+          if (designPromise) {
+            designPromise
+            .then(function (design) {
+              User.addDesignIDToSavedChairs(design.id);
+              $location.path('/mydesigns');
+            })
+            .catch(function (design) {
+              ngDialog.open({
+                'template': '<div><h2>Oops! An Error Occurred</h2></div>',
+                'plain': true
+              });
+            });
+          }
+        }
       };
 
       /*****************General Use Functions*********************/

@@ -11,6 +11,8 @@ var _       = require('lodash');
 var dbService = require('../services/db');
 var generateUniqueID = require('../services/generateUniqueID');
 
+// Import policies
+var restrict = require('../policies/restrict');
 
 var REQUIRED_DESIGN_PROPERTIES = []; // TODO: Fill list with required properties
 
@@ -32,7 +34,7 @@ router.get('/design/:id',function(req,res){
 });
 
 // post design
-router.post('/design', function (req, res) {
+router.post('/design', restrict, function (req, res) {
   var userDesign = req.body;
   // Check that uploaded design has some required properties
   var hasRequiredProps = REQUIRED_DESIGN_PROPERTIES.every(function (property) {
@@ -62,6 +64,54 @@ router.post('/design', function (req, res) {
     });
   }
 
+});
+
+// put to update design
+router.put('/design/:id', restrict, function (req, res) {
+  var id = req.params.id;
+  var updatedDesign = req.body;
+
+  dbService.users.get(req.session.user, function (err, currentUser) {
+    if (err) {
+      res.status(404);
+      res.json({
+        msg: 'Was not able to find User record based on session',
+        err: err
+      });
+    } else {
+      dbService.design.get(id, function(err,currentDesign){
+        if (err) {
+          res.status(404);
+          res.json({
+            msg: 'Did not find the matching design, please try again',
+            err: err
+          });
+        // Check that the user isnt updating a design that isnt theres. Only Admin users can do that
+        } else if (currentDesign.creator !== currentUser.email && !currentUser.isAdmin) {
+          res.status(403);
+          res.json({
+            msg: 'Can\'t update somebody else\'s design without admin privileges'
+          });
+        } else {
+          // merge properties of new object with old object.
+          // Replace missing fields in the new object with the corresponding value in the old object
+          // For conflicts, keep the new value
+          var updatedDesign = _.defaultsDeep(updatedDesign, currentDesign);
+          dbService.design.insert(updatedDesign, id, function (err, body, header) {
+            if (err) {
+              res.status(404);
+              res.json({
+                msg: 'Error occurred while updating design',
+                err: err
+              });
+            } else {
+              res.json(updatedDesign);
+            }
+          });
+        }
+      });
+    }
+  });
 });
 
 module.exports = router; // expose the router

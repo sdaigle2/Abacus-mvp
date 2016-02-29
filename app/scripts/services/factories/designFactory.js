@@ -26,6 +26,12 @@ angular.module('abacuApp')
 
   			return details;
   		};
+
+      // Used so you can know whether you need to generate a unique design ID for
+      // the design or if it already has one
+      Design.prototype.hasID = function() {
+        return _.has(this, 'id') && !(_.isNull(this.id) || _.isEmpty(this.id));
+      };
   	};
 
   	return Design;

@@ -17,7 +17,7 @@ angular.module('abacuApp')
 
       // declare all User variables here
       var orders, currentWheelchair, cartWheelchairs, cartWheelchairIndex, savedChairs,
-      savedChairIndex, userID, fName, lName, email, phone, addr, addr2, city, state,
+      userID, fName, lName, email, phone, addr, addr2, city, state,
       zip, unitSys, contentSection, curOrder, isAdmin;
 
       // initialize all user variables here
@@ -30,8 +30,7 @@ angular.module('abacuApp')
         };
         cartWheelchairs = [];     //array of chairs in cart
         cartWheelchairIndex = -1;  //Index associate with cartWheelchairs i.e cartwheelchair
-        savedChairs = [];                    // array of saved wheelchair
-        savedChairIndex = -1;      //Index associate with savedchairs.
+        savedChairs = [];                    // array of saved wheelchair\
         userID = -1; //-1 means not logged in
         fName = '';
         lName = '';
@@ -172,8 +171,11 @@ angular.module('abacuApp')
           city = data.city;
           state = data.state;
           zip = data.zip;
+          
           currentWheelchair = data.currentWheelchair || currentWheelchair;
           currentWheelchair.editingWheelchair = currentWheelchair.editingWheelchair ? new Wheelchair(currentWheelchair.editingWheelchair) : currentWheelchair.editingWheelchair;
+          currentWheelchair.design = currentWheelchair.design ? new Design(currentWheelchair.design) : null;
+          
           cartWheelchairs = data.cartWheelchairs ? data.cartWheelchairs.map(function (wheelchair) {
             return new Wheelchair(wheelchair);
           }) : cartWheelchairs;
@@ -222,7 +224,7 @@ angular.module('abacuApp')
         allDetails: allDetails,
 
         /**********design share/coEdit with ID*********/
-        fetchDesign:function(id) {
+        fetchDesign: function(id) {
           return $http({
             url:'/design/' + id,
             data:{designID:id},
@@ -235,7 +237,7 @@ angular.module('abacuApp')
           });
         },
 
-        saveDesign:function(design) {
+        saveDesign: function(design) {
           if (!this.isLoggedIn()) {
             var deferred = $q.defer();
             deferred.reject(new Error("Must Be Logged In"));
@@ -249,6 +251,28 @@ angular.module('abacuApp')
           })
           .then(function (designObj) {
             return new Design(designObj.data);
+          });
+        },
+
+        updateDesign: function (design) {
+          if (!this.isLoggedIn()) {
+            var deferred = $q.defer();
+            deferred.reject(new Error("Must Be Logged In"));
+            return deferred.promise;
+          } else if (!(design instanceof Design) || !design.hasID()) {
+            var deferred = $q.defer();
+            deferred.reject(new Error("Invalid design arg"));
+            return deferred.promise;
+          }
+
+          return $http({
+            url: '/design/' + design.id,
+            data: design.allDetails(),
+            method: 'PUT'
+          })
+          .then(function (res) {
+            var designObj = res.data;
+            return new Design(designObj);
           });
         },
 
@@ -343,6 +367,12 @@ angular.module('abacuApp')
 
         //Set the given wheelchair index to be edited
         setEditWheelchair: setEditWheelchair,
+
+        // Saves the currentWheelchair into the saved wheelchairs list and resets the currentWheelchair
+        addDesignIDToSavedChairs: function (designID) {
+          savedChairs.push(designID);
+          this.updateDB();
+        },
 
         //Removes the wheelchair at the given index from the user's myDesign
         deleteWheelchair: function (index) {
@@ -521,6 +551,9 @@ angular.module('abacuApp')
         },
         getContentSection: function () {
           return contentSection;
+        },
+        isAdmin: function () {
+          return isAdmin;
         },
         setFname: function (newFName) {
           fName = newFName;
