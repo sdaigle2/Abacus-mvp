@@ -117,8 +117,6 @@ angular.module('abacuApp')
 
       //Deletes wheelchair from user's My Designs
       $scope.deleteWheelchair = function (index) {
-        //Remove wheelchair from order if in order
-        //var orderInd = $scope.wOrderIndex[index];
 
         //$scope.wOrderIndex.splice(index, 1);
         $scope.wheelchairUIOpts.splice(index, 1);
