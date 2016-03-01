@@ -677,8 +677,8 @@ angular.module('abacuApp')
                     return User.updateDesign(design);
                   } else {
                     return ngDialog.open({
-                      template: '<div><h2>Sorry, you can\'t overwrite this design</h2></div>',
-                      plain: true
+                      'template': '<div><h2>Sorry, you can\'t overwrite this design</h2></div>',
+                      'plain': true
                     })
                     .closePromise
                     .then(_.constant(null));
