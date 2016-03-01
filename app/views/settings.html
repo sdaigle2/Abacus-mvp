@@ -69,15 +69,15 @@
           <div class="settingsContentSectionTitle book">Contact Information</div>
           <ul>
             <li>
-              <label for="settingsContentInput-contact-firstName book">First Name</label>
+              <label for="settingsContentInput-contact-firstName">First Name</label>
               <input id="settingsContentInput-contact-firstName" name="firstName" type="text" data-ng-model="accountModel.fName" />
             </li>
             <li>
-              <label for="settingsContentInput-contact-lastName book">Last Name</label>
+              <label for="settingsContentInput-contact-lastName">Last Name</label>
               <input id="settingsContentInput-contact-lastName" name="lastName" type="text" data-ng-model="accountModel.lName" />
             </li>
             <li>
-              <label for="settingsContentInput-contact-phone book">Phone</label>
+              <label for="settingsContentInput-contact-phone">Phone</label>
               <input id="settingsContentInput-contact-phone" name="phone" type="text" data-ng-model="accountModel.phone" />
             </li>
           </ul>
@@ -89,23 +89,23 @@
           <div class="settingsContentSectionTitle book">Shipping Address</div>
           <ul>
             <li>
-              <label for="settingsContentInput-shipping-streetAddress book">Street Address</label>
+              <label for="settingsContentInput-shipping-streetAddress">Street Address</label>
               <input id="settingsContentInput-shipping-streetAddress" name="streetAddress" type="text" data-ng-model="accountModel.addr" />
             </li>
             <li>
-              <label for="settingsContentInput-shipping-streetAddress2 book">Street Address 2</label>
+              <label for="settingsContentInput-shipping-streetAddress2">Street Address 2</label>
               <input id="settingsContentInput-shipping-streetAddress2" name="streetAddress2" type="text" data-ng-model="accountModel.addr2" />
             </li>
             <li>
-              <label for="settingsContentInput-shipping-city book">City</label>
+              <label for="settingsContentInput-shipping-city">City</label>
               <input id="settingsContentInput-shipping-city" name="city" type="text" data-ng-model="accountModel.city" />
             </li>
             <li>
-              <label for="settingsContentInput-shipping-state book">State</label>
+              <label for="settingsContentInput-shipping-state">State</label>
               <input id="settingsContentInput-shipping-state" name="state" type="text" data-ng-model="accountModel.state" />
             </li>
             <li>
-              <label for="settingsContentInput-shipping-zip book">Zip Code</label>
+              <label for="settingsContentInput-shipping-zip">Zip Code</label>
               <input id="settingsContentInput-shipping-zip" name="zip" type="text" data-ng-model="accountModel.zip" />
             </li>
           </ul>
@@ -117,15 +117,15 @@
           <div class="settingsContentSectionTitle book">Change Password <span data-ng-bind="errMessage"></span></div>
           <ul>
             <li>
-              <label for="settingsContentInput-password-oldPassword book">Current Password</label>
+              <label for="settingsContentInput-password-oldPassword">Current Password</label>
               <input id="settingsContentInput-password-oldPassword" name="oldPassword" type="password" data-ng-model="accountModel.oldPass" />
             </li>
             <li>
-              <label for="settingsContentInput-password-newPassword book">New Password</label>
+              <label for="settingsContentInput-password-newPassword">New Password</label>
               <input id="settingsContentInput-password-newPassword" name="newPassword" type="password" data-ng-model="accountModel.newPass1" />
             </li>
             <li>
-              <label for="settingsContentInput-password-passwordConfirm book">Confirm New Password</label>
+              <label for="settingsContentInput-password-passwordConfirm">Confirm New Password</label>
               <input id="settingsContentInput-password-passwordConfirm" name="passwordConfirm" type="password" data-ng-model="accountModel.newPass2" />
             </li>
           </ul>
@@ -182,52 +182,146 @@
 
     <div class="settingsContent" id="settingsMeasurementsContent"
          ng-class="{'showSettingsContent' : getContentSection() === ContentSection.MEASUREMENTS}">
+      <div id="mainDisplay">
+        <div id="header">
+          <p class="bold">MY CART</p>
+          <button data-ng-if="wheelchairs.length !== 0" class="button compareButton oReg">COMPARE</button>
+        </div>
+        <div id="mainContent">
+          <ul class="chairBlock" ng-if="wheelchairs.length">
+            <li ng-repeat="w in wheelchairs" class="cart-item {{wheelchairUIOpts[$index].checked ? 'checked-item' : ''}}">
+              <div class="chairTitle" ng-class="{'selectedChair': wheelchairUIOpts[$index].checked }">
+                <span class="medium">{{w.getName()}}</span>
+                <input type="checkbox" class="checkbox-button pull-right" ng-model="wheelchairUIOpts[$index].checked">
+              </div>
+              <div>
+                <div class="media-object">
+                  <canvas my-canvas img_arr={{w.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
+                          ng-mouseleave="editPanelShow = false"
+                          ng-click="toggleImageDisplay($index)"
+                          width="{{WHEELCHAIR_CANVAS_WIDTH}}"
+                          alt="wheelchairImage">
+                  </canvas>
+                </div>
+                <section class="media-body">
+                  <div class="firstLine medium">
+                    <span class="pull-left">Design ID: xxxxxxx</span>
+                    <span class="pull-right bold">${{w.getTotalPrice().toFixed(2)}}</span>
+                  </div>
+                  <table class="actions oReg">
+                    <tbody>
+                    <tr>
+                      <td ng-click="editWheelchair($index)"><a>EDIT</a></td>
+                      <td ng-click="moveToWishlist($index)"><a>SAVE FOR LATER</a></td>
+                      <td ng-click="duplicateWheelchair($index)"><a>DOWNLOAD PDF</a></td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <section class="moreInfoTitle oBold">
+                    <p class="clickable-text {{wheelchairUIOpts[$index].showInfo ? 'dropup' : ''}}" ng-click="wheelchairUIOpts[$index].showInfo = !wheelchairUIOpts[$index].showInfo">{{wheelchairUIOpts[$index].showInfo ? 'LESS' : 'MORE'}} INFO <span class="caret"></span></p>
+                    <a class="pull-right">
+                      <img data-ng-src="images/my_design_page/delete.png"
+                           width="20"
+                           ng-click="deleteWheelchair($index)"></a>
+                  </section>
+                  <div class="moreInfo" style="padding:{{WHEELCHAIR_CANVAS_WIDTH}};">
+                    <!-- Parts Table...only shown if toggled -->
+                    <h3 ng-if="wheelchairUIOpts[$index].showInfo">Parts</h3>
+                    <table ng-if="wheelchairUIOpts[$index].showInfo">
+                      <tr class="part-row" ng-repeat="part in parts">
+                        <td class="title-column">
+                          <p data-ng-bind="part.getName()"></p>
+                        </td>
+                        <td class="value-column pull-right">
+                          <p data-ng-bind="getPartOption(w, part)"></p>
+                        </td>
+                      </tr>
+                    </table>
+                    <br>
 
-      <!-- MEASURE SELECTORS -->
-
-      <div class="settingsContentInputSection">
-        <form action="" id="settingsContentForm-measurements">
-          <div class="settingsContentSectionTitle book">My Measurements</div>
-          <ul>
-            <li data-ng-repeat="(m, val) in MeasurementTypes"> <!-- TODO: Angularize (ng-repeat) using $scope.measOptions -->
-              <label ng-click="setMeasurementType(val)"
-                     ng-class="{'active' : getMeasurementType() === val}">
-                     <span data-ng-bind="measDisplay[val].name"></span> <i class="fa fa-arrow-circle-right" title="Learn More"></i>
-              </label>
-              <select ng-click="setMeasurementType(val)" class="sexy-toggle" data-ng-options="o for o in measDisplay[val].options" data-ng-model="measDisplay[val].optionSelected"></select>
+                    <!-- Measurements Table...only shown if toggled -->
+                    <h3 ng-if="wheelchairUIOpts[$index].showInfo">Measurements</h3>
+                    <table ng-if="wheelchairUIOpts[$index].showInfo">
+                      <tr class="part-row" ng-repeat="measure in getWheelchairMeasures(w)">
+                        <td class="title-column">
+                          <p data-ng-bind="measure.getName()"></p>
+                        </td>
+                        <td class="value-column pull-right">
+                          <p data-ng-bind="getMeasureDetails(w, measure).optionString"></p>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                </section>
+              </div>
             </li>
           </ul>
-          <div>
-            <h6 class="medium">Unit</h6>
-            <!-- Fix Me -->
-            <input type="checkbox"  class="sexy-checkbox" data-ng-model="curUnitSys"
-                    data-ng-options="sys.enumVal as sys.name for sys in unitSysList"  > Metric<br>
-            <input type="checkbox"  class="sexy-checkbox" data-ng-model="curUnitSys"
-                    data-ng-options="sys.enumVal as sys.name for sys in unitSysList"  > Imperial<br>
-
-          </div>
-        </form>
-      </div>
-
-      <!-- MEASUREMENT INFO -->
-
-      <div class="settingsContentInputMoreInfoSection"
-           ng-repeat="(m, val) in MeasurementTypes"
-           ng-class="{'active' : getMeasurementType() === val}">
-        <div class="settingsContentSectionTitle" data-ng-bind="measDisplay[val].name"></div>
-        <div class="settingsContentSectionDescription" data-ng-bind="measDisplay[val].desc"></div>
-        <div class="settingsContentSectionGraphic">
-          <img ng-src="{{measDisplay[val].imgURLs[measDisplay[val].imgIndex]}}" width="300" height="288">
-          <div class="dots">
-            <i class="fa fa-circle-o"
-               data-ng-class="{'fa-circle': measDisplay[val].imgIndex === $index}"
-               data-ng-repeat="i in measDisplay[val].imgURLs"
-               data-ng-click="measDisplay[val].imgIndex = $index"></i>
-          </div>
         </div>
       </div>
-
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--<div class="settingsContent" id="settingsMeasurementsContent"-->
+         <!--ng-class="{'showSettingsContent' : getContentSection() === ContentSection.MEASUREMENTS}">-->
+
+      <!--&lt;!&ndash; MEASURE SELECTORS &ndash;&gt;-->
+
+      <!--<div class="settingsContentInputSection">-->
+        <!--<form action="" id="settingsContentForm-measurements">-->
+          <!--<div class="settingsContentSectionTitle book">My Measurements</div>-->
+          <!--<ul>-->
+            <!--<li data-ng-repeat="(m, val) in MeasurementTypes"> &lt;!&ndash; TODO: Angularize (ng-repeat) using $scope.measOptions &ndash;&gt;-->
+              <!--<label ng-click="setMeasurementType(val)"-->
+                     <!--ng-class="{'active' : getMeasurementType() === val}">-->
+                     <!--<span data-ng-bind="measDisplay[val].name"></span> <i class="fa fa-arrow-circle-right" title="Learn More"></i>-->
+              <!--</label>-->
+              <!--<select ng-click="setMeasurementType(val)" class="sexy-toggle" data-ng-options="o for o in measDisplay[val].options" data-ng-model="measDisplay[val].optionSelected"></select>-->
+            <!--</li>-->
+          <!--</ul>-->
+          <!--<div>-->
+            <!--<h6 class="medium">Unit</h6>-->
+            <!--&lt;!&ndash; Fix Me &ndash;&gt;-->
+            <!--<input type="checkbox"  class="sexy-checkbox" data-ng-model="curUnitSys"-->
+                    <!--data-ng-options="sys.enumVal as sys.name for sys in unitSysList"  > Metric<br>-->
+            <!--<input type="checkbox"  class="sexy-checkbox" data-ng-model="curUnitSys"-->
+                    <!--data-ng-options="sys.enumVal as sys.name for sys in unitSysList"  > Imperial<br>-->
+
+          <!--</div>-->
+        <!--</form>-->
+      <!--</div>-->
+
+      <!--&lt;!&ndash; MEASUREMENT INFO &ndash;&gt;-->
+
+      <!--<div class="settingsContentInputMoreInfoSection"-->
+           <!--ng-repeat="(m, val) in MeasurementTypes"-->
+           <!--ng-class="{'active' : getMeasurementType() === val}">-->
+        <!--<div class="settingsContentSectionTitle" data-ng-bind="measDisplay[val].name"></div>-->
+        <!--<div class="settingsContentSectionDescription" data-ng-bind="measDisplay[val].desc"></div>-->
+        <!--<div class="settingsContentSectionGraphic">-->
+          <!--<img ng-src="{{measDisplay[val].imgURLs[measDisplay[val].imgIndex]}}" width="300" height="288">-->
+          <!--<div class="dots">-->
+            <!--<i class="fa fa-circle-o"-->
+               <!--data-ng-class="{'fa-circle': measDisplay[val].imgIndex === $index}"-->
+               <!--data-ng-repeat="i in measDisplay[val].imgURLs"-->
+               <!--data-ng-click="measDisplay[val].imgIndex = $index"></i>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+
+    <!--</div>-->
 
   </div><!-- END settingsContentWrapper -->
 

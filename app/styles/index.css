@@ -302,7 +302,7 @@ body {
 
 /* FONTS AND STDS*/
 :root{
-	--main-font: 'Gotham A', 'Gotham B';
+	--main-font: 'Gotham A', 'Gotham B',Helvetica, Aria, Sans-serif;
 	--narrow-font: 'Gotham Narrow A','Gotham Narrow B';
 	--light-mint: "#88cbc3";
 	--darker-mint: "#00a8ac";
