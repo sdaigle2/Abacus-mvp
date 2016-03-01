@@ -316,85 +316,239 @@
 *** MEASUREMENTS SECTION ***
 ****************************/
 
-#settingsMeasurementsContent .settingsContentInputSection {
-  clear: left;
+/*******font******/
+.oBold{
+  font-family: 'oswald-bold';
+  font-size: 1em;
+}
+.oReg{
+  font-family: 'oswald-regular';
+  font-size: 1em;
+}
+
+.gBook{
+  font-family: 'gotham-book';
+  font-size: 1em;
+}
+
+
+
+
+.button{
+  margin-top: 0;
+  height: 35px;
+  background-color: #4896FF;
+  color: #FFFFFF;
+  border-color: #4896FF;
+  border-radius: 0px;
+  padding: 0 10px;
+
+}
+
+.button:hover {
+  background-color: white;
+  border-color: #4896FF;
+  color: #4896FF;
+}
+#mainDisplay{
+  width: 700px;
   float: left;
+  margin-top: 30px;
+}
+
+
+
+#header{
+  position: relative;
+  margin: 0 15px 0;
+}
+
+#header p{
+  font-size: 1.7em;
+
+}
+.compareButton{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+/********* wheelchair content display***/
+#mainContent{
   width: 100%;
-  margin: 20px 0 20px 0;
-  padding: 0;
-  list-style: none;
+  display: inline-block;
 }
 
-#settingsMeasurementsContent .settingsContentSectionTitle {
-  padding-bottom: 5px;
-  margin-bottom: 15px;
-  font-size: 20px;
-  font-weight: bold;
-  color: rgba(138, 139, 138, 1);
-  border-bottom: 2px solid rgba(138, 139, 138, 1);
+.chairBlock{
+  width: 100%;
+  list-style-type: none;
+  padding: 10px 15px;
+  margin-right: 20px;
 }
 
-#settingsMeasurementsContent .settingsContentInputSection ul {
-  margin: 0 0 0 30px;
-  padding: 0;
-  list-style: none;
+.chairBlock .chairTitle{
+  width: 100%;
+  background-color: darkgrey;
+  font-size: 1.1em;
+  padding:0 20px;
 }
 
-#settingsMeasurementsContent .settingsContentInputSection label {
-  color: rgba(26, 25, 25, 1);
-  font-weight: normal;
-  display: block;
-  cursor: pointer;
-  transition: .5s;
-}
-#settingsMeasurementsContent .settingsContentInputSection label:hover,
-#settingsMeasurementsContent .settingsContentInputSection label.active {
-  color: rgba(11, 158, 144, 1);
+.chairBlock .selectedChair {
+  background-color:#4f9dff;
 }
 
-#settingsMeasurementsContent .settingsContentInputSection select {
-  width: 200px;
-  margin-bottom: 15px;
-  border: 1px solid rgba(182, 184, 182, 1);
+
+
+.cart-item{
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+.media-object{
+  width: 30%;
+  position: relative;
+  display:inline-block;
+}
+
+.checkbox-button {
+
+}
+
+.media-body {
+  overflow: visible;
+  display: inline-block;
+  width: 65%;
+  vertical-align: top;
+}
+.media-body .firstLine{
+  margin: 10px 0 58px;
+}
+
+.media-body a{
+  color: #4f9dff;
+}
+.media-body .actions table{
+  margin-bottom: 20px;
+}
+.media-body .actions td{
+  padding: 0 15px;
+  border-right: 2px solid black;
+}
+
+.media-body .actions td:first-of-type{
+  padding-left: 0;
+}
+
+.media-body .moreInfoTitle{
+  margin-top: 27px;
+  color: #4f9dff;
+
+}
+.moreInfoTitle .clickable-text{
+  display: inline-block;
+  border-radius: 0px;
+  border: none;
+  box-shadow: none;
   outline: none;
 }
 
-#settingsMeasurementsContent .settingsContentInputMoreInfoSection {
-  position: absolute;
-  top: 100px;
-  right: 50px;
-  width: 400px;
-  display: none;
-  z-index: 0;
-}
-#settingsMeasurementsContent .settingsContentInputMoreInfoSection.active {
-  right: 0px;
-  display: initial;
-  z-index: 500;
-  -webkit-animation-direction: alternate;
-  -moz-animation-direction: alternate;
-  -o-animation-direction: alternate;
-  animation: fadeInShiftPlus 0.5s;
+.moreInfo table{
+  width: 100%;
 }
 
-#settingsMeasurementsContent .settingsContentInputMoreInfoSection .settingsContentSectionTitle {
-  border: none;
-  margin: 0 0 5px 0;
-  padding: 0;
-  color: rgba(28, 27, 26, 1);
+.moreInfo .title-column{
+  color: #939597;
 }
 
-#settingsMeasurementsContent .settingsContentInputMoreInfoSection .settingsContentSectionGraphic {
-  text-align: center;
-}
 
-#settingsMeasurementsContent .settingsContentInputMoreInfoSection .settingsContentSectionGraphic img {
-  margin: 20px 0 20px 0;
-}
 
-#settingsMeasurementsContent .settingsContentInputMoreInfoSection .settingsContentSectionGraphic .dots {
-  margin: 0 0 20px 0;
-}
+
+
+
+
+
+
+
+/*#settingsMeasurementsContent .settingsContentInputSection {*/
+  /*clear: left;*/
+  /*float: left;*/
+  /*width: 100%;*/
+  /*margin: 20px 0 20px 0;*/
+  /*padding: 0;*/
+  /*list-style: none;*/
+/*}*/
+
+/*#settingsMeasurementsContent .settingsContentSectionTitle {*/
+  /*padding-bottom: 5px;*/
+  /*margin-bottom: 15px;*/
+  /*font-size: 20px;*/
+  /*font-weight: bold;*/
+  /*color: rgba(138, 139, 138, 1);*/
+  /*border-bottom: 2px solid rgba(138, 139, 138, 1);*/
+/*}*/
+
+/*#settingsMeasurementsContent .settingsContentInputSection ul {*/
+  /*margin: 0 0 0 30px;*/
+  /*padding: 0;*/
+  /*list-style: none;*/
+/*}*/
+
+/*#settingsMeasurementsContent .settingsContentInputSection label {*/
+  /*color: rgba(26, 25, 25, 1);*/
+  /*font-weight: normal;*/
+  /*display: block;*/
+  /*cursor: pointer;*/
+  /*transition: .5s;*/
+/*}*/
+/*#settingsMeasurementsContent .settingsContentInputSection label:hover,*/
+/*#settingsMeasurementsContent .settingsContentInputSection label.active {*/
+  /*color: rgba(11, 158, 144, 1);*/
+/*}*/
+
+/*#settingsMeasurementsContent .settingsContentInputSection select {*/
+  /*width: 200px;*/
+  /*margin-bottom: 15px;*/
+  /*border: 1px solid rgba(182, 184, 182, 1);*/
+  /*outline: none;*/
+/*}*/
+
+/*#settingsMeasurementsContent .settingsContentInputMoreInfoSection {*/
+  /*position: absolute;*/
+  /*top: 100px;*/
+  /*right: 50px;*/
+  /*width: 400px;*/
+  /*display: none;*/
+  /*z-index: 0;*/
+/*}*/
+/*#settingsMeasurementsContent .settingsContentInputMoreInfoSection.active {*/
+  /*right: 0px;*/
+  /*display: initial;*/
+  /*z-index: 500;*/
+  /*-webkit-animation-direction: alternate;*/
+  /*-moz-animation-direction: alternate;*/
+  /*-o-animation-direction: alternate;*/
+  /*animation: fadeInShiftPlus 0.5s;*/
+/*}*/
+
+/*#settingsMeasurementsContent .settingsContentInputMoreInfoSection .settingsContentSectionTitle {*/
+  /*border: none;*/
+  /*margin: 0 0 5px 0;*/
+  /*padding: 0;*/
+  /*color: rgba(28, 27, 26, 1);*/
+/*}*/
+
+/*#settingsMeasurementsContent .settingsContentInputMoreInfoSection .settingsContentSectionGraphic {*/
+  /*text-align: center;*/
+/*}*/
+
+/*#settingsMeasurementsContent .settingsContentInputMoreInfoSection .settingsContentSectionGraphic img {*/
+  /*margin: 20px 0 20px 0;*/
+/*}*/
+
+/*#settingsMeasurementsContent .settingsContentInputMoreInfoSection .settingsContentSectionGraphic .dots {*/
+  /*margin: 0 0 20px 0;*/
+/*}*/
 
 
 

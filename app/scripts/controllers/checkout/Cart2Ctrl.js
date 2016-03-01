@@ -26,7 +26,7 @@ angular.module('abacuApp')
 
       //Array tracking wheelchairs in current order (wInOrder[i] = j means $scope.wheelchairs[i] is at index j in curOrder)
       //If j === -1 then $scope.wheelchairs[i] is not in curOrder
-      $scope.wOrderIndex = [];
+      //$scope.wOrderIndex = [];
 
       $scope.imageDisplay1 = -1;
 

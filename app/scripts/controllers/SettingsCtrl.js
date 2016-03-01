@@ -106,7 +106,7 @@ angular.module('abacuApp')
         return User.getContentSection();
       };
       $scope.setContentSection = function (newContentSection) {
-        $scope.resetMeasurementType();
+        //$scope.resetMeasurementType();
         User.setContentSection(newContentSection);
       };
 
@@ -115,23 +115,23 @@ angular.module('abacuApp')
       };
 
       /***************** MEASUREMENT HELP SWITCHING *****************************/
-      $scope.getMeasurementType = function () {
-        return curMeasureType;
-      };
-
-      $scope.setMeasurementType = function (newMeasureType) {
-        if (curMeasureType === newMeasureType) {
-          curMeasureType = '';
-        }
-        else {
-          curMeasureType = newMeasureType;
-          $scope.imgIndex = 0;
-        }
-      };
-
-      $scope.resetMeasurementType = function () {
-        curMeasureType = '';
-      };
+      //$scope.getMeasurementType = function () {
+      //  return curMeasureType;
+      //};
+      //
+      //$scope.setMeasurementType = function (newMeasureType) {
+      //  if (curMeasureType === newMeasureType) {
+      //    curMeasureType = '';
+      //  }
+      //  else {
+      //    curMeasureType = newMeasureType;
+      //    $scope.imgIndex = 0;
+      //  }
+      //};
+      //
+      //$scope.resetMeasurementType = function () {
+      //  curMeasureType = '';
+      //};
 
       /***************** MY ACCOUNT *********************************************/
 
@@ -152,7 +152,7 @@ angular.module('abacuApp')
           wheelchairs[j].lName = orders[i].getLname();
           $scope.wheelchairs.push(wheelchairs[j]);
         }
-      }
+      };
 
       $scope.openOrderDetails = function (index) {
         //TODO: Display order details from the User service
@@ -162,69 +162,69 @@ angular.module('abacuApp')
 
         //Options for each measure - Can be called using $scope.measOptions['rearSeatHeight'] to take advantage of enum
 
-     
-         
-          var rearSeatH = FrameData.getFrameByID(1).measures[3];
-          var rearSeatW = FrameData.getFrameByID(1).measures[0];
-          var backrestH = FrameData.getFrameByID(1).measures[2];
-          var seatD = FrameData.getFrameByID(1).measures[1];
-          //console.log(rearSeatH);
-          //console.log(rearSeatW);
-          //console.log(backrestH);
-          //console.log(seatD);
-          $scope.measDisplay = {  
-            rearSeatHeight: {
-              name: rearSeatH.name,
-              options: rearSeatH.measureOptions[1],
-              optionSelected: User.commonMeasures.REAR_SEAT_HEIGHT,
-              desc: rearSeatH.desc,
-              imgURLs: rearSeatH.imageURLs,
-              imgIndex: 0
-            },
-            rearSeatWidth: {
-              name:rearSeatW.name,
-              options: rearSeatW.measureOptions[1],
-              optionSelected: User.commonMeasures.REAR_SEAT_WIDTH,
-              desc: rearSeatW.desc,
-              imgURLs: rearSeatW.imageURLs,
-              imgIndex: 0
-            },
-            foldingBackrestHeight: {
-              name: backrestH.name,
-              options: backrestH.measureOptions[1],
-              optionSelected: User.commonMeasures.FOLDING_BACKREST_HEIGHT,
-              desc: backrestH.desc,
-              imgURLs: backrestH.imageURLs,
-              imgIndex: 0
-            },
-            axelPosition: {
-              name: 'Axel Position',
-              options: ['Uno', 'Dos', 'Tres'],
-              optionSelected: User.commonMeasures.AXEL_POSITION,
-              desc: 'The position of the axel',
-              imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
-              imgIndex: 0
-            },
-            seatDepth: {
-              name: seatD.name,
-              options: seatD.measureOptions[1],
-              optionSelected: User.commonMeasures.SEAT_DEPTH,
-              desc: seatD.desc,
-              imgURLs: seatD.imageURLs,
-              imgIndex: 0
-            }
-          };
-    
-      $scope.curUnitSys = User.getUnitSys();
 
-      $scope.unitSysList = [
-        {
-          name: 'Metric',
-          enumVal: Units.unitSys.METRIC
-        },
-        {
-          name: 'Imperial',
-          enumVal: Units.unitSys.IMPERIAL
-        }];
 
+    //      var rearSeatH = FrameData.getFrameByID(1).measures[3];
+    //      var rearSeatW = FrameData.getFrameByID(1).measures[0];
+    //      var backrestH = FrameData.getFrameByID(1).measures[2];
+    //      var seatD = FrameData.getFrameByID(1).measures[1];
+    //      //console.log(rearSeatH);
+    //      //console.log(rearSeatW);
+    //      //console.log(backrestH);
+    //      //console.log(seatD);
+    //      $scope.measDisplay = {
+    //        rearSeatHeight: {
+    //          name: rearSeatH.name,
+    //          options: rearSeatH.measureOptions[1],
+    //          optionSelected: User.commonMeasures.REAR_SEAT_HEIGHT,
+    //          desc: rearSeatH.desc,
+    //          imgURLs: rearSeatH.imageURLs,
+    //          imgIndex: 0
+    //        },
+    //        rearSeatWidth: {
+    //          name:rearSeatW.name,
+    //          options: rearSeatW.measureOptions[1],
+    //          optionSelected: User.commonMeasures.REAR_SEAT_WIDTH,
+    //          desc: rearSeatW.desc,
+    //          imgURLs: rearSeatW.imageURLs,
+    //          imgIndex: 0
+    //        },
+    //        foldingBackrestHeight: {
+    //          name: backrestH.name,
+    //          options: backrestH.measureOptions[1],
+    //          optionSelected: User.commonMeasures.FOLDING_BACKREST_HEIGHT,
+    //          desc: backrestH.desc,
+    //          imgURLs: backrestH.imageURLs,
+    //          imgIndex: 0
+    //        },
+    //        axelPosition: {
+    //          name: 'Axel Position',
+    //          options: ['Uno', 'Dos', 'Tres'],
+    //          optionSelected: User.commonMeasures.AXEL_POSITION,
+    //          desc: 'The position of the axel',
+    //          imgURLs: ['images/measure/rear-seat-height1.jpg', 'images/measure/rear-seat-height2.jpg', 'images/measure/rear-seat-height3.jpg'],
+    //          imgIndex: 0
+    //        },
+    //        seatDepth: {
+    //          name: seatD.name,
+    //          options: seatD.measureOptions[1],
+    //          optionSelected: User.commonMeasures.SEAT_DEPTH,
+    //          desc: seatD.desc,
+    //          imgURLs: seatD.imageURLs,
+    //          imgIndex: 0
+    //        }
+    //      };
+    //
+    //  $scope.curUnitSys = User.getUnitSys();
+    //
+    //  $scope.unitSysList = [
+    //    {
+    //      name: 'Metric',
+    //      enumVal: Units.unitSys.METRIC
+    //    },
+    //    {
+    //      name: 'Imperial',
+    //      enumVal: Units.unitSys.IMPERIAL
+    //    }];
+    //
     }]);

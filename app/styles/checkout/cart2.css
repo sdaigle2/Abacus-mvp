@@ -241,6 +241,10 @@
   color: green;
 }
 
+#orderType>p:hover{
+  cursor: pointer;
+}
+
 
 #summary #orderType {
   margin: 20px 0 10px;
@@ -249,12 +253,17 @@
   overflow: visible;
 }
 
+
 #summary #shippingPanel{
   margin-bottom: 25px;
   color: #4f9dff;
   font-size: 13px;
 
 
+}
+
+#shippingPanel>p:hover{
+  cursor: pointer;
 }
 
 #summary section .totalPrice {
