@@ -12,8 +12,8 @@
  *
  */
 angular.module('abacuApp')
-  .service('User', ['$http', '$location', '$q', 'localJSONStorage', 'Order', 'Wheelchair', 'Units', 'Costs', 'Design',
-    function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Costs, Design) {
+  .service('User', ['$http', '$location', '$q', 'localJSONStorage', 'Order', 'Wheelchair', 'Units', 'Costs', 'Design', 'Errors',
+    function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Costs, Design, Errors) {
 
       // declare all User variables here
       var orders, currentWheelchair, cartWheelchairs, cartWheelchairIndex, savedChairs,
@@ -178,7 +178,7 @@ angular.module('abacuApp')
           cartWheelchairs = data.cartWheelchairs ? data.cartWheelchairs.map(function (wheelchair) {
             return new Wheelchair(wheelchair);
           }) : cartWheelchairs;
-          isAdmin = data.isAdmin;
+          isAdmin = data.isAdmin || false;
 
           //add current cart items to curOrder
           for (var j = 0; j < cartWheelchairs.length; j++) {
@@ -239,7 +239,7 @@ angular.module('abacuApp')
         saveDesign: function(design) {
           if (!this.isLoggedIn()) {
             var deferred = $q.defer();
-            deferred.reject(new Error("Must Be Logged In"));
+            deferred.reject(new Errors.NotLoggedInError("Must Be Logged In"));
             return deferred.promise;
           }
           // $http({ ... }) returns a promise
@@ -256,7 +256,7 @@ angular.module('abacuApp')
         updateDesign: function (design) {
           if (!this.isLoggedIn()) {
             var deferred = $q.defer();
-            deferred.reject(new Error("Must Be Logged In"));
+            deferred.reject(new Errors.NotLoggedInError("Must Be Logged In"));
             return deferred.promise;
           } else if (!(design instanceof Design) || !design.hasID()) {
             var deferred = $q.defer();
