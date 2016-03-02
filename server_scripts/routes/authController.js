@@ -51,6 +51,19 @@ router.post('/login', function (req, res) {
   });
 });
 
+router.get('/loadMyDesign', function(req,res){
+  var ID = req.body.email;
+  dbService.users.search('view101','search', {q:'creator:' + ID}, function(err,body){
+    if(!err){
+      res.json(body);
+    }
+    else
+      throw err;
+  });
+
+
+});
+
 //LOGOUT
 router.post('/logout', restrict, function (req, res) {
   //Destroy session cookie

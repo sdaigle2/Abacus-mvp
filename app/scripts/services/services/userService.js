@@ -23,6 +23,7 @@ angular.module('abacuApp')
       // initialize all user variables here
       function init() {
         orders = [];     // TODO: only keep order variable.
+        curOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
         currentWheelchair = { // indicate the status of current design and hold the wheelchair instance
           isNew: false,
           editingWheelchair: null,
@@ -43,7 +44,6 @@ angular.module('abacuApp')
         zip = '';
         unitSys = Units.unitSys.IMPERIAL;
         contentSection = 'orders';
-        curOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
         isAdmin = false;
       }
 
@@ -170,11 +170,11 @@ angular.module('abacuApp')
           city = data.city;
           state = data.state;
           zip = data.zip;
-          
+
           currentWheelchair = data.currentWheelchair || currentWheelchair;
           currentWheelchair.editingWheelchair = currentWheelchair.editingWheelchair ? new Wheelchair(currentWheelchair.editingWheelchair) : currentWheelchair.editingWheelchair;
           currentWheelchair.design = currentWheelchair.design ? new Design(currentWheelchair.design) : null;
-          
+
           cartWheelchairs = data.cartWheelchairs ? data.cartWheelchairs.map(function (wheelchair) {
             return new Wheelchair(wheelchair);
           }) : cartWheelchairs;
@@ -189,6 +189,18 @@ angular.module('abacuApp')
             orders.push(new Order(0, 0, data.orders[i]));
           }
         }
+      }
+
+      function restoreMyDesign(ID){
+        return $http({
+          url:'loadMyDesign',
+          data: {email:ID},
+          method:'GET'
+        })
+          .then(function(res){
+            var data = res.data;
+            
+          })
       }
 
       // Make a request to /session. If it succeeds, restore user from response, otherwise, restore from settings
@@ -292,6 +304,7 @@ angular.module('abacuApp')
             userID = data.userID;
             if (userID !== -1) {
               restoreUserFromBackend(data);
+              restoreMyDesign(in_email);
             } else {
               throw new Error('Incorrect email or password');
             }

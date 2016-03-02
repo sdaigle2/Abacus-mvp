@@ -10,14 +10,16 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('SettingsCtrl', ['$scope', '$location', '$http', 'User', 'Units', 'Drop', 'FrameData',
-    function ($scope, $location, $http, User, Units, Drop, FrameData) {
+  .controller('SettingsCtrl', ['$scope', '$location', '$http', 'User', 'Units', 'Drop', 'FrameData','WHEELCHAIR_CANVAS_WIDTH',
+    function ($scope, $location, $http, User, Units, Drop, FrameData, WHEELCHAIR_CANVAS_WIDTH) {
       Drop.setFalse();
       //Kick user off page if not logged in
       if (User.isLoggedIn() === false) {
         $location.path('/frames');
         return;
       }
+
+      $scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
 
       //Model for the 'My Account' inputs
       $scope.accountModel = {
@@ -158,9 +160,115 @@ angular.module('abacuApp')
         //TODO: Display order details from the User service
       };
 
-      /***************** MY MEASURES *********************************************/
+      /***************** My designs *********************************************/
 
-        //Options for each measure - Can be called using $scope.measOptions['rearSeatHeight'] to take advantage of enum
+      // wheelchair in myDesigns
+      $scope.wheelchairs = [];
+      $scope.wheelchairUIOpts = []; //what does this variable do?
+      $scope.parts = [];
+
+      function init() {
+
+        $scope.wheelchairs = User.getCartWheelchairs();    // return array of chair instance
+
+
+
+        // download the parts in $scope.parts
+        $scope.wheelchairs.forEach(function (wheelchair) {
+          getParts(wheelchair.getFrameID());
+        });
+
+        // initialize the ui variables to a default value
+        $scope.wheelchairUIOpts = $scope.wheelchairs.map(function () {
+          return {
+            'checked': false, // whether the checkbox in each cart item is marked
+            'showInfo': false // whether to show the table of wheelchair parts
+          };
+        });
+      }
+
+      function getParts(fID) {
+        var frame = FrameData.getFrame(fID);
+        var parts = frame.getParts();
+        for (var i = 0; i < parts.length; i++) {
+          if (!inPartsArray(parts[i])) {
+            $scope.parts.push(parts[i]);
+          }
+        }
+      }
+
+      function inPartsArray(part) {
+        for (var i = 0; i < $scope.parts.length; i++) {
+          if (part.getName() === $scope.parts[i].getName()) {
+            return true;
+          }
+        }
+        return false;
+      }
+
+
+      /*************Item buttons*********/
+
+      $scope.seeWheelchairDetails = function (index) {
+        if ($scope.curDetailPanel == index)
+          $scope.curDetailPanel = -1;
+        else
+          $scope.curDetailPanel = index;
+      };
+
+      //Sends the user back to abacus with the selected wheelchair
+      $scope.editWheelchair = function (index) {
+        User.setEditWheelchair(index, $scope.wOrderIndex[index]);
+        $location.path('/tinker');
+      };
+
+      $scope.moveToCart = function (index) {
+        alert('TODO: moveToCart implementation');
+      };
+
+      $scope.deleteWheelchair = function (index) {
+
+        //$scope.wOrderIndex.splice(index, 1);
+        $scope.wheelchairUIOpts.splice(index, 1);
+        //
+        ////Remove wheelchair from My Designs
+        User.deleteWheelchair(index);
+      };
+
+
+
+      /********Detail Panel****/
+
+
+        //Returns an object of display-friendly strings regarding the given part
+      $scope.getPartDetails = function (wheelchair, part) {
+        return wheelchair.getPartDetails(part.partID, User.getUnitSys());
+      };
+
+      $scope.getPartOption = function (wheelchair, part) {
+        return $scope.getPartDetails(wheelchair, part).optionName;
+      };
+
+      // Get all the names for all the measured parts
+      $scope.getWheelchairMeasures = function (wheelchair) {
+        var frameID = wheelchair.getFrameID();
+        var frame = FrameData.getFrame(frameID);
+        var measures = frame.getMeasures();
+
+        return measures;
+      };
+
+      //Returns an object of display-friendly strings regarding the given measure
+      $scope.getMeasureDetails = function (wheelchair, measure) {
+        return wheelchair.getMeasureDetails(measure.measureID, User.getUnitSys());
+      };
+
+      init();
+
+
+
+
+      //Options for each measure - Can be called using $scope.measOptions['rearSeatHeight'] to take advantage of enum
 
 
 

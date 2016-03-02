@@ -84,9 +84,6 @@ angular.module('abacuApp')
       }
 
 
-      $scope.panelSelected = function (hoveritem, index, part) {
-        return hoveritem.index === index && hoveritem.name === part.getName();
-      };
       /********************CART ITEM BUTTONS******************************/
 
         //The index of the cart whose detail panel is open, -1 = None
@@ -209,10 +206,6 @@ angular.module('abacuApp')
 
       /********************DETAIL PANEL*********************************/
 
-        //Returns the weight of the given wheelchair as a displayable string
-      $scope.getWeightString = function (wheelchair) {
-        return (wheelchair.getTotalWeight() * Units.getWeightFactor(User.getUnitSys())).toFixed(2) + ' ' + Units.getWeightName(User.getUnitSys());
-      };
 
       //Returns an object of display-friendly strings regarding the given part
       $scope.getPartDetails = function (wheelchair, part) {
