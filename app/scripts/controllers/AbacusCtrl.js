@@ -8,8 +8,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', ['$scope', '$location', 'localJSONStorage', '$routeParams', 'FrameData', 'User', 'Angles', 'Units', 'Drop', 'Design', '_', '$q', 'ngDialog',
-    function ($scope, $location, localJSONStorage, $routeParams, FrameData, User, Angles, Units, Drop, Design, _, $q, ngDialog) {
+  .controller('AbacusCtrl', ['$scope', '$location', 'localJSONStorage', '$routeParams', 'FrameData', 'User', 'Angles', 'Units', 'Drop', 'Design', '_', '$q', 'ngDialog', 'Errors',
+    function ($scope, $location, localJSONStorage, $routeParams, FrameData, User, Angles, Units, Drop, Design, _, $q, ngDialog, Errors) {
 
       Drop.setFalse();
       /*********************Enums*******************************/
@@ -628,7 +628,11 @@ angular.module('abacuApp')
           $scope.modalDesign = null;
         })
         .catch(function (err) {
-          alert('Error: ' + JSON.stringify(err, null, 2));
+          if (err instanceof Errors.NotLoggedInError) {
+            ngDialog.open({
+              'template': 'views/modals/loginPromptModal.html'
+            });
+          }
         });
       };
 
@@ -640,7 +644,6 @@ angular.module('abacuApp')
           ngDialog.open({
             'template': 'views/modals/loginPromptModal.html'
           });
-          return;
         } else {
           var design = User.getCurEditWheelchairDesign();
 
@@ -657,24 +660,28 @@ angular.module('abacuApp')
           if (design.hasID()) {
             // prompt if they want to create a copy or overwrite
             designPromise = ngDialog.open({
-              'template': 'views/modals/saveDesignMethodModal.html'
+              'template': 'views/modals/saveDesignMethodModal.html',
+              'scope': $scope
             })
-            .closePromise.then(function (saveMethod) {
+            .closePromise
+            .then(function (saveMethod) {
               // can either choose to create a copy, or overwrite the existing design in the DB
-              switch (saveMethod) {
+              switch (saveMethod.value) {
                 case 'copy': {
                   delete design.id; // remove the id
-                  designPromise = User.saveDesign(design);
-                  break;
+                  design.creator = User.getID();
+                  return User.saveDesign(design);
                 }
                 case 'overwrite': {
                   if (User.getID() === design.creator || User.isAdmin()) {
-                    designPromise = User.updateDesign(design);
+                    return User.updateDesign(design);
                   } else {
-                    ngDialog.open({
-                      template: '<div><h2>Sorry, you can\'t create a copy</h2></div>',
-                      plain: true
-                    });
+                    return ngDialog.open({
+                      'template': '<div><h2>Sorry, you can\'t overwrite this design</h2></div>',
+                      'plain': true
+                    })
+                    .closePromise
+                    .then(_.constant(null));
                   }
                   break;
                 }
@@ -691,8 +698,10 @@ angular.module('abacuApp')
           if (designPromise) {
             designPromise
             .then(function (design) {
-              User.addDesignIDToSavedChairs(design.id);
-              $location.path('/mydesigns');
+              if (design instanceof Design) {
+                User.addDesignIDToSavedChairs(design.id);
+                $location.path('/mydesigns');
+              }
             })
             .catch(function (design) {
               ngDialog.open({

@@ -1,0 +1,16 @@
+.save-method-button {
+	background-color: #4896FF;
+	color: white;
+	margin-left: 0px;
+	border: 1px solid #4896FF;
+	border-radius: 0;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.save-method-button:hover {
+	background-color: white;
+	color: #4896FF;
+	margin-left: 0px;
+	border: 1px solid #4896FF;
+}
