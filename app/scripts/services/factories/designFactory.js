@@ -12,11 +12,15 @@ angular.module('abacuApp')
   		this.id = designObj._id || designObj.id;
   		this.creator = designObj.creator;
   		this.wheelchair = new Wheelchair(designObj.wheelchair);
+      this.createdAt = new Date(designObj.createdAt || Date.now());
+      this.updatedAt = new Date(designObj.updatedAt || Date.now());
 
   		Design.prototype.allDetails = function() {
   			var instance = this;
   			var details = {
   				'creator': instance.creator,
+          'createdAt': this.createdAt,
+          'updatedAt': this.updatedAt,
   				'wheelchair': instance.wheelchair.getAll()
   			};
 

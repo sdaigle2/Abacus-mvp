@@ -8,6 +8,7 @@ var router = require('express').Router();
 
 // Import services
 var dbService = require('../services/db');
+var dbUtils   = require('../services/dbUtils');
 var sendgrid  = require('../services/sendgrid');
 var hash      = require('../services/security').hash;
 var check     = require('../services/security').check;
@@ -27,7 +28,7 @@ router.post('/login', function (req, res) {
   var password = req.body.password;
 
   //Query the database
-  dbService.users.get(email, function (err, body) { //body is the object we retrieve from the successful query
+  dbUtils.getUserByID(email, function (err, body) { //body is the object we retrieve from the successful query
     if (!err) {
       hash(password, body.salt, function (err, hash) { //hash the password using the stored salt
         if (err)
@@ -74,7 +75,7 @@ router.post('/logout', restrict, function (req, res) {
 
 //Check user session on page reload
 router.post('/session', restrict, function (req, res) {
-  dbService.users.get(req.session.user, function (err, body) { //Query the database using the session cookie
+  dbUtils.getUserByID(req.session.user, function (err, body) { //Query the database using the session cookie
     if (!err) {
       delete body.salt;
       delete body.password;
@@ -101,7 +102,9 @@ router.post('/register', function (req, res) {
     password: req.body.password,
     confirm: req.body.confirm, //Second typing of password
     unitSys: 0,
-    orders: []
+    orders: [],
+    savedDesigns: [],
+    cart: null
   };
 
   //Check the parameters for validity. check() defined in security.js

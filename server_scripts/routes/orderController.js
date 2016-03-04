@@ -4,6 +4,7 @@
 "use strict";
 
 var router = require('express').Router();
+var _      = require('lodash');
 
 // Import services
 var verifyOrder = require('../services/data').verifyOrder;
@@ -53,9 +54,19 @@ router.post('/order', function (req, res) {
         res.json({err: err.type});
       }
       else {  //Successful payment or the user if paying through insurance
-        dbService.orders.insert(req.body.order, function (err, body) { //Insert the order into the database
-          req.body.order.orderNum = body.id;   //Set the id for the order using the id given by the database
-          var pdfStream = genInvoice(req.body.order);   //Generate a pdf invoive for the order
+        var order = req.body.order;
+        // Replace items wheelchairs array with just wheelchair IDs
+        order.wheelchairs = _.isArray(order.wheelchairs) ? order.wheelchairs : [];
+        order.wheelchairs = order.wheelchairs.map(function (wheelchair) {
+          if (_.isObject(wheelchair)) {
+            return wheelchair._id;
+          }
+          return wheelchair; // the wheelchair is just an ID
+        });
+
+        dbService.orders.insert(order, function (err, body) { //Insert the order into the database
+          order.orderNum = body.id;   //Set the id for the order using the id given by the database
+          var pdfStream = genInvoice(order);   //Generate a pdf invoive for the order
           res.send(body.id);
 
           //Set up the invoice email

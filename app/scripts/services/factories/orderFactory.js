@@ -19,7 +19,7 @@
  * Orders can be constructed directly from a JSON object using the Order.fromJSONData() function
  */
 angular.module('abacuApp')
-  .factory('Order', ['$q', '$http', 'Wheelchair', 'localJSONStorage', function ($q, $http, Wheelchair, localJSONStorage) {
+  .factory('Order', ['$q', '$http', 'Wheelchair', 'localJSONStorage', 'Design', function ($q, $http, Wheelchair, localJSONStorage, Design) {
 
     function Order(taxRate, shippingFee, order) {
       this.wheelchairs = [];
@@ -59,9 +59,9 @@ angular.module('abacuApp')
         this.zip = order.zip;
         this.payMethod = order.payMethod;
 
-        for (var i = 0; i < order.wheelchairs.length; i++) {
-          this.wheelchairs.push(new Wheelchair(order.wheelchairs[i]));
-        }
+        this.wheelchairs = order.wheelchairs.map(function (wheelchairDesign) {
+          return new Design(wheelchairDesign);
+        });
       }
     }
 
@@ -70,7 +70,7 @@ angular.module('abacuApp')
       localJSONStorage.put('cartInfo', orderInfo);
       var tempWheelchairs = [];
       for (var i = 0; i < wheelchairs.length; i++) {
-        tempWheelchairs. push (wheelchairs[i].getAll());
+        tempWheelchairs.push(wheelchairs[i].allDetails());
       }
       localJSONStorage.put('cartWheelchairs', tempWheelchairs);
     }
@@ -78,7 +78,7 @@ angular.module('abacuApp')
     Order.prototype = {
 
       addWheelchair: function (newWheelchair) {
-        newWheelchair.toggleInOrder();
+        newWheelchair.wheelchair.toggleInOrder();
         this.wheelchairs.push(newWheelchair);
       },
 
@@ -93,10 +93,6 @@ angular.module('abacuApp')
       //**************gets/sets************/
 
       getAll: function () {
-        var tempChairs = [];
-        for (var i = 0; i < this.wheelchairs.length; i++) {
-          tempChairs.push(this.wheelchairs[i].getAll());
-        }
         return {
           orderNum: this.orderNum,
           taxRate: this.taxRate,
@@ -113,7 +109,9 @@ angular.module('abacuApp')
           state: this.state,
           zip: this.zip,
           paymethod: this.paymethod,
-          wheelchairs: tempChairs
+          wheelchairs: this.wheelchairs.map(function (w) {
+            return w.allDetails();
+          })
         };
       },
 
@@ -134,7 +132,9 @@ angular.module('abacuApp')
           state: this.state,
           zip: this.zip,
           paymethod: this.paymethod,
-          wheelchairs: []
+          wheelchairs: this.wheelchairs.map(function (w) {
+            return w.allDetails();
+          })
         };
       },
 
@@ -217,7 +217,7 @@ angular.module('abacuApp')
 
       getWheelchair: function (index) {
         if (index >= 0 && index < this.wheelchairs.length)
-          return this.wheelchairs[index];
+          return this.wheelchairs[index].wheelchair;
         return null;
       },
 
@@ -232,7 +232,7 @@ angular.module('abacuApp')
         if (this.wheelchairs.length > 0) {
           var total = 0;
           for (var i = 0; i < this.wheelchairs.length; i++) {
-            total += this.wheelchairs[i].getTotalPrice();
+            total += this.wheelchairs[i].wheelchair.getTotalPrice();
           }
           return total;
         }
@@ -291,7 +291,7 @@ angular.module('abacuApp')
             alert('error processing order:'+ data.err);
           }
           for(var i=0; i<curThis.wheelchairs.length; i++)
-            curThis.wheelchairs[i].toggleInOrder();
+            curThis.wheelchairs[i].wheelchair.toggleInOrder();
           deferred.resolve();
         });
         return deferred.promise;
@@ -315,7 +315,7 @@ angular.module('abacuApp')
       newOrder.state = jsonData.state;
       newOrder.zip = jsonData.zip;
       for (var i = 0; i < jsonData.wheelchairs.length; i++) {
-        newOrder.addWheelchair(jsonData.wheelchairs[i]);
+        newOrder.addWheelchair(new Design(jsonData.wheelchairs[i]));
       }
       newOrder.sentDate = jsonData.sentDate;
       return newOrder;
