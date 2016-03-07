@@ -261,6 +261,8 @@ angular.module('abacuApp')
 
 
 
+
+
       /****************Measure Carousel****************/
 
         //The current index of the image shown in the Measure Carousel
@@ -488,6 +490,10 @@ angular.module('abacuApp')
         console.log($scope.getCurPanelID());
         if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
           $scope.curEditWheelchair.setColorForPart($scope.getCurWheelchairPart().partID, newColorID);
+          var ID = $scope.getCurWheelchairPart().partID
+          if($scope.getCurWheelchairPart().partID){
+            $scope.curEditWheelchair.setColorForPart(2000, newColorID);
+          }
           console.log('Changed color option');
         }
       };
@@ -594,7 +600,7 @@ angular.module('abacuApp')
       /*******************Sharing***********************/
 
       // Creates a design from the current wheelchair configuration and saves it in the DB (must be logged in)
-      // 
+      //
       function generateDesignIDForCurrentChair() {
         var design = User.getCurEditWheelchairDesign();
 

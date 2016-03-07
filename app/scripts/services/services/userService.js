@@ -185,11 +185,13 @@ angular.module('abacuApp')
         })
           .then(function(res){
             var data = res.data;
-            
+
           })
       }
 
-      // Make a request to /session. If it succeeds, restore user from response, otherwise, restore from settings
+
+
+       //Make a request to /session. If it succeeds, restore user from response, otherwise, restore from settings
       var updatePromise = $http({
         url: '/session'
         , method: 'POST'

@@ -221,7 +221,7 @@
                 >
                 <td class="sideBar-custom-item-left">
                   <img class="colorOptionsIndicator"
-                       ng-show="option.colors"
+                       data-ng-if="option.colors.length !== 0; getCurCustomizePage().partID !== 2000"
                        src="images/icons/color_option.png"
                        alt="See color options"
                        data-ng-click="setPanel(option.optionID);"/>
@@ -264,7 +264,7 @@
 
             <div id="imgBlock" ng-class="{'noColor': curOption.colors.length === 0}" >
               <img data-ng-src="{{curOption.thumbnailURL}}" height="220" alt="{{option.name}}"/>
-              <section data-ng-if="curOption.colors.length>0">
+              <section data-ng-if="curOption.colors.length>0 && getCurCustomizePage().partID !== 2000">
                 <p>Color</p>
                 <div>
                   <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"

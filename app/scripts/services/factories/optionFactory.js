@@ -26,6 +26,7 @@ angular.module('abacuApp')
 
 
       this.colors = [];
+
       if(optionData.colors) {
         for (var i = 0; i < optionData.colors.length; i++)
           this.colors.push(new Color(optionData.colors[i]));
