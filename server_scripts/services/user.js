@@ -4,6 +4,7 @@
 "use strict";
 
 var dbService = require('./db');
+var dbUtils = require('./dbUtils');
 var hash = require('../services/security').hash;
 var check = require('../services/security').check;
 
@@ -36,45 +37,53 @@ exports.update = function (obj, key, callback) {
     //Make sure the orders are not removed
     obj.orders = existing.orders;
     if (!error) {
-      if (!obj.newPass1 || obj.newPass1.length < 8 || obj.newPass1 !== obj.newPass2) { //If the new password doesn't exist, is too short or does not match the confirmation
-        console.log('bad newpass');
-        //Insert new object without replacing the password
-        delete obj.oldPass;
-        delete obj.newPass1;
-        delete obj.newPass2;
-        dbService.users.insert(obj, key, function(err, body){
-          callback(err, body, 1);
-        });
-      } else {
-        //Check the old password as we would for login
-        hash(obj.oldPass, existing.salt, function (err, oldHash) {
-          if (oldHash !== existing.password) { //Hashes do no match
-            console.log('wrong pass');
+      dbUtils.updateLinkedUserFields(obj, function (err, updatedUser) {
+        if (err) {
+          callback(err);
+        } else {
+          obj = updatedUser;
+          if (!obj.newPass1 || obj.newPass1.length < 8 || obj.newPass1 !== obj.newPass2) { //If the new password doesn't exist, is too short or does not match the confirmation
+            console.log('bad newpass');
             //Insert new object without replacing the password
             delete obj.oldPass;
             delete obj.newPass1;
             delete obj.newPass2;
             dbService.users.insert(obj, key, function(err, body){
-              callback(err, body, 2);
+              callback(err, body, 1);
             });
           } else {
-            //Hash the new password with a new salt
-            hash(obj.newPass1, function (err, salt, hash) {
-              if (err) throw err;
-              console.log('password changed');
-              // store the new salt & hash in the object and insert
-              obj.password = hash;
-              obj.salt = salt;
-              delete obj.oldPass;
-              delete obj.newPass1;
-              delete obj.newPass2;
-              dbService.users.insert(obj, key, function(err, body){
-                callback(err, body, 3);
-              });
+            //Check the old password as we would for login
+            hash(obj.oldPass, existing.salt, function (err, oldHash) {
+              if (oldHash !== existing.password) { //Hashes do no match
+                console.log('wrong pass');
+                //Insert new object without replacing the password
+                delete obj.oldPass;
+                delete obj.newPass1;
+                delete obj.newPass2;
+                dbService.users.insert(obj, key, function(err, body){
+                  callback(err, body, 2);
+                });
+              } else {
+                //Hash the new password with a new salt
+                hash(obj.newPass1, function (err, salt, hash) {
+                  if (err) throw err;
+                  console.log('password changed');
+                  // store the new salt & hash in the object and insert
+                  obj.password = hash;
+                  obj.salt = salt;
+                  delete obj.oldPass;
+                  delete obj.newPass1;
+                  delete obj.newPass2;
+                  dbService.users.insert(obj, key, function(err, body){
+                    callback(err, body, 3);
+                  });
+                });
+              }
             });
           }
-        });
-      }
+        }
+      });
+
     }
   });
 };

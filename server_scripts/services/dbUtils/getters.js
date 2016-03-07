@@ -1,11 +1,13 @@
-/**
- * Provides various helper methods for retrieving Objects with linked fields
- */
+/***********************************************
+ * GETTERS
+ * Helper methods for retrieving linked objects
+ **********************************************/
 
 var _     = require('lodash');
 var async = require('async');
 
-var dbService = require('../services/db');
+var dbService = require('../db');
+var generateUniqueID = require('../generateUniqueID');
 
 // Given a cloudant DB isntance, and a list of object IDs within that DB, returns
 // a list of all the entries corresponding to the given IDs

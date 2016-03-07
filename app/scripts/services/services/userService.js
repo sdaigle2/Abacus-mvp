@@ -128,11 +128,9 @@ angular.module('abacuApp')
       function restoreUserFromCookies() {
         //***************Cookie restore***********
         var wIndex = 0;
-        while (localJSONStorage.get('wheelchair' + wIndex)){
-          var wheelchair = localJSONStorage.get('wheelchair' + wIndex);
-          cart.wheelchairs.push(new Design({
-            'wheelchair': wheelchair
-          }));
+        while (localJSONStorage.get('design' + wIndex)){
+          var design = localJSONStorage.get('design' + wIndex);
+          cart.wheelchairs.push(new Design(design));
           wIndex ++;
         }
 
@@ -333,15 +331,15 @@ angular.module('abacuApp')
         updateDB: updateDB,
 
         updateCart: function () {
-          console.log('wheelchair'+cart.wheelchairs.length);
+          console.log('design'+cart.wheelchairs.length);
 
           if (this.isLoggedIn()) {
             return this.updateDB();
           } else {
             // sync in memory cart with cookie storage
-            localJSONStorage.remove('wheelchair'+cart.wheelchairs.length);
+            localJSONStorage.remove('design'+cart.wheelchairs.length);
             for (var i = 0; i < cart.wheelchairs.length; i++) {
-              localJSONStorage.put('wheelchair' + i, cart.wheelchairs[i].getAll());
+              localJSONStorage.put('design' + i, cart.wheelchairs[i].allDetails());
             }
           }
         },

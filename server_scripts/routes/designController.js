@@ -71,6 +71,7 @@ router.put('/design/:id', restrict, function (req, res) {
   var id = req.params.id;
   var updatedDesign = req.body;
 
+  // First need to get the user so we can check the design update is for one of the users design (special case for Admin users)
   dbService.users.get(req.session.user, function (err, currentUser) {
     if (err) {
       res.status(404);
