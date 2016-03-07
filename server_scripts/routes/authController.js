@@ -58,8 +58,10 @@ router.get('/loadMyDesign', function(req,res){
     if(!err){
       res.json(body);
     }
-    else
-      throw err;
+    else {
+      res.status(400);
+      res.json(err);
+    }
   });
 
 
