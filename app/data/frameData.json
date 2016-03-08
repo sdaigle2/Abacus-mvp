@@ -23,7 +23,7 @@
             "sizes": [],
             "comments": 0,
             "displayColor": 1,
-            "thumbnailURL": "TBD",
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/titanium.png",
             "desc": "A rigid frame is the right option if this is going to be your personal chair.",
             "weight": 0,
             "price": 0,
@@ -96,7 +96,7 @@
             "sizes": [],
             "comments": 0,
             "displayColor": 0,
-            "thumbnailURL": "TBD",
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/titanium.png",
             "desc": "Wheelchairs designed for basketball have a front cowling that prevents your wheels from getting tangled up with your opponentís wheels.",
             "weight": 0,
             "price": 0,
@@ -130,7 +130,7 @@
             "sizes": [],
             "comments": 0,
             "displayColor": 0,
-            "thumbnailURL": "TBD",
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/titanium.png",
             "desc": "Sport wheelchairs that arenít made for the basketball court have no need for the front cowling.  Leave it off to save weight and gain maneuverability.  Tennis chairs have a slightly longer 5th wheel for added stability.",
             "weight": 0,
             "price": 0,
@@ -213,21 +213,21 @@
             "desc": "A great option is a single fifth wheel support in back providing stability while allowing increased center of gravity to increase performance and agility.  Comes Standard on all Thunder Models with a 72mm Micro caster float adjusted to factory specs.",
             "weight": 0,
             "price": 0,
-            "defaultColorID": 4101,
+            "defaultColorID": 1101,
             "colors": [
               {
                 "name": "Matte Black",
-                "colorID": 4101,
+                "colorID": 1101,
                 "hex": "#17202A"
               },
               {
                 "name": "Ruby Red",
-                "colorID": 4102,
+                "colorID": 1102,
                 "hex": "#FF5733"
               },
               {
                 "name": "Ocean Blue",
-                "colorID": 4103,
+                "colorID": 1103,
                 "hex": "#3498DB"
               }
             ]
@@ -244,21 +244,21 @@
             "desc": "The Dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Recommended by team per4max for athletes at every level the addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",
             "weight": 350,
             "price": 250,
-            "defaultColorID": 4201,
+            "defaultColorID": 1101,
             "colors": [
               {
                 "name": "Matte Black",
-                "colorID": 4201,
+                "colorID": 1101,
                 "hex": "#17202A"
               },
               {
                 "name": "Ruby Red",
-                "colorID": 4202,
+                "colorID": 1102,
                 "hex": "#FF5733"
               },
               {
                 "name": "Ocean Blue",
-                "colorID": 4203,
+                "colorID": 1103,
                 "hex": "#3498DB"
               }
             ]
@@ -275,21 +275,21 @@
             "desc": "Experience the added benefits of a 5th wheel with the convenience of removing it seconds.  The removable 5th wheel is great for individuals with smaller cars with limited space!  When you are ready to compete simply install the 5th wheel clamp it down and off you go!",
             "weight": 350,
             "price": 250,
-            "defaultColorID": 4301,
+            "defaultColorID": 1101,
             "colors": [
               {
                 "name": "Matte Black",
-                "colorID": 4301,
+                "colorID": 1101,
                 "hex": "#17202A"
               },
               {
                 "name": "Ruby Red",
-                "colorID": 4302,
+                "colorID": 1102,
                 "hex": "#FF5733"
               },
               {
                 "name": "Ocean Blue",
-                "colorID": 4303,
+                "colorID": 1103,
                 "hex": "#3498DB"
               }
             ]

@@ -8,7 +8,7 @@
 <script src="scripts/canvas/Navigation/js/Code.js"></script>
 
 
-<div id="offClickArea" ng-click="closeAllPanels()" ng-show="getCurPanelID() != -1">
+<div id="offClickArea" ng-click="closeAllPanels()" ng-if="getCurPanelID() != -1">
   <!-- Google Tag Manager -->
   <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5BJDWF"
                     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -39,16 +39,13 @@
                 height="31"
                 style="background-color:#FFFFFF">
         </canvas>
-        <div id="nav_span">HEllo</div>
+        <div id="nav_span"></div>
 
 
       <!-- canvas Navigation Bar -->
 
 
-      <button type="button" id="SaveButton" class="btn"
-              data-ng-class="{'saveButton':saveDropdown === true, 'complete': completed() === null}"
-              data-ng-click="toggleSaveDropDown()">Save & Review
-      </button>
+
     </div>
 
     <div data-ng-if="saveDropdown === true" class="dropdownButton">
@@ -86,12 +83,12 @@
       <!-- Price & Weight Display -->
       <div id="display" class="Book">
 
-        <div>Weight:
-          <span class="medium" data-ng-bind="(getTotalWeight()*getCurUnitSysWeightFactor()).toFixed(2)"></span>
-          <span class="medium" data-ng-bind="getCurUnitSysWeightName()"></span>
-        </div>
-        <div>Price: $<span class="medium" data-ng-bind="getTotalPrice().toFixed(2)"></span></div>
-        <div><span class="medium" data-ng-bind="curFrameData.name"></span></div>
+        <!--<div>Weight:-->
+          <!--<span class="medium" data-ng-bind="(getTotalWeight()*getCurUnitSysWeightFactor()).toFixed(2)"></span>-->
+          <!--<span class="medium" data-ng-bind="getCurUnitSysWeightName()"></span>-->
+        <!--</div>-->
+        <h3><span class="medium" data-ng-bind="curFrameData.name"></span></h3>
+        <h4>$<span class="medium" data-ng-bind="getTotalPrice().toFixed(2)"></span></h4>
       </div>
 
       <!-- BODY -->
@@ -122,7 +119,6 @@
         <!-- MEASURE: Video + gif + details -->
         <div class="main-measure" data-ng-if="getCurPageType() == pageType.MEASURE">
           <div class="measure-top">
-            <h3><strong data-ng-bind="getCurMeasureData().name"></strong></h3>
 
             <table class="measure-tab">
               <tr>
@@ -192,10 +188,11 @@
 
       <!-- SIDEBAR -->
       <div class="sideBarWrapper">
+        <div id="panelMask" ng-if="!isPanelSelected(-1)" data-ng-click="closeAllPanels()"></div>
 
         <!-- CUSTOMIZE: Sidebar -->
 
-        <div class="sideBar" data-ng-if="getCurPageType() == pageType.CUSTOMIZE">
+        <div class="sideBar" data-ng-if="getCurPageType() == pageType.CUSTOMIZE"  >
           <div class="sideBar-header text-center">
             <img class="leftButtonNav" data-ng-src="images/icons/{{left_button}}"
                  data-ng-mouseenter="left_button='circle_left_button_hover.png'" alt="Previous" width="30" height="30"
@@ -221,7 +218,7 @@
                 >
                 <td class="sideBar-custom-item-left">
                   <img class="colorOptionsIndicator"
-                       data-ng-if="option.colors.length !== 0; getCurCustomizePage().partID !== 2000"
+                       data-ng-if="option.colors.length !== 0 && getCurCustomizePage().partID !== 2000"
                        src="images/icons/color_option.png"
                        alt="See color options"
                        data-ng-click="setPanel(option.optionID);"/>
@@ -235,15 +232,16 @@
                   <h4 class="sideBar-custom-item-name" title="{{titleForEllipsis(option.name, 45)}}"
                       data-ng-bind="ellipsisFormat(option.name, 45)"></h4>
                   <h4 class="sideBar-custom-item-details">
-                    <strong>$<span data-ng-bind="option.price.toFixed(2)"></span> | <span
+                    <strong>$<span data-ng-bind="option.price.toFixed(2)"></span> <!--| <span
                       data-ng-bind="(option.weight * getCurUnitSysWeightFactor()).toFixed(2)"></span>
-                      <span data-ng-bind="getCurUnitSysWeightName()"></span></strong>
+                      <span data-ng-bind="getCurUnitSysWeightName()"></span>--></strong>
                   </h4>
 
                   <div class="sideBar-custom-item-buttonRow">
                     <div class="sideBar-custom-item-button text-center"
-                         ng-class="{'detailsSelected': isPanelSelected(option.optionID)}"
-                         data-ng-click="setPanel(option.optionID);">Details
+                         data-ng-click="setPanel(option.optionID);">
+                      <!--<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>-->
+                      <strong>MORE INFO</strong>
                     </div>
                     <div class="sideBar-custom-item-button text-center selected"
                          ng-if="getCurWheelchairPart().optionID === option.optionID">Selected
@@ -259,57 +257,52 @@
           </div>
         </div>
 
+        <!-- detail panel-->
         <div class="panel" data-ng-class="{'hidden': isPanelSelected(-1)}" data-ng-if="!isPanelSelected(-1)">
           <div class="panel-block">
+            <h4 class="medium" data-ng-bind="curOption.name"></h4>
 
-            <div id="imgBlock" ng-class="{'noColor': curOption.colors.length === 0}" >
+            <div id="imgBlock" class="noColor">
               <img data-ng-src="{{curOption.thumbnailURL}}" height="220" alt="{{option.name}}"/>
-              <section data-ng-if="curOption.colors.length>0 && getCurCustomizePage().partID !== 2000">
-                <p>Color</p>
-                <div>
-                  <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
-                     data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
-                     data-ng-style="{'background-color': color.hex, 'max-height':90}"
-                     data-ng-click="setCurOption(curOption.optionID); setCurOptionColor(color.colorID);"
-                     title="{{color.name}}">
-                  </div>
-                </div>
-              </section>
-            </div>
-            <div id="middlePanel">
-              <h4 class="medium" data-ng-bind="curOption.name"></h4>
 
-              <div class="button" data-ng-click="setCurOption(curOption.optionID)"
-                   data-ng-if="getCurWheelchairPart().optionID !== curOption.optionID">Select
-              </div>
-              <div class="active-button button" data-ng-if="getCurWheelchairPart().optionID === curOption.optionID">
-                Selected
-              </div>
             </div>
           </div>
           <div class="panel-block" id="lowerPanel">
             <div>
-              <h5>Details</h5>
-              <h5 class="pAndW">
-                $<span data-ng-bind="curOption.getPrice()"></span> |  <span data-ng-bind="curOption.getWeight()"></span> lbs
-              </h5>
+              <h5><strong>Details</strong></h5>
             </div>
             <div data-ng-bind-html="curOption.getDesc()"></div>
           </div>
-          <div class="panel-block" data-ng-if="curOption.sizes.length>0">
-            <h5>Size</h5>
 
-            <div data-ng-repeat="size in curOption.sizes"
+          <div class="panel-block">
+            <section data-ng-if="curOption.colors.length>0 && getCurCustomizePage().partID !== 2000">
+              <h5><strong>Color</strong></h5>
+            <div>
+              <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
+                   data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
+                   data-ng-style="{'background-color': color.hex, 'max-height':90}"
+                   data-ng-click="setCurOption(curOption.optionID); setCurOptionColor(color.colorID);"
+                   title="{{color.name}}">
+              </div>
+            </div>
+            </section>
+          </div>
+          <div class="panel-block" data-ng-if="curOption.sizes.length>0">
+            <h5><strong>Size</strong></h5>
+
+            <div>
+              <div data-ng-repeat="size in curOption.sizes"
                  data-ng-bind="size"
                  class="size-button medium"
                  data-ng-click="setCurOption(curOption.optionID); setCurOptionSize($index);"
-                 data-ng-class="{'active': ($index === getCurWheelchairPart().sizeIndex) && (getCurWheelchairPart().optionID === getCurPanelID())}">
+                   data-ng-class="{'active': ($index === getCurWheelchairPart().sizeIndex) && (getCurWheelchairPart().optionID === getCurPanelID())}">
+              </div>
             </div>
           </div>
         </div>
         <!-- MEASURE: Sidebar-->
 
-        <div class="sideBar" data-ng-if="getCurPageType() == pageType.MEASURE">
+        <div class="sideBar sidebarM"  data-ng-if="getCurPageType() == pageType.MEASURE" >
           <div class="sideBar-header text-center">
             <img class="leftButtonNav" data-ng-src="images/icons/{{left_button}}"
                  data-ng-mouseenter="left_button='circle_left_button_hover.png'" alt="Previous" width="30" height="30"
@@ -365,19 +358,29 @@
             </div>
           </div>
         </div>
-      </div>
-      <!--Unit Toggle-->
-      <div class="unit-toggle">
-        <h4 id="unitLabel" class="book">Unit: </h4>
-        <div class="onoffswitch">
-          <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked
-                 data-ng-model="curUnit" ng-click="unityToggle()">
-          <label class="onoffswitch-label" for="myonoffswitch">
-            <span class="onoffswitch-inner"></span>
-            <span class="onoffswitch-switch"></span>
-          </label>
+
+        <!--save and review button-->
+        <div id="SaveButton" class="btn medium" data-ng-class="{'sidebarM': isInMPage()}"
+                data-ng-click="openSaveDropDown()">Save & Review
+        </div>
+
+        <div class="unit-toggle" data-ng-class="{'sidebarM': isInMPage()}">
+          <div class="onoffswitch">
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked
+                   data-ng-model="curUnit" ng-click="unityToggle()">
+            <label class="onoffswitch-label" for="myonoffswitch">
+              <span class="onoffswitch-inner"></span>
+              <span class="onoffswitch-switch"></span>
+            </label>
+          </div>
         </div>
       </div>
+
+
+
+
+      <!--Unit Toggle-->
+
       <div id="siteCredit">
           <!--<a ng-href="#/about"><img ng-src="images/tinker_logo_small.png"></a>-->
           <a href="http://www.intelliwheels.net/" target="_blank"><img ng-src="images/iw_logo_small.png" alt="Intelliwheels, Inc.">

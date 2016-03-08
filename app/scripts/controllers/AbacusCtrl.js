@@ -225,6 +225,11 @@ angular.module('abacuApp')
         return curPage.type;
       };
 
+      $scope.isInMPage = function (){
+        console.log($scope.getCurPageType() == $scope.pageType.MEASURE);
+        return $scope.getCurPageType() == $scope.pageType.MEASURE;
+      };
+
       //Returns the current part from curFrameData based on curPage.page[CUSTOMIZE].ID
       $scope.getCurPartData = function () {
         return $scope.curFrameData.getPart($scope.getCurCustomizePage().partID);
@@ -416,6 +421,11 @@ angular.module('abacuApp')
         if(1){
           $scope.saveDropdown = !$scope.saveDropdown;
         }
+      };
+
+      $scope.openSaveDropDown = function() {
+        $scope.saveDropdown = true;
+        console.log('im opening')
       };
 
       $scope.closeSaveDropDown = function () {
