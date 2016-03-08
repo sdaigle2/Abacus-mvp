@@ -1,0 +1,127 @@
+/***************************
+ ***************************
+ * Styles for Compare Page *
+ ***************************
+ ***************************/
+
+/*************************
+ ******Shared Styles******
+ *************************/
+
+/********************
+ **Background Style**
+ ********************/
+
+.background {
+	background: #F0F0F0;
+}
+
+/**************
+*Header Styles*
+**************/
+.header {
+	width: 100%;
+	padding: 50px;
+	padding-left: 80px;
+	padding-right: 80px;
+}
+
+.header-title {
+	display:inline-block;
+	margin-top: 0px;
+	float: left;
+}
+
+.add-wheelchair-button {
+	display:inline-block;
+	float: right;
+	background-color: #4896FF;
+	color: white;
+	margin-left: 0px;
+	border: 1px solid #4896FF;
+	border-radius: 0;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.add-wheelchair-button:hover {
+	background-color: white;
+	color: #4896FF;
+	margin-left: 0px;
+	border: 1px solid #4896FF;
+};
+
+/****************************
+**Chair Canvas List Styles***
+****************************/
+
+.chair-canvas-list-holder {
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+	display: inline-block;
+	margin: 100px;
+	margin-left: 150px;
+	margin-right: 150px;
+}
+
+.chair-canvas-list {
+	list-style-type: none;
+	margin: 0;
+	padding: 50px;
+	padding-left: 80px;
+	padding-right: 80px;
+}
+
+.chair-canvas-item {
+	text-align: center;
+	display: inline-block;
+	float: left;
+	margin: auto;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.compare-check-box-holder {
+	background-color: #4896FF;
+	color: white;
+	margin-left: 0px;
+	border: 1px solid #4896FF;
+	border-radius: 0;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.compare-check-box {
+	margin-right: 10px;
+}
+
+/*******************************
+ *****Part Comparison Table*****
+ *******************************/
+
+.compare-table-holder {
+	width: 100%;
+	padding: 10px;
+	display: inline-block;
+	margin: 50px;
+	margin-left: 75px;
+	margin-right: 75px;
+}
+
+.compare-table {
+	width: 100%;
+}
+
+.compare-table-row {
+	width: 100%;
+}
+
+.compare-table-row-header {
+	background: white;
+	text-align: center;
+}
+
+.compare-table-row-data {
+
+}

@@ -41,6 +41,10 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/compare', {
+        templateUrl: 'views/compare.html',
+        controller: 'CompareCtrl'
+      })
       .when('/cart', {
         templateUrl: 'views/checkout/cart.html',
         controller: 'CartCtrl',
