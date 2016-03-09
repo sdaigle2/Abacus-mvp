@@ -14,6 +14,7 @@
 
 .background {
 	background: #F0F0F0;
+	height: 100%;
 }
 
 /**************
@@ -24,12 +25,18 @@
 	padding: 50px;
 	padding-left: 80px;
 	padding-right: 80px;
+	margin-bottom: 20px;
 }
 
 .header-title {
 	display:inline-block;
 	margin-top: 0px;
 	float: left;
+}
+
+.no-wheelchairs-text {
+	padding: 10px;
+	margin: auto;
 }
 
 .add-wheelchair-button {
@@ -68,60 +75,100 @@
 .chair-canvas-list {
 	list-style-type: none;
 	margin: 0;
-	padding: 50px;
-	padding-left: 80px;
-	padding-right: 80px;
+	padding: 0px;
+	width: 100%;
+	display: table;
+  	table-layout: fixed;
 }
 
 .chair-canvas-item {
 	text-align: center;
-	display: inline-block;
-	float: left;
 	margin: auto;
-	margin-left: 20px;
-	margin-right: 20px;
+	display: table-cell;
+	width: auto;
 }
 
 .compare-check-box-holder {
 	background-color: #4896FF;
 	color: white;
-	margin-left: 0px;
+	margin: auto;
 	border: 1px solid #4896FF;
 	border-radius: 0;
-    padding-top: 6px;
-    padding-bottom: 6px;
+	margin-top: 5px;
+    width: 150px;
 }
 
-.compare-check-box {
-	margin-right: 10px;
+.compare-check-box-holder:hover {
+	background-color: white;
+	color: #4896FF;
+	border: 1px solid #4896FF;
 }
+
+.comare-button-text {
+	padding: 3px;
+	margin: 0px;
+}
+
+/*.compare-check-box {
+	margin-left: 10px;
+}*/
 
 /*******************************
  *****Part Comparison Table*****
  *******************************/
 
-.compare-table-holder {
+.compare-list-holder {
 	width: 100%;
 	padding: 10px;
 	display: inline-block;
-	margin: 50px;
-	margin-left: 75px;
-	margin-right: 75px;
+	margin: auto;
 }
 
-.compare-table {
+.compare-list {
 	width: 100%;
+	padding: 0px;
 }
 
-.compare-table-row {
+.compare-list-item {
 	width: 100%;
+	list-style-type: none;
 }
 
-.compare-table-row-header {
+.compare-list-item-header {
+	width: 90%;
+	padding: 10px;
+	margin: auto;
+	margin-bottom: 5px;
 	background: white;
 	text-align: center;
+	font-size: 25px;
+	font-weight: 500;
+	color: #808184;
 }
 
-.compare-table-row-data {
+.option-comparison-list {
+	list-style-type: none;
+	width: 100%;
+	display: table;
+  	table-layout: fixed;
+  	padding: 0px;
+  	margin-top: 20px;
+  	margin-bottom: 20px;
+}
 
+.option-comparison-list-item {
+	text-align: center;
+	margin: auto;
+	display: table-cell;
+	width: auto;
+	font-size: 20px;
+}
+
+.option-comparison-list-item-text {
+/*	display:inline-block;
+	float: left;*/
+}
+
+.option-comparison-list-seperator {
+	border-right: thick #808184;
 }

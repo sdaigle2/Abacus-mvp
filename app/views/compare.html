@@ -6,31 +6,43 @@
 	</div>
 
 	<div class="chair-canvas-list-holder">
-		<h1 ng-if="comparisons.length === 0">No Designs Selected For Comparison</h1>
+		<h1 class="no-wheelchairs-text" ng-if="comparisons.length === 0">No Designs Selected For Comparison</h1>
 		<ul class="chair-canvas-list">
 			<li class="chair-canvas-item" ng-repeat="item in comparisons">
 				<p style="font-weight: bold;">{{item.design.wheelchair.title}}</p>
 				<p style="font-weight: bold;">${{item.design.wheelchair.getTotalPrice().toFixed(2)}}</p>
 				<canvas my-canvas img_arr={{item.design.wheelchair.getPreviewImages(3)}}
 		                width="190"></canvas>
-                <div class="compare-check-box-holder">
-                	COMPARE <input type="checkbox" class="compare-check-box" ng-model="item.checked" ng-click="comparisons.splice($index, 1)">
+                <div class="compare-check-box-holder" ng-click="comparisons.splice($index, 1)">
+                	<p class="comare-button-text">COMPARE  ✓</p>
                 </div>
 			</li>
 		</ul>
 	</div>
 	<br>
-	<div class="compare-table-holder">
-		<table class="compare-table">
+	<div class="compare-list-holder">
+<!-- 		<table class="compare-table">
 			<tr class="compare-table-row" ng-repeat="partID in getPartIDs()">
-				<th class="compare-table-row-header">
+				<th class="compare-list-row-header">
 					{{getPartNameByID(partID)}}
 				</th>
 				<td class="compare-table-row-data" ng-repeat="option in getComparedOptionsByPartID(partID) track by $index">
 					{{option}}
 				</td>
 			</tr>
-		</table>
+		</table> -->
+		<ul class="compare-list">
+			<li class="compare-list-item" ng-repeat="partID in getPartIDs()">
+				<div class="compare-list-item-header">
+					{{getPartNameByID(partID)}}
+				</div>
+				<ul class="option-comparison-list">
+					<li class="option-comparison-list-item" ng-repeat="item in comparisons" style="{{!$last ? 'border-right: solid #808184;' : ''}}">
+						<p class="option-comparison-list-item-text">{{getChairPartOption(item.design.wheelchair, partID)}}</p>
+					</li>
+				</ul>
+			</li>
+		</ul>
 		<!-- <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button>
 		<div id="demo" class="collapse">
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit,

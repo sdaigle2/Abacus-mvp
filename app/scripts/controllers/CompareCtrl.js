@@ -17,7 +17,10 @@ angular.module('abacuApp')
   	},{
   		design: new Design(TEMP_CHAIR),
   		checked: true
-  	}];
+  	},{
+      design: new Design(TEMP_CHAIR),
+      checked: true
+    }];
 
   	// Helper method to get Frame for each wheelchair in the $scope.comparisons list
   	function getWheelchairFrames() {
@@ -53,6 +56,10 @@ angular.module('abacuApp')
 
   		return comparedOptions;
   	};
+
+    $scope.getChairPartOption = function (chair, partID) {
+      return chair.getPartDetails(partID, User.getUnitSys()).optionName;
+    };
 
   }])
   .value('TEMP_CHAIR', {
