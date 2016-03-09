@@ -58,6 +58,7 @@
 	border: 1px solid #4896FF;
 };
 
+
 /****************************
 **Chair Canvas List Styles***
 ****************************/
@@ -96,6 +97,7 @@
 	border-radius: 0;
 	margin-top: 5px;
     width: 150px;
+    cursor: pointer;
 }
 
 .compare-check-box-holder:hover {
@@ -107,11 +109,27 @@
 .comare-button-text {
 	padding: 3px;
 	margin: 0px;
+	display:inline-block;
 }
 
-/*.compare-check-box {
-	margin-left: 10px;
-}*/
+.compare-button-check-text {
+	text-align: center;
+	width: 17px;
+	height: 17px;
+	margin-top: 2px;
+	padding: 3px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+.compare-button-checked-text {
+	background: white;
+	color: #4896FF;
+}
+
+.compare-button-unchecked-text {
+	background: #4896FF;
+	color: white;
+}
 
 /*******************************
  *****Part Comparison Table*****

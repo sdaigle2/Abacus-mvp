@@ -4,23 +4,24 @@
 'use strict';
 
 angular.module('abacuApp')
-  .controller('CompareCtrl',['$scope', 'Design', 'TEMP_CHAIR', '_', 'FrameData', 'User',
-  	function ($scope, Design, TEMP_CHAIR, _, FrameData, User) {
-
-  	$scope.addWheelchair = function () {
-  		alert('TODO: addWheelchair');
+  .controller('CompareCtrl',['$scope', 'Design', 'TEMP_CHAIR', '_', 'FrameData', 'User', 'MAX_COMPARISON_CHAIRS', 'ComparedDesigns',
+  	function ($scope, Design, TEMP_CHAIR, _, FrameData, User, MAX_COMPARISON_CHAIRS, ComparedDesigns) {
+    $scope.MAX_COMPARISON_CHAIRS = MAX_COMPARISON_CHAIRS;
+  	
+    $scope.addWheelchair = function () {
+      // TODO: Find out what to do when add wheelchair is clicked
+      $scope.comparisons.push({
+        design: new Design(TEMP_CHAIR),
+        checked: true
+      });
   	};
 
-  	$scope.comparisons = [{
-  		design: new Design(TEMP_CHAIR),
-  		checked: true
-  	},{
-  		design: new Design(TEMP_CHAIR),
-  		checked: true
-  	},{
-      design: new Design(TEMP_CHAIR),
-      checked: true
-    }];
+    $scope.comparisons = ComparedDesigns.getDesigns().map(function (design) {
+      return {
+        design: design,
+        checked: true
+      };
+    });
 
   	// Helper method to get Frame for each wheelchair in the $scope.comparisons list
   	function getWheelchairFrames() {
@@ -48,18 +49,13 @@ angular.module('abacuApp')
   		return _.uniq(partIDsTotal);
   	};
 
-  	$scope.getComparedOptionsByPartID = function (partID) {
-  		var wheelchairs = _.map($scope.comparisons, 'design.wheelchair');
-  		var comparedOptions = wheelchairs.map(function (chair) {
-  			return chair.getPartDetails(partID, User.getUnitSys()).optionName;
-  		});
-
-  		return comparedOptions;
-  	};
-
     $scope.getChairPartOption = function (chair, partID) {
       return chair.getPartDetails(partID, User.getUnitSys()).optionName;
     };
+
+    $scope.$watchCollection('comparisons', function (comparisons) {
+      ComparedDesigns.setDesigns(_.map(comparisons, 'design'));
+    });
 
   }])
   .value('TEMP_CHAIR', {

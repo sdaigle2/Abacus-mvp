@@ -2,7 +2,7 @@
 <div class="background">
 	<div class="header">
 		<h3 class="header-title">COMPARE</h3>
-		<button type="submit" ng-click="addWheelchair()" class="add-wheelchair-button">Add Wheelchair</button>
+		<button type="submit" ng-click="addWheelchair()" ng-disabled="comparisons.length >= MAX_COMPARISON_CHAIRS" class="add-wheelchair-button">Add Wheelchair</button>
 	</div>
 
 	<div class="chair-canvas-list-holder">
@@ -13,24 +13,14 @@
 				<p style="font-weight: bold;">${{item.design.wheelchair.getTotalPrice().toFixed(2)}}</p>
 				<canvas my-canvas img_arr={{item.design.wheelchair.getPreviewImages(3)}}
 		                width="190"></canvas>
-                <div class="compare-check-box-holder" ng-click="comparisons.splice($index, 1)">
-                	<p class="comare-button-text">COMPARE  ✓</p>
+                <div class="compare-check-box-holder" ng-click="comparisons.splice($index, 1)" ng-mouseenter="item.checked = false" ng-mouseleave="item.checked = true">
+                	<p class="comare-button-text">COMPARE  <span class="compare-button-check-text {{item.checked ? 'compare-button-checked-text' : 'compare-button-unchecked-text'}}">{{item.checked ? '✓' : 'X'}}</span></p>
                 </div>
 			</li>
 		</ul>
 	</div>
 	<br>
 	<div class="compare-list-holder">
-<!-- 		<table class="compare-table">
-			<tr class="compare-table-row" ng-repeat="partID in getPartIDs()">
-				<th class="compare-list-row-header">
-					{{getPartNameByID(partID)}}
-				</th>
-				<td class="compare-table-row-data" ng-repeat="option in getComparedOptionsByPartID(partID) track by $index">
-					{{option}}
-				</td>
-			</tr>
-		</table> -->
 		<ul class="compare-list">
 			<li class="compare-list-item" ng-repeat="partID in getPartIDs()">
 				<div class="compare-list-item-header">
