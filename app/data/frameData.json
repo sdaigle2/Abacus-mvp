@@ -525,46 +525,54 @@
             "displayColor": 1,
             "thumbnailURL": "TBD",
             "desc": "For extra toughness, upgrade your wheels so that they accept extra large 5/8\" axles.  These axles will accept the bumps and bruises of even the toughest tournament play.",
-            "defaultColorID": 6501,
+            "defaultColorID": 6401,
             "colors": [
               {
                 "name": "Black",
-                "colorID": 6501,
+                "colorID": 6401,
+		"linkToColorID": 6401,
                 "hex": "#17202A"
               },
               {
                 "name": "White",
-                "colorID": 6502,
+                "colorID": 6402,
+		"linkToColorID": 6402,
                 "hex": "#FDFEFE"
               },
               {
                 "name": "Blue",
-                "colorID": 6503,
+                "colorID": 6403,
+		"linkToColorID": 6403,
                 "hex": "#3498DB"
               },
               {
                 "name": "Red",
-                "colorID": 6504,
+                "colorID": 6404,
+		"linkToColorID": 6404,
                 "hex": "#FF5733"
               },
               {
                 "name": "Yellow",
-                "colorID": 6505,
+                "colorID": 6405,
+		"linkToColorID": 6405,
                 "hex": "#FFC300"
               },
               {
                 "name": "Green",
-                "colorID": 6506,
+                "colorID": 6406,
+		"linkToColorID": 6406,
                 "hex": "#27AE60"
               },
               {
                 "name": "Orange",
-                "colorID": 6507,
+                "colorID": 6407,
+		"linkToColorID": 6407,
                 "hex": "#FF6F00"
               },
               {
                 "name": "Pink",
-                "colorID": 6508,
+                "colorID": 6408,
+		"linkToColorID": 6408,
                 "hex": "#FF33FF"
               }
             ]
