@@ -40,8 +40,8 @@ angular.module('abacuApp')
 
 
 
-      $scope.left_button = 'circle_left_button.png';
-      $scope.right_button = 'circle_right_button.png';
+      $scope.left_button = 'arrow_left.png';
+      $scope.right_button = 'arrow_right.png';
         //All the data about the current frame (loaded by init)
       $scope.curFrameData = null;
 
@@ -226,7 +226,6 @@ angular.module('abacuApp')
       };
 
       $scope.isInMPage = function (){
-        console.log($scope.getCurPageType() == $scope.pageType.MEASURE);
         return $scope.getCurPageType() == $scope.pageType.MEASURE;
       };
 
@@ -528,6 +527,7 @@ angular.module('abacuApp')
       $scope.setPanel = function (id) {
           if ($scope.isPanelSelected(id)) {
             curPanel = -1;
+            console.log('I am true')
             $scope.curOption = $scope.getCurPartData().getDefaultOption();
           }
           else {

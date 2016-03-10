@@ -310,6 +310,8 @@ body {
 	--light-grey:"#939597";
 }
 
+
+/****gotham font family*****/
 .light{
   font-family: 'Gotham A', 'Gotham B';
 	font-weight: 300;
@@ -380,6 +382,17 @@ body {
 	font-family: 'Gotham Narrow A','Gotham Narrow B';
 	font-weight: 500;
 	font-style: normal;
+}
+
+/**** Oswald font family*****/
+
+.oBold{
+  font-family: 'oswald-bold';
+  font-size: 1em;
+}
+.oReg{
+  font-family: 'oswald-regular';
+  font-size: 1em;
 }
 
 .sexy-toggle{

@@ -21,15 +21,45 @@
 </div>
 
 <div id="wrapper">
+  <div id="saveAction" ng-click="closeSaveDropDown()" ng-if="saveDropdown === true">
+    <div class="actionPanel">
+      <section data-ng-click="saveDesign()" >
+        <img
+             data-ng-src="images/abacus_page/save_review/add_to_cart.png" alt="save to my design">
+        <h6 class="medium"> ADD TO CART</h6>
+      </section>
+      <section data-ng-click="saveForLater()">
+        <img
+             data-ng-src="images/abacus_page/save_review/add_to_mydesigns.png" alt="save to my design">
+        <h6 class="medium"> SAVE TO MY DESIGN
+          <span class="glyphicon glyphicon-question-sign"
+                data-ng-init="addiInfo1 = false" data-ng-mouseover="addiInfo1 = true"
+                data-ng-mouseleave="addiInfo1 = false"></span></h6>
+        <p ng-show="addiInfo1" class="medium">Design will be saved under your account for future use</p>
+      </section>
+      <section data-ng-click="saveComputer()" >
+        <img
+             data-ng-src="images/abacus_page/save_review/download_pdf.png" alt="save to my design">
+        <h6 class="medium"> DOWNLOAD PDF</h6>
+      </section>
+      <section data-ng-click="shareDesignID()">
+        <img
+             data-ng-src="images/abacus_page/save_review/share.png" alt="save to my design">
+        <h6 class="medium"> SHARE DESIGN
+          <span class="glyphicon glyphicon-question-sign"
+                data-ng-init="addiInfo2 = false" data-ng-mouseover="addiInfo2 = true"
+                data-ng-mouseleave="addiInfo2 = false"></span> </h6>
+        <p ng-show="addiInfo2" class="medium">Share your design with friends, doctors or dealers</p>
+      </section>
+      <div class="closeTab" ng-click="closeSaveDropDown()"><span class="glyphicon glyphicon-remove"></span></div>
+
+    </div>
+  </div>
   <div id="background">
+
 
     <!-- Progress Bar and Save Button-->
     <div id="progressSaveBar">
-
-
-
-
-
       <!-- canvas Navigation Bar -->
         <canvas ng-mouseover="nothing()"
                 ng-mouseleave="nothing()"
@@ -40,44 +70,11 @@
                 style="background-color:#FFFFFF">
         </canvas>
         <div id="nav_span"></div>
-
-
       <!-- canvas Navigation Bar -->
-
-
-
     </div>
 
-    <div data-ng-if="saveDropdown === true" class="dropdownButton">
-      <table class="dropdownTable">
-        <tr>
-          <td id="panelIcon1"><img data-ng-click="saveDesign()"
-                                   data-ng-src="images/abacus_page/save_review/on_save_to_my_design.png" alt="save to my design">
-            <img data-ng-click="saveDesign()" class=" iconHover"
-                 data-ng-src="images/abacus_page/save_review/save_to_my_design.png" alt="save to my design">
-            <h4 data-ng-click="saveDesign()">{{currChairIsNew ? 'Add to cart' : 'Save Changes'}}</h4>
-          </td>
-          <td><img data-ng-click="saveComputer()"
-                   data-ng-src="images/abacus_page/save_review/on_save_to_computer.png" alt="save to computer">
-            <img data-ng-click="saveComputer()" class="iconHover"
-                 data-ng-src="images/abacus_page/save_review/save_to_computer.png" alt="save to computer">
-            <h4 data-ng-click="saveComputer()" id="panelText">Download a PDF</h4>
-          </td>
-          <td id="panelIcon3"><img data-ng-click="shareDesignID()" data-ng-src="images/abacus_page/save_review/share.png" alt="share with friends">
-            <img data-ng-click="shareDesignID()" class="iconHover" style="opacity: 0; cursor: auto;"
-                 data-ng-src="images/abacus_page/save_review/share.png" alt="share with friends">
-            <h4 data-ng-click="shareDesignID()" style="color: grey;">Share with Friend</h4>
-          </td>
-          <td id="panelIcon3"><img data-ng-click="saveForLater()" data-ng-src="images/abacus_page/save_review/share.png" alt="share with friends">
-            <img data-ng-click="saveForLater()" class="iconHover" style="opacity: 0; cursor: auto;"
-                 data-ng-src="images/abacus_page/save_review/share.png" alt="share with friends">
-            <h4 data-ng-click="saveForLater()" style="color: grey;">Save For Later</h4>
-          </td>
-        </tr>
-      </table>
-    </div>
 
-    <div class="appBody" data-ng-class="{'appBodyShow': saveDropdown === true}">
+    <div class="appBody">
 
 
       <!-- Price & Weight Display -->
@@ -195,13 +192,13 @@
         <div class="sideBar" data-ng-if="getCurPageType() == pageType.CUSTOMIZE"  >
           <div class="sideBar-header text-center">
             <img class="leftButtonNav" data-ng-src="images/icons/{{left_button}}"
-                 data-ng-mouseenter="left_button='circle_left_button_hover.png'" alt="Previous" width="30" height="30"
-                 data-ng-mouseleave="left_button='circle_left_button.png'"
+                 data-ng-mouseenter="left_button='arrow_left.png'" alt="Previous" width="30" height="30"
+                 data-ng-mouseleave="left_button='arrow_left.png'"
                  data-ng-click="pageSwitchStep(-1)"
                  data-ng-show="getCurPage().index > 0" />
             <img class="rightButtonNav" data-ng-src="images/icons/{{right_button}}" alt="Next" width="30" height="30"
-                 data-ng-mouseenter="right_button='circle_right_button_hover.png'"
-                 data-ng-mouseleave="right_button='circle_right_button.png'"
+                 data-ng-mouseenter="right_button='arrow_right.png'"
+                 data-ng-mouseleave="right_button='arrow_right.png'"
                  data-ng-click="pageSwitchStep(1)"/>
 
             <h3 class="curPage-header" data-ng-bind="getCurPartData().name"></h3>
@@ -217,11 +214,11 @@
                   data-ng-style="(isSidebarColored(option.optionID)) && {'border-left': 'solid 5px ' + getSidebarColor(option.optionID) }"
                 >
                 <td class="sideBar-custom-item-left">
-                  <img class="colorOptionsIndicator"
-                       data-ng-if="option.colors.length !== 0 && getCurCustomizePage().partID !== 2000"
-                       src="images/icons/color_option.png"
-                       alt="See color options"
-                       data-ng-click="setPanel(option.optionID);"/>
+                  <!--<img class="colorOptionsIndicator"-->
+                       <!--data-ng-if="option.colors.length !== 0 && getCurCustomizePage().partID !== 2000"-->
+                       <!--src="images/icons/color_option.png"-->
+                       <!--alt="See color options"-->
+                       <!--data-ng-click="setPanel(option.optionID);"/>-->
                   <img data-ng-src="{{option.thumbnailURL}}" height="100" width="100"
                        ng-class="{'colorCursor': option.colors.length > 0}"
                        data-ng-click="setPanel(option.optionID);"
@@ -235,13 +232,19 @@
                     <strong>$<span data-ng-bind="option.price.toFixed(2)"></span> <!--| <span
                       data-ng-bind="(option.weight * getCurUnitSysWeightFactor()).toFixed(2)"></span>
                       <span data-ng-bind="getCurUnitSysWeightName()"></span>--></strong>
+                    <img width="7px" data-ng-src="images/abacus_page/customize/color_option.png">
                   </h4>
 
                   <div class="sideBar-custom-item-buttonRow">
-                    <div class="sideBar-custom-item-button text-center"
+                    <div class="sideBar-custom-item-button moreInfo text-center"
                          data-ng-click="setPanel(option.optionID);">
-                      <!--<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>-->
-                      <strong>MORE INFO</strong>
+                        <section data-ng-show="!isPanelSelected(option.optionID)">
+                          <img  width="7px" src="images/abacus_page/customize/more_info.png">
+                        <strong >MORE INFO</strong></section>
+
+                        <section data-ng-show="isPanelSelected(option.optionID)">
+                          <img  width="7px" src="images/abacus_page/customize/less_info.png">
+                        <strong >LESS INFO</strong></section>
                     </div>
                     <div class="sideBar-custom-item-button text-center selected"
                          ng-if="getCurWheelchairPart().optionID === option.optionID">Selected
@@ -305,15 +308,15 @@
         <div class="sideBar sidebarM"  data-ng-if="getCurPageType() == pageType.MEASURE" >
           <div class="sideBar-header text-center">
             <img class="leftButtonNav" data-ng-src="images/icons/{{left_button}}"
-                 data-ng-mouseenter="left_button='circle_left_button_hover.png'" alt="Previous" width="30" height="30"
-                 data-ng-mouseleave="left_button='circle_left_button.png'"
+                 data-ng-mouseenter="left_button='arrow_left.png'" alt="Previous"
+                 data-ng-mouseleave="left_button='arrow_left.png'"
                  data-ng-click="pageSwitchStep(-1)"/>
-            <img class="rightButtonNav" data-ng-src="images/icons/{{right_button}}" alt="Next" width="30" height="30"
-                 data-ng-mouseenter="right_button='circle_right_button_hover.png'"
-                 data-ng-mouseleave="right_button='circle_right_button.png'"
+            <img class="rightButtonNav" data-ng-src="images/icons/{{right_button}}" alt="Next"
+                 data-ng-mouseenter="right_button='arrow_right.png'"
+                 data-ng-mouseleave="right_button='arrow_right.png'"
                  data-ng-click="pageSwitchStep(1)"
                  data-ng-if="getCurPage().index < getCurPages().length - 1" />
-            <img class="rightButtonNav" data-ng-src="images/icons/complete_check.png" width="30" height="30"
+            <img class="rightButtonNav" data-ng-src="images/icons/complete_check.png"
                  data-ng-click="toggleSaveDropDown()"
                  data-ng-if="getCurPage().index === getCurPages().length - 1" alt="Complete"/>
 
@@ -360,11 +363,11 @@
         </div>
 
         <!--save and review button-->
-        <div id="SaveButton" class="btn medium" data-ng-class="{'sidebarM': isInMPage()}"
+        <div id="SaveButton" class="btn medium" data-ng-class="{'sidebarMSave': getCurPageType() == pageType.MEASURE}"
                 data-ng-click="openSaveDropDown()">Save & Review
         </div>
 
-        <div class="unit-toggle" data-ng-class="{'sidebarM': isInMPage()}">
+        <div class="unit-toggle" data-ng-class="{'sidebarMSave': isInMPage()}">
           <div class="onoffswitch">
             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked
                    data-ng-model="curUnit" ng-click="unityToggle()">

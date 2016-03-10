@@ -16,6 +16,78 @@
   background: linear-gradient(#EAEAEA, #FFFFFF);
 }
 
+
+
+
+
+/************save action panel********************/
+#saveAction{
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index:999;
+}
+
+
+#saveAction .actionPanel{
+  margin: auto;
+  position: absolute;
+  top: calc(50vh - 129px);
+  left: calc(50vw - 350px);
+  width: 700px;
+  background-color: white;
+  z-index: 2;
+}
+#saveAction section{
+  display: inline-block;
+  margin: 35px 0px;
+  text-align: center;
+  width: 166px;
+}
+
+#saveAction section:hover{
+  cursor: pointer;
+}
+
+#saveAction section img{
+  width: 70px;
+  height: 70px;
+  object-fit: none;
+  object-position: 0 0;
+}
+
+#saveAction section img:hover{
+  object-position: -70px 0;
+}
+
+
+#saveAction section span{
+  position: relative;
+  left: 5px;
+}
+
+#saveAction section p {
+  position: absolute;
+  width: 158px;
+  bottom: -48px;
+  background-color: lightgrey;
+  padding: 5px;
+}
+
+#saveAction .closeTab{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+#saveAction .closeTab:hover{
+  cursor: pointer;
+}
+
+
+
+
 /******************Progress Bar******************/
 #progressSaveBar {
   position: relative;
@@ -305,7 +377,7 @@
 
 .main-custom .main-custom-wheelchairDisplay {
   margin-top: 25px;
-  margin-left: calc(20vw - 66px);
+  margin-left: calc(20vw - 176px);
   min-width: 600px;
   min-height: 450px;
   width: calc(60vw - 198px);
@@ -498,6 +570,10 @@
   top: -84px;
   position: relative;
 }
+.sidebarMSave{
+  top: -70px;
+  position: relative;
+}
 
 .sideBar-header {
   z-index: 3;
@@ -510,19 +586,19 @@
 }
 
 img.leftButtonNav {
-  width: 30px;
-  height: 30px;
+  width: 23px;
+  height: 53px;
   position: absolute;
-  top: 12px;
-  left: 10px;
+  top: 1px;
+  left: 0;
 }
 
 img.rightButtonNav {
-  width: 30px;
-  height: 30px;
+  width: 23px;
+  height: 53px;
   position: absolute;
-  top: 12px;
-  right: 10px;
+  top: 1px;
+  right: 0px;
 }
 
 .leftButtonNav:hover {
@@ -631,6 +707,12 @@ img.rightButtonNav {
   height: 25px;
 }
 
+.sideBar-custom-item-right .sideBar-custom-item-details img {
+  width: 20px;
+  position: relative;
+  bottom: 5px;
+}
+
 .sideBar-custom-item-right .sideBar-custom-item-buttonRow {
   height: 25px;
   padding: 0px 8px;
@@ -638,8 +720,20 @@ img.rightButtonNav {
   width: 200px;
   position: relative;
   z-index: 3;
+  color: #4f9dff;
 
 }
+
+
+.sideBar-custom-item-right .sideBar-custom-item-buttonRow .moreInfo:hover{
+  background-color: transparent;
+}
+
+.sideBar-custom-item-right .sideBar-custom-item-buttonRow .moreInfo img{
+  position: relative;
+  bottom: 1px;
+}
+
 
 .sideBar-custom-item .sideBar-custom-item-right-selected {
   height: 120px;
