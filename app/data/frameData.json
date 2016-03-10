@@ -475,6 +475,7 @@
             "thumbnailURL": "TBD",
             "desc": "The Spinergy Sport Light Extreme (SLX) is just like the regular Spinergy wheels but lighter.  Amp up your game and add maneuverability by decreasing weight and rotational inertia with the SLX wheels.",
             "defaultColorID": 6401,
+	    "price": 895,
             "colors": [
               {
                 "name": "Black",
@@ -525,7 +526,8 @@
             "displayColor": 1,
             "thumbnailURL": "TBD",
             "desc": "For extra toughness, upgrade your wheels so that they accept extra large 5/8\" axles.  These axles will accept the bumps and bruises of even the toughest tournament play.",
-            "defaultColorID": 6401,
+            "price": 895,
+	    "defaultColorID": 6401,
             "colors": [
               {
                 "name": "Black",
