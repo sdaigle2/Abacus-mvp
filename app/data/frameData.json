@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "manufacturer": "Per4max",
     "name": "Thunder",
@@ -85,7 +85,7 @@
         "name": "Sport",
         "partID": 2000,
         "numSubImages": 1,
-        "zRank": [[10,7,6,7,10]],
+        "zRank": [[10,7,6,7,14]],
         "shortName": "Spt",
         "defaultOptionID": 2100,
         "options": [
@@ -197,7 +197,7 @@
         "name": "5th Wheel",
         "partID": 4000,
         "numSubImages": 1,
-        "zRank": [[10,7,6,7,10]],
+        "zRank": [[12,7,6,3,10]],
         "shortName": "5W",
         "defaultOptionID": 4100,
         "options": [
@@ -218,16 +218,19 @@
               {
                 "name": "Matte Black",
                 "colorID": 1101,
+		"linkToColorID": 1101,
                 "hex": "#17202A"
               },
               {
                 "name": "Ruby Red",
                 "colorID": 1102,
+		"linkToColorID": 1102,
                 "hex": "#FF5733"
               },
               {
                 "name": "Ocean Blue",
                 "colorID": 1103,
+		"linkToColorID": 1103,
                 "hex": "#3498DB"
               }
             ]
@@ -249,16 +252,19 @@
               {
                 "name": "Matte Black",
                 "colorID": 1101,
+		"linkToColorID": 1101,
                 "hex": "#17202A"
               },
               {
                 "name": "Ruby Red",
                 "colorID": 1102,
+		"linkToColorID": 1102,
                 "hex": "#FF5733"
               },
               {
                 "name": "Ocean Blue",
                 "colorID": 1103,
+		"linkToColorID": 1103,
                 "hex": "#3498DB"
               }
             ]
@@ -374,7 +380,7 @@
         "name": "Wheels",
         "partID": 6000,
         "numSubImages": 2,
-        "zRank": [[5,2,2,5,6],[6,9,9,9,5]],
+        "zRank": [[13,3,3,4,13],[4,10,10,10,7]],
         "shortName": "Whl",
         "defaultOptionID": 6200,
         "options": [
@@ -569,7 +575,7 @@
         "name": "Hand Rims",
         "partID": 7000,
         "numSubImages": 2,
-        "zRank": [[1,1,1,3,4],[2,13,11,11,3]],
+        "zRank": [[13,3,3,4,13],[4,10,10,10,7]],
         "shortName": "HR",
         "defaultOptionID": 7100,
         "options": [
@@ -636,7 +642,7 @@
         "name": "Tire",
         "partID": 8000,
         "numSubImages": 2,
-        "zRank": [[3,3,3,4,8],[4,10,10,10,7]],
+        "zRank": [[13,3,3,4,13],[4,10,10,10,7]],
         "shortName": "Tir",
         "defaultOptionID": 8100,
         "options": [
@@ -688,7 +694,7 @@
         "name": "Casters",
         "partID": 9000,
         "numSubImages": 1,
-        "zRank": [[10,7,8,7,10]],
+        "zRank": [[0,0,0,0,0]],
         "shortName": "Cas",
         "defaultOptionID": 9100,
         "options": [
