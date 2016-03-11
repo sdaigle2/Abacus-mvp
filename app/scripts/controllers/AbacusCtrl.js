@@ -36,6 +36,22 @@ angular.module('abacuApp')
         SUMMARY: 'summary'
       };
 
+      //login panel
+      $scope.loginModel = {
+        email: '',
+        password: ''
+      };
+
+      var loginPanelStatus = {
+        MAIN:'main',
+        LOGIN:'login',
+        REGISTER:'register',
+        SAVED:'update',
+        UPDATE:'update'
+      };
+
+      $scope.loginPanel = loginPanelStatus.MAIN;
+
       /**********************Main Variables****************************/
 
 
@@ -136,6 +152,26 @@ angular.module('abacuApp')
       }
 
       init(); //Initialize the page
+
+      /******login action group*******/
+      $scope.login = function () {
+        $scope.loginText = 'Loading..';
+        $scope.error = '';
+        User.login($scope.loginModel.email, $scope.loginModel.password)
+          .then(function () {
+            $scope.loginText = 'Log In';
+            $scope.loginModel.email = '';
+            $scope.toggleLoginDropdown();
+          }, function (message) {
+            $scope.loginText = 'Log In';
+            $scope.error = message;
+          });
+        $scope.loginModel.password = '';
+      };
+
+      $scope.register = function(){
+        $scope.loginPanel = loginPanelStatus.REGISTER;
+      };
 
       /****************Weight and Price******************/
 
@@ -657,10 +693,9 @@ angular.module('abacuApp')
       // save the current wheelchair to the wishlist and make sure its not the currently editing wheelchair anymore
       $scope.saveForLater = function () {
         if (!User.isLoggedIn()) {
-          ngDialog.open({
-            'template': 'views/modals/loginPromptModal.html'
-          });
-        } else {
+          $scope.loginPanel = loginPanelStatus.LOGIN;
+        }
+        else {
           var design = User.getCurEditWheelchairDesign();
 
           if (_.isNull(design)) {

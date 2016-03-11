@@ -21,8 +21,11 @@
 </div>
 
 <div id="wrapper">
-  <div id="saveAction" ng-click="closeSaveDropDown()" ng-if="saveDropdown === true">
-    <div class="actionPanel">
+
+  <!--save action panel-->
+  <div id="saveAction" ng-if="saveDropdown === true" class="medium">
+    <div class="panelMask" ng-click="closeSaveDropDown()"></div>
+    <div  class="actionPanel" ng-if="0">
       <section data-ng-click="saveDesign()" >
         <img
              data-ng-src="images/abacus_page/save_review/add_to_cart.png" alt="save to my design">
@@ -52,12 +55,32 @@
         <p ng-show="addiInfo2" class="medium">Share your design with friends, doctors or dealers</p>
       </section>
       <div class="closeTab" ng-click="closeSaveDropDown()"><span class="glyphicon glyphicon-remove"></span></div>
+    </div>
+
+    <!--Login panel-->
+    <div class="actionPanel" ng-if="0">
+      <article class="medium">
+        <h4>login</h4>
+        <h6>Please login to save your design</h6>
+      </article>
+      <section class="loginAction">
+        <label for="loginModel.email"></label>
+        <input type="text" data-ng-model="loginModel.email" placeholder="Username">
+        <label for="loginModel.email"></label>
+        <input type="text" data-ng-model="loginModel.password" placeholder="Password">
+        <button data-ng-click="login()">LOGIN</button>
+        <h5 data-ng-click="register()">REGISTER</h5>
+      </section>
+      <div class="closeTab" ng-click="closeSaveDropDown()"><span class="glyphicon glyphicon-remove"></span></div>
+    </div>
+
+    <div class="actionPanel" ng-if="1">
 
     </div>
   </div>
+
+
   <div id="background">
-
-
     <!-- Progress Bar and Save Button-->
     <div id="progressSaveBar">
       <!-- canvas Navigation Bar -->
@@ -185,7 +208,7 @@
 
       <!-- SIDEBAR -->
       <div class="sideBarWrapper">
-        <div id="panelMask" ng-if="!isPanelSelected(-1)" data-ng-click="closeAllPanels()"></div>
+        <div class="panelMask" ng-if="!isPanelSelected(-1)" data-ng-click="closeAllPanels()"></div>
 
         <!-- CUSTOMIZE: Sidebar -->
 
