@@ -386,7 +386,7 @@ angular.module('abacuApp')
 
         //Returns the full array of user-defined wheelchairs
         getCartWheelchairs: function () {
-          return cart.wheelchairs;
+          return _.map(cart.wheelchairs, 'wheelchair');
         },
 
         getWheelchair: function (index) {
