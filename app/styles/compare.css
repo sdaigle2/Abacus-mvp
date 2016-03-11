@@ -13,7 +13,7 @@
  ********************/
 
 .background {
-	background: #F0F0F0;
+	background: #EAEAEA;
 	height: 100%;
 }
 
@@ -32,6 +32,7 @@
 	display:inline-block;
 	margin-top: 0px;
 	float: left;
+	font-family: narrow-font;
 }
 
 .no-wheelchairs-text {
@@ -41,6 +42,7 @@
 
 .add-wheelchair-button {
 	display:inline-block;
+	font-family: narrow-font;
 	float: right;
 	background-color: #4896FF;
 	color: white;
@@ -110,6 +112,7 @@
 	padding: 3px;
 	margin: 0px;
 	display:inline-block;
+	font-family: narrow-font;
 }
 
 .compare-button-check-text {
@@ -161,7 +164,7 @@
 	text-align: center;
 	font-size: 25px;
 	font-weight: 500;
-	color: #808184;
+	color: #939597;
 }
 
 .option-comparison-list {
@@ -187,6 +190,13 @@
 	float: left;*/
 }
 
+.option-comparison-list-item-color-box {
+	width: 20px;
+	height: 20px;
+	margin: auto;
+	box-shadow: 4px 4px 4px grey;
+}
+
 .option-comparison-list-seperator {
-	border-right: thick #808184;
+	border-right: thick #939597;
 }

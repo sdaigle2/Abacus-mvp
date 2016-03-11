@@ -35,21 +35,27 @@ router.post('/update', restrict, function (req, res) {
   };
   update(data, req.session.user, function (err, body, errNo) { //Main update logic, passing data as new obj and the session cookie as the key
     //CALLBACK
-    //Regenerate the session cookie
-    req.session.regenerate(function () {
-      req.session.user = body.id;
-      var message = '';
-      //Use the error number to alert the user
-      switch (errNo) {
-        case 1: message = 'New password is not valid';
-              break;
-        case 2: message = 'Current password is incorrect';
-              break;
-        case 3: message = 'Password Changed';
-              break;
-      }
-      res.json({'err': err, 'message': message});
-    });
+    if (body) {
+      //Regenerate the session cookie
+      req.session.regenerate(function () {
+        req.session.user = body.id;
+        var message = '';
+        //Use the error number to alert the user
+        switch (errNo) {
+          case 1: message = 'New password is not valid';
+                break;
+          case 2: message = 'Current password is incorrect';
+                break;
+          case 3: message = 'Password Changed';
+                break;
+        }
+        res.json({'err': err, 'message': message});
+      });
+    } else {
+      res.json({
+        'err': err
+      });
+    }
   });
 });
 

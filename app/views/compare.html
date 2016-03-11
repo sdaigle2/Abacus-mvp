@@ -29,6 +29,7 @@
 				<ul class="option-comparison-list">
 					<li class="option-comparison-list-item" ng-repeat="item in comparisons" style="{{!$last ? 'border-right: solid #808184;' : ''}}">
 						<p class="option-comparison-list-item-text">{{getChairPartOption(item.design.wheelchair, partID)}}</p>
+						<div ng-if="getColorForChairPart(item.design.wheelchair, partID)" class="option-comparison-list-item-color-box" style="background-color: {{getColorForChairPart(item.design.wheelchair, partID)}};"></div>
 					</li>
 				</ul>
 			</li>
