@@ -4,19 +4,28 @@
 'use strict';
 
 angular.module('abacuApp')
-  .controller('CompareCtrl',['$scope', 'Design', 'TEMP_CHAIR', '_', 'FrameData', 'User', 'MAX_COMPARISON_CHAIRS', 'ComparedDesigns',
-  	function ($scope, Design, TEMP_CHAIR, _, FrameData, User, MAX_COMPARISON_CHAIRS, ComparedDesigns) {
+  .constant('COMPARE_PAGE_PREV_PAGE_KEY', 'comparePrevPage')
+  .controller('CompareCtrl',['$scope', 'Design', 'TEMP_CHAIR', '_', 'FrameData', 'User', 'MAX_COMPARISON_CHAIRS', 'ComparedDesigns', 'COMPARE_PAGE_PREV_PAGE_KEY', 'localJSONStorage', '$location',
+  	function ($scope, Design, TEMP_CHAIR, _, FrameData, User, MAX_COMPARISON_CHAIRS, ComparedDesigns, COMPARE_PAGE_PREV_PAGE_KEY, localJSONStorage, $location) {
     $scope.MAX_COMPARISON_CHAIRS = MAX_COMPARISON_CHAIRS;
   	
     $scope.addWheelchair = function () {
-      // TODO: Find out what to do when add wheelchair is clicked
-      $scope.comparisons.push({
-        design: new Design(TEMP_CHAIR),
-        checked: true
-      });
+      // Go to the page referenced by COMPARE_PAGE_PREV_PAGE_KEY
+      var referencedPage = localJSONStorage.get(COMPARE_PAGE_PREV_PAGE_KEY) || 'cart'; // default to cart
+      if (referencedPage === 'cart') {
+        $location.path('/cart');
+      } else if (referencedPage === 'myDesigns') {
+        $location.path('/settings'); // myDesigns is within settings
+      }
   	};
 
-    $scope.comparisons = ComparedDesigns.getDesigns().map(function (design) {
+    // Gets the right instance of CompareDesignsStorage based on value in localJSONStorage for COMPARE_PAGE_PREV_PAGE_KEY
+    function getCompareDesignsStorage() {
+      var storageKey = localJSONStorage.get(COMPARE_PAGE_PREV_PAGE_KEY) || 'cart'; // default to cart
+      return ComparedDesigns[storageKey];
+    }
+
+    $scope.comparisons = getCompareDesignsStorage().getDesigns().map(function (design) {
       return {
         design: design,
         checked: true
@@ -53,8 +62,18 @@ angular.module('abacuApp')
       return chair.getPartDetails(partID, User.getUnitSys()).optionName;
     };
 
+    $scope.getColorForChairPart = function (chair, partID) {
+      var optionID = chair.getOptionIDForPart(partID);
+      var colorID = chair.getColorIDForPart(partID);
+
+      var chairFrame = FrameData.getFrame(chair.getFrameID());
+      var color = chairFrame.getPartOptionColor(partID, optionID, colorID);
+      return _.isNull(color) ? null : color.getHexString();
+    };
+
     $scope.$watchCollection('comparisons', function (comparisons) {
-      ComparedDesigns.setDesigns(_.map(comparisons, 'design'));
+      var designs = _.map(comparisons, 'design');
+      getCompareDesignsStorage().setDesigns(designs);
     });
 
   }])
