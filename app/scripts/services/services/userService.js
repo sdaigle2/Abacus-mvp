@@ -384,6 +384,10 @@ angular.module('abacuApp')
           this.updateCart();
         },
 
+        getCart: function () {
+          return cart;
+        },
+
         //Returns the full array of user-defined wheelchairs
         getCartWheelchairs: function () {
           return _.map(cart.wheelchairs, 'wheelchair');
@@ -477,11 +481,7 @@ angular.module('abacuApp')
         //Returns the unsent Order set as the "curEditOrder"
         //If no such Order exists, returns null
         getCurEditOrder: function () {
-          if (!cart.hasBeenSent()) {
-            var lastOrder = orders[orders.length - 1];
-              return lastOrder;
-          }
-          return null;
+          return cart;
         },
 
         //Returns the last order whether it is sent or unsent

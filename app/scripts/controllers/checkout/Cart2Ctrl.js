@@ -45,7 +45,7 @@ angular.module('abacuApp')
         if (!$scope.curOrder) {
           User.createNewOrder();
           $scope.curOrder = User.getCurEditOrder();
-          $scope.curOrder.wheelchairs = $scope.wheelchairs;
+          $scope.curOrder.wheelchairs = $scope.getCart().wheelchairs;
         }
 
         $scope.zipcode = $scope.curOrder.zip;
