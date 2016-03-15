@@ -5,8 +5,7 @@ angular.module('abacuApp')
   .directive('register', function(){
     return{
       restrict:'AE',
-      scope:'true',
       controller:'RegisterCtrl',
-      templateUrl:'views/register/register.html'
+      templateUrl:'../../views/tinker/registerPanel.html'
     }
   });

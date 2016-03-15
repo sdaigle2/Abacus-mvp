@@ -1,11 +1,11 @@
-<link href="styles/abacus.css" rel="stylesheet"/>
+<link href="../../styles/tinker/abacus.css" rel="stylesheet"/>
 
-<script src="scripts/canvas/createJS/easeljs-0.8.1.min.js"></script>
-<script src="scripts/canvas/createJS/tweenjs-0.6.1.min.js"></script>
-<script src="scripts/canvas/createJS/movieclip-0.8.1.min.js"></script>
-<script src="scripts/canvas/Navigation/navBar.js"></script>
-<script src="scripts/canvas/Navigation/additionalJS.js"></script>
-<script src="scripts/canvas/Navigation/js/Code.js"></script>
+<script src="../../scripts/canvas/createJS/easeljs-0.8.1.min.js"></script>
+<script src="../../scripts/canvas/createJS/tweenjs-0.6.1.min.js"></script>
+<script src="../../scripts/canvas/createJS/movieclip-0.8.1.min.js"></script>
+<script src="../../scripts/canvas/Navigation/navBar.js"></script>
+<script src="../../scripts/canvas/Navigation/additionalJS.js"></script>
+<script src="../../scripts/canvas/Navigation/js/Code.js"></script>
 
 
 <div id="offClickArea" ng-click="closeAllPanels()" ng-if="getCurPanelID() != -1">
@@ -25,7 +25,7 @@
   <!--save action panel-->
   <div id="saveAction" ng-if="saveDropdown === true" class="medium">
     <div class="panelMask" ng-click="closeSaveDropDown()"></div>
-    <div  class="actionPanel" ng-if="0">
+    <div  class="actionPanel center" ng-if="loginPanel == 'main' ">
       <section data-ng-click="saveDesign()" >
         <img
              data-ng-src="images/abacus_page/save_review/add_to_cart.png" alt="save to my design">
@@ -58,12 +58,12 @@
     </div>
 
     <!--Login panel-->
-    <div class="actionPanel" ng-if="0">
+    <div class="actionPanel" ng-if="loginPanel == 'login'">
       <article class="medium">
         <h4>login</h4>
         <h6>Please login to save your design</h6>
       </article>
-      <section class="loginAction">
+      <section class="loginAction center">
         <label for="loginModel.email"></label>
         <input type="text" data-ng-model="loginModel.email" placeholder="Username">
         <label for="loginModel.email"></label>
@@ -74,8 +74,21 @@
       <div class="closeTab" ng-click="closeSaveDropDown()"><span class="glyphicon glyphicon-remove"></span></div>
     </div>
 
-    <div class="actionPanel" ng-if="1">
+    <!-------register---->
+    <div class="actionPanel registerPanel" ng-if="loginPanel == 'register'">
       <register></register>
+    </div>
+    <!-----Complete save------>
+    <div class="actionPanel savedMessage" ng-if="loginPanel == 'saved'">
+      <article class="medium">
+        <h3>Complete!</h3>
+        <h4>Congratulation, your design is now stored under your account.</h4>
+      </article>
+
+      <section class="autoWidth">
+        <button ng-click="saveMessage()">GO TO MYDEISGNS</button>
+      </section>
+      <div class="closeTab" ng-click="closeSaveDropDown()"><span class="glyphicon glyphicon-remove"></span></div>
     </div>
   </div>
 
@@ -116,9 +129,9 @@
         <!-- CUSTOMIZE: Wheelchair Display and controls -->
         <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
           <div class="main-custom-rotatebuttons" ng-class="{'wide-screen': screenWideQuery()}">
-            <img class="leftButton" src="images/icons/rotate_left.jpg" alt="Previous" width="30" height="30"
+            <img class="leftButton" src="../../images/icons/rotate_left.jpg" alt="Previous" width="30" height="30"
                  data-ng-click="rotatePreview(-1)" />
-            <img class="rightButton" src="images/icons/rotate_right.jpg" alt="Next" width="30" height="30"
+            <img class="rightButton" src="../../images/icons/rotate_right.jpg" alt="Next" width="30" height="30"
                  data-ng-click="rotatePreview(1)" />
           </div>
           <img class="main-custom-wheelchairDisplay"
@@ -262,11 +275,11 @@
                     <div class="sideBar-custom-item-button moreInfo text-center"
                          data-ng-click="setPanel(option.optionID);">
                         <section data-ng-show="!isPanelSelected(option.optionID)">
-                          <img  width="7px" src="images/abacus_page/customize/more_info.png">
+                          <img  width="7px" src="../../images/abacus_page/customize/more_info.png">
                         <strong >MORE INFO</strong></section>
 
                         <section data-ng-show="isPanelSelected(option.optionID)">
-                          <img  width="7px" src="images/abacus_page/customize/less_info.png">
+                          <img  width="7px" src="../../images/abacus_page/customize/less_info.png">
                         <strong >LESS INFO</strong></section>
                     </div>
                     <div class="sideBar-custom-item-button text-center selected"
@@ -370,9 +383,9 @@
                    ng-show="curMeasureCarouselIndex === $index"
                    ng-src="{{image}}" width="350" height="340" alt="{{getCurMeasureData().name}}"/>
 
-              <img class="leftButton" src="images/icons/circle_left_button.png" alt="Previous" width="30" height="30"
+              <img class="leftButton" src="../../images/icons/circle_left_button.png" alt="Previous" width="30" height="30"
                    data-ng-click="rotateMeasureCarouselIndex(-1)" />
-              <img class="rightButton" src="images/icons/circle_right_button.png" alt="Next" width="30" height="30"
+              <img class="rightButton" src="../../images/icons/circle_right_button.png" alt="Next" width="30" height="30"
                    data-ng-click="rotateMeasureCarouselIndex(1)" />
 
 

@@ -1,0 +1,100 @@
+#insideWrapper {
+  width: 700px;
+  margin: 40px auto;
+  line-height: 1;
+}
+
+#register-div{
+  width: 95%;
+  margin: 20px auto 0;
+}
+
+#register-div #settingsContentForm-contact{
+  position: relative;
+  padding: 10px 40px;
+}
+
+
+#register-div .settingsContentSectionTitle{
+  color: #00A89C;
+  border-bottom: 1px solid #939597;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.form-inline{
+  width: 49%;
+  display: inline-block;
+  border: 0;
+}
+
+.form-group .form-control{
+  width: 98%;
+  height: 30px;
+}
+
+.form-first{
+  margin-right:54px;
+}
+
+#register-div #settingContentForm-shipping{
+  position: relative;
+  padding: 0 40px;
+}
+
+.form-inline-small{
+  width: 27%;
+  display: inline-block;
+  border: 0;
+  margin-right: 43px;
+  vertical-align: bottom;
+}
+
+.form-inline-small p{
+  position: absolute;
+  top: 22px;
+  left: 10px;
+}
+
+.form-inline-small:last-of-type{
+  margin-right: 0;
+}
+
+#register-div .shiftLeft{
+  position: relative;
+  right: 7px;
+}
+
+label{
+  margin: 0;
+}
+
+input{
+  margin: 0;
+}
+
+.settingsSidebarButton {
+  float: right;
+  position: relative;
+  right: 41px;
+  top: 24px;
+  width: 100px;
+  margin-bottom: 60px;
+  margin-right: 10px;
+}
+#register-div #cancelButton{
+  border: 1px solid #4f9dff;
+  color: #4f9dff;
+  background-color: white;
+}
+
+.settingsSidebarButton.active, .settingsSidebarButton:hover {
+  background-color: rgba(11, 158, 144, 1);
+  color: white;
+}
+
+
+.error-mesg{
+  float: left;
+  padding-top: 13px;
+}

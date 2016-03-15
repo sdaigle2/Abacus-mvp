@@ -46,7 +46,7 @@ angular.module('abacuApp')
         MAIN:'main',
         LOGIN:'login',
         REGISTER:'register',
-        SAVED:'update',
+        SAVED:'saved',
         UPDATE:'update'
       };
 
@@ -161,7 +161,8 @@ angular.module('abacuApp')
           .then(function () {
             $scope.loginText = 'Log In';
             $scope.loginModel.email = '';
-            $scope.toggleLoginDropdown();
+            $scope.saveForLater();
+            $scope.loginPanel = loginPanelStatus.SAVED;
           }, function (message) {
             $scope.loginText = 'Log In';
             $scope.error = message;
@@ -171,6 +172,44 @@ angular.module('abacuApp')
 
       $scope.register = function(){
         $scope.loginPanel = loginPanelStatus.REGISTER;
+      };
+
+      //register group
+      $scope.registerAction = function(){
+        $scope.error = '';
+        $http({
+          url: '/register'
+          , data: $scope.accountModel
+          , method: 'POST'
+        }).success(function (data) {
+          console.log(data);
+          if(data.err) {
+            $scope.error = data.err;
+            if(data.field === 'password'){
+              $scope.accountModel.password = '';
+              $scope.accountModel.confirm = '';
+            }
+            else
+            if(data.field === 'email'){
+              $scope.accountModel.email = '';
+            }
+          }
+          else {
+            User.login($scope.accountModel.email, $scope.accountModel.password);
+            $scope.saveForLater();
+            $scope.loginPanel = loginPanelStatus.SAVED;
+          }
+        })
+          .error(function (data) {
+            console.log('Request Failed: ' + data);
+            deferred.reject('Error loading user data');
+          });
+
+      };
+
+      $scope.saveMessage = function(){
+        User.setContentSection('measurements');
+        $location.path('/settings');
       };
 
       /****************Weight and Price******************/
@@ -465,6 +504,7 @@ angular.module('abacuApp')
 
       $scope.closeSaveDropDown = function () {
         $scope.saveDropdown = false;
+        $scope.loginPanel = loginPanelStatus.MAIN;
       };
 
 

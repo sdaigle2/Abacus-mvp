@@ -34,11 +34,11 @@ angular
         controller: 'FrameCtrl'
       })
       .when('/tinker', {
-        templateUrl: 'views/abacus.html',
+        templateUrl: '../views/tinker/abacus.html',
         controller: 'AbacusCtrl'
       })
       .when('/abacus/:param1', {
-        templateUrl: 'views/abacus.html',
+        templateUrl: '../views/tinker/abacus.html',
         controller: 'AbacusCtrl'
       })
       .when('/about', {
