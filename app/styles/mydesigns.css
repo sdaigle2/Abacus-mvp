@@ -1,0 +1,160 @@
+/*******font******/
+.oBold{
+  font-family: 'oswald-bold';
+  font-size: 1em;
+}
+.oReg{
+  font-family: 'oswald-regular';
+  font-size: 1em;
+}
+
+.gBook{
+  font-family: 'gotham-book';
+  font-size: 1em;
+}
+
+#mainDisplay{
+  width: 700px;
+  float: left;
+  margin-top: 30px;
+  width: 100%;
+  margin: auto;
+  padding-top: 50px; 
+  padding-left: 250px;
+  padding-right: 250px;
+}
+
+.compareButton{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+/********* wheelchair content display***/
+#mainContent{
+  width: 100%;
+  display: inline-block;
+  margin: auto;
+}
+
+#header{
+  position: relative;
+  margin: 0 15px 0;
+  margin-bottom: 50px;
+}
+
+.button{
+  margin-top: 0;
+  height: 35px;
+  background-color: #4896FF;
+  color: #FFFFFF;
+  border-color: #4896FF;
+  border-radius: 0px;
+  padding: 0 10px;
+
+}
+
+.button:hover {
+  background-color: white;
+  border-color: #4896FF;
+  color: #4896FF;
+}
+
+.compareButton{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.oReg{
+  font-family: 'oswald-regular';
+  font-size: 1em;
+}
+
+#emptyCart{
+  position: relative;
+  top: 80px;
+  left: 130px;
+  margin-bottom: 110px;
+}
+
+.chairBlock{
+  width: 100%;
+  list-style-type: none;
+  padding: 10px 15px;
+  margin-right: 20px;
+}
+
+.chairBlock .chairTitle{
+  width: 100%;
+  background-color: darkgrey;
+  font-size: 1.1em;
+  padding:0 20px;
+}
+
+.chairBlock .selectedChair {
+  background-color:#4f9dff;
+}
+
+.cart-item{
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+.media-object{
+  width: 30%;
+  position: relative;
+  display:inline-block;
+}
+
+.media-body {
+  overflow: visible;
+  display: inline-block;
+  width: 65%;
+  vertical-align: top;
+}
+.media-body .firstLine{
+  margin: 10px 0 58px;
+}
+
+.media-body a{
+  color: #4f9dff;
+}
+.media-body .actions table{
+  margin-bottom: 20px;
+}
+.media-body .actions td{
+  padding: 0 15px;
+  border-right: 2px solid black;
+}
+
+.media-body .actions td:first-of-type{
+  padding-left: 0;
+}
+
+.media-body .moreInfoTitle{
+  margin-top: 27px;
+  color: #4f9dff;
+
+}
+
+.checkbox-button {
+
+}
+
+.moreInfoTitle .clickable-text{
+  display: inline-block;
+  border-radius: 0px;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.moreInfo table{
+  width: 100%;
+}
+
+.moreInfo .title-column{
+  color: #939597;
+}

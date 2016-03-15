@@ -65,6 +65,28 @@ angular.module('abacuApp')
         });
       };
 
+      ComparedDesignsStorage.prototype.contains = function(queryDesign) {
+        var matchingDesign = _.find(this.designs, function (design) {
+          return _.isEqual(design, queryDesign);
+        });
+
+        return !_.isUndefined(matchingDesign);
+      };
+
+      ComparedDesignsStorage.prototype.removeDesign = function(queryDesign) {
+        var matchindDesignIdx = _.find(this.designs, function (design) {
+          return _.isEqual(design, queryDesign);
+        });
+
+        if (matchindDesignIdx === -1) {
+          return false;
+        } else {
+          this.designs.splice(matchindDesignIdx, 1);
+          this.saveLocally();
+          return true;
+        }
+      };
+
       ComparedDesignsStorage.prototype.isFull = function() {
         return this.designs.length >= MAX_COMPARISON_CHAIRS;
       };

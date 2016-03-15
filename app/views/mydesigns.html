@@ -1,0 +1,82 @@
+<link rel='stylesheet'  href="../../styles/mydesigns.css" rel="stylesheet"/>
+
+<div class="appBody">
+    <div id="mainDisplay">
+      <div id="header">
+        <p class="bold">MY DESIGNS</p>
+        <button data-ng-if="wheelchairUIOpts.length !== 0" class="button compareButton oReg" ng-click="goToCompare()">COMPARE ({{numChecked()}})</button>
+      </div>
+      <div id="mainContent">
+        <div id="emptyCart" data-ng-if="wheelchairUIOpts.length === 0">
+          <img class="add-icon" data-ng-src="images/my_design_page/cart_empty.png">
+          <span class="medium">Your designs is currently empty</span>
+        </div>
+        <ul class="chairBlock" ng-if="wheelchairUIOpts.length">
+          <li ng-repeat="chairInfo in wheelchairUIOpts" class="cart-item {{chairInfo.checked ? 'checked-item' : ''}}">
+            <div class="chairTitle" ng-class="{'selectedChair': chairInfo.checked }">
+              <span class="medium">{{chairInfo.design.wheelchair.getName()}}</span>
+              <input type="checkbox" class="checkbox-button pull-right" ng-model="chairInfo.checked" ng-disabled="numChecked() >= MAX_COMPARISON_CHAIRS && !chairInfo.checked">
+            </div>
+            <div>
+             <div class="media-object">
+                <canvas my-canvas img_arr={{chairInfo.design.wheelchair.getPreviewImages(3)}}
+                        width="{{WHEELCHAIR_CANVAS_WIDTH}}"
+                        alt="wheelchairImage">
+                </canvas>
+              </div>
+              <section class="media-body">
+                <div class="firstLine medium">
+                  <span class="pull-left">Design ID: {{chairInfo.design.hasID() ? chairInfo.design.id : '--'}}</span>
+                  <span class="pull-right bold">${{chairInfo.design.wheelchair.getTotalPrice().toFixed(2)}}</span>
+                </div>
+                <table class="actions oReg">
+                  <tbody>
+                    <tr>
+                      <td ng-click="editWheelchair($index)"><a>EDIT</a></td>
+                      <td ng-click="addToCart($index)"><a>ADD TO CART</a></td>
+                      <td ng-click="dowloadDesignPDF($index)"><a>DOWNLOAD PDF</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <section class="moreInfoTitle oBold">
+                  <p class="clickable-text {{chairInfo.showInfo ? 'dropup' : ''}}" ng-click="chairInfo.showInfo = !chairInfo.showInfo">{{chairInfo.showInfo ? 'LESS' : 'MORE'}} INFO <span class="caret"></span></p>
+                  <a class="pull-right">
+                    <img data-ng-src="images/my_design_page/delete.png"
+                       width="20"
+                       ng-click="deleteWheelchair($index)"></a>
+                </section>
+                <div class="moreInfo" style="padding:{{WHEELCHAIR_CANVAS_WIDTH}};">
+                  <!-- Parts Table...only shown if toggled -->
+                  <h3 ng-if="chairInfo.showInfo">Parts</h3>
+                  <table ng-if="chairInfo.showInfo">
+                    <tr class="part-row" ng-repeat="part in chairInfo.design.wheelchair.getParts()">
+                      <td class="title-column">
+                        <p>{{getPartDetails(chairInfo.design.wheelchair, part).partName}}</p>
+                      </td>
+                      <td class="value-column pull-right">
+                        <p data-ng-bind="getPartOption(chairInfo.design.wheelchair, part)"></p>
+                      </td>
+                    </tr>
+                  </table>
+                  <br>
+
+                  <!-- Measurements Table...only shown if toggled -->
+                  <h3 ng-if="chairInfo.showInfo">Measurements</h3>
+                  <table ng-if="chairInfo.showInfo">
+                    <tr class="part-row" ng-repeat="measure in getWheelchairMeasures(chairInfo.design.wheelchair)">
+                      <td class="title-column">
+                        <p data-ng-bind="measure.getName()"></p>
+                      </td>
+                      <td class="value-column pull-right">
+                        <p data-ng-bind="getMeasureDetails(chairInfo.design.wheelchair, measure).optionString"></p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </section>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+</div>

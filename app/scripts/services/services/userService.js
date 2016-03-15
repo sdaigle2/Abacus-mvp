@@ -16,7 +16,7 @@ angular.module('abacuApp')
     function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Costs, Design, Errors) {
 
       // declare all User variables here
-      var orders, currentWheelchair, cartWheelchairIndex, savedChairs,
+      var orders, currentWheelchair, cartWheelchairIndex, savedDesigns,
       userID, fName, lName, email, phone, addr, addr2, city, state,
       zip, unitSys, contentSection, cart, isAdmin;
 
@@ -30,7 +30,7 @@ angular.module('abacuApp')
           design: null
         };
         cartWheelchairIndex = -1;  //Index associate with cartWheelchairs i.e cartwheelchair
-        savedChairs = [];                    // array of saved wheelchair\
+        savedDesigns = [];                    // array of saved wheelchair\
         userID = -1; //-1 means not logged in
         fName = '';
         lName = '';
@@ -67,6 +67,7 @@ angular.module('abacuApp')
           'orders': orders.map(function (order) {
             return order.getAll();
           }),
+          'savedDesigns': savedDesigns,
           'cart': cart.getAll(),
           'isAdmin': isAdmin
         };
@@ -163,6 +164,9 @@ angular.module('abacuApp')
           city = data.city;
           state = data.state;
           zip = data.zip;
+          savedDesigns = !_.isArray(data.savedDesigns) ? [] : data.savedDesigns.map(function (designObj) {
+            return new Design(designObj);
+          });
 
           currentWheelchair = data.currentWheelchair || currentWheelchair;
           currentWheelchair.editingWheelchair = currentWheelchair.editingWheelchair ? new Wheelchair(currentWheelchair.editingWheelchair) : currentWheelchair.editingWheelchair;
@@ -373,8 +377,8 @@ angular.module('abacuApp')
         setEditWheelchair: setEditWheelchair,
 
         // Saves the currentWheelchair into the saved wheelchairs list and resets the currentWheelchair
-        addDesignIDToSavedChairs: function (designID) {
-          savedChairs.push(designID);
+        addDesignIDToSavedDesigns: function (designID) {
+          savedDesigns.push(designID);
           this.updateDB();
         },
 
@@ -382,6 +386,10 @@ angular.module('abacuApp')
         deleteWheelchair: function (index) {
           cartWheelchairs.splice(index, 1);
           this.updateCart();
+        },
+
+        getCart: function () {
+          return cart;
         },
 
         //Returns the full array of user-defined wheelchairs
@@ -396,13 +404,13 @@ angular.module('abacuApp')
         },
 
         // returns full array of users wishlist/my design wheelchairs
-        getSavedChairs: function () {
-          return savedChairs;
+        getSavedDesigns: function () {
+          return savedDesigns;
         },
 
-        getSavedChair: function (index) {
-          if (index >= 0 && index < savedChairs.length) {
-            return savedChairs[index];
+        getSavedDesign: function (index) {
+          if (index >= 0 && index < savedDesigns.length) {
+            return savedDesigns[index];
           } else {
             return null;
           }
@@ -477,11 +485,7 @@ angular.module('abacuApp')
         //Returns the unsent Order set as the "curEditOrder"
         //If no such Order exists, returns null
         getCurEditOrder: function () {
-          if (!cart.hasBeenSent()) {
-            var lastOrder = orders[orders.length - 1];
-              return lastOrder;
-          }
-          return null;
+          return cart;
         },
 
         //Returns the last order whether it is sent or unsent

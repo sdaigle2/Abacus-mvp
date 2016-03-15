@@ -4,24 +4,23 @@
 'use strict';
 
 angular.module('abacuApp')
-  .constant('COMPARE_PAGE_PREV_PAGE_KEY', 'comparePrevPage')
-  .controller('CompareCtrl',['$scope', 'Design', 'TEMP_CHAIR', '_', 'FrameData', 'User', 'MAX_COMPARISON_CHAIRS', 'ComparedDesigns', 'COMPARE_PAGE_PREV_PAGE_KEY', 'localJSONStorage', '$location',
-  	function ($scope, Design, TEMP_CHAIR, _, FrameData, User, MAX_COMPARISON_CHAIRS, ComparedDesigns, COMPARE_PAGE_PREV_PAGE_KEY, localJSONStorage, $location) {
+  .controller('CompareCtrl',['$scope', 'Design', 'TEMP_CHAIR', '_', 'FrameData', 'User', 'MAX_COMPARISON_CHAIRS', 'ComparedDesigns', '$location',
+  	function ($scope, Design, TEMP_CHAIR, _, FrameData, User, MAX_COMPARISON_CHAIRS, ComparedDesigns, $location) {
     $scope.MAX_COMPARISON_CHAIRS = MAX_COMPARISON_CHAIRS;
   	
     $scope.addWheelchair = function () {
       // Go to the page referenced by COMPARE_PAGE_PREV_PAGE_KEY
-      var referencedPage = localJSONStorage.get(COMPARE_PAGE_PREV_PAGE_KEY) || 'cart'; // default to cart
+      var referencedPage = $location.search().from || 'cart'; // default to cart
       if (referencedPage === 'cart') {
-        $location.path('/cart');
+        $location.path('/cart').search({});
       } else if (referencedPage === 'myDesigns') {
-        $location.path('/settings'); // myDesigns is within settings
+        $location.path('/settings').search({}); // myDesigns is within settings
       }
   	};
 
-    // Gets the right instance of CompareDesignsStorage based on value in localJSONStorage for COMPARE_PAGE_PREV_PAGE_KEY
+    // Gets the right instance of CompareDesignsStorage based on value in $location.search().from
     function getCompareDesignsStorage() {
-      var storageKey = localJSONStorage.get(COMPARE_PAGE_PREV_PAGE_KEY) || 'cart'; // default to cart
+      var storageKey = $location.search().from || 'cart'; // default to cart
       return ComparedDesigns[storageKey];
     }
 
