@@ -8,9 +8,11 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('MyDesignsCtrl', ['$scope', '$location', 'User', 'UserData', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'COMPARE_PAGE_PREV_PAGE_KEY', 'localJSONStorage',
-  	function ($scope, $location, User, UserData, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, COMPARE_PAGE_PREV_PAGE_KEY, localJSONStorage) {
+  .controller('MyDesignsCtrl', ['$scope', '$location', 'User', 'UserData', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'WHEELCHAIR_CANVAS_WIDTH', 'FrameData',
+  	function ($scope, $location, User, UserData, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, WHEELCHAIR_CANVAS_WIDTH, FrameData) {
   		$scope.MAX_COMPARISON_CHAIRS = MAX_COMPARISON_CHAIRS;
+  		$scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
+
   		function isAComparedDesign(design) {
   			return ComparedDesigns.myDesigns.contains(design);
   		}
@@ -38,8 +40,9 @@ angular.module('abacuApp')
 
 		//Sends the user back to abacus with the selected wheelchair
 		$scope.editWheelchair = function (index) {
-			User.setEditWheelchair(index, $scope.wOrderIndex[index]);
-			$location.path('/tinker');
+			alert('TODO: editWheelchair');
+			// User.setEditWheelchair(index, $scope.wOrderIndex[index]);
+			// $location.path('/tinker');
 		};
 
   		$scope.addToCart = function (chairIdx) {
@@ -51,15 +54,40 @@ angular.module('abacuApp')
 
   		$scope.dowloadDesignPDF = function (chairIdx) {
   			var design = $scope.wheelchairUIOpts[chairIdx].design;
+  			alert('TODO: dowloadDesignPDF');
   		};
 
   		$scope.numChecked = function () {
   			return _.filter($scope.wheelchairUIOpts, 'checked').length;
   		};
 
+		//Returns an object of display-friendly strings regarding the given part
+		$scope.getPartDetails = function (wheelchair, part) {
+			return wheelchair.getPartDetails(part.partID, User.getUnitSys());
+		};
+
+		$scope.getPartOption = function (wheelchair, part) {
+			return $scope.getPartDetails(wheelchair, part).optionName;
+		};
+
+		// Get all the names for all the measured parts
+		$scope.getWheelchairMeasures = function (wheelchair) {
+			var frameID = wheelchair.getFrameID();
+			var frame = FrameData.getFrame(frameID);
+			var measures = frame.getMeasures();
+
+			return measures;
+		};
+
+		//Returns an object of display-friendly strings regarding the given measure
+		$scope.getMeasureDetails = function (wheelchair, measure) {
+			return wheelchair.getMeasureDetails(measure.measureID, User.getUnitSys());
+		};
+
   		$scope.goToCompare = function () {
-  			localJSONStorage.put(COMPARE_PAGE_PREV_PAGE_KEY, 'myDesigns');
-  			$location.path('/compare');
+  			$location.path('/compare').search({
+  				'from': 'myDesigns'
+  			});
   		};
 
   		$scope.$watch('wheelchairUIOpts', function (newUIOpts, oldUIOpts) {

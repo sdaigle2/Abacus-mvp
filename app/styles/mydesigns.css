@@ -17,11 +17,31 @@
   width: 700px;
   float: left;
   margin-top: 30px;
+  width: 100%;
+  margin: auto;
+  padding-top: 50px; 
+  padding-left: 250px;
+  padding-right: 250px;
+}
+
+.compareButton{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+/********* wheelchair content display***/
+#mainContent{
+  width: 100%;
+  display: inline-block;
+  margin: auto;
 }
 
 #header{
   position: relative;
   margin: 0 15px 0;
+  margin-bottom: 50px;
 }
 
 .button{

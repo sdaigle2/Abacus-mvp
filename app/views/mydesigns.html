@@ -19,16 +19,14 @@
             </div>
             <div>
              <div class="media-object">
-                <canvas my-canvas img_arr={{chairInfo.design.wheelchair.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
-                        ng-mouseleave="editPanelShow = false"
-                        ng-click="toggleImageDisplay($index)"
+                <canvas my-canvas img_arr={{chairInfo.design.wheelchair.getPreviewImages(3)}}
                         width="{{WHEELCHAIR_CANVAS_WIDTH}}"
                         alt="wheelchairImage">
                 </canvas>
               </div>
               <section class="media-body">
                 <div class="firstLine medium">
-                  <span class="pull-left">Design ID: xxxxxxx</span>
+                  <span class="pull-left">Design ID: {{chairInfo.design.hasID() ? chairInfo.design.id : '--'}}</span>
                   <span class="pull-right bold">${{chairInfo.design.wheelchair.getTotalPrice().toFixed(2)}}</span>
                 </div>
                 <table class="actions oReg">
@@ -51,9 +49,9 @@
                   <!-- Parts Table...only shown if toggled -->
                   <h3 ng-if="chairInfo.showInfo">Parts</h3>
                   <table ng-if="chairInfo.showInfo">
-                    <tr class="part-row" ng-repeat="part in parts">
+                    <tr class="part-row" ng-repeat="part in chairInfo.design.wheelchair.getParts()">
                       <td class="title-column">
-                        <p data-ng-bind="part.getName()"></p>
+                        <p>{{getPartDetails(chairInfo.design.wheelchair, part).partName}}</p>
                       </td>
                       <td class="value-column pull-right">
                         <p data-ng-bind="getPartOption(chairInfo.design.wheelchair, part)"></p>
