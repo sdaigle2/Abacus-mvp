@@ -18,8 +18,12 @@ angular
     'ngTouch',
     'ngDialog'
   ])
+  .run(['$rootScope', function ($rootScope) {
+    // Attach lodash object to $rootScope so it can be used in views
+    $rootScope._ = window._;
+  }])
   .config(function ($routeProvider, $sceDelegateProvider, $httpProvider, $locationProvider) {
-
+    // Set up routes
     $routeProvider
       .when('/', {
         templateUrl: 'views/landing.html',
@@ -44,6 +48,15 @@ angular
       .when('/compare', {
         templateUrl: 'views/compare.html',
         controller: 'CompareCtrl'
+      })
+      .when('/mydesigns', {
+        templateUrl: 'views/mydesigns.html',
+        controller: 'MyDesignsCtrl',
+        resolve: {
+          UserData: ['$q', 'User', function($q, User) {
+            return User.getPromise();
+          }]
+        }
       })
       .when('/cart', {
         templateUrl: 'views/checkout/cart.html',

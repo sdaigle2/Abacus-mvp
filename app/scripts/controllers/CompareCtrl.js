@@ -4,9 +4,9 @@
 'use strict';
 
 angular.module('abacuApp')
-  .constant('COMPARE_PAGE_PREV_PAGE_KEY', 'comparePrevPage')
-  .controller('CompareCtrl',['$scope', 'Design', 'TEMP_CHAIR', '_', 'FrameData', 'User', 'MAX_COMPARISON_CHAIRS', 'ComparedDesigns', 'COMPARE_PAGE_PREV_PAGE_KEY', 'localJSONStorage', '$location',
-  	function ($scope, Design, TEMP_CHAIR, _, FrameData, User, MAX_COMPARISON_CHAIRS, ComparedDesigns, COMPARE_PAGE_PREV_PAGE_KEY, localJSONStorage, $location) {
+  .constant('COMPARE_PAGE_PREV_PAGE_KEY', 'from')
+  .controller('CompareCtrl',['$scope', 'Design', 'TEMP_CHAIR', '_', 'FrameData', 'User', 'MAX_COMPARISON_CHAIRS', 'ComparedDesigns', 'COMPARE_PAGE_PREV_PAGE_KEY', '$location',
+  	function ($scope, Design, TEMP_CHAIR, _, FrameData, User, MAX_COMPARISON_CHAIRS, ComparedDesigns, COMPARE_PAGE_PREV_PAGE_KEY, $location) {
     $scope.MAX_COMPARISON_CHAIRS = MAX_COMPARISON_CHAIRS;
   	
     $scope.addWheelchair = function () {
