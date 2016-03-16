@@ -37,7 +37,7 @@ function getOrderByID(orderID, cb) {
 		}
 
 		// Populate the 'wheelchairs' field
-		getAllByID(dbService.design, order.wheelchairs || [], function (err, designs) {
+		getAllByID(dbService.designs, order.wheelchairs || [], function (err, designs) {
 			if (err) {
 				return cb(err);
 			}
@@ -70,7 +70,7 @@ function getUserByID(userID, cb) {
 
 		// Get the savedDesigns for the current user
 		var getUserSavedDesigns = function (cb) {
-			getAllByID(dbService.design, user.savedDesigns || [], cb);
+			getAllByID(dbService.designs, user.savedDesigns || [], cb);
 		};
 
 		// Get the order history of the current user

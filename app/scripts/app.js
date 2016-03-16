@@ -49,15 +49,6 @@ angular
         templateUrl: 'views/compare.html',
         controller: 'CompareCtrl'
       })
-      .when('/mydesigns', {
-        templateUrl: 'views/mydesigns.html',
-        controller: 'MyDesignsCtrl',
-        resolve: {
-          UserData: ['$q', 'User', function($q, User) {
-            return User.getPromise();
-          }]
-        }
-      })
       .when('/cart', {
         templateUrl: 'views/checkout/cart.html',
         controller: 'CartCtrl',
@@ -96,9 +87,12 @@ angular
       .when('/settings', {
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl',
-        resolve: {UserData: ['$q', 'User', function($q, User){
-          return User.getPromise();
-        }]}
+        reloadOnSearch: false,
+        resolve: {
+          UserData: ['$q', 'User', function($q, User){
+            return User.getPromise();
+          }]
+        }
       })
       .when('/save', {
         templateUrl: 'views/save.html',

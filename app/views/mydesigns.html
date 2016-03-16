@@ -1,6 +1,6 @@
 <link rel='stylesheet'  href="../../styles/mydesigns.css" rel="stylesheet"/>
 
-<div class="appBody">
+<div class="">
     <div id="mainDisplay">
       <div id="header">
         <p class="bold">MY DESIGNS</p>
@@ -26,7 +26,7 @@
               </div>
               <section class="media-body">
                 <div class="firstLine medium">
-                  <span class="pull-left">Design ID: {{chairInfo.design.hasID() ? chairInfo.design.id : '--'}}</span>
+                  <span class="pull-left">Design ID: {{chairInfo.design.hasID() ? chairInfo.design._id : '--'}}</span>
                   <span class="pull-right bold">${{chairInfo.design.wheelchair.getTotalPrice().toFixed(2)}}</span>
                 </div>
                 <table class="actions oReg">

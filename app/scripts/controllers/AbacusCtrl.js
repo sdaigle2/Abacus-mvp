@@ -798,9 +798,14 @@ angular.module('abacuApp')
             designPromise
             .then(function (design) {
               if (design instanceof Design) {
-                return User.addDesignIDToSavedDesigns(design.id)
+                return User.addDesignIDToSavedDesigns(design._id)
                 .then(function () {
-                  $location.path('/mydesigns');
+                  // go to the my desings section of the settings page
+                  $location
+                    .path('/settings')
+                    .search({
+                      section: 'myDesigns'
+                    });
                 });
               }
             })

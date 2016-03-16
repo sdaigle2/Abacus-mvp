@@ -14,7 +14,7 @@ angular.module('abacuApp')
       if (referencedPage === 'cart') {
         $location.path('/cart').search({});
       } else if (referencedPage === 'myDesigns') {
-        $location.path('/settings').search({}); // myDesigns is within settings
+        $location.path('/settings').search({section: 'myDesigns'}); // myDesigns is within settings
       }
   	};
 

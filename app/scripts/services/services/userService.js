@@ -67,7 +67,12 @@ angular.module('abacuApp')
           'orders': orders.map(function (order) {
             return order.getAll();
           }),
-          'savedDesigns': savedDesigns,
+          'savedDesigns': savedDesigns.map(function (design) {
+            if (design instanceof Design) {
+              return design.allDetails();
+            }
+            return design;
+          }),
           'cart': cart.getAll(),
           'isAdmin': isAdmin
         };
@@ -81,6 +86,7 @@ angular.module('abacuApp')
             method: 'POST'
           })
           .then(function (response) {
+            // TODO: Update the revisions for all the design objects here
             return response.data;
           })
           .catch(function (err) {
@@ -256,8 +262,8 @@ angular.module('abacuApp')
             data: design instanceof Design ? design.allDetails() : design,
             method: 'POST'
           })
-          .then(function (designObj) {
-            return new Design(designObj.data);
+          .then(function (response) {
+            return new Design(response.data);
           });
         },
 

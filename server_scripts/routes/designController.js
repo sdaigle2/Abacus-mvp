@@ -20,7 +20,7 @@ var REQUIRED_DESIGN_PROPERTIES = []; // TODO: Fill list with required properties
 router.get('/design/:id',function(req,res){
   var id = req.params.id;
   //query the database
-  dbService.design.get(id,function(err,body){
+  dbService.designs.get(id,function(err,body){
     if (err) {
       res.status(404);
       res.json({
@@ -43,8 +43,8 @@ router.post('/design', restrict, function (req, res) {
 
   if (hasRequiredProps) {
     // Save the design in cloudant
-    generateUniqueID(dbService.design, function (err, uniqueID) {
-      dbService.design.insert(userDesign, uniqueID, function (err, body, header) {
+    generateUniqueID(dbService.designs, function (err, uniqueID) {
+      dbService.designs.insert(userDesign, uniqueID, function (err, body, header) {
         if (err) {
           console.log(err);
           res.status(400);
@@ -80,7 +80,7 @@ router.put('/design/:id', restrict, function (req, res) {
         err: err
       });
     } else {
-      dbService.design.get(id, function(err,currentDesign){
+      dbService.designs.get(id, function(err,currentDesign){
         if (err) {
           res.status(404);
           res.json({
@@ -98,7 +98,7 @@ router.put('/design/:id', restrict, function (req, res) {
           // Replace missing fields in the new object with the corresponding value in the old object
           // For conflicts, keep the new value
           var updatedDesign = _.defaultsDeep(updatedDesign, currentDesign);
-          dbService.design.insert(updatedDesign, id, function (err, body, header) {
+          dbService.designs.insert(updatedDesign, id, function (err, body, header) {
             if (err) {
               res.status(404);
               res.json({

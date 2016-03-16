@@ -31,9 +31,12 @@ router.post('/update', restrict, function (req, res) {
     newPass2: req.body.newPass2,
     unitSys: 0,
     currentWheelchair: req.body.currentWheelchair,
-    cartWheelchairs: req.body.cartWheelchairs
+    // Linked fields
+    cart: req.body.cart || null,
+    orders: req.body.orders || [],
+    savedDesigns: req.body.savedDesigns || []
   };
-  update(data, req.session.user, function (err, body, errNo) { //Main update logic, passing data as new obj and the session cookie as the key
+  update(data, req.session.user, function (err, body, errNo, updatedUserObj) { //Main update logic, passing data as new obj and the session cookie as the key
     //CALLBACK
     if (body) {
       //Regenerate the session cookie
@@ -49,11 +52,16 @@ router.post('/update', restrict, function (req, res) {
           case 3: message = 'Password Changed';
                 break;
         }
-        res.json({'err': err, 'message': message});
+        res.json({
+          'err': err,
+          'message': message,
+          'user': updatedUserObj
+        });
       });
     } else {
       res.json({
-        'err': err
+        'err': err,
+        'user': updatedUserObj
       });
     }
   });

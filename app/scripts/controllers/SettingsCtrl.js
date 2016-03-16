@@ -10,8 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('SettingsCtrl', ['$scope', '$location', '$http', 'User', 'Units', 'Drop', 'FrameData','WHEELCHAIR_CANVAS_WIDTH',
-    function ($scope, $location, $http, User, Units, Drop, FrameData, WHEELCHAIR_CANVAS_WIDTH) {
+  .controller('SettingsCtrl', ['$scope', '$location', '$http', 'User', 'Units', 'Drop', 'FrameData','WHEELCHAIR_CANVAS_WIDTH', 'UserData',
+    function ($scope, $location, $http, User, Units, Drop, FrameData, WHEELCHAIR_CANVAS_WIDTH, UserData) {
       Drop.setFalse();
       //Kick user off page if not logged in
       if (User.isLoggedIn() === false) {
@@ -43,7 +43,8 @@ angular.module('abacuApp')
       $scope.ContentSection = {
         ACCOUNT: 'account',
         ORDERS: 'orders',
-        MEASUREMENTS: 'measurements'
+        MEASUREMENTS: 'measurements',
+        MYDESIGNS: 'myDesigns'
       };
 
       //Categories inside the 'My Measurements' Section of the User
@@ -62,7 +63,7 @@ angular.module('abacuApp')
       $scope.saveMessage = 'SAVE >>';
       $scope.errMessage = '';
       $scope.save = function () {
-        switch (User.getContentSection()) {
+        switch ($scope.getContentSection()) {
           case $scope.ContentSection.ACCOUNT:
             $scope.saveMessage = 'SAVING ...';
             $http({
@@ -105,15 +106,18 @@ angular.module('abacuApp')
 
       /***************** CONTENT SECTION SWITCHING *****************************/
       $scope.getContentSection = function () {
-        return User.getContentSection();
+        return $location.search().section || $scope.ContentSection.ORDERS; // default to Orders page
       };
       $scope.setContentSection = function (newContentSection) {
-        //$scope.resetMeasurementType();
-        User.setContentSection(newContentSection);
+        $location.search({
+          'section': newContentSection
+        });
       };
 
       $scope.resetContentSection = function () {
-        User.setContentSection($scope.ContentSection.ORDERS);
+        $location.search({
+          'section': $scope.ContentSection.ORDERS
+        });
       };
 
       /***************** MEASUREMENT HELP SWITCHING *****************************/
@@ -265,7 +269,11 @@ angular.module('abacuApp')
 
       init();
 
-
+      $scope.$on('$destroy', function() {
+        var curSearch = $location.search();
+        delete curSearch.section; // remove the section query param
+        $location.search(curSearch);
+      });
 
 
       //Options for each measure - Can be called using $scope.measOptions['rearSeatHeight'] to take advantage of enum

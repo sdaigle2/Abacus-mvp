@@ -44,6 +44,13 @@
       </li>
       <li class="settingsSidebarOptionDivider"></li>
 
+      <li class="settingsSidebarOption book" id="settingsSidebarMyDesignsOption"
+          ng-click="setContentSection(ContentSection.MYDESIGNS)"
+          ng-class="{ 'active' : getContentSection() === ContentSection.MYDESIGNS}">
+        <i class="fa fa-wrench"></i>&nbsp; MY DESIGNS
+      </li>
+      <li class="settingsSidebarOptionDivider"></li>
+
     </ul>
 
     <div class="settingsSidebarButtons"
@@ -258,6 +265,11 @@
       </div>
     </div>
 
+    <!-- MY DESIGNS -->
+    <div class="settingsContent" id="settingsAccountContent"
+         ng-class="{'showSettingsContent' : getContentSection() === ContentSection.MYDESIGNS}">
+         <my-designs></my-designs>
+    </div>
 
 
 

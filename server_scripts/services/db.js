@@ -15,5 +15,5 @@ module.exports = {
 	cloudant: cloudant,
 	users: users,
 	orders: orders,
-	design: design
+	designs: design
 };

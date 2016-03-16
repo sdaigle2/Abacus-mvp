@@ -8,8 +8,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('MyDesignsCtrl', ['$scope', '$location', 'User', 'UserData', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'WHEELCHAIR_CANVAS_WIDTH', 'FrameData', '$q', 'Design',
-  	function ($scope, $location, User, UserData, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, WHEELCHAIR_CANVAS_WIDTH, FrameData, $q, Design) {
+  .controller('MyDesignsCtrl', ['$scope', '$location', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'WHEELCHAIR_CANVAS_WIDTH', 'FrameData', '$q', 'Design',
+  	function ($scope, $location, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, WHEELCHAIR_CANVAS_WIDTH, FrameData, $q, Design) {
   		$scope.MAX_COMPARISON_CHAIRS = MAX_COMPARISON_CHAIRS;
   		$scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
 
