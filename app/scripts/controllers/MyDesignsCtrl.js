@@ -8,8 +8,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('MyDesignsCtrl', ['$scope', '$location', 'User', 'UserData', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'WHEELCHAIR_CANVAS_WIDTH', 'FrameData',
-  	function ($scope, $location, User, UserData, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, WHEELCHAIR_CANVAS_WIDTH, FrameData) {
+  .controller('MyDesignsCtrl', ['$scope', '$location', 'User', 'UserData', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'WHEELCHAIR_CANVAS_WIDTH', 'FrameData', '$q', 'Design',
+  	function ($scope, $location, User, UserData, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, WHEELCHAIR_CANVAS_WIDTH, FrameData, $q, Design) {
   		$scope.MAX_COMPARISON_CHAIRS = MAX_COMPARISON_CHAIRS;
   		$scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
 
@@ -17,14 +17,46 @@ angular.module('abacuApp')
   			return ComparedDesigns.myDesigns.contains(design);
   		}
 
+      // Given a design ID, gives a promise for the actual design object
+      // If the designID is actually object, it is assumed to be the Design object and a
+      // promise is returned with that object as its resolved value
+      function getDesignById(designID) {
+        if (designID instanceof Design) {
+          var deferred = $q.defer();
+          deferred.resolve(designID);
+          return deferred.promise;
+        } else if (_.isObject(designID)) {
+          var deferred = $q.defer();
+          deferred.resolve(new Design(designID));
+          return deferred.promise;
+        } else if (_.isString(designID)) {
+          return User.fetchDesign(designID);
+        }
+      }
+
+      $scope.wheelchairUIOpts = [];
+
   		function init() {
-  			$scope.wheelchairUIOpts = User.getSavedDesigns().map(function (design) {
-  				return {
-  					design: design,
-  					checked: isAComparedDesign(design),
-  					showInfo: false
-  				};
-  			});
+        // Load all the designs asynchronously and then set wheelchairUIOpts once they're loaded
+        var wheelchairUIOptsUserPromises = User.getSavedDesigns()
+          .map(getDesignById)
+          .map(function (designPromise) {
+            return designPromise.then(function (design) {
+              return {
+                design: design,
+                checked: isAComparedDesign(design),
+                showInfo: false
+              };
+            });
+          });
+
+        $q.all(wheelchairUIOptsUserPromises)
+        .then(function (wheelchairUIOpts) {
+          $scope.wheelchairUIOpts = wheelchairUIOpts;
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
   		}
 
   		init();
@@ -91,6 +123,10 @@ angular.module('abacuApp')
   		};
 
   		$scope.$watch('wheelchairUIOpts', function (newUIOpts, oldUIOpts) {
+        if (newUIOpts.length !== oldUIOpts.length) {
+          // Can't check for check flips if the arrays are different lengths
+          return;
+        }
   			// Get all the wheelchairUIOpts items that have been changed from what they were before
   			var checkFlippedOpts = newUIOpts.filter(function (newOpt, index) {
   				var oldOpt = oldUIOpts[index];
@@ -108,7 +144,7 @@ angular.module('abacuApp')
 
   			// Remove them from the compared designs service
   			uncheckedOpts.forEach(function (chairOpts) {
-				ComparedDesigns.myDesigns.removeDesign(chairOpts.design);
+				  ComparedDesigns.myDesigns.removeDesign(chairOpts.design);
   			});
   		}, true);
   	}]);

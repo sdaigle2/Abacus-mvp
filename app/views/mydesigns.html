@@ -14,7 +14,7 @@
         <ul class="chairBlock" ng-if="wheelchairUIOpts.length">
           <li ng-repeat="chairInfo in wheelchairUIOpts" class="cart-item {{chairInfo.checked ? 'checked-item' : ''}}">
             <div class="chairTitle" ng-class="{'selectedChair': chairInfo.checked }">
-              <span class="medium">{{chairInfo.design.wheelchair.getName()}}</span>
+              <span class="medium">{{_.has(chairInfo, 'design.wheelchair') ? (chairInfo.design.wheelchair.getName() || '--') : '--'}}</span>
               <input type="checkbox" class="checkbox-button pull-right" ng-model="chairInfo.checked" ng-disabled="numChecked() >= MAX_COMPARISON_CHAIRS && !chairInfo.checked">
             </div>
             <div>

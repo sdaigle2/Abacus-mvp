@@ -9,6 +9,17 @@ var async = require('async');
 var dbService = require('../db');
 var generateUniqueID = require('../generateUniqueID');
 
+function getObjectID(object, idField) {
+	if (_.isString(object)) {
+		// Probably given the Object ID itself here, just return the object
+		return object;
+	} else if (_.isObject(object) && _.has(object, idField)) {
+		return _.get(object, idField);
+	} else {
+		throw new Error('Invalid Arguments to getObjectID()');
+	}
+}
+
 // Given a cloudant DB isntance, and a list of object IDs within that DB, returns
 // a list of all the entries corresponding to the given IDs
 function getAllByID(db, ids, cb) {
@@ -34,7 +45,7 @@ function getOrderByID(orderID, cb) {
 			// Set the wheelchairs field to be the actual designs objects instead of just the design IDs
 			order.wheelchairs = designs;
 
-			cb(null, orders); // return the designs
+			cb(null, order); // return the order
 		});
 	});
 };
@@ -64,7 +75,12 @@ function getUserByID(userID, cb) {
 
 		// Get the order history of the current user
 		var getUserOrders = function (cb) {
-			getAllByID(dbService.orders, user.orders || [], cb);
+			var userOrders = user.orders || [];
+			var orderIDS = userOrders.map(function (order) {
+				return getObjectID(order, '_id');	
+			});
+			// Gets all the orders with their linked fields populated. (Only linked field in Orders is 'wheelchairs' which are designs)
+			async.map(orderIDS, getOrderByID, cb);
 		};
 
 		// Execute all these requests in parallel

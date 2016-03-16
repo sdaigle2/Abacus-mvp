@@ -790,8 +790,10 @@ angular.module('abacuApp')
             designPromise
             .then(function (design) {
               if (design instanceof Design) {
-                User.addDesignIDToSavedDesigns(design.id);
-                $location.path('/mydesigns');
+                User.addDesignIDToSavedDesigns(design.id)
+                .then(function () {
+                  $location.path('/mydesigns');
+                });
               }
             })
             .catch(function (design) {

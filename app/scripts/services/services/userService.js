@@ -80,12 +80,16 @@ angular.module('abacuApp')
             data: allDetails(),
             method: 'POST'
           })
-          .then(function (data) {
-            console.log(data);
+          .then(function (response) {
+            return response.data;
           })
-          .catch(function (data) {
-            console.log('Request Failed: ' + data);
+          .catch(function (err) {
+            console.log('Request Failed: ' + err);
           });
+        } else {
+          var deferred = $q.defer();
+          deferred.reject(Errors.NotLoggedInError('User Must Be Logged In For This Action'));
+          return deferred.promise;
         }
       }
 
@@ -379,7 +383,7 @@ angular.module('abacuApp')
         // Saves the currentWheelchair into the saved wheelchairs list and resets the currentWheelchair
         addDesignIDToSavedDesigns: function (designID) {
           savedDesigns.push(designID);
-          this.updateDB();
+          return this.updateDB();
         },
 
         //Removes the wheelchair at the given index from the user's myDesign
