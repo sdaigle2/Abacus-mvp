@@ -396,6 +396,134 @@ body {
 }
 
 
+/*********font book by number*****/
+.fontBook1{
+  font-family: 'oswald-bold';
+  font-size: 1.4em;
+  letter-spacing: .12em;
+  color: black;
+}
+
+.fontBook2{
+  font-family: 'Gotham A', 'Gotham B';
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1em;
+}
+
+.fontBook3{
+  font-family: 'Gotham A', 'Gotham B';
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1.2em;
+}
+
+.fontBook4{
+  font-family: 'Gotham A', 'Gotham B';
+  font-weight: 500;
+  font-style: normal;
+  font-size: .75em;
+}
+
+.fontBook5{
+  font-family: 'oswald-bold';
+  font-size: .75em;
+  color: #4f9dff;
+}
+
+.fontBook6{
+  font-family: 'oswald-regular';
+  font-size: .75em;
+  letter-spacing: .1em;
+  color: #4f9dff;
+}
+
+.fontBook7{
+  font-family: 'Gotham A', 'Gotham B';
+  font-weight: 400;
+  font-style: normal;
+  font-size: .75em;
+}
+
+.fontBook8{
+  font-family: 'oswald-regular';
+  font-size: 1em;
+  letter-spacing: .1em;
+  font-size: .75em;
+  color: white;
+}
+
+.fontBook9{
+  font-family: 'oswald-bold';
+  font-size: 1.2em;
+  color: white;
+}
+
+.fontBook10{
+  font-family: 'Gotham A', 'Gotham B';
+  font-weight: 400;
+  font-style: normal;
+  font-size: .8em;
+  color: white;
+}
+
+.fontBook11{
+  font-family: 'Gotham A', 'Gotham B';
+  font-weight: 400;
+  font-style: normal;
+  font-size: .7em;
+}
+
+.fontBook12{
+  font-family: 'Gotham A', 'Gotham B';
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1em;
+  color: white;
+}
+
+.fontBook13{
+  font-family: 'Gotham A', 'Gotham B';
+  font-weight: 500;
+  font-style: normal;
+  font-size: 1em;
+}
+
+.fontBook14{
+
+}
+
+.fontBook15{
+
+}
+
+.fontBook16{
+
+}
+
+.fontBook17{
+
+}
+
+.fontBook18{
+
+}
+
+.fontBook19{
+
+}
+
+.fontBook20{
+
+}
+
+.fontBook21{
+
+}
+
+
+
+
 .sexy-toggle{
 	border-radius: 0px;
 	-moz-appearance: none;

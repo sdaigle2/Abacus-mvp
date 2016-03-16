@@ -59,6 +59,7 @@
 
     <!--Login panel-->
     <div class="actionPanel" ng-if="loginPanel == 'login'">
+      <span ng-click="backToMain()" class="glyphicon glyphicon-chevron-left"></span>
       <article class="medium">
         <h4>login</h4>
         <h6>Please login to save your design</h6>
@@ -76,6 +77,7 @@
 
     <!-------register---->
     <div class="actionPanel registerPanel" ng-if="loginPanel == 'register'">
+      <span ng-click="backToLogin()" class="glyphicon glyphicon-chevron-left"></span>
       <register></register>
     </div>
     <!-----Complete save------>
@@ -400,7 +402,7 @@
 
         <!--save and review button-->
         <div id="SaveButton" class="btn medium" data-ng-class="{'sidebarMSave': getCurPageType() == pageType.MEASURE}"
-                data-ng-click="openSaveDropDown()">Save & Review
+                data-ng-click="saveDropDown()">Save & Review
         </div>
 
         <div class="unit-toggle" data-ng-class="{'sidebarMSave': isInMPage()}">
@@ -455,14 +457,5 @@ function initNavBar() {
   createjs.Ticker.addEventListener("tick", stage);
 }
 
-function printMousePos(e) {
-    var cursorY = e.clientY;
-    if (cursorY > 280) {
-      var dropdown = document.getElementsByClassName("dropdownTable");
-      if (dropdown.length > 0) {
-        $("#SaveButton").trigger("click");
-      }
-    }
-}
-document.addEventListener("click", printMousePos);
+
 </script>

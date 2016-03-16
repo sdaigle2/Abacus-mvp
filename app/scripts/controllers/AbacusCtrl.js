@@ -212,6 +212,19 @@ angular.module('abacuApp')
         $location.path('/settings');
       };
 
+      //redirect
+      $scope.backToMain = function(){
+        $scope.loginPanel = loginPanelStatus.MAIN;
+      };
+
+      $scope.backToLogin = function(){
+        $scope.loginPanel = loginPanelStatus.LOGIN;
+      };
+
+      $scope.backToMain = function(){
+        $scope.loginPanel = loginPanelStatus.MAIN;
+      };
+
       /****************Weight and Price******************/
 
       $scope.getTotalWeight = function () {
@@ -490,14 +503,9 @@ angular.module('abacuApp')
       }
 
       /*********Save $ review Dropdown*********/
-      $scope.toggleSaveDropDown = function () {
 
-        if(1){
-          $scope.saveDropdown = !$scope.saveDropdown;
-        }
-      };
 
-      $scope.openSaveDropDown = function() {
+      $scope.saveDropDown = function() {
         $scope.saveDropdown = true;
         console.log('im opening')
       };
@@ -790,7 +798,7 @@ angular.module('abacuApp')
             designPromise
             .then(function (design) {
               if (design instanceof Design) {
-                User.addDesignIDToSavedDesigns(design.id)
+                return User.addDesignIDToSavedDesigns(design.id)
                 .then(function () {
                   $location.path('/mydesigns');
                 });
