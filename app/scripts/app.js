@@ -49,7 +49,16 @@ angular
         templateUrl: 'views/compare.html',
         controller: 'CompareCtrl'
       })
-      .when('/cart', {
+      .when('/mydesigns', {
+        templateUrl: 'views/mydesigns.html',
+        controller: 'MyDesignsCtrl',
+        resolve: {
+          UserData: ['$q', 'User', function($q, User) {
+            return User.getPromise();
+          }]
+        }
+      })
+      .when('/cart2', {
         templateUrl: 'views/checkout/cart.html',
         controller: 'CartCtrl',
         resolve: {
@@ -58,7 +67,7 @@ angular
           }]
         }
       })
-      .when('/cart2', { // replace all references to 'Cart2' to just 'cart' when ready
+      .when('/cart', { // replace all references to 'Cart2' to just 'cart' when ready
         templateUrl: 'views/checkout/cart2.html',
         controller: 'Cart2Ctrl',
         resolve: {
@@ -87,12 +96,9 @@ angular
       .when('/settings', {
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl',
-        reloadOnSearch: false,
-        resolve: {
-          UserData: ['$q', 'User', function($q, User){
-            return User.getPromise();
-          }]
-        }
+        resolve: {UserData: ['$q', 'User', function($q, User){
+          return User.getPromise();
+        }]}
       })
       .when('/save', {
         templateUrl: 'views/save.html',

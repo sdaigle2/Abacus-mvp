@@ -154,6 +154,7 @@
   position: absolute;
   top: 10px;
   right: 10px;
+  z-index: 2;
 }
 
 #saveAction .closeTab:hover{
@@ -203,7 +204,7 @@
 
 #progressSaveBar > .progressBar {
   height: inherit;
-  width: 90%;
+  width: 100%;
   border-radius: 0px;
   margin: 0px;
   display: inline-block;
@@ -468,6 +469,9 @@
 /*************************************************Main*****************************************/
 
 /*************************Main-Custom******************************/
+.main{
+  margin-left: 1%;
+}
 .main-custom {
   position: relative;
   top: 20px;
@@ -519,7 +523,7 @@
 
 /*************************Main-Measure******************************/
 .main-measure {
-  margin-left: 50px;
+  margin-left: calc(22vw - 176px);
   float: left;
   clear: left;
 }
@@ -815,6 +819,10 @@ img.rightButtonNav {
   width: 20px;
   position: relative;
   bottom: 5px;
+}
+
+.sideBar-custom-item-right .sideBar-custom-item-details img:hover{
+  cursor: pointer;
 }
 
 .sideBar-custom-item-right .sideBar-custom-item-buttonRow {

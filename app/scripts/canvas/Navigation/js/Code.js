@@ -18,8 +18,8 @@ var arrowWidth = 70;  //TODO OBSOLETE
 var lastCustomArrow;  //TODO OBSO
 var lastMeasureArrow; //TODO OBSO
 var done_txt;          //complete percentage
-var ratio = $(window).width() * 0.9 /1280;
-var minRatio = 1185 * 0.9 / 1280;
+var ratio = $(window).width() /1280;
+var minRatio = 1185 / 1280;
 if($(window).width() > 1185) {
   var ARROW_WIDTH = 90 * ratio;                           // "Arrows WIDTH"
   var spanShift = 150 * ratio;

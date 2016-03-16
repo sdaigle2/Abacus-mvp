@@ -52,6 +52,7 @@ angular.module('abacuApp')
 
       $scope.loginPanel = loginPanelStatus.MAIN;
 
+
       /**********************Main Variables****************************/
 
 
@@ -798,19 +799,14 @@ angular.module('abacuApp')
             designPromise
             .then(function (design) {
               if (design instanceof Design) {
-                return User.addDesignIDToSavedDesigns(design._id)
-                .then(function () {
-                  // go to the my desings section of the settings page
-                  $location
-                    .path('/settings')
-                    .search({
-                      section: 'myDesigns'
-                    });
-                });
+                User.addDesignIDToSavedDesigns(design.id);
+                $scope.loginPanel = loginPanelStatus.SAVED;
+
               }
             })
             .catch(function (design) {
               ngDialog.open({
+                //TODO: design and incorporate error message
                 'template': '<div><h2>Oops! An Error Occurred</h2></div>',
                 'plain': true
               });

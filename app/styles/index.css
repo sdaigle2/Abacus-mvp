@@ -40,6 +40,10 @@ body {
   border-right: 2px solid #eaeaea;
 }
 
+.mainNavbar-header:hover{
+  cursor: pointer;
+}
+
 .mainNavbar-left {
   float: left;
   margin: 0 0 0 20px;
@@ -129,6 +133,22 @@ body {
   padding: 0;
   text-decoration: none;
 }
+
+.mainNavbar .mainNavbar-right #searchID{
+  display: inline-block;
+  position: relative;
+  right: 103px;
+  top: 11px;
+}
+
+#searchID img{
+  height: 20px;
+}
+
+.mainNavbar .mainNavbar-right #searchID:hover{
+  cursor: pointer;
+}
+
 .mainNavbar .mainNavbar-right .cartButton {
     height: 100%;
     margin: 0px;

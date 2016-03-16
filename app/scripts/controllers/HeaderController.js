@@ -104,6 +104,10 @@ angular.module('abacuApp')
     $scope.orderURL = 'my_orders';
     $scope.measureURL = 'my_measurement';
 
+    $scope.jumpLanding = function(){
+        $location.path('/');
+    };
+
     $scope.jumpFrame = function(){
       $location.path('/frames');
     };
@@ -112,6 +116,10 @@ angular.module('abacuApp')
     };
     $scope.jumpCart = function(){
       $location.path('/cart');
+    };
+
+    $scope.jumpSearchid = function(){
+      $location.path('/searchid');
     };
 
     $scope.$on('$viewContentLoaded', function(event) {

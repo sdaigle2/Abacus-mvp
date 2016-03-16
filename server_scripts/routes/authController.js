@@ -115,7 +115,7 @@ router.post('/register', function (req, res) {
     res.json({err: checkRes});  //If response is not true, it is an error
   }
   else
-    dbService.users.get(data.email, function (err) { //Query the database for a user with the given email
+    dbService.users.get(data.email, function (err, body) { //Query the database for a user with the given email
       if (err) {  //No user exists, we can continue registering
 
         //Hash the given password. hash() defined in security.js
@@ -143,7 +143,10 @@ router.post('/register', function (req, res) {
         });
       }
       else
-        res.json({err: 'user already exists', field: 'email'}); //No error in query means the user exists
+      {
+
+        console.log('hello world        hsakwicnskjancjkwq' + JSON.stringify(body));
+        res.json({err: 'user already exists', field: 'email'}); }//No error in query means the user exists
     });
 });
 

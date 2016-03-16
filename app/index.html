@@ -60,7 +60,7 @@
       </div>
 
       <div class="mainNavbar-header">
-        <a class="mainNavbar-brand" href="/">
+        <a class="mainNavbar-brand" ng-click="jumpLanding()">
           <img alt="Tinker" src="images/tinker_logo_small_beta1.png" width="100"/>
         </a>
       </div>
@@ -71,11 +71,8 @@
         <li ng-click="jumpAbout()" class="aboutNavButton" ng-class="{ active: isActive('/about')}">
           <a class="medium">About us</a>
         </li>
-        <li ng-click="jumpCart()" class="compareNavButton" ng-class="{ active: isActive('/cart')}">
-          <a class="medium">Compare</a>
-        </li>
-
       </ul>
+
       <ul class="mainNavbar-right">
         <li class="cartButton" ng-click="jumpCart()"><img src="images/icons/my_cart_black.png" width="30" alt="cart"/>
         </li>
@@ -90,6 +87,9 @@
             <div class="loginText medium" data-ng-bind="loginText"></div>
           </div>
         </li>
+        <li data-ng-click="jumpSearchid()" id="searchID">
+          <img src="images/navBar/search_id.png">
+        </li>
         <li class="settingsButton" data-ng-if="user.isLoggedIn()">
           <div data-ng-click="toggleSettingsDropdown()" class="login">
             <div class="userName medium" data-ng-bind="user.getFname()"></div>
@@ -97,6 +97,7 @@
         </li>
       </ul>
     </div>
+
     <div data-ng-if="loginDropdown() === true"  class="fixPosition" >
       <table class="dropdownTable">
         <tr>

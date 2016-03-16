@@ -4,8 +4,9 @@
 angular.module('abacuApp')
   .directive('register', function(){
     return{
-      restrict:'AE',
+      restrict:'E',
       controller:'RegisterCtrl',
+      scope:false,
       templateUrl:'../../views/tinker/registerPanel.html'
     }
   });
