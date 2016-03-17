@@ -96,6 +96,7 @@ angular
       .when('/settings', {
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl',
+        reloadOnSearch: false,
         resolve: {UserData: ['$q', 'User', function($q, User){
           return User.getPromise();
         }]}
