@@ -26,6 +26,8 @@ router.post('/login', function (req, res) {
   //Retrieve request parameters
   var email = req.body.email;
   var password = req.body.password;
+  console.log('email ' + email);
+  console.log('password ' + password);
 
   //Query the database
   dbUtils.getUserByID(email, function (err, body) { //body is the object we retrieve from the successful query
@@ -47,8 +49,10 @@ router.post('/login', function (req, res) {
           res.json({'userID': -1});
       });
     }
-    else
+    else {
+      console.log(err);
       res.json({'userID': -1});
+    }
   });
 });
 
@@ -142,11 +146,9 @@ router.post('/register', function (req, res) {
           });
         });
       }
-      else
-      {
-
-        console.log('hello world        hsakwicnskjancjkwq' + JSON.stringify(body));
-        res.json({err: 'user already exists', field: 'email'}); }//No error in query means the user exists
+      else { // No error in query means the user exists
+        res.json({err: 'user already exists', field: 'email'});
+      }
     });
 });
 

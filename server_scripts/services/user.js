@@ -4,9 +4,10 @@
 "use strict";
 
 var dbService = require('./db');
-var dbUtils = require('./dbUtils');
-var hash = require('../services/security').hash;
-var check = require('../services/security').check;
+var dbUtils   = require('./dbUtils');
+var _         = require('lodash');
+var hash      = require('../services/security').hash;
+var check     = require('../services/security').check;
 
 //Replace any bad request parameters with their existing value in the database
 function fixObject(obj, existing) {
@@ -19,6 +20,20 @@ function fixObject(obj, existing) {
       obj[property] = existing[property];
     }
   });
+}
+
+/**
+ * Given a User object with all linked fields completely populater,
+ * Returns same user object with linked fields only referencing data via IDs
+ */
+function getUserWithIDLinkedFields(fullUserObj) {
+  var miniUserObj = _.clone(fullUserObj);
+
+  miniUserObj.cart = _.isNull(miniUserObj.cart) ? null : (miniUserObj._id || miniUserObj.id);
+  miniUserObj.savedDesigns = _.map(miniUserObj.savedDesigns, '_id');
+  miniUserObj.orders = _.map(miniUserObj.orders, '_id');
+
+  return miniUserObj;
 }
 
 // Updates the given user object
@@ -37,11 +52,14 @@ exports.update = function (obj, key, callback) {
     //Make sure the orders are not removed
     obj.orders = existing.orders;
     if (!error) {
-      dbUtils.updateLinkedUserFields(obj, function (err, updatedUser) {
+      dbUtils.updateLinkedUserFields(obj, function (err, updatedUserFull) {
         if (err) {
           callback(err);
         } else {
-          obj = updatedUser;
+          // Map all the linked fields to just their ids
+          // Insert this smaller, relational verion into the DB entry for the User but respond to the callback with
+          // The full user object
+          obj = getUserWithIDLinkedFields(updatedUserFull);
           if (!obj.newPass1 || obj.newPass1.length < 8 || obj.newPass1 !== obj.newPass2) { //If the new password doesn't exist, is too short or does not match the confirmation
             console.log('bad newpass');
             //Insert new object without replacing the password
@@ -49,7 +67,7 @@ exports.update = function (obj, key, callback) {
             delete obj.newPass1;
             delete obj.newPass2;
             dbService.users.insert(obj, key, function(err, body){
-              callback(err, body, 1, obj);
+              callback(err, body, 1, updatedUserFull);
             });
           } else {
             //Check the old password as we would for login
@@ -61,7 +79,7 @@ exports.update = function (obj, key, callback) {
                 delete obj.newPass1;
                 delete obj.newPass2;
                 dbService.users.insert(obj, key, function(err, body){
-                  callback(err, body, 2, obj);
+                  callback(err, body, 2, updatedUserFull);
                 });
               } else {
                 //Hash the new password with a new salt
@@ -75,7 +93,7 @@ exports.update = function (obj, key, callback) {
                   delete obj.newPass1;
                   delete obj.newPass2;
                   dbService.users.insert(obj, key, function(err, body){
-                    callback(err, body, 3, obj);
+                    callback(err, body, 3, updatedUserFull);
                   });
                 });
               }

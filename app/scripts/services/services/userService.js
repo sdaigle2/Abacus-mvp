@@ -18,7 +18,7 @@ angular.module('abacuApp')
       // declare all User variables here
       var orders, currentWheelchair, cartWheelchairIndex, savedDesigns,
       userID, fName, lName, email, phone, addr, addr2, city, state,
-      zip, unitSys, contentSection, cart, isAdmin;
+      zip, unitSys, contentSection, cart, isAdmin, _rev;
 
       // initialize all user variables here
       function init() {
@@ -44,6 +44,7 @@ angular.module('abacuApp')
         unitSys = Units.unitSys.IMPERIAL;
         contentSection = 'orders';
         isAdmin = false;
+        _rev = null;
       }
 
       var instance = this;
@@ -51,7 +52,7 @@ angular.module('abacuApp')
       init(); // initialize all the user variables
 
       function allDetails() {
-        return {
+        var details = {
           'userID': userID,
           'fName': fName,
           'lName': lName,
@@ -73,9 +74,15 @@ angular.module('abacuApp')
             }
             return design;
           }),
-          'cart': cart.getAll(),
+          'cart': !_.isNull(cart) && cart._id !== -1 ? cart.getAll() : null,
           'isAdmin': isAdmin
         };
+
+        if (_rev) { // attach the _rev only if it exists
+          details._rev = _rev;
+        }
+
+        return details;
       }
 
       function updateDB() {
@@ -87,7 +94,9 @@ angular.module('abacuApp')
           })
           .then(function (response) {
             // TODO: Update the revisions for all the design objects here
-            return response.data;
+            var userData = response.data.user;
+            restoreUserFromBackend(userData);
+            return userData;
           })
           .catch(function (err) {
             console.log('Request Failed: ' + err);
@@ -175,15 +184,23 @@ angular.module('abacuApp')
           state = data.state;
           zip = data.zip;
           savedDesigns = !_.isArray(data.savedDesigns) ? [] : data.savedDesigns.map(function (designObj) {
-            return new Design(designObj);
+            return _.isObject(designObj) ? new Design(designObj) : designObj; // might just be a design ID string
           });
 
           currentWheelchair = data.currentWheelchair || currentWheelchair;
           currentWheelchair.editingWheelchair = currentWheelchair.editingWheelchair ? new Wheelchair(currentWheelchair.editingWheelchair) : currentWheelchair.editingWheelchair;
           currentWheelchair.design = currentWheelchair.design ? new Design(currentWheelchair.design) : null;
+          
+          // Setup the cart...it is null if the user doesnt have a cart
+          if (data.cart) {
+            var cartID = data.cart.id || data.cart._id || -1;
+            cart = data.cart && cartID >= 0 ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
+          } else {
+            cart = null;
+          }
 
-          cart = data.cart ? new Order(data.cart) : cart;
           isAdmin = data.isAdmin || false;
+          _rev = data._rev || null;
 
           for (var i = 0; i < data.orders.length; i++) {
             orders.push(new Order(0, 0, data.orders[i]));
@@ -404,7 +421,7 @@ angular.module('abacuApp')
 
         //Returns the full array of user-defined wheelchairs
         getCartWheelchairs: function () {
-          return _.map(cart.wheelchairs, 'wheelchair');
+          return _.isNull(cart) ? [] : _.map(cart.wheelchairs, 'wheelchair');
         },
 
         getWheelchair: function (index) {
@@ -441,7 +458,7 @@ angular.module('abacuApp')
         },
 
         getNumCartWheelchairs: function () {
-          return cart.wheelchairs.length;
+          return _.isNull(cart) ? 0 : cart.wheelchairs.length;
         },
 
         saveComputer: function () {

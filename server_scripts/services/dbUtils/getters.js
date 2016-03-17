@@ -10,6 +10,8 @@ var dbService = require('../db');
 var generateUniqueID = require('../generateUniqueID');
 
 function getObjectID(object, idField) {
+	console.log('Args for getObjectID:');
+	console.log(JSON.stringify(arguments, null, 2));
 	if (_.isString(object)) {
 		// Probably given the Object ID itself here, just return the object
 		return object;
@@ -19,6 +21,8 @@ function getObjectID(object, idField) {
 		throw new Error('Invalid Arguments to getObjectID()');
 	}
 }
+
+exports.getObjectID = getObjectID;
 
 // Given a cloudant DB isntance, and a list of object IDs within that DB, returns
 // a list of all the entries corresponding to the given IDs
@@ -62,7 +66,13 @@ function getUserByID(userID, cb) {
 		// Get the cart for the current user
 		var getUserCart = function (cb) {
 			if (user.cart) {
-				dbService.orders.get(user.cart, cb);
+				try {
+					var cartID = getObjectID(user.cart, '_id');
+					dbService.orders.get(cartID, cb);
+				} catch (badCartValueErr) {
+					// The given cart didn't have an ID field...this means the cart value is invalid and can be treated as null
+					cb(null, null);	
+				}
 			} else {
 				cb(null, null); // if user doesnt have a cart yet, just resolve it to be null
 			}
@@ -70,7 +80,11 @@ function getUserByID(userID, cb) {
 
 		// Get the savedDesigns for the current user
 		var getUserSavedDesigns = function (cb) {
-			getAllByID(dbService.designs, user.savedDesigns || [], cb);
+			var savedDesigns = user.savedDesigns || [];
+			var savedDesignIDs = savedDesigns.map(function (design) {
+				return getObjectID(design, '_id');
+			});
+			getAllByID(dbService.designs, savedDesignIDs, cb);
 		};
 
 		// Get the order history of the current user
@@ -92,7 +106,6 @@ function getUserByID(userID, cb) {
 			if (err) {
 				return cb(err);
 			}
-
 			// Overwrite each of the fields with their populated counterparts in results
 			user.cart         = results.cart;
 			user.savedDesigns = results.savedDesigns;

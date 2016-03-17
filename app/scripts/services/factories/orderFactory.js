@@ -25,6 +25,7 @@ angular.module('abacuApp')
       this.wheelchairs = [];
       if (order == null) {
         this._id = -1;
+        this._rev = null;
         this.orderNum = 'OrderNumNotSet';
         this.taxRate = taxRate;
         this.shippingFee = shippingFee;
@@ -44,7 +45,8 @@ angular.module('abacuApp')
         this.payMethod = '';
       }
       else {
-        this._id = order._id || -1;
+        this._id = order._id || order.id  || -1;
+        this._rev = order._rev || order.rev || null;
         this.orderNum = order.orderNum;
         this.taxRate = order.taxRate;
         this.shippingFee = order.shippingFee;
@@ -116,8 +118,12 @@ angular.module('abacuApp')
           })
         };
 
-        if (this._id && this._id >= 0) {
+        if (this._id && this._id !== -1) {
           details._id = this._id;
+        }
+
+        if (this._rev) { // only attach _rev if it exists
+          details._rev = this._rev;
         }
 
         return details;

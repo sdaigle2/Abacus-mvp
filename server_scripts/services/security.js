@@ -72,6 +72,7 @@ function passwordCheck(password, confirm, res){
 
 //Function to hash a password
 exports.hash = function (pwd, salt, fn) {
+  console.log(pwd);
   if (3 == arguments.length) {//salt provided
     crypto.pbkdf2(pwd, salt, iterations, len, function(err, hash){//hash password with given salt
       fn(err, hash.toString('base64'));

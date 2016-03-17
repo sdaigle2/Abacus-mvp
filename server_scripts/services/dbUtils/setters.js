@@ -28,6 +28,7 @@ function updateOrInsertAllEntries(argsObj, cb) {
 	var dbInsert = argsObj.dbInsert || db.insert; // in special cases (like Designs) can specify another insert function
 	var idField = argsObj.idField;
 	var entries = argsObj.entries;
+
 	async.map(entries, function (entry, cb) {
 		if (_.isObject(entry)) {
 			// We're being given the object as a whole
@@ -107,7 +108,7 @@ function updateOrderLinkedFields(orderObj, cb) {
 		if (err) {
 			cb(err);
 		} else {
-			orderObj.wheelchairs = _.map(wheelchairs, '_id');
+			orderObj.wheelchairs = wheelchairs;
 			cb(null, orderObj);
 		}
 	});
@@ -191,9 +192,9 @@ function updateLinkedUserFields(userObj, cb) {
 		if (err) {
 			cb(err);
 		} else {
-			userObj.orders = _.map(results.orders, '_id');
-			userObj.savedDesigns = _.map(results.savedDesigns, '_id');
-			userObj.cart = _.isNull(results.cart) ? null : results.cart._id; // when a user doesnt have a cart, its null. Must check
+			userObj.orders =results.orders;
+			userObj.savedDesigns = results.savedDesigns;
+			userObj.cart = _.isNull(results.cart) ? null : results.cart; // when a user doesnt have a cart, its null. Must check
 
 			cb(null, userObj);
 		}

@@ -210,7 +210,7 @@ angular.module('abacuApp')
 
       $scope.saveMessage = function(){
         User.setContentSection('measurements');
-        $location.path('/settings');
+        $location.path('/settings').search({section: 'myDesigns'});
       };
 
       //redirect
@@ -799,10 +799,11 @@ angular.module('abacuApp')
             designPromise
             .then(function (design) {
               if (design instanceof Design) {
-                User.addDesignIDToSavedDesigns(design.id);
-                $scope.loginPanel = loginPanelStatus.SAVED;
-
+                return User.addDesignIDToSavedDesigns(design._id);
               }
+            })
+            .then(function () {
+              $scope.loginPanel = loginPanelStatus.SAVED;
             })
             .catch(function (design) {
               ngDialog.open({
