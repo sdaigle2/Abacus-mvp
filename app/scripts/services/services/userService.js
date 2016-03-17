@@ -74,7 +74,7 @@ angular.module('abacuApp')
             }
             return design;
           }),
-          'cart': !_.isNull(cart) && cart._id !== -1 ? cart.getAll() : null,
+          'cart': !_.isNull(cart) ? cart.getAll() : null,
           'isAdmin': isAdmin
         };
 
@@ -196,7 +196,7 @@ angular.module('abacuApp')
             var cartID = data.cart.id || data.cart._id || -1;
             cart = data.cart && cartID >= 0 ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
           } else {
-            cart = null;
+            cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
           }
 
           isAdmin = data.isAdmin || false;
