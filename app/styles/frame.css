@@ -1,17 +1,101 @@
+#background{
+  background-color: #f1f1f1;
+  height: 100vh;
+  width: 100vw;
 
+}
 
 .wrapper{
   max-width: 1300px;
-  margin:auto;
+
+  padding: 44px 0;
 }
 
 
-.frame-header h2 {
+
+button{
+  background-color: #4f9dff;
+  color: white;
+  border: 0;
+  font-size: 0.9em;
+  height: 30px;
+  padding: 5px 12px;
+}
+
+/*****frame column cosmetic******/
+.frameCol{
+  text-align: center;
+  width: 35%;
+  border-right: 1px solid #a7a9ac;
+  height: 80vh;
+  padding: 0 40px;
+  display: inline-block;
+  min-width: 380px;
+}
+
+.frameCol .profilePic{
+  margin-top: 10px;
+  padding-top: 20px;
+}
+
+.frameCol .profilePic img{
+  width: 330px;
+}
+
+.frameCol article p {
+  text-align: left;
+}
+
+.nameCol{
+  margin: 30px 0;
+}
+.nameCol p span:first-of-type{
+  padding-right: 10px;
+  border-right: 1px solid #a7a9ac;
+  color: #f3bc19;
+}
+
+.nameCol p span:last-of-type {
+  padding-left: 10px;
+  color: #a7a9ac;
+}
+
+.buttonGroup{
+  margin-top: 30px;
+}
+.buttonGroup button{
+  display: inline-block;
+  padding: 5px 32px;
+}
+
+.buttonGroup button:first-of-type{
+  margin-right: 10px;
+}
+
+.detailCol{
   position: relative;
-  clear: left;
-  float: left;
-  width: 65%;
+  bottom: 11px;
+  text-align: left;
 }
+
+.frameCol .intro{
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding-top: 20px;
+}
+
+.detailCol section{
+  margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
 
 /******main display part*****/
 

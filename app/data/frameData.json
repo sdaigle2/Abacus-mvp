@@ -2,9 +2,10 @@
   {
     "manufacturer": "Per4max",
     "name": "Thunder",
-    "desc": "The PER4MAX Thunder is an elite performance sports wheelchair built by the best for the best!  Offered in different configurations depending on sport, the Thunder has propelled elite athletes for decades in an array of sports! Crush the courts in our feather light tennis model with itís eliminated front bumper and extended 5th wheel!  Ball with the best of them in a sturdy custom fit tapered lightweight basketball chair. Take on the softball field, rugby courts, lacrosse field, or running trail with The PER4MAX Thunder!!  The Thunder is hand built in the USA with aircraft quality aluminum and custom P4X machined parts highly scrutinized to produce a precise end product! - See more at: http://per4max.com/sport-chairs/thunder/#sthash.SyrcgtRL.dpuf",
+    "desc": "The Thunder is an elite performance sports wheelchair hand built custom parts and aircraft quality aluminum",
     "basePrice": 2849,
     "baseWeight": 6,
+    "type": "SPORT",
     "frameID": 3,
     "imageURL": "images/frame_page_img/CKE_Blue2.jpg",
     "parts": [
