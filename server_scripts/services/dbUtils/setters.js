@@ -40,6 +40,7 @@ function updateOrInsertAllEntries(argsObj, cb) {
 					if (err) {
 						cb(err);
 					} else {
+						entry._rev = res.rev; // update the revision number
 						cb(null, entry); // updated the entry succesfully...return the entry value 
 					}
 				});
@@ -49,6 +50,7 @@ function updateOrInsertAllEntries(argsObj, cb) {
 					if (err) {
 						cb(err);
 					} else {
+						entry._rev = res.rev; // update the revision number
 						cb(null, entry); // created the entry succesfully...return the entry value
 					}
 				});
