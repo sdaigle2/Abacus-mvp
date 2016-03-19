@@ -6,19 +6,19 @@
  * @description
  * # compareDesigns
  * Service of the abacuApp
- * 
+ *
  * Used to store designs that the user selects for comparisons
  * Selection designs are stored using localJSONStorage which internally uses localStorage with a fallback to $cookieStore
  * Must keep in mind that there is a limit to how many designs can be stored with the service (specified by the 'MAX_COMPARISON_CHAIRS' constant)
  * You can check whether any more designs can be stored using `ComparedDesigns.isFull()`
- * 
+ *
  * The service as a whole consists of two instances of `ComparedDesignsStorage`.
  * One is for the cart, and another is for MyDesigns so that comparisons between cart chairs and myDesigns chairs can be made independently
  * You can access each ComparedDesignsStorage with ComparedDesigns.cart & ComparedDesigns.myDesigns
  */
 angular.module('abacuApp')
   .constant('LOCAL_CART_COMPARED_DESIGNS_KEY', 'cartComparedDesigns')
-  .constant('LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY', 'cartComparedDesigns')
+  .constant('LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY', 'myDesignComparedDesigns')
   .constant('MAX_COMPARISON_CHAIRS', 3)
   .service('ComparedDesigns', ['localJSONStorage', 'Design', 'LOCAL_CART_COMPARED_DESIGNS_KEY', 'LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY', '_', 'MAX_COMPARISON_CHAIRS',
     function (localJSONStorage, Design, LOCAL_CART_COMPARED_DESIGNS_KEY, LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY, _, MAX_COMPARISON_CHAIRS) {

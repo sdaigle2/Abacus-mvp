@@ -1,5 +1,3 @@
-
-
 var span = document.getElementById("nav_span"); //Div DOM Elment
 span.style.visibility = "hidden";
 var margin = 4;                                 // Margin Between Arrows
@@ -18,8 +16,10 @@ var arrowWidth = 70;  //TODO OBSOLETE
 var lastCustomArrow;  //TODO OBSO
 var lastMeasureArrow; //TODO OBSO
 var done_txt;          //complete percentage
-var ratio = $(window).width() /1280;
-var minRatio = 1185 / 1280;
+var canvasWidth = 2560;
+var ratio = $(window).width() /canvasWidth;
+var percentSpace = 120;
+var minRatio = 1180 / canvasWidth;
 if($(window).width() > 1185) {
   var ARROW_WIDTH = 90 * ratio;                           // "Arrows WIDTH"
   var spanShift = 150 * ratio;
@@ -40,136 +40,59 @@ if($(window).width() > 1185) {
 
 window.onresize = function(event) {
   if($(window).width() > 1185){
-  ratio = $(window).width() * 0.9 /1280;
+  ratio = $(window).width() * 0.9 /canvasWidth;
   ARROW_WIDTH = 90 * ratio;                           // "Arrows WIDTH"
   spanShift = 150 * ratio;
   measureShift = 320 * ratio;
   customizeShift = 150 *ratio;}
 }
-var Arrow = function(image, name, page, custom){
-	this.complete = false;
-	this.page = page;
-	this.index = page.index;
-  var index = page.index;
-	this.name = name;
-	this.custom = custom;
-	this.mc = new lib.Arrow();
-	stage.addChild(this.mc);
-	if(custom){
-		this.mc.x = customArrows.length*(arrowWidth+margin)+155;
-	}else{
-		this.mc.x = 950;
-	}
-	this.mc.y = 1;
-	this.image = image;
-	var mc = this.mc;
-	mc.addEventListener("click", pressed);
-	mc.addEventListener("mouseover", hover_on);
-	mc.addEventListener("rollout", hover_off);
-
-	var image = this.image;
-	var me = this;
-	gotoAndStop(image);
-	function pressed(m){
-
-		if(custom){
-			customChanged();
-			lastCustomArrow = me;
-		}else{
-			lastMeasureArrow = me;
-		}
-		focusedIndex= index;
-
-		myScope.pageSwitchJump(page);
-    //TODO better completion detection
-		me.complete = true;
-		calcCompleteness();
-
-		if(custom && arrowFocus){
-			arrowFocus.gotoAndStop(1);
-		}
-		if(!custom){
-			if(arrowFocus.page.visitstatus==="visited"){
-				arrowFocus.gotoAndStop(1);
-			}else{
-				arrowFocus.gotoAndStop(2);
-			}
-		}
-		arrowFocus = me;
-
-		image = 3;
-		mc.gotoAndStop(image);
-
-
-	}
-	this.pressed = pressed;
-	function hover_on(m){
-
-		span.style.visibility = "visible";
-		if(image === 4){
-			mc.gotoAndStop(5);
-		}
-		span.innerHTML = name;
-		span.style.left = spanShift+index*(ARROW_WIDTH-15)+"px";
-	}
-	function hover_off(m){
-		mc.gotoAndStop(image);
-		span.style.visibility = "hidden";
-	}
-
-	function gotoAndStop(integer){
-		image = integer;
-		mc.gotoAndStop(integer);
-	}
-	this.gotoAndStop = gotoAndStop;
-
-	function flash(){
-		mc.flasher.gotoAndPlay(1);
-	}
-	this.flash = flash;
-}
-
 
 //Initializes all the DOM Elements/MovieClips
 function initStuff(container){
 	done_txt = container.done;
   myScope = angular.element(document.getElementById("NavigationBar")).scope();
   done_txt.text = myScope.completePercentage()+"%";
-
-  initArrows();
 	cBtn = new lib.cBtn;
 	stage.addChild(cBtn);
-	cBtn.x = -20;
 	cBtn.y = 1;
 	mBtn = new lib.mBtn;
 	stage.addChild(mBtn);
-	mBtn.x = 895;
+	mBtn.x = canvasWidth - mBtn.nominalBounds.width - percentSpace;
 	mBtn.addEventListener("click", switchToMeasurement);
 	cBtn.addEventListener("click", switchToCustomize);
 	document.getElementById("NavigationBar").addEventListener("mousemove", changeCursorPointer);
 	document.getElementById("NavigationBar").addEventListener("mouseout", changeCursorDefault);
+  initArrows();
 	fixFirefox();
   customChanged();
   measureChanged();
+  stage.setChildIndex( cBtn, stage.getNumChildren()-1);
+  stage.setChildIndex( mBtn, stage.getNumChildren()-1);
   }
 
 function initArrows(){
 	var customizePages = myScope.getCustomizePages();
 	var measurementPages = myScope.getMeasurePages();
+
+  var fillSpace = mBtn.x - cBtn.nominalBounds.width;
+  var cArrowWidth = fillSpace/customizePages.length;
+  var mArrowWidth = fillSpace/measurementPages.length;
+
 	//Initialize customPages
 	for(var i=0; i<customizePages.length; i++){
+    var arrowX = cBtn.nominalBounds.width + i*cArrowWidth;
 		if(i===0){
-			var arrow = new Arrow(3, myScope.getProgressBarSegmentTooltipText(customizePages[i]),  customizePages[i], true);
+			var arrow = new Arrow(3, myScope.getProgressBarSegmentTooltipText(customizePages[i]),  customizePages[i], arrowX,cArrowWidth, true);
 			arrowFocus = arrow;
 			customArrows.push(arrow);
 		}else{
       var optionIndexC = myScope.curEditWheelchair.getOptionIDForPart(customizePages[i].partID);
 
       if (optionIndexC !== -1){
-        var arrow = new Arrow(1, myScope.getProgressBarSegmentTooltipText(customizePages[i]),  customizePages[i], true);
+        var arrow = new Arrow(1, myScope.getProgressBarSegmentTooltipText(customizePages[i]),  customizePages[i],arrowX, cArrowWidth, true);
         customArrows.push(arrow);
       }else {
-        var arrow = new Arrow(2, myScope.getProgressBarSegmentTooltipText(customizePages[i]), customizePages[i], true);
+        var arrow = new Arrow(2, myScope.getProgressBarSegmentTooltipText(customizePages[i]), customizePages[i],arrowX, cArrowWidth, true);
         customArrows.push(arrow);
       }
 		}
@@ -177,16 +100,17 @@ function initArrows(){
 
 	//Initialize measurementPages
 	for(var i=0; i<measurementPages.length; i++){
+    var arrowX = mBtn.x;
 		if(i===0){
-			var arrow = new Arrow(3, "Rear Seat Width",  measurementPages[i], false);
+			var arrow = new Arrow(3, "Rear Seat Width",  measurementPages[i],arrowX,mArrowWidth, false);
 			measureArrows.push(arrow);
 		}else{
       var optionIndexM = myScope.curEditWheelchair.getOptionIndexForMeasure(measurementPages[i].measureID);
       if(optionIndexM !== -1){
-        var arrow = new Arrow(1, myScope.getMeasurementTooltipText(measurementPages[i]), measurementPages[i], false);
+        var arrow = new Arrow(1, myScope.getMeasurementTooltipText(measurementPages[i]), measurementPages[i],arrowX,mArrowWidth, false);
         measureArrows.push(arrow);
       } else {
-        var arrow = new Arrow(2, myScope.getMeasurementTooltipText(measurementPages[i]), measurementPages[i], false);
+        var arrow = new Arrow(2, myScope.getMeasurementTooltipText(measurementPages[i]), measurementPages[i],arrowX,mArrowWidth, false);
         measureArrows.push(arrow);
       }
 		}
