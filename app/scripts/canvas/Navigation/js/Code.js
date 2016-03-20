@@ -1,25 +1,31 @@
-var span = document.getElementById("nav_span"); //Div DOM Elment
-span.style.visibility = "hidden";
-var margin = 4;                                 // Margin Between Arrows
-var customArrows = new Array();
+var margin = 0;       				  // Margin Between Arrows
+var customArrows = new Array();		  
 var measureArrows = new Array();
-var arrows = null;
+var arrows = null;	//This alternates between custom and measure arrows array.
 var myScope;
 var arrowFocus = null;
-var focusedIndex = 0;   //TODO OBSOLETE
+
 var mBtn;
 var cBtn;
-var pageType = "CUSTOMIZE"; //TODO OBSO
+
 var tweenSpeed = 800;
 var tweenType = createjs.Ease.getElasticInOut(2, 5);
-var arrowWidth = 70;  //TODO OBSOLETE
-var lastCustomArrow;  //TODO OBSO
-var lastMeasureArrow; //TODO OBSO
+var mArrowWidth = 100; 
+var cArrowWidth = 100;  
+
 var done_txt;          //complete percentage
 var canvasWidth = 2560;
 var ratio = $(window).width() /canvasWidth;
 var percentSpace = 120;
 var minRatio = 1180 / canvasWidth;
+
+//--I believe the scope has these properties, so handling them here is redundant.--/
+var lastCustomArrow;  //TODO OBSO
+var lastMeasureArrow; //TODO OBSO
+var pageType = "CUSTOMIZE"; //TODO OBSO
+var focusedIndex = 0;   //TODO OBSOLETE
+
+
 if($(window).width() > 1185) {
   var ARROW_WIDTH = 90 * ratio;                           // "Arrows WIDTH"
   var spanShift = 150 * ratio;
@@ -50,8 +56,8 @@ window.onresize = function(event) {
 //Initializes all the DOM Elements/MovieClips
 function initStuff(container){
 	done_txt = container.done;
-  myScope = angular.element(document.getElementById("NavigationBar")).scope();
-  done_txt.text = myScope.completePercentage()+"%";
+    myScope = angular.element(document.getElementById("NavigationBar")).scope();
+    done_txt.text = myScope.completePercentage()+"%";
 	cBtn = new lib.cBtn;
 	stage.addChild(cBtn);
 	cBtn.y = 1;
@@ -62,45 +68,43 @@ function initStuff(container){
 	cBtn.addEventListener("click", switchToCustomize);
 	document.getElementById("NavigationBar").addEventListener("mousemove", changeCursorPointer);
 	document.getElementById("NavigationBar").addEventListener("mouseout", changeCursorDefault);
-  initArrows();
+    initArrows();
 	fixFirefox();
-  customChanged();
-  measureChanged();
-  stage.setChildIndex( cBtn, stage.getNumChildren()-1);
-  stage.setChildIndex( mBtn, stage.getNumChildren()-1);
+	customChanged();
+	measureChanged();
+	stage.setChildIndex( cBtn, stage.getNumChildren()-1);
+	stage.setChildIndex( mBtn, stage.getNumChildren()-1);
   }
 
 function initArrows(){
-	var customizePages = myScope.getCustomizePages();
-	var measurementPages = myScope.getMeasurePages();
+  var customizePages = myScope.getCustomizePages();
+  var measurementPages = myScope.getMeasurePages();
 
   var fillSpace = mBtn.x - cBtn.nominalBounds.width;
-  var cArrowWidth = fillSpace/customizePages.length;
-  var mArrowWidth = fillSpace/measurementPages.length;
-
+  cArrowWidth = fillSpace/(customizePages.length);
+  mArrowWidth = fillSpace/measurementPages.length;
 	//Initialize customPages
 	for(var i=0; i<customizePages.length; i++){
-    var arrowX = cBtn.nominalBounds.width + i*cArrowWidth;
+	    var arrowX = (cBtn.nominalBounds.width-10) + i*(cArrowWidth+margin);
 		if(i===0){
 			var arrow = new Arrow(3, myScope.getProgressBarSegmentTooltipText(customizePages[i]),  customizePages[i], arrowX,cArrowWidth, true);
 			arrowFocus = arrow;
 			customArrows.push(arrow);
 		}else{
-      var optionIndexC = myScope.curEditWheelchair.getOptionIDForPart(customizePages[i].partID);
-
-      if (optionIndexC !== -1){
-        var arrow = new Arrow(1, myScope.getProgressBarSegmentTooltipText(customizePages[i]),  customizePages[i],arrowX, cArrowWidth, true);
-        customArrows.push(arrow);
-      }else {
-        var arrow = new Arrow(2, myScope.getProgressBarSegmentTooltipText(customizePages[i]), customizePages[i],arrowX, cArrowWidth, true);
-        customArrows.push(arrow);
-      }
+     		var optionIndexC = myScope.curEditWheelchair.getOptionIDForPart(customizePages[i].partID);
+      		if (optionIndexC !== -1){
+        		var arrow = new Arrow(1, myScope.getProgressBarSegmentTooltipText(customizePages[i]),  customizePages[i],arrowX, cArrowWidth, true);
+        		customArrows.push(arrow);
+   		    }else {
+		        var arrow = new Arrow(2, myScope.getProgressBarSegmentTooltipText(customizePages[i]), customizePages[i],arrowX, cArrowWidth, true);
+		        customArrows.push(arrow);
+		    }
 		}
 	}
 
 	//Initialize measurementPages
 	for(var i=0; i<measurementPages.length; i++){
-    var arrowX = mBtn.x;
+    var arrowX = mBtn.x+25;
 		if(i===0){
 			var arrow = new Arrow(3, "Rear Seat Width",  measurementPages[i],arrowX,mArrowWidth, false);
 			measureArrows.push(arrow);
@@ -144,13 +148,13 @@ function switchToMeasurement(m){
 		for(var i=0; i<measureArrows.length; i++){
 			createjs.Tween.get(measureArrows[i].mc)
 			.to({
-				x: 325+i*(arrowWidth+margin)
+				x: 680+i*(mArrowWidth+margin)
 			}, tweenSpeed, tweenType);
 		}
 
 		createjs.Tween.get(mBtn)
 		.to({
-			x: mBtn.x-740
+			x: cBtn.x+cBtn.nominalBounds.width-35
 		}, tweenSpeed, tweenType);
 		pageType = "MEASUREMENT";
 	}
@@ -166,20 +170,20 @@ function switchToCustomize(m){
 		for(var i=0; i<customArrows.length; i++){
 			createjs.Tween.get(customArrows[i].mc)
 			.to({
-				x: i*(arrowWidth+margin)+155
+				x: i*(cArrowWidth+margin)+cBtn.nominalBounds.width
 			}, tweenSpeed, tweenType);
 		}
 
 		for(var i=0; i<measureArrows.length; i++){
 			createjs.Tween.get(measureArrows[i].mc)
 			.to({
-				x: 950
+				x: canvasWidth - 350
 			}, tweenSpeed, tweenType);
 		}
 
 		createjs.Tween.get(mBtn)
 		.to({
-			x: 895
+			x: canvasWidth - mBtn.nominalBounds.width - percentSpace
 		}, tweenSpeed, tweenType);
 		pageType = "CUSTOMIZE";
 	}
@@ -206,7 +210,6 @@ function navigateArrows(dir){
 
 
 function calcCompleteness(){
-
 	done_txt.text = myScope.completePercentage()+"%";
 }
 

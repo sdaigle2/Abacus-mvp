@@ -1,9 +1,7 @@
-/**
- * Created by zhoufeng on 3/19/16.
- */
+var span = document.getElementById("nav_span"); //Div DOM Elment
+span.style.visibility = "hidden";
+
 var Arrow = function(image, name, page, x, width, custom){
-  this.width = width;
-  this.x = x;
   this.complete = false;
   this.page = page;
   this.index = page.index;
@@ -11,7 +9,8 @@ var Arrow = function(image, name, page, x, width, custom){
   this.name = name;
   this.custom = custom;
   this.mc = new lib.Arrow();
-  this.mc.width = this.width;
+  var transWidth = width/180;
+  this.mc.setTransform(0,0,transWidth,1);
   stage.addChild(this.mc);
   this.mc.x = x;
   this.mc.y = 1;
@@ -20,7 +19,6 @@ var Arrow = function(image, name, page, x, width, custom){
   mc.addEventListener("click", pressed);
   mc.addEventListener("mouseover", hover_on);
   mc.addEventListener("rollout", hover_off);
-
   var image = this.image;
   var me = this;
   gotoAndStop(image);
@@ -50,22 +48,21 @@ var Arrow = function(image, name, page, x, width, custom){
       }
     }
     arrowFocus = me;
-
     image = 3;
     mc.gotoAndStop(image);
-
-
   }
   this.pressed = pressed;
-  function hover_on(m){
 
+  function hover_on(m){
+    var ratio = canvasWidth/$(window).width();
     span.style.visibility = "visible";
     if(image === 4){
       mc.gotoAndStop(5);
     }
     span.innerHTML = name;
-    span.style.left = spanShift+index*(this.width-15)+"px";
+    span.style.left = mc.x/ratio+"px";
   }
+
   function hover_off(m){
     mc.gotoAndStop(image);
     span.style.visibility = "hidden";
