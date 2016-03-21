@@ -35,6 +35,9 @@ angular.module('abacuApp')
       if (User.getNumCartWheelchairs() === 3) {
         return 3;
       }
+      if (User.getNumCartWheelchairs() > 3) {
+        return 4;
+      }
 
     };
 
@@ -107,8 +110,13 @@ angular.module('abacuApp')
     $scope.jumpLanding = function(){
         $location.path('/');
     };
-
+    $scope.jumpP4X = function(){
+        $location.path('http://www.per4max.com');
+    };
     $scope.jumpFrame = function(){
+      $location.path('/frames');
+    };
+    $scope.jumpWheels = function(){
       $location.path('/frames');
     };
     $scope.jumpAbout = function(){

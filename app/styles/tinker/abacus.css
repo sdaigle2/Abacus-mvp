@@ -1526,3 +1526,14 @@ body {
   left: 5px;
   font-size: 0.75em;
 }
+
+.bottom-banner {
+	width: 100%;
+	background-color: #808184;
+	opacity: 0; //note this is just here for testing right now
+	height: 50px;
+	zindex: 9999;
+	position: fixed;
+    bottom: 0;
+    right: 0;
+}
