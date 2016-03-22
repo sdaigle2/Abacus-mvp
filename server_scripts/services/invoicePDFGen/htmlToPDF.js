@@ -16,18 +16,34 @@ const phantom    = require('phantom');
  * The IPC between this proces and the child phantomjs process is just via stdin & stdout so nothing super expensive.
  */
 function htmlToPDF(pdfFilePath, rawHTML, cb) {
+	cb = _.once(cb); // ensure the callback is only called once
 	console.log(rawHTML);
+	// Create the phantomjs process and direct it to generate the pdf
 	phantom.create()
 	.then(ph => {
-		return ph.createPage()
+		return ph.createPage(['--local-to-remote-url-acces=yes'])
 		.then(page => {
-			return page.property('content', rawHTML)
+			return page.setting('localToRemoteUrlAccessEnabled', true)
+			.then(() => {
+				return page.property('onConsoleMessage', function(msg, lineNum, sourceId) {
+  					console.log('CONSOLE: ' + JSON.stringify(msg) + ' (from line #' + lineNum + ' in "' + sourceId + '")');
+				});
+			})
+			.then(() => {
+				return page.property('onResourceError', err => {
+					console.log(JSON.stringify(err, null, 2));
+				});
+			})
+			.then(() => page);
+		})
+		.then(page => {
+			return page.setContent(rawHTML, 'file:///')
 			.then(() => page);
 		})
 		.then(page => {
 			console.log(pdfFilePath);
 			// Render the HTML
-			page.property('onLoadFinished', status => {
+			return page.property('onLoadFinished', status => {
 				if (status === 'success') {
 					page.render(pdfFilePath, function () {
 						ph.exit();

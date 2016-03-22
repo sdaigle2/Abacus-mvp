@@ -7,13 +7,12 @@ const helpers    = require('./handlebar_helpers');
 const GENERATED_PDFS_DIR = path.join(os.homedir(), '/invoice_pdfs');
 
 const INVOICE_TEMPLATE_FILEPATH = path.resolve('./invoice_templates/Invoice V3.hbs'); // path.resolve() returns the absolute path given a relative path
-const INVOICE_CSS_DIR           = path.resolve('./invoice_templates/Invoice_V3-web-resources/css/');
-const INVOICE_IMAGES_DIR        = path.resolve('./invoice_templates/Invoice_V3-web-resources/image/');
+const INVOICE_CSS_DIR           = 'file://' + path.resolve('./invoice_templates/Invoice_V3-web-resources/css');//path.resolve('./invoice_templates/Invoice_V3-web-resources/css/');
+const INVOICE_IMAGES_DIR        = 'file://' + path.resolve('./invoice_templates/Invoice_V3-web-resources/image');
 
 // To make the above invoice variables accessible from the template, must attach them as helpers
-helpers.INVOICE_TEMPLATE_FILEPATH = _.constant(INVOICE_TEMPLATE_FILEPATH); // _.constant simply takes in some value and returns a function that only returns that value
-helpers.INVOICE_CSS_DIR           = _.constant(INVOICE_CSS_DIR);
-helpers.INVOICE_IMAGES_DIR        = _.constant(INVOICE_IMAGES_DIR);
+helpers.INVOICE_CSS_DIR    = _.constant(INVOICE_CSS_DIR);
+helpers.INVOICE_IMAGES_DIR = _.constant(INVOICE_IMAGES_DIR);
 
 Handlebars.registerHelper(helpers);
 
