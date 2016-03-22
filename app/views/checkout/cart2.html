@@ -16,7 +16,7 @@
   <div id="contentWrapper">
     <div id="mainDisplay">
       <div id="header">
-        <p class="bold">MY CART</p>
+        <p class="oBold">MY CART</p>
         <button data-ng-if="wheelchairs.length !== 0" class="button compareButton oReg">COMPARE</button>
       </div>
       <div id="mainContent">
@@ -28,6 +28,7 @@
           <li ng-repeat="w in wheelchairs" class="cart-item {{wheelchairUIOpts[$index].checked ? 'checked-item' : ''}}">
             <div class="chairTitle" ng-class="{'selectedChair': wheelchairUIOpts[$index].checked }">
               <span class="medium">{{w.getName()}}</span>
+              <input type="checkbox" class="checkbox-button pull-right" ng-model="wheelchairUIOpts[$index].checked">
               <input type="checkbox" class="checkbox-button pull-right" ng-model="wheelchairUIOpts[$index].checked">
             </div>
             <div>

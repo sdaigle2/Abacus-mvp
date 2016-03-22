@@ -390,16 +390,18 @@
                    ng-src="{{image}}" width="350" height="340" alt="{{getCurMeasureData().name}}"/>
 
               <img class="leftButton" src="../../images/icons/circle_left_button.png" alt="Previous" width="30" height="30"
+                   ng-if="image.length > 1"
                    data-ng-click="rotateMeasureCarouselIndex(-1)" />
               <img class="rightButton" src="../../images/icons/circle_right_button.png" alt="Next" width="30" height="30"
+                   ng-if="image.length > 1"
                    data-ng-click="rotateMeasureCarouselIndex(1)" />
 
 
-              <div class="help-image-progressbar">
-                <i ng-repeat="image in getCurMeasureData().imageURLs"
-                   ng-class="{ 'fa fa-circle-o' : curMeasureCarouselIndex !== $index, 'fa fa-circle' : curMeasureCarouselIndex === $index }"
-                   ng-click="jumpMeasureCarouselIndex($index)"></i>
-              </div>
+              <!--<div class="help-image-progressbar">-->
+                <!--<i ng-repeat="image in getCurMeasureData().imageURLs"-->
+                   <!--ng-class="{ 'fa fa-circle-o' : curMeasureCarouselIndex !== $index, 'fa fa-circle' : curMeasureCarouselIndex === $index }"-->
+                   <!--ng-click="jumpMeasureCarouselIndex($index)"></i>-->
+              <!--</div>-->
             </div>
           </div>
         </div>
