@@ -26,9 +26,9 @@ body {
   height: 40px;
   line-height:0;
   font-weight: 300;
-  color: #00A89C;
+  color: #4F9DFF;
   font-size: 14px;
-  border-bottom: solid 2px #eaeaea;
+  /*border-bottom: solid 2px #eaeaea;*/
   background-color: #ffffff;
 }
 
@@ -66,13 +66,13 @@ body {
 }
 
 .mainNavbar .mainNavbar-left > li.frameNavButton {
-  background-image: url("../images/icons/frames.png");
+  /*background-image: url("../images/icons/frames.png");*/
 }
 .mainNavbar .mainNavbar-left > li.aboutNavButton {
-  background-image: url("../images/icons/about_us.png");
+  /*background-image: url("../images/icons/about_us.png");*/
 }
 .mainNavbar .mainNavbar-left > li.compareNavButton {
-  background-image: url("../images/icons/compare.png");
+  /*background-image: url("../images/icons/compare.png");*/
 }
 
 .mainNavbar .mainNavbar-left > li.frameNavButton:hover,
@@ -80,16 +80,24 @@ body {
 .mainNavbar .mainNavbar-left > li.frameNavButton.active,
 .mainNavbar .mainNavbar-left > li.frameNavButton.active:hover,
 .mainNavbar .mainNavbar-left > li.frameNavButton.active:focus {
-  color:#00a89c;
-  background-image:url("../images/icons/on_frames.png");
+  color:#4f9dff;
+  /*background-image:url("../images/icons/on_frames.png");*/
+}
+.mainNavbar .mainNavbar-left > li.wheelsNavButton:hover,
+.mainNavbar .mainNavbar-left > li.wheelsNavButton:focus,
+.mainNavbar .mainNavbar-left > li.wheelsNavButton.active,
+.mainNavbar .mainNavbar-left > li.wheelsNavButton.active:hover,
+.mainNavbar .mainNavbar-left > li.wheelsNavButton.active:focus {
+  color:#4f9dff;
+  /*background-image:url("../images/icons/on_frames.png");*/
 }
 .mainNavbar .mainNavbar-left > li.aboutNavButton:hover,
 .mainNavbar .mainNavbar-left > li.aboutNavButton:focus,
 .mainNavbar .mainNavbar-left > li.aboutNavButton.active,
 .mainNavbar .mainNavbar-left > li.aboutNavButton.active:hover,
 .mainNavbar .mainNavbar-left > li.aboutNavButton.active:focus {
-  color:#00a89c;
-  background-image: url("../images/icons/on_about_us.png");
+  color:#4f9dff;
+  /*background-image: url("../images/icons/on_about_us.png");*/
 }
 
 .mainNavbar .mainNavbar-left > li.compareNavButton:hover,
@@ -97,8 +105,8 @@ body {
 .mainNavbar .mainNavbar-left > li.compareNavButton.active,
 .mainNavbar .mainNavbar-left > li.compareNavButton.active:hover,
 .mainNavbar .mainNavbar-left > li.compareNavButton.active:focus {
-  color:#00a89c;
-  background-image: url("../images/icons/on_compare.png");
+  color:#4f9dff;
+  /*background-image: url("../images/icons/on_compare.png");*/
 }
 
 .mainNavbar .mainNavbar-left > li > a {
@@ -123,10 +131,21 @@ body {
 
 .mainNavbar .mainNavbar-right .cartIcon{
   position: absolute;
-  right: 8px;
+  right: 25px;
   top: 3px;
 }
 
+.mainNavbar .mainNavbar-right .cartButton {
+    height: 100%;
+    margin: 0px;
+    padding-top: 5px;
+    padding-right: 30px;
+    padding-left: 0px;
+}
+
+.mainNavbar .mainNavbar-right .cartButton:hover {
+  cursor: pointer;
+}
 
 .mainNavbar .mainNavbar-right > li > a {
   margin: 0;
@@ -137,31 +156,19 @@ body {
 .mainNavbar .mainNavbar-right #searchID{
   display: inline-block;
   position: relative;
-  right: 103px;
-  top: 11px;
+  /*right: 103px;*/
+  padding-right: 30px;
+  padding-top: 5px;
+  /*top: 11px;*/
 }
 
 #searchID img{
-  height: 20px;
+  /*height: 20px;*/
 }
 
 .mainNavbar .mainNavbar-right #searchID:hover{
   cursor: pointer;
 }
-
-.mainNavbar .mainNavbar-right .cartButton {
-    height: 100%;
-    margin: 0px;
-    padding-top: 5px;
-    padding-right: 10px;
-    padding-left: 0px;
-}
-
-.mainNavbar .mainNavbar-right .cartButton:hover {
-  cursor: pointer;
-}
-
-
 
 .mainNavbar .mainNavbar-right .loginButton {
   height: 100%;
@@ -189,7 +196,7 @@ body {
 }
 .mainNavbar .mainNavbar-left > li:hover,
 .mainNavbar .mainNavbar-left > li:focus {
-  color: #00A89C;
+  color: #4F9DFF;
 }
 /*.mainNavbar .mainNavbar-left > .active > a,*/
 /*.mainNavbar .mainNavbar-left > .active > a:hover,*/
@@ -227,12 +234,12 @@ body {
   padding: 20px 15px;
   color: #000000;
   font-size: 14px;
-  border-right: 2px solid #eaeaea;
+  /*border-right: 2px solid #eaeaea;*/
 }
 
 .login .loginText:hover{
   cursor: pointer;
-  color: #00A89C;
+  color: #4F9DFF;
 }
 
 .login .window{

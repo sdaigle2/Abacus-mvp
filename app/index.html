@@ -60,21 +60,24 @@
       </div>
 
       <div class="mainNavbar-header">
-        <a class="mainNavbar-brand" ng-click="jumpLanding()">
-          <img alt="Tinker" src="images/tinker_logo_small_beta1.png" width="100"/>
+        <a class="mainNavbar-brand" target="_blank" href="http://www.per4max.com/" >
+          <img alt="PER4MAX" src="images/P4XWebLogo3.png" width="100"/>
         </a>
       </div>
       <ul class="mainNavbar-left">
         <li ng-click="jumpFrame()" class="frameNavButton" ng-class="{ active: isActive('/frames')}">
-          <a class="medium">Wheelchair</a>
+          <a class="medium">WHEELCHAIRS</a>
+        </li>
+	<li ng-click="jumpWheels()" class="wheelsNavButton" ng-class="{ active: isActive('/frames')}">
+          <a class="medium">CUSTOM WHEELS</a>
         </li>
         <li ng-click="jumpAbout()" class="aboutNavButton" ng-class="{ active: isActive('/about')}">
-          <a class="medium">About us</a>
+          <a class="medium">ABOUT</a>
         </li>
       </ul>
 
       <ul class="mainNavbar-right">
-        <li class="cartButton" ng-click="jumpCart()"><img src="images/icons/my_cart_black.png" width="30" alt="cart"/>
+        <li class="cartButton" ng-click="jumpCart()"><img src="images/icons/cart-gray.png" width="30" alt="cart"/>
         </li>
         <li class="cartIcon" data-ng-show="cartIconShown() === 1"><img
           data-ng-src="images/my_design_page/cartIcon/cart_total_1.png" width="17" alt="cartIcon"></li>
@@ -82,13 +85,15 @@
           data-ng-src="images/my_design_page/cartIcon/cart_total_2.png" width="17" alt="cartIcon"></li>
         <li class="cartIcon" data-ng-show="cartIconShown() === 3"><img
           data-ng-src="images/my_design_page/cartIcon/cart_total_3.png" width="17" alt="cartIcon"></li>
-        <li class="loginButton" data-ng-if="!user.isLoggedIn()">
+        <li class="cartIcon" data-ng-show="cartIconShown() > 3"><img
+          data-ng-src="images/my_design_page/cartIcon/cart_total_more.png" width="17" alt="cartIcon"></li>
+        <li data-ng-click="jumpSearchid()" id="searchID">
+          <img src="images/icons/search-gray.png">
+        </li>
+	<li class="loginButton" data-ng-if="!user.isLoggedIn()">
           <div data-ng-click="toggleLoginDropdown()" class="login">
             <div class="loginText medium" data-ng-bind="loginText"></div>
           </div>
-        </li>
-        <li data-ng-click="jumpSearchid()" id="searchID">
-          <img src="images/navBar/search_id.png">
         </li>
         <li class="settingsButton" data-ng-if="user.isLoggedIn()">
           <div data-ng-click="toggleSettingsDropdown()" class="login">
