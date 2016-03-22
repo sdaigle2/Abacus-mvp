@@ -190,7 +190,7 @@ angular.module('abacuApp')
           currentWheelchair = data.currentWheelchair || currentWheelchair;
           currentWheelchair.editingWheelchair = currentWheelchair.editingWheelchair ? new Wheelchair(currentWheelchair.editingWheelchair) : currentWheelchair.editingWheelchair;
           currentWheelchair.design = currentWheelchair.design ? new Design(currentWheelchair.design) : null;
-          
+
           // Setup the cart...it is null if the user doesnt have a cart
           if (data.cart) {
             var cartID = data.cart.id || data.cart._id || -1;
@@ -331,8 +331,8 @@ angular.module('abacuApp')
             }
           })
           .catch(function (err) {
-            console.log('Request Failed: ' + err);
-          });
+            console.log('Request Failed: ' + JSON.stringify(err));
+       });
         },
 
         logout: function () {
