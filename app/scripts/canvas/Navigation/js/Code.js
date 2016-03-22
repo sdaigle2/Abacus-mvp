@@ -1,4 +1,4 @@
-var margin = 0;       				  // Margin Between Arrows
+var margin = -30;       				  // Margin Between Arrows
 var customArrows = new Array();		  
 var measureArrows = new Array();
 var arrows = null;	//This alternates between custom and measure arrows array.
@@ -79,13 +79,14 @@ function initStuff(container){
 function initArrows(){
   var customizePages = myScope.getCustomizePages();
   var measurementPages = myScope.getMeasurePages();
+ // margin = 0;
+  var fillSpace = mBtn.x - cBtn.nominalBounds.width-margin-7;
+  cArrowWidth = (fillSpace/customizePages.length)-margin;
+  mArrowWidth = (fillSpace/measurementPages.length)-margin;
 
-  var fillSpace = mBtn.x - cBtn.nominalBounds.width;
-  cArrowWidth = fillSpace/(customizePages.length);
-  mArrowWidth = fillSpace/measurementPages.length;
 	//Initialize customPages
 	for(var i=0; i<customizePages.length; i++){
-	    var arrowX = (cBtn.nominalBounds.width-10) + i*(cArrowWidth+margin);
+	    var arrowX = (cBtn.nominalBounds.width+margin+5) + i*(cArrowWidth+margin);
 		if(i===0){
 			var arrow = new Arrow(3, myScope.getProgressBarSegmentTooltipText(customizePages[i]),  customizePages[i], arrowX,cArrowWidth, true);
 			arrowFocus = arrow;
@@ -144,11 +145,10 @@ function switchToMeasurement(m){
 				x: 50
 			}, tweenSpeed, tweenType);
 		}
-
 		for(var i=0; i<measureArrows.length; i++){
 			createjs.Tween.get(measureArrows[i].mc)
 			.to({
-				x: 680+i*(mArrowWidth+margin)
+				x: 685+margin+i*(mArrowWidth+margin)
 			}, tweenSpeed, tweenType);
 		}
 
@@ -170,7 +170,7 @@ function switchToCustomize(m){
 		for(var i=0; i<customArrows.length; i++){
 			createjs.Tween.get(customArrows[i].mc)
 			.to({
-				x: i*(cArrowWidth+margin)+cBtn.nominalBounds.width
+				x: i*(cArrowWidth+margin)+cBtn.nominalBounds.width+margin+5
 			}, tweenSpeed, tweenType);
 		}
 
