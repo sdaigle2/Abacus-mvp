@@ -68,11 +68,12 @@
       <section class="loginAction center">
         <label for="loginModel.email"></label>
         <input type="text" data-ng-model="loginModel.email" placeholder="Username">
-        <label for="loginModel.email"></label>
+        <label for="loginModel.password"></label>
         <input type="text" data-ng-model="loginModel.password" placeholder="Password">
         <button data-ng-click="login()">LOGIN</button>
         <h5 data-ng-click="register()">REGISTER</h5>
       </section>
+      <p class="errorMessage" data-ng-bind="loginError"></p>
       <div class="closeTab" ng-click="closeSaveDropDown()"><span class="glyphicon glyphicon-remove"></span></div>
     </div>
 

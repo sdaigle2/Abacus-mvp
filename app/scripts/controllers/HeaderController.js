@@ -56,6 +56,12 @@ angular.module('abacuApp')
     $scope.login = function () {
       $scope.loginText = 'Loading..';
       $scope.error = '';
+
+      if (!([$scope.loginModel.email, $scope.loginModel.password].every(_.isString)) || [$scope.loginModel.email, $scope.loginModel.password].some(_.isEmpty)) {
+        $scope.error = 'Missing Username or Password';
+        deferred.reject(new Error('Missing Username or Password'));
+        return deferred.promise;
+      }
       User.login($scope.loginModel.email, $scope.loginModel.password)
         .then(function () {
           $scope.loginText = 'Log In';

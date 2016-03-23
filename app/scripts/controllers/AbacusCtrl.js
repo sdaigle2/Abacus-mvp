@@ -157,7 +157,7 @@ angular.module('abacuApp')
       /******login action group*******/
       $scope.login = function () {
         $scope.loginText = 'Loading..';
-        $scope.error = '';
+        $scope.loginError = '';
         User.login($scope.loginModel.email, $scope.loginModel.password)
           .then(function () {
             $scope.loginText = 'Log In';
@@ -166,7 +166,7 @@ angular.module('abacuApp')
             $scope.loginPanel = loginPanelStatus.SAVED;
           }, function (message) {
             $scope.loginText = 'Log In';
-            $scope.error = message;
+            $scope.loginError = message;
           });
         $scope.loginModel.password = '';
       };

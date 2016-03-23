@@ -161,6 +161,13 @@
   cursor: pointer;
 }
 
+#saveAction .errorMessage{
+  color: lightsalmon;
+  position: relative;
+  bottom: 24px;
+  font-size: 0.9em;
+}
+
 /******login panel*********/
 #saveAction .actionPanel .loginAction{
   width: auto;
@@ -179,6 +186,7 @@
   bottom: 3px;
   text-decoration: underline;
 }
+
 
 
 /*register panel*/

@@ -24,9 +24,23 @@ angular.module('abacuApp')
         orders: []
       };
 
+      var checkField = function(){
+        for(key in $scope.accountModel){
+          if(_.isEmpty($scope.accountModel.key)){
+            return true
+          }
+            return false
+        }
+      };
+
       $scope.register = function(){
         var deferred = $q;
         $scope.error = '';
+        if(checkField()){
+          deferred.reject('Missing field');
+          $scope.error = 'Missing field';
+          return deferred.promise
+        }
         $http({
           url: '/register'
           , data: $scope.accountModel
@@ -58,6 +72,11 @@ angular.module('abacuApp')
       $scope.registerAction = function(){
         var deferred = $q;
         $scope.error = '';
+        if(checkField()){
+          deferred.reject('Missing field');
+          $scope.error = 'Missing field';
+          return deferred.promise
+        }
         $http({
           url: '/register'
           , data: $scope.accountModel
