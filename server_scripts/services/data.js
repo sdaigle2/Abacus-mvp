@@ -6,7 +6,7 @@
 //Verify wheelchair and order data sent from the client.
 
 //The json containing all the correct frame data
-var frameData = require('../../app/data/frameData.json');
+var frameData = require('../../app/data/frameDataTest.json');
 
 //Return the frame with given frameID
 function getFrame(frameID) {

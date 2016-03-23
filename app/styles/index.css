@@ -415,7 +415,8 @@ body {
 
 .oBold{
   font-family: 'oswald-bold';
-  font-size: 1em;
+  font-size: 1.4em;
+  font-weight: 700;
 }
 .oReg{
   font-family: 'oswald-regular';

@@ -197,8 +197,6 @@ angular.module('abacuApp')
           }
           else {
             User.login($scope.accountModel.email, $scope.accountModel.password);
-            $scope.saveForLater();
-            $scope.loginPanel = loginPanelStatus.SAVED;
           }
         })
           .error(function (data) {
@@ -585,8 +583,10 @@ angular.module('abacuApp')
         if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
           $scope.curEditWheelchair.setColorForPart($scope.getCurWheelchairPart().partID, newColorID);
           var ID = $scope.getCurWheelchairPart().partID
-          if($scope.getCurWheelchairPart().partID){
+          if(ID == 1000){
             $scope.curEditWheelchair.setColorForPart(2000, newColorID);
+            $scope.curEditWheelchair.setColorForPart(4000, newColorID);
+
           }
           console.log('Changed color option');
         }
@@ -658,8 +658,12 @@ angular.module('abacuApp')
         var part = $scope.curFrameData.getPart(partID);
         var option = part.getOption(optionID);
         var wPart = $scope.curEditWheelchair.getPart(partID);
+        var invalidPart = true;
+        if (partID == 2000 && partID == 4000){
+          invalidPart = false;
+        }
 
-        return (wPart.optionID === optionID) && (option.getNumColors() > 0);
+        return (wPart.optionID === optionID) && (option.getNumColors() > 0 && invalidPart);
       };
 
       //Returns a CSS-styled hex string for the given option

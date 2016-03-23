@@ -66,8 +66,9 @@ exports.update = function (obj, key, callback) {
             delete obj.oldPass;
             delete obj.newPass1;
             delete obj.newPass2;
-            dbService.users.insert(obj, key, function(err, body){
-              callback(err, body, 1, updatedUserFull);
+            dbService.users.insert(obj, key, function(err, res){
+              updatedUserFull._rev = res.rev;
+              callback(err, res, 1, updatedUserFull);
             });
           } else {
             //Check the old password as we would for login
@@ -78,8 +79,9 @@ exports.update = function (obj, key, callback) {
                 delete obj.oldPass;
                 delete obj.newPass1;
                 delete obj.newPass2;
-                dbService.users.insert(obj, key, function(err, body){
-                  callback(err, body, 2, updatedUserFull);
+                dbService.users.insert(obj, key, function(err, res){
+                  updatedUserFull._rev = res.rev;
+                  callback(err, res, 2, updatedUserFull);
                 });
               } else {
                 //Hash the new password with a new salt
@@ -92,8 +94,9 @@ exports.update = function (obj, key, callback) {
                   delete obj.oldPass;
                   delete obj.newPass1;
                   delete obj.newPass2;
-                  dbService.users.insert(obj, key, function(err, body){
-                    callback(err, body, 3, updatedUserFull);
+                  dbService.users.insert(obj, key, function(err, res){
+                    updatedUserFull._rev = res.rev;
+                    callback(err, res, 3, updatedUserFull);
                   });
                 });
               }
