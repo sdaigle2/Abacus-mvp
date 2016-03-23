@@ -314,6 +314,13 @@ angular.module('abacuApp')
         //If successful - should load in appropriate user data
         login: function (in_email, pass) {
           var curThis = this;
+          
+          if (!([in_email, pass].every(_.isString)) || [in_email, pass].some(_.isEmpty)) {
+            var deferred = $q.defer();
+            deferred.reject(new Error('Bad Email or Password given for login'));
+            return deferred.promise;
+          }
+
           return $http({
             url: '/login',
             data: {email: in_email, password: pass},
@@ -332,7 +339,7 @@ angular.module('abacuApp')
           })
           .catch(function (err) {
             console.log('Request Failed: ' + JSON.stringify(err));
-       });
+          });
         },
 
         logout: function () {
