@@ -512,6 +512,7 @@ angular.module('abacuApp')
       $scope.closeSaveDropDown = function () {
         $scope.saveDropdown = false;
         $scope.loginPanel = loginPanelStatus.MAIN;
+        $scope.loginError = '';
       };
 
 
