@@ -5,6 +5,7 @@
 "use strict";
 
 var router = require('express').Router();
+var _      = require('lodash');
 
 // Import services
 var dbService = require('../services/db');
@@ -26,6 +27,16 @@ router.post('/login', function (req, res) {
   //Retrieve request parameters
   var email = req.body.email;
   var password = req.body.password;
+
+  // Check that the email & password are given and not empty
+  if ( !([email, password].every(_.isString)) || [email, password].some(_.isEmpty)) {
+    res.status(400);
+    res.json({
+      'err': "Bad Login: Must Provice an Email and a Password"
+    });
+    return;
+  }
+
   console.log('email ' + email);
   console.log('password ' + password);
 
