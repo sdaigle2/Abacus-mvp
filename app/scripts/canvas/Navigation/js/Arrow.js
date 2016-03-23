@@ -1,5 +1,7 @@
 var span = document.getElementById("nav_span"); //Div DOM Elment
 span.style.visibility = "hidden";
+var tailShift = 4;
+var headShift = -1;
 
 var Arrow = function(image, name, page, x, width, custom){
   this.complete = false;
@@ -33,8 +35,8 @@ var Arrow = function(image, name, page, x, width, custom){
   for(var i=0; i<tails.length; i++){
     var transWidth = width/80;
     bodys[i].setTransform(50,0,transWidth,1);
-    tails[i].x+=2;
-    heads[i].x=70+width
+    tails[i].x+=tailShift;
+    heads[i].x=70+width+headShift;
   }
  
 
