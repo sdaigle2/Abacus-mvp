@@ -10,11 +10,8 @@ function getOrderInvoiceFilename(order) {
 	return `order_${orderID}_invoice.pdf`;
 }
 
-function generateInvoicePDF(wheelchair, order, cb) {
-	const invoiceHTML = generateInvoiceHTML({
-		'wheelchair': wheelchair,
-		'order': order
-	});
+function generateInvoicePDF(order, cb) {
+	const invoiceHTML = generateInvoiceHTML(order);
 
 	const invoiceFilename = getOrderInvoiceFilename(order);
 	const invoiceFilePath = path.join(GENERATED_PDFS_DIR, invoiceFilename);

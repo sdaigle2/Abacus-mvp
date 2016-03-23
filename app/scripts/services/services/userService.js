@@ -339,7 +339,7 @@ angular.module('abacuApp')
           })
           .catch(function (err) {
             console.log('Request Failed: ' + JSON.stringify(err));
-       });
+          });
         },
 
         logout: function () {

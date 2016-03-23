@@ -40,7 +40,18 @@ function getImageArray(wheelchair, parts, angle) {
   return images;
 }
 
+// Returns the ID for the object it is bound to
+function getID() {
+  return this.id || this._id;
+}
+
+function fullName() {
+  return `${this.fName} ${this.lName}`;
+}
+
 module.exports = {
 	getPartPreviewImageURL,
-	getImageArray
+	getImageArray,
+  getID,
+  fullName
 };
