@@ -9,8 +9,6 @@ var Arrow = function(image, name, page, x, width, custom){
   this.name = name;
   this.custom = custom;
   this.mc = new lib.Arrow();
-  var transWidth = width/180;
-  this.mc.setTransform(0,0,transWidth,1);
   stage.addChild(this.mc);
   this.mc.x = x;
   this.mc.y = 1;
@@ -22,8 +20,26 @@ var Arrow = function(image, name, page, x, width, custom){
   var image = this.image;
   var me = this;
   gotoAndStop(image);
-  function pressed(m){
+ 
+  //The arrow is composed of three inner MC's the head, body and tail
+  //The following transforms the body and arranges the head/tail.
+  //NOTES:
+  //head width = 50
+  //tail width = 50
+  var tails = [mc.tail,mc.tail_1,mc.tail_2,mc.tail_3];
+  var heads = [mc.head,mc.head_1,mc.head_2,mc.head_3];
+  var bodys = [mc.body,mc.body_1,mc.body_2,mc.body_3];
+  width-=100;
+  for(var i=0; i<tails.length; i++){
+    var transWidth = width/80;
+    bodys[i].setTransform(50,0,transWidth,1);
+    tails[i].x+=2;
+    heads[i].x=70+width
+  }
+ 
 
+
+  function pressed(m){
     if(custom){
       customChanged();
       lastCustomArrow = me;
@@ -52,6 +68,7 @@ var Arrow = function(image, name, page, x, width, custom){
     mc.gotoAndStop(image);
   }
   this.pressed = pressed;
+
 
   function hover_on(m){
     var ratio = canvasWidth/$(window).width();
