@@ -127,6 +127,10 @@
   border-right: 2px solid black;
 }
 
+.media-body .actions td:hover{
+  cursor: pointer;
+}
+
 .media-body .actions td:first-of-type{
   padding-left: 0;
 }
@@ -138,7 +142,8 @@
 }
 
 .checkbox-button {
-
+  position: relative;
+  bottom: 3px;
 }
 
 .moreInfoTitle .clickable-text{
@@ -147,6 +152,10 @@
   border: none;
   box-shadow: none;
   outline: none;
+}
+
+.moreInfoTitle .clickable-text:hover{
+  cursor: pointer;
 }
 
 .moreInfo table{

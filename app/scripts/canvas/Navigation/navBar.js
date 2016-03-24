@@ -486,7 +486,7 @@ p.nominalBounds = new cjs.Rectangle(-2,-0.5,182.1,60);
 	this.timeline.addTween(cjs.Tween.get(this).call(this.frame_0).wait(1));
 
 	// Layer 1
-	this.done = new cjs.Text("0%", "34px 'Arial'", "#88CBC3");
+	this.done = new cjs.Text("0%", "34px 'Arial'", "#4F9DFF");
 	this.done.name = "done";
 	this.done.textAlign = "center";
 	this.done.lineHeight = 36;

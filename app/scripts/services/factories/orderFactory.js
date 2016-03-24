@@ -83,7 +83,7 @@ angular.module('abacuApp')
 
       addWheelchair: function (newWheelchair) {
         newWheelchair.wheelchair.toggleInOrder();
-        this.wheelchairs.push(newWheelchair);
+        this.wheelchairs.push(newWheelchair.wheelchair);
       },
 
       removeWheelchair: function (index) {

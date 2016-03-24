@@ -81,7 +81,6 @@ angular.module('abacuApp')
   			var design = $scope.wheelchairUIOpts[chairIdx].design;
   			User.getCart().addWheelchair(design);
 
-  			$scope.deleteWheelchair(wheelchairIndex);
   		};
 
   		$scope.dowloadDesignPDF = function (chairIdx) {

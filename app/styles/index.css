@@ -716,6 +716,8 @@ div{
   height: 30px;
 }
 
+
+
 .button{
   display: inline-block;
   color: #60C2B1;
@@ -734,7 +736,29 @@ div{
   cursor: pointer;
 }
 
-button:focus{
+.button:focus{
+  outline:none;
+}
+
+.button1{
+  display: inline-block;
+  color: #60C2B1;
+  height: 40px;
+  margin-top: 30px;
+  text-align: center;
+  font-size: 14px;
+  padding: 10px 15px;
+  border: solid 1px #60C2B1;
+  border-radius: 2px;
+}
+
+.button1:hover {
+  background-color: #60C2B1;
+  color: white;
+  cursor: pointer;
+}
+
+.button1:focus{
   outline:none;
 }
 

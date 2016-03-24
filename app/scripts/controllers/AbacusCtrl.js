@@ -157,7 +157,7 @@ angular.module('abacuApp')
       /******login action group*******/
       $scope.login = function () {
         $scope.loginText = 'Loading..';
-        $scope.error = '';
+        $scope.loginError = '';
         User.login($scope.loginModel.email, $scope.loginModel.password)
           .then(function () {
             $scope.loginText = 'Log In';
@@ -166,7 +166,7 @@ angular.module('abacuApp')
             $scope.loginPanel = loginPanelStatus.SAVED;
           }, function (message) {
             $scope.loginText = 'Log In';
-            $scope.error = message;
+            $scope.loginError = message;
           });
         $scope.loginModel.password = '';
       };
@@ -512,6 +512,7 @@ angular.module('abacuApp')
       $scope.closeSaveDropDown = function () {
         $scope.saveDropdown = false;
         $scope.loginPanel = loginPanelStatus.MAIN;
+        $scope.loginError = '';
       };
 
 
@@ -684,11 +685,10 @@ angular.module('abacuApp')
 
         //Saves the current design and updates the database if the user is logged in
       $scope.saveDesign = function () {
-        if(1) {  //TODO  replace 1 with highlightUnfilledArrows()
-          User.pushNewWheelchair();
+        User.pushNewWheelchair()
+        .then(function (user) {
           $location.path('/cart');
-        }
-
+        });
       };
 
       $scope.saveComputer = function () {

@@ -334,6 +334,7 @@ span.CharOverride-3 {
 	left:0px;
 	overflow:hidden;
 	position:absolute;
+	padding-bottom: 10px;
 	top:0px;
 	transform:translate(35.999px,131.307px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
 	transform:translate(35.999px,131.307px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
@@ -416,6 +417,7 @@ span.CharOverride-3 {
 	height:65.36px;
 	left:0px;
 	overflow:hidden;
+	padding-bottom: 10px;
 	position:absolute;
 	top:0px;
 	transform:translate(174.000px,131.307px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
@@ -433,6 +435,7 @@ span.CharOverride-3 {
 	height:65.33px;
 	left:0px;
 	overflow:hidden;
+	padding-top: 5px;
 	position:absolute;
 	top:0px;
 	transform:translate(312.000px,131.040px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
@@ -567,6 +570,7 @@ span.CharOverride-3 {
 	height:65.33px;
 	left:0px;
 	overflow:hidden;
+	padding-top: 5px;
 	position:absolute;
 	top:0px;
 	transform:translate(450.000px,131.333px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
@@ -939,6 +943,7 @@ span.CharOverride-3 {
 	height:132.24px;
 	left:0px;
 	overflow:hidden;
+	padding-bottom: 10px;
 	position:absolute;
 	top:0px;
 	transform:translate(173.999px,267.911px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
@@ -1005,6 +1010,8 @@ span.CharOverride-3 {
 	height:279.73px;
 	left:0px;
 	overflow:hidden;
+	padding-bottom: 10px;
+	padding-top: 10px;
 	position:absolute;
 	top:0px;
 	transform:translate(321.999px,267.686px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
@@ -1023,6 +1030,7 @@ span.CharOverride-3 {
 	left:0px;
 	overflow:hidden;
 	position:absolute;
+	padding-top: 10px;
 	top:0px;
 	transform:translate(450.000px,267.686px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
 	transform:translate(450.000px,267.686px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);

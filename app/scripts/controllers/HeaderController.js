@@ -5,7 +5,7 @@
 'use strict';
 
 angular.module('abacuApp')
-  .controller('HeaderController', ['$scope', '$location', '$http', '$timeout', 'User', 'Drop', '$window', function ($scope, $location, $http, $timeout, User, Drop, $window) {
+  .controller('HeaderController', ['$scope', '$location', '$http', '$timeout', 'User', 'Drop', '$window','$q', function ($scope, $location, $http, $timeout, User, Drop, $window, $q) {
 
     //Returns true is the current angular URL matches viewLocation
     $scope.isActive = function (viewLocation) {
@@ -54,8 +54,15 @@ angular.module('abacuApp')
 
     //Log in the user using the data from loginModel
     $scope.login = function () {
-      $scope.loginText = 'Loading..';
       $scope.error = '';
+      var deferred = $q;
+
+      if (!([$scope.loginModel.email, $scope.loginModel.password].every(_.isString)) || [$scope.loginModel.email, $scope.loginModel.password].some(_.isEmpty)) {
+        $scope.error = 'Missing Username or Password';
+        deferred.reject(new Error('Missing Username or Password'));
+        return deferred.promise;
+      }
+
       User.login($scope.loginModel.email, $scope.loginModel.password)
         .then(function () {
           $scope.loginText = 'Log In';
@@ -101,6 +108,7 @@ angular.module('abacuApp')
 
     $scope.closeDropdown = function () {
       Drop.setFalse();
+      $scope.error = '';
     };
 
     $scope.accountURL = 'my_account_big';

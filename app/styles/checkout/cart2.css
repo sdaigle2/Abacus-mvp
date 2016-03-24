@@ -138,6 +138,10 @@
   border-right: 2px solid black;
 }
 
+.media-body .actions td:hover{
+  cursor: pointer;
+}
+
 .media-body .actions td:first-of-type{
   padding-left: 0;
 }
@@ -147,6 +151,12 @@
   color: #4f9dff;
 
 }
+
+.media-body .moreInfoTitle:hover{
+  cursor: pointer;
+}
+
+
 .moreInfoTitle .clickable-text{
   display: inline-block;
   border-radius: 0px;
