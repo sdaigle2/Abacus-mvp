@@ -1,7 +1,7 @@
 var span = document.getElementById("nav_span"); //Div DOM Elment
 span.style.visibility = "hidden";
-var tailShift = 4;
-var headShift = -1;
+var tailShift = 1;
+var headShift = 2;
 
 var Arrow = function(image, name, page, x, width, custom){
   this.complete = false;
