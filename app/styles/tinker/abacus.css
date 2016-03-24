@@ -658,7 +658,7 @@
   clear: right;
   width: 320px;
   max-width: 430px;
-  height: calc(100vh - 240px);
+  height: calc(100vh - 280px);
   top: 54px;
   margin-right: 60px;
 }
@@ -1495,27 +1495,27 @@ body {
 .onoffswitch-inner:before {
     content: "Imperial";
     padding-left: 13px;
-    background-color: #8DC541; color: #FFFFFF;
+    background-color: #E6EAEA; color: #000000;
 }
 .onoffswitch-inner:after {
     content: "Metric";
     padding-right: 13px;
-    background-color: #CCCC26; color: #FFFFFF;
+    background-color: #E6EAEA; color: #000000;
     text-align: right;
 }
 .onoffswitch-switch {
     display: block; width: 13px; margin: 3.5px;
-    background: #FFFFFF;
-    position: absolute; top: 0; bottom: 5px;
+    background: #4F9DFF;
+    position: absolute; top: -7px; bottom: 5px;
     right: 72px;
-    border: 0px solid #FFFFFF; border-radius: 21px;
+    border: 13px solid #4F9DFF; border-radius: 21px;
     transition: all 0.3s ease-in 0s;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
     margin-left: 0;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px;
+    right: -8px;
 }
 
 .unit-toggle{
@@ -1531,18 +1531,63 @@ body {
 
 #siteCredit {
   position: fixed;
-  bottom: 5px;
-  left: 5px;
+  bottom: 15px;
+  left: 50px;
   font-size: 0.75em;
 }
 
 .bottom-banner {
 	width: 100%;
-	background-color: #808184;
-	opacity: 0; //note this is just here for testing right now
-	height: 50px;
-	zindex: 9999;
+	background-color: #4F9DFF;
+	opacity: 1; 
+	z-index: 9000;
 	position: fixed;
+    height: calc(100vh - 750px);
+    padding:0px;
+    max-height: 50px;
+    min-height:0px;
     bottom: 0;
-    right: 0;
+}
+
+.bottom-banner-left{
+    float:left;
+    color: #FFFFFF;
+    list-style: none;
+    height:40px;
+}
+
+.bottom-banner-left > li {
+  background: no-repeat 0 0;
+  float:left;
+  margin-top: 5px;
+}
+
+.bottom-banner-left > li > a > p {
+  margin-top: 27px;
+  margin-left: 10px;
+  float:left;
+  font-size:0.75em;
+  color: #FFFFFF;
+}
+
+.bottom-banner-right{
+    float:right;
+    color: #FFFFFF;
+    list-style: none;
+    margin-top: 8px;
+}
+
+.bottom-banner-right > li {
+  margin-left:20px;
+  margin-right:20px;
+  background: no-repeat 0 0;
+  float:right;
+}
+
+.bottom-banner-right > li > a {
+  color: #FFFFFF;
+}
+
+.bottom-banner-right > li > a:hover {
+  color: #FFFFFF;
 }
