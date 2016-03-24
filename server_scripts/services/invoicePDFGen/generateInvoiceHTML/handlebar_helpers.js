@@ -107,7 +107,7 @@ function getChairPartOption(chair, partID) {
 // frame argument is optional but can be included to speed up
 function getChairPartOptionPrice(chair, partID) {
   var frame = frame || getChairFrame(chair);
-  
+
   var chairPart = _.find(chair.parts, {'partID': partID});
   var framePart = _.find(frame.parts, {'partID': partID});
 
@@ -147,12 +147,12 @@ function getChairWeight(chair) {
 
   var partsWeight = partIDs.reduce((total, partID) => {
     var partOption = getChairPartOption(chair, partID);
-    return total + partOption.weight;
+    return total + (partOption.weight || 0);
   }, 0);
 
   var measuresWeight = measureIDs.reduce((total, measureID) => {
     var measure = getChairMeasureOption(chair, measureID);
-    return total + measure;
+    return total + measure.weight;
   }, 0);
 
   return baseWeight + partsWeight + measuresWeight;
