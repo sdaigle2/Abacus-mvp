@@ -905,7 +905,7 @@ img.rightButtonNav {
 
 .sideBar-custom-item-button-wide {
   border: 1px solid #A7A9Ac;
-  background-color: #60C2B1;
+  background-color: #F1BB1A;
   color: #FFF;
   display: inline-block;
   width: 100%;
@@ -930,8 +930,8 @@ img.rightButtonNav {
 }
 
 .sideBar-custom-item-button.selected {
-  border: 1px solid #60C2B1;
-  background-color: #60C2B1;
+  border: 1px solid #F1BB1A;
+  background-color: #F1BB1A;
   color: #FFFFFF;
 }
 
