@@ -1539,12 +1539,12 @@ body {
 .bottom-banner {
 	width: 100%;
 	background-color: #4F9DFF;
-	opacity: 1; 
+	opacity: 1;
 	z-index: 9000;
 	position: fixed;
     height: calc(100vh - 750px);
     padding:0px;
-    max-height: 50px;
+    max-height: 37px;
     min-height:0px;
     bottom: 0;
 }
@@ -1562,6 +1562,15 @@ body {
   margin-top: 5px;
 }
 
+
+
+.bottom-banner-left img{
+  height: 27px;
+}
+.bottom-banner-left .siteLink{
+  margin-top: -4px;
+}
+
 .bottom-banner-left > li > a > p {
   margin-top: 27px;
   margin-left: 10px;
@@ -1574,7 +1583,7 @@ body {
     float:right;
     color: #FFFFFF;
     list-style: none;
-    margin-top: 8px;
+    margin-top: 4px;
 }
 
 .bottom-banner-right > li {
