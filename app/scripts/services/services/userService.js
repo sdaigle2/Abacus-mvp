@@ -314,10 +314,10 @@ angular.module('abacuApp')
         //If successful - should load in appropriate user data
         login: function (in_email, pass) {
           var curThis = this;
-          
+          var deferred = $q.defer();
+
           if (!([in_email, pass].every(_.isString)) || [in_email, pass].some(_.isEmpty)) {
-            var deferred = $q.defer();
-            deferred.reject(new Error('Bad Email or Password given for login'));
+            deferred.reject(new Error('Missing Username or Password'));
             return deferred.promise;
           }
 
@@ -335,10 +335,13 @@ angular.module('abacuApp')
               restoreMyDesign(in_email);
             } else {
               throw new Error('Incorrect email or password');
+
             }
           })
           .catch(function (err) {
             console.log('Request Failed: ' + JSON.stringify(err));
+            deferred.reject(new Error('Incorrect email or password'));
+            return deferred.promise;
           });
         },
 
@@ -437,7 +440,7 @@ angular.module('abacuApp')
 
         //Returns the full array of user-defined wheelchairs
         getCartWheelchairs: function () {
-          return _.isNull(cart) ? [] : _.map(cart.wheelchairs, 'wheelchair');
+          return _.isNull(cart) ? [] : _.map(cart.wheelchairs);
         },
 
         getWheelchair: function (index) {
