@@ -684,11 +684,10 @@ angular.module('abacuApp')
 
         //Saves the current design and updates the database if the user is logged in
       $scope.saveDesign = function () {
-        if(1) {  //TODO  replace 1 with highlightUnfilledArrows()
-          User.pushNewWheelchair();
+        User.pushNewWheelchair()
+        .then(function (user) {
           $location.path('/cart');
-        }
-
+        });
       };
 
       $scope.saveComputer = function () {

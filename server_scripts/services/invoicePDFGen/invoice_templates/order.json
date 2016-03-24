@@ -1,0 +1,156 @@
+{
+  "orderNum": "OrderNumNotSet",
+  "taxRate": 0.097,
+  "shippingFee": 15,
+  "sentDate": null,
+  "userID": 234,
+  "fName": "Sourabh",
+  "lName": "Desai",
+  "email": "sourabhdesai@gmail",
+  "phone": "847-977-3447",
+  "addr": "628 Primrose Lane",
+  "addr2": "",
+  "city": "Schaumburg",
+  "state": "IL",
+  "zip": "60194",
+  "wheelchairs": [
+    {
+      "createdAt": "2016-03-23T21:50:23.169Z",
+      "updatedAt": "2016-03-23T21:50:23.169Z",
+      "wheelchair": {
+        "frameID": 3,
+        "title": "My Custom Wheelchair",
+        "parts": [
+          {
+            "partID": 1000,
+            "optionID": 1100,
+            "colorID": 1101,
+            "sizeIndex": -1
+          },
+          {
+            "partID": 2000,
+            "optionID": 2100,
+            "colorID": 1101,
+            "sizeIndex": -1
+          },
+          {
+            "partID": 3000,
+            "optionID": 3100,
+            "colorID": 0,
+            "sizeIndex": -1
+          },
+          {
+            "partID": 4000,
+            "optionID": 4100,
+            "colorID": 1101,
+            "sizeIndex": -1
+          },
+          {
+            "partID": 11000,
+            "optionID": 11100,
+            "colorID": 0,
+            "sizeIndex": -1
+          },
+          {
+            "partID": 5000,
+            "optionID": 5100,
+            "colorID": 0,
+            "sizeIndex": -1
+          },
+          {
+            "partID": 6000,
+            "optionID": 6200,
+            "colorID": 0,
+            "sizeIndex": 0
+          },
+          {
+            "partID": 7000,
+            "optionID": 7100,
+            "colorID": 0,
+            "sizeIndex": -1
+          },
+          {
+            "partID": 8000,
+            "optionID": 8100,
+            "colorID": 0,
+            "sizeIndex": -1
+          },
+          {
+            "partID": 9000,
+            "optionID": 9100,
+            "colorID": 0,
+            "sizeIndex": -1
+          },
+          {
+            "partID": 10000,
+            "optionID": 10100,
+            "colorID": 0
+          }
+        ],
+        "measures": [
+          {
+            "measureID": 15001,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15002,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15003,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15004,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15005,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15006,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15006,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15007,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15008,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15009,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15010,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15011,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15012,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15013,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15014,
+            "measureOptionIndex": -1
+          }
+        ],
+        "inCurOrder": false
+      }
+    }
+  ]
+}

@@ -475,7 +475,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX.jpg",
             "desc": "Get even more durability with 24 of Spinergy's 4mm patented PBO FIBER spokes in a wheel designed to perform in the most demanding contact sports. This wheel is responsive, offers extreme durability and is ideal for contact sport players. If you demand a lightweight quick accelerating and maneuverable wheel, the Sport Lite Extreme could be your answer. This wheel looks awesome, is stylish and allows you to focus on the game, not equipment failures.",
             "defaultColorID": 6401,
-	    "price": 895,
+            "price": 895,
             "colors": [
               {
                 "name": "Black",
@@ -527,54 +527,54 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX-R10.jpg",
             "desc": "The SLX R-10 is a tried and true design from Spinergy with a strong and durable, stylish radial laced spoke pattern. Take the benefits of the SLX 24 spoke wheel and add the durability of a 5/8\" axle. Mostly used in contact sports where the 1/2\" axles tend to bend the most. These wheels deliver confidence and performance on the courts.",
             "price": 895,
-	    "defaultColorID": 6401,
+            "defaultColorID": 6401,
             "colors": [
               {
                 "name": "Black",
                 "colorID": 6401,
-		"linkToColorID": 6401,
+                "linkToColorID": 6401,
                 "hex": "#17202A"
               },
               {
                 "name": "White",
                 "colorID": 6402,
-		"linkToColorID": 6402,
+                "linkToColorID": 6402,
                 "hex": "#FDFEFE"
               },
               {
                 "name": "Blue",
                 "colorID": 6403,
-		"linkToColorID": 6403,
+                "linkToColorID": 6403,
                 "hex": "#3498DB"
               },
               {
                 "name": "Red",
                 "colorID": 6404,
-		"linkToColorID": 6404,
+                "linkToColorID": 6404,
                 "hex": "#FF5733"
               },
               {
                 "name": "Yellow",
                 "colorID": 6405,
-		"linkToColorID": 6405,
+	              "linkToColorID": 6405,
                 "hex": "#FFC300"
               },
               {
                 "name": "Green",
                 "colorID": 6406,
-		"linkToColorID": 6406,
+		            "linkToColorID": 6406,
                 "hex": "#27AE60"
               },
               {
                 "name": "Orange",
                 "colorID": 6407,
-		"linkToColorID": 6407,
+                "linkToColorID": 6407,
                 "hex": "#FF6F00"
               },
               {
                 "name": "Pink",
                 "colorID": 6408,
-		"linkToColorID": 6408,
+                "linkToColorID": 6408,
                 "hex": "#FF33FF"
               }
             ]

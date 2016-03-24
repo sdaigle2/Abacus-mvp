@@ -381,6 +381,11 @@ angular.module('abacuApp')
             for (var i = 0; i < cart.wheelchairs.length; i++) {
               localJSONStorage.put('design' + i, cart.wheelchairs[i].allDetails());
             }
+
+            // Sent a successfull promise resolved to the current user object
+            var deferred = $q.defer();
+            deferred.resolve(allDetails());
+            return deferred.promise;
           }
         },
 
@@ -391,6 +396,10 @@ angular.module('abacuApp')
 
         //Create a new wheelchair object of given frame type and set edit pointer to it
         pushNewWheelchair: function () {
+          if (_.isNull(cart)) {
+            cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
+          }
+
           if (currentWheelchair.isNew === true ) {
             cart.wheelchairs.push(new Design({
               'wheelchair': currentWheelchair.editingWheelchair
@@ -404,7 +413,7 @@ angular.module('abacuApp')
               order.wheelchairs[currentWheelchair.orderInd] = cart.wheelchairs[cartWheelchairIndex];
             }
           }
-          this.updateCart();
+          return this.updateCart();
         },
 
         //Set the given wheelchair index to be edited

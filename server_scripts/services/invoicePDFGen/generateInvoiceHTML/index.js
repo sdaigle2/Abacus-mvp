@@ -18,11 +18,11 @@ helpers.INVOICE_IMAGES_URI = _.constant(INVOICE_IMAGES_URI);
 
 Handlebars.registerHelper(helpers);
 
-// Must read Invoice template contents and store them locally
+// Must read Invoice template contents and store it in-memory
 const INVOICE_TEMPLATE_STR = String(fs.readFileSync(INVOICE_TEMPLATE_FILEPATH));
 
 /** 
- * 	Handlebars.compile returns a function
+ * 	Handlebars.compile(...) returns a function
  * 	This Function has the following Input/Output
  * 		Input: Scope for the template in the form of a JSON object
  * 		Output: String containing the raw html based on the template and input scope

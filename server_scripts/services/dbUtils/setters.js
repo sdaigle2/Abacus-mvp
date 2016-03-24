@@ -9,6 +9,16 @@ var async = require('async');
 var dbService = require('../db');
 var generateUniqueID = require('../generateUniqueID');
 
+function isValidID(id) {
+	if (_.isString(id)) {
+		return !_.isEmpty(id);
+	} else if (_.isNumber(id)) {
+		return id >= 0;
+	}
+
+	return false;
+}
+
  /**
  * Given a list of DB entries, updates their records in the DB
  * If a given entry is new (inferred by absence of an ID field), then a new entry is created for it
@@ -33,8 +43,9 @@ function updateOrInsertAllEntries(argsObj, cb) {
 		if (_.isObject(entry)) {
 			// We're being given the object as a whole
 			// Check if it has the id field...if it doesn't then create an entry for it
-			if (entry[idField]) {
+			if (entry[idField] && isValidID(entry[idField])) {
 				var entryID = entry[idField];
+				
 				// update the entry
 				dbInsert(entry, entryID, function (err, res) {
 					if (err) {
@@ -46,7 +57,7 @@ function updateOrInsertAllEntries(argsObj, cb) {
 				});
 			} else {
 				// No ID field present, must be a new object so create an entry for it
-				dbInsert(entry, function (err, body) {
+				dbInsert(entry, function (err, res) {
 					if (err) {
 						cb(err);
 					} else {
@@ -58,6 +69,11 @@ function updateOrInsertAllEntries(argsObj, cb) {
 		} else if (_.isString(entry) || _.isNumber(entry)) {
 			// We're being given the ID for an object
 			var entryID = entry;
+
+			if (!isValidID(entryID)) {
+				return cb(new Error(`Bad ID Value: ${entryID}`));
+			}
+
 			db.get(entryID, function (err, entryValue) {
 				if (err) {
 					cb(err);
