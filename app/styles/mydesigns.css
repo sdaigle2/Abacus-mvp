@@ -127,6 +127,10 @@
   border-right: 2px solid black;
 }
 
+.media-body .actions td:hover{
+  cursor: pointer;
+}
+
 .media-body .actions td:first-of-type{
   padding-left: 0;
 }

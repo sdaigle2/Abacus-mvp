@@ -25,7 +25,7 @@ function isValidID(id) {
  * If a given entry is just a string or number, its inferred to be a ID, and
  * no update is done and the value for the entry is retrieved
  * Returns list of all entry values
- * 
+ *
  * argsObj = {
  *	 db: <db instance from cloudant module>,
  *	 dbInsert: <(optional) custom insert method, defaults to db.insert>,
@@ -45,14 +45,14 @@ function updateOrInsertAllEntries(argsObj, cb) {
 			// Check if it has the id field...if it doesn't then create an entry for it
 			if (entry[idField] && isValidID(entry[idField])) {
 				var entryID = entry[idField];
-				
+
 				// update the entry
 				dbInsert(entry, entryID, function (err, res) {
 					if (err) {
 						cb(err);
 					} else {
 						entry._rev = res.rev; // update the revision number
-						cb(null, entry); // updated the entry succesfully...return the entry value 
+						cb(null, entry); // updated the entry succesfully...return the entry value
 					}
 				});
 			} else {
@@ -71,7 +71,7 @@ function updateOrInsertAllEntries(argsObj, cb) {
 			var entryID = entry;
 
 			if (!isValidID(entryID)) {
-				return cb(new Error(`Bad ID Value: ${entryID}`));
+				return cb(new Error('Bad ID Value: ${entryID}'));
 			}
 
 			db.get(entryID, function (err, entryValue) {
