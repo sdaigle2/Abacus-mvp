@@ -1,12 +1,17 @@
 <link rel='stylesheet'  href="../../styles/mydesigns.css" rel="stylesheet"/>
 
 <div class="">
-    <div id="mainDisplay">
+    <div id="mainDisplay" >
+      <div id="offClickPanel" ng-if="guideSection" ng-click="closeGuide()"></div>
       <div id="header">
         <p class="bold">MY DESIGNS</p>
-        <button data-ng-if="wheelchairUIOpts.length !== 0" class="button compareButton oReg"
+        <div class="compareButton">
+          <button data-ng-if="wheelchairUIOpts.length !== 0" class="button c oReg"
                 ng-class="{'greyButton': numChecked() == 0}"
                 ng-click="goToCompare()">COMPARE ({{numChecked()}})</button>
+          <div class="buttonCover" ng-if="numChecked() == 0"
+            ng-click="openGuide()"></div>
+        </div>
       </div>
       <div id="mainContent">
         <div id="emptyCart" data-ng-if="wheelchairUIOpts.length == 0 ">
@@ -18,6 +23,7 @@
             <div class="chairTitle" ng-class="{'selectedChair': chairInfo.checked }">
               <span class="medium">{{_.has(chairInfo, 'design.wheelchair') ? (chairInfo.design.wheelchair.getName() || '--') : '--'}}</span>
               <input type="checkbox" class="checkbox-button pull-right" ng-model="chairInfo.checked" ng-disabled="numChecked() >= MAX_COMPARISON_CHAIRS && !chairInfo.checked">
+              <img ng-if="guideSection" src="images/icons/reminder_arrow.svg">
             </div>
             <div>
              <div class="media-object">

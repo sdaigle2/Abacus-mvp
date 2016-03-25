@@ -13,6 +13,8 @@ angular.module('abacuApp')
   		$scope.MAX_COMPARISON_CHAIRS = MAX_COMPARISON_CHAIRS;
   		$scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
 
+      $scope.guideSection = false;
+
   		function isAComparedDesign(design) {
   			return ComparedDesigns.myDesigns.contains(design);
   		}
@@ -149,5 +151,13 @@ angular.module('abacuApp')
 
       $scope.jumpFrame = function(){
         $location.path('/frames');
+      };
+
+      //guide logic
+      $scope.openGuide = function(){
+        $scope.guideSection = true;
+      };
+      $scope.closeGuide = function(){
+        $scope.guideSection = false;
       };
   	}]);

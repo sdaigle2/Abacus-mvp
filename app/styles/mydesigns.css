@@ -13,6 +13,7 @@
   font-size: 1em;
 }
 
+
 #mainDisplay{
   width: 700px;
   float: left;
@@ -29,9 +30,32 @@
 }
 
 .greyButton{
-  background-color: lightgrey !important;
+  background-color: #b4b6b8 !important;
   color: white !important;
   border: none;
+}
+
+
+
+.compareButton .buttonCover{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 8;
+}
+
+.buttonCover:hover{
+  cursor: pointer;
+}
+
+#offClickPanel{
+  position: absolute;
+  top: 0;
+  left: -57px;
+  height: 100vh;
+  width: 100vw;
 }
 
 
@@ -107,10 +131,44 @@
 }
 
 .chairBlock .chairTitle{
+  position: relative;
   width: 100%;
-  background-color: darkgrey;
+  background-color: #4f9dff;
   font-size: 1.1em;
-  padding:0 20px;
+  padding:7px 20px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.chairBlock .chairTitle img{
+  position: absolute;
+  height: 26px;
+  right: -47px;
+  top: 2px;
+  -webkit-animation: arrow-jump 1s infinite; /* Safari 4+ */
+  -moz-animation:    arrow-jump 1s infinite; /* Fx 5+ */
+  -o-animation:      arrow-jump 1s infinite; /* Opera 12+ */
+  animation:         arrow-jump 1s infinite; /* IE 10+, Fx 29+ */
+}
+
+@-webkit-keyframes arrow-jump {
+  0%   { opacity: 0;}
+  100% { opacity: 1;
+    -webkit-transform: translateX(10px);
+    -moz-transform: translateX(10px);
+    -o-transform: translateX(10px);
+    transform: translateX(10px);
+  }
+
+}
+
+
+
+.chairBlock .chairTitle input{
+  -ms-transform: scale(1.6); /* IE */
+  -moz-transform: scale(1.6); /* FF */
+  -webkit-transform: scale(1.6); /* Safari and Chrome */
+  -o-transform: scale(1.6); /* Opera */
 }
 
 .chairBlock .selectedChair {
