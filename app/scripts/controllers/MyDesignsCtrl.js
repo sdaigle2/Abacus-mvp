@@ -146,4 +146,8 @@ angular.module('abacuApp')
 				  ComparedDesigns.myDesigns.removeDesign(chairOpts.design);
   			});
   		}, true);
+
+      $scope.jumpFrame = function(){
+        $location.path('/frames');
+      };
   	}]);

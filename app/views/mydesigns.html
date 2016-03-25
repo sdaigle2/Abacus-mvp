@@ -4,12 +4,14 @@
     <div id="mainDisplay">
       <div id="header">
         <p class="bold">MY DESIGNS</p>
-        <button data-ng-if="wheelchairUIOpts.length !== 0" class="button compareButton oReg" ng-click="goToCompare()">COMPARE ({{numChecked()}})</button>
+        <button data-ng-if="wheelchairUIOpts.length !== 0" class="button compareButton oReg"
+                ng-class="{'greyButton': numChecked() == 0}"
+                ng-click="goToCompare()">COMPARE ({{numChecked()}})</button>
       </div>
       <div id="mainContent">
-        <div id="emptyCart" data-ng-if="wheelchairUIOpts.length === 0">
-          <img class="add-icon" data-ng-src="images/my_design_page/cart_empty.png">
-          <span class="medium">Your designs is currently empty</span>
+        <div id="emptyCart" data-ng-if="wheelchairUIOpts.length == 0 ">
+          <span class="medium">Your currently do not have any designs</span>
+          <p ng-click="jumpFrame()"> START A NEW DESIGN</p>
         </div>
         <ul class="chairBlock" ng-if="wheelchairUIOpts.length">
           <li ng-repeat="chairInfo in wheelchairUIOpts" class="cart-item {{chairInfo.checked ? 'checked-item' : ''}}">

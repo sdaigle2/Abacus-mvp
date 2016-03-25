@@ -657,7 +657,6 @@ div{
 
 .dropdownTable td > div:hover{
   cursor: pointer;
-  color: white;
 }
 
 .dropdownButton table tr  h4 {
