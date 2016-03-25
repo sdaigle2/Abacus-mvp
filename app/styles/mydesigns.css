@@ -56,6 +56,7 @@
   left: -57px;
   height: 100vh;
   width: 100vw;
+  z-index:9;
 }
 
 
@@ -152,7 +153,7 @@
 }
 
 @-webkit-keyframes arrow-jump {
-  0%   { opacity: 0;}
+  0%   { opacity: 0.3;}
   100% { opacity: 1;
     -webkit-transform: translateX(10px);
     -moz-transform: translateX(10px);
@@ -169,6 +170,8 @@
   -moz-transform: scale(1.6); /* FF */
   -webkit-transform: scale(1.6); /* Safari and Chrome */
   -o-transform: scale(1.6); /* Opera */
+  position: relative;
+  z-index:10;
 }
 
 .chairBlock .selectedChair {
