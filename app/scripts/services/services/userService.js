@@ -123,7 +123,7 @@ angular.module('abacuApp')
 
         // decide where to persist the currentWheelchair based on whether the user is logged in
         if (userID !== -1) {
-          updateDB();
+          //updateDB();
         } else {
           localJSONStorage.put('currentWheelchair', {frameID: frameID, isNew: true, index: -1});
         }
@@ -443,14 +443,15 @@ angular.module('abacuApp')
           if(_.isNull(cart)){
             return [];
           }
-          else if(_.map(cart.wheelchairs, 'wheelchair') == null){
-            return cart.wheelchairs;
+          else if(cart.wheelchairs.length != 0) {
+            if(typeof(cart.wheelchairs[0].frameID) == 'number'){
+              return _.map(cart.wheelchairs);}
           }
-          else
-          return  _.map(cart.wheelchairs);
+
+          return  _.map(cart.wheelchairs, 'wheelchair');
         },
 
-      
+
 
         getWheelchair: function (index) {
           if (index >= 0 && index < cartWheelchairs.length)

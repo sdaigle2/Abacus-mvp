@@ -71,7 +71,7 @@ function updateOrInsertAllEntries(argsObj, cb) {
 			var entryID = entry;
 
 			if (!isValidID(entryID)) {
-				return cb(new Error('Bad ID Value: ${entryID}'));
+				return cb(new Error(`Bad ID Value: ${entryID}`));
 			}
 
 			db.get(entryID, function (err, entryValue) {

@@ -82,7 +82,6 @@ angular.module('abacuApp')
     Order.prototype = {
 
       addWheelchair: function (newWheelchair) {
-        newWheelchair.wheelchair.toggleInOrder();
         this.wheelchairs.push(newWheelchair.wheelchair);
       },
 

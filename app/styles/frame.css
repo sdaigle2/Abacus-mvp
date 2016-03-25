@@ -7,8 +7,7 @@
 
 .wrapper{
   max-width: 1300px;
-
-  padding: 44px 0;
+  margin:auto;
 }
 
 
@@ -22,61 +21,11 @@ button{
   padding: 5px 12px;
 }
 
-/*****frame column cosmetic******/
-.frameCol{
-  text-align: center;
-  width: 35%;
-  border-right: 1px solid #a7a9ac;
-  height: 80vh;
-  padding: 0 40px;
-  display: inline-block;
-  min-width: 380px;
-}
-
-.frameCol .profilePic{
-  margin-top: 10px;
-  padding-top: 20px;
-}
-
-.frameCol .profilePic img{
-  width: 330px;
-}
-
-.frameCol article p {
-  text-align: left;
-}
-
-.nameCol{
-  margin: 30px 0;
-  text-transform: uppercase;
-}
-.nameCol p span:first-of-type{
-  padding-right: 10px;
-  border-right: 1px solid #a7a9ac;
-  color: #f3bc19;
-}
-
-.nameCol p span:last-of-type {
-  padding-left: 10px;
-  color: #a7a9ac;
-}
-
-.buttonGroup{
-  margin-top: 30px;
-}
-.buttonGroup button{
-  display: inline-block;
-  padding: 5px 32px;
-}
-
-.buttonGroup button:first-of-type{
-  margin-right: 10px;
-}
-
-.detailCol{
+.frame-header h2 {
   position: relative;
-  bottom: 11px;
-  text-align: left;
+  clear: left;
+  float: left;
+  width: 65%;
 }
 
 .frameCol .intro{
@@ -147,7 +96,7 @@ section{
 
 .frame-item-description {
   background-color: #88cbc3 ;
-  font-size: 15px;
+  font-size: 20px;
   height: 100%;
   line-height: 25px;
   overflow: auto;
@@ -316,10 +265,6 @@ td {
 
 .horizontal td {
   width: 125px;
-}
-
-td.blue-line{
-  border-right: 1px solid #C4CBCA;
 }
 
 .addButton{

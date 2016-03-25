@@ -33,23 +33,23 @@ angular.module('abacuApp')
 
 
 
-      //
-      ////Determines if the given frame picture is being hovered over
-      //$scope.panelSelected = function (hoverItem, frameID) {
-      //  return (hoverItem === frameID);
-      //};
-      //
-      ////Returns a display-formatted string of the baseWeight of the given frame
-      //$scope.getWeightString = function (frame) {
-      //  return (frame.getBaseWeight() * Units.getWeightFactor(User.getUnitSys())).toFixed(2) + ' ' + Units.getWeightName(User.getUnitSys());
-      //};
-      //
-      //$scope.setOrientation = function(orientation){
-      //    $scope.orientation = orientation;
-      //}
-      //
-      //$scope.getOrientation = function(){
-      //  return $scope.orientation;
-      //}
+
+      //Determines if the given frame picture is being hovered over
+      $scope.panelSelected = function (hoverItem, frameID) {
+        return (hoverItem === frameID);
+      };
+
+      //Returns a display-formatted string of the baseWeight of the given frame
+      $scope.getWeightString = function (frame) {
+        return (frame.getBaseWeight() * Units.getWeightFactor(User.getUnitSys())).toFixed(2) + ' ' + Units.getWeightName(User.getUnitSys());
+      };
+
+      $scope.setOrientation = function(orientation){
+          $scope.orientation = orientation;
+      }
+
+      $scope.getOrientation = function(){
+        return $scope.orientation;
+      }
 
     }]);
