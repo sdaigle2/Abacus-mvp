@@ -1,5 +1,5 @@
 /**
- * Includes all helpers for Handlebars template
+ * Includes all helpers for Handlebars templating engine
  */
 
 const _ = require('lodash');
@@ -15,8 +15,9 @@ const angles = {
     'Front': 4
 };
 
-/*****************IMAGES********************************************/
-//Get the url for the images based on the wheelchair part
+/**
+ * Get the url for the images based on the wheelchair part
+ */
 function getPartPreviewImageURL(wheelchair, curPart, subImageIndex) {
   var baseURL = `http://localhost:${APP_PORT}/images/chairPic/`;
   var frameIDString = '' + wheelchair.frameID;
@@ -32,13 +33,14 @@ function getPartPreviewImageURL(wheelchair, curPart, subImageIndex) {
   return partURL;
 }
 
-//Return the z-rank sorted image array used to draw the wheelchair parts
+/**
+ * Return the z-rank sorted image array used to draw the wheelchair parts
+ */
 function getImageArray(wheelchair, parts) {
   var images = [];
   //Generate array of images with zRank's
   for (var i = 0; i < parts.length; i++) {
     var curPart = parts[i];
-    console.log(`curPart: ${JSON.stringify(curPart, null, 2)}`);
     var numSubImages = curPart.numSubImages;
     for (var j = 0; j < numSubImages; j++) {
       images.push({
@@ -54,13 +56,22 @@ function getImageArray(wheelchair, parts) {
   return images;
 }
 
-// Returns the ID for the object it is bound to
+/**
+ * Returns the ID for the object it is bound to
+ */
 function getID() {
   return this.id || this._id;
 }
 
+/**
+ * Abreviated months in chronological order
+ */
 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+/**
+ * Given a date or a date string
+ * Returns the date as a string in a human readable format i.e. Mar 25, 2016
+ */
 function displayDate(date) {
   if (!_.isDate(date)) {
     date = new Date(date);
@@ -70,6 +81,9 @@ function displayDate(date) {
   return `${monthStr}. ${date.getDate()}, ${date.getFullYear()}`;
 }
 
+/**
+ * Get the Frame object for corresponding to the given wheelchair object
+ */
 function getChairFrame(wheelchair) {
   var frameID = wheelchair.frameID;
   var chairFrame = _.find(frameData, {"frameID": frameID});
@@ -77,6 +91,10 @@ function getChairFrame(wheelchair) {
   return chairFrame;
 }
 
+/**
+ * given a wheelchair object, returns an object containg both the chair and its corresponding frame object
+ * useful so that you can have both in a single scope within handlebars
+ */
 function getChairAndFrame(chair) {
   return {
     chair: chair,
@@ -84,7 +102,10 @@ function getChairAndFrame(chair) {
   };
 }
 
-// Given a chair & measureID, returns the measure choice in cm & in
+
+/**
+ * Given a chair & measureID, returns the measure choice in cm & in as well as the weight
+ */
 function getChairMeasureOption(chair, measureID) {
   var frame = getChairFrame(chair);
   var measure = _.find(frame.measures, {'measureID': measureID});
@@ -102,6 +123,9 @@ function getChairMeasureOption(chair, measureID) {
   };
 }
 
+/**
+ * Returns the option details object given a chair and a PartID
+ */
 function getChairPartOption(chair, partID) {
   var frame = getChairFrame(chair);
 
@@ -114,8 +138,9 @@ function getChairPartOption(chair, partID) {
   return chairOption;
 }
 
-// Given a wheelchair and a partID, returns the price of the part for the chair
-// frame argument is optional but can be included to speed up
+/**
+ * Given a wheelchair and a partID, returns the price of the part for the chair
+ */
 function getChairPartOptionPrice(chair, partID) {
   var frame = frame || getChairFrame(chair);
 
@@ -135,20 +160,76 @@ function getChairPartOptionPrice(chair, partID) {
   }
 }
 
+/**
+ * Adds up cost of each part in the wheelchair configuration and returns it
+ */
 function calculatePartsSubtotal(chair) {
   var frame = getChairFrame(chair);
   var framePartIDs = _.map(frame.parts, 'partID');
 
-  return framePartIDs.reduce((totalPrice, partID) => {
-    var partPrice = getChairPartOptionPrice(chair, partID);
-    return totalPrice + partPrice;
-  }, 0);
+  return _.sumBy(framePartIDs, partID => {
+    return getChairPartOptionPrice(chair, partID);
+  });
 }
 
+/**
+ * Gives the per-chair shipping fee for the order
+ */
+function getShippingCost() {
+  return this.shippingFee;
+}
+
+/**
+ * Given a input subtotal (w/o shipping fee), returns the tax fee for that price
+ */
+function getTaxCost(total) {
+  return total * this.taxRate;
+}
+
+/**
+ * Get's total chair price including subtotal, shipping, tax, & discounts
+ */
 function getChairPrice(chair) {
-  return calculatePartsSubtotal(chair);
+  var subTotal = calculatePartsSubtotal(chair);
+  return subTotal + getShippingCost() + getTaxCost(subTotal);
 }
 
+/**
+ * Returns total shipping fee for the whole order
+ */
+function getTotalShipping() {
+  var chairs = _.map(this.wheelchairs, 'wheelchair');
+  return chairs.length * getShippingCost(); // shipping fee is a per-chair fee
+}
+
+/**
+ * Returns total tax fee for the whole order
+ */
+function getTotalTax() {
+  var chairs = _.map(this.wheelchairs, 'wheelchair');
+  var taxFees = chairs.map(calculatePartsSubtotal).map(getTaxCost);
+  return _.sum(taxFees);
+}
+
+/**
+ * Returns total cost for the whole order
+ */
+function getTotalPrice() {
+  var chairs = _.map(this.wheelchairs, 'wheelchair');
+  return chairs.reduce((price, chair) => price + getChairPrice(chair), 0);
+}
+
+/**
+ * Given a number, returns a string form of that two number with only two decimal places
+ */
+function toFixed(num) {
+  return num.toFixed(2);
+}
+
+
+/**
+ * Gives total weight of a given chair
+ */
 function getChairWeight(chair) {
   var frame = getChairFrame(chair);
   var baseWeight = frame.baseWeight;
@@ -156,24 +237,33 @@ function getChairWeight(chair) {
   var partIDs    = _.map(frame.parts, 'partID');
   var measureIDs = _.map(frame.measures, 'measureID');
 
-  var partsWeight = partIDs.reduce((total, partID) => {
+  var partsWeight = _.sumBy(partIDs, partID => {
     var partOption = getChairPartOption(chair, partID);
-    return total + (partOption.weight || 0);
-  }, 0);
+    return (partOption.weight || 0);
+  });
 
-  var measuresWeight = measureIDs.reduce((total, measureID) => {
+  var measuresWeight = _.sumBy(measureIDs, measureID => {
     var measure = getChairMeasureOption(chair, measureID);
-    return total + measure.weight;
-  }, 0);
+    return measure.weight;
+  });
 
   return baseWeight + partsWeight + measuresWeight;
 }
 
-// Used for a,b,c bulleted lists
+/**
+ * Converts integers 0-25 into their Letter equivalents
+ * i.e. 0 -> A, 1 -> B, 2 -> C ...
+ * Used for A,B,C bulleted lists
+ */
+// 
 function getBulletLetter(index) {
   return String.fromCharCode('A'.charCodeAt(0) + index);
 }
 
+/**
+ * Given a wheelchair configuration
+ * returns all images for visualzing the wheelchair from a FrontRight angle in zRank order
+ */
 function getChairImages(chair) {
   var frame = getChairFrame(chair);
   var chairParts = chair.parts.map(partOption => {
@@ -188,13 +278,13 @@ function getChairImages(chair) {
     };
   });
 
-  console.log(`chairParts: ${chairParts.length}`);
-
   var images = getImageArray(chair, chairParts);
-  console.log(`images: ${JSON.stringify(images, null, 2)}`);
   return _.map(images, 'URL'); // just return the image URLs in z-rank order
 }
 
+/**
+ * Export all the functions so they can be used by Handlebars templating engine
+ */
 module.exports = {
   getPartPreviewImageURL,
   getImageArray,
@@ -209,5 +299,11 @@ module.exports = {
   getChairPartOptionPrice,
   calculatePartsSubtotal,
   getBulletLetter,
-  getChairImages
+  getChairImages,
+  getShippingCost,
+  getTaxCost,
+  getTotalShipping,
+  getTotalTax,
+  getTotalPrice,
+  toFixed
 };

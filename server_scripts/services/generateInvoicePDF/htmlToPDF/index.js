@@ -11,7 +11,7 @@ const jsreport   = require('jsreport');
  */
 function htmlToPDF(pdfFilePath, rawHTML, cb) {
 	cb = _.once(cb); // ensure the callback is only called once
-	console.log(rawHTML);
+	
 	jsreport.render(rawHTML)
 	.then(out => {
 		var stream = out.result.pipe(fs.createWriteStream(pdfFilePath));

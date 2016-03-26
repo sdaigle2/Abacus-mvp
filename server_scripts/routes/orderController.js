@@ -7,13 +7,14 @@ var router = require('express').Router();
 var _      = require('lodash');
 
 // Import services
-var verifyOrder = require('../services/data').verifyOrder;
-var verifyChair = require('../services/data').verifyWheelchair;
-var genInvoice  = require('../services/pdfGen').generateInvoice;
-var genSave     = require('../services/pdfGen').generateSave;
-var stripe      = require('../services/stripe');
-var sendgrid    = require('../services/sendgrid');
-var dbService   = require('../services/db');
+var verifyOrder        = require('../services/data').verifyOrder;
+var verifyChair        = require('../services/data').verifyWheelchair;
+var genInvoice         = require('../services/pdfGen').generateInvoice;
+var genSave            = require('../services/pdfGen').generateSave;
+var generateInvoicePDF = require('../services/generateInvoicePDF');
+var stripe             = require('../services/stripe');
+var sendgrid           = require('../services/sendgrid');
+var dbService          = require('../services/db');
 
 //Send a pdf of the given wheelchair to the user
 router.post('/save', function (req, res) {
@@ -89,13 +90,18 @@ router.post('/order', function (req, res) {
           //Send email to the user containing the invoice as a pdf
           invoiceEmail.to = req.body.order.email;
           invoiceEmail.text = 'Thank you for using Abacus to purchase your new Wheelchair. We have attached the invoice for your order.';
-          pdfStream.on('finish', function () {
-            invoiceEmail.addFile({
-              path: 'invoice_' + body.id + '.pdf'
-            });
-            sendgrid.send(invoiceEmail, function (err, json) {
+          generateInvoicePDF(order, function (err, pdfPath) {
+            if (err) {
+              // Probably should do more than just log the error here
               console.log(err);
-            });
+            } else {
+              invoiceEmail.addFile({
+                path: pdfPath
+              });
+              sendgrid.send(invoiceEmail, function (err, json) {
+                console.log(err);
+              });
+            }
           });
         });
       }
