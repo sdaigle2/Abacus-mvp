@@ -10,8 +10,6 @@ var dbService = require('../db');
 var generateUniqueID = require('../generateUniqueID');
 
 function getObjectID(object, idField) {
-	console.log('Args for getObjectID:');
-	console.log(JSON.stringify(arguments, null, 2));
 	if (_.isString(object)) {
 		// Probably given the Object ID itself here, just return the object
 		return object;

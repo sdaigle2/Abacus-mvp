@@ -2,37 +2,48 @@
  * Includes all helpers for Handlebars template
  */
 
-var _ = require('lodash');
-var frameData = require('../../../../app/data/frameData.json');
+const _ = require('lodash');
+const frameData = require('../../../../app/data/frameData.json');
+
+const APP_PORT = process.env.PORT || 8080;
+//Map angles to their array index
+const angles = {
+    'Back': 0,
+    'BackRight': 1,
+    'Right': 2,
+    'FrontRight': 3,
+    'Front': 4
+};
 
 /*****************IMAGES********************************************/
 //Get the url for the images based on the wheelchair part
-function getPartPreviewImageURL(wheelchair, curPart, subImageIndex, angle) {
-  var baseURL = 'app/images/chairPic/';
+function getPartPreviewImageURL(wheelchair, curPart, subImageIndex) {
+  var baseURL = `http://localhost:${APP_PORT}/images/chairPic/`;
   var frameIDString = '' + wheelchair.frameID;
   var partIDString = '' + curPart.partID;
 
   var optionIDString = curPart.optionID;
-  var colorString = '_' + curPart.colorID;
-  var subIndString = '_' + subImageIndex;
-  var angleString = '_' + angle;
-  var partURL = baseURL + 'frame' + frameIDString + '/';
-  partURL += 'part' + partIDString + '/';
-  partURL += optionIDString + colorString + subIndString + angleString + '.png';
+  var colorString = `_${curPart.colorID}`;
+  var subIndString = `_${subImageIndex}`;
+  var angleString = '_FrontRight';
+  var partURL = `${baseURL}frame${frameIDString}/`;
+  partURL += `part${partIDString}/`;
+  partURL += `${optionIDString}${colorString}${subIndString}${angleString}.png`;
   return partURL;
 }
 
 //Return the z-rank sorted image array used to draw the wheelchair parts
-function getImageArray(wheelchair, parts, angle) {
+function getImageArray(wheelchair, parts) {
   var images = [];
   //Generate array of images with zRank's
   for (var i = 0; i < parts.length; i++) {
     var curPart = parts[i];
+    console.log(`curPart: ${JSON.stringify(curPart, null, 2)}`);
     var numSubImages = curPart.numSubImages;
     for (var j = 0; j < numSubImages; j++) {
       images.push({
-        URL: getPartPreviewImageURL(wheelchair, curPart, j, angle),
-        zRank: curPart.zRank[j][angles[angle]]
+        URL: getPartPreviewImageURL(wheelchair, curPart, j),
+        zRank: curPart.zRank[j][angles['FrontRight']]
       });
     }
   }
@@ -163,6 +174,27 @@ function getBulletLetter(index) {
   return String.fromCharCode('A'.charCodeAt(0) + index);
 }
 
+function getChairImages(chair) {
+  var frame = getChairFrame(chair);
+  var chairParts = chair.parts.map(partOption => {
+    var part = _.find(frame.parts, {'partID': partOption.partID});
+    
+    return {
+      partID: partOption.partID,
+      colorID: partOption.colorID,
+      optionID: partOption.optionID,
+      numSubImages: part.numSubImages,
+      zRank: part.zRank
+    };
+  });
+
+  console.log(`chairParts: ${chairParts.length}`);
+
+  var images = getImageArray(chair, chairParts);
+  console.log(`images: ${JSON.stringify(images, null, 2)}`);
+  return _.map(images, 'URL'); // just return the image URLs in z-rank order
+}
+
 module.exports = {
   getPartPreviewImageURL,
   getImageArray,
@@ -176,5 +208,6 @@ module.exports = {
   getChairMeasureOption,
   getChairPartOptionPrice,
   calculatePartsSubtotal,
-  getBulletLetter
+  getBulletLetter,
+  getChairImages
 };

@@ -217,7 +217,9 @@
 					<div id="_idContainer045" class="Basic-Graphics-Frame _idGenObjectStyleOverride-1">
 					</div>
 					<div id="_idContainer046" class="Basic-Graphics-Frame _idGenObjectStyleOverride-2">
-						<img class="_idGenObjectAttribute-1" src="{{INVOICE_IMAGES_URI}}/view4.png" alt="" />
+						{{#each (getChairImages this.wheelchair)}}
+						<img class="_idGenObjectAttribute-1" src="{{this}}" alt="" />
+						{{/each}}
 					</div>
 					<div id="_idContainer047" class="Basic-Text-Frame">
 						<p class="Section-Title">Parts</p>
