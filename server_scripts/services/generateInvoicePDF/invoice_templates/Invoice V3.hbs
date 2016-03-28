@@ -50,11 +50,11 @@
 				<div id="_idContainer011" class="Basic-Graphics-Frame _idGenObjectStyleOverride-3">
 				</div>
 				<div id="_idContainer012" class="Basic-Text-Frame">
-					<p class="Generated-Info" style="padding-bottom: 6px; margin-top: 1px;">{{displayDate sentDate}}</p>
-					<p class="Generated-Info" style="padding-bottom: 6px">Net 30</p>
-					<p class="Generated-Info" style="padding-bottom: 6px">Best</p>
-					<p class="Generated-Info" style="padding-bottom: 6px">XXXXXX</p>
-					<p class="Generated-Info" style="padding-bottom: 6px">{{orderNum}}</p>
+					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">{{displayDate sentDate}}</p>
+					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">Net 30</p>
+					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">Best</p>
+					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">XXXXXX</p>
+					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">{{orderNum}}</p>
 				</div>
 				<div id="_idContainer013" class="Basic-Text-Frame">
 					<p class="Invoice-Title">BILL TO:  </p>
@@ -100,21 +100,21 @@
 				</div>
 				<div id="_idContainer023" class="Basic-Text-Frame">
 					{{#each wheelchairs}}
-					<p class="Numbers">${{getChairPrice this.wheelchair}}</p>
+					<p class="Numbers" style="height: 9px;">${{calculatePartsSubtotal this.wheelchair}}</p>
 					{{/each}}
 				</div>
 				<div id="_idContainer024" class="Basic-Text-Frame">
-					<p class="Numbers">$2345</p>
-					<p class="Numbers">$23</p>
-					<p class="Numbers">$224</p>
-					<p class="Numbers">$23</p>
+					<p class="Numbers">${{getTotalSubtotal}}</p>
+					<p class="Numbers">${{getTotalShipping}}</p>
+					<p class="Numbers">${{getTotalTax}}</p>
+					<p class="Numbers">$0</p>
 				</div>
 				<div id="_idContainer025" class="Basic-Text-Frame">
-					<p class="Numbers">$234345</p>
+					<p class="Numbers">${{getTotalPrice}}</p>
 					<p class="Numbers">$0</p>
 				</div>
 				<div id="_idContainer026" class="_idGenObjectStyleOverride-2">
-					<p class="Numbers">$234345</p>
+					<p class="Numbers">${{getTotalPrice}}</p>
 				</div>
 				<div id="_idContainer027" class="Basic-Text-Frame">
 					<p class="Header">Powered By </p>
@@ -161,19 +161,9 @@
 						<p class="Section-Title">Measurements</p>
 					</div>
 					<div id="_idContainer040" class="Basic-Text-Frame">
-						{{#with (getChairFrame this.wheelchair) as |frame|}}
-						{{#each frame.measures}}
-							<p class="Subtitle" lang="en-US"><span class="Diagram">{{getBulletLetter @index}}.</span> {{this.name}}</p>
+						{{#each (MEASURE_DIAGRAM_NAMES)}}
+							<p class="Subtitle" lang="en-US"><span class="Diagram">{{getBulletLetter @index}}.</span> {{toUpperCase this}}</p>
 						{{/each}}
-						{{/with}}
-						<!-- <p class="Subtitle" lang="en-US"><span class="Diagram">a.</span> Rear Seat Width</p>
-						<p class="Subtitle" lang="en-US"><span class="Diagram">b.</span> Seat Depth <span class="CharOverride-1">–</span> Adjustable</p>
-						<p class="Subtitle" lang="en-US"><span class="Diagram">c.</span> Back Rest Height</p>
-						<p class="Subtitle" lang="en-US"><span class="Diagram">d.</span> Rear Seat Height</p>
-						<p class="Subtitle" lang="en-US"><span class="Diagram">e.</span> Front Seat Height</p>
-						<p class="Subtitle" lang="en-US"><span class="Diagram">f.</span> Foot Rest Width</p>
-						<p class="Subtitle" lang="en-US"><span class="Diagram">g. </span>Foot Rest Height</p>
-						<p class="Subtitle" lang="en-US"><span class="Diagram">h.</span> Axle Position</p> -->
 					</div>
 					<div id="_idContainer041" class="_idGenObjectStyleOverride-2">
 						<img class="_idGenObjectAttribute-1" src="{{INVOICE_IMAGES_URI}}/Screen_Shot_2015-03-25_at_3.03.51_PM.png" alt="" />
@@ -183,36 +173,28 @@
 					</div>
 					<div id="_idContainer043" class="Basic-Text-Frame">
 						{{#with ..}}
-							<p class="Numbers">{{fName}} {{lName}}</p>
+							<p class="Numbers" style="height: 15px; margin-top: 0px;">{{fName}} {{lName}}</p>
 						{{/with}}
 						{{#with (getChairFrame this.wheelchair) as |frame|}}
-						<p class="Numbers">{{frame.manufacturer}}</p>
+						<p class="Numbers" style="height: 15px; margin-top: 0px;">{{frame.manufacturer}}</p>
 						{{/with}}
-						<p class="Numbers">${{getChairPrice this.wheelchair}}</p>
+						<p class="Numbers" style="height: 15px; margin-top: 0px;">${{getChairPrice this.wheelchair ..}}</p>
 						{{#with (getChairFrame this.wheelchair) as |frame|}}
-						<p class="Numbers">{{frame.name}}</p>
+						<p class="Numbers" style="height: 15px; margin-top: 0px;">{{frame.name}}</p>
 						{{/with}}
-						<p class="Numbers">{{displayDate this.updatedAt}}</p>
-						<p class="Numbers">{{getChairWeight this.wheelchair}}lb</p>
-						<p class="Numbers">{{../orderNum}} </p>
-						<p class="Numbers">1</p>
+						<p class="Numbers" style="height: 15px; margin-top: 0px;">{{displayDate this.updatedAt}}</p>
+						<p class="Numbers" style="height: 15px; margin-top: 0px;">{{getChairWeight this.wheelchair}} lb</p>
+						<p class="Numbers" style="height: 15px; margin-top: 0px;">{{../orderNum}} </p>
+						<p class="Numbers" style="height: 15px; margin-top: 0px;">1</p>
 					</div>
 					<div id="_idContainer044" class="Basic-Text-Frame">
 						{{#with (getChairAndFrame this.wheelchair)}}
-						{{#each this.frame.measures}}
-							{{#with (getChairMeasureOption ../chair this.measureID) as |measureOption|}}
+						{{#each (MEASURE_DIAGRAM_NAMES)}}
+							{{#with (getChairMeasureOptionByName ../chair this) as |measureOption|}}
 								<p class="Numbers">{{measureOption.cm}} cm / {{measureOption.in}} in</p>
 							{{/with}}
 						{{/each}}
 						{{/with}}
-						<!-- <p class="Numbers">{{measures.seatWidth.cm}} cm / {{measures.seatWidth.in}} in</p>
-						<p class="Numbers">{{measures.seatDepth.cm}} cm / {{measures.seatDepth.in}} in</p>
-						<p class="Numbers">{{measures.backRestHeight.cm}} cm / {{measures.backRestHeight.in}} in</p>
-						<p class="Numbers">{{measures.rearSeatHeight.cm}} cm / {{measures.rearSeatHeight.in}} in</p>
-						<p class="Numbers">{{measures.frontSeatHeight.cm}} cm / {{measures.frontSeatHeight.in}} in</p>
-						<p class="Numbers">{{measures.footRestWidth.cm}} cm / {{measures.footRestWidth.in}} in</p>
-						<p class="Numbers">{{measures.footRestHeight.cm}} cm / {{measures.footRestHeight.in}} in</p>
-						<p class="Numbers">{{measures.axlePosition.cm}} cm / {{measures.axlePosition.in}} in</p> -->
 					</div>
 					<div id="_idContainer045" class="Basic-Graphics-Frame _idGenObjectStyleOverride-1">
 					</div>
@@ -234,27 +216,7 @@
 							{{/with}}
 						{{/each}}
 						{{/with}}
-<!-- 						<p class="Subtitle" lang="en-US">Frame Style</p>
-						<p class="Generated-Info">Titanium - Unpainted</p>
-						<p class="Subtitle" lang="en-US">Back Rest</p>
-						<p class="Generated-Info">Carbon Fiber</p>
-						<p class="Subtitle" lang="en-US">Side Guard</p>
-						<p class="Generated-Info">Carbon Fiber</p>
-						<p class="Subtitle" lang="en-US">Wheel</p>
-						<p class="Generated-Info">sWeel</p>
-						<p class="Subtitle" lang="en-US">Hand Rims</p>
-						<p class="Generated-Info">Black Anodized Aluminum</p>
-						<p class="Subtitle" lang="en-US">Axle</p>
-						<p class="Generated-Info">1/2” Quick Release</p>
-						<p class="Subtitle" lang="en-US">Tire</p>
-						<p class="Generated-Info">Rightrun</p>
-						<p class="Subtitle" lang="en-US">Inner Tube</p>
-						<p class="Generated-Info">Extra light</p>
-						<p class="Subtitle" lang="en-US">Casters</p>
-						<p class="Generated-Info">Monofork with 4” Wheels</p>
-						<p class="Subtitle" lang="en-US">Wheel Locks</p>
-						<p class="Generated-Info">Out-Front Wheel Locks</p> -->
-						<p class="Generated-Info"><span class="CharOverride-2">Subtotal:</span></p>
+						<p class="Generated-Info" style="padding-top:14px"><span class="CharOverride-2">Subtotal:</span></p>
 					</div>
 					<div id="_idContainer049" class="Basic-Text-Frame">
 						<p class="Invoice-Title ParaOverride-1">Price</p>
@@ -263,16 +225,6 @@
 							<p class="Generated-Info ParaOverride-1">${{getChairPartOptionPrice ../chair this.partID}}</p>
 						{{/each}}
 						{{/with}}
-						<!-- <p class="Generated-Info ParaOverride-1">$1234</p>
-						<p class="Generated-Info ParaOverride-1">$1234</p>
-						<p class="Generated-Info ParaOverride-1">$1234</p>
-						<p class="Generated-Info ParaOverride-1">$1234</p>
-						<p class="Generated-Info ParaOverride-1">$1234</p>
-						<p class="Generated-Info ParaOverride-1">$1234</p>
-						<p class="Generated-Info ParaOverride-1">$1234</p>
-						<p class="Generated-Info ParaOverride-1">$1234</p>
-						<p class="Generated-Info ParaOverride-1">$1234</p>
-						<p class="Generated-Info ParaOverride-1">$1234</p> -->
 						<p class="Generated-Info ParaOverride-1"><span class="CharOverride-3">${{calculatePartsSubtotal this.wheelchair}}</span></p>
 					</div>
 				</div>

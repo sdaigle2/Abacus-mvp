@@ -6,13 +6,13 @@ const htmlToPDF           = require('./htmlToPDF');
 const GENERATED_PDFS_DIR = path.join(os.homedir(), 'invoice_pdfs/');
 
 function getOrderInvoiceFilename(order) {
-	var orderID = order.id || order._id;
+	const orderID = order.id || order._id;
 	return `order_${orderID}_invoice.pdf`;
 }
 
 function generateInvoicePDF(order, cb) {
 	const invoiceHTML = generateInvoiceHTML(order);
-
+	
 	const invoiceFilename = getOrderInvoiceFilename(order);
 	const invoiceFilePath = path.join(GENERATED_PDFS_DIR, invoiceFilename);
 
