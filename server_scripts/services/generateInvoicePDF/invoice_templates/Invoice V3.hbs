@@ -50,11 +50,11 @@
 				<div id="_idContainer011" class="Basic-Graphics-Frame _idGenObjectStyleOverride-3">
 				</div>
 				<div id="_idContainer012" class="Basic-Text-Frame">
-					<p class="Generated-Info" style="padding-bottom: 6px; margin-top: 1px;">{{displayDate sentDate}}</p>
-					<p class="Generated-Info" style="padding-bottom: 6px">Net 30</p>
-					<p class="Generated-Info" style="padding-bottom: 6px">Best</p>
-					<p class="Generated-Info" style="padding-bottom: 6px">XXXXXX</p>
-					<p class="Generated-Info" style="padding-bottom: 6px">{{orderNum}}</p>
+					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">{{displayDate sentDate}}</p>
+					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">Net 30</p>
+					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">Best</p>
+					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">XXXXXX</p>
+					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">{{orderNum}}</p>
 				</div>
 				<div id="_idContainer013" class="Basic-Text-Frame">
 					<p class="Invoice-Title">BILL TO:  </p>
@@ -100,7 +100,7 @@
 				</div>
 				<div id="_idContainer023" class="Basic-Text-Frame">
 					{{#each wheelchairs}}
-					<p class="Numbers">${{calculatePartsSubtotal this.wheelchair}}</p>
+					<p class="Numbers" style="height: 9px;">${{calculatePartsSubtotal this.wheelchair}}</p>
 					{{/each}}
 				</div>
 				<div id="_idContainer024" class="Basic-Text-Frame">
@@ -173,19 +173,19 @@
 					</div>
 					<div id="_idContainer043" class="Basic-Text-Frame">
 						{{#with ..}}
-							<p class="Numbers">{{fName}} {{lName}}</p>
+							<p class="Numbers" style="height: 15px; margin-top: 0px;">{{fName}} {{lName}}</p>
 						{{/with}}
 						{{#with (getChairFrame this.wheelchair) as |frame|}}
-						<p class="Numbers">{{frame.manufacturer}}</p>
+						<p class="Numbers" style="height: 15px; margin-top: 0px;">{{frame.manufacturer}}</p>
 						{{/with}}
-						<p class="Numbers">${{getChairPrice this.wheelchair ..}}</p>
+						<p class="Numbers" style="height: 15px; margin-top: 0px;">${{getChairPrice this.wheelchair ..}}</p>
 						{{#with (getChairFrame this.wheelchair) as |frame|}}
-						<p class="Numbers">{{frame.name}}</p>
+						<p class="Numbers" style="height: 15px; margin-top: 0px;">{{frame.name}}</p>
 						{{/with}}
-						<p class="Numbers">{{displayDate this.updatedAt}}</p>
-						<p class="Numbers">{{getChairWeight this.wheelchair}} lb</p>
-						<p class="Numbers">{{../orderNum}} </p>
-						<p class="Numbers">1</p>
+						<p class="Numbers" style="height: 15px; margin-top: 0px;">{{displayDate this.updatedAt}}</p>
+						<p class="Numbers" style="height: 15px; margin-top: 0px;">{{getChairWeight this.wheelchair}} lb</p>
+						<p class="Numbers" style="height: 15px; margin-top: 0px;">{{../orderNum}} </p>
+						<p class="Numbers" style="height: 15px; margin-top: 0px;">1</p>
 					</div>
 					<div id="_idContainer044" class="Basic-Text-Frame">
 						{{#with (getChairAndFrame this.wheelchair)}}
