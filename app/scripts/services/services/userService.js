@@ -533,8 +533,7 @@ angular.module('abacuApp')
           var lastOrder = orders[orders.length - 1];
           if (orders.length === 0 || lastOrder.hasBeenSent()) {
             console.log("create a new order")
-            var newOrder = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
-            orders.push(newOrder);
+            cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
           }
         },
 
