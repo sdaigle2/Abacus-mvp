@@ -82,7 +82,7 @@ angular.module('abacuApp')
     Order.prototype = {
 
       addWheelchair: function (newWheelchair) {
-        this.wheelchairs.push(newWheelchair.wheelchair);
+        this.wheelchairs.push(newWheelchair);
       },
 
       removeWheelchair: function (index) {
@@ -245,7 +245,7 @@ angular.module('abacuApp')
         if (this.wheelchairs.length > 0) {
           var total = 0;
           for (var i = 0; i < this.wheelchairs.length; i++) {
-            total += this.wheelchairs[i].getTotalPrice();
+            total += this.wheelchairs[i].wheelchair.getTotalPrice();
           }
           return total;
         }

@@ -14,7 +14,11 @@
 }
 
 
-
+.greyButton{
+  background-color: #b4b6b8 !important;
+  color: white !important;
+  border: none;
+}
 
 
 #wrapper{
@@ -54,11 +58,24 @@
 #emptyCart{
   position: relative;
   top: 80px;
-  left: 130px;
-  margin-bottom: 110px;
-
-
+  margin: auto;
+  width: 300px;
 }
+
+#emptyCart>p{
+  position: relative;
+  top: 25px;
+  left: 23px;
+  font-size: 1.4em;
+  color: #4f9dff;
+  letter-spacing: -1px;
+}
+
+#emptyCart>p:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 #header{
   position: relative;
   margin: 0 15px 0;
@@ -137,6 +154,12 @@
   padding: 0 15px;
   border-right: 2px solid black;
 }
+
+.media-body .actions td:last-of-type{
+  border-right: none;
+}
+
+
 
 .media-body .actions td:hover{
   cursor: pointer;

@@ -430,7 +430,7 @@ angular.module('abacuApp')
 
         //Removes the wheelchair at the given index from the user's myDesign
         deleteWheelchair: function (index) {
-          cartWheelchairs.splice(index, 1);
+          cart.wheelchairs.splice(index, 1);
           this.updateCart();
         },
 
@@ -443,12 +443,13 @@ angular.module('abacuApp')
           if(_.isNull(cart)){
             return [];
           }
-          else if(cart.wheelchairs.length != 0) {
-            if(typeof(cart.wheelchairs[0].frameID) == 'number'){
-              return _.map(cart.wheelchairs);}
-          }
-
-          return  _.map(cart.wheelchairs, 'wheelchair');
+          //else if(cart.wheelchairs.length != 0) {
+          //  if(typeof(cart.wheelchairs[0].frameID) == 'number'){
+          //    return _.map(cart.wheelchairs);}
+          //}
+          //
+          //return  _.map(cart.wheelchairs, 'wheelchair');
+          return _.map(cart.wheelchairs);
         },
 
 
