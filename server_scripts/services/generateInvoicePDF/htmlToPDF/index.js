@@ -12,7 +12,17 @@ const jsreport   = require('jsreport');
 function htmlToPDF(pdfFilePath, rawHTML, cb) {
 	cb = _.once(cb); // ensure the callback is only called once
 	
-	jsreport.render(rawHTML)
+	jsreport.render({
+		template: {
+			content: rawHTML,
+			engine: 'handlebars',
+			recipe: 'phantom-pdf',
+			'phantom': {
+				format: 'A5',
+				margin: '0px'
+			}
+		}
+	})
 	.then(out => {
 		var stream = out.result.pipe(fs.createWriteStream(pdfFilePath));
 		

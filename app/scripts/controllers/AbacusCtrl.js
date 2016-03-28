@@ -772,7 +772,7 @@ angular.module('abacuApp')
               // can either choose to create a copy, or overwrite the existing design in the DB
               switch (saveMethod.value) {
                 case 'copy': {
-                  delete design.id; // remove the id
+                  delete design._id; // remove the id
                   design.creator = User.getID();
                   return User.saveDesign(design);
                 }
@@ -789,9 +789,6 @@ angular.module('abacuApp')
                   }
                   break;
                 }
-                default: {
-                  throw new Error("Invalid saveMethod: " + saveMethod);
-                }
               }
             });
           } else {
@@ -806,10 +803,13 @@ angular.module('abacuApp')
                 return User.addDesignIDToSavedDesigns(design._id);
               }
             })
-            .then(function () {
-              $scope.loginPanel = loginPanelStatus.SAVED;
+            .then(function (updatedUserData) {
+              if (updatedUserData) { // only show Saved dialog if a user update was made
+                $scope.loginPanel = loginPanelStatus.SAVED;
+              }
             })
-            .catch(function (design) {
+            .catch(function (err) {
+              console.log(err);
               ngDialog.open({
                 //TODO: design and incorporate error message
                 'template': '<div><h2>Oops! An Error Occurred</h2></div>',

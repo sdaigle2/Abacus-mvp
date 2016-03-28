@@ -298,7 +298,7 @@ angular.module('abacuApp')
           var designDetails = design.allDetails();
           designDetails.updatedAt = new Date();
           return $http({
-            url: '/design/' + design.id,
+            url: '/design/' + design._id,
             data: designDetails,
             method: 'PUT'
           })
@@ -424,6 +424,7 @@ angular.module('abacuApp')
 
         // Saves the currentWheelchair into the saved wheelchairs list and resets the currentWheelchair
         addDesignIDToSavedDesigns: function (designID) {
+          savedDesigns = _.reject(savedDesigns, {'_id': designID});
           savedDesigns.push(designID);
           return this.updateDB();
         },
