@@ -1022,7 +1022,7 @@ img.rightButtonNav {
   position: absolute;
 }
 
-@media screen and (max-height: 865px) {
+
   .sideBar-measure-bottom .help-image {
     height: 39%;
     width: auto;
@@ -1033,7 +1033,7 @@ img.rightButtonNav {
     margin-right: auto;
     top: 0px;
   }
-}
+
 
 .sideBar-measure-bottom .help-image-progressbar {
   cursor: pointer;
