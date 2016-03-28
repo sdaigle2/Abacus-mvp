@@ -17,22 +17,29 @@
     <div id="mainDisplay">
       <div id="header">
         <p class="oBold">MY CART</p>
-        <button data-ng-if="wheelchairs.length !== 0" class="button compareButton oReg">COMPARE</button>
+        <button data-ng-if="wheelchairUIOpts.length !== 0" class="button c oReg compareButton"
+                ng-class="{'greyButton': numChecked() == 0}"
+                ng-click="goToCompare()">COMPARE ({{numChecked()}})</button>
+        <div class="buttonCover" ng-if="numChecked() == 0"
+             ng-click="openGuide()"></div>
       </div>
       <div id="mainContent">
         <div id="emptyCart" data-ng-if="wheelchairs.length === 0">
-          <img class="add-icon" data-ng-src="images/my_design_page/cart_empty.png">
-          <span class="medium">Your cart is currently empty</span>
+          <span class="medium">Your currently do not have any designs</span>
+          <p ng-click="jumpFrame()"> START A NEW DESIGN</p>
         </div>
         <ul class="chairBlock" ng-if="wheelchairs.length">
           <li ng-repeat="w in wheelchairs" class="cart-item {{wheelchairUIOpts[$index].checked ? 'checked-item' : ''}}">
             <div class="chairTitle" ng-class="{'selectedChair': wheelchairUIOpts[$index].checked }">
-              <span class="medium">{{w.getName()}}</span>
-              <input type="checkbox" class="checkbox-button pull-right" ng-model="wheelchairUIOpts[$index].checked">
+              <span class="medium">{{w.wheelchair.getName()}}</span>
+              <input type="checkbox" class="checkbox-button pull-right" ng-model="w.checked"
+                     ng-click="closeGuide()"
+                     ng-disabled="numChecked() >= MAX_COMPARISON_CHAIRS && !w.checked">
+              <img ng-if="guideSection" src="images/icons/reminder_arrow.svg">
             </div>
             <div>
              <div class="media-object">
-                <canvas my-canvas img_arr={{w.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
+                <canvas my-canvas img_arr={{w.wheelchair.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
                         ng-mouseleave="editPanelShow = false"
                         ng-click="toggleImageDisplay($index)"
                         width="{{WHEELCHAIR_CANVAS_WIDTH}}"
@@ -42,7 +49,7 @@
               <section class="media-body">
                 <div class="firstLine medium">
                   <span class="pull-left">Design ID: xxxxxxx</span>
-                  <span class="pull-right bold">${{w.getTotalPrice().toFixed(2)}}</span>
+                  <span class="pull-right bold">${{w.wheelchair.getTotalPrice().toFixed(2)}}</span>
                 </div>
                 <table class="actions oReg">
                   <tbody>

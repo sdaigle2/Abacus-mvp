@@ -20,12 +20,17 @@ angular.module('abacuApp')
   .constant('LOCAL_CART_COMPARED_DESIGNS_KEY', 'cartComparedDesigns')
   .constant('LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY', 'myDesignComparedDesigns')
   .constant('MAX_COMPARISON_CHAIRS', 3)
-  .service('ComparedDesigns', ['localJSONStorage', 'Design', 'LOCAL_CART_COMPARED_DESIGNS_KEY', 'LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY', '_', 'MAX_COMPARISON_CHAIRS',
-    function (localJSONStorage, Design, LOCAL_CART_COMPARED_DESIGNS_KEY, LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY, _, MAX_COMPARISON_CHAIRS) {
+  .service('ComparedDesigns', ['localJSONStorage', 'Design', 'LOCAL_CART_COMPARED_DESIGNS_KEY', 'LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY', '_', 'MAX_COMPARISON_CHAIRS','Wheelchair',
+    function (localJSONStorage, Design, LOCAL_CART_COMPARED_DESIGNS_KEY, LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY, _, MAX_COMPARISON_CHAIRS , Wheelchair) {
 
     function isDesign(value) {
       return value instanceof Design;
     }
+
+    function isWheelchair(value){
+      return value instanceof Wheelchair;
+    }
+
 
   	var ComparedDesignsStorage = function (localStorageKey) {
       this.localStorageKey = localStorageKey;
