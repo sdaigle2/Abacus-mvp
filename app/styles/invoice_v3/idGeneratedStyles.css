@@ -147,7 +147,7 @@ p.Section-Title {
 	font-style:normal;
 	font-variant:normal;
 	font-weight:bold;
-	line-height:0.571;
+	line-height:0.971;
 	margin-bottom:0;
 	margin-left:0;
 	margin-right:0;
@@ -1049,6 +1049,8 @@ img._idGenObjectAttribute-1 {
 	height:100.00%;
 	min-width:100%;
 	width:100.00%;
+	position: absolute;
+	left: 0px;
 }
 div._idGenObjectStyleOverride-1 {
 	border-color:#939598;
