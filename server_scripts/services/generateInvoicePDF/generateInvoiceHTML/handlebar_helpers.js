@@ -111,7 +111,7 @@ function getChairMeasureOption(chair, measureID) {
   var measure = _.find(frame.measures, {'measureID': measureID});
   var measureOptionIndex = _.find(chair.measures, {'measureID': measureID}).measureOptionIndex;
 
-  // Default to the first measaure option
+  // Default to the first measure option
   if (_.isUndefined(measureOptionIndex) || measureOptionIndex < 0) {
     measureOptionIndex = 0;
   }
@@ -121,6 +121,25 @@ function getChairMeasureOption(chair, measureID) {
     'in': measure.measureOptions[1][measureOptionIndex] || '--',
     'weight': measure.weights[measureOptionIndex] || 0
   };
+}
+
+/**
+ * The Frame measure to display in order that the measurements diagrams have displayed them
+ */
+const MEASURE_DIAGRAM_NAMES = ["Seat Width", "Seat Depth", "Backrest Height", "Rear Seat Height", "Front Seat Height", "Foot Width", "Side Wheel Clearance", ];
+
+/**
+ * Given a chair & measureName, returns the measure choice in cm, & inches as well as the weight
+ */
+function getChairMeasureOptionByName(chair, measureName) {
+  var frame = getChairFrame(chair);
+  var measure = _.find(frame.measures, {'name': measureName});
+  
+  if (measure) {
+    return getChairMeasureOption(chair, measure.measureID);
+  } else {
+    return undefined;
+  }
 }
 
 /**
@@ -189,9 +208,9 @@ function getTaxCost(total) {
 /**
  * Get's total chair price including subtotal, shipping, tax, & discounts
  */
-function getChairPrice(chair) {
+function getChairPrice(chair, order) {
   var subTotal = calculatePartsSubtotal(chair);
-  return subTotal + getShippingCost() + getTaxCost(subTotal);
+  return subTotal + getShippingCost.apply(order) + getTaxCost.apply(order, [subTotal]);
 }
 
 /**
@@ -199,7 +218,7 @@ function getChairPrice(chair) {
  */
 function getTotalShipping() {
   var chairs = _.map(this.wheelchairs, 'wheelchair');
-  return chairs.length * getShippingCost(); // shipping fee is a per-chair fee
+  return chairs.length * getShippingCost.apply(this); // shipping fee is a per-chair fee
 }
 
 /**
@@ -207,8 +226,19 @@ function getTotalShipping() {
  */
 function getTotalTax() {
   var chairs = _.map(this.wheelchairs, 'wheelchair');
-  var taxFees = chairs.map(calculatePartsSubtotal).map(getTaxCost);
+
+  var getTaxCostBound = getTaxCost.bind(this);
+  
+  var taxFees = chairs
+    .map(calculatePartsSubtotal)
+    .map(subTotal => getTaxCostBound(subTotal));
+
   return _.sum(taxFees);
+}
+
+function getTotalSubtotal() {
+  var chairs = _.map(this.wheelchairs, 'wheelchair');
+  return _.sumBy(chairs, chair => calculatePartsSubtotal(chair, this));
 }
 
 /**
@@ -216,14 +246,8 @@ function getTotalTax() {
  */
 function getTotalPrice() {
   var chairs = _.map(this.wheelchairs, 'wheelchair');
-  return chairs.reduce((price, chair) => price + getChairPrice(chair), 0);
-}
-
-/**
- * Given a number, returns a string form of that two number with only two decimal places
- */
-function toFixed(num) {
-  return num.toFixed(2);
+  var getChairPriceBound = getChairPrice.bind(this);
+  return _.sumBy(chairs, chair => getChairPriceBound(chair, this));
 }
 
 
@@ -283,6 +307,14 @@ function getChairImages(chair) {
 }
 
 /**
+ * Given a string, will return the same string with all chars uppercased
+ * If input isn't a string, the value itself will be returned unchanged
+ */
+function toUpperCase(str) {
+  return _.isString(str) ? str.toUpperCase() : str;
+}
+
+/**
  * Export all the functions so they can be used by Handlebars templating engine
  */
 module.exports = {
@@ -296,6 +328,7 @@ module.exports = {
   getChairWeight,
   getChairPartOption,
   getChairMeasureOption,
+  getChairMeasureOptionByName,
   getChairPartOptionPrice,
   calculatePartsSubtotal,
   getBulletLetter,
@@ -304,6 +337,18 @@ module.exports = {
   getTaxCost,
   getTotalShipping,
   getTotalTax,
+  getTotalSubtotal,
   getTotalPrice,
-  toFixed
+  toUpperCase,
+  'MEASURE_DIAGRAM_NAMES': _.constant(MEASURE_DIAGRAM_NAMES)
 };
+
+// Wrap all functions to round integers to nearest decimal
+module.exports = _.mapValues(module.exports, function (fn) {
+  var wrapperFn = function () {
+    var returnVal = fn.apply(this, arguments);
+    return _.isNumber(returnVal) ? returnVal.toFixed(2) : returnVal;
+  };
+
+  return wrapperFn;
+});

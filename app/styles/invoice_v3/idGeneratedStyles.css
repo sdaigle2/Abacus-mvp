@@ -193,6 +193,7 @@ span.Diagram {
 }
 p.ParaOverride-1 {
 	text-align:right;
+	height: 24px;
 }
 span.CharOverride-1 {
 	font-family:"Avenir LT Std 35 Light", sans-serif;
@@ -1010,7 +1011,7 @@ span.CharOverride-3 {
 	height:279.73px;
 	left:0px;
 	overflow:hidden;
-	padding-bottom: 10px;
+	padding-bottom: 25px;
 	padding-top: 10px;
 	position:absolute;
 	top:0px;
@@ -1031,6 +1032,7 @@ span.CharOverride-3 {
 	overflow:hidden;
 	position:absolute;
 	padding-top: 10px;
+	padding-bottom: 25px;
 	top:0px;
 	transform:translate(450.000px,267.686px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
 	transform:translate(450.000px,267.686px) rotate(0.000deg) skew(0.000deg) scale(1.000,1.000);
