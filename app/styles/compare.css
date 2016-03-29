@@ -36,8 +36,10 @@
 }
 
 .no-wheelchairs-text {
-	padding: 10px;
-	margin: auto;
+  width: 500px;
+  padding: 10px;
+  margin: auto;
+  font-size: 1.5em;
 }
 
 .add-wheelchair-button {
@@ -58,7 +60,7 @@
 	color: #4896FF;
 	margin-left: 0px;
 	border: 1px solid #4896FF;
-};
+}
 
 
 /****************************
