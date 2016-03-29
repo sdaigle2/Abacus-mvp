@@ -46,7 +46,7 @@ The frames page displays all of the frames available to purchase.  These frames 
 
 This page contains the main bulk of the project.  From this page, the user can modify User.getCurEditWheelchair (The wheelchair currently being edited).  If sent from "frames," curEditWheelchair will be a newly instantiated wheelchair of the chosen frame type.  If sent from "cart," it will be a previously created wheelchair from the user's MyDesigns.  If the page is loaded with User.getCurEditWheelchair being null, the user is immeadiately sent back to the frames page.
 
-This page has two types: customize and measure.  
+This page has two types: customize and measure.
 
 While in the customize type, the user can select options and colors for each part of the wheelchair.  These actions are accomplished through the sidebar, which appears on the righthand side of the screen.  In the main part of the screen, an image of the wheelchair is generated.  This image can be rotated and will update as the user selects various options.
 
@@ -93,7 +93,7 @@ This page is only accessed by checking out from the cart while not logged in.  T
 
 8) Order [Info, Payment, Confirm, Complete](OrderCtrl.js)
 
-This page walks the user step-by-step through the ordering process.  If the page is loaded without a User.getCurEditOrder, the user is immeadiately sent back to "cart".  This page consists of 4 segments: Info, Payment, Confirm, and Complete.  The page will always start at Info.  
+This page walks the user step-by-step through the ordering process.  If the page is loaded without a User.getCurEditOrder, the user is immeadiately sent back to "cart".  This page consists of 4 segments: Info, Payment, Confirm, and Complete.  The page will always start at Info.
 
 The Info segment will request shipping information from the user.  If the user is already logged in, this will be preloaded from their settings.  Every field except Address 2 must be filled in to advance to the next stage.
 
@@ -105,6 +105,6 @@ The Complete segment simply displays the generated Order number.
 
 --------------------------------------------------------------
 
-9) Invoice (InvoiceCtrl.js)
+
 
 --In Progress--
