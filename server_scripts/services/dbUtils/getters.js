@@ -66,7 +66,7 @@ function getUserByID(userID, cb) {
 			if (user.cart) {
 				try {
 					var cartID = getObjectID(user.cart, '_id');
-					dbService.orders.get(cartID, cb);
+					getOrderByID(cartID, cb); // get the cart along with all linked fields populated
 				} catch (badCartValueErr) {
 					// The given cart didn't have an ID field...this means the cart value is invalid and can be treated as null
 					cb(null, null);	

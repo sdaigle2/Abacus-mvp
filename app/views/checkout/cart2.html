@@ -24,22 +24,22 @@
              ng-click="openGuide()"></div>
       </div>
       <div id="mainContent">
-        <div id="emptyCart" data-ng-if="wheelchairs.length === 0">
+        <div id="emptyCart" data-ng-if="wheelchairUIOpts.length === 0">
           <span class="medium">Your currently do not have any designs</span>
           <p ng-click="jumpFrame()"> START A NEW DESIGN</p>
         </div>
-        <ul class="chairBlock" ng-if="wheelchairs.length">
-          <li ng-repeat="w in wheelchairs" class="cart-item {{wheelchairUIOpts[$index].checked ? 'checked-item' : ''}}">
-            <div class="chairTitle" ng-class="{'selectedChair': wheelchairUIOpts[$index].checked }">
-              <span class="medium">{{w.wheelchair.getName()}}</span>
-              <input type="checkbox" class="checkbox-button pull-right" ng-model="w.checked"
+        <ul class="chairBlock" ng-if="wheelchairUIOpts.length">
+          <li ng-repeat="chairOpts in wheelchairUIOpts" class="cart-item {{chairOpts.checked ? 'checked-item' : ''}}">
+            <div class="chairTitle" ng-class="{'selectedChair': chairOpts.checked }">
+              <span class="medium">{{chairOpts.design.wheelchair.getName()}}</span>
+              <input type="checkbox" class="checkbox-button pull-right" ng-model="chairOpts.checked"
                      ng-click="closeGuide()"
-                     ng-disabled="numChecked() >= MAX_COMPARISON_CHAIRS && !w.checked">
+                     ng-disabled="numChecked() >= MAX_COMPARISON_CHAIRS && !chairOpts.checked">
               <img ng-if="guideSection" src="images/icons/reminder_arrow.svg">
             </div>
             <div>
              <div class="media-object">
-                <canvas my-canvas img_arr={{w.wheelchair.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
+                <canvas my-canvas img_arr={{chairOpts.design.wheelchair.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
                         ng-mouseleave="editPanelShow = false"
                         ng-click="toggleImageDisplay($index)"
                         width="{{WHEELCHAIR_CANVAS_WIDTH}}"
@@ -48,8 +48,8 @@
               </div>
               <section class="media-body">
                 <div class="firstLine medium">
-                  <span class="pull-left">Design ID: xxxxxxx</span>
-                  <span class="pull-right bold">${{w.wheelchair.getTotalPrice().toFixed(2)}}</span>
+                  <span class="pull-left">Design ID: {{chairOpts.design._id}}</span>
+                  <span class="pull-right bold">${{chairOpts.design.wheelchair.getTotalPrice().toFixed(2)}}</span>
                 </div>
                 <table class="actions oReg">
                   <tbody>
@@ -61,7 +61,7 @@
                   </tbody>
                 </table>
                 <section class="moreInfoTitle oBold">
-                  <p class="clickable-text {{wheelchairUIOpts[$index].showInfo ? 'dropup' : ''}}" ng-click="wheelchairUIOpts[$index].showInfo = !wheelchairUIOpts[$index].showInfo">{{wheelchairUIOpts[$index].showInfo ? 'LESS' : 'MORE'}} INFO <span class="caret"></span></p>
+                  <p class="clickable-text {{chairOpts.showInfo ? 'dropup' : ''}}" ng-click="chairOpts.showInfo = !chairOpts.showInfo">{{chairOpts.showInfo ? 'LESS' : 'MORE'}} INFO <span class="caret"></span></p>
                   <a class="pull-right">
                     <img data-ng-src="images/my_design_page/delete.png"
                        width="20"
@@ -69,8 +69,8 @@
                 </section>
                 <div class="moreInfo" style="padding:{{WHEELCHAIR_CANVAS_WIDTH}};">
                   <!-- Parts Table...only shown if toggled -->
-                  <h3 ng-if="wheelchairUIOpts[$index].showInfo">Parts</h3>
-                  <table ng-if="wheelchairUIOpts[$index].showInfo">
+                  <h3 ng-if="chairOpts.showInfo">Parts</h3>
+                  <table ng-if="chairOpts.showInfo">
                     <tr class="part-row" ng-repeat="part in parts">
                       <td class="title-column">
                         <p data-ng-bind="part.getName()"></p>
@@ -83,8 +83,8 @@
                   <br>
 
                   <!-- Measurements Table...only shown if toggled -->
-                  <h3 ng-if="wheelchairUIOpts[$index].showInfo">Measurements</h3>
-                  <table ng-if="wheelchairUIOpts[$index].showInfo">
+                  <h3 ng-if="chairOpts.showInfo">Measurements</h3>
+                  <table ng-if="chairOpts.showInfo">
                     <tr class="part-row" ng-repeat="measure in getWheelchairMeasures(w)">
                       <td class="title-column">
                         <p data-ng-bind="measure.getName()"></p>
@@ -164,17 +164,17 @@
 
 
   <!-- Shows wheelchair on Modal Dialog if small canvas is clicked -->
-  <div ng-repeat="w in wheelchairs" ng-if="imageDisplay1 == $index" id="displayImage">
+  <div ng-repeat="chairOpts in wheelchairUIOpts" ng-if="imageDisplay1 == $index" id="displayImage">
     <div id="offClickArea" ng-show="imageDisplay1 >= 0" data-ng-click="toggleImageDisplay(-1)"></div>
     <div class="mainDisplay">
-      <div id="designTitle"><h3 data-ng-bind="w.getTitle()"></h3></div>
+      <div id="designTitle"><h3 data-ng-bind="chairOpts.design.wheelchair.getTitle()"></h3></div>
       <img class="leftButton" src="images/icons/left_button.svg" alt="Previous" width="30" height="30"
            ng-show="wheelchairs.length > 1"
            data-ng-click="rotate(-1)"/>
       <img class="rightButton" src="images/icons/right_button.svg" alt="Next" width="30" height="30"
            ng-show="wheelchairs.length > 1"
            data-ng-click="rotate(1)"/>
-      <canvas my-canvas img_arr="{{w.getPreviewImages(3)}}"
+      <canvas my-canvas img_arr="{{chairOpts.design.wheelchair.getPreviewImages(3)}}"
               width="518" height="400"></canvas>
     </div>
   </div>

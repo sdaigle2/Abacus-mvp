@@ -23,16 +23,9 @@ angular.module('abacuApp')
       }
 
       //Array of wheelchair instances in the shopping cart
-      $scope.wheelchairs = [];
       $scope.wheelchairUIOpts = [];
 
       $scope.parts = [];
-      //Array tracking if wheelchair is in curOrder
-      // $scope.wInOrder = [];
-
-      //Array tracking wheelchairs in current order (wInOrder[i] = j means $scope.wheelchairs[i] is at index j in curOrder)
-      //If j === -1 then $scope.wheelchairs[i] is not in curOrder
-      //$scope.wOrderIndex = [];
 
       $scope.imageDisplay1 = -1;
 
@@ -45,9 +38,6 @@ angular.module('abacuApp')
 
       //Initialize Cart page
       function init() {
-
-        $scope.wheelchairs = User.getCartWheelchairs();    // return array of chair instance
-
         $scope.curOrder = User.getCurEditOrder();   //return order instance
         if (!$scope.curOrder) {
           User.createNewOrder();
@@ -57,20 +47,18 @@ angular.module('abacuApp')
 
         $scope.zipcode = $scope.curOrder.zip;
 
-        // download the parts in $scope.parts
-        $scope.wheelchairs.forEach(function (wheelchair) {
-          getParts(wheelchair.wheelchair.getFrameID());
-        });
-
-        $scope.wheelchairs.forEach(function(wheelchair){
-          wheelchair.checked = false;
-        });
         // initialize the ui variables to a default value
-        $scope.wheelchairUIOpts = $scope.wheelchairs.map(function () {
+        $scope.wheelchairUIOpts = User.getCart().wheelchairs.map(function (design) {
           return {
-            'checked': false, // whether the checkbox in each cart item is marked
+            'design': design,
+            'checked': isAComparedDesign(design), // whether the checkbox in each cart item is marked
             'showInfo': false // whether to show the table of wheelchair parts
           };
+        });
+
+        // download the parts in $scope.parts
+        $scope.wheelchairUIOpts.forEach(function (chairOpts) {
+          getParts(chairOpts.design.wheelchair.getFrameID());
         });
       }
 
@@ -131,35 +119,6 @@ angular.module('abacuApp')
         ////Remove wheelchair from My Designs
         User.deleteWheelchair(index);
       };
-
-
-      ////Adds the selected wheelchair to curOrder
-      //$scope.addWheelchairToOrder = function (index) {
-      //  if ($scope.wheelchairs[index].allMeasuresSet() === false) {
-      //    alert('All measurements must be set before this can be purchased');
-      //    return;
-      //  }
-      //  $scope.curOrder.addWheelchair($scope.wheelchairs[index]);
-      //  User.updateCookie();
-      //  $scope.wInOrder[index] = true;
-      //  $scope.wOrderIndex[index] = $scope.curOrder.getNumWheelchairs() - 1;
-      //  updateCosts();
-      //};
-
-      //Removes the selected wheelchair from curOrder
-      //$scope.removeWheelchairFromOrder = function (index) {
-      //  $scope.curOrder.removeWheelchair($scope.wOrderIndex[index]);
-      //  $scope.wInOrder[index] = false;
-      //  for (var i = 0; i < $scope.wOrderIndex.length; i++)
-      //    if ($scope.wOrderIndex[i] > $scope.wOrderIndex[index])
-      //      $scope.wOrderIndex[i]--;
-      //  $scope.wOrderIndex[index] = -1;
-      //  updateCosts();
-      //  User.updateCookie();
-      //};
-
-      /********************SIDEBAR CALCULATIONS************************/
-
 
       /*********************CHECK OUT***********************************/
 
@@ -242,9 +201,9 @@ angular.module('abacuApp')
 
       $scope.rotate = function (dir) {
         if($scope.imageDisplay1 + dir === -1)
-          $scope.imageDisplay1 = $scope.wheelchairs.length - 1;
+          $scope.imageDisplay1 = $scope.wheelchairUIOpts.length - 1;
         else
-        if($scope.imageDisplay1 + dir === $scope.wheelchairs.length)
+        if($scope.imageDisplay1 + dir === $scope.wheelchairUIOpts.length)
           $scope.imageDisplay1 = 0;
         else
           $scope.imageDisplay1 += dir;
@@ -253,19 +212,13 @@ angular.module('abacuApp')
 
       init();
 
-
-      $scope.$watchCollection('wheelchairs', function (updatedWheelchairs) {
-        $scope.curOrder.wheelchairs = updatedWheelchairs;
-      });
-
-
       //compare functions
 
       $scope.numChecked = function () {
-        return _.filter($scope.wheelchairs, 'checked').length;
+        return _.filter($scope.wheelchairUIOpts, 'checked').length;
       };
 
-      $scope.$watch('wheelchairs', function (newUIOpts, oldUIOpts) {
+      $scope.$watch('wheelchairUIOpts', function (newUIOpts, oldUIOpts) {
 
         // Get all the wheelchairUIOpts items that have been changed from what they were before
         var checkFlippedOpts = newUIOpts.filter(function (newOpt, index) {
@@ -279,12 +232,12 @@ angular.module('abacuApp')
 
         // Add them to the compared designs service
         checkedOpts.forEach(function (chairOpts) {
-          ComparedDesigns.cart.addDesign(chairOpts);
+          ComparedDesigns.cart.addDesign(chairOpts.design);
         });
 
         // Remove them from the compared designs service
         uncheckedOpts.forEach(function (chairOpts) {
-          ComparedDesigns.cart.removeDesign(chairOpts);
+          ComparedDesigns.cart.removeDesign(chairOpts.design);
         });
       }, true);
 

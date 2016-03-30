@@ -193,8 +193,8 @@ angular.module('abacuApp')
 
           // Setup the cart...it is null if the user doesnt have a cart
           if (data.cart) {
-            var cartID = data.cart.id || data.cart._id || -1;
-            cart = data.cart && cartID >= 0 ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
+            var cartID = data.cart.id || data.cart._id || null;
+            cart = data.cart && cartID !== null ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
           } else {
             cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
           }
@@ -444,13 +444,7 @@ angular.module('abacuApp')
           if(_.isNull(cart)){
             return [];
           }
-          //else if(cart.wheelchairs.length != 0) {
-          //  if(typeof(cart.wheelchairs[0].frameID) == 'number'){
-          //    return _.map(cart.wheelchairs);}
-          //}
-          //
-          //return  _.map(cart.wheelchairs, 'wheelchair');
-          return _.map(cart.wheelchairs);
+          return _.map(cart.wheelchairs, 'wheelchair');
         },
 
 

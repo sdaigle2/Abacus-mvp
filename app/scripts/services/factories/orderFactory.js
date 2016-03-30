@@ -81,8 +81,12 @@ angular.module('abacuApp')
 
     Order.prototype = {
 
-      addWheelchair: function (newWheelchair) {
-        this.wheelchairs.push(newWheelchair);
+      addWheelchair: function (newDesign) {
+        if (newDesign instanceof Design) {
+          this.wheelchairs.push(newDesign);
+        } else {
+          throw new Error('Input to order.addWheelchair must be an instance of a Design');
+        }
       },
 
       removeWheelchair: function (index) {
@@ -112,8 +116,8 @@ angular.module('abacuApp')
           state: this.state,
           zip: this.zip,
           paymethod: this.paymethod,
-          wheelchairs: this.wheelchairs.map(function (w) {
-            return w.allDetails();
+          wheelchairs: this.wheelchairs.map(function (design) {
+            return design.allDetails();
           })
         };
 
@@ -243,11 +247,9 @@ angular.module('abacuApp')
       //The combined cost of all the Wheelchairs in the Order
       getSubtotal: function () {
         if (this.wheelchairs.length > 0) {
-          var total = 0;
-          for (var i = 0; i < this.wheelchairs.length; i++) {
-            total += this.wheelchairs[i].wheelchair.getTotalPrice();
-          }
-          return total;
+          return _.sumBy(this.wheelchairs, function (design) {
+            return design.wheelchair.getTotalPrice();
+          });
         }
         return 0;
       },
