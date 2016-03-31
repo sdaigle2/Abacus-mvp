@@ -51,7 +51,7 @@ button{
 
 .wrapper .mainDisplay{
   width: 80%;
-  margin: 30px auto 0;
+  margin: 30px auto 30px;
 }
 
 section{
@@ -315,7 +315,69 @@ td {
 
 #siteCredit {
   position: fixed;
-  bottom: 5px;
-  left: 5px;
+  bottom: 15px;
+  left: 50px;
   font-size: 0.75em;
+}
+
+.bottom-banner {
+	width: 100%;
+	background-color: #4F9DFF;
+	opacity: 1;
+	z-index: 9000;
+	position: relative;
+    padding:0px;
+    height: 37px;
+    bottom: 0px;
+    margin-bottom:-20px;
+}
+
+.bottom-banner-left{
+    float:left;
+    color: #FFFFFF;
+    list-style: none;
+    height:40px;
+}
+
+.bottom-banner-left > li {
+  background: no-repeat 0 0;
+  float:left;
+  margin-top: 5px;
+}
+
+.bottom-banner-left img{
+  height: 27px;
+}
+.bottom-banner-left .siteLink{
+  margin-top: -4px;
+}
+
+.bottom-banner-left > li > a > p {
+  margin-top: 27px;
+  margin-left: 10px;
+  float:left;
+  font-size:0.75em;
+  color: #FFFFFF;
+}
+
+.bottom-banner-right{
+    float:right;
+    color: #FFFFFF;
+    list-style: none;
+    margin-top: 4px;
+}
+
+.bottom-banner-right > li {
+  margin-left:20px;
+  margin-right:20px;
+  background: no-repeat 0 0;
+  float:right;
+}
+
+.bottom-banner-right > li > a {
+  color: #FFFFFF;
+}
+
+.bottom-banner-right > li > a:hover {
+  color: #FFFFFF;
 }
