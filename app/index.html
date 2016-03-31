@@ -50,7 +50,7 @@
 <![endif]-->
 
 <div data-ng-controller="HeaderController">
-  <div >
+  <header>
     <div class="mainNavbar" data-ng-if="!isActive('/')">
       <div class="preload">
         <img alt="frame" src="images/icons/on_frames.png"/>
@@ -162,7 +162,7 @@
     <div id="foreground" data-ng-if="loginDropdown() === true || settingsDropdown() === true"
          data-ng-click="closeDropdown()"
       ></div>
-  </div>
+  </header>
 
   <div id="appContainer" ng-view=""></div>
   <!-- Angular App -->

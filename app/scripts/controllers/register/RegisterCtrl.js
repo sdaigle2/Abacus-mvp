@@ -26,7 +26,7 @@ angular.module('abacuApp')
 
       var checkField = function(){
         for(key in $scope.accountModel){
-          if(_.isEmpty($scope.accountModel.key)){
+          if(_.isEmpty($scope.accountModel[key])){
             return true
           }
             return false
