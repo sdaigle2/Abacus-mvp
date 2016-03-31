@@ -362,7 +362,7 @@
 #display {
   float: left;
   z-index: 50;
-  position: relative;
+  position: absolute;
   top: 20px;
   left: 50px;
 }
@@ -493,7 +493,8 @@
 
 .main-custom .main-custom-wheelchairDisplay {
   margin-top: 25px;
-  margin-left: calc(20vw - 176px);
+  /*margin-left: calc(20vw - 176px);*/
+  margin-left: calc(20vw - 100px);
   min-width: 600px;
   min-height: 450px;
   width: calc(60vw - 198px);
@@ -515,7 +516,8 @@
 .main-custom-rotatebuttons {
   position: relative;
   top: calc(46.3vw - 110px);
-  left: 38vw;
+  /*left: 38vw;*/
+  margin-left: calc(20vw + 200px);
   z-index: 21;
 }
 .main-custom-rotatebuttons img {
