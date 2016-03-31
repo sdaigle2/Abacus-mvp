@@ -7,7 +7,7 @@
 * The important function is getImages(angle) which returns an array of objects containing imageURLs sorted by their zRank
 */
 angular.module('abacuApp')
-  .factory('previewImage', ['Angles', 'FrameData', function (Angles, FrameData) {
+  .factory('previewImage', ['Angles', 'FrameData', '_', function (Angles, FrameData, _) {
 
     //##########################  Constructor  #########################
     function PreviewImage( urlFolder, frameID, partData ) {
@@ -58,6 +58,14 @@ angular.module('abacuApp')
           this.dirty = true;
         }
       },
+      
+      setColorForMultiPart: function (pID, oID, cID) {
+        var option = _.find(this.parts, {partID: pID, optionID: oID});
+        if (option) {
+          option.colorID = cID;
+          this.dirty = true;
+        }
+      }, 
 
       setOptionAndColorForPart: function (pID, oID, cID) {
         var p = this.getPart(pID);
@@ -80,11 +88,22 @@ angular.module('abacuApp')
           var curPart = this.parts[i];
           var curPartData = FrameData.getFramePart(this.frameID, this.parts[i].partID);
           var numSubImages = curPartData.getNumSubImages();
-          for (var j = 0; j < numSubImages; j++) {
-            this.images.push({
-              URL: this.getPartPreviewImageURL(curPart, j, angle),
-              zRank: curPartData.getZRank(j, angle)
-            });
+
+          if (numSubImages === 0) {
+            // special case for Miscelaneous parts
+            if (curPart.partID === 10000 && curPart.optionID === 10100) {
+              this.images.push({
+                URL: this.getPartPreviewImageURL(curPart, 0, angle),
+                zRank: curPartData.getZRank(0, angle)
+              });
+            }
+          } else {
+            for (var j = 0; j < numSubImages; j++) {
+              this.images.push({
+                URL: this.getPartPreviewImageURL(curPart, j, angle),
+                zRank: curPartData.getZRank(j, angle)
+              });
+            }
           }
         }
 

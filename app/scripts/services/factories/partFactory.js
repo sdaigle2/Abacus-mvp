@@ -12,13 +12,14 @@ angular.module('abacuApp')
 
     //##########################  Constructor  #########################
     function Part(partData) {
-
-      this.partID          = partData.partID;
-      this.name            = partData.name;
-      this.numSubImages    = partData.numSubImages;
-      this.zRank           = partData.zRank;
-      this.defaultOptionID = partData.defaultOptionID;
-      this.iconImage       = partData.iconImage;
+      
+      this.partID               = partData.partID;
+      this.name                 = partData.name;
+      this.numSubImages         = partData.numSubImages;
+      this.zRank                = partData.zRank;
+      this.defaultOptionID      = partData.defaultOptionID;
+      this.iconImage            = partData.iconImage;
+      this.allowMultipleChoices = partData.allowMultipleChoices;
 
       this.options = [];
       if(!this.zRank){

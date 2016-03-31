@@ -129,19 +129,19 @@ angular.module('abacuApp')
         }
       }
 
-      function setEditWheelchair(index, orderInd) {
+      function setEditWheelchair(index, design) {
         if (index >= 0 && index < cart.wheelchairs.length) {
           cartWheelchairIndex = index;
         }
-        currentWheelchair.editingWheelchair = $.extend(true, cart.wheelchairs[index]);
+        currentWheelchair.editingWheelchair = $.extend(true, cart.wheelchairs[index].wheelchair);
         currentWheelchair.isNew = false;
-        currentWheelchair.orderInd = orderInd;
+        currentWheelchair.design = design;
 
         // decide where to persist the currentWheelchair based on whether the user is logged in
         if (userID !== -1) {
           updateDB();
         } else {
-          localJSONStorage.put('currentWheelchair', {frameID: -1, isNew: false, index: index});
+          localJSONStorage.put('currentWheelchair', {frameID: -1, isNew: false, index: index, 'design': design});
         }
       }
 
@@ -164,7 +164,7 @@ angular.module('abacuApp')
             createCurrentDesign(tempCurrentWheelchair.frameID);
           }
           else if (tempCurrentWheelchair.isNew === false) {
-            setEditWheelchair(tempCurrentWheelchair.index);
+            setEditWheelchair(tempCurrentWheelchair.index, new Design(tempCurrentWheelchair.design));
           }
         }
       }
@@ -410,11 +410,7 @@ angular.module('abacuApp')
             cartWheelchairIndex = cart.wheelchairs.length - 1;
           }
           else if (currentWheelchair.isNew === false) {
-            cart.wheelchairs[cartWheelchairIndex] = $.extend(true, currentWheelchair.editingWheelchair);
-            var order = this.getCurEditOrder();
-            if(order && currentWheelchair.orderInd >= 0) {
-              order.wheelchairs[currentWheelchair.orderInd] = cart.wheelchairs[cartWheelchairIndex];
-            }
+            cart.wheelchairs[cartWheelchairIndex] = currentWheelchair.design;
           }
           return this.updateCart();
         },
@@ -432,7 +428,7 @@ angular.module('abacuApp')
         //Removes the wheelchair at the given index from the user's myDesign
         deleteWheelchair: function (index) {
           cart.wheelchairs.splice(index, 1);
-          this.updateCart();
+          return this.updateCart();
         },
 
         getCart: function () {

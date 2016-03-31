@@ -30,7 +30,7 @@
       <section data-ng-click="saveDesign()" >
         <img
              data-ng-src="images/abacus_page/save_review/add_to_cart.png" alt="save to my design">
-        <h6 class="medium"> ADD TO CART</h6>
+        <h6 class="medium"> {{curEditWheelchair.isNew ? 'ADD TO CART' : 'UPDATE CART'}}</h6>
       </section>
       <section data-ng-click="saveForLater()">
         <img
@@ -290,11 +290,12 @@
                         <strong >LESS INFO</strong></section>
                     </div>
                     <div class="sideBar-custom-item-button text-center selected"
-                         ng-if="getCurWheelchairPart().optionID === option.optionID">Selected
+                         ng-if="curChairHasOption(option.optionID)"
+                         ng-click="getCurPartData().allowMultipleChoices && removeMultiOptionPart(option.optionID)">Selected
                     </div>
                     <div class="sideBar-custom-item-button text-center"
-                         ng-if="getCurWheelchairPart().optionID !== option.optionID"
-                         ng-click="setCurOption(option.optionID);">Add
+                         ng-if="!curChairHasOption(option.optionID)"
+                         ng-click="getCurPartData().allowMultipleChoices ? setCurMultiOption(option.optionID) : setCurOption(option.optionID)">Add
                     </div>
                   </div>
                 </td>
@@ -327,7 +328,7 @@
               <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
                    data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
                    data-ng-style="{'background-color': color.hex, 'max-height':90}"
-                   data-ng-click="setCurOption(curOption.optionID); setCurOptionColor(color.colorID);"
+                   data-ng-click="getCurPartData().allowMultipleChoices ? setCurMultiOption(curOption.optionID) : setCurOption(curOption.optionID); getCurPartData().allowMultipleChoices ? setCurMultiOptionColor(curOption.optionID, color.colorID) : setCurOptionColor(color.colorID);"
                    title="{{color.name}}">
               </div>
             </div>

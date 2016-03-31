@@ -97,7 +97,7 @@ angular.module('abacuApp')
 
       //Sends the user back to abacus with the selected wheelchair
       $scope.editWheelchair = function (index) {
-        User.setEditWheelchair(index, $scope.wOrderIndex[index]);
+        User.setEditWheelchair(index, $scope.wheelchairUIOpts[index].design);
         $location.path('/tinker');
       };
 
@@ -116,7 +116,7 @@ angular.module('abacuApp')
         //$scope.wOrderIndex.splice(index, 1);
         $scope.wheelchairUIOpts.splice(index, 1);
         //
-        ////Remove wheelchair from My Designs
+        ////Remove wheelchair from cart
         User.deleteWheelchair(index);
       };
 
