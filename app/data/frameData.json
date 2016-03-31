@@ -4394,7 +4394,7 @@
   },
   {
     "manufacturer": "Spinergy",
-    "name": "Spinergy SPOX",
+    "name": "Spinergy SPOX Wheels (Set of two)",
     "desc": "PRICE INCLUDES A SET OF TWO WHEEELS.  Spinergy built its reputation as a market leader with the SPOX Everyday wheelchair wheel. They have been our best seller for 15 years and are built to last. Wheels are the most rewarding upgrade you can make on a wheelchair and the SPOX Everyday wheels are our entry wheel with a budget in mind.",
     "basePrice": 695,
 	"baseWeight": 6,
@@ -4862,19 +4862,23 @@
 					"colors": [		
 						{	
 							"name": "Gray",
-							"colorID": 8601
+							"colorID": 8601,
+                            "hex": "#808080"
 						},	
 						{	
 							"name": "Red",
-							"colorID": 8602
+							"colorID": 8602,
+                            "hex": "#FF3535"
 						},	
 						{	
 							"name": "Blue",
-							"colorID": 8603
+							"colorID": 8603,
+                            "hex": "#3B35FF"
 						},	
 						{	
 							"name": "Yellow",
-							"colorID": 8604
+							"colorID": 8604,
+                            "hex": "#FFFF00"
 						}	
 					]		
 				},			
@@ -4956,7 +4960,7 @@
       {
         "name": "Wheel Size",				
         "measureID": 15001,				
-		"desc": "The wheels size is the dameter of the wheel with a tire on it.",
+		"desc": "Wheel Size = Tire Diameter",
         "details": "The wheel size is the diameter of the wheel with a tire on it.  It get's a bit confusing though because different tires will give the wheel a different overall size.  A 24\" wheel can measure as small as 23\" in diameter if it has a small tire.  It's important to match the wheel size that your chair was designed for.  So if you are putting these on a chair that already uses 25\" wheels, you should order new 25\" wheels.",
         "tip": "It's a good idea to match your new wheel size to your old wheel size if you are putting these on your old wheelchair.",
         "gifDesc": "As the seat width narrows, trunk stability increases. /n As the seat widens, trunk stability decreases.",
@@ -4973,7 +4977,7 @@
 			"name": "Ball Bearing Size",				
 			"measureID": 15002,				
 			"desc": "Generally, 1/2\" ball bearings are used in the US, and 12mm ball bearings are used in Europe.",				
-			"details": "Generally, 1/2\" ball bearings are used in the US, and 12mm ball bearings are used in Europe.  If you're not certain of your axle size, ask us and we'll help you figure it out.",				
+			"details": "If you are ordering these to use with a Per4max chair, you definitely want the 1/2\" axles.  Otherwise, you might want the 12mm axles.  If you're not certain of your axle size, ask us and we'll help you figure it out.",				
 			"tip": "Generally, 1/2\" ball bearings are used in the US, and 12mm ball bearings are used in Europe.",				
 			"gifDesc": "You gain more control and body alignment as the taper increases.",				
 			"units": ["cm","in"],				

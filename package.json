@@ -5,6 +5,7 @@
   "dependencies": {
     "address-validator": "^0.1.4",
     "async": "^1.5.2",
+    "aws-sdk": "^2.2.48",
     "body-parser": "^1.12.4",
     "bower": "^1.4.1",
     "cloudant": "^1.0.0",

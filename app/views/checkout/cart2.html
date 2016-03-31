@@ -55,7 +55,7 @@
                   <tbody>
                     <tr>
                       <td ng-click="editWheelchair($index)"><a>EDIT</a></td>
-                      <td ng-click="moveToWishlist($index)"><a>SAVE FOR LATER</a></td>
+                      <td ng-click="moveToWishlist($index)" ng-if="isLoggedIn()"><a>SAVE FOR LATER</a></td>
                       <td ng-click="duplicateWheelchair($index)"><a>DOWNLOAD PDF</a></td>
                     </tr>
                   </tbody>
@@ -76,7 +76,7 @@
                         <p data-ng-bind="part.getName()"></p>
                       </td>
                       <td class="value-column pull-right">
-                        <p data-ng-bind="getPartOption(w, part)"></p>
+                        <p data-ng-bind="getPartOption(chairOpts.design.wheelchair, part)"></p>
                       </td>
                     </tr>
                   </table>
@@ -85,12 +85,12 @@
                   <!-- Measurements Table...only shown if toggled -->
                   <h3 ng-if="chairOpts.showInfo">Measurements</h3>
                   <table ng-if="chairOpts.showInfo">
-                    <tr class="part-row" ng-repeat="measure in getWheelchairMeasures(w)">
+                    <tr class="part-row" ng-repeat="measure in getWheelchairMeasures(chairOpts.design.wheelchair)">
                       <td class="title-column">
                         <p data-ng-bind="measure.getName()"></p>
                       </td>
                       <td class="value-column pull-right">
-                        <p data-ng-bind="getMeasureDetails(w, measure).optionString"></p>
+                        <p data-ng-bind="getMeasureDetails(chairOpts.design.wheelchair, measure).optionString"></p>
                       </td>
                     </tr>
                   </table>

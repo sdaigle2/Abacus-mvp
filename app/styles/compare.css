@@ -72,9 +72,7 @@
 	padding: 10px;
 	text-align: center;
 	display: inline-block;
-	margin: 100px;
-	margin-left: 150px;
-	margin-right: 150px;
+	margin: 100px auto;
 }
 
 .chair-canvas-list {
@@ -96,10 +94,9 @@
 .compare-check-box-holder {
 	background-color: #4896FF;
 	color: white;
-	margin: auto;
+	margin: 5px auto 0;
 	border: 1px solid #4896FF;
 	border-radius: 0;
-	margin-top: 5px;
     width: 150px;
     cursor: pointer;
 }
@@ -122,9 +119,7 @@
 	width: 17px;
 	height: 17px;
 	margin-top: 2px;
-	padding: 3px;
-	padding-top: 1px;
-	padding-bottom: 1px;
+	padding: 1px 3px 1px;
 }
 .compare-button-checked-text {
 	background: white;
@@ -160,8 +155,7 @@
 .compare-list-item-header {
 	width: 90%;
 	padding: 10px;
-	margin: auto;
-	margin-bottom: 5px;
+	margin: 0 auto 5px;
 	background: white;
 	text-align: center;
 	font-size: 25px;

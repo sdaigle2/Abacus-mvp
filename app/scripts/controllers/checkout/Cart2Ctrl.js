@@ -81,6 +81,10 @@ angular.module('abacuApp')
         return false;
       }
 
+      $scope.isLoggedIn = function () {
+        return User.isLoggedIn();
+      };
+
 
       /********************CART ITEM BUTTONS******************************/
 
@@ -103,7 +107,24 @@ angular.module('abacuApp')
 
       // removes wheelchair from cart and puts it into the users wishlist
       $scope.moveToWishlist = function (index) {
-        alert('TODO: moveToWishlist implementation');
+        var design = $scope.wheelchairUIOpts[index].design;
+        // Remove the wheelchair from the cart and move it into the wishlist
+        $scope.deleteWheelchair(index)
+        .then(function () {
+          // If the design already is in the backend with an ID, no need to make a new entry for it
+          if (design instanceof Design && design.hasID()) {
+            return design;
+          } else {
+            // Make a new entry for the design in the DB
+            return User.saveDesign(design);
+          }
+        })
+        .then(function (design) {
+          return User.addDesignIDToSavedDesigns(design._id);
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
       };
 
       $scope.duplicateWheelchair = function (index) {
@@ -117,7 +138,7 @@ angular.module('abacuApp')
         $scope.wheelchairUIOpts.splice(index, 1);
         //
         ////Remove wheelchair from cart
-        User.deleteWheelchair(index);
+        return User.deleteWheelchair(index);
       };
 
       /*********************CHECK OUT***********************************/

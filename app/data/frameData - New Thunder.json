@@ -498,7 +498,7 @@
 		{					
 			"name": "Quick Release Axles",				
 			"partID": 9000,				
-			"numSubImages": ,				
+			"numSubImages": 1,				
 			"zRank": [[13,3,3,4,13]],				
 			"shortName": "Tir",				
 			"defaultOptionID": 9400,				
@@ -559,8 +559,7 @@
 			"desc": "The wheels size is the dameter of the wheel with a tire on it.",				
 			"details": "The wheel size is the diameter of the wheel with a tire on it.  It get's a bit confusing though because different tires will give the wheel a different overall size.  A 24\" wheel can measure as small as 23\" in diameter if it has a small tire.  It's important to match the wheel size that your chair was designed for.  So if you are putting these on a chair that already uses 25\" wheels, you should order new 25\" wheels.",				
 			"tip": "It's a good idea to match your new wheel size to your old wheel size if you are putting these on your old wheelchair.",				
-			"""gifDesc"": ""As the seat width narrows, trunk stability increases.
-As the seat widens, trunk stability decreases."","				
+			"gifDesc": "As the seat width narrows, trunk stability increases. As the seat widens, trunk stability decreases.",				
 			"units": ["cm","in"],				
 			"shortName": "SW",				
 			"videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",				
