@@ -7,7 +7,7 @@
 * The important function is getImages(angle) which returns an array of objects containing imageURLs sorted by their zRank
 */
 angular.module('abacuApp')
-  .factory('previewImage', ['Angles', 'FrameData', function (Angles, FrameData) {
+  .factory('previewImage', ['Angles', '$http', 'FrameData', function (Angles, FrameData, $http) {
 
     //##########################  Constructor  #########################
     function PreviewImage( urlFolder, frameID, partData ) {
@@ -113,6 +113,9 @@ angular.module('abacuApp')
         var partURL = this.baseURL + 'frame' + frameIDString + '/';
         partURL += 'part' + partIDString + '/';
         partURL += optionIDString + colorString + subIndString + angleString + '.png';
+
+
+
 
         return partURL;
 

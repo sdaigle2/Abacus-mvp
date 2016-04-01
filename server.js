@@ -11,7 +11,6 @@ var bodyParser = require('body-parser');
 var shortid = require('shortid');
 
 app.use(bodyParser.json());
-app.use(express.static(__dirname + '/app'));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -39,6 +38,7 @@ app.use(session({
 // mainRouter contains all custom endpoints in controllers from server_scripts/routes
 var mainRouter = require('./server_scripts/routes');
 app.use(mainRouter);
+app.use(express.static(__dirname + '/app'));
 
 var port = process.env.PORT || 8080;
 
