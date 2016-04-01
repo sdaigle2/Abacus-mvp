@@ -7,7 +7,7 @@
  * The wheelchair also has a PreviewImage that assists in generating the array of preview images
  */
 angular.module('abacuApp')
-  .factory('Wheelchair', ['FrameData', 'previewImage', 'Units', function (FrameData, previewImage, Units) {
+  .factory('Wheelchair', ['FrameData', 'previewImage', 'Units', '_', function (FrameData, previewImage, Units, _) {
 
     //##########################  Constructor  #########################
 
@@ -269,11 +269,30 @@ angular.module('abacuApp')
         }
       },
 
+      setMultiOptionForPart: function (pID, oID) {
+          var o = FrameData.getFrame(this.frameID).getPartOption(pID, oID);
+          this.parts.push({
+            partID: pID,
+            optionID: oID,
+            colorID: o.getDefaultColorID(),
+            sizeIndex: o.getDefaultSizeIndex()
+          });
+      },
+
       setColorForPart: function (pID, cID) {
         var p = this.getPart(pID);
         if (p !== null) {
           p.colorID = cID;
           this.previewImageGenerator.setColorForPart(pID, cID);
+        }
+      },
+
+      setColorForMultiPart: function (pID, oID, cID) {
+        var option = _.find(this.parts, {'partID': pID, 'optionID': oID});
+
+        if (option) {
+          option.colorID = cID;
+          this.previewImageGenerator.setColorForMultiPart(pID, oID, cID);
         }
       },
 
@@ -311,6 +330,10 @@ angular.module('abacuApp')
         var m = this.getMeasure(mID);
         if (m !== null)
           m.measureOptionIndex = index;
+      },
+
+      removeMultiOption: function (optionID) {
+        this.parts = _.reject(this.parts, {'optionID': optionID});
       },
 
       toggleInOrder: function () {

@@ -55,7 +55,7 @@
                   <tbody>
                     <tr>
                       <td ng-click="editWheelchair($index)"><a>EDIT</a></td>
-                      <td ng-click="moveToWishlist($index)"><a>SAVE FOR LATER</a></td>
+                      <td ng-click="moveToWishlist($index)" ng-if="isLoggedIn()"><a>SAVE FOR LATER</a></td>
                       <td ng-click="duplicateWheelchair($index)"><a>DOWNLOAD PDF</a></td>
                     </tr>
                   </tbody>

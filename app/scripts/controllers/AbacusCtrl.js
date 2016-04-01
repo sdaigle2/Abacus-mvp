@@ -574,9 +574,18 @@ angular.module('abacuApp')
 
       /*****************Building CurWheelchair*****/
 
+      $scope.curChairHasOption = function (optionID) {
+        var option = _.find($scope.curEditWheelchair.parts, {'optionID': optionID});
+        return !_.isUndefined(option);
+      };
+
       $scope.setCurOption = function (newOptionID) {
         $scope.curEditWheelchair.setOptionForPart($scope.getCurPartData().partID, newOptionID);
         console.log('Changed option');
+      };
+
+      $scope.setCurMultiOption = function (newOptionID) {
+        $scope.curEditWheelchair.setMultiOptionForPart($scope.getCurPartData().partID, newOptionID);
       };
 
       $scope.setCurOptionColor = function (newColorID) {
@@ -593,11 +602,28 @@ angular.module('abacuApp')
         }
       };
 
+      $scope.setCurMultiOptionColor = function (optionID, newColorID) {
+        if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
+          $scope.curEditWheelchair.setColorForMultiPart($scope.getCurWheelchairPart().partID, optionID, newColorID);
+          var ID = $scope.getCurWheelchairPart().partID
+          if(ID == 1000){
+            $scope.curEditWheelchair.setColorForPart(2000, newColorID);
+            $scope.curEditWheelchair.setColorForPart(4000, newColorID);
+
+          }
+          console.log('Changed color option');
+        }
+      };
+
       $scope.setCurOptionSize = function (newSizeIndex) {
         if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
           $scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, newSizeIndex);
           console.log('Changed size option');
         }
+      };
+
+      $scope.removeMultiOptionPart = function (optionID) {
+        $scope.curEditWheelchair.removeMultiOption(optionID);
       };
 
       /*****************Panels*********************/
@@ -658,13 +684,12 @@ angular.module('abacuApp')
         var partID = $scope.getCurPage().partID;
         var part = $scope.curFrameData.getPart(partID);
         var option = part.getOption(optionID);
-        var wPart = $scope.curEditWheelchair.getPart(partID);
         var invalidPart = true;
         if (partID == 2000 && partID == 4000){
           invalidPart = false;
         }
 
-        return (wPart.optionID === optionID) && (option.getNumColors() > 0 && invalidPart);
+        return $scope.curChairHasOption(optionID) && (option.getNumColors() > 0 && invalidPart);
       };
 
       //Returns a CSS-styled hex string for the given option

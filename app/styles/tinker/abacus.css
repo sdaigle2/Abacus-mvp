@@ -534,6 +534,7 @@
 /*************************Main-Measure******************************/
 .main-measure {
   margin-left: calc(22vw - 176px);
+  margin-right: -100px;
   float: left;
   clear: left;
 }
@@ -541,7 +542,7 @@
 .main-measure .measure-top {
   width: 711px;
   height: 100px;
-  margin: 40px auto 0;
+  margin: 80px auto 0;
 }
 
 .main-measure .measure-top > h3 {
@@ -685,11 +686,11 @@
 }
 
 .sidebarM{
-  top: -84px;
+  /*top: -84px;*/
   position: relative;
 }
 .sidebarMSave{
-  top: -70px;
+  /*top: -70px;*/
   position: relative;
 }
 
