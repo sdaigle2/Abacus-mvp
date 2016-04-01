@@ -9,6 +9,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var shortid = require('shortid');
+var path = require('path');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -19,7 +20,7 @@ app.use(require('prerender-node').set('prerenderToken', 'b0WrJfE13BbRGlHxHaIm'))
 //Initial request to server
 app.get('/', function (req, res) {
   res.writeHead(200, {"Content-Type": "text/html"});
-  res.sendFile('./app/index.html');
+  res.sendFile(path.resolve('./app/index.html'));
 });
 
 //Security
