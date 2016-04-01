@@ -24,6 +24,10 @@ module.exports = router;
 router.get('/images/chairPic/*',function(req,res){
   var imgURL = req.path;
   var params = {Bucket: 'tinkerwheelchair', Key: imgURL.replace('/images/chairPic/', '')};
-  s3.getObject(params).createReadStream().pipe(res);
+  s3.getObject(params).createReadStream().pipe(res).on('error', function(e){
+    console.log(e);
+    res.status(404);
+    res.send('Not found')
+  });
 });
 
