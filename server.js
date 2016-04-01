@@ -17,10 +17,14 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(require('prerender-node').set('prerenderToken', 'b0WrJfE13BbRGlHxHaIm'));
 
+// mainRouter contains all custom endpoints in controllers from server_scripts/routes
+var mainRouter = require('./server_scripts/routes');
+app.use(mainRouter);
+app.use(express.static(__dirname + '/app'));
 //Initial request to server
 app.get('/', function (req, res) {
   res.writeHead(200, {"Content-Type": "text/html"});
-  res.sendFile(path.resolve('./app/index.html'));
+  res.sendFile('./app/index.html', {root:__dirname});
 });
 
 //Security
@@ -36,10 +40,7 @@ app.use(session({
   secret: token
 }));
 
-// mainRouter contains all custom endpoints in controllers from server_scripts/routes
-var mainRouter = require('./server_scripts/routes');
-app.use(mainRouter);
-app.use(express.static(__dirname + '/app'));
+
 
 var port = process.env.PORT || 8080;
 
