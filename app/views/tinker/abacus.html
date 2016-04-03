@@ -264,6 +264,11 @@
                        data-ng-click="setPanel(option.optionID);"
                        alt="{{option.name}} thumbnail image"
                     />
+                  <img class="sideBar-custom-item-COLORS" 
+                       data-ng-src="images/abacus_page/customize/COLORS-icon-banner.png"
+                       data-ng-if="option.colors.length !== 0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000"
+                       data-ng-click="setPanel(option.optionID);"
+                       alt="See color options">
                 </td>
                 <td class="sideBar-custom-item-right">
                   <h4 class="sideBar-custom-item-name" title="{{titleForEllipsis(option.name, 45)}}"
@@ -295,7 +300,7 @@
                     </div>
                     <div class="sideBar-custom-item-button text-center"
                          ng-if="!curChairHasOption(option.optionID)"
-                         ng-click="getCurPartData().allowMultipleChoices ? setCurMultiOption(option.optionID) : setCurOption(option.optionID)">Add
+                         ng-click="getCurPartData().allowMultipleChoices ? setCurMultiOption(option.optionID) : setCurOption(option.optionID)">Add                        
                     </div>
                   </div>
                 </td>

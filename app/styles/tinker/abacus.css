@@ -794,6 +794,17 @@ img.rightButtonNav {
   cursor: pointer;
 }
 
+.sideBar-custom-item-COLORS {
+  position:absolute;
+  z-index:3;    
+  height:120px;  
+  top:0px;
+  left:0px;  
+}
+.sideBar-custom-item-COLORS:hover {
+  cursor: pointer;
+}
+
 .sideBar-custom-item-left .colorCursor {
   cursor: pointer;
   position: relative;
