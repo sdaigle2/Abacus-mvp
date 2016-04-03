@@ -2163,7 +2163,7 @@
             "name": "Standard Spoke Wheel",
             "optionID": 6200,
             "colors": [],
-            "defaultSizeIndex": 0,
+            "defaultSizeIndex": 1,
             "sizes": ["24\"", "25\"", "26\"", "27\""],
             "comments": 0,
             "displayColor": 0,
@@ -2210,21 +2210,6 @@
                 "name": "Yellow",
                 "colorID": 6305,
                 "hex": "#FFC300"
-              },
-              {
-                "name": "Green",
-                "colorID": 6306,
-                "hex": "#27AE60"
-              },
-              {
-                "name": "Orange",
-                "colorID": 6307,
-                "hex": "#FF6F00"
-              },
-              {
-                "name": "Pink",
-                "colorID": 6308,
-                "hex": "#FF33FF"
               }
             ]
           },
@@ -2233,6 +2218,8 @@
             "optionID": 6400,
             "comments": 0,
             "displayColor": 1,
+            "defaultSizeIndex": 1,
+            "sizes": ["24\"", "25\"", "26\"", "27\""],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX.jpg",
             "desc": "Get even more durability with 24 of Spinergy's 4mm patented PBO FIBER spokes in a wheel designed to perform in the most demanding contact sports. This wheel is responsive, offers extreme durability and is ideal for contact sport players. If you demand a lightweight quick accelerating and maneuverable wheel, the Sport Lite Extreme could be your answer. This wheel looks awesome, is stylish and allows you to focus on the game, not equipment failures.",
             "defaultColorID": 6401,
@@ -2285,6 +2272,8 @@
             "optionID": 6500,
             "comments": 0,
             "displayColor": 1,
+            "defaultSizeIndex": 1,
+            "sizes": ["24\"", "25\"", "26\"", "27\""],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX-R10.jpg",
             "desc": "The SLX R-10 is a tried and true design from Spinergy with a strong and durable, stylish radial laced spoke pattern. Take the benefits of the SLX 24 spoke wheel and add the durability of a 5/8\" axle. Mostly used in contact sports where the 1/2\" axles tend to bend the most. These wheels deliver confidence and performance on the courts.",
             "price": 895,
@@ -3704,21 +3693,6 @@
                 "name": "Yellow",
                 "colorID": 6305,
                 "hex": "#FFC300"
-              },
-              {
-                "name": "Green",
-                "colorID": 6306,
-                "hex": "#27AE60"
-              },
-              {
-                "name": "Orange",
-                "colorID": 6307,
-                "hex": "#FF6F00"
-              },
-              {
-                "name": "Pink",
-                "colorID": 6308,
-                "hex": "#FF33FF"
               }
             ]
           },
@@ -3726,7 +3700,9 @@
             "name": "Spinergy SLX",
             "optionID": 6400,
             "comments": 0,
-            "displayColor": 1,
+            "displayColor": 1,              
+            "defaultSizeIndex": 1,
+            "sizes": ["24\"", "25\"", "26\"", "27\""],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX.jpg",
             "desc": "Get even more durability with 24 of Spinergy's 4mm patented PBO FIBER spokes in a wheel designed to perform in the most demanding contact sports. This wheel is responsive, offers extreme durability and is ideal for contact sport players. If you demand a lightweight quick accelerating and maneuverable wheel, the Sport Lite Extreme could be your answer. This wheel looks awesome, is stylish and allows you to focus on the game, not equipment failures.",
             "defaultColorID": 6401,
@@ -3778,7 +3754,9 @@
             "name": "Spinergy SLX R-10",
             "optionID": 6500,
             "comments": 0,
-            "displayColor": 1,
+            "displayColor": 1,              
+            "defaultSizeIndex": 1,
+            "sizes": ["24\"", "25\"", "26\"", "27\""],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX-R10.jpg",
             "desc": "The SLX R-10 is a tried and true design from Spinergy with a strong and durable, stylish radial laced spoke pattern. Take the benefits of the SLX 24 spoke wheel and add the durability of a 5/8\" axle. Mostly used in contact sports where the 1/2\" axles tend to bend the most. These wheels deliver confidence and performance on the courts.",
             "price": 895,
