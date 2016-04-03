@@ -281,6 +281,11 @@
                          data-ng-if="option.colors.length !== 0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000"
                          data-ng-click="setPanel(option.optionID);"
                          alt="See color options">
+                    <div class="sideBar-custom-item-choose-size text-center" 
+                         data-ng-if="option.sizes.length !== 0"
+                         data-ng-click="setPanel(option.optionID);">
+                         Sizes
+                    </div>
                   </h4>
 
                   <div class="sideBar-custom-item-buttonRow">

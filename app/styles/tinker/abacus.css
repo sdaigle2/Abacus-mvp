@@ -892,6 +892,22 @@ img.rightButtonNav {
   height: 25px;
 }
 
+.sideBar-custom-item-right .sideBar-custom-item-choose-size {
+  border: 1px solid #A7A9Ac;
+  display: inline-block;
+  width: 43%;
+  border-radius: 2px;
+  margin-right: 8px;
+  float: right;  
+  font-weight: 10;
+  text-decoration-color: #A7A9AC;
+  /*font-size: 13px;*/
+}
+
+.sideBar-custom-item-choose-size:hover {
+  cursor: pointer;
+}
+
 .sideBar-custom-item-right-selected .sideBar-custom-item-buttonRow {
   height: 25px;
   padding: 0px 8px;
