@@ -208,7 +208,7 @@ exports.verifyWheelchair = function (wheelchair) {
 exports.verifyOrder = function (order) {
   var total = 0;
   for (var i = 0; i < order.wheelchairs.length; i++) {
-    var price = verifyChair(order.wheelchairs[i], true);
+    var price = verifyChair(order.wheelchairs[i].wheelchair, true);
     if (!price) {
       console.log('order messed up');
       return false;
