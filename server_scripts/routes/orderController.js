@@ -72,8 +72,13 @@ router.post('/order', function (req, res) {
 
           //Set up the invoice email
           var invoiceEmail = new sendgrid.Email({
-            from: 'do-not-reply@abacus.fit',
-            subject: 'Abacus Purchase Invoice'
+            from: 'do-not-reply@tinker.fit',
+            subject: 'Per4max Purchase Invoice'
+          });
+
+          var manufactureCopy = new sendgrid.Email({
+            from: 'do-not-reply@tinker.fit',
+            subject: 'Per4max Purchase Invoice'
           });
 
           //Use session cookie to check if user is logged in
@@ -90,6 +95,8 @@ router.post('/order', function (req, res) {
           //Send email to the user containing the invoice as a pdf
           invoiceEmail.to = req.body.order.email;
           invoiceEmail.text = 'Thank you for using Abacus to purchase your new Wheelchair. We have attached the invoice for your order.';
+          manufactureCopy.to = 'sales@intelliwheels.net'
+          manufactureCopy.text = 'an order just been placed, here is a copy of the invoice'
           generateInvoicePDF(order, function (err, pdfPath) {
             if (err) {
               // Probably should do more than just log the error here
@@ -101,6 +108,14 @@ router.post('/order', function (req, res) {
               sendgrid.send(invoiceEmail, function (err, json) {
                 console.log(err);
               });
+              manufactureCopy.addFile({
+                path: pdfPath
+              });
+              sendgrid.send(manufactureCopy, function (err, json) {
+                console.log(err);
+              });
+
+
             }
           });
         });

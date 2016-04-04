@@ -282,7 +282,7 @@
                       data-ng-bind="(option.weight * getCurUnitSysWeightFactor()).toFixed(2)"></span>
                       <span data-ng-bind="getCurUnitSysWeightName()"></span>--></strong>
                     <img width="7px" data-ng-src="images/abacus_page/customize/color_option.png"
-                         data-ng-if="option.colors.length !== 0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000"
+                         data-ng-if="option.colors.length !== 0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000 && option.name != 'Same as Main Spoke Color'"
                          data-ng-click="setPanel(option.optionID);"
                          alt="See color options">
                     <div class="sideBar-custom-item-choose-size text-center" 
@@ -336,7 +336,7 @@
           </div>
 
           <div class="panel-block">
-            <section data-ng-if="curOption.colors.length>0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000">
+            <section data-ng-if="curOption.colors.length>0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000 && curOption.name != 'Same as Main Spoke Color'">
               <h5><strong>Color</strong></h5>
             <div>
               <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
@@ -442,7 +442,7 @@
           </div>
         </div>
       </div>
-        
+
       <!--Unit Toggle-->
 
       <div id="siteCredit">
