@@ -576,6 +576,16 @@
   border-bottom: none;
 }
 
+.measure-comments {
+  margin-top: 30px;
+  margin-bottom:30px;
+  padding:20px;    
+  width: 711px;
+  background-color: #FFFFFF;
+  border: 1px solid #eaeaea;
+  border-collapse: collapse;   
+}
+
 .main-measure .measure-tab td:hover {
   color: black;
   cursor: pointer;
@@ -1000,14 +1010,9 @@ img.rightButtonNav {
 }
 
 .sideBar-measure-tip {
-  padding-bottom: 0px;
+  padding-bottom: 10px;
   min-height: 120px;
-  padding-top: 10px;
-}
-
-.measure-comments {
-  text-align: center;
-  margin-top: 30px;
+  padding-top: 29px;
 }
 
 .sideBar-measure-tip-left {

@@ -219,6 +219,10 @@
                 </div>
               </div>
             </div>
+            <div class="measure-comments">
+                  <h4>Comments, Questions, and Special Requests</h4>      
+                  <textarea rows="6" cols="81">Have Questions? Want something different?  Enter them here, and we'll contact you after you submit your order.</textarea>
+            </div>   
           </div>
         </div>
       </div>
@@ -389,11 +393,7 @@
                         data-ng-options="idx as mo for (idx, mo) in getCurMeasureData().measureOptions[curUnitSys]"
                         ng-change="measureChanged()"></select>
                 <span data-ng-bind="getCurMeasureData().units[curUnitSys]"></span>
-              </div>
-              <div class="measure-comments">
-                  <h5>Comments and Special Requests</h5>      
-                  <textarea rows="2" cols="30">Want something different? Enter it here, and we'll contact you after you submit your order.</textarea>
-              </div>    
+              </div>  
               <div class="sideBar-measure-tip text-left" data-ng-show="getCurMeasureData().tip">
                 <div class="sideBar-measure-tip-left">
                   <h5 class="heavy tip-lower">TIP:</h5>
