@@ -83,9 +83,8 @@ angular.module('abacuApp')
     };
 
     $scope.loginSection = function (section) {
-      User.setContentSection(section);
       Drop.setFalse();
-      $location.path('/settings');
+      $location.path('/settings').search({'section': section});
     };
 
     $scope.loginDropdown = function(){

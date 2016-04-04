@@ -253,6 +253,34 @@
   overflow: auto;
 }
 
+#userType .dropDown{
+  width: 78%;
+  border-radius: 0;
+  overflow: visible;
+}
+
+#userType .dropDown button {
+  width: 100%;
+  text-align: left;
+}
+
+#userType .dropDown .caretShape {
+  position: relative;
+  top: 9px;
+  color: green;
+}
+
+#userType>p:hover{
+  cursor: pointer;
+}
+
+#summary #userType {
+  margin: 20px 0 10px;
+  color: #4f9dff;
+  font-size: 13px;
+  overflow: visible;
+}
+
 #orderType .dropDown{
   width: 78%;
   border-radius: 0;
@@ -281,7 +309,7 @@
 
 
 #summary #orderType {
-  margin: 20px 0 10px;
+  margin: 0px 0 10px;
   color: #4f9dff;
   font-size: 13px;
   overflow: visible;

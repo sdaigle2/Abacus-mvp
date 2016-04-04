@@ -425,6 +425,12 @@ angular.module('abacuApp')
           return this.updateDB();
         },
 
+        removeDesignFromSavedDesigns: function (design) {
+          var designID = _.isString(design) ? design : design._id;
+          savedDesigns = _.reject(savedDesigns, {'_id': designID});
+          return this.updateDB();
+        },
+
         //Removes the wheelchair at the given index from the user's myDesign
         deleteWheelchair: function (index) {
           cart.wheelchairs.splice(index, 1);
