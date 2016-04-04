@@ -11,10 +11,12 @@
  */
 angular.module('abacuApp')
   .constant('WHEELCHAIR_CANVAS_WIDTH', 187) // width of canvas that renders wheelchair
-  .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', '$q',
-    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, $q) {
+  .constant('PAYMENT_METHODS', [{'name': 'Credit Card', 'requiresAccount': false}, {'name': 'Credit Card when Order Ships', 'requiresAccount': true}, {'name': 'Grant', 'requiresAccount': true}, {'name': 'Bill me Net 30', 'requiresAccount': true}])
+  .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', 'PAYMENT_METHODS', '$q',
+    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, PAYMENT_METHODS, $q) {
       $scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
       $scope.USER_TYPES = USER_TYPES;
+      $scope.PAYMENT_METHODS = PAYMENT_METHODS;
 
       Drop.setFalse();
 
@@ -145,10 +147,16 @@ angular.module('abacuApp')
 
       /*********************CHECK OUT***********************************/
       $scope.showLoginModal = function () {
-        var deferred = $q.defer();
-        alert('TODO: Implement showLoginModal');
-        deferred.resolve('TODO: Implement showLoginModal');
-        return deferred.promise;
+        if (User.isLoggedIn()) {
+          var deferred = $q.defer();
+          deferred.resolve();
+          return deferred.promise;
+        } else {
+          var deferred = $q.defer();
+          alert('TODO: Implement showLoginModal');
+          deferred.resolve('TODO: Implement showLoginModal');
+          return deferred.promise;
+        }
       };
 
       $scope.userTypeName = 'User';
@@ -167,29 +175,20 @@ angular.module('abacuApp')
         $scope.curOrder.userType = $scope.userTypeName;
       };
 
+      $scope.paymentMethodName = 'Credit Card';
       $scope.choosePayment = function (paymentMethod) {
-        var paymentMethodCases = {
-          'insurance': function () {
-            alert('TODO: insurance payment handler');
-          },
-          'downPayment': function () {
-            alert('TODO: downPayment payment handler');
-          },
-          'payFull': function () {
-            alert('TODO: payFull payment handler');
-          }
-        };
-
-        var invalidPaymentMethodHandler = function () {
-          alert('The selected payment method is invalid');
-        };
-
-        var paymentHandler = paymentMethodCases[paymentMethod] || invalidPaymentMethodHandler;
-        paymentHandler();
+        if (paymentMethod.requiresAccount) {
+          $scope.showLoginModal()
+          .then(function () {
+            $scope.paymentMethodName = paymentMethod.name;
+          });
+        } else {
+          $scope.paymentMethodName = paymentMethod.name;
+        }
       };
 
       $scope.applyPaymentMethod = function () {
-        alert('TODO: applyPaymentMethod implementation');
+        $scope.curOrder.payMethod = $scope.paymentMethod;
       };
 
       $scope.applyZipcode = function () {

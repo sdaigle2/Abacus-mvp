@@ -18,6 +18,7 @@ angular.module('abacuApp')
       this.manufacturer = frameData.manufacturer;
       this.name         = frameData.name;
       this.desc         = frameData.desc;
+      this.shippingInfo = frameData.shippingInfo;
       this.basePrice    = frameData.basePrice;
       this.baseWeight   = frameData.baseWeight;
       this.imageURL     = frameData.imageURL;
@@ -47,6 +48,9 @@ angular.module('abacuApp')
       getMeasures: function () { return this.measures; },
       getNumParts: function () { return this.parts.length; },
       getNumMeasures: function () { return this.measures.length; },
+      getShippingInfo: function () { return this.shippingInfo; },
+      getShippingCost: function () { return this.shippingInfo.cost; },
+      getShippingWeight: function () { return this.shippingInfo.weight; },
 
       getPart: function (pID) {
         for (var i = 0; i < this.parts.length; i++)

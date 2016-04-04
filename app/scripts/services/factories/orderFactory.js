@@ -19,8 +19,9 @@
  * Orders can be constructed directly from a JSON object using the Order.fromJSONData() function
  */
 angular.module('abacuApp')
+  .constant('FRAME_SHIPPING_PRICES', {'CHAIR': 47.98, 'WHEEL': 18.45})
   .constant('USER_TYPES', [{'name': 'User', 'requiresAccount': false}, {'name': 'Dealer', 'requiresAccount': true}, {'name': 'VA', 'requiresAccount': true}, {'name': 'P4X Sales Rep', 'requiresAccount': true}])
-  .factory('Order', ['$q', '$http', 'Wheelchair', 'localJSONStorage', 'Design', function ($q, $http, Wheelchair, localJSONStorage, Design) {
+  .factory('Order', ['$q', '$http', 'Wheelchair', 'localJSONStorage', 'Design', 'FRAME_SHIPPING_PRICES', 'FrameData', function ($q, $http, Wheelchair, localJSONStorage, Design, FRAME_SHIPPING_PRICES, FrameData) {
 
     function Order(taxRate, shippingFee, order) {
       this.wheelchairs = [];
@@ -164,9 +165,6 @@ angular.module('abacuApp')
       getTaxRate: function () {
         return this.taxRate;
       },
-      getShippingFee: function () {
-        return this.shippingFee;
-      },
       getOrderNum: function () {
         return this.orderNum;
       },
@@ -258,7 +256,11 @@ angular.module('abacuApp')
 
       //The estimated cost of shipping this Order
       getShippingCost: function () {
-        return this.getShippingFee() * this.getNumWheelchairs();
+        var orderInstance = this;
+        return _.sumBy(this.wheelchairs, function (design) {
+          var frameID = design.wheelchair.frameID;
+          return FrameData.getFrame(frameID).getShippingCost();
+        });
       },
 
       //The Tax to be paid for this Order

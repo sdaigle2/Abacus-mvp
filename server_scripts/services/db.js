@@ -6,14 +6,16 @@
 //Cloudant Database API
 var cloudant = require('cloudant')({account: process.env.CLOUDANT_USERNAME, password: process.env.CLOUDANT_PASSWORD});
 
-var users  = cloudant.use('users');
-var orders = cloudant.use('orders');
-var design = cloudant.use('design');
+var users     = cloudant.use('users');
+var orders    = cloudant.use('orders');
+var design    = cloudant.use('design');
+var discounts = cloudant.use('discounts');
 
 // Expose logged in cloudant instance along with DB models
 module.exports = {
 	cloudant: cloudant,
 	users: users,
 	orders: orders,
-	designs: design
+	designs: design,
+	discounts: discounts
 };

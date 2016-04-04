@@ -107,18 +107,24 @@
     <div id="summary" class="gBook">
       <section>
         <div>
-          <section id="totalPanel"><div>
-            <span class="pull-left">Subtotal</span>
-            <span class="pull-right">${{curOrder.getSubtotal() >= 0 ? curOrder.getSubtotal().toFixed(2) : '--'}}</span>
-          </div>
-          <div>
-            <span class="pull-left">Tax</span>
-            <span class="pull-right">${{curOrder.getTaxCost() >= 0 ? curOrder.getTaxCost().toFixed(2) : '--'}}</span>
-          </div>
-          <div>
-            <span class="pull-left">Shipping Est</span>
-            <span class="pull-right">${{curOrder.getShippingCost() >= 0 ? curOrder.getShippingCost().toFixed(2) : '--'}}</span>
-          </div></section>
+          <section id="totalPanel">
+            <div>
+              <span class="pull-left">Subtotal</span>
+              <span class="pull-right">${{curOrder.getSubtotal() >= 0 ? curOrder.getSubtotal().toFixed(2) : '--'}}</span>
+            </div>
+            <div>
+              <span class="pull-left">Tax</span>
+              <span class="pull-right">${{curOrder.getTaxCost() >= 0 ? curOrder.getTaxCost().toFixed(2) : '--'}}</span>
+            </div>
+            <div>
+              <span class="pull-left">Shipping Est</span>
+              <span class="pull-right">${{curOrder.getShippingCost() >= 0 ? curOrder.getShippingCost().toFixed(2) : '--'}}</span>
+            </div>
+            <div>
+              <span class="pull-left">Sales Tax</span>
+              <span class="pull-right">$0</span>
+            </div>
+          </section>
 
           <section id="userType" class="oReg">
             <p class="sectionTitle" data-ng-init="userTypePanelShow = false" ng-click="userTypePanelShow = !userTypePanelShow">I am a:</p>
@@ -138,17 +144,12 @@
           <section id="orderType" class="oReg">
             <p class="sectionTitle" data-ng-init="orderTypePanel = false"  ng-click="orderTypePanel = !orderTypePanel">Choose Order Type*</p>
             <div class="btn-group dropDown"  ng-show="orderTypePanel === true">
-              <button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" data-toggle="dropdown">
-                Select<span class="pull-right caret caretShape"></span>
+              <button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" style="word-wrap: break-word;" data-toggle="dropdown">
+                {{paymentMethodName}}<span class="pull-right caret caretShape"></span>
               </button>
-              <ul class="dropdown-menu" role="menu">
-                <li>
-                  <a ng-click="choosePayment('insurance')">Insurance</a></li>
-                <li>
-                  <a ng-click="choosePayment('downPayment')">30% down payment</a>
-                </li>
-                <li>
-                  <a ng-click="choosePayment('payFull')">Pay in full</a>
+              <ul class="dropdown-menu" role="menu" style="word-wrap: break-word;">
+                <li ng-repeat="paymentMethod in PAYMENT_METHODS">
+                  <a ng-click="choosePayment(paymentMethod)">{{paymentMethod.name}} {{paymentMethodName === paymentMethod.name ? '✓' : ''}}</a>
                 </li>
               </ul>
             </div>

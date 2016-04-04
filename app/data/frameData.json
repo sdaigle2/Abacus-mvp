@@ -4,6 +4,10 @@
     "name": "Thunder",
     "desc": "The PER4MAX Thunder is an elite performance sports wheelchair built by the best for the best!  Offered in different configurations depending on sport, the Thunder has propelled elite athletes for decades in an array of sports! Crush the courts in our feather light tennis model with it’s eliminated front bumper and extended 5th wheel!  Ball with the best of them in a sturdy custom fit tapered lightweight basketball chair. Take on the softball field, rugby courts, lacrosse field, or running trail with The PER4MAX Thunder!!  The Thunder is hand built in the USA with aircraft quality aluminum and custom P4X machined parts highly scrutinized to produce a precise end product! - See more at: http://per4max.com/sport-chairs/thunder/#sthash.SyrcgtRL.dpuf",	
     "basePrice": 2849,
+    "shippingInfo": {
+    	"cost": 47.98,
+    	"weight": 0
+	},
     "baseWeight": 6,
     "frameID": 4,
     "imageURL": "images/frame_page_img/thunder1.jpg",
@@ -1784,6 +1788,10 @@
     "name": "Thunder Adjustable",
     "desc": "The Thunder Adjustable is the most versatile performance sports chair on the market today! It is made of optional 6061 T6 or optional 7000 series aluminum.  With the front seat height fixed, the rear seat height is easily adjusted in seconds utilizing P4X custom machined parts and clamps used on bicycle seats.  Simply slide the seat to the desired height and lock into that position!  Backrest angle and option height adjust post allow you to adjust this chair to vertually any user.  Also comes with center of gravity adjustment and lower leg length adjustability to find the perfect fit!  Great for new wheelchair athletes and programs searching for chairs that fit everybody.  Also great for the universal athlete looking for a great all around chair that can be adjusted to your sport of choice.  Contact your local Representative or us for more information on the Thunder Adjustable Sport Wheelchair!",	
     "basePrice": 3149,
+    "shippingInfo": {
+    	"cost": 47.98,
+    	"weight": 0
+	},
     "baseWeight": 6,
     "frameID": 5,
     "imageURL": "images/frame_page_img/430adjthunder.jpg",
@@ -3267,6 +3275,10 @@
     "name": "Spinergy SPOX Wheels (Set of two)",
     "desc": "PRICE INCLUDES A SET OF TWO WHEEELS.  Spinergy built its reputation as a market leader with the SPOX Everyday wheelchair wheel. They have been our best seller for 15 years and are built to last. Wheels are the most rewarding upgrade you can make on a wheelchair and the SPOX Everyday wheels are our entry wheel with a budget in mind.",
     "basePrice": 695,
+    "shippingInfo": {
+    	"cost": 18.45,
+    	"weight": 0
+	},
 	"baseWeight": 6,
 	"frameID": 11,
 	"imageURL": "images/frame_page_img/SPOX.jpg",

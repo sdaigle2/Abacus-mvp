@@ -207,6 +207,7 @@
   top: 71px;
   margin:0 29px;
   float: right;
+  overflow: visible;
 }
 
 @media  (max-width: 1060px) {
@@ -332,6 +333,10 @@
   border-top: 1px solid black;
   padding-top: 15px;
   margin-top: 10px;;
+}
+
+.zipcode-input {
+  height: 35px;
 }
 
 .checkoutButton {
