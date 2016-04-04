@@ -19,6 +19,7 @@
  * Orders can be constructed directly from a JSON object using the Order.fromJSONData() function
  */
 angular.module('abacuApp')
+  .constant('USER_TYPES', [{'name': 'User', 'requiresAccount': false}, {'name': 'Dealer', 'requiresAccount': true}, {'name': 'VA', 'requiresAccount': true}, {'name': 'P4X Sales Rep', 'requiresAccount': true}])
   .factory('Order', ['$q', '$http', 'Wheelchair', 'localJSONStorage', 'Design', function ($q, $http, Wheelchair, localJSONStorage, Design) {
 
     function Order(taxRate, shippingFee, order) {
@@ -41,6 +42,7 @@ angular.module('abacuApp')
         this.city = '';
         this.state = '';
         this.zip = '';
+        this.userType = 'User'; // default to the 'User' User Type
 
         this.payMethod = '';
       }

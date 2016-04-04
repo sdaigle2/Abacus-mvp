@@ -576,6 +576,16 @@
   border-bottom: none;
 }
 
+.measure-comments {
+  margin-top: 30px;
+  margin-bottom:30px;
+  padding:20px;    
+  width: 711px;
+  background-color: #FFFFFF;
+  border: 1px solid #eaeaea;
+  border-collapse: collapse;   
+}
+
 .main-measure .measure-tab td:hover {
   color: black;
   cursor: pointer;
@@ -794,6 +804,17 @@ img.rightButtonNav {
   cursor: pointer;
 }
 
+.sideBar-custom-item-COLORS {
+  position:absolute;
+  z-index:3;    
+  height:120px;  
+  top:0px;
+  left:0px;  
+}
+.sideBar-custom-item-COLORS:hover {
+  cursor: pointer;
+}
+
 .sideBar-custom-item-left .colorCursor {
   cursor: pointer;
   position: relative;
@@ -879,6 +900,22 @@ img.rightButtonNav {
   margin-top: -5px;
   margin-left: -3px;
   height: 25px;
+}
+
+.sideBar-custom-item-right .sideBar-custom-item-choose-size {
+  border: 1px solid #A7A9Ac;
+  display: inline-block;
+  width: 43%;
+  border-radius: 2px;
+  margin-right: 8px;
+  float: right;  
+  font-weight: 10;
+  text-decoration-color: #A7A9AC;
+  /*font-size: 13px;*/
+}
+
+.sideBar-custom-item-choose-size:hover {
+  cursor: pointer;
 }
 
 .sideBar-custom-item-right-selected .sideBar-custom-item-buttonRow {
@@ -1188,8 +1225,6 @@ img.rightButtonNav {
   text-align: center;
   background-color: lightgrey;
 }
-
-
 
 #imgBlock section{
   padding-right: 14px;

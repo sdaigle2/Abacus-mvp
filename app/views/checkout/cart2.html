@@ -19,6 +19,7 @@
         <p class="oBold">MY CART</p>
         <button data-ng-if="wheelchairUIOpts.length !== 0" class="button c oReg compareButton"
                 ng-class="{'greyButton': numChecked() == 0}"
+                ng-disabled="numChecked() === 0"
                 ng-click="goToCompare()">COMPARE ({{numChecked()}})</button>
         <div class="buttonCover" ng-if="numChecked() == 0"
              ng-click="openGuide()"></div>
@@ -118,6 +119,21 @@
             <span class="pull-left">Shipping Est</span>
             <span class="pull-right">${{curOrder.getShippingCost() >= 0 ? curOrder.getShippingCost().toFixed(2) : '--'}}</span>
           </div></section>
+
+          <section id="userType" class="oReg">
+            <p class="sectionTitle" data-ng-init="userTypePanelShow = false" ng-click="userTypePanelShow = !userTypePanelShow">I am a:</p>
+            <div class="btn-group dropDown"  ng-show="userTypePanelShow === true">
+              <button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" data-toggle="dropdown">
+                {{userTypeName}}<span class="pull-right caret caretShape"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li ng-repeat="userType in USER_TYPES">
+                  <a ng-click="chooseUserType(userType)">{{userType.name}} {{userTypeName === userType.name ? '✓' : ''}}</a>
+                </li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-default button apply-button pull-right" ng-show="userTypePanelShow === true" ng-click="applyUserType()">Apply</button>
+          </section>
 
           <section id="orderType" class="oReg">
             <p class="sectionTitle" data-ng-init="orderTypePanel = false"  ng-click="orderTypePanel = !orderTypePanel">Choose Order Type*</p>

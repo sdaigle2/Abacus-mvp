@@ -37,9 +37,6 @@ router.post('/login', function (req, res) {
     return;
   }
 
-  console.log('email ' + email);
-  console.log('password ' + password);
-
   //Query the database
   dbUtils.getUserByID(email, function (err, body) { //body is the object we retrieve from the successful query
     if (!err) {

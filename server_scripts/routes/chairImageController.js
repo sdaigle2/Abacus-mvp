@@ -9,18 +9,6 @@ AWS.config.AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 
 var s3 = new AWS.S3();
 
-//s3.listBuckets(function(err, data){
-//  if(err){console.log("Error", err)}
-//  else{
-//    for (var index in data.Buckets){
-//      var bucket = data.Buckets[index];
-//      console.log("Bucket: ", bucket.Name, ' : ', bucket.CreationDate);
-//    }
-//  }
-//});
-
-
-module.exports = router;
 router.get('/images/chairPic/*',function(req,res){
   var imgURL = req.path;
   var params = {Bucket: 'tinkerwheelchair', Key: imgURL.replace('/images/chairPic/', '')};
@@ -38,3 +26,4 @@ router.get('/images/chairPic/*',function(req,res){
     });
 });
 
+module.exports = router;

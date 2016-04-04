@@ -11,9 +11,11 @@
  */
 angular.module('abacuApp')
   .constant('WHEELCHAIR_CANVAS_WIDTH', 187) // width of canvas that renders wheelchair
-  .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design',
-    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design) {
+  .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', '$q',
+    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, $q) {
       $scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
+      $scope.USER_TYPES = USER_TYPES;
+
       Drop.setFalse();
 
       $scope.guideSection = false;
@@ -142,6 +144,28 @@ angular.module('abacuApp')
       };
 
       /*********************CHECK OUT***********************************/
+      $scope.showLoginModal = function () {
+        var deferred = $q.defer();
+        alert('TODO: Implement showLoginModal');
+        deferred.resolve('TODO: Implement showLoginModal');
+        return deferred.promise;
+      };
+
+      $scope.userTypeName = 'User';
+      $scope.chooseUserType = function (userType) {
+        if (userType.requiresAccount) {
+          $scope.showLoginModal()
+          .then(function () {
+            $scope.userTypeName = userType.name;
+          });
+        } else {
+          $scope.userTypeName = userType.name;
+        }
+      };
+
+      $scope.applyUserType = function () {
+        $scope.curOrder.userType = $scope.userTypeName;
+      };
 
       $scope.choosePayment = function (paymentMethod) {
         var paymentMethodCases = {
