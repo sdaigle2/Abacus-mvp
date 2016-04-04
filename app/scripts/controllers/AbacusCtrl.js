@@ -596,6 +596,7 @@ angular.module('abacuApp')
           if(ID == 1000){
             $scope.curEditWheelchair.setColorForPart(2000, newColorID);
             $scope.curEditWheelchair.setColorForPart(4000, newColorID);
+            $scope.curEditWheelchair.setColorForPart(2222, newColorID);
 
           }
           console.log('Changed color option');
@@ -609,6 +610,7 @@ angular.module('abacuApp')
           if(ID == 1000){
             $scope.curEditWheelchair.setColorForPart(2000, newColorID);
             $scope.curEditWheelchair.setColorForPart(4000, newColorID);
+            $scope.curEditWheelchair.setColorForPart(2222, newColorID);
 
           }
           console.log('Changed color option');
@@ -891,7 +893,8 @@ angular.module('abacuApp')
 
 
 
-    /*********** canvas function*********/
+    /*********** option exception handle*********/
+
 
 
 
