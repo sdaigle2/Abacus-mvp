@@ -1000,9 +1000,14 @@ img.rightButtonNav {
 }
 
 .sideBar-measure-tip {
-  padding-bottom: 10px;
+  padding-bottom: 0px;
   min-height: 120px;
-  padding-top: 29px;
+  padding-top: 10px;
+}
+
+.measure-comments {
+  text-align: center;
+  margin-top: 30px;
 }
 
 .sideBar-measure-tip-left {
@@ -1215,8 +1220,6 @@ img.rightButtonNav {
   text-align: center;
   background-color: lightgrey;
 }
-
-
 
 #imgBlock section{
   padding-right: 14px;

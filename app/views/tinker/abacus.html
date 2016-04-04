@@ -354,8 +354,12 @@
                  data-ng-click="setCurOption(curOption.optionID); setCurOptionSize($index);"
                    data-ng-class="{'active': ($index === getCurWheelchairPart().sizeIndex) && (getCurWheelchairPart().optionID === getCurPanelID())}">
               </div>
-            </div>
+            </div>  
           </div>
+          <div class="panel-block">
+              <h5><strong>Comments and Special Requests</strong></h5>      
+              <textarea rows="4" cols="32">Want something different? Enter it here, and we'll contact you after you submit your order.</textarea>
+          </div>    
         </div>
         <!-- MEASURE: Sidebar-->
 
@@ -386,6 +390,10 @@
                         ng-change="measureChanged()"></select>
                 <span data-ng-bind="getCurMeasureData().units[curUnitSys]"></span>
               </div>
+              <div class="measure-comments">
+                  <h5>Comments and Special Requests</h5>      
+                  <textarea rows="2" cols="30">Want something different? Enter it here, and we'll contact you after you submit your order.</textarea>
+              </div>    
               <div class="sideBar-measure-tip text-left" data-ng-show="getCurMeasureData().tip">
                 <div class="sideBar-measure-tip-left">
                   <h5 class="heavy tip-lower">TIP:</h5>
@@ -414,7 +422,7 @@
                    <!--ng-class="{ 'fa fa-circle-o' : curMeasureCarouselIndex !== $index, 'fa fa-circle' : curMeasureCarouselIndex === $index }"-->
                    <!--ng-click="jumpMeasureCarouselIndex($index)"></i>-->
               <!--</div>-->
-            </div>
+            </div>    
           </div>
         </div>
 
