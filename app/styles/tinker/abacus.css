@@ -499,7 +499,11 @@
   min-height: 450px;
   width: calc(60vw - 198px);
   position: absolute;
-  top: 0;
+  top: 0;     
+}
+
+.main-custom-wheelchairDisplay.slide-over {
+  margin-left: 0px;
 }
 
 .swiper {
@@ -514,11 +518,18 @@
 }
 
 .main-custom-rotatebuttons {
-  position: relative;
+  position: absolute;
   top: calc(46.3vw - 110px);
   /*left: 38vw;*/
-  margin-left: calc(20vw + 200px);
+  margin-left: calc(20vw - 100px);
+  width: calc(60vw - 198px);    
+  min-width: 600px; 
+  text-align: center; 
   z-index: 21;
+}
+.main-custom-rotatebuttons.slide-over {
+  margin-left: 0px;
+  
 }
 .main-custom-rotatebuttons img {
   margin: 15px 10px 0 0;
