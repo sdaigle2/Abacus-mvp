@@ -32,8 +32,8 @@ angular.module('abacuApp')
             partID: p.getID(),
             optionID: p.getDefaultOptionID(),
             colorID: p.getDefaultOption().getDefaultColorID(),
-            sizeIndex: p.getDefaultOption().getDefaultSizeIndex()
-            
+            sizeIndex: p.getDefaultOption().getDefaultSizeIndex(),
+            comments: p.getDefaultOption().getComments()
           };
           this.parts.push(defaultPart);
         }
@@ -43,6 +43,7 @@ angular.module('abacuApp')
           var m = meas[j];
           this.measures.push({
             measureID: m.getID(),
+            measureComment: m.getComments(),
             measureOptionIndex: -1
           })
         }
@@ -64,7 +65,8 @@ angular.module('abacuApp')
             partID: p.partID,
             optionID: p.optionID,
             colorID: p.colorID,
-            sizeIndex: p.sizeIndex
+            sizeIndex: p.sizeIndex,
+            comments: p.comments
           };
           this.parts.push(copyPart);
         }
@@ -74,7 +76,8 @@ angular.module('abacuApp')
           var m = wheelchair.measures[i];
           var copyMeasure = {
             measureID: m.measureID,
-            measureOptionIndex: m.measureOptionIndex
+            measureOptionIndex: m.measureOptionIndex,
+            measureComments: m.measureComments
           };
           this.measures.push(copyMeasure);
         }

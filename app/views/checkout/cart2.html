@@ -49,7 +49,7 @@
               </div>
               <section class="media-body">
                 <div class="firstLine medium">
-                  <span class="pull-left">Design ID: {{chairOpts.design._id}}</span>
+                  <span class="pull-left" ng-show="chairOpts.design._id">Design ID: {{chairOpts.design._id}}</span>
                   <span class="pull-right bold">${{chairOpts.design.wheelchair.getTotalPrice().toFixed(2)}}</span>
                 </div>
                 <table class="actions oReg">
@@ -74,10 +74,10 @@
                   <table ng-if="chairOpts.showInfo">
                     <tr class="part-row" ng-repeat="part in parts">
                       <td class="title-column">
-                        <p data-ng-bind="part.getName()"></p>
+                        <p data-ng-bind="part.name"></p>
                       </td>
                       <td class="value-column pull-right">
-                        <p data-ng-bind="getPartOption(chairOpts.design.wheelchair, part)"></p>
+                        <p data-ng-bind="part.optionName"></p>
                       </td>
                     </tr>
                   </table>
@@ -153,13 +153,6 @@
               </ul>
             </div>
           </section>
-
-<!--           <section id="shippingPanel" class="oReg">
-            <p class="sectionTitle">Enter zip code</p>
-            <div>
-              <input type="text" placeholder="Enter zipcode" class="zipcode-input" ng-model="curOrder.zip"></input>
-            </div>
-          </section> -->
 
           <div class="totalPrice">
             <span class="pull-left"><strong>Total</strong></span>

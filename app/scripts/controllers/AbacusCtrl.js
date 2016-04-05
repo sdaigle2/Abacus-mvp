@@ -907,8 +907,6 @@ angular.module('abacuApp')
 
 
 
-    /*********** option exception handle*********/
-
 
 
 

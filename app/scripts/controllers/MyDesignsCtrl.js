@@ -76,9 +76,8 @@ angular.module('abacuApp')
 
   		//Sends the user back to abacus with the selected wheelchair
   		$scope.editWheelchair = function (index) {
-  			alert('TODO: editWheelchair');
-  			// User.setEditWheelchair(index, $scope.wOrderIndex[index]);
-  			// $location.path('/tinker');
+  			 User.setEditWheelchairFromMyDesign(index, $scope.wheelchairUIOpts[index].design);
+  			 $location.path('/tinker');
   		};
 
   		$scope.addToCart = function (chairIdx) {
