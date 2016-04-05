@@ -62,17 +62,18 @@ angular.module('abacuApp')
 
         // download the parts in $scope.parts
         $scope.wheelchairUIOpts.forEach(function (chairOpts) {
-          getParts(chairOpts.design.wheelchair.getFrameID());
+          getParts(chairOpts.design.wheelchair);
         });
       }
 
-      function getParts(fID) {
-        var frame = FrameData.getFrame(fID);
-        var parts = frame.getParts();
-        for (var i = 0; i < parts.length; i++) {
-          if (!inPartsArray(parts[i])) {
-            $scope.parts.push(parts[i]);
-          }
+
+
+      function getParts(wheelchair){
+        var frames = FrameData.getFrame(wheelchair.frameID);
+        for (var i = 0; i < wheelchair.parts.length; i++) {
+          $scope.parts.push(wheelchair.parts[i]);
+          $scope.parts[i].name = frames.getPart(wheelchair.parts[i].partID).getName()
+          $scope.parts[i].optionName = frames.getPart(wheelchair.parts[i].partID).getOption(wheelchair.parts[i].optionID).getName();
         }
       }
 
@@ -230,6 +231,7 @@ angular.module('abacuApp')
       $scope.getPartOption = function (wheelchair, part) {
         return $scope.getPartDetails(wheelchair, part).optionName;
       };
+
 
       // Get all the names for all the measured parts
       $scope.getWheelchairMeasures = function (wheelchair) {

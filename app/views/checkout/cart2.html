@@ -49,7 +49,7 @@
               </div>
               <section class="media-body">
                 <div class="firstLine medium">
-                  <span class="pull-left">Design ID: {{chairOpts.design._id}}</span>
+                  <span class="pull-left" ng-show="chairOpts.design._id">Design ID: {{chairOpts.design._id}}</span>
                   <span class="pull-right bold">${{chairOpts.design.wheelchair.getTotalPrice().toFixed(2)}}</span>
                 </div>
                 <table class="actions oReg">
@@ -74,10 +74,10 @@
                   <table ng-if="chairOpts.showInfo">
                     <tr class="part-row" ng-repeat="part in parts">
                       <td class="title-column">
-                        <p data-ng-bind="part.getName()"></p>
+                        <p data-ng-bind="part.name"></p>
                       </td>
                       <td class="value-column pull-right">
-                        <p data-ng-bind="getPartOption(chairOpts.design.wheelchair, part)"></p>
+                        <p data-ng-bind="part.optionName"></p>
                       </td>
                     </tr>
                   </table>
@@ -159,7 +159,7 @@
           <section id="shippingPanel" class="oReg">
             <p data-ng-init="shippingPanel = false"  ng-click="shippingPanel = !shippingPanel"class="sectionTitle">Enter zip code</p>
             <div  ng-show="shippingPanel === true" >
-              <input type="number" placeholder="Enter zipcode" class="zipcode-input" ng-model="zipcode"></input>
+              <input type="text"  pattern="[0-9]{6}" placeholder="Enter zipcode" class="zipcode-input" ng-model="zipcode"></input>
               <button type="button" class="btn btn-default pull-right button {{zipcode === curOrder.zip ? 'apply-button' : 'invalidated-apply-button'}}" ng-click="applyZipcode()">Apply</button>
             </div>
           </section>

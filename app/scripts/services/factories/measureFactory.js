@@ -30,6 +30,7 @@ angular.module('abacuApp')
       this.videoURL = measureData.videoURL;
       this.imageURLs = measureData.imageURLs;
       this.gifURL = measureData.gifURL;
+      this.comments = measureData.comments;
       console.log(this.prices.length === this.measureOptions[0].length);
     };
 
@@ -52,6 +53,7 @@ angular.module('abacuApp')
       getImageURLs: function () { return this.imageURLs; },
       getNumImages: function () { return this.imageURLs.length; },
       getImageURL: function (index) { return this.imageURLs[index]; },
+      getComments: function(){return this.comments},
 
       getOption: function (unitSys, index) {
         if (index >= 0 && index < this.measureOptions[unitSys].length) {

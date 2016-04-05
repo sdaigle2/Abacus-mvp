@@ -23,7 +23,7 @@ angular.module('abacuApp')
       this.defaultColorID = optionData.defaultColorID;
       this.sizes = optionData.sizes;
       this.defaultSizeIndex = optionData.defaultSizeIndex;
-      this.comment = optionData.comment;
+      this.comments = optionData.comments;
 
 
       this.colors = [];
@@ -54,7 +54,7 @@ angular.module('abacuApp')
       getColors: function () { return this.colors; },
       getNumSizes: function () { return this.sizes.length},
       getNumColors: function () { return this.colors.length; },
-      getComment: function(){return this.comment;},
+      getComments: function(){return this.comments;},
       getSize: function (index) {
         if(index >= 0 && index < this.sizes.length)
           return this.sizes[index];

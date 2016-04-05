@@ -222,7 +222,7 @@
             </div>
             <div class="measure-comments">
                   <h4>Comments, Questions, and Special Requests</h4>
-                  <textarea rows="6" cols="81">Have Questions? Want something different?  Enter them here, and we'll contact you after you submit your order.</textarea>
+                  <textarea data-ng-model="getCurMeasureData().comments" rows="6" cols="81">{{getCurMeasureData().comments}}</textarea>
             </div>
           </div>
         </div>
@@ -363,7 +363,7 @@
           </div>
           <div class="panel-block">
               <h5><strong>Comments and Special Requests</strong></h5>
-              <textarea rows="4" cols="32">Want something different? Enter it here, and we'll contact you after you submit your order.</textarea>
+              <textarea data-ng-model="curOption.comments" rows="4" cols="32">{{curOption.comments}}</textarea>
           </div>
         </div>
         <!-- MEASURE: Sidebar-->
