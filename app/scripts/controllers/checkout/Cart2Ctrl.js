@@ -12,8 +12,8 @@
 angular.module('abacuApp')
   .constant('WHEELCHAIR_CANVAS_WIDTH', 187) // width of canvas that renders wheelchair
   .constant('PAYMENT_METHODS', [{'name': 'Credit Card', 'requiresAccount': false}, {'name': 'Credit Card when Order Ships', 'requiresAccount': true}, {'name': 'Grant', 'requiresAccount': true}, {'name': 'Bill me Net 30', 'requiresAccount': true}])
-  .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', 'PAYMENT_METHODS', '$q',
-    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, PAYMENT_METHODS, $q) {
+  .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', 'PAYMENT_METHODS', '$q', 'Errors',
+    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, PAYMENT_METHODS, $q, Errors) {
       $scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
       $scope.USER_TYPES = USER_TYPES;
       $scope.PAYMENT_METHODS = PAYMENT_METHODS;
@@ -152,10 +152,12 @@ angular.module('abacuApp')
           deferred.resolve();
           return deferred.promise;
         } else {
-          var deferred = $q.defer();
-          alert('TODO: Implement showLoginModal');
-          deferred.resolve('TODO: Implement showLoginModal');
-          return deferred.promise;
+          return Drop.setTrue()
+          .then(function () {
+            if (!User.isLoggedIn()) {
+              throw new Errors.NotLoggedInError("User didn't login after dropdown");
+            }
+          });
         }
       };
 
@@ -259,7 +261,7 @@ angular.module('abacuApp')
       //compare functions
 
       $scope.numChecked = function () {
-        return _.filter($scope.wheelchairUIOpts, 'checked').length;
+        return _.countBy($scope.wheelchairUIOpts, 'checked').true || 0;
       };
 
       $scope.$watch('wheelchairUIOpts', function (newUIOpts, oldUIOpts) {
@@ -286,9 +288,11 @@ angular.module('abacuApp')
       }, true);
 
       $scope.goToCompare = function () {
-        $location.path('/compare').search({
-          'from': 'cart'
-        });
+        $location
+          .path('/compare')
+          .search({
+            'from': 'cart'
+          });
       };
 
     }]);

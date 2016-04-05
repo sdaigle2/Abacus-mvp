@@ -549,7 +549,7 @@ angular.module('abacuApp')
         },
 
         //Sends the curEditOrder to the distributor
-        sendCurEditOrder: function (userData, shippingData, payMethod, token) {
+        sendCurEditOrder: function (userData, shippingData, billingData, payMethod, token) {
           var deferred = $q.defer();
 
           var editOrder = this.getCurEditOrder();

@@ -32,17 +32,30 @@ angular.module('abacuApp')
         this.taxRate = taxRate;
         this.shippingFee = shippingFee;
         this.sentDate = null; //null = "unsent"
-
-        this.userID = -1;
-        this.fName = '';
-        this.lName = '';
         this.email = '';
         this.phone = '';
-        this.addr = '';
-        this.addr2 = '';
-        this.city = '';
-        this.state = '';
-        this.zip = '';
+
+        this.userID = -1;
+        this.shippingDetails = {
+          'fName': '',
+          'lName': '',
+          'addr': '',
+          'addr2': '',
+          'city': '',
+          'state': '',
+          'zip': ''       
+        };
+
+        this.billingDetails = {
+          'fName': '',
+          'lName': '',
+          'addr': '',
+          'addr2': '',
+          'city': '',
+          'state': '',
+          'zip': ''
+        };
+
         this.userType = 'User'; // default to the 'User' User Type
 
         this.payMethod = '';
@@ -55,15 +68,10 @@ angular.module('abacuApp')
         this.shippingFee = order.shippingFee;
         this.sentDate = new Date(order.sentDate);
         this.userID = order.userID;
-        this.fName = order.fName;
-        this.lName = order.lName;
         this.email = order.email;
         this.phone = order.phone;
-        this.addr = order.addr;
-        this.addr2 = order.addr2;
-        this.city = order.city;
-        this.state = order.state;
-        this.zip = order.zip;
+        this.shippingDetails = order.shippingDetails;
+        this.billingDetails = order.billingDetails;
         this.payMethod = order.payMethod;
 
         this.wheelchairs = order.wheelchairs.map(function (wheelchairDesign) {
@@ -109,16 +117,11 @@ angular.module('abacuApp')
           shippingFee: this.shippingFee,
           sentDate: this.sentDate,
           userID: this.userID,
-          fName: this.fName,
-          lName: this.lName,
           email: this.email,
           phone: this.phone,
-          addr: this.addr,
-          addr2: this.addr2,
-          city: this.city,
-          state: this.state,
-          zip: this.zip,
-          paymethod: this.paymethod,
+          shippingDetails: this.shippingDetails,
+          billingDetails: this.billingDetails,
+          payMethod: this.payMethod,
           wheelchairs: this.wheelchairs.map(function (design) {
             return design.allDetails();
           })
@@ -180,32 +183,11 @@ angular.module('abacuApp')
       getUserID: function () {
         return this.userID;
       },
-      getFname: function () {
-        return this.fName;
-      },
-      getLname: function () {
-        return this.lName;
-      },
       getEmail: function () {
         return this.email;
       },
       getPhone: function () {
         return this.phone;
-      },
-      getAddr: function () {
-        return this.addr;
-      },
-      getAddr2: function () {
-        return this.addr2;
-      },
-      getCity: function () {
-        return this.city;
-      },
-      getState: function () {
-        return this.state;
-      },
-      getZip: function () {
-        return this.zip;
       },
 
       getFullName: function () {
@@ -324,15 +306,10 @@ angular.module('abacuApp')
       newOrder.payMethod = jsonData.payMethod;
       newOrder.userID = jsonData.userID;
       newOrder.sentDate = jsonData.sentDate; //TODO: Need to convert?
-      newOrder.fName = jsonData.fName;
-      newOrder.lName = jsonData.lName;
       newOrder.phone = jsonData.phone;
       newOrder.email = jsonData.email;
-      newOrder.addr = jsonData.addr;
-      newOrder.addr2 = jsonData.addr2;
-      newOrder.city = jsonData.city;
-      newOrder.state = jsonData.state;
-      newOrder.zip = jsonData.zip;
+      newOrder.billingDetails = jsonData.billingDetails;
+      newOrder.shippingDetails = jsonData.shippingDetails;
       for (var i = 0; i < jsonData.wheelchairs.length; i++) {
         newOrder.addWheelchair(new Design(jsonData.wheelchairs[i]));
       }

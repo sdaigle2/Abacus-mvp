@@ -79,7 +79,7 @@ angular.module('abacuApp')
       };
 
       ComparedDesignsStorage.prototype.removeDesign = function(queryDesign) {
-        var matchindDesignIdx = _.find(this.designs, function (design) {
+        var matchindDesignIdx = _.findIndex(this.designs, function (design) {
           return _.isEqual(design, queryDesign);
         });
 

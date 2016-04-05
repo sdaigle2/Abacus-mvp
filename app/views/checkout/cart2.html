@@ -157,7 +157,7 @@
           </section>
 
           <section id="shippingPanel" class="oReg">
-            <p data-ng-init="shippingPanel = false"  ng-click="shippingPanel = !shippingPanel"class="sectionTitle">Enter zip code to estimate shipping cost</p>
+            <p data-ng-init="shippingPanel = false"  ng-click="shippingPanel = !shippingPanel"class="sectionTitle">Enter zip code</p>
             <div  ng-show="shippingPanel === true" >
               <input type="number" placeholder="Enter zipcode" class="zipcode-input" ng-model="zipcode"></input>
               <button type="button" class="btn btn-default pull-right button {{zipcode === curOrder.zip ? 'apply-button' : 'invalidated-apply-button'}}" ng-click="applyZipcode()">Apply</button>
