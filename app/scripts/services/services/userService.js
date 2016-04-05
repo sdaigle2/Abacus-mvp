@@ -22,7 +22,7 @@ angular.module('abacuApp')
 
       // initialize all user variables here
       function init() {
-        orders = [];     // TODO: only keep order variable.
+        orders = [];
         cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
         currentWheelchair = { // indicate the status of current design and hold the wheelchair instance
           isNew: false,
@@ -142,6 +142,15 @@ angular.module('abacuApp')
           updateDB();
         } else {
           localJSONStorage.put('currentWheelchair', {frameID: -1, isNew: false, index: index, 'design': design});
+        }
+      }
+
+      function setEditWheelchairFromMyDesign(index, design){
+        if (index >= 0 && index < savedDesigns.length) {
+          cartWheelchairIndex = index;
+          currentWheelchair.editingWheelchair = $.extend(true, savedDesigns[index].wheelchair);
+          currentWheelchair.isNew = false;
+          currentWheelchair.design = design;
         }
       }
 
@@ -417,6 +426,10 @@ angular.module('abacuApp')
 
         //Set the given wheelchair index to be edited
         setEditWheelchair: setEditWheelchair,
+
+        setEditWheelchairFromMyDesign: setEditWheelchairFromMyDesign,
+
+
 
         // Saves the currentWheelchair into the saved wheelchairs list and resets the currentWheelchair
         addDesignIDToSavedDesigns: function (designID) {
