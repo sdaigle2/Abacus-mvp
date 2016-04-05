@@ -1,3 +1,13 @@
 .designidmodal-page-body {
 	text-align: center;
+	border-radius: 0px;
+}
+
+.explaination-button {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.explaination-text {
+
 }

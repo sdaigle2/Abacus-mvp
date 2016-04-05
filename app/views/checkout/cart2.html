@@ -127,42 +127,39 @@
           </section>
 
           <section id="userType" class="oReg">
-            <p class="sectionTitle" data-ng-init="userTypePanelShow = false" ng-click="userTypePanelShow = !userTypePanelShow">I am a:</p>
-            <div class="btn-group dropDown"  ng-show="userTypePanelShow === true">
+            <p class="sectionTitle">I am a:</p>
+            <div class="btn-group dropDown">
               <button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" data-toggle="dropdown">
-                {{userTypeName}}<span class="pull-right caret caretShape"></span>
+                {{curOrder.userType}}<span class="pull-right caret caretShape"></span>
               </button>
               <ul class="dropdown-menu" role="menu">
                 <li ng-repeat="userType in USER_TYPES">
-                  <a ng-click="chooseUserType(userType)">{{userType.name}} {{userTypeName === userType.name ? '✓' : ''}}</a>
+                  <a ng-click="chooseUserType(userType)">{{userType.name}} {{curOrder.userType === userType.name ? '✓' : ''}}</a>
                 </li>
               </ul>
             </div>
-            <button type="button" class="btn btn-default button apply-button pull-right" ng-show="userTypePanelShow === true" ng-click="applyUserType()">Apply</button>
           </section>
 
           <section id="orderType" class="oReg">
-            <p class="sectionTitle" data-ng-init="orderTypePanel = false"  ng-click="orderTypePanel = !orderTypePanel">Choose Order Type*</p>
-            <div class="btn-group dropDown"  ng-show="orderTypePanel === true">
+            <p class="sectionTitle">Choose Order Type*</p>
+            <div class="btn-group dropDown">
               <button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" style="word-wrap: break-word;" data-toggle="dropdown">
-                {{paymentMethodName}}<span class="pull-right caret caretShape"></span>
+                {{curOrder.payMethod}}<span class="pull-right caret caretShape"></span>
               </button>
               <ul class="dropdown-menu" role="menu" style="word-wrap: break-word;">
                 <li ng-repeat="paymentMethod in PAYMENT_METHODS">
-                  <a ng-click="choosePayment(paymentMethod)">{{paymentMethod.name}} {{paymentMethodName === paymentMethod.name ? '✓' : ''}}</a>
+                  <a ng-click="choosePayment(paymentMethod)">{{paymentMethod.name}} {{curOrder.payMethod === paymentMethod.name ? '✓' : ''}}</a>
                 </li>
               </ul>
             </div>
-            <button type="button" class="btn btn-default button apply-button pull-right" ng-show="orderTypePanel === true" ng-click="applyPaymentMethod()">Apply</button>
           </section>
 
-          <section id="shippingPanel" class="oReg">
-            <p data-ng-init="shippingPanel = false"  ng-click="shippingPanel = !shippingPanel"class="sectionTitle">Enter zip code</p>
-            <div  ng-show="shippingPanel === true" >
-              <input type="number" placeholder="Enter zipcode" class="zipcode-input" ng-model="zipcode"></input>
-              <button type="button" class="btn btn-default pull-right button {{zipcode === curOrder.zip ? 'apply-button' : 'invalidated-apply-button'}}" ng-click="applyZipcode()">Apply</button>
+<!--           <section id="shippingPanel" class="oReg">
+            <p class="sectionTitle">Enter zip code</p>
+            <div>
+              <input type="text" placeholder="Enter zipcode" class="zipcode-input" ng-model="curOrder.zip"></input>
             </div>
-          </section>
+          </section> -->
 
           <div class="totalPrice">
             <span class="pull-left"><strong>Total</strong></span>

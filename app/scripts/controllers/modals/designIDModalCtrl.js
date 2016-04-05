@@ -10,5 +10,13 @@
 angular.module('abacuApp')
 	.controller('DesignIDModalCtrl', ['$scope',
 	function ($scope) {
-		// Does nothing right now....may want copy to clipboard functionality later
+		$scope.copied = false;
+
+		$scope.onCopySuccess = function (e) {
+			$scope.copied = true;
+		};
+
+		$scope.onCopyFailure = function (e) {
+			$scope.copied = false;
+		};
 	}]);

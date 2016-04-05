@@ -1,5 +1,8 @@
 <link href="../../styles/modals/designidmodal.css" rel="stylesheet" ng-controller="DesignIDModalCtrl"/>
 <div class="designidmodal-page-body">
-	<h1 style="display: inline-block;">Design ID for your Current Wheelchair</h1>
-	<h2 style="display: inline-block;">{{modalDesign._id}}</h2>
+	<h1 style="display: inline-block; width: 100%;">Design ID for your Current Design</h1>
+	<p ng-init="showExplanation = false;" ng-show="!showExplanation" ng-click="showExplanation = true;" class="explaination-button">What is a Design ID?</p>
+	<p ng-show="showExplanation" class="explaination-text">Every design saved in this website has a unique Design ID. If you would like to share your design with someone else, simply give them your Design ID</p>
+	<h2 style="display: inline-block; width: 100%;" id="designID">{{modalDesign._id}}</h2>
+	<button class="btn" ngclipboard style="display: inline-block;" data-clipboard-target="#designID" ngclipboard-success="onCopySuccess(e);" ngclipboard-error="onCopyFailure(e);">{{copied ? 'Copied!' : 'Copy to Clipboard'}}</button>
 </div>

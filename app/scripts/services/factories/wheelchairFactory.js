@@ -358,7 +358,7 @@ angular.module('abacuApp')
         return totalWeight;
       },
 
-      //Calculate the total price of the Wheelchair
+      //Calculate the subtotal price of the Wheelchair
       getTotalPrice: function () {
         var frame = FrameData.getFrame(this.frameID);
         var totalPrice = frame.getBasePrice();

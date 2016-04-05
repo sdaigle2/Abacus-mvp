@@ -25,6 +25,15 @@ angular.module('abacuApp')
 
     function Order(taxRate, shippingFee, order) {
       this.wheelchairs = [];
+      var DEFAULT_DETAILS = {
+        'fName': '',
+        'lName': '',
+        'addr': '',
+        'addr2': '',
+        'city': '',
+        'state': '',
+        'zip': ''       
+      };
       if (order == null) {
         this._id = -1;
         this._rev = null;
@@ -36,29 +45,13 @@ angular.module('abacuApp')
         this.phone = '';
 
         this.userID = -1;
-        this.shippingDetails = {
-          'fName': '',
-          'lName': '',
-          'addr': '',
-          'addr2': '',
-          'city': '',
-          'state': '',
-          'zip': ''       
-        };
+        this.shippingDetails = _.clone(DEFAULT_DETAILS);
 
-        this.billingDetails = {
-          'fName': '',
-          'lName': '',
-          'addr': '',
-          'addr2': '',
-          'city': '',
-          'state': '',
-          'zip': ''
-        };
+        this.billingDetails = _.clone(DEFAULT_DETAILS);
 
         this.userType = 'User'; // default to the 'User' User Type
 
-        this.payMethod = '';
+        this.payMethod = 'Credit Card';
       }
       else {
         this._id = order._id || order.id  || -1;
@@ -70,9 +63,10 @@ angular.module('abacuApp')
         this.userID = order.userID;
         this.email = order.email;
         this.phone = order.phone;
-        this.shippingDetails = order.shippingDetails;
-        this.billingDetails = order.billingDetails;
-        this.payMethod = order.payMethod;
+        this.shippingDetails = _.defaults(order.shippingDetails || {}, DEFAULT_DETAILS);
+        this.billingDetails = _.defaults(order.billingDetails || {}, DEFAULT_DETAILS);
+        this.payMethod = order.payMethod || 'Credit Card'; // default to credit card
+        this.userType = order.userType || 'User'; // default to user
 
         this.wheelchairs = order.wheelchairs.map(function (wheelchairDesign) {
           return new Design(wheelchairDesign);
@@ -260,7 +254,7 @@ angular.module('abacuApp')
       //This asyncronous funtion takes in various user information
       //and sends the Order to the distibutor with it.
       //This method also saves the Order to the database and marks it as "sent"
-      send: function (userID, userData, shippingData, payMethod, token) {
+      send: function (userID, userData, shippingData, billingData, payMethod, token) {
         var deferred = $q.defer();
 
         //Need a reference to the current scope when inside the callback function
@@ -268,15 +262,25 @@ angular.module('abacuApp')
 
         //Save userData, shippingData, and payMethod into Order
         this.userID = userID;
-        this.fName = userData.fName;
-        this.lName = userData.lName;
         this.email = userData.email;
         this.phone = userData.phone;
-        this.addr = shippingData.addr;
-        this.addr2 = shippingData.addr2;
-        this.city = shippingData.city;
-        this.state = shippingData.state;
-        this.zip = shippingData.zip;
+
+        this.shippingDetails.fName = shippingData.fName;
+        this.shippingDetails.lName = shippingData.lName;
+        this.shippingDetails.addr = shippingData.addr;
+        this.shippingDetails.addr2 = shippingData.addr2;
+        this.shippingDetails.city = shippingData.city;
+        this.shippingDetails.state = shippingData.state;
+        this.shippingDetails.zip = shippingData.zip;
+
+        this.billingDetails.fName = billingData.fName;
+        this.billingDetails.lName = billingData.lName;
+        this.billingDetails.addr = billingData.addr;
+        this.billingDetails.addr2 = billingData.addr2;
+        this.billingDetails.city = billingData.city;
+        this.billingDetails.state = billingData.state;
+        this.billingDetails.zip = billingData.zip;
+
         this.payMethod = payMethod;
         this.sentDate = new Date(); //Set date to now - doing this marks this Order as "sent"
         $http   ({

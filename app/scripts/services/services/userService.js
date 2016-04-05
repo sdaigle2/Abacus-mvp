@@ -112,7 +112,7 @@ angular.module('abacuApp')
         if (frameID instanceof Design) {
           var design = frameID; // frameID is actually a design instance
           currentWheelchair.editingWheelchair = design.wheelchair;
-          currentWheelchair.isNew = userID === -1 || design.creator !== userID;
+          currentWheelchair.isNew = !design.hasID();
           currentWheelchair.design = design;
         } else {
           // its either an integer respresenting a frame id or a wheelchair object
@@ -553,15 +553,16 @@ angular.module('abacuApp')
           var deferred = $q.defer();
 
           var editOrder = this.getCurEditOrder();
-          if (editOrder === null)
+          if (editOrder === null) {
             deferred.reject('CurEditOrder does not exist');
-
-          editOrder.send(userID, userData, shippingData, payMethod, token)
-            .then(function () {
-              deferred.resolve();
-            }, function (err) {
-              deferred.reject(err);
-            });
+          } else {
+            editOrder.send(userID, userData, shippingData, billingData, payMethod, token)
+              .then(function () {
+                deferred.resolve();
+              }, function (err) {
+                deferred.reject(err);
+              });
+          }
 
           return deferred.promise;
         },
