@@ -33,6 +33,7 @@ angular.module('abacuApp')
             optionID: p.getDefaultOptionID(),
             colorID: p.getDefaultOption().getDefaultColorID(),
             sizeIndex: p.getDefaultOption().getDefaultSizeIndex()
+            
           };
           this.parts.push(defaultPart);
         }

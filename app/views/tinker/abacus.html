@@ -30,7 +30,7 @@
       <section data-ng-click="saveDesign()" >
         <img
              data-ng-src="images/abacus_page/save_review/add_to_cart.png" alt="save to my design">
-        <h6 class="medium"> {{curEditWheelchair.isNew ? 'ADD TO CART' : 'UPDATE CART'}}</h6>
+        <h6 class="medium"> ADD TO CART </h6>
       </section>
       <section data-ng-click="saveForLater()">
         <img
@@ -69,7 +69,7 @@
         <label for="loginModel.email"></label>
         <input type="text" data-ng-model="loginModel.email" placeholder="Username">
         <label for="loginModel.password"></label>
-        <input type="text" data-ng-model="loginModel.password" placeholder="Password">
+        <input type="password" data-ng-model="loginModel.password" placeholder="Password">
         <button data-ng-click="login()">LOGIN</button>
         <h5 data-ng-click="register()">REGISTER</h5>
       </section>
@@ -221,9 +221,9 @@
               </div>
             </div>
             <div class="measure-comments">
-                  <h4>Comments, Questions, and Special Requests</h4>      
+                  <h4>Comments, Questions, and Special Requests</h4>
                   <textarea rows="6" cols="81">Have Questions? Want something different?  Enter them here, and we'll contact you after you submit your order.</textarea>
-            </div>   
+            </div>
           </div>
         </div>
       </div>
@@ -269,7 +269,7 @@
                        data-ng-click="setPanel(option.optionID);"
                        alt="{{option.name}} thumbnail image"
                     />
-                  <img class="sideBar-custom-item-COLORS" 
+                  <img class="sideBar-custom-item-COLORS"
                        data-ng-src="images/abacus_page/customize/COLORS-icon-banner.png"
                        data-ng-if="option.colors.length !== 0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000"
                        data-ng-click="setPanel(option.optionID);"
@@ -286,7 +286,7 @@
                          data-ng-if="option.colors.length !== 0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000 && option.name != 'Same as Main Spoke Color'"
                          data-ng-click="setPanel(option.optionID);"
                          alt="See color options">
-                    <div class="sideBar-custom-item-choose-size text-center" 
+                    <div class="sideBar-custom-item-choose-size text-center"
                          data-ng-if="option.sizes.length !== 0"
                          data-ng-click="setPanel(option.optionID);">
                          Sizes
@@ -310,7 +310,7 @@
                     </div>
                     <div class="sideBar-custom-item-button text-center"
                          ng-if="!curChairHasOption(option.optionID)"
-                         ng-click="getCurPartData().allowMultipleChoices ? setCurMultiOption(option.optionID) : setCurOption(option.optionID)">Add                        
+                         ng-click="getCurPartData().allowMultipleChoices ? setCurMultiOption(option.optionID) : setCurOption(option.optionID)">Add
                     </div>
                   </div>
                 </td>
@@ -356,15 +356,15 @@
               <div data-ng-repeat="size in curOption.sizes"
                  data-ng-bind="size"
                  class="size-button medium"
-                 data-ng-click="setCurOption(curOption.optionID); setCurOptionSize($index);"
+                 data-ng-click=" setCurOptionSize($index);"
                    data-ng-class="{'active': ($index === getCurWheelchairPart().sizeIndex) && (getCurWheelchairPart().optionID === getCurPanelID())}">
               </div>
-            </div>  
+            </div>
           </div>
           <div class="panel-block">
-              <h5><strong>Comments and Special Requests</strong></h5>      
+              <h5><strong>Comments and Special Requests</strong></h5>
               <textarea rows="4" cols="32">Want something different? Enter it here, and we'll contact you after you submit your order.</textarea>
-          </div>    
+          </div>
         </div>
         <!-- MEASURE: Sidebar-->
 
@@ -394,7 +394,7 @@
                         data-ng-options="idx as mo for (idx, mo) in getCurMeasureData().measureOptions[curUnitSys]"
                         ng-change="measureChanged()"></select>
                 <span data-ng-bind="getCurMeasureData().units[curUnitSys]"></span>
-              </div>  
+              </div>
               <div class="sideBar-measure-tip text-left" data-ng-show="getCurMeasureData().tip">
                 <div class="sideBar-measure-tip-left">
                   <h5 class="heavy tip-lower">TIP:</h5>
@@ -423,7 +423,7 @@
                    <!--ng-class="{ 'fa fa-circle-o' : curMeasureCarouselIndex !== $index, 'fa fa-circle' : curMeasureCarouselIndex === $index }"-->
                    <!--ng-click="jumpMeasureCarouselIndex($index)"></i>-->
               <!--</div>-->
-            </div>    
+            </div>
           </div>
         </div>
 
