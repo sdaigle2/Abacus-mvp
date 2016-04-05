@@ -132,13 +132,14 @@
       <div class="main">
         <!-- CUSTOMIZE: Wheelchair Display and controls -->
         <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
-          <div class="main-custom-rotatebuttons" ng-class="{'wide-screen': screenWideQuery()}">
+          <div class="main-custom-rotatebuttons" data-ng-class="{'slide-over': !isPanelSelected(-1)}" ng-class="{'wide-screen': screenWideQuery()}">
             <img class="leftButton" src="../../images/icons/rotate_left.png" alt="Previous" width="30" height="30"
                  data-ng-click="rotatePreview(1)" />
             <img class="rightButton" src="../../images/icons/rotate_right.png" alt="Next" width="30" height="30"
                  data-ng-click="rotatePreview(-1)" />
           </div>
           <img class="main-custom-wheelchairDisplay"
+               data-ng-class="{'slide-over': !isPanelSelected(-1)}"
                ng-repeat="img in getPreviewImages()"
                ng-src="{{img.URL}}"
                ng-style="{'z-index': $index }"
@@ -146,11 +147,11 @@
                onerror="this.src='images/chairPic/emptyImage.png'"
             />
           <img class="main-custom-wheelchairDisplay"
+               data-ng-class="{'slide-over': !isPanelSelected(-1)}"
                ng-src="images/abacus_page/customize/shadow.png"
                ng-class="{'wide-screen': screenWideQuery()}"
                style="top: -33px;" alt="Preview wheelchair shadow"
                />
-
         </div>
 
         <!-- MEASURE: Video + gif + details -->
@@ -456,7 +457,7 @@
   <footer class="bottom-banner">
     <div class="bottom-banner-left">
       <ul class="bottom-banner-left">
-        <li><a href="http://www.intelliwheels.net/tinker" target="_blank"><img ng-src="images/Powered-by-Tinker-Logo-white.png" alt="Powered by Tinker"></a></li>
+        <li><a href="http://www.intelliwheels.net/tinker" target="_blank"><img ng-src="images/Powered-by-Tinker-Logo-White.png" alt="Powered by Tinker"></a></li>
         <li class="siteLink" ><a href="http://www.intelliwheels.net/tinker" target="_blank"><p>TM, &copy; IntelliWheels, Inc. 2016</p></a></li>
       </ul>
     </div>

@@ -280,7 +280,7 @@
 					"comments": 0,		
 					"displayColor": 0,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/standard.png",		
-					"desc": "A sleek and classic look.",		
+					"desc": "A sleek and classic look: glossy black backrest, footrest, and side guards.",		
 					"weight": 0,		
 					"price": 0,		
 					"defaultColorID": 0		
@@ -294,7 +294,7 @@
 					"comments": 0,		
 					"displayColor": 1,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/custom.png",		
-					"desc": "Customize your rig with your team colors!",		
+					"desc": "Customize your rig with your team colors!  Change the color of the backrest, footrest, and side guards.",		
 					"weight": 350,		
 					"price": 350,		
 					"defaultColorID": 3202,		
@@ -415,7 +415,7 @@
 					"comments": 0,		
 					"displayColor": 0,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/single-rigid.png",		
-					"desc": "A great option is a single fifth wheel support in back providing stability while allowing increased center of gravity to increase performance and agility.  Comes Standard on all Thunder Models with a 72mm Micro caster float adjusted to factory specs.",		
+					"desc": "A rigid backrest allows for the center of gravity to be adjusted after the chair has been built. A single fifth wheel support in back provides stability while allowing increased center of gravity to increase performance and agility.  The fifth wheel comes Standard on all Thunder Models with a 72mm Micro caster float adjusted to factory specs.",		
 					"weight": 0,		
 					"price": 0,		
 					"defaultColorID": 1101,		
@@ -545,7 +545,7 @@
 					"comments": 0,		
 					"displayColor": 0,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/dual-rigid.png",		
-					"desc": "The Dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Recommended by team per4max for athletes at every level the addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",		
+					"desc": "A rigid backrest allows for the center of gravity to be adjusted after the chair has been built. The Dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Recommended by team per4max for athletes at every level the addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",		
 					"weight": 350,		
 					"price": 250,		
 					"defaultColorID": 1101,		
@@ -675,7 +675,7 @@
 					"comments": 0,		
 					"displayColor": 0,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/single-rigid.png",		
-					"desc": "A great option is a single fifth wheel support in back providing stability while allowing increased center of gravity to increase performance and agility.  Comes Standard on all Thunder Models with a 72mm Micro caster float adjusted to factory specs.",		
+					"desc": "A continuous backrest is stronger than a rigid backrest, but it's not adjustable. A single fifth wheel support in back provides stability while allowing increased center of gravity to increase performance and agility. The fifth wheel comes Standard on all Thunder Models with a 72mm Micro caster float adjusted to factory specs.",		
 					"weight": 0,		
 					"price": 280,		
 					"defaultColorID": 1101,		
@@ -805,7 +805,7 @@
 					"comments": 0,		
 					"displayColor": 0,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/dual-rigid.png",		
-					"desc": "The Dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Recommended by team per4max for athletes at every level the addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",		
+					"desc": "A continuous backrest is stronger than a rigid backrest, but it's not adjustable.  The Dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Recommended by team per4max for athletes at every level the addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",		
 					"weight": 350,		
 					"price": 530,		
 					"defaultColorID": 1101,		
@@ -935,7 +935,7 @@
 					"comments": 0,		
 					"displayColor": 0,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",		
-					"desc": "Experience the added benefits of a 5th wheel with the convenience of removing it seconds.  The removable 5th wheel is great for individuals with smaller cars with limited space!  When you are ready to compete simply install the 5th wheel clamp it down and off you go!",		
+					"desc": "A rigid backrest allows for the center of gravity to be adjusted after the chair has been built. Experience the added benefits of a 5th wheel with the convenience of removing it seconds.  The removable 5th wheel is great for individuals with smaller cars with limited space!  When you are ready to compete simply install the 5th wheel clamp it down and off you go!",		
 					"weight": 350,		
 					"price": 250,		
 					"defaultColorID": 4301,		
@@ -959,43 +959,6 @@
 				}			
 			]				
 		},
-      {
-        "name": "Back Rest",
-        "partID": 11000,
-        "displayColor": 0,
-        "numSubImages": 0,
-        "zRank": [[11,8,7,8,11]],
-        "shortName": "BR",
-        "defaultOptionID": 11100,
-        "options": [
-          {
-            "name": "Rigid",
-            "optionID": 11100,
-            "colors": [],
-            "defaultSizeIndex": -1,
-            "sizes": [],
-            "comments": 0,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "The rigid backrests is the standard option on all Thunder Models, it telescopes into the seat frame and is held in place with 2 set crews and locked in with the side guard bolts.  The rigid backrest gives you the ability adjust your center of gravity in Ωî increments.  The ridged back can be provided in 0, 3, & 5degree back angles.  Also available is optional back height adjustability for the athletes looking to fine tune their game or programs that need versatility.  Height adjustability allows for 4-5î of adjustability for the established base height.",
-            "weight": -0.15,
-            "price": 0,
-            "defaultColorID": 0
-          },
-          {
-            "name": "Continuous",
-            "optionID": 11200,
-            "colors": [],
-            "defaultSizeIndex": -1,
-            "sizes": [],
-            "comments": 0,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "The continuous backrest option is for those advances players looking for ultimate rigidity and reliability, and performance.  The backrest is fixed so with this application center of gravity is fixed and is not adjustable other than with optional tension adjustable backrest upholstery.",
-            "weight": -0.1,
-            "price": 230,
-            "defaultColorID": 0
-          }
-        ]
-      },
       {
         "name": "Upholstery",
         "partID": 5000,
@@ -1030,7 +993,20 @@
             "weight": -0.1,
             "price": 175,
             "defaultColorID": 0
-          }
+          },
+          {
+            "name": "Tension Backrest",
+            "optionID": 5300,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "comments": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "Tension adjustable upholstery allows you to adjust the Nylon supports quickly to achieve the perfect lumbar support.",
+            "weight": -0.1,
+            "price": 300,
+            "defaultColorID": 0
+          }     
         ]
       },
       {
@@ -1264,7 +1240,21 @@
             "defaultColorID": 0
           },
           {
-            "name": "Rhino Coated",
+            "name": "Titanium",
+            "optionID": 7250,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": ["Close Mounted", "Far Mounted"],
+            "comments": 0,
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/magnesium.png",
+            "desc": "NOTE: only available on 25\" and 26\" wheels. Titanium is lighter and stronger than the standard aluminum hand rims.",
+            "weight": 0.2,
+            "price": 300,
+            "defaultColorID": 0
+          },    
+          {
+            "name": "Vinyl Coated",
             "optionID": 7300,
             "colors": [],
             "defaultSizeIndex": -1,
@@ -1276,7 +1266,7 @@
             "weight": 0.2,
             "price": 150,
             "defaultColorID": 0
-          },
+          },    
           {
             "name": "Other",
             "optionID": 7400,
@@ -1434,12 +1424,15 @@
         "numSubImages": 0,
         "allowMultipleChoices": 1,
         "shortName": "Msc.",
-        "defaultOptionID": 10100,
+        "defaultOptionID": 10998,
         "options": [
           {
             "name": "Hard Cushion",
             "optionID": 10100,
             "comments": 0,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height.",
@@ -1450,6 +1443,9 @@
             "name": "Special Cushion",
             "optionID": 10200,
             "comments": 1,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.",
@@ -1460,6 +1456,9 @@
           {
             "name": "Plastic Seat Plate",
             "optionID": 10300,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "An ABS plastic plate is attached to welded supports under the seat frame to allow user achieve max seat height or to eliminate seat upholstery sag. /n*Typically used in combination with a sold 2/î foam cushion found in the misc section in our options. /n** Not available on the Thunder Adjustable.",
             "price": 125,
@@ -1469,6 +1468,9 @@
             "name": "Foam Impact Guards",
             "optionID": 10500,
             "comments": 0,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Protect your chair while in transit with foam impact guards.",
@@ -1476,19 +1478,12 @@
             "defaultColorID": 0
           },
           {
-            "name": "Tension Backrest Upholstery",
-            "optionID": 10600,
-            "comments": 0,
-            "displayColor": 0,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "A tension backrest will allow you to tighten your backrest as it naturally stretches out.  This allows you to keep you equipment in tip top shape for you next competition.",
-            "price": 250,
-            "defaultColorID": 0
-          },
-          {
             "name": "Waist Strap",
             "optionID": 10700,
             "comments": 0,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a waist strap, specify it here, and we will calculate the correct size for you.",
@@ -1499,6 +1494,9 @@
             "name": "Lap Strap",
             "optionID": 10800,
             "comments": 0,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a lap strap, specify it here, and we will calculate the correct size for you.",
@@ -1509,6 +1507,9 @@
             "name": "Foot Strap",
             "optionID": 10900,
             "comments": 0,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a foot strap, specify it here, and we will calculate the correct size for you.",
@@ -1516,9 +1517,26 @@
             "defaultColorID": 0
           },
           {
+            "name": "None",
+            "optionID": 10998,
+            "comments": 1,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "No miscellaneous options.",
+            "price": 0,
+            "priceTBD": 1,
+            "defaultColorID": 0
+          },
+          {
             "name": "Other",
             "optionID": 10999,
             "comments": 1,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Want something else?  Write it in here, and one of our customer service representatives will email you after your order is placed.",
@@ -2064,7 +2082,7 @@
 					"comments": 0,		
 					"displayColor": 0,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/standard.png",		
-					"desc": "A sleek and classic look.",		
+					"desc": "A sleek and classic look: glossy black backrest, footrest, and side guards.",		
 					"weight": 0,		
 					"price": 0,		
 					"defaultColorID": 0		
@@ -2078,7 +2096,7 @@
 					"comments": 0,		
 					"displayColor": 1,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/custom.png",		
-					"desc": "Customize your rig with your team colors!",		
+					"desc": "Customize your rig with your team colors!  Change the color of the backrest, footrest, and side guards.",		
 					"weight": 350,		
 					"price": 350,		
 					"defaultColorID": 3202,		
@@ -2463,23 +2481,7 @@
 					"weight": 350,		
 					"price": 250,		
 					"defaultColorID": 4301,		
-					"colors": [		
-						{	
-							"name": "Matte Black",
-							"colorID": 1101,
-							"hex": "#17202A"
-						},	
-						{	
-							"name": "Ruby Red",
-							"colorID": 1102,
-							"hex": "#FF5733"
-						},	
-						{	
-							"name": "Ocean Blue",
-							"colorID": 1103,
-							"hex": "#3498DB"
-						}	
-					]		
+					"colors": []		
 				}			
 			]				
 		},
@@ -2517,7 +2519,20 @@
             "weight": -0.1,
             "price": 175,
             "defaultColorID": 0
-          }
+          },
+          {
+            "name": "Tension Backrest",
+            "optionID": 5300,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "comments": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "Tension adjustable upholstery allows you to adjust the Nylon supports quickly to achieve the perfect lumbar support.",
+            "weight": -0.1,
+            "price": 300,
+            "defaultColorID": 0
+          }  
         ]
       },
       {
@@ -2751,6 +2766,20 @@
             "defaultColorID": 0
           },
           {
+            "name": "Titanium",
+            "optionID": 7250,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": ["Close Mounted", "Far Mounted"],
+            "comments": 0,
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/magnesium.png",
+            "desc": "NOTE: only available on 25\" and 26\" wheels. Titanium is lighter and stronger than the standard aluminum hand rims.",
+            "weight": 0.2,
+            "price": 300,
+            "defaultColorID": 0
+          },       
+          {
             "name": "Rhino Coated",
             "optionID": 7300,
             "colors": [],
@@ -2921,12 +2950,15 @@
         "numSubImages": 0,
         "allowMultipleChoices": 1,
         "shortName": "Msc.",
-        "defaultOptionID": 10100,
+        "defaultOptionID": 10998,
         "options": [
           {
             "name": "Hard Cushion",
             "optionID": 10100,
             "comments": 0,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height.",
@@ -2937,6 +2969,9 @@
             "name": "Special Cushion",
             "optionID": 10200,
             "comments": 1,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.",
@@ -2947,6 +2982,9 @@
           {
             "name": "Plastic Seat Plate",
             "optionID": 10300,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "An ABS plastic plate is attached to welded supports under the seat frame to allow user achieve max seat height or to eliminate seat upholstery sag. /n*Typically used in combination with a sold 2/î foam cushion found in the misc section in our options. /n** Not available on the Thunder Adjustable.",
             "price": 125,
@@ -2956,6 +2994,9 @@
             "name": "Foam Impact Guards",
             "optionID": 10500,
             "comments": 0,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Protect your chair while in transit with foam impact guards.",
@@ -2963,19 +3004,12 @@
             "defaultColorID": 0
           },
           {
-            "name": "Tension Backrest Upholstery",
-            "optionID": 10600,
-            "comments": 0,
-            "displayColor": 0,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "A tension backrest will allow you to tighten your backrest as it naturally stretches out.  This allows you to keep you equipment in tip top shape for you next competition.",
-            "price": 250,
-            "defaultColorID": 0
-          },
-          {
             "name": "Waist Strap",
             "optionID": 10700,
             "comments": 0,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a waist strap, specify it here, and we will calculate the correct size for you.",
@@ -2986,6 +3020,9 @@
             "name": "Lap Strap",
             "optionID": 10800,
             "comments": 0,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a lap strap, specify it here, and we will calculate the correct size for you.",
@@ -2996,6 +3033,9 @@
             "name": "Foot Strap",
             "optionID": 10900,
             "comments": 0,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a foot strap, specify it here, and we will calculate the correct size for you.",
@@ -3003,9 +3043,26 @@
             "defaultColorID": 0
           },
           {
+            "name": "None",
+            "optionID": 10998,
+            "comments": 1,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "No miscellaneous options.",
+            "price": 0,
+            "priceTBD": 1,
+            "defaultColorID": 0
+          },
+          {
             "name": "Other",
             "optionID": 10999,
             "comments": 1,
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],  
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Want something else?  Write it in here, and one of our customer service representatives will email you after your order is placed.",
@@ -3605,7 +3662,7 @@
 					"defaultColorID": 0		
 				},			
 				{			
-					"name": "Rhino Coated",		
+					"name": "Vinyl Coated",		
 					"optionID": 7200,		
 					"colors": [],		
 					"defaultSizeIndex": -1,		

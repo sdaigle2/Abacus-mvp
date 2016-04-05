@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
 /**
  * @ngdoc function
@@ -580,8 +580,24 @@ angular.module('abacuApp')
       };
 
       $scope.setCurOption = function (newOptionID) {
+        var oldColorID = $scope.getCurWheelchairPart().colorID
         $scope.curEditWheelchair.setOptionForPart($scope.getCurPartData().partID, newOptionID);
         console.log('Changed option');
+        var ID = $scope.getCurWheelchairPart().partID
+        var ID2 = $scope.getCurWheelchairPart().optionID
+          if(ID == 4000){
+            $scope.curEditWheelchair.setColorForPart(ID, oldColorID);
+          }
+          if(ID == 1000){
+            $scope.curEditWheelchair.setColorForPart(1000, oldColorID);
+            $scope.curEditWheelchair.setColorForPart(2000, oldColorID);
+            $scope.curEditWheelchair.setColorForPart(4000, oldColorID);
+            $scope.curEditWheelchair.setColorForPart(2222, oldColorID);
+          }
+          if(ID == 2222 && ID2 == 2100){
+            $scope.curEditWheelchair.setColorForPart(1000, oldColorID);
+            $scope.curEditWheelchair.setColorForPart(ID, oldColorID);
+          }
       };
 
       $scope.setCurMultiOption = function (newOptionID) {
@@ -597,7 +613,6 @@ angular.module('abacuApp')
             $scope.curEditWheelchair.setColorForPart(2000, newColorID);
             $scope.curEditWheelchair.setColorForPart(4000, newColorID);
             $scope.curEditWheelchair.setColorForPart(2222, newColorID);
-
           }
           console.log('Changed color option');
         }
@@ -611,7 +626,6 @@ angular.module('abacuApp')
             $scope.curEditWheelchair.setColorForPart(2000, newColorID);
             $scope.curEditWheelchair.setColorForPart(4000, newColorID);
             $scope.curEditWheelchair.setColorForPart(2222, newColorID);
-
           }
           console.log('Changed color option');
         }
