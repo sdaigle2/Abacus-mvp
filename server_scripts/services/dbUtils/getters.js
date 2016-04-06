@@ -155,7 +155,24 @@ function areValidOrderDiscounts(discounts, cb) {
 	var discountIDs = discounts.map(discount => getObjectID(discount, '_id'));
 	getAllByID(discountIDs, function (err, discounts) {
 		if (err) {
-			return cb(err);
+			return cb(false);
 		}
+
+		// Check that you're not mixing multi-discounts with non-multi-discounts
+		if (!(_.every(discounts, 'isMultiDiscount')) && discounts.length > 1) {
+			cb(false);
+		}
+
+		// check that none of the discounts are expired
+		var currDate = new Date();
+		var noneExpired = discounts.every(discount => {
+			var startDate = _.isDate(discount.startDate) ? discount.startDate : new Date(discount.startDate);
+			var endDate = _.isDate(discount.endDate) ? discount.endDate : new Date(discount.endDate);
+			return currDate >= startDate && currDate < endDate;
+		});
+
+		cb(noneExpired);
 	});
 }
+
+exports.areValidOrderDiscounts = areValidOrderDiscounts;

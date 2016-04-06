@@ -57,68 +57,80 @@ router.post('/order', function (req, res) {
       }
       else {  //Successful payment or the user if paying through insurance
         var order = req.body.order;
-        // Replace items wheelchairs array with just wheelchair IDs
-        order.wheelchairs = _.isArray(order.wheelchairs) ? order.wheelchairs : [];
-        order.wheelchairs = order.wheelchairs.map(function (wheelchair) {
-          if (_.isObject(wheelchair)) {
-            return wheelchair._id;
+        dbUtils.areValidOrderDiscounts(order.discounts, function (valid) {
+          if (!valid) {
+            res.status(400);
+            res.json({
+              msg: 'Invalid Discounts'
+            });
+          } else {
+
+            // Replace items wheelchairs array with just wheelchair IDs
+            order.wheelchairs = _.isArray(order.wheelchairs) ? order.wheelchairs : [];
+            order.wheelchairs = order.wheelchairs.map(function (wheelchair) {
+              if (_.isObject(wheelchair)) {
+                return wheelchair._id;
+              }
+              return wheelchair; // the wheelchair is just an ID
+            });
+
+            dbService.orders.insert(order, function (err, body) { //Insert the order into the database
+              order.orderNum = body.id;   //Set the id for the order using the id given by the database
+              res.send(body.id);
+
+              //Set up the invoice email
+              var invoiceEmail = new sendgrid.Email({
+                from: 'do-not-reply@tinker.fit',
+                subject: 'Per4max Purchase Invoice'
+              });
+
+              var manufactureCopy = new sendgrid.Email({
+                from: 'do-not-reply@tinker.fit',
+                subject: 'Per4max Purchase Invoice'
+              });
+
+              //Use session cookie to check if user is logged in
+              dbService.users.get(req.session.user, function(err, existing){
+                //If user is logged in, add the order to their entry in the database as well
+                if(existing.orders) {
+                  existing.orders.push(req.body.order);
+                  dbService.users.insert(existing, function (err, body) {
+                    console.log(err);
+                  });
+                }
+              });
+
+              //Send email to the user containing the invoice as a pdf
+              invoiceEmail.to = req.body.order.email;
+              invoiceEmail.text = 'Thank you for using Abacus to purchase your new Wheelchair. We have attached the invoice for your order.';
+              manufactureCopy.to = 'sales@intelliwheels.net'
+              manufactureCopy.text = 'an order just been placed, here is a copy of the invoice'
+              generateInvoicePDF(order, function (err, pdfPath) {
+                if (err) {
+                  // Probably should do more than just log the error here
+                  console.log(err);
+                } else {
+                  invoiceEmail.addFile({
+                    path: pdfPath
+                  });
+                  sendgrid.send(invoiceEmail, function (err, json) {
+                    console.log(err);
+                  });
+                  manufactureCopy.addFile({
+                    path: pdfPath
+                  });
+                  sendgrid.send(manufactureCopy, function (err, json) {
+                    console.log(err);
+                  });
+
+
+                }
+              });
+            });
+
           }
-          return wheelchair; // the wheelchair is just an ID
         });
 
-        dbService.orders.insert(order, function (err, body) { //Insert the order into the database
-          order.orderNum = body.id;   //Set the id for the order using the id given by the database
-          res.send(body.id);
-
-          //Set up the invoice email
-          var invoiceEmail = new sendgrid.Email({
-            from: 'do-not-reply@tinker.fit',
-            subject: 'Per4max Purchase Invoice'
-          });
-
-          var manufactureCopy = new sendgrid.Email({
-            from: 'do-not-reply@tinker.fit',
-            subject: 'Per4max Purchase Invoice'
-          });
-
-          //Use session cookie to check if user is logged in
-          dbService.users.get(req.session.user, function(err, existing){
-            //If user is logged in, add the order to their entry in the database as well
-            if(existing.orders) {
-              existing.orders.push(req.body.order);
-              dbService.users.insert(existing, function (err, body) {
-                console.log(err);
-              });
-            }
-          });
-
-          //Send email to the user containing the invoice as a pdf
-          invoiceEmail.to = req.body.order.email;
-          invoiceEmail.text = 'Thank you for using Abacus to purchase your new Wheelchair. We have attached the invoice for your order.';
-          manufactureCopy.to = 'sales@intelliwheels.net'
-          manufactureCopy.text = 'an order just been placed, here is a copy of the invoice'
-          generateInvoicePDF(order, function (err, pdfPath) {
-            if (err) {
-              // Probably should do more than just log the error here
-              console.log(err);
-            } else {
-              invoiceEmail.addFile({
-                path: pdfPath
-              });
-              sendgrid.send(invoiceEmail, function (err, json) {
-                console.log(err);
-              });
-              manufactureCopy.addFile({
-                path: pdfPath
-              });
-              sendgrid.send(manufactureCopy, function (err, json) {
-                console.log(err);
-              });
-
-
-            }
-          });
-        });
       }
     });
   }
