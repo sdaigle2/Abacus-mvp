@@ -43,6 +43,7 @@ angular.module('abacuApp')
         this.sentDate = null; //null = "unsent"
         this.email = '';
         this.phone = '';
+        this.poNumber = '';
 
         this.userID = -1;
         this.shippingDetails = _.clone(DEFAULT_DETAILS);
@@ -67,6 +68,7 @@ angular.module('abacuApp')
         this.billingDetails = _.defaults(order.billingDetails || {}, DEFAULT_DETAILS);
         this.payMethod = order.payMethod || 'Credit Card'; // default to credit card
         this.userType = order.userType || 'User'; // default to user
+        this.poNumber = order.poNumber || '';
 
         this.wheelchairs = order.wheelchairs.map(function (wheelchairDesign) {
           return new Design(wheelchairDesign);
@@ -116,6 +118,7 @@ angular.module('abacuApp')
           shippingDetails: this.shippingDetails,
           billingDetails: this.billingDetails,
           payMethod: this.payMethod,
+          poNumber: this.poNumber,
           wheelchairs: this.wheelchairs.map(function (design) {
             return design.allDetails();
           })
@@ -151,7 +154,8 @@ angular.module('abacuApp')
           paymethod: this.paymethod,
           wheelchairs: this.wheelchairs.map(function (w) {
             return w.allDetails();
-          })
+          }),
+          poNumber: this.poNumber
         };
       },
 
@@ -182,6 +186,9 @@ angular.module('abacuApp')
       },
       getPhone: function () {
         return this.phone;
+      },
+      getPONumber: function () {
+        return this.poNumber;
       },
 
       getFullName: function () {
@@ -255,51 +262,49 @@ angular.module('abacuApp')
       //and sends the Order to the distibutor with it.
       //This method also saves the Order to the database and marks it as "sent"
       send: function (userID, userData, shippingData, billingData, payMethod, token) {
-        var deferred = $q.defer();
-
         //Need a reference to the current scope when inside the callback function
         var curThis = this;
 
         //Save userData, shippingData, and payMethod into Order
         this.userID = userID;
-        this.email = userData.email;
-        this.phone = userData.phone;
+        this.email  = userData.email;
+        this.phone  = userData.phone;
 
         this.shippingDetails.fName = shippingData.fName;
         this.shippingDetails.lName = shippingData.lName;
-        this.shippingDetails.addr = shippingData.addr;
+        this.shippingDetails.addr  = shippingData.addr;
         this.shippingDetails.addr2 = shippingData.addr2;
-        this.shippingDetails.city = shippingData.city;
+        this.shippingDetails.city  = shippingData.city;
         this.shippingDetails.state = shippingData.state;
-        this.shippingDetails.zip = shippingData.zip;
+        this.shippingDetails.zip   = shippingData.zip;
 
         this.billingDetails.fName = billingData.fName;
         this.billingDetails.lName = billingData.lName;
-        this.billingDetails.addr = billingData.addr;
+        this.billingDetails.addr  = billingData.addr;
         this.billingDetails.addr2 = billingData.addr2;
-        this.billingDetails.city = billingData.city;
+        this.billingDetails.city  = billingData.city;
         this.billingDetails.state = billingData.state;
-        this.billingDetails.zip = billingData.zip;
+        this.billingDetails.zip   = billingData.zip;
 
         this.payMethod = payMethod;
-        this.sentDate = new Date(); //Set date to now - doing this marks this Order as "sent"
-        $http   ({
+        this.sentDate  = new Date(); //Set date to now - doing this marks this Order as "sent"
+       
+        return $http({
           url: '/order',
           data: {order: this.getAll(), token: token},
           method: 'POST'
-        }).success(function(data){
-          console.log(data);
-          if(!data.err)
+        })
+        .then(function(data) {
+          if (!data.err) {
             curThis.orderNum = data;
-          else {
+          } else {
             curThis.orderNum = -1;
             alert('error processing order:'+ data.err);
           }
+
           for(var i=0; i<curThis.wheelchairs.length; i++)
             curThis.wheelchairs[i].wheelchair.toggleInOrder();
-          deferred.resolve();
         });
-        return deferred.promise;
       }
     };
 

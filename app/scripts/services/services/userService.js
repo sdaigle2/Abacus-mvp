@@ -12,7 +12,7 @@
  *
  */
 angular.module('abacuApp')
-  .service('User', ['$http', '$location', '$q', 'localJSONStorage', 'Order', 'Wheelchair', 'Units', 'Costs', 'Design', 'Errors',
+  .service('User', ['$http', '$location', '$q', 'localJSONStorage', 'Order', 'Wheelchair', 'Units', 'Costs', 'Design', 'Errors', 'PromiseUtils',
     function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Costs, Design, Errors) {
 
       // declare all User variables here
@@ -102,9 +102,7 @@ angular.module('abacuApp')
             console.log('Request Failed: ' + err);
           });
         } else {
-          var deferred = $q.defer();
-          deferred.reject(Errors.NotLoggedInError('User Must Be Logged In For This Action'));
-          return deferred.promise;
+          return PromiseUtils.rejected(new Errors.NotLoggedInError('User Must Be Logged In For This Action'));
         }
       }
 
@@ -295,13 +293,9 @@ angular.module('abacuApp')
 
         updateDesign: function (design) {
           if (!this.isLoggedIn()) {
-            var deferred = $q.defer();
-            deferred.reject(new Errors.NotLoggedInError("Must Be Logged In"));
-            return deferred.promise;
+            return PromiseUtils.rejected(new Errors.NotLoggedInError("Must Be Logged In"));
           } else if (!(design instanceof Design) || !design.hasID()) {
-            var deferred = $q.defer();
-            deferred.reject(new Error("Invalid design arg"));
-            return deferred.promise;
+            return PromiseUtils.rejected(new Error("Invalid design arg"));
           }
 
           var designDetails = design.allDetails();
@@ -394,10 +388,8 @@ angular.module('abacuApp')
               localJSONStorage.put('design' + i, cart.wheelchairs[i].allDetails());
             }
 
-            // Sent a successfull promise resolved to the current user object
-            var deferred = $q.defer();
-            deferred.resolve(allDetails());
-            return deferred.promise;
+            // Send a successfull promise resolved to the current user object
+            return PromiseUtils.resolved(allDetails());
           }
         },
 
@@ -563,21 +555,12 @@ angular.module('abacuApp')
 
         //Sends the curEditOrder to the distributor
         sendCurEditOrder: function (userData, shippingData, billingData, payMethod, token) {
-          var deferred = $q.defer();
-
           var editOrder = this.getCurEditOrder();
           if (editOrder === null) {
-            deferred.reject('CurEditOrder does not exist');
+            return PromiseUtils.rejected(new Error('CurEditOrder does not exist'));
           } else {
-            editOrder.send(userID, userData, shippingData, billingData, payMethod, token)
-              .then(function () {
-                deferred.resolve();
-              }, function (err) {
-                deferred.reject(err);
-              });
+            return editOrder.send(userID, userData, shippingData, billingData, payMethod, token);
           }
-
-          return deferred.promise;
         },
 
         //***********get/sets
