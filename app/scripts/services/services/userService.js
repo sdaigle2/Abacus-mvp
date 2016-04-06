@@ -12,7 +12,7 @@
  *
  */
 angular.module('abacuApp')
-  .service('User', ['$http', '$location', '$q', 'localJSONStorage', 'Order', 'Wheelchair', 'Units', 'Costs', 'Design', 'Errors',
+  .service('User', ['$http', '$location', '$q', 'localJSONStorage', 'Order', 'Wheelchair', 'Units', 'Costs', 'Design', 'Errors', 'PromiseUtils',
     function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Costs, Design, Errors) {
 
       // declare all User variables here
@@ -102,9 +102,7 @@ angular.module('abacuApp')
             console.log('Request Failed: ' + err);
           });
         } else {
-          var deferred = $q.defer();
-          deferred.reject(Errors.NotLoggedInError('User Must Be Logged In For This Action'));
-          return deferred.promise;
+          return PromiseUtils.rejected(new Errors.NotLoggedInError('User Must Be Logged In For This Action'));
         }
       }
 
@@ -112,7 +110,7 @@ angular.module('abacuApp')
         if (frameID instanceof Design) {
           var design = frameID; // frameID is actually a design instance
           currentWheelchair.editingWheelchair = design.wheelchair;
-          currentWheelchair.isNew = userID === -1 || design.creator !== userID;
+          currentWheelchair.isNew = !design.hasID();
           currentWheelchair.design = design;
         } else {
           // its either an integer respresenting a frame id or a wheelchair object
@@ -301,13 +299,9 @@ angular.module('abacuApp')
 
         updateDesign: function (design) {
           if (!this.isLoggedIn()) {
-            var deferred = $q.defer();
-            deferred.reject(new Errors.NotLoggedInError("Must Be Logged In"));
-            return deferred.promise;
+            return PromiseUtils.rejected(new Errors.NotLoggedInError("Must Be Logged In"));
           } else if (!(design instanceof Design) || !design.hasID()) {
-            var deferred = $q.defer();
-            deferred.reject(new Error("Invalid design arg"));
-            return deferred.promise;
+            return PromiseUtils.rejected(new Error("Invalid design arg"));
           }
 
           var designDetails = design.allDetails();
@@ -400,10 +394,8 @@ angular.module('abacuApp')
               localJSONStorage.put('design' + i, cart.wheelchairs[i].allDetails());
             }
 
-            // Sent a successfull promise resolved to the current user object
-            var deferred = $q.defer();
-            deferred.resolve(allDetails());
-            return deferred.promise;
+            // Send a successfull promise resolved to the current user object
+            return PromiseUtils.resolved(allDetails());
           }
         },
 
@@ -569,20 +561,12 @@ angular.module('abacuApp')
 
         //Sends the curEditOrder to the distributor
         sendCurEditOrder: function (userData, shippingData, billingData, payMethod, token) {
-          var deferred = $q.defer();
-
           var editOrder = this.getCurEditOrder();
-          if (editOrder === null)
-            deferred.reject('CurEditOrder does not exist');
-
-          editOrder.send(userID, userData, shippingData, payMethod, token)
-            .then(function () {
-              deferred.resolve();
-            }, function (err) {
-              deferred.reject(err);
-            });
-
-          return deferred.promise;
+          if (editOrder === null) {
+            return PromiseUtils.rejected(new Error('CurEditOrder does not exist'));
+          } else {
+            return editOrder.send(userID, userData, shippingData, billingData, payMethod, token);
+          }
         },
 
         //***********get/sets

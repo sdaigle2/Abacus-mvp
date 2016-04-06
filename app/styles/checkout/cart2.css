@@ -255,7 +255,7 @@
 }
 
 #userType .dropDown{
-  width: 78%;
+  width: 95%;
   border-radius: 0;
   overflow: visible;
 }
@@ -283,7 +283,7 @@
 }
 
 #orderType .dropDown{
-  width: 78%;
+  width: 95%;
   border-radius: 0;
   overflow: visible;
 }
@@ -332,7 +332,7 @@
 #summary section .totalPrice {
   border-top: 1px solid black;
   padding-top: 15px;
-  margin-top: 10px;;
+  margin-top: 100px;;
 }
 
 .zipcode-input {

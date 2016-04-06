@@ -6,7 +6,8 @@
 //Verify wheelchair and order data sent from the client.
 
 //The json containing all the correct frame data
-var frameData = require('../../app/data/frameDataTest.json');
+var frameData = require('../../app/data/frameData.json');
+var _ = require('lodash');
 
 //Return the frame with given frameID
 function getFrame(frameID) {
@@ -22,41 +23,28 @@ function getFrame(frameID) {
 /************************************PARTS***************************************/
 //Return part with the given partID
 function getPart(partID, parts) {
-  for (var i = 0; i < parts.length; i++) {
-    if (parts[i].partID === partID) {
-      return parts[i];
-    }
-  }
-  console.log('Bad part ID');
-  return false;
+  var part = _.find(parts, {'partID': partID});
+  return _.isUndefined(part) ? false : part;
 }
 
 //Return option with given optionID
 function getOption(optionID, options) {
-  for (var i = 0; i < options.length; i++) {
-    if (options[i].optionID === optionID) {
-      return options[i];
-    }
-  }
-  console.log('Bad option ID');
-  return false;
+  var option = _.find(options, {'optionID': optionID});
+  return _.isUndefined(option) ? false : option;
 }
 
 //Verify size with given index exists
 function verifySize(index, sizes) {
   if (index >= 0 && index < sizes.length)
     return sizes[index];
-  return sizes.length === 0 && index === -1;
+  return _.isArray(sizes) && sizes.length === 0 && index === -1;
 }
 
 //Verify color with given id exists
 function verifyColor(colorID, colors) {
   if (colors) {
-    for (var i = 0; i < colors.length; i++) {
-      if (colors[i].colorID === colorID) {
-        return colors[i].hex;
-      }
-    }
+    var color = _.find(colors, {'colorID': colorID});
+    return _.isUndefined(color) ? false : color.hex;
   }
   return (!colors || colors.length === 0) && colorID === 0;
 }
@@ -93,10 +81,6 @@ function verifyPart(framePart, chairPart, wheelchair) {
 //Verify each part
 function verifyParts(frameParts, wheelchair) {
   var chairParts = wheelchair.parts;
-  if (frameParts.length !== chairParts.length) {
-    console.log('Number of parts wrong');
-    return false;
-  }
   var total = 0;
   for (var i = 0; i < frameParts.length; i++) {
     var chairPart = getPart(frameParts[i].partID, chairParts);
@@ -116,13 +100,8 @@ function verifyParts(frameParts, wheelchair) {
 /***************************MEASURES***********************************/
 //Finds measure with given measureID
 function getMeasure(measureID, measures) {
-  for (var i = 0; i < measures.length; i++) {
-    if (measures[i].measureID === measureID) {
-      return measures[i];
-    }
-  }
-  console.log('Bad measure');
-  return false;
+  var measure = _.find(measures, {'measureID': measureID});
+  return _.isUndefined(measure) ? false : measure;
 }
 
 //Verify a measure selection

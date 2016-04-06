@@ -29,10 +29,6 @@
     <div class="order-left" data-ng-if="curStage === stages.INFO">
       <div class="order-form">
         <div class="order-form-header">Contact Information</div>
-        <div class="order-form-label"><strong>First Name</strong></div>
-        <input class="text-input" type="text" data-ng-model="contactForm.fName" />
-        <div class="order-form-label"><strong>Last Name</strong></div>
-        <input class="text-input" type="text" data-ng-model="contactForm.lName" />
         <div class="order-form-label"><strong>Email Address</strong></div>
         <input class="text-input" type="email" data-ng-model="contactForm.email" />
         <div class="order-form-label"><strong>Phone Number</strong></div>
@@ -40,6 +36,10 @@
       </div>
       <div class="order-form">
         <div class="order-form-header">Shipping Address</div>
+        <div class="order-form-label"><strong>First Name</strong></div>
+        <input class="text-input" type="text" data-ng-model="shippingForm.fName" />
+        <div class="order-form-label"><strong>Last Name</strong></div>
+        <input class="text-input" type="text" data-ng-model="shippingForm.lName" />
         <div class="order-form-label"><strong>Street Address</strong></div>
         <input class="text-input" type="text" data-ng-model="shippingForm.addr" />
         <div class="order-form-label"><strong>Street Address 2</strong></div>
@@ -55,49 +55,62 @@
 
     <!--MAIN-PAYMENT-->
     <div class="order-left" data-ng-if="curStage === stages.PAYMENT">
+      <div class="order-form">
+        <div class="order-form-header">Billing Address</div>
+        <div class="order-form-label"><strong>First Name</strong></div>
+        <input class="text-input" type="text" data-ng-model="billingForm.fName" />
+        <div class="order-form-label"><strong>Last Name</strong></div>
+        <input class="text-input" type="text" data-ng-model="billingForm.lName" />
+        <div class="order-form-label"><strong>Street Address</strong></div>
+        <input class="text-input" type="text" data-ng-model="billingForm.addr" />
+        <div class="order-form-label"><strong>Street Address 2</strong></div>
+        <input class="text-input" type="text" data-ng-model="billingForm.addr2" />
+        <div class="order-form-label"><strong>City</strong></div>
+        <input class="text-input" type="text" data-ng-model="billingForm.city" />
+        <div class="order-form-label"><strong>State</strong></div>
+        <input class="text-input" type="text" data-ng-model="billingForm.state" />
+        <div class="order-form-label"><strong>Zipcode</strong></div>
+        <input class="text-input" type="text" data-ng-model="billingForm.zip" />
+      </div>
       <div class="order-form payment">
-        <div class="order-form-header">Choose your payment method</div>
-        <div class="paymentWindow">
-          <div class="paymentMethod">
-            <input class="paymentOption" type="radio" data-ng-model="payForm.method" data-ng-value="payMethods.PAYPAL"/>
-            <strong>Pay by Credit Card</strong>
-            <div >
-              <form  data-ng-show="payForm.method===payMethods.PAYPAL">
-                <span class="payment-errors" data-ng-bind="payment_errors"></span>
-                <div class="form-row">
-                  <label>
-                    <span>Card Number<br></span>
-                    <input type="text" size="20" data-ng-model="card.number"/>
-                  </label>
-                </div>
-                <div class="form-row">
-                  <label>
-                    <span>CVC</span>
-                    <input type="text" size="4" data-ng-model="card.cvc"/>
-                  </label>
-                </div>
-                <div class="form-row">
-                  <label>
-                    <span>Expiration (MM/YYYY)<br></span>
-                    <input type="text" size="2" data-ng-model="card.exp_month"/>
-                    <span> / </span>
-                    <input type="text" size="4" data-ng-model="card.exp_year"/>
-                  </label>
-                <div id="paymentInfo" >
-                  30% will be charged to your credit card now . When your chair is ready to be shipped, you will be
-                 contacted to pay the other 70%
-                </div>
+        <div class="order-form-header">Optional Information</div>
+        <div class="order-form-label"><strong>PO Number</strong></div>
+        <input class="text-input" type="text" data-ng-model="curOrder.poNumber" />
+      </div>
 
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="paymentMethod">
-            <input class="paymentOption" type="radio" data-ng-model="payForm.method" data-ng-value="payMethods.ADVANCE"/>
-            <strong>Bill by Insurance</strong>
-            <div data-ng-show="payForm.method === payMethods.ADVANCE">
-              Customer representative from Tiarrow will be in touch with you shortly
-            </div>
+      <div class="order-form payment" ng-if="creditCardRequired()">
+        <div class="order-form-header">Enter Credit Card Number</div>
+        <div class="paymentWindow">
+          <strong>Pay by Credit Card</strong>
+          <div >
+            <form>
+              <span class="payment-errors" data-ng-bind="payment_errors"></span>
+              <div class="form-row">
+                <label>
+                  <span>Card Number<br></span>
+                  <input type="text" size="20" data-ng-model="card.number"/>
+                </label>
+              </div>
+              <div class="form-row">
+                <label>
+                  <span>CVC</span>
+                  <input type="text" size="4" data-ng-model="card.cvc"/>
+                </label>
+              </div>
+              <div class="form-row">
+                <label>
+                  <span>Expiration (MM/YYYY)<br></span>
+                  <input type="text" size="2" data-ng-model="card.exp_month"/>
+                  <span> / </span>
+                  <input type="text" size="4" data-ng-model="card.exp_year"/>
+                </label>
+              <div id="paymentInfo" >
+                30% will be charged to your credit card now . When your chair is ready to be shipped, you will be
+               contacted to pay the other 70%
+              </div>
+
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -109,14 +122,6 @@
         <div class="order-form-header">Contact Information</div>
         <table class="order-form-table">
           <tbody>
-            <tr>
-              <td><strong>First Name</strong></td>
-              <td data-ng-bind="contactForm.fName"></td>
-            </tr>
-            <tr>
-              <td><strong>Last Name</strong></td>
-              <td data-ng-bind="contactForm.lName"></td>
-            </tr>
             <tr>
               <td><strong>Email</strong></td>
               <td data-ng-bind="contactForm.email"></td>
@@ -156,29 +161,52 @@
         </table>
       </div>
       <div class="order-form">
-        <div class="order-form-header">Wheelchair Details</div>
+        <div class="order-form-header">Billing Address</div>
+        <table class="order-form-table">
+          <tbody>
+            <tr>
+              <td><strong>Street Address</strong></td>
+              <td data-ng-bind="billingForm.addr"></td>
+            </tr>
+            <tr>
+              <td><strong>Street Address 2</strong></td>
+              <td data-ng-bind="billingForm.addr2"></td>
+            </tr>
+            <tr>
+              <td><strong>City</strong></td>
+              <td data-ng-bind="billingForm.city"></td>
+            </tr>
+            <tr>
+              <td><strong>State</strong></td>
+              <td data-ng-bind="billingForm.state"></td>
+            </tr>
+            <tr>
+              <td><strong>Zipcode</strong></td>
+              <td data-ng-bind="billingForm.zip"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="order-form" ng-if="!_.isEmpty(curOrder.poNumber)">
+        <div class="order-form-header">Optional Information</div>
+        <table class="order-form-table">
+          <tbody>
+            <tr>
+              <td><strong>PO Number</strong></td>
+              <td data-ng-bind="curOrder.poNumber"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="order-form">
+        <div class="order-form-header">Order Details</div>
         <table class="order-form-table">
           <tbody class="table-section" data-ng-repeat="w in wheelchairs">
             <tr class="table-seperator"></tr>
             <tr class="table-title-row">
-              <td style="font-size: 20px"><strong data-ng-bind="w.getTitle()"></strong></td>
+              <td style="font-size: 15px"><strong data-ng-bind="w.getTitle()"></strong></td>
               <td data-ng-bind="getFrame(w.getFrameID()).getName()"></td>
-              <td style="text-align:right;">$<span data-ng-bind="getFrame(w.getFrameID()).getBasePrice().toFixed(2)"></span></td>
-            </tr>
-            <tr data-ng-repeat="p in w.parts">
-              <td><strong data-ng-bind="getPartDetails(w, p).partName"></strong></td>
-              <td><span data-ng-bind="getPartDetails(w, p).optionName"></span> <small style="color:#808080; font-size:10px;" data-ng-bind="getPartDetails(w, p).colorName"></small></td>
-              <td style="text-align:right;" data-ng-bind="getPartDetails(w, p).priceString"></td>
-            </tr>
-            <tr data-ng-repeat="m in w.measures">
-              <td><strong data-ng-bind="getMeasureDetails(w, m).name"></strong></td>
-              <td data-ng-bind="getMeasureDetails(w, m).optionString"></td>
-              <td style="text-align:right;" data-ng-bind="getMeasureDetails(w, m).priceString"></td>
-            </tr>
-            <tr class="table-price-row">
-              <td></td>
-              <td></td>
-              <td style="text-align:right;"><strong>$<span data-ng-bind="w.getTotalPrice().toFixed(2)"></span></strong></td>
+              <td style="text-align:right;">$<span data-ng-bind="w.getTotalPrice().toFixed(2)"></span></td>
             </tr>
           </tbody>
           <tfoot>

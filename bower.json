@@ -15,7 +15,8 @@
     "file-saver.js": "~1.20150507.2",
     "angularytics": "~0.4.0",
     "lodash": "^4.5.1",
-    "ng-dialog": "^0.5.8"
+    "ng-dialog": "^0.5.8",
+    "ngclipboard": "^1.1.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.9",

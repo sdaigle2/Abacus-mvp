@@ -12,8 +12,8 @@
 angular.module('abacuApp')
   .constant('WHEELCHAIR_CANVAS_WIDTH', 187) // width of canvas that renders wheelchair
   .constant('PAYMENT_METHODS', [{'name': 'Credit Card', 'requiresAccount': false}, {'name': 'Credit Card when Order Ships', 'requiresAccount': true}, {'name': 'Grant', 'requiresAccount': true}, {'name': 'Bill me Net 30', 'requiresAccount': true}])
-  .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', 'PAYMENT_METHODS', '$q', 'Errors',
-    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, PAYMENT_METHODS, $q, Errors) {
+  .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', 'PAYMENT_METHODS', '$q', 'Errors', 'ngDialog',
+    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, PAYMENT_METHODS, $q, Errors, ngDialog) {
       $scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
       $scope.USER_TYPES = USER_TYPES;
       $scope.PAYMENT_METHODS = PAYMENT_METHODS;
@@ -37,8 +37,6 @@ angular.module('abacuApp')
       //A reference to User.curEditOrder (set during init())
       $scope.curOrder = null;
 
-      $scope.zipcode = null;
-
 
       //Initialize Cart page
       function init() {
@@ -48,8 +46,6 @@ angular.module('abacuApp')
           $scope.curOrder = User.getCurEditOrder();
           $scope.curOrder.wheelchairs = User.getCart().wheelchairs;
         }
-
-        $scope.zipcode = $scope.curOrder.zip;
 
         // initialize the ui variables to a default value
         $scope.wheelchairUIOpts = User.getCart().wheelchairs.map(function (design) {
@@ -153,7 +149,12 @@ angular.module('abacuApp')
           deferred.resolve();
           return deferred.promise;
         } else {
-          return Drop.setTrue()
+          return ngDialog.open({
+            'template': 'views/modals/loginPromptModal.html'
+          }).closePromise
+          .then(function () {
+            return Drop.setTrue(); // returns a promise that is resolved once the login dropdown is closed
+          })
           .then(function () {
             if (!User.isLoggedIn()) {
               throw new Errors.NotLoggedInError("User didn't login after dropdown");
@@ -162,40 +163,26 @@ angular.module('abacuApp')
         }
       };
 
-      $scope.userTypeName = 'User';
       $scope.chooseUserType = function (userType) {
         if (userType.requiresAccount) {
           $scope.showLoginModal()
           .then(function () {
-            $scope.userTypeName = userType.name;
+            $scope.curOrder.userType = userType.name;
           });
         } else {
-          $scope.userTypeName = userType.name;
+          $scope.curOrder.userType = userType.name;
         }
       };
 
-      $scope.applyUserType = function () {
-        $scope.curOrder.userType = $scope.userTypeName;
-      };
-
-      $scope.paymentMethodName = 'Credit Card';
       $scope.choosePayment = function (paymentMethod) {
         if (paymentMethod.requiresAccount) {
           $scope.showLoginModal()
           .then(function () {
-            $scope.paymentMethodName = paymentMethod.name;
+            $scope.curOrder.payMethod = paymentMethod.name;
           });
         } else {
-          $scope.paymentMethodName = paymentMethod.name;
+          $scope.curOrder.payMethod = paymentMethod.name;
         }
-      };
-
-      $scope.applyPaymentMethod = function () {
-        $scope.curOrder.payMethod = $scope.paymentMethod;
-      };
-
-      $scope.applyZipcode = function () {
-        $scope.curOrder.zip = $scope.zipcode;
       };
 
         //Validates the user's "cart" and sends the user to Checkout or Order if valid

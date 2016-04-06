@@ -16,7 +16,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ngDialog'
+    'ngDialog',
+    'ngclipboard'
   ])
   .run(['$rootScope', function ($rootScope) {
     // Attach lodash object to $rootScope so it can be used in views
