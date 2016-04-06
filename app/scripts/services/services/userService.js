@@ -324,11 +324,16 @@ angular.module('abacuApp')
             return deferred.promise;
           }
 
-          return $http({
+          var httpPromise = $http({
             url: '/login',
             data: {email: in_email, password: pass},
             method: 'POST'
-          })
+          });
+
+          // Update the updatepromise
+          updatePromise = httpPromise;
+
+          return httpPromise
           .then(function (response) {
             var data = response.data;
             console.log(data);
@@ -343,8 +348,6 @@ angular.module('abacuApp')
           })
           .catch(function (err) {
             console.log('Request Failed: ' + JSON.stringify(err));
-            deferred.reject(new Error('Incorrect email or password'));
-            return deferred.promise;
           });
         },
 

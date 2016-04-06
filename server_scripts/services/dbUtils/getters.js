@@ -38,16 +38,42 @@ function getOrderByID(orderID, cb) {
 			return cb(err);
 		}
 
-		// Populate the 'wheelchairs' field
-		getAllByID(dbService.designs, order.wheelchairs || [], function (err, designs) {
+		// get the 'wheelchairs' field
+		var getOrderChairs = function (cb) {
+			var wheelchairs = order.wheelchairs || [];
+			var wheelchairIDs = wheelchairs.map(chair => getObjectID(chair, '_id'));
+			getAllByID(dbService.designs, wheelchairIDs, function (err, designs) {
+				if (err) {
+					return cb(err);
+				}
+				cb(null, designs); // return the designs
+			});
+		};
+
+		var getOrderDiscounts = function (cb) {
+			var discounts = order.discounts || [];
+			var discountIDs = discounts.map(discount => getObjectID(discount, '_id'));
+			getAllByID(dbService.discounts, discountIDs, function (err, discounts) {
+				if (err) {
+					return cb(err);
+				}
+
+				cb(null, discounts);
+			})
+		};
+
+		async.parallel({
+			'wheelchairs': getOrderChairs,
+			'discounts': getOrderDiscounts
+		}, function (err, results) {
 			if (err) {
 				return cb(err);
 			}
 
-			// Set the wheelchairs field to be the actual designs objects instead of just the design IDs
-			order.wheelchairs = designs;
+			order.wheelchairs = results.wheelchairs;
+			order.discounts = results.discounts;
 
-			cb(null, order); // return the order
+			cb(null, order); // return the order via the callback
 		});
 	});
 };
@@ -115,3 +141,21 @@ function getUserByID(userID, cb) {
 }
 
 exports.getUserByID = getUserByID;
+
+/**
+ * Given a array of discounts (either discount Objects or just discount ID strings),
+ * tells you whether its okay to have all these discounts applied to a single order
+ *
+ * Reasons that this can return false:
+ * - At least one of the discounts is not a multi-discount even though there's more than one discount that is being applied to the order
+ * - At least one of the discounts are expired
+ */
+function areValidOrderDiscounts(discounts, cb) {
+	discounts = _.isArray(discounts) ? discounts : [];
+	var discountIDs = discounts.map(discount => getObjectID(discount, '_id'));
+	getAllByID(discountIDs, function (err, discounts) {
+		if (err) {
+			return cb(err);
+		}
+	});
+}

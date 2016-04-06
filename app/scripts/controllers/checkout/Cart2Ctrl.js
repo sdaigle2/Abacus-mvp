@@ -12,8 +12,9 @@
 angular.module('abacuApp')
   .constant('WHEELCHAIR_CANVAS_WIDTH', 187) // width of canvas that renders wheelchair
   .constant('PAYMENT_METHODS', [{'name': 'Credit Card', 'requiresAccount': false}, {'name': 'Credit Card when Order Ships', 'requiresAccount': true}, {'name': 'Grant', 'requiresAccount': true}, {'name': 'Bill me Net 30', 'requiresAccount': true}])
-  .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', 'PAYMENT_METHODS', '$q', 'Errors', 'ngDialog',
-    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, PAYMENT_METHODS, $q, Errors, ngDialog) {
+  .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', 'PAYMENT_METHODS',
+    '$q', 'Errors', 'ngDialog', 'PromiseUtils',
+    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, PAYMENT_METHODS, $q, Errors, ngDialog, PromiseUtils) {
       $scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
       $scope.USER_TYPES = USER_TYPES;
       $scope.PAYMENT_METHODS = PAYMENT_METHODS;
@@ -145,15 +146,16 @@ angular.module('abacuApp')
       /*********************CHECK OUT***********************************/
       $scope.showLoginModal = function () {
         if (User.isLoggedIn()) {
-          var deferred = $q.defer();
-          deferred.resolve();
-          return deferred.promise;
+          return PromiseUtils.resolved();
         } else {
           return ngDialog.open({
             'template': 'views/modals/loginPromptModal.html'
           }).closePromise
           .then(function () {
             return Drop.setTrue(); // returns a promise that is resolved once the login dropdown is closed
+          })
+          .then(function () {
+            return User.getPromise();
           })
           .then(function () {
             if (!User.isLoggedIn()) {

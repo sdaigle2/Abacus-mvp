@@ -5,7 +5,7 @@
 const _ = require('lodash');
 const frameData = require('../../../../app/data/frameData.json');
 
-const APP_PORT = process.env.PORT || 8080;
+const APP_PORT = process.env.PORT || 8080; // make sure this is consistent with the port in server.js
 //Map angles to their array index
 const angles = {
     'Back': 0,

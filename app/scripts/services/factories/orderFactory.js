@@ -21,7 +21,7 @@
 angular.module('abacuApp')
   .constant('FRAME_SHIPPING_PRICES', {'CHAIR': 47.98, 'WHEEL': 18.45})
   .constant('USER_TYPES', [{'name': 'User', 'requiresAccount': false}, {'name': 'Dealer', 'requiresAccount': true}, {'name': 'VA', 'requiresAccount': true}, {'name': 'P4X Sales Rep', 'requiresAccount': true}])
-  .factory('Order', ['$q', '$http', 'Wheelchair', 'localJSONStorage', 'Design', 'FRAME_SHIPPING_PRICES', 'FrameData', function ($q, $http, Wheelchair, localJSONStorage, Design, FRAME_SHIPPING_PRICES, FrameData) {
+  .factory('Order', ['$q', '$http', 'Wheelchair', 'localJSONStorage', 'Design', 'FRAME_SHIPPING_PRICES', 'FrameData', 'Discount', '_', function ($q, $http, Wheelchair, localJSONStorage, Design, FRAME_SHIPPING_PRICES, FrameData, Discount, _) {
 
     function Order(taxRate, shippingFee, order) {
       this.wheelchairs = [];
@@ -53,6 +53,7 @@ angular.module('abacuApp')
         this.userType = 'User'; // default to the 'User' User Type
 
         this.payMethod = 'Credit Card';
+        this.discounts = [];
       }
       else {
         this._id = order._id || order.id  || -1;
@@ -69,6 +70,11 @@ angular.module('abacuApp')
         this.payMethod = order.payMethod || 'Credit Card'; // default to credit card
         this.userType = order.userType || 'User'; // default to user
         this.poNumber = order.poNumber || '';
+
+        order.discounts = _.isArray(order.discounts) ? order.discounts || [];
+        this.discounts = order.discounts.map(function (discountObj) {
+          return new Discount(discountObj);
+        });
 
         this.wheelchairs = order.wheelchairs.map(function (wheelchairDesign) {
           return new Design(wheelchairDesign);
@@ -87,6 +93,32 @@ angular.module('abacuApp')
     }
 
     Order.prototype = {
+
+      isValidOrder: function () {
+        // Only checks that the order contains at least one wheelchair and that if
+        // any of the discounts are not multi discounts, then there's only one discount being applied
+        if (_.isEmpty(this.wheelchairs)) {
+          return false;
+        }
+
+        if (!this.canAddDiscount() && this.discounts.length > 1) {
+          return false; // you've mixed a discount with another nonmultidiscount discount 
+        }
+
+        return true;
+      },
+
+      canAddDiscount: function () {
+        return _.every(this.discounts, 'isMultiDiscount');
+      },
+
+      addDiscount: function (discount) {
+        if (discount instanceof Discount && this.canAddDiscount()) {
+          this.discounts.push(discount);
+        } else {
+          throw new Error('Input to order.addDiscount() must be instance of Discount');
+        }
+      },
 
       addWheelchair: function (newDesign) {
         if (newDesign instanceof Design) {
@@ -121,7 +153,8 @@ angular.module('abacuApp')
           poNumber: this.poNumber,
           wheelchairs: this.wheelchairs.map(function (design) {
             return design.allDetails();
-          })
+          }),
+          discounts: this.discounts.map(Discount.getDiscountDetails)
         };
 
         if (this._id && this._id !== -1) {
@@ -155,11 +188,14 @@ angular.module('abacuApp')
           wheelchairs: this.wheelchairs.map(function (w) {
             return w.allDetails();
           }),
-          poNumber: this.poNumber
+          poNumber: this.poNumber,
+          discounts: this.discounts
         };
       },
 
-
+      getDiscounts: function () {
+        return this.discounts;
+      },
       getPayMethod: function () {
         return this.payMethod;
       },

@@ -67,7 +67,6 @@ router.post('/order', function (req, res) {
 
         dbService.orders.insert(order, function (err, body) { //Insert the order into the database
           order.orderNum = body.id;   //Set the id for the order using the id given by the database
-          var pdfStream = genInvoice(order);   //Generate a pdf invoive for the order
           res.send(body.id);
 
           //Set up the invoice email

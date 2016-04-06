@@ -142,8 +142,7 @@ exports.insertDesign = insertDesign;
 
 // Updates all linked Order fields: wheelchairs
 function updateLinkedOrderFields(orderObj, cb) {
-	var wheelchairs = orderObj.wheelchairs || [];
-
+	var wheelchairs = _.isArray(orderObj.wheelchairs) ? orderObj.wheelchairs : [];
 	updateOrInsertAllEntries({
 		db: dbService.designs,
 		dbInsert: insertDesign,
@@ -153,7 +152,8 @@ function updateLinkedOrderFields(orderObj, cb) {
 		if (err) {
 			cb(err);
 		} else {
-			orderObj.wheelchairs = wheelchairs;
+			orderObj.wheelchairs = wheelchairs; // set the wheelchairs field appropriately
+
 			cb(null, orderObj);
 		}
 	});
@@ -165,14 +165,27 @@ function getMinimizedOrderEntry(order) {
 	var designs = _.isArray(order.wheelchairs) ? order.wheelchairs : [];
 	var designIDs = _.reject(_.map(designs, getEntryID), _.isNull);
 
+	var discounts = _.isArray(order.discounts) ? order.discounts : [];
+	var discountIDs = _.reject(_.map(discounts, getEntryID), _.isNull);
+
 	var clonedOrder = _.clone(order);
 	clonedOrder.wheelchairs = designIDs;
+	clonedOrder.discounts = discountIDs;
 
 	return clonedOrder;
 }
 
 exports.getMinimizedOrderEntry = getMinimizedOrderEntry;
 
+/**
+ * Insert the given order
+ * If no id is given, this will create a new order
+ * 
+ * NOTE:
+ * DOES NOT update each corresponding order's discounts. It will just set the order.discounts to be an
+ * array of IDs for the discounts that were already in the given order.
+ * Validation that the discount IDs are actual discount IDs in the DB should be done when the order is being sent
+ */
 function insertOrder(order, id, cb) {
 	if (_.isFunction(id)) {
 		// No ID is given, must create a new order entry
@@ -203,7 +216,7 @@ function insertOrder(order, id, cb) {
 				cb(err);
 			} else {
 				const minOrder = getMinimizedOrderEntry(updatedOrder);
-				// update the order with the given id
+				// update the order with the given id, but use the minOrder as the DB entry
 				dbService.orders.insert(minOrder, id, (err, res) => { // insert the minorder, not the full order
 					if (err) {
 						cb(err);

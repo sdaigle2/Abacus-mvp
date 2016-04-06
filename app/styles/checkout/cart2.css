@@ -337,6 +337,12 @@
 
 .zipcode-input {
   height: 35px;
+  border-radius: 0px;
+}
+
+.discount-input {
+  height: 35px;
+  border-radius: 0px;
 }
 
 .checkoutButton {
