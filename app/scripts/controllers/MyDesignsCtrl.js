@@ -72,7 +72,7 @@ angular.module('abacuApp')
   			}
 
         return User.removeDesignFromSavedDesigns(designToRemove);
-  		}
+  		};
 
   		//Sends the user back to abacus with the selected wheelchair
   		$scope.editWheelchair = function (index) {
