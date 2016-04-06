@@ -36,11 +36,21 @@ angular
       })
       .when('/tinker', {
         templateUrl: '../views/tinker/abacus.html',
-        controller: 'AbacusCtrl'
+        controller: 'AbacusCtrl',
+        //resolve:{
+        //  UserData: ['$q', 'User', function($q, User) {
+        //    return User.getPromise();
+        //  }]
+        //}
       })
       .when('/abacus/:param1', {
         templateUrl: '../views/tinker/abacus.html',
-        controller: 'AbacusCtrl'
+        controller: 'AbacusCtrl',
+        //resolve:{
+        //  UserData: ['$q', 'User', function($q, User) {
+        //    return User.getPromise();
+        //  }]
+        //}
       })
       .when('/about', {
         templateUrl: 'views/about.html',

@@ -53,16 +53,14 @@ function verifyColor(colorID, colors) {
 function verifyPart(framePart, chairPart, wheelchair) {
   var option = getOption(chairPart.optionID, framePart.options);  //Check JSON for corresponding option
   if (option) {
-    var size = verifySize(chairPart.sizeIndex, option.sizes); //Check JSON for corresponding size
-    var hex = verifyColor(chairPart.colorID, option.colors);  //Check JSON for corresponding color
-    if (hex && size) {
+    //var size = verifySize(chairPart.sizeIndex, option.sizes); //Check JSON for corresponding size
+    //var hex = verifyColor(chairPart.colorID, option.colors);  //Check JSON for corresponding color
+    if (1) {
       wheelchair.weight += option.weight;
       //Append additional part details to the wheelchair
       wheelchair.pDetails.push({
         name: framePart.name,
         option: option.name,
-        color: hex,
-        size: size,
         price: option.price,
         zRank: framePart.zRank,
         numSubImages: framePart.numSubImages,
@@ -88,7 +86,8 @@ function verifyParts(frameParts, wheelchair) {
       return false;
     }
     var price = verifyPart(frameParts[i], chairPart, wheelchair);
-    if (!price && price !== 0) {
+    if (!price && price === 0) {
+      console.log('bad parts')
       return false;
     }
     total += price;

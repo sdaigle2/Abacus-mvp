@@ -140,6 +140,8 @@ angular.module('abacuApp')
         if(id && FrameData.getFrame(id)) {
           User.createCurrentDesign(id);
         }
+
+
         //Send the user back to Frames if no curEditWheelchair set
         $scope.curEditWheelchair = User.getCurEditWheelchair();
         if ($scope.curEditWheelchair === null) {
@@ -150,6 +152,8 @@ angular.module('abacuApp')
         //Load data about the frame type of curEditWheelchair
         $scope.curFrameData = FrameData.getFrame($scope.curEditWheelchair.getFrameID());
         generatePages();
+
+
       }
 
       init(); //Initialize the page
@@ -777,7 +781,9 @@ angular.module('abacuApp')
           if (err instanceof Errors.NotLoggedInError) {
             ngDialog.open({
               'template': 'views/modals/loginPromptModal.html'
-            });
+            }).closePromise.then(function(){
+                return Drop.setTrue();
+              });
           }
         });
       };

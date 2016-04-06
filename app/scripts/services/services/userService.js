@@ -150,6 +150,12 @@ angular.module('abacuApp')
           currentWheelchair.isNew = false;
           currentWheelchair.design = design;
         }
+
+        if (userID !== -1) {
+          updateDB();
+        } else {
+          localJSONStorage.put('currentWheelchair', {frameID: -1, isNew: false, index: index, 'design': design});
+        }
       }
 
       function restoreUserFromCookies() {
@@ -562,7 +568,7 @@ angular.module('abacuApp')
           if (editOrder === null) {
             return PromiseUtils.rejected(new Error('CurEditOrder does not exist'));
           } else {
-            return editOrder.send(userID, userData, shippingData, billingData, payMethod, token);
+            return editOrder.send(userID, userData, shippingData, billingData, payMethod, token, editOrder);
           }
         },
 
