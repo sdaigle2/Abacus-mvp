@@ -37,9 +37,10 @@ router.post('/order', function (req, res) {
   //This token was created client side by the Stripe API, so we do not need credit card details as part of the request
   var stripeToken = req.body.token;
   console.log(stripeToken);
+  var order = req.body.order;
 
   //Cross check all wheelchairs in the order against the JSON, while calculating the total price
-  var total = verifyOrder(req.body.order, true);
+  var total = req.body.totalPrice;
   //The order is valid
   if (total !== false) {
     //Create a new stripe payment

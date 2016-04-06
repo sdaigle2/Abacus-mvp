@@ -32,7 +32,7 @@ angular.module('abacuApp')
         'addr2': '',
         'city': '',
         'state': '',
-        'zip': ''       
+        'zip': ''
       };
       if (order == null) {
         this._id = -1;
@@ -261,7 +261,7 @@ angular.module('abacuApp')
       //This asyncronous funtion takes in various user information
       //and sends the Order to the distibutor with it.
       //This method also saves the Order to the database and marks it as "sent"
-      send: function (userID, userData, shippingData, billingData, payMethod, token) {
+      send: function (userID, userData, shippingData, billingData, payMethod, token, order) {
         //Need a reference to the current scope when inside the callback function
         var curThis = this;
 
@@ -288,10 +288,11 @@ angular.module('abacuApp')
 
         this.payMethod = payMethod;
         this.sentDate  = new Date(); //Set date to now - doing this marks this Order as "sent"
-       
+        this.order = order;
+
         return $http({
           url: '/order',
-          data: {order: this.getAll(), token: token},
+          data: {order: this.getAll(), token: token, totalPrice: this.getTotalCost()},
           method: 'POST'
         })
         .then(function(data) {

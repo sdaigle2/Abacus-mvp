@@ -781,7 +781,9 @@ angular.module('abacuApp')
           if (err instanceof Errors.NotLoggedInError) {
             ngDialog.open({
               'template': 'views/modals/loginPromptModal.html'
-            });
+            }).closePromise.then(function(){
+                return Drop.setTrue();
+              });
           }
         });
       };
