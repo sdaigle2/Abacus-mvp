@@ -1247,7 +1247,7 @@
             "sizes": ["Close Mounted", "Far Mounted"],
             "comments":"",
             "displayColor": 0,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/magnesium.png",
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/12-tab.jpg",
             "desc": "For extra rigidity, choose the 12 tab mounted hand rim.   Remember to choose close or far mounting.",
             "weight": 0.1,
             "price": 95,
@@ -1324,12 +1324,12 @@
           {
             "name": "High Pressure Tires",
             "optionID": 8100,
-            "defaultSizeIndex": -1,
+            "defaultSizeIndex": 0,
             "sizes": [],
             "comments":"",
             "displayColor": 0,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "Our standard high pressure tires are great for the court.",
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/primo-high-pressure.jpg",
+            "desc": "Our standard high pressure PRIMO tire is great for the court!",
             "weight": 0.09,
             "price": 0,
             "defaultColorID": 0
@@ -1338,7 +1338,7 @@
             "name": "Schwalbe Speed Air Tires",
             "optionID": 8200,
             "colors": [],
-            "defaultSizeIndex": -1,
+            "defaultSizeIndex": 0,
             "sizes": [],
             "comments":"",
             "displayColor": 0,
@@ -1348,6 +1348,66 @@
             "price": 150,
             "defaultColorID": 0
           },
+          {
+            "name": "Schwalbe Right Run Tires",
+            "optionID": 8600,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
+            "desc": "High quality Schwalbe tires with colorful options!",
+            "price": 150,
+            "defaultColorID": 8602,
+            "colors": [
+                {
+                    "name": "Gray",
+                    "colorID": 8601,
+                    "hex": "#808080"
+                },
+                {
+                    "name": "Red",
+                    "colorID": 8602,
+                    "hex": "#FF3535"
+                },
+                {
+                    "name": "Blue",
+                    "colorID": 8603,
+                    "hex": "#3B35FF"
+                },
+                {
+                    "name": "Yellow",
+                    "colorID": 8604,
+                    "hex": "#FFFF00"
+                }
+            ]
+          },
+          {
+            "name": "Kenda Court Iron Cap Tires",
+            "optionID": 8700,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
+            "desc": "Experience the protection of Iron Cap Puncture Resistant Technology from Kenda on Wheelchair Tires for Court or Everyday Use.",
+            "price": 150,
+            "defaultColorID": 8702,
+            "colors": [
+                {
+                    "name": "Gray",
+                    "colorID": 8701,
+                    "hex": "#808080"
+                },
+                {
+                    "name": "Red",
+                    "colorID": 8702,
+                    "hex": "#FF3535"
+                },
+                {
+                    "name": "Blue",
+                    "colorID": 8703,
+                    "hex": "#3B35FF"
+                },
+                {
+                    "name": "Yellow",
+                    "colorID": 8704,
+                    "hex": "#FFFF00"
+                }
+            ]
+          },    
           {
             "name": "Other",
             "optionID": 8300,
@@ -1449,7 +1509,7 @@
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height.",
+            "desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height. Often chosen in combination with Plastic seat plate option and max seat height 21\" Front and 21\" Back.",
             "price": 120,
             "defaultColorID": 0
           },
@@ -1462,7 +1522,7 @@
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.",
+            "desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.  Some common options are Stimulite, RoHo, or Jay",
             "price": 0,
             "priceTBD": 1,
             "defaultColorID": 0
@@ -1488,10 +1548,23 @@
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "Protect your chair while in transit with foam impact guards.",
+            "desc": "Protect your chair while in transit with foam or leather impact guards.",
             "price": 75,
             "defaultColorID": 0
           },
+          {
+            "name": "Leather Impact Guards",
+            "optionID": 10600,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "Protect your chair while in transit with foam or leather impact guards.",
+            "price": 75,
+            "defaultColorID": 0
+          },    
           {
             "name": "Waist Strap",
             "optionID": 10700,
@@ -1501,7 +1574,7 @@
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a waist strap, specify it here, and we will calculate the correct size for you.",
+            "desc": "Typical Sizes: 10-12\" : The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a waist strap, specify it here, and we will calculate the correct size for you.",
             "price": 100,
             "defaultColorID": 0
           },
@@ -1514,7 +1587,7 @@
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a lap strap, specify it here, and we will calculate the correct size for you.",
+            "desc": "Typical Size: 8\" : The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a lap strap, specify it here, and we will calculate the correct size for you.",
             "price": 75,
             "defaultColorID": 0
           },
@@ -1527,7 +1600,7 @@
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a foot strap, specify it here, and we will calculate the correct size for you.",
+            "desc": "Typical Size: 8\" : The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a foot strap, specify it here, and we will calculate the correct size for you.",
             "price": 75,
             "defaultColorID": 0
           },
@@ -1575,17 +1648,17 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/seat_width.svg"],
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
-        "measureOptions": [["30.5", "33", "35.6", "38.1", "40.6", "43.2", "45.7"],["12", "13", "14", "15", "16", "17", "18"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["30.5", "31.8", "33", "34.3", "35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "34.5", "45.7", "Other"],["12", "12.5", "13", "13.5", "14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"i am comments",
-        "prices": [0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
       },
       {
         "name": "Taper (Knee Width)",
         "measureID": 15002,
         "desc": "The width of the chair at the knee. (inside of tube to inside of tube)",
-        "details": " Taper allows a more tailored fit and helps to increase chair control and overall feel while assisting to achieve proper body alignment.  To measure taper place your hand between your legs and measure the outside distance of the contact patch where your legs meet the frame./n TiArrow uses a thin tube to outline the shape of the side guard, however. This adds rigidity to the frame and increases your lateral stability, but it also makes the frame fit your body a little differently. We suggest choosing a seat width that is .5î wider than you would otherwise get to ensure a comfortable fit.",
+        "details": " Taper allows a more tailored fit and helps to increase chair control and overall feel while assisting to achieve proper body alignment.  To measure taper place your hand between your legs and measure the outside distance of the contact patch where your legs meet the frame.",
         "tip": "Greater taper will make it easier to maneuver on the court.",
         "gifDesc": "You gain more control and body alignment as the taper increases.",
         "units": ["cm","in"],
@@ -1594,10 +1667,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
-        "measureOptions": [["45.7", "43.2", "40.6", "38.1", "35.6", "33", "30.5", "27.9", "25.4", "22.9", "20.3", "Other"],["18", "17", "16", "15", "14", "13", "12", "11", "10", "9", "8", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["20.3", "21.6", "22.9", "24.1", "25.4", "26.7", "27.9", "29.2", "30.5", "31.8", "33", "34.3", "35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "34.5", "45.7", "Other"],["8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Seat Depth",
@@ -2804,7 +2877,7 @@
             "sizes": ["Close Mounted", "Far Mounted"],
             "comments": 0,
             "displayColor": 0,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/magnesium.png",
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/12-tab.jpg",
             "desc": "For extra rigidity, choose the 12 tab mounted hand rim.   Remember to choose close or far mounting.",
             "weight": 0.1,
             "price": 95,
@@ -2885,8 +2958,8 @@
             "sizes": [],
             "comments": 0,
             "displayColor": 0,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "Our standard high pressure tires are great for the court.",
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/primo-high-pressure.jpg",
+            "desc": "Our standard high pressure PRIMO tire is great for the court!",
             "weight": 0.09,
             "price": 0,
             "defaultColorID": 0
@@ -2905,6 +2978,66 @@
             "price": 150,
             "defaultColorID": 0
           },
+          {
+            "name": "Schwalbe Right Run Tires",
+            "optionID": 8600,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
+            "desc": "High quality Schwalbe tires with colorful options!",
+            "price": 150,
+            "defaultColorID": 8602,
+            "colors": [
+                {
+                    "name": "Gray",
+                    "colorID": 8601,
+                    "hex": "#808080"
+                },
+                {
+                    "name": "Red",
+                    "colorID": 8602,
+                    "hex": "#FF3535"
+                },
+                {
+                    "name": "Blue",
+                    "colorID": 8603,
+                    "hex": "#3B35FF"
+                },
+                {
+                    "name": "Yellow",
+                    "colorID": 8604,
+                    "hex": "#FFFF00"
+                }
+            ]
+          },
+          {
+            "name": "Kenda Court Iron Cap Tires",
+            "optionID": 8700,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
+            "desc": "Experience the protection of Iron Cap Puncture Resistant Technology from Kenda on Wheelchair Tires for Court or Everyday Use.",
+            "price": 150,
+            "defaultColorID": 8702,
+            "colors": [
+                {
+                    "name": "Gray",
+                    "colorID": 8701,
+                    "hex": "#808080"
+                },
+                {
+                    "name": "Red",
+                    "colorID": 8702,
+                    "hex": "#FF3535"
+                },
+                {
+                    "name": "Blue",
+                    "colorID": 8703,
+                    "hex": "#3B35FF"
+                },
+                {
+                    "name": "Yellow",
+                    "colorID": 8704,
+                    "hex": "#FFFF00"
+                }
+            ]
+          },    
           {
             "name": "Other",
             "optionID": 8300,
@@ -2995,31 +3128,31 @@
         "numSubImages": 0,
         "allowMultipleChoices": 1,
         "shortName": "Msc.",
-        "defaultOptionID": 10999,
+        "defaultOptionID": 10998,
         "options": [
           {
             "name": "Hard Cushion",
             "optionID": 10100,
-            "comments": 0,
+            "comments":"",
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height.",
+            "desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height. Often chosen in combination with Plastic seat plate option and max seat height 21\" Front and 21\" Back.",
             "price": 120,
             "defaultColorID": 0
           },
           {
             "name": "Special Cushion",
             "optionID": 10200,
-            "comments": 1,
+            "comments":"",
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.",
+            "desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.  Some common options are Stimulite, RoHo, or Jay",
             "price": 0,
             "priceTBD": 1,
             "defaultColorID": 0
@@ -3033,64 +3166,78 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "An ABS plastic plate is attached to welded supports under the seat frame to allow user achieve max seat height or to eliminate seat upholstery sag. /n*Typically used in combination with a sold 2/î foam cushion found in the misc section in our options. /n** Not available on the Thunder Adjustable.",
             "price": 125,
+            "comments":"",
             "defaultColorID": 0
           },
           {
             "name": "Foam Impact Guards",
             "optionID": 10500,
-            "comments": 0,
+            "comments":"",
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "Protect your chair while in transit with foam impact guards.",
+            "desc": "Protect your chair while in transit with foam or leather impact guards.",
             "price": 75,
             "defaultColorID": 0
           },
           {
-            "name": "Waist Strap",
-            "optionID": 10700,
-            "comments": 0,
+            "name": "Leather Impact Guards",
+            "optionID": 10600,
+            "comments":"",
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a waist strap, specify it here, and we will calculate the correct size for you.",
+            "desc": "Protect your chair while in transit with foam or leather impact guards.",
+            "price": 75,
+            "defaultColorID": 0
+          },    
+          {
+            "name": "Waist Strap",
+            "optionID": 10700,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "Typical Sizes: 10-12\" : The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a waist strap, specify it here, and we will calculate the correct size for you.",
             "price": 100,
             "defaultColorID": 0
           },
           {
             "name": "Lap Strap",
             "optionID": 10800,
-            "comments": 0,
+            "comments":"",
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a lap strap, specify it here, and we will calculate the correct size for you.",
+            "desc": "Typical Size: 8\" : The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a lap strap, specify it here, and we will calculate the correct size for you.",
             "price": 75,
             "defaultColorID": 0
           },
           {
             "name": "Foot Strap",
             "optionID": 10900,
-            "comments": 0,
+            "comments":"",
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a foot strap, specify it here, and we will calculate the correct size for you.",
+            "desc": "Typical Size: 8\" : The correct strapping is important for competition.  Our straps use the same ratchet system as snowboard bindings to get that snug fit.  If you normally use a foot strap, specify it here, and we will calculate the correct size for you.",
             "price": 75,
             "defaultColorID": 0
           },
           {
             "name": "None",
             "optionID": 10998,
-            "comments": 1,
+            "comments":"",
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
@@ -3104,7 +3251,7 @@
           {
             "name": "Other",
             "optionID": 10999,
-            "comments": 1,
+            "comments":"",
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
@@ -3792,8 +3939,8 @@
 					"sizes": [],
 					"comments": 0,
 					"displayColor": 0,
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-					"desc": "Our standard high pressure tires are great for the court.",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/primo-high-pressure.jpg",
+					"desc": "Our standard high pressure PRIMO tire is great for the court!",
 					"weight": 0.09,
 					"price": 0,
 					"defaultColorID": 0
@@ -3839,7 +3986,7 @@
 				{
 					"name": "Schwalbe Right Run Tires",
 					"optionID": 8600,
-                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
 					"desc": "High quality Schwalbe tires with colorful options!",
 					"price": 150,
 					"defaultColorID": 8602,
@@ -3866,6 +4013,36 @@
 						}
 					]
 				},
+                {
+                    "name": "Kenda Court Iron Cap Tires",
+                    "optionID": 8700,
+                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
+                    "desc": "Experience the protection of Iron Cap Puncture Resistant Technology from Kenda on Wheelchair Tires for Court or Everyday Use.",
+                    "price": 150,
+                    "defaultColorID": 8702,
+                    "colors": [
+                        {
+                            "name": "Gray",
+                            "colorID": 8701,
+                            "hex": "#808080"
+                        },
+                        {
+                            "name": "Red",
+                            "colorID": 8702,
+                            "hex": "#FF3535"
+                        },
+                        {
+                            "name": "Blue",
+                            "colorID": 8703,
+                            "hex": "#3B35FF"
+                        },
+                        {
+                            "name": "Yellow",
+                            "colorID": 8704,
+                            "hex": "#FFFF00"
+                        }
+                    ]
+                },
 				{
 					"name": "Other",
 					"optionID": 8700,
