@@ -281,7 +281,7 @@ angular.module('abacuApp')
           return _.sumBy(this.wheelchairs, function (design) {
             var discountRate = 1;
             for (var i = 0; i < instance.discounts.length; i++) {
-              discountRate *= 1 - instance.discounts[i].allDetails().percent;
+              discountRate *= 1 - instance.discounts[i].percent;
             }
             return design.wheelchair.getTotalPrice() * discountRate;
           });
