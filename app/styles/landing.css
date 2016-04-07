@@ -15,6 +15,7 @@
   margin: 25px;
   text-align: center;
   height: calc( 100vh - 50px);
+  min-height: 400px;
   width: calc( 100vw - 50px);
   min-width: 700px;
   border: solid 1px white;
