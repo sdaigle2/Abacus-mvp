@@ -67,7 +67,7 @@
 }
 
 .order-form-header {
-  color: #00a89c;
+  color: #4F9DFF;
   font-size: 20px;
   border-bottom: solid 1px grey;
   margin-bottom: 15px;
@@ -184,7 +184,7 @@
 }
 
 .order-right .order-progressbar .progress .progress-bar{
-  background-color: #60C2B1;
+  background-color: #f2bc19;
 }
 
 .order-right .order-progressbar img {
@@ -195,7 +195,7 @@
 
 .order-button {
   margin-top: 20px;
-  background-color: #60C2B1;
+  background-color: #4F9DFF;
   color: white;
   display:inline-block;
   width: 40%;
@@ -205,7 +205,7 @@
 }
 
 .order-button.order-button-light {
-  background-color: #97ccc3;
+  background-color: #96c5ff;
 }
 
 .order-button:hover {

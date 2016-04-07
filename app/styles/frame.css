@@ -186,7 +186,7 @@ background: white;
   width: 100%;
   left: 9px;
   height: 404px;
-  background-color: #60C2B1;
+  background-color: #4F9DFF;
   opacity: 0.9;
   z-index:2;
 }
@@ -200,7 +200,7 @@ background: white;
 .frame-item-button {
   width: 80%;
   display: inline-block;
-  color: #60C2B1;
+  color: #4F9DFF;
   height: 60px;
   margin-top: 30px;
   padding-top: 16px;
@@ -210,11 +210,11 @@ background: white;
   padding-right: 20px;
   margin-left: -2%;
   border: solid;
-  border-color: #60C2B1;
+  border-color: #4F9DFF;
 }
 
 .frame-item-button:hover {
-  background-color: #60C2B1;
+  background-color: #4F9DFF;
   color: #ffffff;
   cursor: pointer;
 }
