@@ -11,6 +11,7 @@ var users     = cloudant.use('users');
 var orders    = cloudant.use('orders');
 var design    = cloudant.use('design');
 var discounts = cloudant.use('discounts');
+var orderNumber = cloudant.use('order_number');
 
 // This will make sure that nobody accidently writes code that inserts discounts into
 // cloudant. If you try calling discounts.insert(...), you will only get an error
@@ -28,5 +29,6 @@ module.exports = {
 	users: users,
 	orders: orders,
 	designs: design,
-	discounts: discounts
+	discounts: discounts,
+	orderNumber: orderNumber
 };

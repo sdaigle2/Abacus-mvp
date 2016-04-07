@@ -31,8 +31,8 @@
 					"desc": "Wheelchairs designed for basketball have a front cowling that prevents your wheels from getting tangled up with your opponent’s wheels.",
 					"weight": 0,
 					"price": 0,
-          "comments":"I am comments",
-          "defaultColorID": 1101,
+                    "comments":"I am comments",
+                    "defaultColorID": 1101,
 					"colors": [
 						{
 							"name": "Sky White",
@@ -137,8 +137,8 @@
 					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
-          "comments":"",
-          "displayColor": 1,
+                    "comments":"",
+                    "displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/softball-tennis.png",
 					"desc": "Sport wheelchairs that aren’t made for the basketball court have no need for the front cowling.  Leave it off to save weight and gain maneuverability.  Tennis chairs have a slightly longer 5th wheel for added stability.",
 					"weight": 0,
@@ -282,8 +282,8 @@
 					"desc": "A sleek and classic look: glossy black backrest, footrest, and side guards.",
 					"weight": 0,
 					"price": 0,
-          "comments":"",
-          "defaultColorID": 0
+                    "comments":"",
+                    "defaultColorID": 0
 				},
 				{
 					"name": "Custom",
@@ -296,8 +296,8 @@
 					"desc": "Customize your rig with your team colors!  Change the color of the backrest, footrest, and side guards.",
 					"weight": 350,
 					"price": 350,
-          "comments":"",
-          "defaultColorID": 3202,
+                    "comments":"",
+                    "defaultColorID": 3202,
 					"colors": [
 						{
 							"name": "Sky White",
@@ -417,8 +417,8 @@
 					"desc": "A rigid backrest allows for the center of gravity to be adjusted after the chair has been built. A single fifth wheel support in back provides stability while allowing increased center of gravity to increase performance and agility.  The fifth wheel comes Standard on all Thunder Models with a 72mm Micro caster float adjusted to factory specs.",
 					"weight": 0,
 					"price": 0,
-          "comments":"",
-          "defaultColorID": 1101,
+                    "comments":"",
+                    "defaultColorID": 1101,
 					"colors": [
 						{
 							"name": "Sky White",
@@ -547,8 +547,8 @@
 					"desc": "A rigid backrest allows for the center of gravity to be adjusted after the chair has been built. The Dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Recommended by team per4max for athletes at every level the addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",
 					"weight": 350,
 					"price": 250,
-          "comments":"",
-          "defaultColorID": 1101,
+                    "comments":"",
+                    "defaultColorID": 1101,
 					"colors": [
 						{
 							"name": "Sky White",
@@ -677,8 +677,8 @@
 					"desc": "A continuous backrest is stronger than a rigid backrest, but it's not adjustable. A single fifth wheel support in back provides stability while allowing increased center of gravity to increase performance and agility. The fifth wheel comes Standard on all Thunder Models with a 72mm Micro caster float adjusted to factory specs.",
 					"weight": 0,
 					"price": 280,
-          "comments":"",
-          "defaultColorID": 1101,
+                    "comments":"",
+                    "defaultColorID": 1101,
 					"colors": [
 						{
 							"name": "Sky White",
@@ -807,8 +807,8 @@
 					"desc": "A continuous backrest is stronger than a rigid backrest, but it's not adjustable.  The Dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Recommended by team per4max for athletes at every level the addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",
 					"weight": 350,
 					"price": 530,
-          "comments":"",
-          "defaultColorID": 1101,
+                    "comments":"",
+                    "defaultColorID": 1101,
 					"colors": [
 						{
 							"name": "Sky White",
@@ -937,8 +937,8 @@
 					"desc": "A rigid backrest allows for the center of gravity to be adjusted after the chair has been built. Experience the added benefits of a 5th wheel with the convenience of removing it seconds.  The removable 5th wheel is great for individuals with smaller cars with limited space!  When you are ready to compete simply install the 5th wheel clamp it down and off you go!",
 					"weight": 350,
 					"price": 250,
-          "comments":"",
-          "defaultColorID": 4301,
+                    "comments":"",
+                    "defaultColorID": 4301,
 					"colors": [
 						{
 							"name": "Matte Black",
@@ -1032,11 +1032,25 @@
             "defaultColorID": 0
           },
           {
-            "name": "Standard Spoke Wheel",
+            "name": "24\" Standard Spoke Wheels",
             "optionID": 6200,
             "colors": [],
             "defaultSizeIndex": 1,
-            "sizes": ["24\"", "25\"", "26\"", "27\""],
+            "sizes": [],
+            "comments":"",
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/sun.jpg",
+            "desc": "Our standard wheel is a 24\" wire spoke wheel made by Sun Components.  This wheel is lightweight, stiff, and high quality.",
+            "weight": 0,
+            "price": 0,
+            "defaultColorID": 0
+          },
+          {
+            "name": "25\", 26\", or 27\" Wire Spoke Wheels",
+            "optionID": 6222,
+            "colors": [],
+            "defaultSizeIndex": 1,
+            "sizes": ["25\"", "26\"", "27\""],
             "comments":"",
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/sun.jpg",
@@ -1044,7 +1058,7 @@
             "weight": 0,
             "price": 300,
             "defaultColorID": 0
-          },
+          },    
           {
             "name": "Spinergy Wheels",
             "optionID": 6300,
@@ -2572,22 +2586,36 @@
             "desc": "If you have wheels from an old sports chair or you'll be buying wheels separately, choose this option.  We will still need to know that size wheels you will be planning to use in order to configure the chair correctly.",
             "weight": 0,
             "price": 0,
+            "defaultColorID": 0  
+          },
+          {
+            "name": "24\" Standard Spoke Wheels",
+            "optionID": 6200,
+            "colors": [],
+            "defaultSizeIndex": 1,
+            "sizes": [],
+            "comments":"",
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/sun.jpg",
+            "desc": "Our standard wheel is a 24\" wire spoke wheel made by Sun Components.  This wheel is lightweight, stiff, and high quality.",
+            "weight": 0,
+            "price": 0,
             "defaultColorID": 0
           },
           {
-            "name": "Standard Spoke Wheel",
-            "optionID": 6200,
+            "name": "25\", 26\", or 27\" Wire Spoke Wheels",
+            "optionID": 6222,
             "colors": [],
-            "defaultSizeIndex": 0,
-            "sizes": ["24\"", "25\"", "26\"", "27\""],
-            "comments": 0,
+            "defaultSizeIndex": 1,
+            "sizes": ["25\"", "26\"", "27\""],
+            "comments":"",
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/sun.jpg",
             "desc": "Our standard wheel is a wire spoke wheel made by Sun Components.  This wheel is lightweight, stiff, and high quality.",
             "weight": 0,
             "price": 300,
             "defaultColorID": 0
-          },
+          }, 
           {
             "name": "Spinergy Wheels",
             "optionID": 6300,
@@ -2967,7 +2995,7 @@
         "numSubImages": 0,
         "allowMultipleChoices": 1,
         "shortName": "Msc.",
-        "defaultOptionID": -1,
+        "defaultOptionID": 10999,
         "options": [
           {
             "name": "Hard Cushion",

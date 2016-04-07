@@ -4,35 +4,35 @@
 <!--<script src='scripts/canvas/Particles/Particles.js'></script>-->
 
 <link href="styles/landing.css" rel="stylesheet" />
-<div id="wrapper">
-  <!-- Google Tag Manager -->
-  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5BJDWF"
-                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-5BJDWF');</script>
-  <!-- End Google Tag Manager -->
+<div id="imgdiv">
+  <div id="outerDiv">
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5BJDWF"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5BJDWF');</script>
+    <!-- End Google Tag Manager -->
 
-<!--<canvas id='canvy' width='550' height='400'></canvas>-->
-  <img id="mainLogo" data-ng-src="images/landing_page/tinker_logo_beta1.png" alt="Tinker" width="700">
-  <div class="medium" id="text2"><h1>DESIGN <span class="book">FOR</span> YOUR LIFE</h1></div>
-  <section class="medium text3">
-    Customize the look, style, and measurements of your ultralight wheelchair.<br>
-  </section>
-  <button ng-click="toFramePage()" class="medium button" id="startButton">Start a New Design</button>
-  <button ng-click="toAboutPage()" class="medium button">Help Bring Tinker to the US</button>
-
-  <!--<section class="medium text4">-->
-    <!--Designed by-->
-    <!--<a href="http://www.intelliwheels.net" target="_blank"> <img data-ng-src="images/landing_page/iw_logo_blue.png" alt="Intelliwheels"></a>-->
-    <!--featuring-->
-    <!--<a href="http://www.tiarrow.com/" target="_blank"> <img data-ng-src="images/landing_page/tiarrow_logo.png" alt="Tiarrow"></a>-->
-  <!--</section>-->
-
-
-  <!--<div id="fpscontainer"></div>-->
+  <!--<canvas id='canvy' width='550' height='400'></canvas>-->
+    <center>
+      <div id = "wrapper">
+        <img id="mainLogo" data-ng-src="images/landing_page/per4max_landing_page.png" alt="Per4max">
+        <section class="text3">
+          Design your dream wheelchair online with the <br> Per4max configurator.
+        </section>
+        <div>
+          <button ng-click="toFramePage()" class="medium button" id="startButton">Start a New Design</button>
+          <button ng-click="toAboutPage()" class="medium button">Learn About our Process</button>
+        </div>
+        <a target="_blank" href="http://www.intelliwheels.net/tinker/" >
+          <img id="tinkerLogo" data-ng-src="images/Powered-by-Tinker-Logo-White.png" alt="Tinker">
+        </a>
+      </div>
+    </center>
+  </div>
 </div>
 
 <script>

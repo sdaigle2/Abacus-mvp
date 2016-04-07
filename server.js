@@ -10,6 +10,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var shortid = require('shortid');
 var path = require('path');
+var orderNumber = require('./server_scripts/services/orderNumber');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -41,9 +42,14 @@ app.get('/', function (req, res) {
 });
 
 
+orderNumber.initPromise
+.then(function () {
+	var port = process.env.PORT || 8080;
 
-var port = process.env.PORT || 8080;
+	console.log('Server will run on port ' + port);
 
-console.log('Server will run on port ' + port);
-
-app.listen(port);
+	app.listen(port);
+})
+.catch(function (err) {
+	console.log(`GOT ERROR WHILE INITIALIZING ORDER NUMBER SERVICE: ${JSON.stringify(err, null, 2)}`);
+});

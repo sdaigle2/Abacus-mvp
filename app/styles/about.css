@@ -4,7 +4,7 @@
 
 #wrapper{
   position: relative;
-  background: linear-gradient(to bottom,rgba(255,255,255,1), rgba(136,203,195,0.5));
+  background: linear-gradient(to bottom,rgba(255,255,255,1), rgba(150,197,255,0.5));
   height: 100vh;
   line-height: 1;
   top: -20px;
@@ -30,7 +30,7 @@
   font-size: 1.5em;
   font-weight: 500;
   font-style: italic;
-  color: #939597;
+  color: #4F9DFF;
   border-bottom: 2px solid #939597;
   padding: 26px 0;
   margin: 0;
@@ -40,7 +40,7 @@
 #tabMenu section>p:hover,
 #tabMenu .highlight
 {
-  color: #00A89C;
+  color: #f2bc19;
 }
 
 #tabMenu div {
@@ -130,7 +130,7 @@
 }
 
 #wrapper button:hover{
-  background-color: #00A89C;
+  background-color: #4F9DFF;
   color: white;
 }
 

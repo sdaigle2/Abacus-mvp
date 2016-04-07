@@ -5,10 +5,7 @@ html{
 }
 
 body {
-  padding-top: 0;
-  padding-bottom: 20px;
   background-color: #FFF;
-  min-width: 1050px;
 }
 
 .preload {
@@ -133,6 +130,10 @@ body {
   position: absolute;
   right: 25px;
   top: 3px;
+}
+
+.mainNavbar .mainNavbar-right .cartIcon{
+  cursor: pointer;
 }
 
 .mainNavbar .mainNavbar-right .cartButton {
@@ -719,18 +720,18 @@ div{
 
 .button{
   display: inline-block;
-  color: #60C2B1;
+  color: #4F9DFF;
   height: 40px;
   margin-top: 30px;
   text-align: center;
   font-size: 14px;
   padding: 10px 15px;
-  border: solid 1px #60C2B1;
+  border: solid 1px #4F9DFF;
   border-radius: 2px;
 }
 
 .button:hover {
-  background-color: #60C2B1;
+  background-color: #4F9DFF;
   color: white;
   cursor: pointer;
 }
@@ -741,18 +742,18 @@ div{
 
 .button1{
   display: inline-block;
-  color: #60C2B1;
+  color: #4F9DFF;
   height: 40px;
   margin-top: 30px;
   text-align: center;
   font-size: 14px;
   padding: 10px 15px;
-  border: solid 1px #60C2B1;
+  border: solid 1px #4F9DFF;
   border-radius: 2px;
 }
 
 .button1:hover {
-  background-color: #60C2B1;
+  background-color: #4F9DFF;
   color: white;
   cursor: pointer;
 }

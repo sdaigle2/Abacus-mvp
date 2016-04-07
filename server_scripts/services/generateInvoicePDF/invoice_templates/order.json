@@ -1,90 +1,184 @@
 {
-  "orderNum": "OrderNumNotSet",
   "taxRate": 0.097,
   "shippingFee": 15,
-  "sentDate": null,
-  "userID": 234,
-  "fName": "Sourabh",
-  "lName": "Desai",
-  "email": "sourabhdesai@gmail",
-  "phone": "847-977-3447",
-  "addr": "628 Primrose Lane",
-  "addr2": "",
-  "city": "Schaumburg",
-  "state": "IL",
-  "zip": "60194",
+  "sentDate": "2016-04-06T20:00:06.039Z",
+  "userID": "sourabhdesai@gmail.com",
+  "email": "sourabhdesai@gmail.com",
+  "phone": "8479773447",
+  "shippingDetails": {
+    "fName": "Sourabh",
+    "lName": "Desai",
+    "addr": "628 Primrose Lane",
+    "addr2": "",
+    "city": "Schaumburg",
+    "state": "IL",
+    "zip": "60194"
+  },
+  "billingDetails": {
+    "fName": "Sourabh",
+    "lName": "Desai",
+    "addr": "628 Primrose Lane",
+    "addr2": "",
+    "city": "Schaumburg",
+    "state": "IL",
+    "zip": "60194"
+  },
+  "payMethod": "Credit Card",
+  "poNumber": "",
   "wheelchairs": [
     {
-      "createdAt": "2016-03-23T21:50:23.169Z",
-      "updatedAt": "2016-03-23T21:50:23.169Z",
+      "createdAt": "2016-04-05T03:54:56.458Z",
+      "updatedAt": "2016-04-05T03:54:56.458Z",
       "wheelchair": {
-        "frameID": 3,
+        "frameID": 11,
         "title": "My Custom Wheelchair",
         "parts": [
           {
             "partID": 1000,
             "optionID": 1100,
-            "colorID": 1101,
-            "sizeIndex": -1
+            "colorID": 1104,
+            "sizeIndex": -1,
+            "name": "Frame Style / Sport",
+            "optionName": "Basketball"
           },
           {
-            "partID": 2000,
+            "partID": 2222,
+            "optionID": 2200,
+            "colorID": 1104,
+            "sizeIndex": -1,
+            "name": "Accessories Color",
+            "optionName": "Standard Glossy Black"
+          },
+          {
+            "partID": 3000,
+            "optionID": 3200,
+            "colorID": 3201,
+            "sizeIndex": -1,
+            "name": "5th Wheel & Backrest",
+            "optionName": "Rigid 5th Wheel & Rigid Back Rest"
+          },
+          {
+            "partID": 4444,
+            "optionID": 4200,
+            "colorID": 3201,
+            "sizeIndex": -1,
+            "name": "Upholstery",
+            "optionName": "Standard"
+          },
+          {
+            "partID": 7000,
+            "optionID": 7300,
+            "colorID": 3201,
+            "name": "Wheels",
+            "optionName": "24\" Standard Spoke Wheels"
+          },
+          {
+            "partID": 8000,
+            "optionID": 8600,
+            "colorID": 8604,
+            "name": "Hand Rims",
+            "optionName": "Hard Anodized 6 tab"
+          },
+          {
+            "partID": 9000,
+            "optionID": 9400,
+            "colorID": 0,
+            "sizeIndex": -1,
+            "name": "Tire",
+            "optionName": "High Pressure Tires"
+          }
+        ],
+        "measures": [
+          {
+            "measureID": 15001,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15002,
+            "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15002,
+            "measureOptionIndex": -1
+          }
+        ],
+        "inCurOrder": false
+      },
+      "_id": "VyWN8XnRl"
+    },
+    {
+      "createdAt": "2016-04-07T19:56:30.191Z",
+      "updatedAt": "2016-04-07T19:56:30.191Z",
+      "wheelchair": {
+        "frameID": 4,
+        "title": "My Custom Wheelchair",
+        "parts": [
+          {
+            "partID": 1000,
             "optionID": 2100,
             "colorID": 1101,
-            "sizeIndex": -1
+            "sizeIndex": -1,
+            "comments": "I am comments",
+            "name": "Casters",
+            "optionName": "3\" (72mm) Micro"
           },
           {
             "partID": 3000,
             "optionID": 3100,
             "colorID": 0,
-            "sizeIndex": -1
+            "sizeIndex": -1,
+            "comments": "",
+            "name": "Miscellaneous",
+            "optionName": "None"
           },
           {
             "partID": 4000,
             "optionID": 4100,
             "colorID": 1101,
-            "sizeIndex": -1
-          },
-          {
-            "partID": 11000,
-            "optionID": 11100,
-            "colorID": 0,
-            "sizeIndex": -1
+            "sizeIndex": -1,
+            "comments": ""
           },
           {
             "partID": 5000,
             "optionID": 5100,
             "colorID": 0,
-            "sizeIndex": -1
+            "sizeIndex": -1,
+            "comments": ""
           },
           {
             "partID": 6000,
             "optionID": 6200,
             "colorID": 0,
-            "sizeIndex": 0
+            "sizeIndex": 1,
+            "comments": ""
           },
           {
             "partID": 7000,
             "optionID": 7100,
             "colorID": 0,
-            "sizeIndex": -1
+            "sizeIndex": -1,
+            "comments": ""
           },
           {
             "partID": 8000,
             "optionID": 8100,
             "colorID": 0,
-            "sizeIndex": -1
+            "sizeIndex": -1,
+            "comments": ""
           },
           {
             "partID": 9000,
             "optionID": 9100,
             "colorID": 0,
-            "sizeIndex": -1
+            "sizeIndex": -1,
+            "comments": ""
           },
           {
             "partID": 10000,
-            "optionID": 10100,
-            "colorID": 0
+            "optionID": 10998,
+            "colorID": 0,
+            "sizeIndex": -1,
+            "comments": ""
           }
         ],
         "measures": [
@@ -150,148 +244,11 @@
           }
         ],
         "inCurOrder": false
-      }
-    },
-    {
-      "_id": "VJ5GcGHTx",
-      "_rev": "13-a4d73f85ee8005036964779ab230675e",
-      "creator": "sourabhdesai@gmail.com",
-      "createdAt": "2016-03-18T16:21:13.418Z",
-      "updatedAt": "2016-03-18T16:21:13.418Z",
-      "wheelchair": {
-        "frameID": 3,
-        "title": "My Custom Wheelchair",
-        "parts": [
-          {
-            "partID": 1000,
-            "optionID": 1200,
-            "colorID": 1103,
-            "sizeIndex": -1
-          },
-          {
-            "partID": 2000,
-            "optionID": 2200,
-            "colorID": 1102,
-            "sizeIndex": -1
-          },
-          {
-            "partID": 3000,
-            "optionID": 3200,
-            "colorID": 3202,
-            "sizeIndex": -1
-          },
-          {
-            "partID": 4000,
-            "optionID": 4200,
-            "colorID": 1102,
-            "sizeIndex": -1
-          },
-          {
-            "partID": 11000,
-            "optionID": 11100,
-            "colorID": 0,
-            "sizeIndex": -1
-          },
-          {
-            "partID": 5000,
-            "optionID": 5100,
-            "colorID": 0,
-            "sizeIndex": -1
-          },
-          {
-            "partID": 6000,
-            "optionID": 6200,
-            "colorID": 0,
-            "sizeIndex": 0
-          },
-          {
-            "partID": 7000,
-            "optionID": 7100,
-            "colorID": 0,
-            "sizeIndex": -1
-          },
-          {
-            "partID": 8000,
-            "optionID": 8100,
-            "colorID": 0,
-            "sizeIndex": -1
-          },
-          {
-            "partID": 9000,
-            "optionID": 9100,
-            "colorID": 0,
-            "sizeIndex": -1
-          },
-          {
-            "partID": 10000,
-            "optionID": 10100,
-            "colorID": 0
-          }
-        ],
-        "measures": [
-          {
-            "measureID": 15001,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15002,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15003,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15004,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15005,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15006,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15006,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15007,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15008,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15009,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15010,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15011,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15012,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15013,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15014,
-            "measureOptionIndex": -1
-          }
-        ],
-        "inCurOrder": true
-      }
+      },
+      "_id": "EyeqciykZ"
     }
-  ]
+  ],
+  "discounts": [],
+  "_id": "dc0b794df55eddfd75a8541606afa4bd",
+  "_rev": "16-da00c6b9339d2b38f8b60f5203b13e3e"
 }

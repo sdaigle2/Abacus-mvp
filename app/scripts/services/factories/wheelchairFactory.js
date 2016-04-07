@@ -43,7 +43,7 @@ angular.module('abacuApp')
           var m = meas[j];
           this.measures.push({
             measureID: m.getID(),
-            measureComments: m.getComments(),
+            comments: m.getComments(),
             measureOptionIndex: -1
           })
         }
@@ -77,7 +77,7 @@ angular.module('abacuApp')
           var copyMeasure = {
             measureID: m.measureID,
             measureOptionIndex: m.measureOptionIndex,
-            measureComments: m.measureComments
+            comments: m.measureComments
           };
           this.measures.push(copyMeasure);
         }
