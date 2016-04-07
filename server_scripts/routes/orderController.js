@@ -5,6 +5,7 @@
 
 var router = require('express').Router();
 var _      = require('lodash');
+var async  = require('async');
 
 // Import services
 var verifyOrder        = require('../services/data').verifyOrder;
@@ -43,96 +44,184 @@ router.post('/order', function (req, res) {
   var total = req.body.totalPrice;
   //The order is valid
   if (total !== false) {
-    //Create a new stripe payment
-    var charge = stripe.charges.create({
-      amount: Math.round(total * 30), // Amount in cents
-      currency: "usd",
-      source: stripeToken,
-      description: "Tinker order"
-    }, function (err, charge) {
-      //If there was an error and the user didn't opt to pay by insurance
-      if (err && req.body.order.payMethod === 'paypal') {
-        console.log(err);
-        res.json({err: err.type});
+
+    var order = req.body.order;
+
+    // returns error value with a charge object ... if payMethod isnt 'Credit Card', just returns {} for charges object
+    const createStripeCharge = cb => {
+      if (order.payMethod === 'Credit Card') {
+        //Create a new stripe payment
+        var charge = stripe.charges.create({
+          amount: Math.round(total * 30), // Amount in cents
+          currency: "usd",
+          source: stripeToken,
+          description: "Tinker order"
+        }, cb);
+      } else {
+        cb(null, {});
       }
-      else {  //Successful payment or the user if paying through insurance
-        var order = req.body.order;
-        dbUtils.areValidOrderDiscounts(order.discounts, function (valid) {
-          if (!valid) {
-            res.status(400);
-            res.json({
-              msg: 'Invalid Discounts'
-            });
-          } else {
+    };
 
-            // Replace items wheelchairs array with just wheelchair IDs
-            order.wheelchairs = _.isArray(order.wheelchairs) ? order.wheelchairs : [];
-            order.wheelchairs = order.wheelchairs.map(function (wheelchair) {
-              if (_.isObject(wheelchair)) {
-                return wheelchair._id;
-              }
-              return wheelchair; // the wheelchair is just an ID
-            });
+    // returns true/false depending on whether the discounts were valid
+    const validateOrderDiscounts = cb => {
+      dbUtils.areValidOrderDiscounts(order.discounts, cb);
+    };
 
-            dbService.orders.insert(order, function (err, body) { //Insert the order into the database
-              order.orderNum = body.id;   //Set the id for the order using the id given by the database
-              res.send(body.id);
+    // returns error value with user object (empty user object if user wasnt logged in)
+    const updateUserOrderHistory = cb => {
+      if (!_.get(req, 'session.user')) {
+        return process.nextTick(() => cb(null, {}));
+      }
 
-              //Set up the invoice email
-              var invoiceEmail = new sendgrid.Email({
-                from: 'do-not-reply@tinker.fit',
-                subject: 'Per4max Purchase Invoice'
-              });
+      //Use session cookie to check if user is logged in
+      dbService.users.get(req.session.user, function(err, user) {
+        if (!err && _.isObject(user)) { // user was found ... make sure that this order is that users cart order
+            var curOrderID = order.id || order._id;
+            var userCartID = dbUtils.getObjectID(user.cart, '_id');
+            var userOrders = _.isArray(user.orders) ? user.orders : [];
 
-              var manufactureCopy = new sendgrid.Email({
-                from: 'do-not-reply@tinker.fit',
-                subject: 'Per4max Purchase Invoice'
-              });
-
-              //Use session cookie to check if user is logged in
-              dbService.users.get(req.session.user, function(err, existing){
-                //If user is logged in, add the order to their entry in the database as well
-                if(existing.orders) {
-                  existing.orders.push(req.body.order);
-                  dbService.users.insert(existing, function (err, body) {
-                    console.log(err);
-                  });
-                }
-              });
-
-              //Send email to the user containing the invoice as a pdf
-              invoiceEmail.to = req.body.order.email;
-              invoiceEmail.text = 'Thank you for using Abacus to purchase your new Wheelchair. We have attached the invoice for your order.';
-              manufactureCopy.to = 'sales@intelliwheels.net'
-              manufactureCopy.text = 'an order just been placed, here is a copy of the invoice'
-              generateInvoicePDF(order, function (err, pdfPath) {
+            if (curOrderID !== userCartID) {
+              cb({status: 400, err: 'Given order was not the users cart order'});
+            } else {
+               // push the order to the users order history and set cart to null
+               const userID = user._id || user.id;
+               user.orders.push(order);
+               user.cart = null;
+               insertUser(user, userID, function (err, minUser) {
                 if (err) {
-                  // Probably should do more than just log the error here
-                  console.log(err);
-                } else {
-                  invoiceEmail.addFile({
-                    path: pdfPath
-                  });
-                  sendgrid.send(invoiceEmail, function (err, json) {
-                    console.log(err);
-                  });
-                  manufactureCopy.addFile({
-                    path: pdfPath
-                  });
-                  sendgrid.send(manufactureCopy, function (err, json) {
-                    console.log(err);
-                  });
-
-
+                  return cb({status: 500, err: err});
                 }
+                cb(null, minUser);
+               });
+            }
+        } else {
+          // User wasnt logged in when they made the order
+          cb(null, {});
+        }
+      });
+    };
+
+    // takes in boolean representing whether user is logged in & returns order object
+    // Only inserts order if user isnt logged in
+    const insertOrder = (isLoggedIn, cb) => {
+      if (!isLoggedIn) {
+        dbUtils.insertOrder(order, cb);
+      } else {
+        cb(null, order);
+      }
+    };
+
+    // returns error value with object {orderNumber: <Order Number>}
+    const sendInvoiceEmails = cb => {
+
+      orderNum.increment() // this is an atomic operation & a central point of congestion...could take a while
+      .then(curOrderNum => {
+        order.orderNum = curOrderNum;
+
+        //Set up the invoice email
+        var invoiceEmail = new sendgrid.Email({
+          from: 'do-not-reply@tinker.fit',
+          subject: 'Per4max Purchase Invoice'
+        });
+
+        var manufactureCopy = new sendgrid.Email({
+          from: 'do-not-reply@tinker.fit',
+          subject: 'Per4max Purchase Invoice'
+        });
+
+        //Send email to the user containing the invoice as a pdf
+        invoiceEmail.to = req.body.order.email;
+        invoiceEmail.text = 'Thank you for using Tinker to purchase your new Wheelchair. We have attached the invoice for your order.';
+        manufactureCopy.to = 'sales@intelliwheels.net';
+        manufactureCopy.text = 'An order just been placed, here is a copy of the invoice';
+        
+        generateInvoicePDF(order, function (err, pdfPath) {
+          if (err) {
+            cb(err);
+          } else {
+            const sendInvoiceMail = function (cb) {
+              invoiceEmail.addFile({
+                path: pdfPath
               });
+              sendgrid.send(invoiceEmail, function (err, json) {
+                console.log(`Error while sending user invoice email:\n${JSON.stringify(err, null, 2)}`);
+                cb(err);
+              });
+            };
+
+            const sendManufacturerEmail = function (cb) {
+              manufactureCopy.addFile({
+                path: pdfPath
+              });
+              sendgrid.send(manufactureCopy, function (err, json) {
+                console.log(`Error while sending manufacturer invoice email:\n${JSON.stringify(err, null, 2)}`);
+                cb(err);
+              });
+            };
+
+            // send the emails out in parallel
+            async.parallel([sendInvoiceMail, sendManufacturerEmail], function (err) {
+              if (err) {
+                cb(err);
+              } else {
+                cb(null, {'orderNum': curOrderNum});
+              }
             });
+
 
           }
         });
 
+      })
+      .catch(err => {
+        cb(err);
+      });
+
+    };
+
+    validateOrderDiscounts(valid => {
+      if (!valid) {
+        res.status(400);
+        res.json({err: 'Order Discounts were invalid'});
+        return;
       }
-    });
+      createStripeCharge((err, charge) => {
+        if (err) {
+          console.log(err);
+          res.status(400);
+          res.json({err: 'Error while processing credit card payment'});
+          return;
+        }
+
+        updateUserOrderHistory((err, user) => {
+          if (err) {
+            res.status(400);
+            res.json({err: err});
+            return;
+          }
+
+          const userIsLoggedIn = _.isObject(user) && _.isEmpty(user);
+          insertOrder(userIsLoggedIn, (err) => {
+            if (err) {
+              res.status(500);
+              res.json({err: err});
+              return;
+            }
+
+            sendInvoiceEmails((err, orderNum) => {
+              if (err) {
+                res.status(500);
+                res.json({err: err});
+                return;
+              }
+
+              // Respond with 200 status and user & order number in the response body
+              res.json({user: user, orderNum: orderNum});
+            });
+          });
+        });
+      });
+    });    
   }
   else
     res.send({err: 'Invalid order'});

@@ -148,11 +148,19 @@ exports.getUserByID = getUserByID;
  *
  * Reasons that this can return false:
  * - At least one of the discounts is not a multi-discount even though there's more than one discount that is being applied to the order
+ * - A discount isn't included twice
  * - At least one of the discounts are expired
  */
 function areValidOrderDiscounts(discounts, cb) {
 	discounts = _.isArray(discounts) ? discounts : [];
 	var discountIDs = discounts.map(discount => getObjectID(discount, '_id'));
+
+	// Check that no discount is being added twice
+	if (_.uniq(discountIDs).length !== discounts.length) {
+		process.nextTick(() => cb(false));
+		return;
+	}
+
 	getAllByID(discountIDs, function (err, discounts) {
 		if (err) {
 			return cb(false);
@@ -160,7 +168,7 @@ function areValidOrderDiscounts(discounts, cb) {
 
 		// Check that you're not mixing multi-discounts with non-multi-discounts
 		if (!(_.every(discounts, 'isMultiDiscount')) && discounts.length > 1) {
-			cb(false);
+			return cb(false);
 		}
 
 		// check that none of the discounts are expired
