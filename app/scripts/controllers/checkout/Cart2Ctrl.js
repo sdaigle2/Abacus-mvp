@@ -38,6 +38,7 @@ angular.module('abacuApp')
       //A reference to User.curEditOrder (set during init())
       $scope.curOrder = null;
       $scope.discountCode = "";
+      $scope.promoErr = "";
 
       var discount = new Discount();
 
@@ -297,10 +298,16 @@ angular.module('abacuApp')
             $scope.curOrder.addDiscount(discount)
             $scope.curOrder.pruneDiscount();
             $scope.curOrder.getTotalCost();
+            $scope.promoErr = '';
             User.updateCart();
           }).catch(function(err)
           {
+            if(err.status == 404){
+              console.log('Sorry, did not find your promo code')
+              $scope.promoErr = 'Sorry, did not find your promo code'
+            }else{
             console.log(err);
+            $scope.promoErr = err;}
           })
       }
 
