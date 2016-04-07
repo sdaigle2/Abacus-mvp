@@ -43,7 +43,7 @@ angular.module('abacuApp')
           var m = meas[j];
           this.measures.push({
             measureID: m.getID(),
-            measureComment: m.getComments(),
+            measureComments: m.getComments(),
             measureOptionIndex: -1
           })
         }

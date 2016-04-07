@@ -92,6 +92,8 @@ angular.module('abacuApp')
       localJSONStorage.put('cartWheelchairs', tempWheelchairs);
     }
 
+
+
     Order.prototype = {
 
       isValidOrder: function () {
@@ -114,10 +116,19 @@ angular.module('abacuApp')
 
       addDiscount: function (discount) {
         if (discount instanceof Discount && this.canAddDiscount()) {
+          this.discounts.forEach(function(discountOld){
+            if(discountOld._id == discount._id){
+              throw new Error('promo code has been applied already');
+            }
+          });
           this.discounts.push(discount);
         } else {
           throw new Error('Input to order.addDiscount() must be instance of Discount');
         }
+      },
+
+      pruneDiscount: function(){
+        return(_.uniqBy(this.discounts, '_id'));
       },
 
       addWheelchair: function (newDesign) {
@@ -266,8 +277,13 @@ angular.module('abacuApp')
       //The combined cost of all the Wheelchairs in the Order
       getSubtotal: function () {
         if (this.wheelchairs.length > 0) {
+          var instance = this;
           return _.sumBy(this.wheelchairs, function (design) {
-            return design.wheelchair.getTotalPrice();
+            var discountRate = 1;
+            for (var i = 0; i < instance.discounts.length; i++) {
+              discountRate *= 1 - instance.discounts[i].allDetails().percent;
+            }
+            return design.wheelchair.getTotalPrice() * discountRate;
           });
         }
         return 0;
@@ -292,12 +308,14 @@ angular.module('abacuApp')
         return this.getSubtotal() + this.getShippingCost() + this.getTaxCost();
       },
 
+
+
       /********************Saving to DB***********************/
 
       //This asyncronous funtion takes in various user information
       //and sends the Order to the distibutor with it.
       //This method also saves the Order to the database and marks it as "sent"
-      send: function (userID, userData, shippingData, billingData, payMethod, token, order) {
+      send: function (userID, userData, shippingData, billingData, payMethod, token) {
         //Need a reference to the current scope when inside the callback function
         var curThis = this;
 
@@ -324,7 +342,6 @@ angular.module('abacuApp')
 
         this.payMethod = payMethod;
         this.sentDate  = new Date(); //Set date to now - doing this marks this Order as "sent"
-        this.order = order;
 
         return $http({
           url: '/order',

@@ -13,8 +13,8 @@ angular.module('abacuApp')
   .constant('WHEELCHAIR_CANVAS_WIDTH', 187) // width of canvas that renders wheelchair
   .constant('PAYMENT_METHODS', [{'name': 'Credit Card', 'requiresAccount': false}, {'name': 'Credit Card when Order Ships', 'requiresAccount': true}, {'name': 'Grant', 'requiresAccount': true}, {'name': 'Bill me Net 30', 'requiresAccount': true}])
   .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', 'PAYMENT_METHODS',
-    '$q', 'Errors', 'ngDialog', 'PromiseUtils',
-    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, PAYMENT_METHODS, $q, Errors, ngDialog, PromiseUtils) {
+    '$q', 'Errors', 'ngDialog', 'PromiseUtils', 'Discount',
+    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, PAYMENT_METHODS, $q, Errors, ngDialog, PromiseUtils, Discount) {
       $scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
       $scope.USER_TYPES = USER_TYPES;
       $scope.PAYMENT_METHODS = PAYMENT_METHODS;
@@ -37,7 +37,9 @@ angular.module('abacuApp')
       $scope.hoverImage = 'add_icon';
       //A reference to User.curEditOrder (set during init())
       $scope.curOrder = null;
+      $scope.discountCode = "";
 
+      var discount = new Discount();
 
       //Initialize Cart page
       function init() {
@@ -285,6 +287,23 @@ angular.module('abacuApp')
             'from': 'cart'
           });
       };
+
+
+      /*****discount  function*******/
+      $scope.applyDiscount = function(){
+        discount.fetchDiscount($scope.discountCode)
+          .then(function(newDiscount){
+            discount = newDiscount;
+            $scope.curOrder.addDiscount(discount)
+            $scope.curOrder.pruneDiscount();
+            $scope.curOrder.getTotalCost();
+            User.updateCart();
+          }).catch(function(err)
+          {
+            console.log(err);
+          })
+      }
+
 
     }]);
 

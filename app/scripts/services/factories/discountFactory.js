@@ -4,7 +4,7 @@
 * This Factory creates a Discount object
 * An order can have multiple discount objects
 * When calculating the price of an order, discounts specify how much percent to take off of each orders SubTotal price
-* 
+*
 * Some disounts can be used with other discounts. For those discounts, the 'isMultiDiscount' will be set to true
 * Other discounts cannot be used with other discounts. For these, 'isMultiDiscount' is false
 */
@@ -21,10 +21,11 @@ angular.module('abacuApp')
   })
   .factory('Discount', ['_', 'DEFAULT_DISCOUNT', '$http', 'PromiseUtils', function (_, DEFAULT_DISCOUNT, $http, PromiseUtils) {
   	var Discount = function (discountObj) {
+      discountObj = discountObj || {};
       this._id = discountObj._id || discountObj.id || DEFAULT_DISCOUNT._id; // expect _id field to either be '_id' or 'id'
       this._rev = discountObj._rev || discountObj.rev || DEFAULT_DISCOUNT._rev; // expect _rev field to either be '_rev' or 'rev'
       this.percent = discountObj.percent || DEFAULT_DISCOUNT.percent;
-      this.isMultiDiscount = _.isBoolean(discountObj.isMultiDiscount) ? discountObj.isMultiDiscount ? DEFAULT_DISCOUNT.isMultiDiscount;
+      this.isMultiDiscount = _.isBoolean(discountObj.isMultiDiscount) ? discountObj.isMultiDiscount : DEFAULT_DISCOUNT.isMultiDiscount;
       this.startDate = discountObj.startDate || DEFAULT_DISCOUNT.startDate;
       this.endDate = discountObj.endDate || DEFAULT_DISCOUNT.endDate;
 
@@ -60,7 +61,7 @@ angular.module('abacuApp')
   	};
 
     // Attach static methods
-    Discount.fetchDiscount = function (discountID) {
+    Discount.prototype.fetchDiscount = function (discountID) {
       if (!_.isString(discountID) || _.isEmpty(discountID)) {
         var err = new Error('Bad Input to Discount.fetchDiscount(id): ' + JSON.stringify(discountID, null, 2));
         return PromiseUtils.rejected(err);
@@ -76,7 +77,7 @@ angular.module('abacuApp')
       });
     };
 
-    Discount.getDiscountDetails = function (discount) {
+    Discount.prototype.getDiscountDetails = function (discount) {
       if (!(discount instanceof Discount)) {
         throw new Error('Input to Discount.getDiscountDetails() must be a Discount instance');
       }

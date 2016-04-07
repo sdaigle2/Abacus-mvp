@@ -568,7 +568,7 @@ angular.module('abacuApp')
           if (editOrder === null) {
             return PromiseUtils.rejected(new Error('CurEditOrder does not exist'));
           } else {
-            return editOrder.send(userID, userData, shippingData, billingData, payMethod, token, editOrder);
+            return editOrder.send(userID, userData, shippingData, billingData, payMethod, token);
           }
         },
 
