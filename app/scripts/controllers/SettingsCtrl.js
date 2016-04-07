@@ -43,19 +43,19 @@ angular.module('abacuApp')
       $scope.ContentSection = {
         ACCOUNT: 'account',
         ORDERS: 'orders',
-        MEASUREMENTS: 'measurements',
+        //MEASUREMENTS: 'measurements',
         MYDESIGNS: 'myDesigns'
       };
 
       //Categories inside the 'My Measurements' Section of the User
-      $scope.MeasurementTypes = {
-        REAR_SEAT_HEIGHT: 'rearSeatHeight',
-        REAR_SEAT_WIDTH: 'rearSeatWidth',
-        FOLDING_BACKREST_HEIGHT: 'foldingBackrestHeight',
-        //AXEL_POSITION: 'axelPosition',
-        SEAT_DEPTH: 'seatDepth'
-      };
-      var curMeasureType = $scope.MeasurementTypes.REAR_SEAT_HEIGHT;
+      // $scope.MeasurementTypes = {
+      //   REAR_SEAT_HEIGHT: 'rearSeatHeight',
+      //   REAR_SEAT_WIDTH: 'rearSeatWidth',
+      //   FOLDING_BACKREST_HEIGHT: 'foldingBackrestHeight',
+      //   AXEL_POSITION: 'axelPosition',
+      //   SEAT_DEPTH: 'seatDepth'
+      // };
+      // var curMeasureType = $scope.MeasurementTypes.REAR_SEAT_HEIGHT;
 
 
       /***************** SIDEBAR BUTTONS ***************************************/
