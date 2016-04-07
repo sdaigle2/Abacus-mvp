@@ -71,7 +71,7 @@ angular.module('abacuApp')
         this.userType = order.userType || 'User'; // default to user
         this.poNumber = order.poNumber || '';
 
-        order.discounts = _.isArray(order.discounts) ? order.discounts || [];
+        order.discounts = _.isArray(order.discounts) ? order.discounts : [];
         this.discounts = order.discounts.map(function (discountObj) {
           return new Discount(discountObj);
         });
@@ -102,7 +102,7 @@ angular.module('abacuApp')
         }
 
         if (!this.canAddDiscount() && this.discounts.length > 1) {
-          return false; // you've mixed a discount with another nonmultidiscount discount 
+          return false; // you've mixed a discount with another nonmultidiscount discount
         }
 
         return true;
