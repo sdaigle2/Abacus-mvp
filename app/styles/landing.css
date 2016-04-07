@@ -14,8 +14,9 @@
   position: absolute;
   margin: 25px;
   text-align: center;
-  height: 93vh;
-  width:96vw;
+  height: calc( 100vh - 50px);
+  width: calc( 100vw - 50px);
+  min-width: 700px;
   border: solid 1px white;
   border-radius: 2px;
 }
@@ -27,9 +28,9 @@
 }
 
 #tinkerLogo{
-    position: fixed;
-    bottom: 45px;
-    right: 50px;
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
 }
 
 .text3{

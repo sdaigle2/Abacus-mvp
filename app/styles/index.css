@@ -5,10 +5,7 @@ html{
 }
 
 body {
-  padding-top: 0;
-  padding-bottom: 20px;
   background-color: #FFF;
-  min-width: 1050px;
 }
 
 .preload {
