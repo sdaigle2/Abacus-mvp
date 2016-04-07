@@ -102,6 +102,13 @@ function getChairAndFrame(chair) {
   };
 }
 
+/**
+ * Given a chair, returns the all the measures that need to be set for that chair
+ */
+function getChairMeasures(chair) {
+  var frame = getChairFrame(chair);
+  return frame.measures;
+}
 
 /**
  * Given a chair & measureID, returns the measure choice in cm & in as well as the weight
@@ -122,11 +129,6 @@ function getChairMeasureOption(chair, measureID) {
     'weight': measure.weights[measureOptionIndex] || 0
   };
 }
-
-/**
- * The Frame measure to display in order that the measurements diagrams have displayed them
- */
-const MEASURE_DIAGRAM_NAMES = ["Seat Width", "Seat Depth", "Backrest Height", "Rear Seat Height", "Front Seat Height", "Foot Width", "Side Wheel Clearance", ];
 
 /**
  * Given a chair & measureName, returns the measure choice in cm, & inches as well as the weight
@@ -161,7 +163,7 @@ function getChairPartOption(chair, partID) {
  * Given a wheelchair and a partID, returns the price of the part for the chair
  */
 function getChairPartOptionPrice(chair, partID) {
-  var frame = frame || getChairFrame(chair);
+  var frame = getChairFrame(chair);
 
   var chairPart = _.find(chair.parts, {'partID': partID});
   var framePart = _.find(frame.parts, {'partID': partID});
@@ -192,17 +194,18 @@ function calculatePartsSubtotal(chair) {
 }
 
 /**
- * Gives the per-chair shipping fee for the order
+ * Gets the shipping cost for the given chair
  */
-function getShippingCost() {
-  return this.shippingFee;
+function getChairShippingCost(chair) {
+  var frame = getChairFrame(chair);
+  return _.get(frame, 'shippingInfo.cost') || 0;
 }
 
 /**
  * Given a input subtotal (w/o shipping fee), returns the tax fee for that price
  */
 function getTaxCost(total) {
-  return total * this.taxRate;
+  return 0; // tax cost for everything is 0% ... might change later
 }
 
 /**
@@ -210,7 +213,7 @@ function getTaxCost(total) {
  */
 function getChairPrice(chair, order) {
   var subTotal = calculatePartsSubtotal(chair);
-  return subTotal + getShippingCost.apply(order) + getTaxCost.apply(order, [subTotal]);
+  return subTotal + getChairShippingCost(chair) + getTaxCost.apply(order, [subTotal]);
 }
 
 /**
@@ -218,7 +221,7 @@ function getChairPrice(chair, order) {
  */
 function getTotalShipping() {
   var chairs = _.map(this.wheelchairs, 'wheelchair');
-  return chairs.length * getShippingCost.apply(this); // shipping fee is a per-chair fee
+  return _.sumBy(chairs, getChairShippingCost);
 }
 
 /**
@@ -236,9 +239,23 @@ function getTotalTax() {
   return _.sum(taxFees);
 }
 
+/**
+ * Returns total subtotal for the whole order
+ */
 function getTotalSubtotal() {
   var chairs = _.map(this.wheelchairs, 'wheelchair');
   return _.sumBy(chairs, chair => calculatePartsSubtotal(chair, this));
+}
+
+/**
+ * Get the total discount amount for the current order
+ * Based on Discounts in the order.discounts array
+ */
+function getTotalDiscount() {
+  var subTotal = getTotalSubtotal.apply(this);
+  var subTotalAfterDiscounts = this.discounts.reduce((total, discount) => total * discount.percent, subTotal);
+  console.log(`subTotal: ${subTotal}\tsubTotalAfterDiscounts: ${subTotalAfterDiscounts}`);
+  return subTotal - subTotalAfterDiscounts;
 }
 
 /**
@@ -324,6 +341,7 @@ module.exports = {
   displayDate,
   getChairFrame,
   getChairAndFrame,
+  getChairMeasures,
   getChairPrice,
   getChairWeight,
   getChairPartOption,
@@ -333,14 +351,13 @@ module.exports = {
   calculatePartsSubtotal,
   getBulletLetter,
   getChairImages,
-  getShippingCost,
   getTaxCost,
   getTotalShipping,
   getTotalTax,
   getTotalSubtotal,
+  getTotalDiscount,
   getTotalPrice,
   toUpperCase,
-  'MEASURE_DIAGRAM_NAMES': _.constant(MEASURE_DIAGRAM_NAMES)
 };
 
 // Wrap all functions to round integers to nearest decimal

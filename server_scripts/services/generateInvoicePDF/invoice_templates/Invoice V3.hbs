@@ -51,17 +51,19 @@
 				</div>
 				<div id="_idContainer012" class="Basic-Text-Frame">
 					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">{{displayDate sentDate}}</p>
-					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">Net 30</p>
+					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">{{payMethod}}</p>
 					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">Best</p>
 					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">XXXXXX</p>
 					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">{{orderNum}}</p>
 				</div>
 				<div id="_idContainer013" class="Basic-Text-Frame">
 					<p class="Invoice-Title">BILL TO:  </p>
-					<p class="Generated-Info">{{fName}} {{lName}}</p>
-					<p class="Generated-Info">Unisource WW, Inc.</p>
-					<p class="Generated-Info">1701 Crossroads Dr.</p>
-					<p class="Generated-Info">Joliet, IL 60431</p>
+					<p class="Generated-Info">{{billingDetails.fName}} {{billingDetails.lName}}</p>
+					<p class="Generated-Info">{{billingDetails.addr}}</p>
+					{{#if billingDetails.addr2}}
+					<p class="Generated-Info">{{billingDetails.addr2}}</p>
+					{{/if}}
+					<p class="Generated-Info">{{billingDetails.city}}, {{billingDetails.state}} {{billingDetails.zip}}</p>
 				</div>
 				<div id="_idContainer014" class="Basic-Text-Frame">
 					<p class="Subtitle" lang="en-US">QTY</p>
@@ -90,10 +92,12 @@
 				</div>
 				<div id="_idContainer021" class="Basic-Text-Frame">
 					<p class="Invoice-Title">SHIP TO:</p>
-					<p class="Generated-Info">{{fName}} {{lName}}</p>
-					<p class="Generated-Info">{{addr}} </p>
-					<p class="Generated-Info">{{addr2}} </p>
-					<p class="Generated-Info">{{city}}, {{state}}, {{zip}}</p>
+					<p class="Generated-Info">{{shippingDetails.fName}} {{shippingDetails.lName}}</p>
+					<p class="Generated-Info">{{shippingDetails.addr}}</p>
+					{{#if shippingDetails.addr2}}
+					<p class="Generated-Info">{{shippingDetails.addr2}}</p>
+					{{/if}}
+					<p class="Generated-Info">{{shippingDetails.city}}, {{shippingDetails.state}} {{shippingDetails.zip}}</p>
 				</div>
 				<div id="_idContainer022" class="Basic-Text-Frame">
 					<p class="Subtitle ParaOverride-1" lang="en-US">Price</p>
@@ -107,7 +111,7 @@
 					<p class="Numbers">${{getTotalSubtotal}}</p>
 					<p class="Numbers">${{getTotalShipping}}</p>
 					<p class="Numbers">${{getTotalTax}}</p>
-					<p class="Numbers">$0</p>
+					<p class="Numbers">${{getTotalDiscount}}</p>
 				</div>
 				<div id="_idContainer025" class="Basic-Text-Frame">
 					<p class="Numbers">${{getTotalPrice}}</p>
@@ -127,9 +131,6 @@
 		{{#each wheelchairs}}
 			<div class="_idGenObjectLayout-1">
 				<div id="_idContainer050">
-					<div id="_idContainer030" class="_idGenObjectStyleOverride-2">
-						<img class="_idGenObjectAttribute-1" src="{{INVOICE_IMAGES_URI}}/Screen_Shot_2015-03-25_at_3.03.58_PM.png" alt="" />
-					</div>
 					<div id="_idContainer035">
 						<div id="_idContainer031" class="Basic-Graphics-Frame _idGenObjectStyleOverride-1">
 						</div>
@@ -161,15 +162,9 @@
 						<p class="Section-Title">Measurements</p>
 					</div>
 					<div id="_idContainer040" class="Basic-Text-Frame">
-						{{#each (MEASURE_DIAGRAM_NAMES)}}
-							<p class="Subtitle" lang="en-US"><span class="Diagram">{{getBulletLetter @index}}.</span> {{toUpperCase this}}</p>
+						{{#each (getChairMeasures this.wheelchair)}}
+							<p class="Subtitle" lang="en-US"><span class="Diagram">{{getBulletLetter @index}}.</span> {{toUpperCase this.name}}</p>
 						{{/each}}
-					</div>
-					<div id="_idContainer041" class="_idGenObjectStyleOverride-2">
-						<img class="_idGenObjectAttribute-1" src="{{INVOICE_IMAGES_URI}}/Screen_Shot_2015-03-25_at_3.03.51_PM.png" alt="" />
-					</div>
-					<div id="_idContainer042" class="_idGenObjectStyleOverride-2">
-						<img class="_idGenObjectAttribute-1" src="{{INVOICE_IMAGES_URI}}/Screen_Shot_2015-03-25_at_3.04.20_PM.png" alt="" />
 					</div>
 					<div id="_idContainer043" class="Basic-Text-Frame">
 						{{#with ..}}
@@ -188,13 +183,11 @@
 						<p class="Numbers" style="height: 15px; margin-top: 0px;">1</p>
 					</div>
 					<div id="_idContainer044" class="Basic-Text-Frame">
-						{{#with (getChairAndFrame this.wheelchair)}}
-						{{#each (MEASURE_DIAGRAM_NAMES)}}
-							{{#with (getChairMeasureOptionByName ../chair this) as |measureOption|}}
+						{{#each (getChairMeasures this.wheelchair)}}
+							{{#with (getChairMeasureOptionByName ../wheelchair this.name) as |measureOption|}}
 								<p class="Numbers">{{measureOption.cm}} cm / {{measureOption.in}} in</p>
 							{{/with}}
 						{{/each}}
-						{{/with}}
 					</div>
 					<div id="_idContainer045" class="Basic-Graphics-Frame _idGenObjectStyleOverride-1">
 					</div>
