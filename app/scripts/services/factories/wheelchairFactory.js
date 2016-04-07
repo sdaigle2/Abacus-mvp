@@ -77,7 +77,7 @@ angular.module('abacuApp')
           var copyMeasure = {
             measureID: m.measureID,
             measureOptionIndex: m.measureOptionIndex,
-            comments: m.measureComments
+            comments: m.comments
           };
           this.measures.push(copyMeasure);
         }
