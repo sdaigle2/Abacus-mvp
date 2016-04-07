@@ -24,7 +24,7 @@ angular.module('abacuApp')
       this._id = discountObj._id || discountObj.id || DEFAULT_DISCOUNT._id; // expect _id field to either be '_id' or 'id'
       this._rev = discountObj._rev || discountObj.rev || DEFAULT_DISCOUNT._rev; // expect _rev field to either be '_rev' or 'rev'
       this.percent = discountObj.percent || DEFAULT_DISCOUNT.percent;
-      this.isMultiDiscount = _.isBoolean(discountObj.isMultiDiscount) ? discountObj.isMultiDiscount ? DEFAULT_DISCOUNT.isMultiDiscount;
+      this.isMultiDiscount = _.isBoolean(discountObj.isMultiDiscount) ? discountObj.isMultiDiscount : DEFAULT_DISCOUNT.isMultiDiscount;
       this.startDate = discountObj.startDate || DEFAULT_DISCOUNT.startDate;
       this.endDate = discountObj.endDate || DEFAULT_DISCOUNT.endDate;
 
