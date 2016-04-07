@@ -132,6 +132,10 @@ body {
   top: 3px;
 }
 
+.mainNavbar .mainNavbar-right .cartIcon{
+  cursor: pointer;
+}
+
 .mainNavbar .mainNavbar-right .cartButton {
     height: 100%;
     margin: 0px;
