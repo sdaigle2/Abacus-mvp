@@ -606,7 +606,7 @@
 .main-measure .measure-tab .active {
   color: black;
   cursor: pointer;
-  box-shadow: inset 0px -4px #60C2B1;
+  box-shadow: inset 0px -4px #4F9DFF;
   background-color: white;
 }
 
@@ -1029,7 +1029,7 @@ img.rightButtonNav {
 .sideBar-measure-tip-left {
   float: left;
   margin: 0px 10px 0px 30px;
-  color: #60C2B1;
+  color: #f2bc19;
   font-style: italic;
   height: 100%;
   padding-top: 5px;
