@@ -35,7 +35,7 @@ angular.module('abacuApp')
 
       Discount.prototype.isExpired = function () {
         var currentDate = new Date(); // current time
-        return currentDate >= this.startDate && currentDate < this.endDate;
+        return !(currentDate >= this.startDate && currentDate < this.endDate);
       };
 
       Discount.prototype.allDetails = function () {
@@ -61,7 +61,7 @@ angular.module('abacuApp')
   	};
 
     // Attach static methods
-    Discount.prototype.fetchDiscount = function (discountID) {
+    Discount.fetchDiscount = function (discountID) {
       if (!_.isString(discountID) || _.isEmpty(discountID)) {
         var err = new Error('Bad Input to Discount.fetchDiscount(id): ' + JSON.stringify(discountID, null, 2));
         return PromiseUtils.rejected(err);
@@ -77,7 +77,7 @@ angular.module('abacuApp')
       });
     };
 
-    Discount.prototype.getDiscountDetails = function (discount) {
+    Discount.getDiscountDetails = function (discount) {
       if (!(discount instanceof Discount)) {
         throw new Error('Input to Discount.getDiscountDetails() must be a Discount instance');
       }

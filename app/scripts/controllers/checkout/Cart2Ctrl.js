@@ -292,22 +292,27 @@ angular.module('abacuApp')
 
       /*****discount  function*******/
       $scope.applyDiscount = function(){
-        discount.fetchDiscount($scope.discountCode)
+        Discount.fetchDiscount($scope.discountCode)
           .then(function(newDiscount){
             discount = newDiscount;
-            $scope.curOrder.addDiscount(discount)
-            $scope.curOrder.pruneDiscount();
+            $scope.curOrder.addDiscount(discount);
             $scope.curOrder.getTotalCost();
             $scope.promoErr = '';
             User.updateCart();
           }).catch(function(err)
           {
             if(err.status == 404){
-              console.log('Sorry, did not find your promo code')
-              $scope.promoErr = 'Sorry, did not find your promo code'
-            }else{
-            console.log(err);
-            $scope.promoErr = err;}
+              alert('Sorry, did not find your promo code');
+            } else if (err instanceof Errors.CantCombineDiscountError) {
+              alert('Cannot combine this discount with the discounts you currently have');
+            } else if (err instanceof Errors.CantAddDiscountError) {
+              alert('You cannot add another discount to your order');
+            } else if (err instanceof Errors.ExpiredDiscountError) {
+              alert('This discount has expired');
+            } else {
+              console.log(err);
+              $scope.promoErr = err;
+            }
           })
       }
 

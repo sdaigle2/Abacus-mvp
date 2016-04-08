@@ -30,8 +30,14 @@
   color: #4896FF;
 }
 
-.invalidated-apply-button {
+.apply-button:disabled {
   background-color: white;
+  border-color: #4896FF;
+  color: #4896FF;
+}
+
+.invalidated-apply-button {
+  background-color: gray;
   color: #4896FF;
 }
 

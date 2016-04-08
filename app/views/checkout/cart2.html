@@ -113,6 +113,10 @@
               <span class="pull-left">Subtotal</span>
               <span class="pull-right">${{curOrder.getSubtotal() >= 0 ? curOrder.getSubtotal().toFixed(2) : '--'}}</span>
             </div>
+            <div ng-if="curOrder.discounts.length">
+              <span class="pull-left">Discounts</span>
+              <span class="pull-right">${{curOrder.getDiscountAmount().toFixed(2)}} ({{(_.sumBy(curOrder.discounts, 'percent')*100).toFixed(0)}}%)</span>
+            </div>
             <div>
               <span class="pull-left">Tax</span>
               <span class="pull-right">${{curOrder.getTaxCost() >= 0 ? curOrder.getTaxCost().toFixed(2) : '--'}}</span>
@@ -158,7 +162,8 @@
             <div>
               <p class="sectionTitle">Discount Code</p>
               <input type="text" class="discount-input" ng-model="discountCode">
-              <button type="button" class="btn btn-default pull-right button apply-button" ng-click="applyDiscount()">Apply</button>
+              <button type="button" class="pull-right button apply-button" ng-disabled="!curOrder.canAddDiscount()" ng-click="applyDiscount()">Apply</button>
+              <p ng-if="!curOrder.canAddDiscount()">Your current discount can't be combined with other discounts</p>
             </div>
             <!--<p ng-bind="promoErr"></p>-->
           </section>
