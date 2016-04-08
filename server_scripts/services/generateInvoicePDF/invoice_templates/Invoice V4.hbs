@@ -156,14 +156,27 @@
 						<p class="Subtitle" lang="en-US">Quantity:</p>
 					</div>
 					<div id="_idContainer038" class="Basic-Graphics-Frame _idGenObjectStyleOverride-1">
-					</div>
-					<div id="_idContainer039" class="Basic-Text-Frame">
-						<p class="Section-Title">Measurements</p>
-					</div>
-					<div id="_idContainer040" class="Basic-Text-Frame">
-						{{#each (getChairMeasures this.wheelchair)}}
-							<p class="Subtitle" lang="en-US"><span class="Diagram">{{getBulletLetter @index}}.</span> {{toUpperCase this.name}}</p>
-						{{/each}}
+						<div id="" class="Basic-Text-Frame">
+							<p class="Section-Title">Parts</p>
+						</div>
+  						<table>
+  							<thead>
+  								<tr>
+  									<th>Details</th>
+  									<th>Comments</th>
+  									<th>Price</th>
+  								</tr>
+  							</thead>
+
+  							<tbody>
+  								<tr>
+  									<td> FRAME STYLE</td>
+  									<td> FJDKSALFJKASL;FJK;DLSAJFKL;SDAJFKLDS;AJFKL;ASFWQ,NFKA;SCNEJKQWFKQ;FNAS,DM.NCFJKW;NCAS.D,NCJKWQE;NCJK;EQWNCM.A,DSNFKQ;</td>
+  									<td> $1234</td>
+
+  								</tr>
+  							</tbody>
+  						</table>
 					</div>
 					<div id="_idContainer043" class="Basic-Text-Frame">
 						{{#with ..}}
@@ -180,43 +193,10 @@
 						<p class="Numbers" style="height: 15px; margin-top: 0px;">{{../orderNum}} </p>
 						<p class="Numbers" style="height: 15px; margin-top: 0px;">1</p>
 					</div>
-					<div id="_idContainer044" class="Basic-Text-Frame">
-						{{#each (getChairMeasures this.wheelchair)}}
-							{{#with (getChairMeasureOptionByName ../wheelchair this.name) as |measureOption|}}
-								<p class="Numbers">{{measureOption.cm}} cm / {{measureOption.in}} in</p>
-							{{/with}}
-						{{/each}}
-					</div>
-					<div id="_idContainer045" class="Basic-Graphics-Frame _idGenObjectStyleOverride-1">
-					</div>
 					<div id="_idContainer046" class="Basic-Graphics-Frame _idGenObjectStyleOverride-2">
 						{{#each (getChairImages this.wheelchair)}}
 						<img class="_idGenObjectAttribute-1" src="{{this}}" alt="" />
 						{{/each}}
-					</div>
-					<div id="_idContainer047" class="Basic-Text-Frame">
-						<p class="Section-Title">Parts</p>
-					</div>
-					<div id="_idContainer048" class="Basic-Text-Frame">
-						<p class="Invoice-Title">Details</p>
-						{{#with (getChairAndFrame this.wheelchair)}}
-						{{#each this.chair.parts}}
-							<p class="Subtitle" lang="en-US">{{this.name}}</p>
-							{{#with (getChairPartOption ../chair this.partID) as |selection|}}
-								<p class="Generated-Info">{{selection.name}}</p>
-							{{/with}}
-						{{/each}}
-						{{/with}}
-						<p class="Generated-Info" style="padding-top:14px"><span class="CharOverride-2">Subtotal:</span></p>
-					</div>
-					<div id="_idContainer049" class="Basic-Text-Frame">
-						<p class="Invoice-Title ParaOverride-1">Price</p>
-						{{#with (getChairAndFrame this.wheelchair)}}
-						{{#each frame.parts}}
-							<p class="Generated-Info ParaOverride-1">${{getChairPartOptionPrice ../chair this.partID}}</p>
-						{{/each}}
-						{{/with}}
-						<p class="Generated-Info ParaOverride-1"><span class="CharOverride-3">${{calculatePartsSubtotal this.wheelchair}}</span></p>
 					</div>
 				</div>
 			</div>
