@@ -85,6 +85,7 @@ router.post('/order', function (req, res) {
             } else {
                // push the order to the users order history and set cart to null
                const userID = user._id || user.id;
+                console.log(`order.wheelchairs: ${JSON.stringify(order.wheelchairs, null, 2)}`);
                user.orders.push(order);
                user.cart = null;
                dbUtils.insertUser(user, userID, function (err, minUser) {
@@ -201,6 +202,7 @@ router.post('/order', function (req, res) {
           }
 
           const userIsLoggedIn = _.isObject(user) && !_.isEmpty(user);
+          console.log(`userIsLoggedIn : ${userIsLoggedIn}`);
           insertOrder(userIsLoggedIn, (err) => {
             if (err) {
               res.status(500);
@@ -210,6 +212,7 @@ router.post('/order', function (req, res) {
 
             sendInvoiceEmails((err, orderNum) => {
               if (err) {
+                console.log(`err: ${JSON.stringify(err, null, 2)}`);
                 res.status(500);
                 res.json({err: err});
                 return;

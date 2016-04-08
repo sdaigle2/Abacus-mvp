@@ -180,7 +180,7 @@ exports.getMinimizedOrderEntry = getMinimizedOrderEntry;
 /**
  * Insert the given order
  * If no id is given, this will create a new order
- * 
+ *
  * NOTE:
  * DOES NOT update each corresponding order's discounts. It will just set the order.discounts to be an
  * array of IDs for the discounts that were already in the given order.
@@ -237,7 +237,7 @@ function updateLinkedUserFields(userObj, cb) {
 	var updateOrders = function (cb) {
 		var orders = userObj.orders || [];
 		updateOrInsertAllEntries({
-			db: dbService.order,
+			db: dbService.orders,
 			dbInsert: insertOrder,
 			idField: '_id',
 			entries: orders
@@ -299,9 +299,9 @@ exports.updateLinkedUserFields = updateLinkedUserFields;
 function getMinimizedUserEntry(userObj) {
 	const userOrders       = _.isArray(userObj.orders) ? userObj.orders : [];
 	const userSavedDesigns = _.isArray(userObj.savedDesigns) ? userObj.savedDesigns : [];
-	
+
 	const orderIDs       = _.reject(userOrders.map(getEntryID), _.isNull);
-	const cartID         = getEntryID(userObj.cart);
+	const cartID         = userObj.cart ? getEntryID(userObj.cart) : null;
 	const savedDesignIDs = _.reject(userSavedDesigns.map(getEntryID), _.isNull);
 
 	const userCopy = _.clone(userObj);
