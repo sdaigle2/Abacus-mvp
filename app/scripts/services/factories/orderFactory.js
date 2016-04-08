@@ -21,7 +21,7 @@
 angular.module('abacuApp')
   .constant('FRAME_SHIPPING_PRICES', {'CHAIR': 47.98, 'WHEEL': 18.45})
   .constant('USER_TYPES', [{'name': 'User', 'requiresAccount': false}, {'name': 'Dealer', 'requiresAccount': true}, {'name': 'VA', 'requiresAccount': true}, {'name': 'P4X Sales Rep', 'requiresAccount': true}])
-  .factory('Order', ['$q', '$http', 'Wheelchair', 'localJSONStorage', 'Design', 'FRAME_SHIPPING_PRICES', 'FrameData', 'Discount', '_', function ($q, $http, Wheelchair, localJSONStorage, Design, FRAME_SHIPPING_PRICES, FrameData, Discount, _) {
+  .factory('Order', ['$q', '$http', 'Wheelchair', 'localJSONStorage', 'Design', 'FRAME_SHIPPING_PRICES', 'FrameData', 'Discount', 'Errors','_', function ($q, $http, Wheelchair, localJSONStorage, Design, FRAME_SHIPPING_PRICES, FrameData, Discount, Errors, _) {
 
     function Order(taxRate, shippingFee, order) {
       this.wheelchairs = [];
@@ -116,19 +116,19 @@ angular.module('abacuApp')
 
       addDiscount: function (discount) {
         if (discount instanceof Discount && this.canAddDiscount()) {
-          this.discounts.forEach(function(discountOld){
-            if(discountOld._id == discount._id){
-              throw new Error('promo code has been applied already');
-            }
-          });
-          this.discounts.push(discount);
-        } else {
-          throw new Error('Input to order.addDiscount() must be instance of Discount');
-        }
-      },
+          if (discount.isExpired()) {
+            throw new Errors.ExpiredDiscountError("This Discount has Expired");
+          }
 
-      pruneDiscount: function(){
-        return(_.uniqBy(this.discounts, '_id'));
+          if (this.discounts.length > 0 && !discount.isMultiDiscount) {
+            throw new Errors.CantCombineDiscountError("This discount can't be combined with other discounts");
+          }
+
+          this.discounts.push(discount);
+          this.discounts = _.uniqBy(this.discounts, '_id'); // remove any duplicate discounts
+        } else {
+          throw new Errors.CantAddDiscountError('Input to order.addDiscount() must be instance of Discount & must be valid discount combination');
+        }
       },
 
       addWheelchair: function (newDesign) {
@@ -276,17 +276,16 @@ angular.module('abacuApp')
 
       //The combined cost of all the Wheelchairs in the Order
       getSubtotal: function () {
-        if (this.wheelchairs.length > 0) {
-          var instance = this;
-          return _.sumBy(this.wheelchairs, function (design) {
-            var discountRate = 1;
-            for (var i = 0; i < instance.discounts.length; i++) {
-              discountRate *= 1 - instance.discounts[i].percent;
-            }
-            return design.wheelchair.getTotalPrice() * discountRate;
-          });
-        }
-        return 0;
+        return _.sumBy(this.wheelchairs, function (design) {
+          return design.wheelchair.getTotalPrice();
+        });
+      },
+
+      // Returns amount of money to take off of subtotal given the current discounts in the order
+      getDiscountAmount: function () {
+        var subtotal = this.getSubtotal();
+        var discountPercent = _.sumBy(this.discounts, 'percent');
+        return subtotal * discountPercent;
       },
 
       //The estimated cost of shipping this Order
@@ -305,7 +304,7 @@ angular.module('abacuApp')
 
       //The sum of Subtotal, Shipping Cost, and Tax Cost
       getTotalCost: function () {
-        return this.getSubtotal() + this.getShippingCost() + this.getTaxCost();
+        return this.getSubtotal() + this.getShippingCost() + this.getTaxCost() - this.getDiscountAmount();
       },
 
 

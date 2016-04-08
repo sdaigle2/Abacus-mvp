@@ -19,7 +19,7 @@ angular.module('abacuApp')
 				this.stack = (new Error()).stack;
 			} else {
 				Error.captureStackTrace(this, this.constructor);
-				this.message = message;
+				this.message = message || '';
 				init = init || _.noop; // init arg is optional
 				init.apply(this, arguments);
 			}
@@ -35,6 +35,9 @@ angular.module('abacuApp')
 	// Add to this object to create more error types
   	return {
 		'NotLoggedInError': createErrorType("NotLoggedInError"),
-		'IncorrectLoginError': createErrorType("IncorrectLoginError")
+		'IncorrectLoginError': createErrorType("IncorrectLoginError"),
+		'CantAddDiscountError': createErrorType("CantAddDiscountError"),
+		'CantCombineDiscountError': createErrorType("CantCombineDiscountError"),
+		'ExpiredDiscountError': createErrorType("ExpiredDiscountError")
   	};
   }]);
