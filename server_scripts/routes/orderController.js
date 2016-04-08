@@ -200,7 +200,7 @@ router.post('/order', function (req, res) {
             return;
           }
 
-          const userIsLoggedIn = _.isObject(user) && _.isEmpty(user);
+          const userIsLoggedIn = _.isObject(user) && !_.isEmpty(user);
           insertOrder(userIsLoggedIn, (err) => {
             if (err) {
               res.status(500);

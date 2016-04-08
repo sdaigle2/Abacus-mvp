@@ -9,7 +9,7 @@ const GENERATED_PDFS_DIR = path.join(os.homedir(), '/invoice_pdfs');
 
 const APP_PORT = process.env.PORT || 8080;
 
-const INVOICE_TEMPLATE_FILEPATH = path.resolve(__dirname, '../invoice_templates/Invoice V3.hbs'); // path.resolve() returns the absolute path given a relative path
+const INVOICE_TEMPLATE_FILEPATH = path.resolve(__dirname, '../invoice_templates/Invoice V4.hbs'); // path.resolve() returns the absolute path given a relative path
 const INVOICE_CSS_URI           = `http://localhost:${APP_PORT}/styles/invoice_v3`;// 'file://' + path.resolve('./invoice_templates/Invoice_V3-web-resources/css');//path.resolve('./invoice_templates/Invoice_V3-web-resources/css/');
 const INVOICE_IMAGES_URI        = `http://localhost:${APP_PORT}/images/invoice_v3`;// 'file://' + path.resolve('./invoice_templates/Invoice_V3-web-resources/image');
 

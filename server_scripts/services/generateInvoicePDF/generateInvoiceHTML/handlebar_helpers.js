@@ -253,7 +253,8 @@ function getTotalSubtotal() {
  */
 function getTotalDiscount() {
   var subTotal = getTotalSubtotal.apply(this);
-  return this.discounts.reduce((total, discount) => total * discount.percent, subTotal);
+  var discountPercent = _.sumBy(this.discounts, 'percent');
+  return subTotal * discountPercent;
 }
 
 /**
