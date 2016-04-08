@@ -95,7 +95,7 @@ function getUserByID(userID, cb) {
 					getOrderByID(cartID, cb); // get the cart along with all linked fields populated
 				} catch (badCartValueErr) {
 					// The given cart didn't have an ID field...this means the cart value is invalid and can be treated as null
-					cb(null, null);	
+					cb(null, null);
 				}
 			} else {
 				cb(null, null); // if user doesnt have a cart yet, just resolve it to be null
@@ -115,7 +115,7 @@ function getUserByID(userID, cb) {
 		var getUserOrders = function (cb) {
 			var userOrders = user.orders || [];
 			var orderIDS = userOrders.map(function (order) {
-				return getObjectID(order, '_id');	
+				return getObjectID(order, '_id');
 			});
 			// Gets all the orders with their linked fields populated. (Only linked field in Orders is 'wheelchairs' which are designs)
 			async.map(orderIDS, getOrderByID, cb);
@@ -161,7 +161,7 @@ function areValidOrderDiscounts(discounts, cb) {
 		return;
 	}
 
-	getAllByID(discountIDs, function (err, discounts) {
+	getAllByID(dbService.discounts, discountIDs, function (err, discounts) {
 		if (err) {
 			return cb(false);
 		}

@@ -64,20 +64,21 @@ router.post('/login', function (req, res) {
   });
 });
 
-router.get('/loadMyDesign', function(req,res){
-  var ID = req.body.email;
-  dbService.users.search('view101','search', {q:'creator:' + ID}, function(err,body){
-    if(!err){
-      res.json(body);
-    }
-    else {
-      res.status(400);
-      res.json(err);
-    }
-  });
-
-
-});
+// router.get('/loadMyDesign', function(req,res){
+//   var ID = req.body.email;
+//   console.log("user ID is" + ID);
+//   dbService.users.search('view101','search', {q:'creator:' + ID}, function(err,body){
+//     if(!err){
+//       res.json(body);
+//     }
+//     else {
+//       res.status(400);
+//       res.json(err);
+//     }
+//   });
+//
+//
+// });
 
 //LOGOUT
 router.post('/logout', restrict, function (req, res) {

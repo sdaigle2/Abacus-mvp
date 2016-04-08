@@ -165,7 +165,7 @@ angular.module('abacuApp')
           wheelchairs: this.wheelchairs.map(function (design) {
             return design.allDetails();
           }),
-          discounts: this.discounts.map(Discount.getDiscountDetails)
+          discounts: this.discounts
         };
 
         if (this._id && this._id !== -1) {

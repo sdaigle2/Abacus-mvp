@@ -10,13 +10,12 @@ var async  = require('async');
 // Import services
 var verifyOrder        = require('../services/data').verifyOrder;
 var verifyChair        = require('../services/data').verifyWheelchair;
-var genInvoice         = require('../services/pdfGen').generateInvoice;
-var genSave            = require('../services/pdfGen').generateSave;
 var generateInvoicePDF = require('../services/generateInvoicePDF');
 var stripe             = require('../services/stripe');
 var sendgrid           = require('../services/sendgrid');
 var dbService          = require('../services/db');
 var orderNumber        = require('../services/orderNumber');
+var dbUtils            = require('../services/dbUtils');
 //Send a pdf of the given wheelchair to the user
 router.post('/save', function (req, res) {
   //Cross check the wheelchair against the JSON, while calculating the total price
@@ -69,6 +68,7 @@ router.post('/order', function (req, res) {
 
     // returns error value with user object (empty user object if user wasnt logged in)
     const updateUserOrderHistory = cb => {
+      console.log('user data' + req.session.user);
       if (!_.get(req, 'session.user')) {
         return process.nextTick(() => cb(null, {}));
       }
@@ -87,7 +87,7 @@ router.post('/order', function (req, res) {
                const userID = user._id || user.id;
                user.orders.push(order);
                user.cart = null;
-               insertUser(user, userID, function (err, minUser) {
+               dbUtils.insertUser(user, userID, function (err, minUser) {
                 if (err) {
                   return cb({status: 500, err: err});
                 }
@@ -114,7 +114,7 @@ router.post('/order', function (req, res) {
     // returns error value with object {orderNumber: <Order Number>}
     const sendInvoiceEmails = cb => {
 
-      orderNum.increment() // this is an atomic operation & a central point of congestion...could take a while
+      orderNumber.increment() // this is an atomic operation & a central point of congestion...could take a while
       .then(curOrderNum => {
         order.orderNum = curOrderNum;
 
@@ -134,7 +134,7 @@ router.post('/order', function (req, res) {
         invoiceEmail.text = 'Thank you for using Tinker to purchase your new Wheelchair. We have attached the invoice for your order.';
         manufactureCopy.to = 'sales@intelliwheels.net';
         manufactureCopy.text = 'An order just been placed, here is a copy of the invoice';
-        
+
         generateInvoicePDF(order, function (err, pdfPath) {
           if (err) {
             cb(err);
@@ -221,7 +221,7 @@ router.post('/order', function (req, res) {
           });
         });
       });
-    });    
+    });
   }
   else
     res.send({err: 'Invalid order'});

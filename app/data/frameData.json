@@ -1058,7 +1058,7 @@
             "weight": 0,
             "price": 300,
             "defaultColorID": 0
-          },    
+          },
           {
             "name": "Spinergy Wheels",
             "optionID": 6300,
@@ -1354,7 +1354,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
             "desc": "High quality Schwalbe tires with colorful options!",
             "price": 150,
-            "comments":"Type your comments, special requests, or questions here.",  
+            "comments":"Type your comments, special requests, or questions here.",
             "defaultColorID": 8602,
             "colors": [
                 {
@@ -1385,7 +1385,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
             "desc": "Experience the protection of Iron Cap Puncture Resistant Technology from Kenda on Wheelchair Tires for Court or Everyday Use.",
             "price": 150,
-            "comments":"Type your comments, special requests, or questions here.",    
+            "comments":"Type your comments, special requests, or questions here.",
             "defaultColorID": 8702,
             "colors": [
                 {
@@ -1409,14 +1409,14 @@
                     "hex": "#FFFF00"
                 }
             ]
-          },    
+          },
           {
             "name": "Other",
             "optionID": 8300,
             "colors": [],
             "defaultSizeIndex": -1,
             "sizes": [],
-            "comments":"Type your comments, special requests, or questions here.",  
+            "comments":"Type your comments, special requests, or questions here.",
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Want something else?  Write it in here, and one of our customer service representatives will email you after your order is placed.",
@@ -1566,7 +1566,7 @@
             "desc": "Protect your chair while in transit with foam or leather impact guards.",
             "price": 75,
             "defaultColorID": 0
-          },    
+          },
           {
             "name": "Waist Strap",
             "optionID": 10700,
@@ -2661,7 +2661,7 @@
             "desc": "If you have wheels from an old sports chair or you'll be buying wheels separately, choose this option.  We will still need to know that size wheels you will be planning to use in order to configure the chair correctly.",
             "weight": 0,
             "price": 0,
-            "defaultColorID": 0  
+            "defaultColorID": 0
           },
           {
             "name": "24\" Standard Spoke Wheels",
@@ -2690,7 +2690,7 @@
             "weight": 0,
             "price": 300,
             "defaultColorID": 0
-          }, 
+          },
           {
             "name": "Spinergy Wheels",
             "optionID": 6300,
@@ -2986,7 +2986,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
             "desc": "High quality Schwalbe tires with colorful options!",
             "price": 150,
-            "comments": "Type your comments, special requests, or questions here.",  
+            "comments": "Type your comments, special requests, or questions here.",
             "defaultColorID": 8602,
             "colors": [
                 {
@@ -3017,7 +3017,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
             "desc": "Experience the protection of Iron Cap Puncture Resistant Technology from Kenda on Wheelchair Tires for Court or Everyday Use.",
             "price": 150,
-            "comments": "Type your comments, special requests, or questions here.",  
+            "comments": "Type your comments, special requests, or questions here.",
             "defaultColorID": 8702,
             "colors": [
                 {
@@ -3041,7 +3041,7 @@
                     "hex": "#FFFF00"
                 }
             ]
-          },    
+          },
           {
             "name": "Other",
             "optionID": 8300,
@@ -3198,7 +3198,7 @@
             "desc": "Protect your chair while in transit with foam or leather impact guards.",
             "price": 75,
             "defaultColorID": 0
-          },    
+          },
           {
             "name": "Waist Strap",
             "optionID": 10700,
@@ -3543,7 +3543,7 @@
     "manufacturer": "Spinergy",
     "name": "Spinergy SPOX Wheels (Set of two)",
     "desc": "PRICE INCLUDES A SET OF TWO WHEEELS.  Spinergy built its reputation as a market leader with the SPOX Everyday wheelchair wheel. They have been our best seller for 15 years and are built to last. Wheels are the most rewarding upgrade you can make on a wheelchair and the SPOX Everyday wheels are our entry wheel with a budget in mind.",
-    "basePrice": 695,
+    "basePrice": 1,
     "shippingInfo": {
     	"cost": 18.45,
     	"weight": 0
@@ -4152,7 +4152,7 @@
         "gifDesc": "As the seat width narrows, trunk stability increases. /n As the seat widens, trunk stability decreases.",
         "units": ["cm","in"],
         "shortName": "SW",
-        "comments": "Type your comments, special requests, or questions here.",  
+        "comments": "Type your comments, special requests, or questions here.",
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": "http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1",
         "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
