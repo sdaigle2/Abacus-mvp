@@ -720,12 +720,16 @@
 
 .sideBar-header {
   z-index: 3;
-  position: relative;
+  position: relative;   
 }
 
 .sideBar-header h3 {
   font-size: 12pt;
-  font-weight: 700;
+  font-weight: 700;    
+  margin:auto 0 auto 0;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 53px; 
 }
 
 img.leftButtonNav {
@@ -1080,6 +1084,7 @@ img.rightButtonNav {
   .sideBar-measure-bottom .help-image {
     height: 39%;
     width: auto;
+    max-width: 300px;  
     left: 0;
     right: 0;
     margin-top: 15%;

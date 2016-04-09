@@ -200,7 +200,7 @@
               <div class="measure-content">
                 <h4 class="measure-content-title">
                   <span data-ng-bind="getCurMeasureData().name"></span></h4>
-                <h3 data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">Tutorial Video Comming Soon</h3>  
+                <h3 data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">Tutorial Video Coming Soon</h3>  
                 <!--<iframe
                   data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL"
                   data-ng-src="{{getCurMeasureData().videoURL}}"
@@ -380,7 +380,7 @@
                  data-ng-click="pageSwitchStep(1)"
                  data-ng-if="getCurPage().index < getCurPages().length - 1" />
             <img class="rightButtonNav" data-ng-src="images/icons/complete_check.png"
-                 data-ng-click="toggleSaveDropDown()"
+                 data-ng-click="saveDropDown()"
                  data-ng-if="getCurPage().index === getCurPages().length - 1" alt="Complete"/>
 
             <h3 class="curPage-header" data-ng-bind="getCurMeasureData().name"></h3>
