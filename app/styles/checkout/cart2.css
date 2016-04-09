@@ -32,8 +32,18 @@
 
 
 #wrapper{
-  background-color: #F1F1F1;
   overflow: auto;
+}
+
+#background {
+  position: absolute;
+  min-width: 1180px;
+  left: 0px;
+  top: 0px;
+  height: 80vh;
+  width: 100%;
+  z-index: -5000;
+  background: linear-gradient(#EAEAEA, #FFFFFF);
 }
 
 #contentWrapper{
@@ -342,7 +352,7 @@
 #summary section .totalPrice {
   border-top: 1px solid black;
   padding-top: 15px;
-  margin-top: 100px;;
+  margin-top: 40px;;
 }
 
 .zipcode-input {

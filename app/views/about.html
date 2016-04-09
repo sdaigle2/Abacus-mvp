@@ -1,8 +1,6 @@
-﻿﻿<link href="styles/about.css" rel="stylesheet" />
+<link href="styles/about.css" rel="stylesheet" />
 
-
-
-<div id="wrapper">&nbsp
+<div id="wrapper">&nbsp  
   <!-- Google Tag Manager -->
   <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5BJDWF"
                     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -12,43 +10,72 @@
     '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-5BJDWF');</script>
   <!-- End Google Tag Manager -->
+  <div id="background"></div>
   <div id="main">
     <div id="tabMenu">
       <section ng-init="page = 1">
-        <p ng-click="page = 1" data-ng-class="{'highlight':page === 1}">Tinker in the US</p>
-        <p ng-click="page = 2" data-ng-class="{'highlight':page === 2}">What is Tinker?</p>
-        <p ng-click="page = 3" data-ng-class="{'highlight':page === 3}">How does it work?</p>
-        <p ng-click="page = 4" data-ng-class="{'highlight':page === 4}">Partnership</p>
+        <p ng-click="page = 1" data-ng-class="{'highlight':page === 1}">The Tinker System</p>
+        <p ng-click="page = 2" data-ng-class="{'highlight':page === 2}">Step 1: Customize</p>
+        <p ng-click="page = 3" data-ng-class="{'highlight':page === 3}">Step 2: Measure</p>
+        <p ng-click="page = 4" data-ng-class="{'highlight':page === 4}">Step 3: Order</p>
+        <p ng-click="page = 5" data-ng-class="{'highlight':page === 5}">Step 4: Relax while we build your Chair</p>  
         <div id="siteCredit">
-          <!--<a ng-href="#/about"><img ng-src="images/tinker_logo_small.png"></a>-->
-          <a ng-href="http://www.intelliwheels.net/" target="_blank">
-            <img ng-src="images/iw_logo_small.png">
-            <p>&copy; IntelliWheels, Inc. 2015</p>
-          </a>
+            <a href="http://www.intelliwheels.net/tinker" target="_blank"><img ng-src="images/Powered-by-Tinker-Logo-Black.png" alt="Powered by Tinker">
+            <p>TM, &copy; IntelliWheels, Inc. 2016</p>  
+          </a>      
         </div>
       </section>
 
     </div>
     <div id="mainContent">
       <section ng-show="page === 1"  >
-        <p>Can you use Tinker in the US?</p>
-        <p>Not quite yet, but we’re working on it every day. Right now, we're in Beta mode in the Sweden, so try it out!</p>
-        <p>We need your help telling the current system manufacturers and dealers to make the Tinker design system available everywhere.
-        <p>Show your support by signing our petition or liking our facebook page.</p>
-        <a href="https://www.facebook.com/tinkerwheelchairs" target="_blank"><button class="medium button" id="firstButton">Like on Facebook</button></a>
-        <a href="http://www.ipetitions.com/petition/tinker-wheelchairs" target="_blank"><button ng-click="toAboutPage()" class="medium button">Sign the Petition</button></a>
+        <img data-ng-src="images/about_page/per4max-black.svg" alt="Per4max">
+        <h1>The Tinker System</h1>
+        <p>Tinker is a revolutionary system that allows you to customize your Per4max wheelchair in a fun and playful way.  You can change the colors, learn about your measurements, and order your new wheelchair all in one place.</p>
+        <p>When you order a wheelchair through this website, you're ordering it directly from Per4max.  There is no middle man.  Tinker was developed by the eggheads over at <a ng-href="http://www.intelliwheels.net/" target="_blank">IntelliWheels</a>, but they make certain not to get in the way of the ordering process.</p>
+        <p>Click Step 1 to learn about the designing process.</p>
+        <button ng-click="jumpFrame()"class="medium button" id="firstButton">Start Designing!</button>
+        or
+        <button ng-click="page = 2" class="medium button" id="firstButton">Step 1: Customize--></button>
+        <img src="images/about_page/Rotate.gif" alt="Per4max">    
       </section>
       <section ng-show="page === 2">
-        <p>Modern wheelchairs offer you thousands of customizable choices. Color, size, and style can all be changed to your liking. Unfortunately, the process of making those choices is still trapped in the stone age. It is heavily reliant on paper order forms, endless phone calls, and long meetings with the vendor. It’s inevitable that there will be a miscommunication on at least one detail that you specifically wanted on your chair.</p>
-        <p>Tinker is the answer to these challenges. For the first time, you can design your wheelchair start to finish in a visual and fun way. Tinker is about choice and giving you the power to build the chair that you want.</p>
+        <h1>Step 1: Customize</h1>
+        <p>When designing a new wheelchair, we like to do the fun parts first.  The first step is to choose is the color of the frame.  Per4max offers 20 different powder coat colors for your frame including glossy, matte, and sparkle colors.</p>
+        <p>Once you've selected the frame color, hit the next button to get to the next option.  Every choice you make updates the live preview in the center of the screen so that you can see what your new wheelchair is going to look like.</p>  
+        <div id="customize-pic"></div>
+        <img src='images/about_page/customize1.jpg' onmouseover="this.src='images/about_page/customize2.jpg';" onmouseout="this.src='images/about_page/customize1.jpg';" />  
+        <p>With Tinker, you can design your wheelchair from start to finish in a visual and fun way. Tinker is about choice and giving you the power to build that perfect chair.</p>
+        <button ng-click="page = 1"class="medium button" id="firstButton">Back</button>
+        or
+        <button ng-click="page = 3" class="medium button" id="firstButton">Step 2: Measurements--></button>  
       </section>
       <section ng-show="page === 3">
-        <p>Tinker is simply a catalog of all of the options that a manufacturer makes available. Right now, we only have two chairs made by TiArrow in Sweden, but with your support we’ll grow to have more manufacturers based in the US and the rest of the world.</p>
-        <p>The best part about Tinker is that it works with the system of experts that are already here to help you choose the best equipment for your disability. Your dealer, ATPs, and therapists can all log in and see the chair that you want.</p>
+        <h1>Step 2: Measure</h1>
+        <p>Getting your measurements right is the difference between having an OK wheelchair, and a GREAT wheelchair.  That's why the Tinker system gives you videos that explain how to measure yourself for your new chair.</p>
+        <p>As you progress through the measurements section, you can track your progress with the blue progress bar at the top.  At any time, you can save your design with the "Save and Review" button at the bottom right of the screen and come back to it later.</p>
+        <img src="images/about_page/measure.jpg" alt="Measurement Image">  
+        <button ng-click="page = 2"class="medium button" id="firstButton">Back</button>
+        or
+        <button ng-click="page = 4" class="medium button" id="firstButton">Step 3: Order--></button>    
       </section>
       <section ng-show="page === 4">
-        <p>We’re looking for new manufacturers who want to help us shake up the industry. </p>
-        <p>Tinker can be a standalone website, or it can be customized to run as though it was part of the manufacturer's website. Just contact us at sales@intelliwheels.net to see how we can work together.</p>
+        <h1>Step 3: Order</h1>  
+        <p>Once you have the perfect design on the screen, you're ready to order!</p>
+        <p>The Tinker system can accept orders from anyone, Users, Dealers, or even VA's.  Just follow through the prompts on the order page. </p>
+        <h2>Need help?</h2>  
+        <p>If you need help designing your perfect wheelchair, just contact us.  You can email us <a href="http://per4max.com/contact/" target="_blank">here</a>, or call us at 866-648-6891.</p>  
+        <button ng-click="page = 3"class="medium button" id="firstButton">Back</button>
+        or
+        <button ng-click="page = 5" class="medium button" id="firstButton">Step 4: Relax--></button>    
+      </section>
+      <section ng-show="page === 5">
+        <h1>Step 4: Take a Break! We've got it from here.</h1>
+        <p>Every chair we build at Per4max is custom.  We specialize in awesome, and we know how to build the baddest chairs on the block.</p>
+        <p>A customer service rep will get in touch with you to give you an estimate of how long it will take to build your chair, and we might call you to confirm a few things, but for the most part, your job is done!  Now just sit back, and get excited, because your new chair is on the way.</p>
+        <button ng-click="page = 4"class="medium button" id="firstButton">Back</button>
+        or
+        <button ng-click="jumpFrame()" class="medium button" id="firstButton">Start Designing!</button>
       </section>
     </div>
   </div>

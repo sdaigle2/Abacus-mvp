@@ -4,9 +4,18 @@
 /*************************
 ***** Shared Styles ******
 **************************/
+#background {
+  position: absolute;
+  min-width: 1180px;
+  left: 0px;
+  top: 0px;
+  height: 80vh;
+  width: 100%;
+  z-index: -5000;
+  background: linear-gradient(#EAEAEA, #FFFFFF);
+}
 
 .searchid-page-body {
-	background-color: #F1F1F1;
 	text-align: center;
 	height: 100vh;
 }

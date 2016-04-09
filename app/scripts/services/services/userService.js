@@ -180,6 +180,10 @@ angular.module('abacuApp')
             setEditWheelchair(tempCurrentWheelchair.index, new Design(tempCurrentWheelchair.design));
           }
         }
+
+        if(localJSONStorage.get('promo')) {
+          cart.discounts = localJSONStorage.get('promo');
+        }
       }
 
       function restoreUserFromBackend(data) {
@@ -397,6 +401,10 @@ angular.module('abacuApp')
               localJSONStorage.put('design' + i, cart.wheelchairs[i].allDetails());
             }
 
+            localJSONStorage.remove('promo');
+            localJSONStorage.put('promo', cart.discounts)
+
+
             // Send a successfull promise resolved to the current user object
             return PromiseUtils.resolved(allDetails());
           }
@@ -568,7 +576,7 @@ angular.module('abacuApp')
           if (editOrder === null) {
             return PromiseUtils.rejected(new Error('CurEditOrder does not exist'));
           } else {
-            return editOrder.send(userID, userData, shippingData, billingData, payMethod, token, editOrder);
+            return editOrder.send(userID, userData, shippingData, billingData, payMethod, token);
           }
         },
 

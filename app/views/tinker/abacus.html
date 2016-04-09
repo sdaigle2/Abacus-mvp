@@ -198,15 +198,15 @@
             <div class="measure-body">
 
               <div class="measure-content">
-                <h4 class="measure-content-title"
-                    data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">
-                  <span data-ng-bind="getCurMeasureData().name"></span> Tutorial </h4>
-                <iframe
+                <h4 class="measure-content-title">
+                  <span data-ng-bind="getCurMeasureData().name"></span></h4>
+                <h3 data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">Tutorial Video Comming Soon</h3>  
+                <!--<iframe
                   data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL"
                   data-ng-src="{{getCurMeasureData().videoURL}}"
                   autoplay="0"
                   allowfullscreen>
-                </iframe>
+                </iframe>-->
                 <img
                   data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.ERGONOMICS"
                   data-ng-src="{{getCurMeasureData().gifURL}}" alt="Ergonomic chart">
@@ -222,7 +222,7 @@
             </div>
             <div class="measure-comments">
                   <h4>Comments, Questions, and Special Requests</h4>
-                  <textarea data-ng-model="getCurMeasureData().comments" rows="6" cols="81">{{getCurMeasureData().comments}}</textarea>
+                  <textarea data-ng-model="getCurMeasureData().comments" placeholder="Type your comments, special requests, or questions here" rows="6" cols="81">{{getCurMeasureData().comments}}</textarea>
             </div>
           </div>
         </div>

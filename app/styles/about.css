@@ -1,25 +1,31 @@
-﻿/*About Us page CSS*/
+/*About Us page CSS*/
 
-
+#background{
+    position: absolute;
+    background: linear-gradient(to bottom, rgba(150,197,255,0.5), rgba(255,255,255,1));
+    margin:0;
+    padding:0;
+    height: 50vh;
+    width: 100%;
+    z-index:-1;
+}
 
 #wrapper{
   position: relative;
-  background: linear-gradient(to bottom,rgba(255,255,255,1), rgba(150,197,255,0.5));
-  height: 100vh;
-  line-height: 1;
-  top: -20px;
 }
 
 #main{
   width: 80%;
   max-width: 1200px;
   min-width: 800px;
-  margin: 100px auto 0;
+  margin: 25px auto 0;
 }
 
 #tabMenu {
+  position: fixed;
   width: 25%;
   max-width: 265px;
+  min-width: 200px;    
   display: inline-block;
   text-align: end;
   float: left;
@@ -51,71 +57,29 @@
 #mainContent {
   padding-top: 26px;
   display: inline-block;
-  width: 60%;
+  width: 65%;
   float: right;
 }
 
 #mainContent p {
   font-weight: 400;
-  margin-bottom: 38px;
-  font-size: 1.5em;
+  margin-bottom: 20px;
+  font-size: 1.2em;
   line-height: 1.4;
 }
 
+#mainContent img {
+  margin-bottom: 20px;
+  max-width: 700px;
+}
 
-
-
-
-
-
-
-
-
-/*#wrapper{*/
-  /*position: absolute;*/
-  /*text-align: center;*/
-  /*background: linear-gradient(to bottom, rgba(136,203,195,0.5), rgba(255,255,255,1));*/
-  /*height: 100vh;*/
-  /*width:100vw;*/
-  /*top: 0px;*/
-/*}*/
-
-/*#body{*/
-    /*position:relative;*/
-    /*max-width: 800px;*/
-    /*text-align: left;*/
-    /*margin-left:auto;*/
-    /*margin-right:auto;*/
-    /*padding-left: 50px;*/
-    /*padding-right: 50px;*/
-    /*padding-top: 60px;*/
-/*}*/
-
-/*#mainLogo{*/
-  /*width: 380px;*/
-  /*margin-top: 97px;*/
-/*}*/
-/*.text1{*/
-  /*color: #00A89C;*/
-  /*margin-top: 69px;*/
-  /*font-size:2.5em;*/
-/*}*/
-
-/*.text2{*/
-  /*color: #00A89C;*/
-  /*margin-top: 30px;*/
-  /*font-size: 2em;*/
-/*}*/
-/*.text3{*/
-  /*margin-top: 16px;*/
-  /*margin-bottom: 20px;*/
-  /*font-size: 1.5em;*/
-/*}*/
-/*.text4{*/
-  /*margin-top: 20px;*/
-  /*margin-bottom: 20px;*/
-  /*font-size: 1.0em;*/
-/*}*/
+#customize-pic{
+  background-image: url('images/about_page/customize2.jpg');
+  max-width: 700px;    
+}
+#customize-pic:hover {
+  background-image: url('images/about_page/customize1.jpg');
+}
 
 #wrapper button{
   height: auto;
@@ -126,21 +90,13 @@
 }
 
 #firstButton{
-  margin: 0px 50px 0px 50px;
+  margin: 20px 20px 20px 20px;
 }
 
 #wrapper button:hover{
   background-color: #4F9DFF;
   color: white;
 }
-
-/*#canvy{*/
-  /*position: absolute;*/
-  /*z-index: -1;*/
-  /*width: 100%;*/
-  /*height: 100%;*/
-  /*left: 0;*/
-/*}*/
 
 /*#siteCredit {*/
   /*position: relative;*/

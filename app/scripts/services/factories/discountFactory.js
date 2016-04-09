@@ -4,7 +4,7 @@
 * This Factory creates a Discount object
 * An order can have multiple discount objects
 * When calculating the price of an order, discounts specify how much percent to take off of each orders SubTotal price
-* 
+*
 * Some disounts can be used with other discounts. For those discounts, the 'isMultiDiscount' will be set to true
 * Other discounts cannot be used with other discounts. For these, 'isMultiDiscount' is false
 */
@@ -21,6 +21,7 @@ angular.module('abacuApp')
   })
   .factory('Discount', ['_', 'DEFAULT_DISCOUNT', '$http', 'PromiseUtils', function (_, DEFAULT_DISCOUNT, $http, PromiseUtils) {
   	var Discount = function (discountObj) {
+      discountObj = discountObj || {};
       this._id = discountObj._id || discountObj.id || DEFAULT_DISCOUNT._id; // expect _id field to either be '_id' or 'id'
       this._rev = discountObj._rev || discountObj.rev || DEFAULT_DISCOUNT._rev; // expect _rev field to either be '_rev' or 'rev'
       this.percent = discountObj.percent || DEFAULT_DISCOUNT.percent;
@@ -34,7 +35,7 @@ angular.module('abacuApp')
 
       Discount.prototype.isExpired = function () {
         var currentDate = new Date(); // current time
-        return currentDate >= this.startDate && currentDate < this.endDate;
+        return !(currentDate >= this.startDate && currentDate < this.endDate);
       };
 
       Discount.prototype.allDetails = function () {

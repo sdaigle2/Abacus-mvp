@@ -1,16 +1,18 @@
-#background{
-  background-color: #f1f1f1;
-  height: 100vh;
-  width: 100vw;
-
-}
-
 .wrapper{
   max-width: 1300px;
   margin:auto;
 }
 
-
+#background {
+  position: absolute;
+  min-width: 1180px;
+  left: 0px;
+  top: 0px;
+  height: 50vh;
+  width: 100%;
+  z-index: -5000;
+  background: linear-gradient(#EAEAEA, #FFFFFF);
+}
 
 button{
   background-color: #4f9dff;
@@ -64,6 +66,7 @@ section{
   width: 400px;
   margin-bottom: 40px;
   border: solid 1px #eaeaea;
+  background-color: #FFFFFF;    
 }
 
 .frame-item.right-border {
@@ -95,7 +98,11 @@ section{
 }
 
 .frame-item-description {
+<<<<<<< HEAD
   background-color: #4F9DFF;
+=======
+  background-color: #4F9DFF ;
+>>>>>>> origin/master
   font-size: 18px;
   height: 100%;
   line-height: 25px;

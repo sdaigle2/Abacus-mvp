@@ -1,5 +1,5 @@
 {
-  "taxRate": 0.097,
+  "taxRate": 0,
   "shippingFee": 15,
   "sentDate": "2016-04-06T20:00:06.039Z",
   "userID": "sourabhdesai@gmail.com",
@@ -38,147 +38,54 @@
             "optionID": 1100,
             "colorID": 1104,
             "sizeIndex": -1,
-            "name": "Frame Style / Sport",
-            "optionName": "Basketball"
+            "name": "Spoke Color",
+            "optionName": "PBO Spokes (3mm)"
           },
           {
             "partID": 2222,
             "optionID": 2200,
             "colorID": 1104,
             "sizeIndex": -1,
-            "name": "Accessories Color",
-            "optionName": "Standard Glossy Black"
+            "name": "Back Spoke Color",
+            "optionName": "Different from Main Spoke Color"
           },
           {
             "partID": 3000,
             "optionID": 3200,
             "colorID": 3201,
             "sizeIndex": -1,
-            "name": "5th Wheel & Backrest",
-            "optionName": "Rigid 5th Wheel & Rigid Back Rest"
+            "name": "Hub Color",
+            "optionName": "Custom Anodized"
           },
           {
             "partID": 4444,
             "optionID": 4200,
             "colorID": 3201,
             "sizeIndex": -1,
-            "name": "Upholstery",
-            "optionName": "Standard"
+            "name": "Rim Color",
+            "optionName": "Custom Anodized"
           },
           {
             "partID": 7000,
             "optionID": 7300,
             "colorID": 3201,
-            "name": "Wheels",
-            "optionName": "24\" Standard Spoke Wheels"
+            "name": "Hand Rims",
+            "optionName": "Custom Anodized"
           },
           {
             "partID": 8000,
             "optionID": 8600,
             "colorID": 8604,
-            "name": "Hand Rims",
-            "optionName": "Hard Anodized 6 tab"
+            "name": "Tires",
+            "optionName": "Schwalbe Right Run Tires"
           },
           {
             "partID": 9000,
             "optionID": 9400,
             "colorID": 0,
             "sizeIndex": -1,
-            "name": "Tire",
-            "optionName": "High Pressure Tires"
-          }
-        ],
-        "measures": [
-          {
-            "measureID": 15001,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15002,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15002,
-            "measureOptionIndex": -1
-          }
-        ],
-        "inCurOrder": false
-      },
-      "_id": "VyWN8XnRl"
-    },
-    {
-      "createdAt": "2016-04-07T19:56:30.191Z",
-      "updatedAt": "2016-04-07T19:56:30.191Z",
-      "wheelchair": {
-        "frameID": 4,
-        "title": "My Custom Wheelchair",
-        "parts": [
-          {
-            "partID": 1000,
-            "optionID": 2100,
-            "colorID": 1101,
-            "sizeIndex": -1,
-            "comments": "I am comments",
-            "name": "Casters",
-            "optionName": "3\" (72mm) Micro"
-          },
-          {
-            "partID": 3000,
-            "optionID": 3100,
-            "colorID": 0,
-            "sizeIndex": -1,
-            "comments": "",
-            "name": "Miscellaneous",
+            "name": "Quick Release Axles",
             "optionName": "None"
-          },
-          {
-            "partID": 4000,
-            "optionID": 4100,
-            "colorID": 1101,
-            "sizeIndex": -1,
-            "comments": ""
-          },
-          {
-            "partID": 5000,
-            "optionID": 5100,
-            "colorID": 0,
-            "sizeIndex": -1,
-            "comments": ""
-          },
-          {
-            "partID": 6000,
-            "optionID": 6200,
-            "colorID": 0,
-            "sizeIndex": 1,
-            "comments": ""
-          },
-          {
-            "partID": 7000,
-            "optionID": 7100,
-            "colorID": 0,
-            "sizeIndex": -1,
-            "comments": ""
-          },
-          {
-            "partID": 8000,
-            "optionID": 8100,
-            "colorID": 0,
-            "sizeIndex": -1,
-            "comments": ""
-          },
-          {
-            "partID": 9000,
-            "optionID": 9100,
-            "colorID": 0,
-            "sizeIndex": -1,
-            "comments": ""
-          },
-          {
-            "partID": 10000,
-            "optionID": 10998,
-            "colorID": 0,
-            "sizeIndex": -1,
-            "comments": ""
           }
         ],
         "measures": [
@@ -191,64 +98,17 @@
             "measureOptionIndex": -1
           },
           {
-            "measureID": 15003,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15004,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15005,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15006,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15006,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15007,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15008,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15009,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15010,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15011,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15012,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15013,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15014,
+            "measureID": 15002,
             "measureOptionIndex": -1
           }
         ],
         "inCurOrder": false
       },
-      "_id": "EyeqciykZ"
+      "_id": "VyWN8XnRl",
+      "_rev": "13-d5aafcc486b74bc6388f6039fcc40c61"
     }
   ],
   "discounts": [],
   "_id": "dc0b794df55eddfd75a8541606afa4bd",
-  "_rev": "16-da00c6b9339d2b38f8b60f5203b13e3e"
+  "_rev": "36-6f8fa7672b4b5b6c3da079cb7641977e"
 }

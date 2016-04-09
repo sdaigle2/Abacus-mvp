@@ -21,7 +21,7 @@
 angular.module('abacuApp')
   .constant('FRAME_SHIPPING_PRICES', {'CHAIR': 47.98, 'WHEEL': 18.45})
   .constant('USER_TYPES', [{'name': 'User', 'requiresAccount': false}, {'name': 'Dealer', 'requiresAccount': true}, {'name': 'VA', 'requiresAccount': true}, {'name': 'P4X Sales Rep', 'requiresAccount': true}])
-  .factory('Order', ['$q', '$http', 'Wheelchair', 'localJSONStorage', 'Design', 'FRAME_SHIPPING_PRICES', 'FrameData', 'Discount', '_', function ($q, $http, Wheelchair, localJSONStorage, Design, FRAME_SHIPPING_PRICES, FrameData, Discount, _) {
+  .factory('Order', ['$q', '$http', 'Wheelchair', 'localJSONStorage', 'Design', 'FRAME_SHIPPING_PRICES', 'FrameData', 'Discount', 'Errors','_', function ($q, $http, Wheelchair, localJSONStorage, Design, FRAME_SHIPPING_PRICES, FrameData, Discount, Errors, _) {
 
     function Order(taxRate, shippingFee, order) {
       this.wheelchairs = [];
@@ -92,6 +92,8 @@ angular.module('abacuApp')
       localJSONStorage.put('cartWheelchairs', tempWheelchairs);
     }
 
+
+
     Order.prototype = {
 
       isValidOrder: function () {
@@ -114,9 +116,18 @@ angular.module('abacuApp')
 
       addDiscount: function (discount) {
         if (discount instanceof Discount && this.canAddDiscount()) {
+          if (discount.isExpired()) {
+            throw new Errors.ExpiredDiscountError("This Discount has Expired");
+          }
+
+          if (this.discounts.length > 0 && !discount.isMultiDiscount) {
+            throw new Errors.CantCombineDiscountError("This discount can't be combined with other discounts");
+          }
+
           this.discounts.push(discount);
+          this.discounts = _.uniqBy(this.discounts, '_id'); // remove any duplicate discounts
         } else {
-          throw new Error('Input to order.addDiscount() must be instance of Discount');
+          throw new Errors.CantAddDiscountError('Input to order.addDiscount() must be instance of Discount & must be valid discount combination');
         }
       },
 
@@ -154,7 +165,7 @@ angular.module('abacuApp')
           wheelchairs: this.wheelchairs.map(function (design) {
             return design.allDetails();
           }),
-          discounts: this.discounts.map(Discount.getDiscountDetails)
+          discounts: this.discounts
         };
 
         if (this._id && this._id !== -1) {
@@ -265,12 +276,16 @@ angular.module('abacuApp')
 
       //The combined cost of all the Wheelchairs in the Order
       getSubtotal: function () {
-        if (this.wheelchairs.length > 0) {
-          return _.sumBy(this.wheelchairs, function (design) {
-            return design.wheelchair.getTotalPrice();
-          });
-        }
-        return 0;
+        return _.sumBy(this.wheelchairs, function (design) {
+          return design.wheelchair.getTotalPrice();
+        });
+      },
+
+      // Returns amount of money to take off of subtotal given the current discounts in the order
+      getDiscountAmount: function () {
+        var subtotal = this.getSubtotal();
+        var discountPercent = _.sumBy(this.discounts, 'percent');
+        return subtotal * discountPercent;
       },
 
       //The estimated cost of shipping this Order
@@ -289,15 +304,17 @@ angular.module('abacuApp')
 
       //The sum of Subtotal, Shipping Cost, and Tax Cost
       getTotalCost: function () {
-        return this.getSubtotal() + this.getShippingCost() + this.getTaxCost();
+        return this.getSubtotal() + this.getShippingCost() + this.getTaxCost() - this.getDiscountAmount();
       },
+
+
 
       /********************Saving to DB***********************/
 
       //This asyncronous funtion takes in various user information
       //and sends the Order to the distibutor with it.
       //This method also saves the Order to the database and marks it as "sent"
-      send: function (userID, userData, shippingData, billingData, payMethod, token, order) {
+      send: function (userID, userData, shippingData, billingData, payMethod, token) {
         //Need a reference to the current scope when inside the callback function
         var curThis = this;
 
@@ -324,7 +341,6 @@ angular.module('abacuApp')
 
         this.payMethod = payMethod;
         this.sentDate  = new Date(); //Set date to now - doing this marks this Order as "sent"
-        this.order = order;
 
         return $http({
           url: '/order',

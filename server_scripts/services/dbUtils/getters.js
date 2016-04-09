@@ -24,6 +24,7 @@ exports.getObjectID = getObjectID;
 
 // Given a cloudant DB isntance, and a list of object IDs within that DB, returns
 // a list of all the entries corresponding to the given IDs
+// Eventually, use this for bulk read: https://docs.cloudant.com/database.html#get-documents
 function getAllByID(db, ids, cb) {
 	async.map(ids, db.get, cb); // async is a great npm module: https://www.npmjs.com/package/async
 }
@@ -95,7 +96,7 @@ function getUserByID(userID, cb) {
 					getOrderByID(cartID, cb); // get the cart along with all linked fields populated
 				} catch (badCartValueErr) {
 					// The given cart didn't have an ID field...this means the cart value is invalid and can be treated as null
-					cb(null, null);	
+					cb(null, null);
 				}
 			} else {
 				cb(null, null); // if user doesnt have a cart yet, just resolve it to be null
@@ -115,7 +116,7 @@ function getUserByID(userID, cb) {
 		var getUserOrders = function (cb) {
 			var userOrders = user.orders || [];
 			var orderIDS = userOrders.map(function (order) {
-				return getObjectID(order, '_id');	
+				return getObjectID(order, '_id');
 			});
 			// Gets all the orders with their linked fields populated. (Only linked field in Orders is 'wheelchairs' which are designs)
 			async.map(orderIDS, getOrderByID, cb);
@@ -148,19 +149,27 @@ exports.getUserByID = getUserByID;
  *
  * Reasons that this can return false:
  * - At least one of the discounts is not a multi-discount even though there's more than one discount that is being applied to the order
+ * - A discount isn't included twice
  * - At least one of the discounts are expired
  */
 function areValidOrderDiscounts(discounts, cb) {
 	discounts = _.isArray(discounts) ? discounts : [];
 	var discountIDs = discounts.map(discount => getObjectID(discount, '_id'));
-	getAllByID(discountIDs, function (err, discounts) {
+
+	// Check that no discount is being added twice
+	if (_.uniq(discountIDs).length !== discounts.length) {
+		process.nextTick(() => cb(false));
+		return;
+	}
+
+	getAllByID(dbService.discounts, discountIDs, function (err, discounts) {
 		if (err) {
 			return cb(false);
 		}
 
 		// Check that you're not mixing multi-discounts with non-multi-discounts
 		if (!(_.every(discounts, 'isMultiDiscount')) && discounts.length > 1) {
-			cb(false);
+			return cb(false);
 		}
 
 		// check that none of the discounts are expired

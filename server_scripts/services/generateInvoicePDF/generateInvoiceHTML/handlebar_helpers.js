@@ -120,7 +120,7 @@ function getChairMeasureOption(chair, measureID) {
 
   // Default to the first measure option
   if (_.isUndefined(measureOptionIndex) || measureOptionIndex < 0) {
-    measureOptionIndex = 0;
+    measureOptionIndex = -1;
   }
   
   return {
@@ -253,9 +253,8 @@ function getTotalSubtotal() {
  */
 function getTotalDiscount() {
   var subTotal = getTotalSubtotal.apply(this);
-  var subTotalAfterDiscounts = this.discounts.reduce((total, discount) => total * discount.percent, subTotal);
-  console.log(`subTotal: ${subTotal}\tsubTotalAfterDiscounts: ${subTotalAfterDiscounts}`);
-  return subTotal - subTotalAfterDiscounts;
+  var discountPercent = _.sumBy(this.discounts, 'percent');
+  return subTotal * discountPercent;
 }
 
 /**
@@ -334,7 +333,7 @@ function toUpperCase(str) {
 /**
  * Export all the functions so they can be used by Handlebars templating engine
  */
-module.exports = {
+const EXPORTED_HELPERS = {
   getPartPreviewImageURL,
   getImageArray,
   getID,
@@ -361,7 +360,7 @@ module.exports = {
 };
 
 // Wrap all functions to round integers to nearest decimal
-module.exports = _.mapValues(module.exports, function (fn) {
+module.exports = _.mapValues(EXPORTED_HELPERS, function (fn) {
   var wrapperFn = function () {
     var returnVal = fn.apply(this, arguments);
     return _.isNumber(returnVal) ? returnVal.toFixed(2) : returnVal;
