@@ -13,6 +13,14 @@
   font-size: 1em;
 }
 
+.mydesign {
+  font-family: inherit;
+  font-size: 27px;
+  position: relative;
+  clear: left;
+  float: left;
+  width: 65%;
+}
 
 #mainDisplay{
   width: 700px;

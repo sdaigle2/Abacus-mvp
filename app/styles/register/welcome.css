@@ -10,7 +10,7 @@
 }
 
 .brand{
-  color: #00A89C;
+  color: #4F9DFF;
 }
 
 #mainContent{
@@ -22,7 +22,7 @@
 #mainContent #mainText{
   margin: 0 20px 0 40px;
   padding-left: 65px;
-  border-left: 1px solid #00A89C;
+  border-left: 1px solid #4F9DFF;
 }
 
 #mainContent #mainText .textBlock{
@@ -48,14 +48,14 @@
   margin-right: 31px;
   width: 196px;
   height: 40px;
-  border: 1px solid #00A89C;
-  color: #00A89C;
+  border: 1px solid #4F9DFF;
+  color: #4F9DFF;
 }
 
 #buttonRow div:hover{
   cursor: pointer;
   color: white;
-  background-color: #00a89c;
+  background-color: #4F9DFF;
 }
 
 #buttonRow div:last-of-type{
