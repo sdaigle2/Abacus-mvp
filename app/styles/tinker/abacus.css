@@ -1075,7 +1075,6 @@ img.rightButtonNav {
 }
 
 .sideBar-measure-bottom .help-image {
-  cursor: pointer;
   top: calc(50% - 330px);
   position: absolute;
 }
