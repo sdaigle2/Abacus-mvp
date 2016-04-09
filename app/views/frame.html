@@ -19,20 +19,24 @@
   <div class="frame-header medium">
     <h2 class="pageTitle">Frames</h2>
   </div>
+  
+  <!-- Commmented out the horizontal/vertical layout buttons-->    
+  <!--    
   <div class="horizontal-layout-icons" data-ng-if="getOrientation() === 'horizontal'">
-  <img src="images/frame_page_img/box_style.png"
-       ng-click="setOrientation('vertical')"
-       width="25"
-       class="gallary_icon_horizontal"
-       alt="Vertical Display"
-  >
-  <img src="images/frame_page_img/list_style_hover.png"
-       width="25"
-       class="horizontal_icon_horizontal"
-       ng-click="setOrientation('horizontal')"
-       alt="Horizontal Display"
-    >
+      <img src="images/frame_page_img/box_style.png"
+           ng-click="setOrientation('vertical')"
+           width="25"
+           class="gallary_icon_horizontal"
+           alt="Vertical Display"
+      >
+      <img src="images/frame_page_img/list_style_hover.png"
+           width="25"
+           class="horizontal_icon_horizontal"
+           ng-click="setOrientation('horizontal')"
+           alt="Horizontal Display"
+        >
   </div>
+  -->
 
   <div class="horizontal-layout-icons" data-ng-if="getOrientation() === 'vertical'">
   <img src="images/frame_page_img/box_style_hover.png"
@@ -71,7 +75,6 @@
         </div>
         <div class="frame-item-footer">
           <span class="medium" data-ng-bind="f.name"></span>
-
           <div class="button addButton" data-ng-click="selectFrame(f.frameID)">Customize</div>
           <div class="frame-item-footer-details">
             <table class="frame-info-table">
@@ -100,13 +103,7 @@
         <span class="medium" data-ng-bind="f.name"></span>
 
         <div class="frame-item-footer-details">
-          <table class="frame-info-table">
-            <tr>
-              <td class="blue-line">
                 <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
-              </td>
-              </tr>
-          </table>
         </div>
         <div class="frame-item-desc">
           <p class="frame-item-description book" data-ng-bind="f.getDesc()"></p>

@@ -60,7 +60,7 @@ section{
   margin-left: 34px;
 }
 
-.frame-item {
+.frame-item {   
   line-height: 1;
   display: inline-block;
   width: 400px;
@@ -112,6 +112,7 @@ section{
 }
 
 .horizontal .frame-item-description{
+  clear: both;    
   text-align: left;
   padding-left: 0;
 }
@@ -198,18 +199,12 @@ background: white;
   z-index:2;
 }
 
-
-
-
-
-
-
 .frame-item-button {
   width: 80%;
   display: inline-block;
   color: #4F9DFF;
-  height: 60px;
-  margin-top: 30px;
+  height: 30px;
+  margin-top: 60px;
   padding-top: 16px;
   text-align: center;
   font-size: 24px;
@@ -226,7 +221,7 @@ background: white;
   cursor: pointer;
 }
 
-.frame-item-footer {
+.frame-item-footer {  
   border: solid 1px #eaeaea;
   padding:20px;
 }
@@ -236,7 +231,7 @@ background: white;
   float: left;
 }
 
-.horizontal .frame-item-footer>span {
+.horizontal .frame-item-footer>span {    
   padding-top: 10px;
 }
 
@@ -245,8 +240,10 @@ background: white;
 }
 
 .horizontal .frame-item-footer-details {
+  float: right;    
   display: inline-block;
-  margin-left: calc(100% - 325px);
+  text-align: right;    
+  margin-left: 0;
   margin-top: 0;
 }
 
@@ -279,15 +276,16 @@ td {
   padding: 5px 15px;
   height: 26px;
   margin: 0;
-  float: right;
 }
 
 .horizontal .addButton{
+  position: relative;
+  float: right;  
   width: 150px;
   height: 33px;
   font-size: 19px;
   padding-top: 6px;
-  margin-top: 16px;
+  margin-top: 55px;
 }
 
 .horizontal_icon_horizontal{
