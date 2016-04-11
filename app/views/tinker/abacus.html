@@ -426,10 +426,39 @@
             </div>
           </div>
         </div>
-
+        
+        <!--next and previous buttons-->
+        <div id="nextPrevButtons">
+            <div id="prevButton">
+                <img data-ng-src="images/abacus_page/prev-arrow.svg"
+                    data-ng-click="pageSwitchStep(-1)"
+                    data-ng-show="getCurPage().index > 0 || getCurPageType() == pageType.MEASURE" />
+                <p data-ng-click="pageSwitchStep(-1)"
+                    data-ng-show="getCurPage().index > || getCurPageType() == pageType.MEASURE"
+                   >Previous Step</p>
+                <img data-ng-src="images/abacus_page/prev-arrow-gray.svg"
+                    data-ng-show="getCurPage().index === 0 && getCurPageType() == pageType.CUSTOMIZE"/>
+                <p data-ng-show="getCurPage().index === 0 && getCurPageType() == pageType.CUSTOMIZE">Previous Step</p>
+            </div>
+            <div id="nextButton">
+                <img data-ng-src="images/abacus_page/next-arrow.svg"
+                    data-ng-click="pageSwitchStep(1)"
+                    data-ng-show="getCurPage().index < getCurPages().length - 1 || getCurPageType() == pageType.CUSTOMIZE" />
+                <p data-ng-click="pageSwitchStep(1)"
+                    data-ng-show="getCurPage().index < getCurPages().length - 1 || getCurPageType() == pageType.CUSTOMIZE"
+                   >Next Step</p>
+                <img data-ng-src="images/abacus_page/next-arrow-gray.svg"
+                    data-ng-show="getCurPage().index === getCurPages().length - 1 && getCurPageType() == pageType.MEASURE"/>
+                <p data-ng-show="getCurPage().index === getCurPages().length - 1 && getCurPageType() == pageType.MEASURE">Next Step</p>
+            </div>          
+        </div>
+          
         <!--save and review button-->
-        <div id="SaveButton" class="btn medium" data-ng-class="{'sidebarMSave': getCurPageType() == pageType.MEASURE}"
-                data-ng-click="saveDropDown()">Save & Review
+        <div id="SaveButton" 
+             class="btn medium"
+             data-ng-class="{'SaveButtonDisabled': getCurPage().index === 0 && getCurPageType() == pageType.CUSTOMIZE}"
+             data-ng-class="{'sidebarMSave': getCurPageType() == pageType.MEASURE}"
+             data-ng-click="saveDropDown()">Save & Review
         </div>
 
         <div class="unit-toggle" data-ng-class="{'sidebarMSave': isInMPage()}">
