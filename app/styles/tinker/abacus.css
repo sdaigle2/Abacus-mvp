@@ -263,6 +263,56 @@
   }
 }
 
+#nextPrevButtons{
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  text-align: center;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;     
+}
+
+#prevButton{
+  height: 40px;
+  width: 150px;
+  float: left;
+}
+
+#prevButton:hover{
+  cursor: pointer;
+}
+
+#nextButton:hover{
+  cursor: pointer;
+}
+
+#nextButton{
+  height: 40px;
+  width: 150px;
+  float: right;
+}
+
+#prevButton p{
+  margin-top:-31px;
+  margin-left:18px;
+  color: #FFFFFF;
+  font-size: 12pt;
+  font-weight: 400; 
+}
+
+#nextButton p{
+  margin-top:-31px;
+  margin-right: 20px;
+  color: #FFFFFF;
+  font-size: 12pt;
+  font-weight: 400; 
+}
+
 #SaveButton {
   width: 100%;
   max-height: 40px;
@@ -273,6 +323,10 @@
   text-align: center;
   font-size: 19px;
   font-weight: 400;
+}
+
+.SaveButtonDisabled{
+  opacity:.25;
 }
 
 #SaveButton.complete {
@@ -685,7 +739,7 @@
   clear: right;
   width: 320px;
   max-width: 430px;
-  height: calc(100vh - 280px);
+  height: calc(100vh - 325px);
   top: 54px;
   margin-right: 60px;
 }
@@ -695,8 +749,6 @@
   width: 100%;
   height: 100%;
   z-index: 2;
-
-
 }
 
 .sideBar {
@@ -720,12 +772,16 @@
 
 .sideBar-header {
   z-index: 3;
-  position: relative;
+  position: relative;   
 }
 
 .sideBar-header h3 {
   font-size: 12pt;
-  font-weight: 700;
+  font-weight: 700;    
+  margin:auto 0 auto 0;
+  padding-left: 30px;
+  padding-right: 30px;
+  height: 53px; 
 }
 
 img.leftButtonNav {
@@ -1071,7 +1127,6 @@ img.rightButtonNav {
 }
 
 .sideBar-measure-bottom .help-image {
-  cursor: pointer;
   top: calc(50% - 330px);
   position: absolute;
 }
@@ -1080,6 +1135,7 @@ img.rightButtonNav {
   .sideBar-measure-bottom .help-image {
     height: 39%;
     width: auto;
+    max-width: 300px;  
     left: 0;
     right: 0;
     margin-top: 15%;

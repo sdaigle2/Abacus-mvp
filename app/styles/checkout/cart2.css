@@ -1,8 +1,18 @@
 /*******font******/
+.cart{
+  font-family: inherit;
+  font-size: 27px;
+  position: relative;
+  clear: left;
+  float: left;
+  width: 65%;
+}
+
 .oBold{
   font-family: 'oswald-bold';
   font-size: 1em;
 }
+
 .oReg{
   font-family: 'oswald-regular';
   font-size: 1em;

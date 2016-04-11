@@ -200,7 +200,7 @@
               <div class="measure-content">
                 <h4 class="measure-content-title">
                   <span data-ng-bind="getCurMeasureData().name"></span></h4>
-                <h3 data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">Tutorial Video Comming Soon</h3>  
+                <h3 data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">Tutorial Video Coming Soon</h3>  
                 <!--<iframe
                   data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL"
                   data-ng-src="{{getCurMeasureData().videoURL}}"
@@ -380,7 +380,7 @@
                  data-ng-click="pageSwitchStep(1)"
                  data-ng-if="getCurPage().index < getCurPages().length - 1" />
             <img class="rightButtonNav" data-ng-src="images/icons/complete_check.png"
-                 data-ng-click="toggleSaveDropDown()"
+                 data-ng-click="saveDropDown()"
                  data-ng-if="getCurPage().index === getCurPages().length - 1" alt="Complete"/>
 
             <h3 class="curPage-header" data-ng-bind="getCurMeasureData().name"></h3>
@@ -426,10 +426,39 @@
             </div>
           </div>
         </div>
-
+        
+        <!--next and previous buttons-->
+        <div id="nextPrevButtons">
+            <div id="prevButton">
+                <img data-ng-src="images/abacus_page/prev-arrow.svg"
+                    data-ng-click="pageSwitchStep(-1)"
+                    data-ng-show="getCurPage().index > 0 || getCurPageType() == pageType.MEASURE" />
+                <p data-ng-click="pageSwitchStep(-1)"
+                    data-ng-show="getCurPage().index > || getCurPageType() == pageType.MEASURE"
+                   >Previous Step</p>
+                <img data-ng-src="images/abacus_page/prev-arrow-gray.svg"
+                    data-ng-show="getCurPage().index === 0 && getCurPageType() == pageType.CUSTOMIZE"/>
+                <p data-ng-show="getCurPage().index === 0 && getCurPageType() == pageType.CUSTOMIZE">Previous Step</p>
+            </div>
+            <div id="nextButton">
+                <img data-ng-src="images/abacus_page/next-arrow.svg"
+                    data-ng-click="pageSwitchStep(1)"
+                    data-ng-show="getCurPage().index < getCurPages().length - 1 || getCurPageType() == pageType.CUSTOMIZE" />
+                <p data-ng-click="pageSwitchStep(1)"
+                    data-ng-show="getCurPage().index < getCurPages().length - 1 || getCurPageType() == pageType.CUSTOMIZE"
+                   >Next Step</p>
+                <img data-ng-src="images/abacus_page/next-arrow-gray.svg"
+                    data-ng-show="getCurPage().index === getCurPages().length - 1 && getCurPageType() == pageType.MEASURE"/>
+                <p data-ng-show="getCurPage().index === getCurPages().length - 1 && getCurPageType() == pageType.MEASURE">Next Step</p>
+            </div>          
+        </div>
+          
         <!--save and review button-->
-        <div id="SaveButton" class="btn medium" data-ng-class="{'sidebarMSave': getCurPageType() == pageType.MEASURE}"
-                data-ng-click="saveDropDown()">Save & Review
+        <div id="SaveButton" 
+             class="btn medium"
+             data-ng-class="{'SaveButtonDisabled': getCurPage().index === 0 && getCurPageType() == pageType.CUSTOMIZE}"
+             data-ng-class="{'sidebarMSave': getCurPageType() == pageType.MEASURE}"
+             data-ng-click="saveDropDown()">Save & Review
         </div>
 
         <div class="unit-toggle" data-ng-class="{'sidebarMSave': isInMPage()}">

@@ -102,7 +102,7 @@
   cursor: pointer;
 }
 .settingsSidebarOption.active {
-  border-right: 8px solid rgba(11, 158, 144, 1);
+  border-right: 8px solid rgba(79, 157, 255, 1);
   transition: .5s;
   font-weight: 500;
 
@@ -132,12 +132,12 @@
   width: 100%;
   height: 40px;
   background-color: #FFF;
-  border: solid 2px #0B9E90;
-  color: #0B9E90;
+  border: solid 2px #4F9DFF;
+  color: #4F9DFF;
 }
 
 .settingsSidebarButton.active, .settingsSidebarButton:hover {
-  background-color: rgba(11, 158, 144, 1);
+  background-color: rgba(79, 157, 255, 1);
   color: white;
 }
 .settingsSidebarButton:last-child {
@@ -278,7 +278,7 @@
 .settingsOrdersContentItem button{
   border-radius: 0;
   padding: 10px;
-  color: #00a89c;
+  color: #4F9DFF;
   font-size: 1.2em;
   background-color: white;
   margin-top:10px;
@@ -288,7 +288,7 @@
 
 .settingsOrdersContentItem button:hover{
   color: white;
-  background-color: #00A89C;
+  background-color: #4F9DFF;
 }
 
 
