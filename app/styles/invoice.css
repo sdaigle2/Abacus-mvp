@@ -1,0 +1,134 @@
+#wrapper{
+  width:90vw;
+  overflow: auto;
+  margin:auto;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 500;
+}
+
+header{
+  font-weight: bold;
+  font-size:1.1em;
+}
+.title{
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.themeBlue{
+  color:#4f9dff
+}
+
+.parts{
+  width:24%;
+}
+.details{
+  width:61%;
+}
+.price{
+  float: right;
+  clear: right;
+}
+.optionTable{
+  border-bottom:1px solid darkgrey;
+  padding-bottom: 5px;
+}
+
+.optionTable .colorInfo{
+  padding:0 22px;
+  margin:0 22px;
+  border-left:2px solid black;
+  border-right:2px solid black;
+}
+.comments{
+  width:70%;
+}
+
+.comments p{
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+section{
+  width:100%;
+}
+
+section div{
+  display: inline-block;
+}
+
+/**********measurement parts*********/
+.mParts{
+  width:70%;
+  margin-right: 15%;
+}
+
+.mInput{
+  float: right;
+  clear: right;
+}
+
+
+
+/*********font book********* */
+
+h1 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  font-size: 1em;
+
+  font-weight: bold;
+
+}
+
+
+.font1
+{
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.55em;
+  line-height: 0.75em;
+  font-weight: 400;
+}
+
+
+.font2 {
+
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.75em;
+  font-weight: 400;
+  line-height: 1em;
+}
+
+
+.font3 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.8em;
+  font-weight: 400;
+  line-height: 1em;
+  text-transform: uppercase;
+}
+
+.font4 {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.8em;
+  font-weight: bold;
+  line-height: 1.2em;
+}
+
+
+.font5
+{
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 0.8em;
+  font-weight: 400;
+  line-height: 1em
+}
+
+.font6
+{
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif  ;
+  font-size: 0.8em;
+  font-weight: 400;
+  line-height: 1em;
+  text-transform: uppercase;
+}
