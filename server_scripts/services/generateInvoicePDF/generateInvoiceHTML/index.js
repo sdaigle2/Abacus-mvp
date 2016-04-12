@@ -10,13 +10,14 @@ const GENERATED_PDFS_DIR = path.join(os.homedir(), '/invoice_pdfs');
 const APP_PORT = process.env.PORT || 8080;
 
 const INVOICE_TEMPLATE_FILEPATH = path.resolve(__dirname, '../invoice_templates/Invoice V4.hbs'); // path.resolve() returns the absolute path given a relative path
-const INVOICE_CSS_URI           = `http://localhost:${APP_PORT}/styles/invoice_v3`;// 'file://' + path.resolve('./invoice_templates/Invoice_V3-web-resources/css');//path.resolve('./invoice_templates/Invoice_V3-web-resources/css/');
-const INVOICE_IMAGES_URI        = `http://localhost:${APP_PORT}/images/invoice_v3`;// 'file://' + path.resolve('./invoice_templates/Invoice_V3-web-resources/image');
+const INVOICE_CSS_URI           = `http://localhost:${APP_PORT}/styles/invoice/`;// 'file://' + path.resolve('./invoice_templates/Invoice_V3-web-resources/css');//path.resolve('./invoice_templates/Invoice_V3-web-resources/css/');
+const INVOICE_IMAGES_URI        = `http://localhost:${APP_PORT}/images/invoice_v3/`;// 'file://' + path.resolve('./invoice_templates/Invoice_V3-web-resources/image');
 
 // To make the above invoice variables accessible from the template, must attach them as helpers
 helpers.INVOICE_CSS_URI    = _.constant(INVOICE_CSS_URI);
 helpers.INVOICE_IMAGES_URI = _.constant(INVOICE_IMAGES_URI);
 
+helpers.print = val => console.log(JSON.stringify(val, null, 2));
 Handlebars.registerHelper(helpers);
 
 // Must read Invoice template contents and store it in-memory

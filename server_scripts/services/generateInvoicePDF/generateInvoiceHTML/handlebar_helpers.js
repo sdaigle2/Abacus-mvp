@@ -114,6 +114,7 @@ function getChairMeasures(chair) {
  * Given a chair & measureID, returns the measure choice in cm & in as well as the weight
  */
 function getChairMeasureOption(chair, measureID) {
+  var chairMeasure = _.find(chair.measures, {'measureID': measureID});
   var frame = getChairFrame(chair);
   var measure = _.find(frame.measures, {'measureID': measureID});
   var measureOptionIndex = _.find(chair.measures, {'measureID': measureID}).measureOptionIndex;
@@ -124,9 +125,11 @@ function getChairMeasureOption(chair, measureID) {
   }
   
   return {
+    'name': measure.name || '--',
     'cm': measure.measureOptions[0][measureOptionIndex] || '--',
     'in': measure.measureOptions[1][measureOptionIndex] || '--',
-    'weight': measure.weights[measureOptionIndex] || 0
+    'weight': measure.weights[measureOptionIndex] || 0,
+    'comments': chairMeasure.comments || 'No Comments'
   };
 }
 
@@ -142,6 +145,10 @@ function getChairMeasureOptionByName(chair, measureName) {
   } else {
     return undefined;
   }
+}
+
+function getChairOption(chair, optionID) {
+  return _.find(chair.parts || [], {'optionID': optionID});
 }
 
 /**
@@ -160,15 +167,35 @@ function getChairPartOption(chair, partID) {
 }
 
 /**
- * Given a wheelchair and a partID, returns the price of the part for the chair
+ * Returns the all option details object for a given chair and PartID
  */
-function getChairPartOptionPrice(chair, partID) {
+function getChairPartOptions(chair, partID) {
   var frame = getChairFrame(chair);
 
-  var chairPart = _.find(chair.parts, {'partID': partID});
+  var chairParts = _.filter(chair.parts, {'partID': partID});
   var framePart = _.find(frame.parts, {'partID': partID});
 
-  var optionID = chairPart ? chairPart.optionID : framePart.defaultOptionID;
+  var optionIDs = _.isEmpty(chairParts) ? [framePart.defaultOptionID] : _.map(chairParts, 'optionID') ;
+
+  // Search through all the options for the given frame Part,
+  // and only keep the ones with an option ID that is present in optionIDs
+  var chairOptions = _.filter(framePart.options, framePartOption => {
+    return _.find(optionIDs, optID => optID === framePartOption.optionID);
+  });
+
+  return chairOptions;
+}
+
+/**
+ * Given a wheelchair and a partID, returns the price of the part for the chair
+ */
+function getChairPartOptionPrice(chair, optionID) {
+  var frame = getChairFrame(chair);
+
+  var chairPart = _.find(chair.parts, {'optionID': optionID});
+  var framePart = _.find(frame.parts, {'partID': chairPart.partID});
+
+  var optionID = chairPart ? optionID : framePart.defaultOptionID;
   var defaultOptionID = framePart.defaultOptionID;
 
   var chairOption = _.find(framePart.options, {'optionID': optionID});
@@ -182,15 +209,53 @@ function getChairPartOptionPrice(chair, partID) {
 }
 
 /**
+ * Given a chair and a option ID, returns the comment associated with that option
+ * If no comment was made for the option, returns a default 'No Comment' text
+ */
+function getChairOptionComment(chair, optionID) {
+  var option = _.find(chair.parts, {'optionID': optionID});
+  return option.comments || 'No Comments';
+}
+
+/**
+ * Given a chair, a partID, and a color ID, returns the name of the color for the frame of the chair
+ * If no colorID is given, assumes default colorID
+ */
+function getChairOptionColorName(chair, optionID) {
+  var frame = getChairFrame(chair);
+  var option = getChairOption(chair, optionID);
+  var part  = _.find(frame.parts, {'partID': option.partID});
+
+  if (_.isUndefined(part)) {
+    return '--'; // text that represents Unavailable
+  }
+
+  var colorID = option.colorID || part.defaultColorID;
+
+  var color = _.find(part.colors, {'colorID': colorID});
+  if (_.has(color, 'name')) {
+    return color.name;
+  }
+
+  return '--';
+}
+
+/**
  * Adds up cost of each part in the wheelchair configuration and returns it
  */
 function calculatePartsSubtotal(chair) {
   var frame = getChairFrame(chair);
-  var framePartIDs = _.map(frame.parts, 'partID');
+  var optionIDs = _.chain(frame.parts)
+    .map('partID')
+    .map(partID => getChairPartOptions(chair, partID))
+    .flatten()
+    .map('optionID')
+    .value();
 
-  return _.sumBy(framePartIDs, partID => {
-    return getChairPartOptionPrice(chair, partID);
-  });
+  var basePrice = _.isNumber(frame.basePrice) ? frame.basePrice : 0;
+  var partsPrice = _.sumBy(optionIDs, optionID => getChairPartOptionPrice(chair, optionID));
+
+  return basePrice + partsPrice;
 }
 
 /**
@@ -244,7 +309,7 @@ function getTotalTax() {
  */
 function getTotalSubtotal() {
   var chairs = _.map(this.wheelchairs, 'wheelchair');
-  return _.sumBy(chairs, chair => calculatePartsSubtotal(chair, this));
+  return _.sumBy(chairs, chair => calculatePartsSubtotal(chair));
 }
 
 /**
@@ -344,9 +409,12 @@ const EXPORTED_HELPERS = {
   getChairPrice,
   getChairWeight,
   getChairPartOption,
+  getChairPartOptions,
   getChairMeasureOption,
   getChairMeasureOptionByName,
   getChairPartOptionPrice,
+  getChairOptionComment,
+  getChairOptionColorName,
   calculatePartsSubtotal,
   getBulletLetter,
   getChairImages,

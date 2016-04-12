@@ -236,16 +236,6 @@
 
         <div class="sideBar" data-ng-if="getCurPageType() == pageType.CUSTOMIZE"  >
           <div class="sideBar-header text-center">
-            <img class="leftButtonNav" data-ng-src="images/icons/{{left_button}}"
-                 data-ng-mouseenter="left_button='arrow_left.png'" alt="Previous" width="30" height="30"
-                 data-ng-mouseleave="left_button='arrow_left.png'"
-                 data-ng-click="pageSwitchStep(-1)"
-                 data-ng-show="getCurPage().index > 0" />
-            <img class="rightButtonNav" data-ng-src="images/icons/{{right_button}}" alt="Next" width="30" height="30"
-                 data-ng-mouseenter="right_button='arrow_right.png'"
-                 data-ng-mouseleave="right_button='arrow_right.png'"
-                 data-ng-click="pageSwitchStep(1)"/>
-
             <h3 class="curPage-header" data-ng-bind="getCurPartData().name"></h3>
           </div>
           <div class="sideBar-custom">
@@ -370,19 +360,6 @@
 
         <div class="sideBar sidebarM"  data-ng-if="getCurPageType() == pageType.MEASURE" >
           <div class="sideBar-header text-center">
-            <img class="leftButtonNav" data-ng-src="images/icons/{{left_button}}"
-                 data-ng-mouseenter="left_button='arrow_left.png'" alt="Previous"
-                 data-ng-mouseleave="left_button='arrow_left.png'"
-                 data-ng-click="pageSwitchStep(-1)"/>
-            <img class="rightButtonNav" data-ng-src="images/icons/{{right_button}}" alt="Next"
-                 data-ng-mouseenter="right_button='arrow_right.png'"
-                 data-ng-mouseleave="right_button='arrow_right.png'"
-                 data-ng-click="pageSwitchStep(1)"
-                 data-ng-if="getCurPage().index < getCurPages().length - 1" />
-            <img class="rightButtonNav" data-ng-src="images/icons/complete_check.png"
-                 data-ng-click="saveDropDown()"
-                 data-ng-if="getCurPage().index === getCurPages().length - 1" alt="Complete"/>
-
             <h3 class="curPage-header" data-ng-bind="getCurMeasureData().name"></h3>
           </div>
           <div class="sideBar-measure">
@@ -434,33 +411,34 @@
                     data-ng-click="pageSwitchStep(-1)"
                     data-ng-show="getCurPage().index > 0 || getCurPageType() == pageType.MEASURE" />
                 <p data-ng-click="pageSwitchStep(-1)"
-                    data-ng-show="getCurPage().index > || getCurPageType() == pageType.MEASURE"
-                   >Previous Step</p>
+                    data-ng-show="getCurPage().index > 0 || getCurPageType() == pageType.MEASURE"
+                   >PREVIOUS</p>
                 <img data-ng-src="images/abacus_page/prev-arrow-gray.svg"
                     data-ng-show="getCurPage().index === 0 && getCurPageType() == pageType.CUSTOMIZE"/>
-                <p data-ng-show="getCurPage().index === 0 && getCurPageType() == pageType.CUSTOMIZE">Previous Step</p>
+                <p data-ng-show="getCurPage().index === 0 && getCurPageType() == pageType.CUSTOMIZE">PREVIOUS</p>
             </div>
+            
+            <!--save button-->
+            <div id="saveButtonInline"
+                 data-ng-class="{'saveButtonInlineDisabled': getCurPage().index === 0 && getCurPageType() == pageType.CUSTOMIZE}"
+                 data-ng-class="{'sidebarMSave': getCurPageType() == pageType.MEASURE}"
+                 data-ng-click="saveDropDown()">
+                <p>SAVE</p>
+            </div>
+            
             <div id="nextButton">
                 <img data-ng-src="images/abacus_page/next-arrow.svg"
                     data-ng-click="pageSwitchStep(1)"
                     data-ng-show="getCurPage().index < getCurPages().length - 1 || getCurPageType() == pageType.CUSTOMIZE" />
                 <p data-ng-click="pageSwitchStep(1)"
                     data-ng-show="getCurPage().index < getCurPages().length - 1 || getCurPageType() == pageType.CUSTOMIZE"
-                   >Next Step</p>
+                   >NEXT</p>
                 <img data-ng-src="images/abacus_page/next-arrow-gray.svg"
                     data-ng-show="getCurPage().index === getCurPages().length - 1 && getCurPageType() == pageType.MEASURE"/>
-                <p data-ng-show="getCurPage().index === getCurPages().length - 1 && getCurPageType() == pageType.MEASURE">Next Step</p>
+                <p data-ng-show="getCurPage().index === getCurPages().length - 1 && getCurPageType() == pageType.MEASURE">NEXT</p>
             </div>          
         </div>
-          
-        <!--save and review button-->
-        <div id="SaveButton" 
-             class="btn medium"
-             data-ng-class="{'SaveButtonDisabled': getCurPage().index === 0 && getCurPageType() == pageType.CUSTOMIZE}"
-             data-ng-class="{'sidebarMSave': getCurPageType() == pageType.MEASURE}"
-             data-ng-click="saveDropDown()">Save & Review
-        </div>
-
+        <!-- TEMPORARILY DISSABLE UNITS CHANGE UNTIL IT CAN BE FIXED
         <div class="unit-toggle" data-ng-class="{'sidebarMSave': isInMPage()}">
           <div class="onoffswitch">
             <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked
@@ -471,6 +449,7 @@
             </label>
           </div>
         </div>
+        -->
       </div>
 
       <!--Unit Toggle-->
