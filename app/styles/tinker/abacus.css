@@ -744,7 +744,7 @@
   clear: right;
   width: 320px;
   max-width: 430px;
-  height: calc(100vh - 250px);
+  height: calc(100vh - 220px);
   top: 54px;
   margin-right: 60px;
 }
@@ -789,6 +789,7 @@
   height: 53px; 
 }
 
+/*
 img.leftButtonNav {
   width: 23px;
   height: 53px;
@@ -804,6 +805,7 @@ img.rightButtonNav {
   top: 1px;
   right: 0px;
 }
+*/
 
 .leftButtonNav:hover {
   cursor: pointer;
