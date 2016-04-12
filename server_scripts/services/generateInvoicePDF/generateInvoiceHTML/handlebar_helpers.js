@@ -4,6 +4,7 @@
 
 const _ = require('lodash');
 const frameData = require('../../../../app/data/frameData.json');
+const frameIDMap = _.mapValues(_.groupBy(frameData, 'frameID'), _.first);
 
 const APP_PORT = process.env.PORT || 8080; // make sure this is consistent with the port in server.js
 //Map angles to their array index
@@ -85,10 +86,8 @@ function displayDate(date) {
  * Get the Frame object for corresponding to the given wheelchair object
  */
 function getChairFrame(wheelchair) {
-  var frameID = wheelchair.frameID;
-  var chairFrame = _.find(frameData, {"frameID": frameID});
-
-  return chairFrame;
+  const frameID = wheelchair.frameID;
+  return frameIDMap[frameID];
 }
 
 /**
@@ -147,8 +146,34 @@ function getChairMeasureOptionByName(chair, measureName) {
   }
 }
 
+/**
+ * Given a chair and an optionID, returns option configuration within the chair
+ */
 function getChairOption(chair, optionID) {
   return _.find(chair.parts || [], {'optionID': optionID});
+}
+
+/**
+ * Given a chair and an optionID, returns the size associated with that part option
+ */
+function getOptionSize(chair, optionID) {
+  var frame = getChairFrame(chair);
+  var chairOption = getChairOption(chair, optionID);
+
+  if (_.isUndefined(chairOption)) {
+    return '--';
+  }
+
+  var framePart = _.find(frame.parts, {'partID': chairOption.partID});
+  var frameOption = _.find(framePart.options, {'optionID': optionID});
+
+  var sizeIdx = chairOption.sizeIndex || frameOption.defaultSizeIndex;
+
+  if (sizeIdx < 0 || _.isUndefined(sizeIdx)) {
+    return '--';
+  }
+
+  return frameOption.sizes[sizeIdx];
 }
 
 /**
@@ -230,9 +255,11 @@ function getChairOptionColorName(chair, optionID) {
     return '--'; // text that represents Unavailable
   }
 
-  var colorID = option.colorID || part.defaultColorID;
+  var frameOption = _.find(part.options, {'optionID': optionID});
 
-  var color = _.find(part.colors, {'colorID': colorID});
+  var colorID = option.colorID || frameOption.defaultColorID;
+
+  var color = _.find(frameOption.colors, {'colorID': colorID});
   if (_.has(color, 'name')) {
     return color.name;
   }
@@ -408,6 +435,7 @@ const EXPORTED_HELPERS = {
   getChairMeasures,
   getChairPrice,
   getChairWeight,
+  getOptionSize,
   getChairPartOption,
   getChairPartOptions,
   getChairMeasureOption,

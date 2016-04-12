@@ -27,6 +27,7 @@ header{
 .parts{
   width:24%;
   text-align: left;
+  margin-left: -27px;
 }
 .details{
   width:61%;
@@ -36,7 +37,6 @@ header{
   clear: right;
 }
 .optionTable{
-  border-bottom:1px solid darkgrey;
   padding-bottom: 5px;
 }
 
@@ -48,12 +48,16 @@ header{
 }
 .comments{
   width:100%;
+  float: right;
 }
 
 .comments p{
   margin-bottom: 20px;
+  white-space: normal;
   margin-top: 10px;
   text-align: left;
+  border-bottom:1px solid darkgrey;
+  padding-left: 15px;
 }
 
 section{
@@ -68,6 +72,7 @@ section div{
 .mParts{
   width:70%;
   text-align: left;
+  float: left;
 }
 
 .mInput{

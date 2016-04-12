@@ -77,7 +77,7 @@ router.post('/order', function (req, res) {
       dbService.users.get(req.session.user, function(err, user) {
         if (!err && _.isObject(user)) { // user was found ... make sure that this order is that users cart order
             var curOrderID = order.id || order._id;
-            var userCartID = dbUtils.getObjectID(user.cart, '_id');
+            var userCartID = _.isNull(user.cart) ? null : dbUtils.getObjectID(user.cart, '_id');
             var userOrders = _.isArray(user.orders) ? user.orders : [];
 
             if (curOrderID !== userCartID) {

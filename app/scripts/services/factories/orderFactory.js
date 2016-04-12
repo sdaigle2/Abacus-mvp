@@ -161,6 +161,7 @@ angular.module('abacuApp')
           shippingDetails: this.shippingDetails,
           billingDetails: this.billingDetails,
           payMethod: this.payMethod,
+          userType: this.userType,
           poNumber: this.poNumber,
           wheelchairs: this.wheelchairs.map(function (design) {
             return design.allDetails();

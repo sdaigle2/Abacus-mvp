@@ -292,15 +292,16 @@ angular.module('abacuApp')
 
       /*****discount  function*******/
       $scope.applyDiscount = function(){
+
         Discount.fetchDiscount($scope.discountCode)
           .then(function(newDiscount){
             discount = newDiscount;
             $scope.curOrder.addDiscount(discount);
             $scope.curOrder.getTotalCost();
             $scope.promoErr = '';
-            User.updateCart();
-          }).catch(function(err)
-          {
+            return User.updateCart();
+          })
+          .catch(function(err) {
             if(err.status == 404){
               alert('Sorry, did not find your promo code');
             } else if (err instanceof Errors.CantCombineDiscountError) {
@@ -314,7 +315,12 @@ angular.module('abacuApp')
               $scope.promoErr = err;
             }
           })
-      }
+      };
+
+      $scope.$on('userChange', function () {
+        init();
+        $scope.$digest();
+      });
 
 
     }]);

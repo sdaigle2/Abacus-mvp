@@ -33,10 +33,12 @@
 				</div>
 				<div id="_idContainer007" class="Basic-Text-Frame">
 					<p class="Subtitle" lang="en-US">Purchase Date:</p>
+					<p class="Subtitle" lang="en-US">Order Type:</p>
 					<p class="Subtitle" lang="en-US">Payment Type:</p>
 					<p class="Subtitle" lang="en-US">Ship Via:</p>
 					<p class="Subtitle" lang="en-US">Invoice Number: </p>
 					<p class="Subtitle" lang="en-US">Order Number:</p>
+					<p class="Subtitle" lang="en-US">PO Number:</p>
 				</div>
 				<div id="_idContainer008" class="Basic-Text-Frame">
 					<p class="Subtitle" lang="en-US">DETAILS</p>
@@ -52,10 +54,12 @@
 				</div>
 				<div id="_idContainer012" class="Basic-Text-Frame">
 					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">{{displayDate sentDate}}</p>
+					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">{{userType}}</p>
 					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">{{payMethod}}</p>
 					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">Best</p>
 					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">{{orderNum}}</p>
 					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">{{orderNum}}</p>
+					<p class="Generated-Info" style="height: 15px; margin-top: 1px;">{{poNumber}}</p>
 				</div>
 				<div id="_idContainer013" class="Basic-Text-Frame">
 					<p class="Invoice-Title">BILL TO:  </p>
@@ -214,11 +218,11 @@
 							<div>
 								<section class="optionTable">
 									<div class="parts themeBlue">{{../name}}</div>
-									<div class="details">{{option.name}}<span class="colorInfo">{{getChairOptionColorName ../../chair option.optionID}}</span> 26 inch</div>
+									<div class="details">{{option.name}}<span class="colorInfo">{{getChairOptionColorName ../../chair option.optionID}}</span> {{getOptionSize ../../chair option.optionID}} inch</div>
 									<div class="price">${{getChairPartOptionPrice ../../chair option.optionID}}</div>
 								</section>
 								<section class="comments">
-									<p>{{getChairOptionComment ../../chair option.optionID}}</p>
+									<p>  {{getChairOptionComment ../../chair option.optionID}}</p>
 								</section>
 							</div>
 							{{/each}}
@@ -261,11 +265,11 @@
 							{{#with (getChairMeasureOption ../wheelchair this.measureID) as |measureInfo|}}
 							<div>
 								<section class="optionTable">
-									<div class="mParts themeBlue">{{measureInfo.name}}</div>
+									<div class="mParts themeBlue" style="float:left;">{{measureInfo.name}}</div>
 									<div class="mInput"> {{measureInfo.in}}in ({{measureInfo.cm}}cm)</div>
 								</section>
 								<section class="comments">
-									<p>{{measureInfo.comments}}</p>
+									<p>  {{measureInfo.comments}}</p>
 								</section>
 							</div>
 							{{/with}}

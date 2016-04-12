@@ -1,113 +1,84 @@
 {
-  "taxRate": 0,
-  "orderNum": 1000,
-  "shippingFee": 15,
-  "sentDate": "2016-04-06T20:00:06.039Z",
-  "userID": "sourabhdesai@gmail.com",
-  "email": "sourabhdesai@gmail.com",
-  "phone": "8479773447",
-  "shippingDetails": {
-    "fName": "Sourabh",
-    "lName": "Desai",
-    "addr": "628 Primrose Lane",
-    "addr2": "",
-    "city": "Schaumburg",
-    "state": "IL",
-    "zip": "60194"
-  },
-  "billingDetails": {
-    "fName": "Sourabh",
-    "lName": "Desai",
-    "addr": "628 Primrose Lane",
-    "addr2": "",
-    "city": "Schaumburg",
-    "state": "IL",
-    "zip": "60194"
-  },
-  "payMethod": "Credit Card",
-  "poNumber": "",
   "wheelchairs": [
     {
-      "createdAt": "2016-04-05T03:54:56.458Z",
-      "updatedAt": "2016-04-05T03:54:56.458Z",
+      "_id": "4yBg7rIkZ",
+      "_rev": "1-c3b12257848e970d9113009dbd7104c3",
       "wheelchair": {
-        "frameID": 11,
-        "title": "My Custom Wheelchair",
         "parts": [
           {
             "partID": 1000,
             "optionID": 1100,
-            "colorID": 1104,
+            "colorID": 1103,
             "sizeIndex": -1,
-            "name": "Spoke Color",
-            "optionName": "PBO Spokes (3mm)"
+            "comments": "Type your comments, special requests, or questions here."
           },
           {
             "partID": 2222,
-            "optionID": 2200,
-            "colorID": 1104,
+            "optionID": 2100,
+            "colorID": 1103,
             "sizeIndex": -1,
-            "name": "Back Spoke Color",
-            "optionName": "Different from Main Spoke Color"
+            "comments": "Type your comments, special requests, or questions here."
           },
           {
             "partID": 3000,
             "optionID": 3200,
-            "colorID": 3201,
+            "colorID": 3203,
             "sizeIndex": -1,
-            "name": "Hub Color",
-            "optionName": "Custom Anodized"
+            "comments": "Type your comments, special requests, or questions here."
           },
           {
             "partID": 4444,
             "optionID": 4200,
-            "colorID": 3201,
+            "colorID": 3205,
             "sizeIndex": -1,
-            "name": "Rim Color",
-            "optionName": "Custom Anodized"
+            "comments": "Type your comments, special requests, or questions here."
           },
           {
             "partID": 7000,
-            "optionID": 7300,
-            "colorID": 3201,
-            "name": "Hand Rims",
-            "optionName": "Custom Anodized"
+            "optionID": 7200,
+            "colorID": 0,
+            "sizeIndex": -1,
+            "comments": "Type your comments, special requests, or questions here."
           },
           {
             "partID": 8000,
-            "optionID": 8600,
-            "colorID": 8604,
-            "name": "Tires",
-            "optionName": "Schwalbe Right Run Tires"
+            "optionID": 8100,
+            "colorID": 0,
+            "sizeIndex": -1,
+            "comments": "Type your comments, special requests, or questions here."
           },
           {
             "partID": 9000,
             "optionID": 9400,
             "colorID": 0,
             "sizeIndex": -1,
-            "name": "Quick Release Axles",
-            "optionName": "None"
+            "comments": "Type your comments, special requests, or questions here."
           }
         ],
         "measures": [
           {
             "measureID": 15001,
+            "measureOptionIndex": "1",
+            "comments": "Type your comments, special requests, or questions here."
+          },
+          {
+            "measureID": 15002,
+            "measureOptionIndex": "0",
+            "comments": "Type your comments, special requests, or questions here."
+          },
+          {
+            "measureID": 15002,
             "measureOptionIndex": -1,
-            "comments": "hello world"
-          },
-          {
-            "measureID": 15002,
-            "measureOptionIndex": -1
-          },
-          {
-            "measureID": 15002,
-            "measureOptionIndex": -1
+            "comments": "Type your comments, special requests, or questions here."
           }
         ],
-        "inCurOrder": false
+        "inCurOrder": false,
+        "frameID": 11,
+        "title": "My Custom Wheelchair",
+        "name": "Spinergy SPOX Wheels (Set of two)"
       },
-      "_id": "VyWN8XnRl",
-      "_rev": "13-d5aafcc486b74bc6388f6039fcc40c61"
+      "createdAt": "2016-04-12T20:00:20.338Z",
+      "updatedAt": "2016-04-12T20:00:20.338Z"
     },
     {
       "createdAt": "2016-04-05T03:54:56.458Z",
@@ -192,7 +163,35 @@
       "_rev": "13-d5aafcc486b74bc6388f6039fcc40c61"
     }
   ],
-  "discounts": [],
-  "_id": "dc0b794df55eddfd75a8541606afa4bd",
-  "_rev": "36-6f8fa7672b4b5b6c3da079cb7641977e"
+  "_id": "248e05980aed806ff27dacec297e1b7b",
+  "_rev": "1-cac2af52513f8831e1bb176f81450f30",
+  "orderNum": "5000",
+  "taxRate": 0,
+  "shippingFee": 15,
+  "sentDate": "1970-01-01T00:00:00.000Z",
+  "userID": "sourabhdesai@gmail.com",
+  "email": "sourabhdesai@gmail.com",
+  "phone": "847-977-3447",
+  "shippingDetails": {
+    "fName": "Sourabh",
+    "lName": "Desai",
+    "addr": "628 Primrose Lane",
+    "addr2": "Apt 201",
+    "city": "Schaumburg",
+    "state": "IL",
+    "zip": "60194"
+  },
+  "billingDetails": {
+    "fName": "Sourabh",
+    "lName": "Desai",
+    "addr": "628 Primrose Lane",
+    "addr2": "",
+    "city": "Schaumburg",
+    "state": "IL",
+    "zip": "60194"
+  },
+  "payMethod": "Credit Card",
+  "userType": "User",
+  "poNumber": "",
+  "discounts": []
 }

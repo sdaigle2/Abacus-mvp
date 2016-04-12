@@ -12,8 +12,8 @@
  *
  */
 angular.module('abacuApp')
-  .service('User', ['$http', '$location', '$q', 'localJSONStorage', 'Order', 'Wheelchair', 'Units', 'Costs', 'Design', 'Errors', 'PromiseUtils',
-    function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Costs, Design, Errors) {
+  .service('User', ['$http', '$location', '$q', 'localJSONStorage', 'Order', 'Wheelchair', 'Units', 'Costs', 'Design', 'Errors', 'PromiseUtils', '$rootScope',
+    function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Costs, Design, Errors, PromiseUtils, $rootScope) {
 
       // declare all User variables here
       var orders, currentWheelchair, cartWheelchairIndex, savedDesigns,
@@ -351,6 +351,7 @@ angular.module('abacuApp')
             if (userID !== -1) {
               restoreUserFromBackend(data);
               restoreMyDesign(in_email);
+              $rootScope.$broadcast('userChange');
             } else {
               throw new Error('Incorrect email or password');
 
@@ -376,6 +377,7 @@ angular.module('abacuApp')
             method: 'POST'
           }).success(function (data) {
             console.log(data);
+            $rootScope.$broadcast('userChange');
           })
           .error(function (data) {
             console.log('Request Failed: ' + data);
