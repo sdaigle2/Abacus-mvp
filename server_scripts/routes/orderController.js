@@ -50,12 +50,12 @@ router.post('/order', function (req, res) {
     const createStripeCharge = cb => {
       if (order.payMethod === 'Credit Card') {
         //Create a new stripe payment
-        var charge = stripe.charges.create({
-          amount: Math.round(total * 30), // Amount in cents
+        var charge = stripe.charges.cr1eate({
+          amount: Math.round(total * 100), // Amount in cents
           currency: "usd",
           source: stripeToken,
           description: "Tinker order"
-        }, cb);
+        }, cb );
       } else {
         cb(null, {});
       }

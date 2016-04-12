@@ -610,36 +610,37 @@ angular.module('abacuApp')
 
       $scope.setCurOptionColor = function (newColorID) {
         console.log($scope.getCurPanelID());
-        if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
-          $scope.curEditWheelchair.setColorForPart($scope.getCurWheelchairPart().partID, newColorID);
-          var ID = $scope.getCurWheelchairPart().partID
-          if(ID == 1000){
+        if ($scope.getCurPanelID() !== $scope.getCurWheelchairPart().optionID) {
+            $scope.setCurOption($scope.getCurPanelID());
+        }
+        $scope.curEditWheelchair.setColorForPart($scope.getCurWheelchairPart().partID, newColorID);
+        var ID = $scope.getCurWheelchairPart().partID
+        if(ID == 1000){
             $scope.curEditWheelchair.setColorForPart(2000, newColorID);
             $scope.curEditWheelchair.setColorForPart(4000, newColorID);
             $scope.curEditWheelchair.setColorForPart(2222, newColorID);
-          }
-          console.log('Changed color option');
         }
+        console.log('Changed color option');
+        
       };
 
       $scope.setCurMultiOptionColor = function (optionID, newColorID) {
-        if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
-          $scope.curEditWheelchair.setColorForMultiPart($scope.getCurWheelchairPart().partID, optionID, newColorID);
-          var ID = $scope.getCurWheelchairPart().partID
-          if(ID == 1000){
-            $scope.curEditWheelchair.setColorForPart(2000, newColorID);
-            $scope.curEditWheelchair.setColorForPart(4000, newColorID);
-            $scope.curEditWheelchair.setColorForPart(2222, newColorID);
-          }
-          console.log('Changed color option');
+        if ($scope.getCurPanelID() !== $scope.getCurWheelchairPart().optionID) {
+            $scope.setCurMultiOption($scope.getCurPanelID());
+        } $scope.curEditWheelchair.setColorForMultiPart($scope.getCurWheelchairPart().partID, optionID, newColorID);
+        var ID = $scope.getCurWheelchairPart().partID
+        if(ID == 1000){
+          $scope.curEditWheelchair.setColorForPart(2000, newColorID);
+          $scope.curEditWheelchair.setColorForPart(4000, newColorID);
+          $scope.curEditWheelchair.setColorForPart(2222, newColorID);
         }
+        console.log('Changed color option');
       };
 
       $scope.setCurOptionSize = function (newSizeIndex) {
-        if ($scope.getCurPanelID() === $scope.getCurWheelchairPart().optionID) {
-          $scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, newSizeIndex);
-          console.log('Changed size option');
-        }
+        if ($scope.getCurPanelID() !== $scope.getCurWheelchairPart().optionID) {
+            $scope.setCurOption($scope.getCurPanelID());
+        } $scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, newSizeIndex);  console.log('Changed size option');        
       };
 
       $scope.removeMultiOptionPart = function (optionID) {
