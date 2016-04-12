@@ -242,10 +242,7 @@ angular.module('abacuApp')
       };
 
         //Payment Method radio buttons
-      $scope.payMethods = {
-        PAYPAL: 'paypal',
-        ADVANCE: 'advance'
-      };
+      $scope.payMethods = $scope.curOrder.payMethod;
 
       //User's choice of payment method
       $scope.payForm = {
@@ -267,6 +264,7 @@ angular.module('abacuApp')
       var token = '';
       function payment(){
         console.log($scope.card);
+        Stripe.setPublishableKey('pk_live_IDUKUfHE9yeCm8x1qmFBemBZ');
         Stripe.card.createToken($scope.card, stripeResponseHandler);
       }
 
@@ -274,7 +272,7 @@ angular.module('abacuApp')
         if (response.error) {
           // Show the errors on the form
           $scope.payment_errors = response.error.message;
-          console.log(response.error.message);
+          console.log('stripe created error' + response.error.message);
         } else {
           // response contains id and card, which contains additional card details
           token = response.id;
@@ -284,6 +282,29 @@ angular.module('abacuApp')
           });
         }
       }
+
+      // function payment() {
+      //   Stripe.tokens.create({
+      //     card: {
+      //       "number": $scope.card.number,
+      //       "exp_month": $scope.card.exp_month,
+      //       "exp_year": $scope.card.exp_year,
+      //       "cvc": $scope.card.cvc
+      //     }
+      //   }, function (err, tokenIn) {
+      //     // asynchronously called
+      //     if (err) {
+      //       $scope.payment_errors = response.error.message;
+      //       console.log('stripe created error' + response.error.message);
+      //     } else {
+      //       token = tokenIn;
+      //       console.log(token);
+      //       $scope.$apply(function () {
+      //         $scope.curStage++;
+      //       });
+      //     }
+      //   });
+      // }
       /**************************** CONFIRM ******************************/
 
         //T&C Checkbox model
