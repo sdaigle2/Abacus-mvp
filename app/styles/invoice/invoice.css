@@ -1,7 +1,9 @@
 #wrapper{
-  width:90vw;
+  width:100%;
+  /*padding-left: 30px;*/
+  /*padding-right: 30px;*/
+  padding-top: 35px;
   overflow: auto;
-  margin:auto;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 500;
 }
@@ -9,7 +11,10 @@
 header{
   font-weight: bold;
   font-size:1.1em;
+  margin-bottom: 20px;
+  text-align: left;
 }
+
 .title{
   font-weight: 600;
   margin-bottom: 10px;
@@ -21,6 +26,7 @@ header{
 
 .parts{
   width:24%;
+  text-align: left;
 }
 .details{
   width:61%;
@@ -41,12 +47,13 @@ header{
   border-right:2px solid black;
 }
 .comments{
-  width:70%;
+  width:100%;
 }
 
 .comments p{
   margin-bottom: 20px;
   margin-top: 10px;
+  text-align: left;
 }
 
 section{
@@ -60,7 +67,7 @@ section div{
 /**********measurement parts*********/
 .mParts{
   width:70%;
-  margin-right: 15%;
+  text-align: left;
 }
 
 .mInput{

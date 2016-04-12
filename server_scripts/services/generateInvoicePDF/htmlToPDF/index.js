@@ -18,7 +18,7 @@ function htmlToPDF(pdfFilePath, rawHTML, cb) {
 			engine: 'handlebars',
 			recipe: 'phantom-pdf',
 			'phantom': {
-				format: 'A5',
+				format: 'A4',
 				margin: '0px'
 			}
 		}

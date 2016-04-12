@@ -1,5 +1,6 @@
 {
   "taxRate": 0,
+  "orderNum": 1000,
   "shippingFee": 15,
   "sentDate": "2016-04-06T20:00:06.039Z",
   "userID": "sourabhdesai@gmail.com",
@@ -91,7 +92,90 @@
         "measures": [
           {
             "measureID": 15001,
+            "measureOptionIndex": -1,
+            "comments": "hello world"
+          },
+          {
+            "measureID": 15002,
             "measureOptionIndex": -1
+          },
+          {
+            "measureID": 15002,
+            "measureOptionIndex": -1
+          }
+        ],
+        "inCurOrder": false
+      },
+      "_id": "VyWN8XnRl",
+      "_rev": "13-d5aafcc486b74bc6388f6039fcc40c61"
+    },
+    {
+      "createdAt": "2016-04-05T03:54:56.458Z",
+      "updatedAt": "2016-04-05T03:54:56.458Z",
+      "wheelchair": {
+        "frameID": 11,
+        "title": "My Custom Wheelchair",
+        "parts": [
+          {
+            "partID": 1000,
+            "optionID": 1100,
+            "colorID": 1104,
+            "sizeIndex": -1,
+            "name": "Spoke Color",
+            "optionName": "PBO Spokes (3mm)"
+          },
+          {
+            "partID": 2222,
+            "optionID": 2200,
+            "colorID": 1104,
+            "sizeIndex": -1,
+            "name": "Back Spoke Color",
+            "optionName": "Different from Main Spoke Color"
+          },
+          {
+            "partID": 3000,
+            "optionID": 3200,
+            "colorID": 3201,
+            "sizeIndex": -1,
+            "name": "Hub Color",
+            "optionName": "Custom Anodized"
+          },
+          {
+            "partID": 4444,
+            "optionID": 4200,
+            "colorID": 3201,
+            "sizeIndex": -1,
+            "name": "Rim Color",
+            "optionName": "Custom Anodized"
+          },
+          {
+            "partID": 7000,
+            "optionID": 7300,
+            "colorID": 3201,
+            "name": "Hand Rims",
+            "optionName": "Custom Anodized"
+          },
+          {
+            "partID": 8000,
+            "optionID": 8600,
+            "colorID": 8604,
+            "name": "Tires",
+            "optionName": "Schwalbe Right Run Tires"
+          },
+          {
+            "partID": 9000,
+            "optionID": 9400,
+            "colorID": 0,
+            "sizeIndex": -1,
+            "name": "Quick Release Axles",
+            "optionName": "None"
+          }
+        ],
+        "measures": [
+          {
+            "measureID": 15001,
+            "measureOptionIndex": -1,
+            "comments": "hello world"
           },
           {
             "measureID": 15002,
