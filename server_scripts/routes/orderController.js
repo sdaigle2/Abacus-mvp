@@ -55,7 +55,7 @@ router.post('/order', function (req, res) {
           currency: "usd",
           source: stripeToken,
           description: "Tinker order"
-        }, cb);
+        }, cb );
       } else {
         cb(null, {});
       }
