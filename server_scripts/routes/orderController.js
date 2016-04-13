@@ -145,7 +145,10 @@ router.post('/order', function (req, res) {
                 path: pdfPath
               });
               sendgrid.send(invoiceEmail, function (err, json) {
-                console.log(`Error while sending user invoice email:\n${JSON.stringify(err, null, 2)}`);
+                if (err) {
+                  console.log(`Error while sending user invoice email:\n${JSON.stringify(err, null, 2)}`);
+                }
+                
                 cb(err);
               });
             };
@@ -155,7 +158,10 @@ router.post('/order', function (req, res) {
                 path: pdfPath
               });
               sendgrid.send(manufactureCopy, function (err, json) {
-                console.log(`Error while sending manufacturer invoice email:\n${JSON.stringify(err, null, 2)}`);
+                if (err) {
+                  console.log(`Error while sending manufacturer invoice email:\n${JSON.stringify(err, null, 2)}`);
+                }
+                
                 cb(err);
               });
             };

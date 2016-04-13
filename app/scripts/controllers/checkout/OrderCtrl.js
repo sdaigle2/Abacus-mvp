@@ -119,11 +119,13 @@ angular.module('abacuApp')
               alert('Incomplete Credit Card Information');
               return;
             }
-            if($scope.payForm.method === $scope.payMethods.PAYPAL) {
+
+            if ($scope.creditCardRequired() && allFormFieldsComplete($scope.card)) {
               payment();
-            }
-            else
+            } else if (!$scope.creditCardRequired()) {
               $scope.curStage++;
+            }
+
             break;
 
 
@@ -141,7 +143,6 @@ angular.module('abacuApp')
                 $scope.orderNum = $scope.curOrder.getOrderNum();
                 if($scope.orderNum !== -1) {
                   $scope.curStage++;
-                  return User.updateCookie();
                 }
               })
               .catch(function () {
