@@ -21,9 +21,9 @@
       <div class="checkout-well">
         <div class="checkout-well-title book">Log In</div>
         <div class="checkout-well-label book">Email Address</div>
-        <input type="email" data-ng-model="loginForm.email" />
+        <input type="email" data-ng-model="loginForm.email" ng-keypress="enterLogin($event)"/>
         <div class="checkout-well-label book">Password</div>
-        <input type="password" data-ng-model="loginForm.pass" />
+        <input type="password" data-ng-model="loginForm.pass" ng-keypress="enterLogin($event)" />
         <!--<div class="checkout-well-extras">-->
           <!--<div class="checkout-well-pass book"-->
                <!--data-ng-click="recoverPassword()">Forgot your Password?</div>-->

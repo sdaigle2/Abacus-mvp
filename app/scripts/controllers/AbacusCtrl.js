@@ -179,6 +179,12 @@ angular.module('abacuApp')
         $scope.loginPanel = loginPanelStatus.REGISTER;
       };
 
+      $scope.enterLogin = function(keyEvent){
+        if (keyEvent.which === 13){
+          $scope.login();
+        }
+      };
+
       //register group
       $scope.registerAction = function(){
         $scope.error = '';
@@ -621,7 +627,7 @@ angular.module('abacuApp')
             $scope.curEditWheelchair.setColorForPart(2222, newColorID);
         }
         console.log('Changed color option');
-        
+
       };
 
       $scope.setCurMultiOptionColor = function (optionID, newColorID) {
@@ -640,7 +646,7 @@ angular.module('abacuApp')
       $scope.setCurOptionSize = function (newSizeIndex) {
         if ($scope.getCurPanelID() !== $scope.getCurWheelchairPart().optionID) {
             $scope.setCurOption($scope.getCurPanelID());
-        } $scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, newSizeIndex);  console.log('Changed size option');        
+        } $scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, newSizeIndex);  console.log('Changed size option');
       };
 
       $scope.removeMultiOptionPart = function (optionID) {

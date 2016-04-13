@@ -39,6 +39,12 @@ angular.module('abacuApp')
       $scope.loginForm.pass = '';
     };
 
+    $scope.enterLogin = function(keyEvent){
+      if (keyEvent.which === 13){
+        $scope.loginAsUser();
+      }
+    };
+
     //Log in the user as a guest
     $scope.loginAsGuest = function () {
       $location.path('/order');
