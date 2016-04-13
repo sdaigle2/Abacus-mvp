@@ -106,6 +106,11 @@ angular.module('abacuApp')
 
       //Sends the user back to abacus with the selected wheelchair
       $scope.editWheelchair = function (index) {
+        if ($scope.wheelchairUIOpts[index].checked) {
+          // if the item is checked, remove it from ComparedDesigns
+          ComparedDesigns.cart.removeDesign($scope.wheelchairUIOpts[index].design);
+        }
+
         User.setEditWheelchair(index, $scope.wheelchairUIOpts[index].design);
         $location.path('/tinker');
       };
