@@ -106,6 +106,7 @@ router.put('/design/:id', restrict, function (req, res) {
                 err: err
               });
             } else {
+              updatedDesign._rev = body.rev; // attach latest revision number
               res.json(updatedDesign);
             }
           });

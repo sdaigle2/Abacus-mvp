@@ -71,7 +71,7 @@ function updateOrInsertAllEntries(argsObj, cb) {
 						cb(err);
 					} else {
 						entry._rev = res.rev; // update the revision number
-						entry.id = res.id;
+						entry._id = res.id;
 						cb(null, entry); // created the entry succesfully...return the entry value
 					}
 				});
@@ -119,6 +119,8 @@ function insertDesign(designValue, id, cb) {
 						// attach revision stamp and id
 						designValue._id = res.id;
 						designValue._rev = res.rev;
+						designValue.id = res.id;
+						designValue.rev = res.rev;
 						cb(null, designValue);
 					}
 				});
@@ -132,6 +134,7 @@ function insertDesign(designValue, id, cb) {
 			} else {
 				// attach revision stamp
 				designValue._rev = res.rev;
+				designValue.rev = res.rev;
 				cb(null, designValue);
 			}
 		});
@@ -204,6 +207,8 @@ function insertOrder(order, id, cb) {
 						// attach the revision stamp and the id
 						order._rev = res.rev;
 						order._id = res.id;
+						order.rev = res.rev;
+						order.id = res.id;
 						cb(null, order); // return the full order, not the minOrder
 					}
 				});
@@ -222,6 +227,7 @@ function insertOrder(order, id, cb) {
 						cb(err);
 					} else {
 						order._rev = res.rev; // update the revision stamp
+						order.rev = res.rev;
 						cb(null, order); // return the full order, not the minOrder
 					}
 				});
@@ -317,7 +323,7 @@ exports.getMinimizedUserEntry = getMinimizedUserEntry;
 
 function insertUser(user, id, cb) {
 	if (_.isFunction(id)) {
-		// No ID is given, must create a new order entry
+		// No ID is given, must create a new user entry
 		cb = id;
 		id = null;
 
@@ -335,6 +341,8 @@ function insertUser(user, id, cb) {
 						// attach the revision stamp and the id
 						minUser._rev = res.rev;
 						minUser._id = res.id;
+						minUser.rev = res.rev;
+						minUser.id = res.id;
 						cb(null, minUser);
 					}
 				});
@@ -354,6 +362,7 @@ function insertUser(user, id, cb) {
 						cb(err);
 					} else {
 						minUser._rev = res.rev; // update the revision stamp
+						minUser.rev = res.rev;
 						cb(null, minUser);
 					}
 				});

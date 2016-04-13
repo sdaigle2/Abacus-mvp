@@ -348,16 +348,13 @@ angular.module('abacuApp')
           data: {order: this.getAll(), token: token, totalPrice: this.getTotalCost()},
           method: 'POST'
         })
-        .then(function(data) {
-          if (!data.err) {
-            curThis.orderNum = data;
-          } else {
-            curThis.orderNum = -1;
-            alert('error processing order:'+ data.err);
-          }
+        .then(function(res) {
+          curThis.orderNum = res.data.orderNum;
 
           for(var i=0; i<curThis.wheelchairs.length; i++)
             curThis.wheelchairs[i].wheelchair.toggleInOrder();
+
+          return res.data;
         });
       }
     };
