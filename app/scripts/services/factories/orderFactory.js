@@ -187,8 +187,8 @@ angular.module('abacuApp')
           shippingFee: this.shippingFee,
           sentDate: this.sentDate,
           userID: this.userID,
-          fName: this.fName,
-          lName: this.lName,
+          shippingDetails: this.shippingDetails,
+          billingDetails: this.billingDetails,
           email: this.email,
           phone: this.phone,
           addr: this.addr,
@@ -208,6 +208,15 @@ angular.module('abacuApp')
       getDiscounts: function () {
         return this.discounts;
       },
+
+      getShippingDetails: function () {
+        return this.shippingDetails;
+      },
+
+      getBillingDetails: function () {
+        return this.billingDetails;
+      },
+
       getPayMethod: function () {
         return this.payMethod;
       },
@@ -348,16 +357,13 @@ angular.module('abacuApp')
           data: {order: this.getAll(), token: token, totalPrice: this.getTotalCost()},
           method: 'POST'
         })
-        .then(function(data) {
-          if (!data.err) {
-            curThis.orderNum = data;
-          } else {
-            curThis.orderNum = -1;
-            alert('error processing order:'+ data.err);
-          }
+        .then(function(res) {
+          curThis.orderNum = res.data.orderNum;
 
           for(var i=0; i<curThis.wheelchairs.length; i++)
             curThis.wheelchairs[i].wheelchair.toggleInOrder();
+
+          return res.data;
         });
       }
     };

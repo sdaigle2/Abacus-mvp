@@ -187,7 +187,10 @@ angular.module('abacuApp')
       }
 
       function restoreUserFromBackend(data) {
-        console.log(data);
+        if (_.isEmpty(data)) {
+          return;
+        }
+
         userID = data.userID || data.email;
 
         if (userID !== -1) {
@@ -218,28 +221,14 @@ angular.module('abacuApp')
 
           isAdmin = data.isAdmin || false;
           _rev = data._rev || null;
-
-          for (var i = 0; i < data.orders.length; i++) {
-            orders.push(new Order(0, 0, data.orders[i]));
-          }
+          var orderObjs = _.isArray(data.orders) ? data.orders : [];
+          orders = orderObjs.map(function (orderObj) {
+            return new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, orderObj);
+          });
         }
       }
 
-      function restoreMyDesign(ID){
-        return $http({
-          url:'loadMyDesign',
-          data: {email:ID},
-          method:'GET'
-        })
-          .then(function(res){
-            var data = res.data;
-
-          })
-      }
-
-
-
-       //Make a request to /session. If it succeeds, restore user from response, otherwise, restore from settings
+      //Make a request to /session. If it succeeds, restore user from response, otherwise, restore from settings
       var updatePromise = $http({
         url: '/session'
         , method: 'POST'
@@ -350,7 +339,6 @@ angular.module('abacuApp')
             userID = data.userID;
             if (userID !== -1) {
               restoreUserFromBackend(data);
-              restoreMyDesign(in_email);
               $rootScope.$broadcast('userChange');
             } else {
               throw new Error('Incorrect email or password');
@@ -578,7 +566,10 @@ angular.module('abacuApp')
           if (editOrder === null) {
             return PromiseUtils.rejected(new Error('CurEditOrder does not exist'));
           } else {
-            return editOrder.send(userID, userData, shippingData, billingData, payMethod, token);
+            return editOrder.send(userID, userData, shippingData, billingData, payMethod, token)
+            .then(function (response) {
+              restoreUserFromBackend(response.user);
+            });
           }
         },
 

@@ -23,8 +23,6 @@ angular.module('abacuApp')
       frames.push(new Frame(frameData[i]));
     }
 
-    console.log(frames);
-
     return {
 
       getFrames: function () {

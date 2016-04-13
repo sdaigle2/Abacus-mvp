@@ -16,6 +16,11 @@ var sendgrid           = require('../services/sendgrid');
 var dbService          = require('../services/db');
 var orderNumber        = require('../services/orderNumber');
 var dbUtils            = require('../services/dbUtils');
+
+// Manufacturer Email to send invoices to
+const MANUFACTURER_EMAIL = 'sourabhdesai@gmail.com';
+console.log(`NOTE: Invoice Emails will be sent to Manufacturer at this email: ${MANUFACTURER_EMAIL}`);
+
 //Send a pdf of the given wheelchair to the user
 router.post('/save', function (req, res) {
   //Cross check the wheelchair against the JSON, while calculating the total price
@@ -92,7 +97,8 @@ router.post('/order', function (req, res) {
                 if (err) {
                   return cb({status: 500, err: err});
                 }
-                cb(null, minUser);
+                user._rev = minUser.rev;
+                cb(null, user);
                });
             }
         } else {
@@ -133,7 +139,7 @@ router.post('/order', function (req, res) {
         //Send email to the user containing the invoice as a pdf
         invoiceEmail.to = req.body.order.email;
         invoiceEmail.text = 'Thank you for using Tinker to purchase your new Wheelchair. We have attached the invoice for your order.';
-        manufactureCopy.to = 'sales@intelliwheels.net';
+        manufactureCopy.to = MANUFACTURER_EMAIL;
         manufactureCopy.text = 'An order just been placed, here is a copy of the invoice';
 
         generateInvoicePDF(order, function (err, pdfPath) {
