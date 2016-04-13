@@ -31,7 +31,6 @@ angular.module('abacuApp')
       this.imageURLs = measureData.imageURLs;
       this.gifURL = measureData.gifURL;
       this.comments = measureData.comments;
-      console.log(this.prices.length === this.measureOptions[0].length);
     };
 
 

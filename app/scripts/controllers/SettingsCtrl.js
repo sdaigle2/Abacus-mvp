@@ -154,9 +154,9 @@ angular.module('abacuApp')
         for(var j=0; j<wheelchairs.length; j++){
           wheelchairs[j].orderNum = orders[i].orderNum;
           wheelchairs[j].date = orders[i].getSentDate();
-          wheelchairs[j].fName = orders[i].getFname();
-          wheelchairs[j].lName = orders[i].getLname();
-          $scope.wheelchairs.push(wheelchairs[j]);
+          wheelchairs[j].fName = orders[i].getShippingDetails().fName;
+          wheelchairs[j].lName = orders[i].getShippingDetails().lName;
+          $scope.wheelchairs.push(wheelchairs[j].wheelchair);
         }
       };
 

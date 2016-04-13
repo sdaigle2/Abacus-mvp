@@ -187,8 +187,8 @@ angular.module('abacuApp')
           shippingFee: this.shippingFee,
           sentDate: this.sentDate,
           userID: this.userID,
-          fName: this.fName,
-          lName: this.lName,
+          shippingDetails: this.shippingDetails,
+          billingDetails: this.billingDetails,
           email: this.email,
           phone: this.phone,
           addr: this.addr,
@@ -208,6 +208,15 @@ angular.module('abacuApp')
       getDiscounts: function () {
         return this.discounts;
       },
+
+      getShippingDetails: function () {
+        return this.shippingDetails;
+      },
+
+      getBillingDetails: function () {
+        return this.billingDetails;
+      },
+
       getPayMethod: function () {
         return this.payMethod;
       },

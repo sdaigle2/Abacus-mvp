@@ -19,6 +19,7 @@ var dbUtils            = require('../services/dbUtils');
 
 // Manufacturer Email to send invoices to
 const MANUFACTURER_EMAIL = 'sourabhdesai@gmail.com';
+console.log(`NOTE: Invoice Emails will be sent to Manufacturer at this email: ${MANUFACTURER_EMAIL}`);
 
 //Send a pdf of the given wheelchair to the user
 router.post('/save', function (req, res) {
