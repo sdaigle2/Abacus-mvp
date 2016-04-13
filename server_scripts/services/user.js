@@ -22,20 +22,6 @@ function fixObject(obj, existing) {
   });
 }
 
-/**
- * Given a User object with all linked fields completely populater,
- * Returns same user object with linked fields only referencing data via IDs
- */
-function getUserWithIDLinkedFields(fullUserObj) {
-  var miniUserObj = _.clone(fullUserObj);
-
-  miniUserObj.cart = _.isNull(miniUserObj.cart) ? null : (miniUserObj._id || miniUserObj.id);
-  miniUserObj.savedDesigns = _.map(miniUserObj.savedDesigns, '_id');
-  miniUserObj.orders = _.map(miniUserObj.orders, '_id');
-
-  return miniUserObj;
-}
-
 // Updates the given user object
 exports.update = function (obj, key, callback) {
   //Query the database for the existing user
@@ -49,8 +35,6 @@ exports.update = function (obj, key, callback) {
     obj.password = existing.password;
     obj.salt = existing.salt;
 
-    //Make sure the orders are not removed
-    obj.orders = existing.orders;
     if (!error) {
       dbUtils.updateLinkedUserFields(obj, function (err, updatedUserFull) {
         if (err) {

@@ -264,6 +264,9 @@ angular.module('abacuApp')
       };
 
       $scope.$watch('wheelchairUIOpts', function (newUIOpts, oldUIOpts) {
+        if (newUIOpts.length !== oldUIOpts.length) {
+          return; // only works if arrays are same length
+        }
 
         // Get all the wheelchairUIOpts items that have been changed from what they were before
         var checkFlippedOpts = newUIOpts.filter(function (newOpt, index) {

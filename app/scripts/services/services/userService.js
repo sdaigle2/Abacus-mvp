@@ -97,9 +97,6 @@ angular.module('abacuApp')
             var userData = response.data.user;
             restoreUserFromBackend(userData);
             return userData;
-          })
-          .catch(function (err) {
-            console.log('Request Failed: ' + err);
           });
         } else {
           return PromiseUtils.rejected(new Errors.NotLoggedInError('User Must Be Logged In For This Action'));
@@ -244,7 +241,6 @@ angular.module('abacuApp')
           return response.data;
         })
         .catch(function (err) {
-          console.log(err);
           restoreUserFromCookies();
         });
 
@@ -335,7 +331,6 @@ angular.module('abacuApp')
           return httpPromise
           .then(function (response) {
             var data = response.data;
-            console.log(data);
             userID = data.userID;
             if (userID !== -1) {
               restoreUserFromBackend(data);
@@ -344,9 +339,6 @@ angular.module('abacuApp')
               throw new Error('Incorrect email or password');
 
             }
-          })
-          .catch(function (err) {
-            console.log('Request Failed: ' + JSON.stringify(err));
           });
         },
 
@@ -364,11 +356,10 @@ angular.module('abacuApp')
             url: '/logout',
             method: 'POST'
           }).success(function (data) {
-            console.log(data);
             $rootScope.$broadcast('userChange');
           })
           .error(function (data) {
-            console.log('Request Failed: ' + data);
+            console.log('Request Failed');
           });
         },
 
@@ -380,7 +371,6 @@ angular.module('abacuApp')
         updateDB: updateDB,
 
         updateCart: function () {
-          console.log('design'+cart.wheelchairs.length);
 
           if (this.isLoggedIn()) {
             return this.updateDB();
@@ -542,7 +532,6 @@ angular.module('abacuApp')
         createNewOrder: function () {
           var lastOrder = orders[orders.length - 1];
           if (orders.length === 0 || lastOrder.hasBeenSent()) {
-            console.log("create a new order")
             cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
           }
         },
@@ -569,6 +558,7 @@ angular.module('abacuApp')
             return editOrder.send(userID, userData, shippingData, billingData, payMethod, token)
             .then(function (response) {
               restoreUserFromBackend(response.user);
+              return response;
             });
           }
         },

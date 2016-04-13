@@ -205,11 +205,11 @@ function insertOrder(order, id, cb) {
 						cb(err);
 					} else {
 						// attach the revision stamp and the id
-						order._rev = res.rev;
-						order._id = res.id;
-						order.rev = res.rev;
-						order.id = res.id;
-						cb(null, order); // return the full order, not the minOrder
+						updatedOrder._rev = res.rev;
+						updatedOrder._id = res.id;
+						updatedOrder.rev = res.rev;
+						updatedOrder.id = res.id;
+						cb(null, updatedOrder); // return the full order, not the minOrder
 					}
 				});
 			}
@@ -226,9 +226,9 @@ function insertOrder(order, id, cb) {
 					if (err) {
 						cb(err);
 					} else {
-						order._rev = res.rev; // update the revision stamp
-						order.rev = res.rev;
-						cb(null, order); // return the full order, not the minOrder
+						updatedOrder._rev = res.rev; // update the revision stamp
+						updatedOrder.rev = res.rev;
+						cb(null, updatedOrder); // return the full order, not the minOrder
 					}
 				});
 			}
@@ -272,7 +272,19 @@ function updateLinkedUserFields(userObj, cb) {
 				cb(null, null);
 			});
 		} else if (_.isObject(cart)) {
-			insertOrder(cart, cb);
+			updateOrInsertAllEntries({
+				db: dbService.orders,
+				dbInsert: insertOrder,
+				idField: '_id',
+				entries: [cart]
+			}, function (err, cartArr) {
+				if (err) {
+					cb(err);
+				} else {
+					const cart = _.first(cartArr);
+					cb(null, cart);
+				}
+			});
 		} else {
 			cb(new Error("Bad Cart Value:\n" + JSON.stringify(cart, null, 2)));
 		}
@@ -339,11 +351,11 @@ function insertUser(user, id, cb) {
 						cb(err);
 					} else {
 						// attach the revision stamp and the id
-						minUser._rev = res.rev;
-						minUser._id = res.id;
-						minUser.rev = res.rev;
-						minUser.id = res.id;
-						cb(null, minUser);
+						updatedUser._rev = res.rev;
+						updatedUser._id = res.id;
+						updatedUser.rev = res.rev;
+						updatedUser.id = res.id;
+						cb(null, updatedUser);
 					}
 				});
 			}
@@ -361,9 +373,9 @@ function insertUser(user, id, cb) {
 					if (err) {
 						cb(err);
 					} else {
-						minUser._rev = res.rev; // update the revision stamp
-						minUser.rev = res.rev;
-						cb(null, minUser);
+						updatedUser._rev = res.rev; // update the revision stamp
+						updatedUser.rev = res.rev;
+						cb(null, updatedUser);
 					}
 				});
 			}

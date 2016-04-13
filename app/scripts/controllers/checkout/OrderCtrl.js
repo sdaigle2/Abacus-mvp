@@ -138,9 +138,9 @@ angular.module('abacuApp')
 
             //div show
             User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.billingForm, $scope.curOrder.payMethod, token)
-              .then(function () {
+              .then(function (response) {
                 //div go
-                $scope.orderNum = $scope.curOrder.getOrderNum();
+                $scope.orderNum = response.orderNum;
                 if($scope.orderNum !== -1) {
                   $scope.curStage++;
                 }
