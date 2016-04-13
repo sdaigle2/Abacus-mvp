@@ -67,9 +67,9 @@
       </article>
       <section class="loginAction center">
         <label for="loginModel.email"></label>
-        <input type="text" data-ng-model="loginModel.email" placeholder="Username">
+        <input type="text" data-ng-model="loginModel.email" placeholder="Username" ng-keypress="enterLogin($event)">
         <label for="loginModel.password"></label>
-        <input type="password" data-ng-model="loginModel.password" placeholder="Password">
+        <input type="password" data-ng-model="loginModel.password" placeholder="Password" ng-keypress="enterLogin($event)">
         <button data-ng-click="login()">LOGIN</button>
         <h5 data-ng-click="register()">REGISTER</h5>
       </section>
@@ -200,7 +200,7 @@
               <div class="measure-content">
                 <h4 class="measure-content-title">
                   <span data-ng-bind="getCurMeasureData().name"></span></h4>
-                <h3 data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">Tutorial Video Coming Soon</h3>  
+                <h3 data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">Tutorial Video Coming Soon</h3>
                 <!--<iframe
                   data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL"
                   data-ng-src="{{getCurMeasureData().videoURL}}"
@@ -403,7 +403,7 @@
             </div>
           </div>
         </div>
-        
+
         <!--next and previous buttons-->
         <div id="nextPrevButtons">
             <div id="prevButton">
@@ -417,7 +417,7 @@
                     data-ng-show="getCurPage().index === 0 && getCurPageType() == pageType.CUSTOMIZE"/>
                 <p data-ng-show="getCurPage().index === 0 && getCurPageType() == pageType.CUSTOMIZE">PREVIOUS</p>
             </div>
-            
+
             <!--save button-->
             <div id="saveButtonInline"
                  data-ng-class="{'saveButtonInlineDisabled': getCurPage().index === 0 && getCurPageType() == pageType.CUSTOMIZE}"
@@ -425,7 +425,7 @@
                  data-ng-click="saveDropDown()">
                 <p>SAVE</p>
             </div>
-            
+
             <div id="nextButton">
                 <img data-ng-src="images/abacus_page/next-arrow.svg"
                     data-ng-click="pageSwitchStep(1)"
@@ -436,7 +436,7 @@
                 <img data-ng-src="images/abacus_page/next-arrow-gray.svg"
                     data-ng-show="getCurPage().index === getCurPages().length - 1 && getCurPageType() == pageType.MEASURE"/>
                 <p data-ng-show="getCurPage().index === getCurPages().length - 1 && getCurPageType() == pageType.MEASURE">NEXT</p>
-            </div>          
+            </div>
         </div>
         <!-- TEMPORARILY DISSABLE UNITS CHANGE UNTIL IT CAN BE FIXED
         <div class="unit-toggle" data-ng-class="{'sidebarMSave': isInMPage()}">

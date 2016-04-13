@@ -75,6 +75,12 @@ angular.module('abacuApp')
       $scope.loginModel.password = '';
     };
 
+    $scope.enterLogin = function(keyEvent){
+      if (keyEvent.which === 13){
+        $scope.login();
+      }
+    };
+
     $scope.logout = function () {
       User.logout();
       if($location.path() === '/settings')
