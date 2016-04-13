@@ -272,18 +272,114 @@
 			"defaultOptionID": 3100,
 			"options": [
 				{
-					"name": "Standard Glossy Black",
+					"name": "Same as Frame",
 					"optionID": 3100,
-					"colors": [],
 					"sizes": [],
 					"defaultSizeIndex": -1,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/standard.png",
-					"desc": "A sleek and classic look: glossy black backrest, footrest, and side guards.",
+					"desc": "A sleek and classic look: match your backrest, footrest, and side guards to the color of the frame.",
 					"weight": 0,
 					"price": 0,
                     "comments":"",
-                    "defaultColorID": 0
+                    "defaultColorID": 3201,
+                    "colors": [
+						{
+							"name": "Sky White",
+							"colorID": 3201,
+							"hex": "#E5E3DE"
+						},
+						{
+							"name": "Ruby Red",
+							"colorID": 3202,
+							"hex": "#D22038"
+						},
+						{
+							"name": "Glossy Black",
+							"colorID": 3203,
+							"hex": "#281C13"
+						},
+						{
+							"name": "Safety Yellow",
+							"colorID": 3204,
+							"hex": "#FFD94A"
+						},
+						{
+							"name": "Safety Orange",
+							"colorID": 3205,
+							"hex": "#E85C22"
+						},
+						{
+							"name": "Polish (Brushed)",
+							"colorID": 3206,
+							"hex": "#DFD3BF"
+						},
+						{
+							"name": "Royal Blue",
+							"colorID": 3207,
+							"hex": "#172fba"
+						},
+						{
+							"name": "Monster Green",
+							"colorID": 3208,
+							"hex": "#00FF00"
+						},
+						{
+							"name": "Pink",
+							"colorID": 3209,
+							"hex": "#FF8B9D"
+						},
+						{
+							"name": "Navy Blue",
+							"colorID": 3210,
+							"hex": "#144554"
+						},
+						{
+							"name": "Dormant Violet",
+							"colorID": 3211,
+							"hex": "#9333C6"
+						},
+						{
+							"name": "Matte Red",
+							"colorID": 3212,
+							"hex": "#D22038"
+						},
+						{
+							"name": "Matte Black",
+							"colorID": 3213,
+							"hex": "#281C13"
+						},
+						{
+							"name": "Matte Royal Blue",
+							"colorID": 3214,
+							"hex": "#172fba"
+						},
+						{
+							"name": "Matte Navy Blue",
+							"colorID": 3215,
+							"hex": "#295E6D"
+						},
+						{
+							"name": "Candy Blue",
+							"colorID": 3216,
+							"hex": "#0d2c91"
+						},
+						{
+							"name": "Sparkle Green",
+							"colorID": 3217,
+							"hex": "#3A4923"
+						},
+						{
+							"name": "Bonded Silver",
+							"colorID": 3218,
+							"hex": "#BDBDBD"
+						},
+						{
+							"name": "Candy Red",
+							"colorID": 3219,
+							"hex": "#D22038"
+						}
+					]
 				},
 				{
 					"name": "Custom",
@@ -2180,18 +2276,114 @@
 			"defaultOptionID": 3100,
 			"options": [
 				{
-					"name": "Standard Glossy Black",
+					"name": "Same as Frame",
 					"optionID": 3100,
-					"colors": [],
-					"defaultSizeIndex": -1,
 					"sizes": [],
-					"comments": "Type your comments, special requests, or questions here.",
+					"defaultSizeIndex": -1,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/standard.png",
-					"desc": "A sleek and classic look: glossy black backrest, footrest, and side guards.",
+					"desc": "A sleek and classic look: match your backrest, footrest, and side guards to the color of the frame.",
 					"weight": 0,
 					"price": 0,
-					"defaultColorID": 0
+                    "comments":"",
+                    "defaultColorID": 3201,
+                    "colors": [
+						{
+							"name": "Sky White",
+							"colorID": 3201,
+							"hex": "#E5E3DE"
+						},
+						{
+							"name": "Ruby Red",
+							"colorID": 3202,
+							"hex": "#D22038"
+						},
+						{
+							"name": "Glossy Black",
+							"colorID": 3203,
+							"hex": "#281C13"
+						},
+						{
+							"name": "Safety Yellow",
+							"colorID": 3204,
+							"hex": "#FFD94A"
+						},
+						{
+							"name": "Safety Orange",
+							"colorID": 3205,
+							"hex": "#E85C22"
+						},
+						{
+							"name": "Polish (Brushed)",
+							"colorID": 3206,
+							"hex": "#DFD3BF"
+						},
+						{
+							"name": "Royal Blue",
+							"colorID": 3207,
+							"hex": "#172fba"
+						},
+						{
+							"name": "Monster Green",
+							"colorID": 3208,
+							"hex": "#00FF00"
+						},
+						{
+							"name": "Pink",
+							"colorID": 3209,
+							"hex": "#FF8B9D"
+						},
+						{
+							"name": "Navy Blue",
+							"colorID": 3210,
+							"hex": "#144554"
+						},
+						{
+							"name": "Dormant Violet",
+							"colorID": 3211,
+							"hex": "#9333C6"
+						},
+						{
+							"name": "Matte Red",
+							"colorID": 3212,
+							"hex": "#D22038"
+						},
+						{
+							"name": "Matte Black",
+							"colorID": 3213,
+							"hex": "#281C13"
+						},
+						{
+							"name": "Matte Royal Blue",
+							"colorID": 3214,
+							"hex": "#172fba"
+						},
+						{
+							"name": "Matte Navy Blue",
+							"colorID": 3215,
+							"hex": "#295E6D"
+						},
+						{
+							"name": "Candy Blue",
+							"colorID": 3216,
+							"hex": "#0d2c91"
+						},
+						{
+							"name": "Sparkle Green",
+							"colorID": 3217,
+							"hex": "#3A4923"
+						},
+						{
+							"name": "Bonded Silver",
+							"colorID": 3218,
+							"hex": "#BDBDBD"
+						},
+						{
+							"name": "Candy Red",
+							"colorID": 3219,
+							"hex": "#D22038"
+						}
+					]
 				},
 				{
 					"name": "Custom",
@@ -3713,7 +3905,7 @@
 					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
-					"comments": "Type your comments, special requests, or questions here.",
+					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"desc": "A sleek and classic look.",
