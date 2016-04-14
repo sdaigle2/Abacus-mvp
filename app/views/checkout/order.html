@@ -284,8 +284,10 @@
              data-ng-if="curStage !== stages.COMPLETE"
              data-ng-click="back()">&lt GO BACK</div>
         <div class="order-button medium"
+             ng-init="completeClicked = false"
+             ng-disabled="completeClicked"
              data-ng-style="(curStage === stages.COMPLETE) && {'width': '80%'}"
-             data-ng-click="next()" data-ng-bind="display[curStage].button"
+             data-ng-click="!completeClicked && next()" data-ng-bind="display[curStage].button"
               data-ng-if="curStage !== stages.COMPLETE || loggedIn"></div>
         <div class="order-button medium"
              data-ng-show="curStage === stages.COMPLETE && !loggedIn"
