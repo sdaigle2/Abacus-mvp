@@ -31,7 +31,7 @@
 
   <!-- endbuild -->
 </head>
-<body ng-app="abacuApp" ng-cloak>
+<body ng-app="abacuApp"  ng-cloak>
 
 <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5BJDWF"
@@ -52,7 +52,7 @@
 
 <div data-ng-controller="HeaderController">
   <header>
-    <div class="mainNavbar" data-ng-if="!isActive('/')">
+    <div class="mainNavbar" data-ng-if="!isActive('/')" id="loading-bar-container">
       <div class="preload">
         <img alt="frame" src="images/icons/on_frames.png"/>
         <img alt="about us" src="images/icons/on_about_us.png"/>
