@@ -423,6 +423,90 @@ function toUpperCase(str) {
 }
 
 /**
+ * Following constants are to aid in invoice parts/measurement page pagination
+ */
+
+const LINES_PER_PAGE = 28;
+const LINES_PER_PART = 2; // doesnt include comment line, that is taken into account seperately
+const LINES_PER_MEASURE = 2; // doesnt include comment line, that is taken into account seperately
+// number of characters that a comment can have to be considered taking up a full line
+const COMMENT_LINE_LENGTH = 55;
+
+/**
+ * Given a wheelchair, returns an array of arrays of parts for that wheelchair
+ * This is used in paginating the wheelchairs parts page to prevent overflow
+ * Takes length of comments into account
+ */
+function getPaginatedParts(chair) {
+  var frame = getChairFrame(chair);
+  var chairOptions = _.flatten( frame.parts.map(part => {
+    return getChairPartOptions(chair, part.partID)
+      .map(option => {
+        return {
+          'part': part,
+          'option': option
+        };
+      });
+  }));
+
+
+  const estimatePageLines = parts => {
+    var partComments = parts.map(part => part.option.comments || '');
+    
+    var partLines = parts.length * LINES_PER_PART;
+    var commentLines = _.sumBy(partComments, comment => (comment.length / COMMENT_LINE_LENGTH) + 1);
+
+    return partLines + commentLines;
+  };
+
+  const paginatedOptions = chairOptions.reduce((paginatedArray, option) => {
+    var curPage = _.last(paginatedArray);
+    if (estimatePageLines(curPage.concat(option)) >= LINES_PER_PAGE) {
+      // Adding this option to the page would exceed the line limit, add this option to a new page
+      paginatedArray.push([option]);
+    } else {
+      curPage.push(option);
+    }
+
+    return paginatedArray;
+  }, [[]]);
+
+  return paginatedOptions;
+}
+
+/**
+ * Given a wheelchair, returns an array of arrays of parts for that wheelchair
+ * This is used in paginating the wheelchairs parts page to prevent overflow
+ * Takes length of comments into account
+ */
+function getPaginatedMeasures(chair) {
+  var chairMeasures = chair.measures;
+
+  const estimatePageLines = measures => {
+    var measureComments = measures.map(measure => measure.comments || '');
+
+    var measureLines = measures.length * LINES_PER_MEASURE;
+    var commentLines = _.sumBy(measureComments, comment => (comment.length / COMMENT_LINE_LENGTH) + 1);
+    return measureLines + commentLines;
+  };
+
+  const paginatedMeasures = chairMeasures.reduce((paginatedArray, measure) => {
+    var curPage = _.last(paginatedArray);
+    if (estimatePageLines(curPage.concat(measure)) >= LINES_PER_PAGE) {
+      // Adding this measure to the page would exceed the line limit, add this measure to a new page
+      paginatedArray.push([measure]);
+    } else {
+      curPage.push(measure);
+    }
+
+    return paginatedArray;
+  }, [[]]);
+
+  return paginatedMeasures;
+}
+
+
+/**
  * Export all the functions so they can be used by Handlebars templating engine
  */
 const EXPORTED_HELPERS = {
@@ -453,6 +537,8 @@ const EXPORTED_HELPERS = {
   getTotalDiscount,
   getTotalPrice,
   toUpperCase,
+  getPaginatedParts,
+  getPaginatedMeasures
 };
 
 // Wrap all functions to round integers to nearest decimal

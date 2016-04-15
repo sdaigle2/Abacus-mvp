@@ -184,7 +184,8 @@
 					</div>
 				</div>
 			</div>
-			<!--Parts Page-->
+			<!--Paginated Parts Page-->
+			{{#each (getPaginatedParts this.wheelchair)}}
 			<div class="_idGenObjectLayout-1">
 				<div id="_idContainer050">
 					<div id="_idContainer035">
@@ -201,7 +202,11 @@
 					</div>
 					<div id="wrapper">
 						<header class="">
+							{{#if @first}}
 							<h2>Parts</h2>
+							{{else}}
+							<h2>Parts (cont.)</h2>
+							{{/if}}
 						</header>
 
 						<body>
@@ -211,28 +216,25 @@
 								<div class="details">DETAILS</div>
 								<div class="price">PRICE</div>
 							</section>
-							{{#with (getChairAndFrame this.wheelchair)}}
-							{{#each frame.parts}}
-							{{debug}}
-							{{#each (getChairPartOptions ../chair partID) as |option|}}
+							{{#each this}}
 							<div>
 								<section class="optionTable">
-									<div class="parts themeBlue">{{../name}}</div>
-									<div class="details">{{option.name}}<span class="colorInfo">{{getChairOptionColorName ../../chair option.optionID}}</span> {{getOptionSize ../../chair option.optionID}} inch</div>
-									<div class="price">${{getChairPartOptionPrice ../../chair option.optionID}}</div>
+									<div class="parts themeBlue">{{this.part.name}}</div>
+									<div class="details">{{this.option.name}}<span class="colorInfo">{{getChairOptionColorName ../../wheelchair this.option.optionID}}</span> {{getOptionSize ../../wheelchair this.option.optionID}} inch</div>
+									<div class="price">${{getChairPartOptionPrice ../../wheelchair this.option.optionID}}</div>
 								</section>
 								<section class="comments">
-									<p>  {{getChairOptionComment ../../chair option.optionID}}</p>
+									<p>  {{getChairOptionComment ../../wheelchair this.option.optionID}}</p>
 								</section>
 							</div>
 							{{/each}}
-							{{/each}}
-							{{/with}}
 						</body>
 					</div>
 				</div>
 			</div>
+			{{/each}}
 			<!--Measurements Page-->
+			{{#each (getPaginatedMeasures this.wheelchair)}}
 			<div class="_idGenObjectLayout-1">
 				<div id="_idContainer050">
 					<div id="_idContainer035">
@@ -249,7 +251,11 @@
 					</div>
 					<div id="wrapper">
 						<header>
+							{{#if @first}}
 							<h2>Measurements</h2>
+							{{else}}
+							<h2>Measurements (cont.)</h2>
+							{{/if}}
 						</header>
 
 						<body>
@@ -261,8 +267,8 @@
 								<div class="mInput">MEASUREMENT</div>
 							</section>
 
-							{{#each this.wheelchair.measures}}
-							{{#with (getChairMeasureOption ../wheelchair this.measureID) as |measureInfo|}}
+							{{#each this}}
+							{{#with (getChairMeasureOption ../../wheelchair this.measureID) as |measureInfo|}}
 							<div>
 								<section class="optionTable">
 									<div class="mParts themeBlue" style="float:left;">{{measureInfo.name}}</div>
@@ -278,6 +284,7 @@
 					</div>
 				</div>
 			</div>
+			{{/each}}
 		{{/each}}
 	</body>
 </html>

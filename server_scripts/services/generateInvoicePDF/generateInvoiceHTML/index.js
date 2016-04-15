@@ -17,7 +17,6 @@ const INVOICE_IMAGES_URI        = `http://localhost:${APP_PORT}/images/invoice_v
 helpers.INVOICE_CSS_URI    = _.constant(INVOICE_CSS_URI);
 helpers.INVOICE_IMAGES_URI = _.constant(INVOICE_IMAGES_URI);
 
-helpers.print = val => console.log(JSON.stringify(val, null, 2));
 Handlebars.registerHelper(helpers);
 
 // Must read Invoice template contents and store it in-memory
