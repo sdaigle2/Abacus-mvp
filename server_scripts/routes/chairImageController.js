@@ -3,11 +3,8 @@
  */
 
 var router = require('express').Router();
-var AWS = require('aws-sdk');
-AWS.config.AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
-AWS.config.AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 
-var s3 = new AWS.S3();
+const s3 = require('../services/s3');
 
 router.get('/images/chairPic/*',function(req,res){
   var imgURL = req.path;
