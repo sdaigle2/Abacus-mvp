@@ -7,6 +7,12 @@ const helpers    = require('./handlebar_helpers');
 
 const GENERATED_PDFS_DIR = path.join(os.homedir(), '/invoice_pdfs');
 
+// Check if the PDF directory exists, if it doesn't, create it
+if (!fs.existsSync(GENERATED_PDFS_DIR)) {
+	console.log(`Making PDF directory at: ${GENERATED_PDFS_DIR}`);
+	fs.mkdirSync(GENERATED_PDFS_DIR);
+}
+
 const APP_PORT = process.env.PORT || 8080;
 
 const INVOICE_TEMPLATE_FILEPATH = path.resolve(__dirname, '../invoice_templates/Invoice V4.hbs'); // path.resolve() returns the absolute path given a relative path

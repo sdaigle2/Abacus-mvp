@@ -451,7 +451,7 @@ function getPaginatedParts(chair) {
 
 
   const estimatePageLines = parts => {
-    var partComments = parts.map(part => part.option.comments || '');
+    var partComments = parts.map(part => _.isString(part.option.comments) ? part.option.comments : '');
     
     var partLines = parts.length * LINES_PER_PART;
     var commentLines = _.sumBy(partComments, comment => (comment.length / COMMENT_LINE_LENGTH) + 1);
@@ -483,7 +483,7 @@ function getPaginatedMeasures(chair) {
   var chairMeasures = chair.measures;
 
   const estimatePageLines = measures => {
-    var measureComments = measures.map(measure => measure.comments || '');
+    var measureComments = measures.map(measure => _.isString(measure.comments) ? measure.comments : '');
 
     var measureLines = measures.length * LINES_PER_MEASURE;
     var commentLines = _.sumBy(measureComments, comment => (comment.length / COMMENT_LINE_LENGTH) + 1);

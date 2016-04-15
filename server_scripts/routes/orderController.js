@@ -58,8 +58,8 @@ router.post('/order', function (req, res) {
   const createStripeCharge = cb => {
     if (order.payMethod === 'Credit Card') {
       //Create a new stripe payment
-      var charge = stripe.charges.cr1eate({
-        amount: Math.round(total * 100), // Amount in cents
+      var charge = stripe.charges.create({
+        amount: total,
         currency: "usd",
         source: stripeToken,
         description: "Tinker order"
@@ -200,6 +200,7 @@ router.post('/order', function (req, res) {
       res.json({err: 'Order Discounts were invalid'});
       return;
     }
+    
     createStripeCharge((err, charge) => {
       if (err) {
         console.log(err);
