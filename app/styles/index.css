@@ -1,5 +1,12 @@
 /* ----- CSS FOR INDEX.HTML ----- */
 
+/*loading bar*/
+#loading-bar-container{
+  position: fixed;
+  bottom:0;
+  left:0;
+}
+
 html{
   height:100%;
 }

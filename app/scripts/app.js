@@ -17,13 +17,14 @@ angular
     'ngSanitize',
     'ngTouch',
     'ngDialog',
-    'ngclipboard'
+    'ngclipboard',
+    'angular-loading-bar'
   ])
   .run(['$rootScope', function ($rootScope) {
     // Attach lodash object to $rootScope so it can be used in views
     $rootScope._ = window._;
   }])
-  .config(function ($routeProvider, $sceDelegateProvider, $httpProvider, $locationProvider) {
+  .config(function ($routeProvider, $sceDelegateProvider, $httpProvider, $locationProvider ,cfpLoadingBarProvider) {
     // Set up routes
     $routeProvider
       .when('/', {
@@ -142,6 +143,8 @@ angular
 
     $locationProvider.hashPrefix('!');
     //$locationProvider.html5Mode(true);
+
+    cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
 
 
 
