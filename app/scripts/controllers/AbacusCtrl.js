@@ -625,6 +625,7 @@ angular.module('abacuApp')
             $scope.curEditWheelchair.setColorForPart(2000, newColorID);
             $scope.curEditWheelchair.setColorForPart(4000, newColorID);
             $scope.curEditWheelchair.setColorForPart(2222, newColorID);
+            $scope.curEditWheelchair.setColorForPart(3000, newColorID+2100);            
         }
         console.log('Changed color option');
 
