@@ -16,6 +16,8 @@ angular.module('abacuApp')
 
       Drop.setFalse();
 
+      $scope.completeClicked = false;
+
       $scope.stages = {
         INFO: 0,
         PAYMENT: 1,
@@ -102,6 +104,7 @@ angular.module('abacuApp')
         switch ($scope.curStage) {
 
           case $scope.stages.INFO:
+            $scope.completeClicked = false;
             if (allInputsFilled() === false) {
               alert('You must fill in all contact information');
               return;
@@ -111,6 +114,7 @@ angular.module('abacuApp')
 
 
           case $scope.stages.PAYMENT:
+            $scope.completeClicked = false;
             if (!allFormFieldsComplete($scope.billingForm, ['addr2'])) {
               alert('You must fill in all billing information');
               return;
@@ -136,6 +140,7 @@ angular.module('abacuApp')
               return;
             }
 
+            $scope.completeClicked = true;
             //div show
             User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.billingForm, $scope.curOrder.payMethod, token)
               .then(function (response) {
@@ -152,6 +157,7 @@ angular.module('abacuApp')
 
 
           case $scope.stages.COMPLETE:
+            $scope.completeClicked = false;
             User.setContentSection('orders');
             $location.path('/settings');
             break;
