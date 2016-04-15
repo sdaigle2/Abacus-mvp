@@ -121,76 +121,70 @@ router.post('/order', function (req, res) {
   };
 
   // returns error value with object {orderNumber: <Order Number>}
-  const sendInvoiceEmails = cb => {
+  const sendInvoiceEmails = (curOrderNum, cb) => {
+    order.orderNum = curOrderNum;
 
-    orderNumber.increment() // this is an atomic operation & a central point of congestion...could take a while
-    .then(curOrderNum => {
-      order.orderNum = curOrderNum;
-
-      //Set up the invoice email
-      var invoiceEmail = new sendgrid.Email({
-        from: 'do-not-reply@tinker.fit',
-        subject: 'Per4max Purchase Invoice'
-      });
-
-      var manufactureCopy = new sendgrid.Email({
-        from: 'do-not-reply@tinker.fit',
-        subject: 'Per4max Purchase Invoice'
-      });
-
-      //Send email to the user containing the invoice as a pdf
-      invoiceEmail.to = req.body.order.email;
-      invoiceEmail.text = 'Thank you for using Tinker to purchase your new Wheelchair. We have attached the invoice for your order.';
-      manufactureCopy.to = MANUFACTURER_EMAIL;
-      manufactureCopy.text = 'An order just been placed, here is a copy of the invoice';
-
-      generateInvoicePDF(order, function (err, pdfPath) {
-        if (err) {
-          cb(err);
-        } else {
-          const sendInvoiceMail = function (cb) {
-            invoiceEmail.addFile({
-              path: pdfPath
-            });
-            sendgrid.send(invoiceEmail, function (err, json) {
-              if (err) {
-                console.log(`Error while sending user invoice email:\n${JSON.stringify(err, null, 2)}`);
-              }
-              
-              cb(err);
-            });
-          };
-
-          const sendManufacturerEmail = function (cb) {
-            manufactureCopy.addFile({
-              path: pdfPath
-            });
-            sendgrid.send(manufactureCopy, function (err, json) {
-              if (err) {
-                console.log(`Error while sending manufacturer invoice email:\n${JSON.stringify(err, null, 2)}`);
-              }
-              
-              cb(err);
-            });
-          };
-
-          // send the emails out in parallel
-          async.parallel([sendInvoiceMail, sendManufacturerEmail], function (err) {
-            if (err) {
-              cb(err);
-            } else {
-              cb(null, curOrderNum);
-            }
-          });
-
-
-        }
-      });
-
-    })
-    .catch(err => {
-      cb(err);
+    //Set up the invoice email
+    var invoiceEmail = new sendgrid.Email({
+      from: 'do-not-reply@tinker.fit',
+      subject: 'Per4max Purchase Invoice'
     });
+
+    var manufactureCopy = new sendgrid.Email({
+      from: 'do-not-reply@tinker.fit',
+      subject: 'Per4max Purchase Invoice'
+    });
+
+    //Send email to the user containing the invoice as a pdf
+    invoiceEmail.to = req.body.order.email;
+    invoiceEmail.text = 'Thank you for using Tinker to purchase your new Wheelchair. We have attached the invoice for your order.';
+    manufactureCopy.to = MANUFACTURER_EMAIL;
+    manufactureCopy.text = 'An order just been placed, here is a copy of the invoice';
+
+    generateInvoicePDF(order, function (err, pdfPath) {
+      if (err) {
+        cb(err);
+      } else {
+        const sendInvoiceMail = function (cb) {
+          invoiceEmail.addFile({
+            path: pdfPath
+          });
+          sendgrid.send(invoiceEmail, function (err, json) {
+            if (err) {
+              console.log(`Error while sending user invoice email:\n${JSON.stringify(err, null, 2)}`);
+            }
+            
+            cb(err);
+          });
+        };
+
+        const sendManufacturerEmail = function (cb) {
+          manufactureCopy.addFile({
+            path: pdfPath
+          });
+          sendgrid.send(manufactureCopy, function (err, json) {
+            if (err) {
+              console.log(`Error while sending manufacturer invoice email:\n${JSON.stringify(err, null, 2)}`);
+            }
+            
+            cb(err);
+          });
+        };
+
+        // send the emails out in parallel
+        async.parallel([sendInvoiceMail, sendManufacturerEmail], function (err) {
+          if (err) {
+            cb(err);
+          } else {
+            cb(null, curOrderNum);
+          }
+        });
+
+
+      }
+    });
+
+
 
   };
 
@@ -200,7 +194,7 @@ router.post('/order', function (req, res) {
       res.json({err: 'Order Discounts were invalid'});
       return;
     }
-    
+
     createStripeCharge((err, charge) => {
       if (err) {
         console.log(err);
@@ -224,15 +218,21 @@ router.post('/order', function (req, res) {
             return;
           }
 
-          sendInvoiceEmails((err, orderNum) => {
-            if (err) {
-              res.status(500);
-              res.json({err: err});
-              return;
-            }
-
+          orderNumber.increment()
+          .then(curOrderNum => {
             // Respond with 200 status and user & order number in the response body
-            res.json({user: user, orderNum: orderNum});
+            res.json({user: user, orderNum: curOrderNum});
+            
+            sendInvoiceEmails(curOrderNum, (err, orderNum) => {
+              if (err) {
+                console.log(`ERROR WHILE SENDING INVOICE EMAIL: ${JSON.stringify(err, null, 2)}`);
+              }
+            });
+
+          })
+          .catch(err => {
+            res.status(400);
+            res.json({err: err});
           });
         });
       });
