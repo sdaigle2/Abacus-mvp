@@ -21,27 +21,37 @@ var dbService = require('./db');
 const ORDER_NUMBER_DOC_ID = 'MAIN';
 
 // This is a local copy of the order number....true value exists in DB but this value should be consistent with that
-var LOCAL_MAIN_DOC = { // default values
+const LOCAL_MAIN_DOC = { // default values
 	'_id': ORDER_NUMBER_DOC_ID,
 	'_rev': null,
 	'number': 1000
 };
 
-// Make a request to the DB .... none of the increment requests will be handled until orderNumInitPromise is resolved
-const orderNumInitPromise = new Promise((resolve, reject) => {
+// Gets the MAIN doc from cloudant, assigns it to the LOCAL_MAIN_DOC variable here
+function synchronizeLocalMainDoc(cb) {
 	dbService.orderNumber.get(ORDER_NUMBER_DOC_ID, (err, body) => {
 		if (err) {
-			reject(err);
-			console.log(`RESTART SERVER: ERROR IN INITIALIZING THE ORDER NUMBER SERVICE\n${JSON.stringify(err, null, 2)}`);
+			cb(err);
 		} else {
 			if (_.isNumber(_.get(body, 'number'))) {
 				_.assign(LOCAL_MAIN_DOC, body);
-				resolve(body);
+				cb(null, body);
 			} else {
 				var errMsg = `RESTART SERVER: MAIN DOCUMENT FOR ORDER NUMBERS TABLE DOESNT HAVE A PROPER NUMBER VALUE`;
-				reject(new Error(errMsg));
+				cb(new Error(errMsg));
 				console.log(errMsg);
 			}
+		}
+	});
+}
+
+// Make a request to the DB .... none of the increment requests will be handled until orderNumInitPromise is resolved
+const orderNumInitPromise = new Promise((resolve, reject) => {
+	synchronizeLocalMainDoc((err) => {
+		if (err) {
+			reject(err);
+		} else {
+			resolve(LOCAL_MAIN_DOC);
 		}
 	});
 });
@@ -69,7 +79,21 @@ function incrementOrderNumber(numberHolder, cb) {
 
 // create worker queue that will only allow one increment task to run at a time
 const incrementQueue = async.queue(function (opts, cb) {
-	incrementOrderNumber(opts, cb);
+	incrementOrderNumber(opts, err => {
+		if (err) {
+			// If you couldnt increment, most likely because there was a document update conflict...
+			// Try synchronizing first then try again
+			synchronizeLocalMainDoc(err => {
+				if (err) { // if there was an error in synchronizing, just give up, dont want to keep retrying
+					cb(err);
+				} else {
+					incrementOrderNumber(opts, cb); // LOCAL_MAIN_DOC is now synchronized, now should be able to update
+				};
+			});
+		} else {
+			cb(); // increment worked!
+		}
+	});
 }, 1);
 
 // Will do an atomic increment....this will only work if we have one instance of our web server running
