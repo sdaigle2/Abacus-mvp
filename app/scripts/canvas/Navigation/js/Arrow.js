@@ -22,7 +22,7 @@ var Arrow = function(image, name, page, x, width, custom){
   var image = this.image;
   var me = this;
   gotoAndStop(image);
- 
+
   //The arrow is composed of three inner MC's the head, body and tail
   //The following transforms the body and arranges the head/tail.
   //NOTES:
@@ -38,7 +38,7 @@ var Arrow = function(image, name, page, x, width, custom){
     tails[i].x+=tailShift;
     heads[i].x=70+width+headShift;
   }
- 
+
 
 
   function pressed(m){
@@ -73,6 +73,9 @@ var Arrow = function(image, name, page, x, width, custom){
 
 
   function hover_on(m){
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+      return pressed(m);
+    }
     var ratio = canvasWidth/$(window).width();
     span.style.visibility = "visible";
     if(image === 4){
