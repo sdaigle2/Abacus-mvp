@@ -74,6 +74,7 @@ var Arrow = function(image, name, page, x, width, custom){
 
   function hover_on(m){
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+
       return pressed(m);
     }
     var ratio = canvasWidth/$(window).width();
