@@ -541,16 +541,16 @@
 }
 .main-custom {
   position: relative;
-  top: 20px;
+  top: 45px;
   display: inline-block;
   float: left;
   width: calc(70vw);
   max-width: calc(100vw - 400px);
   min-width: 580px;
-  height: calc(100vh - 153px);
-  min-height: 468px;
-  max-height: calc(100vw - 440px);
-  background-color:aqua;  
+  height: calc(100vh - 175px);
+  min-height: 448px;
+  max-height: calc(100vw - 460px);
+  /*background-color:aqua;*/
 }
 
 .main-custom .leftButton, .main-custom .rightButton {
@@ -559,14 +559,13 @@
 
 .main-custom .main-custom-wheelchairDisplay {
   position: absolute;
-  top: 20px;
   right: 0px;
-  width: calc(100vh - 40px);
+  width: calc(100vh - 100px);
   min-width: 538px;
   max-width: 100%;
-  border-color:aquamarine;
+  /*border-color:aquamarine;
   border-style: solid;
-  border-width: 5px;
+  border-width: 5px;*/
 }
 
 .main-custom-wheelchairDisplay.slide-over {
@@ -576,18 +575,17 @@
 .main-custom-rotatebuttons {
   position: absolute;
   right: 0px;
-  width: calc(100vh - 80px); 
+  width: calc(100vh - 100px); 
   min-width: 538px;
   max-width: 100%;
   bottom: 0px;
-  margin: auto;
   text-align: center; 
   z-index: 21;
-  background-color:coral;
+  /*background-color:coral;
+  opacity: .5;*/
 }
 .main-custom-rotatebuttons.slide-over {
-
-  
+  left: 0px;  
 }
 .main-custom-rotatebuttons img {
   margin: 15px 10px 0 0;
@@ -1650,11 +1648,15 @@ body {
 	opacity: 1;
 	z-index: 9000;
 	position: fixed;
-    height: calc(100vh - 768px);
+    height: 37px;
     padding:0px;
-    max-height: 37px;
-    min-height:0px;
     bottom: 0;
+}
+
+@media screen and (max-height: 768px) {
+  .bottom-banner {
+    height: 0px;
+  }
 }
 
 .bottom-banner-left{
