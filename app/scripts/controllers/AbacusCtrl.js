@@ -135,10 +135,16 @@ angular.module('abacuApp')
 
       //Initialize the page - called on pageLoad
       function init() {
-        var id = parseInt($routeParams.param1);
+        var id = $routeParams.param1;
         console.log(id);
-        if(id && FrameData.getFrame(id)) {
-          User.createCurrentDesign(id);
+        if(id != null) {
+          User.fetchDesign(id)
+            .then(function(design){
+              $scope.curEditWheelchair = design.wheelchair;
+            })
+            .catch(function(err){
+              console.log(err);
+            })
         }
 
 
@@ -625,7 +631,7 @@ angular.module('abacuApp')
             $scope.curEditWheelchair.setColorForPart(2000, newColorID);
             $scope.curEditWheelchair.setColorForPart(4000, newColorID);
             $scope.curEditWheelchair.setColorForPart(2222, newColorID);
-            $scope.curEditWheelchair.setColorForPart(3000, newColorID+2100);            
+            $scope.curEditWheelchair.setColorForPart(3000, newColorID+2100);
         }
         console.log('Changed color option');
 

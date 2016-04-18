@@ -44,9 +44,9 @@ angular
         //  }]
         //}
       })
-      .when('/abacus/:param1', {
+      .when('/tinker/:param1', {
         templateUrl: '../views/tinker/abacus.html',
-        controller: 'AbacusCtrl',
+        controller: 'AbacusCtrl'
         //resolve:{
         //  UserData: ['$q', 'User', function($q, User) {
         //    return User.getPromise();
