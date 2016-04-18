@@ -3,16 +3,16 @@
  */
 
 var router = require('express').Router();
-var AWS = require('aws-sdk');
-AWS.config.AWS_ACCESS_KEY_ID = process.env.AWS_ACCESS_KEY_ID;
-AWS.config.AWS_SECRET_ACCESS_KEY = process.env.AWS_SECRET_ACCESS_KEY;
 
-var s3 = new AWS.S3();
+const chairPicRetriever = require('../services/chairPicRetriever');
 
 router.get('/images/chairPic/*',function(req,res){
   var imgURL = req.path;
-  var params = {Bucket: 'tinkerwheelchair', Key: imgURL.replace('/images/chairPic/', '')};
-  s3.getObject(params).createReadStream()
+  var imgKey = imgURL.replace('/images/chairPic/', '');
+
+  chairPicRetriever.get(imgKey)
+  .then(imageStream => {
+    imageStream
     .on('error', function(e){
       console.log(e);
       res.status(404);
@@ -24,6 +24,7 @@ router.get('/images/chairPic/*',function(req,res){
       res.status(404);
       res.send('Not found')
     });
+  });
 });
 
 module.exports = router;

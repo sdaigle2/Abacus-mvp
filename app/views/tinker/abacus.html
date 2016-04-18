@@ -222,7 +222,7 @@
             </div>
             <div class="measure-comments">
                   <h4>Comments, Questions, and Special Requests</h4>
-                  <textarea data-ng-model="getCurMeasureData().comments" placeholder="Type your comments, special requests, or questions here" rows="6" cols="81">{{getCurMeasureData().comments}}</textarea>
+                  <textarea data-ng-model="getCurMeasureData().comments" placeholder="Type your comments, special requests, or questions here" rows="6" cols="65">{{getCurMeasureData().comments}}</textarea>
             </div>
           </div>
         </div>
@@ -454,7 +454,8 @@
 
       <!--Unit Toggle-->
 
-      <div id="siteCredit">
+      <div id="siteCredit" 
+           data-ng-if="getCurPageType() !== pageType.MEASURE">
           <!--<a ng-href="#/about"><img ng-src="images/tinker_logo_small.png"></a>-->
           <a href="http://www.intelliwheels.net/tinker" target="_blank"><img ng-src="images/Powered-by-Tinker-Logo-Gray.png" alt="Powered by Tinker">
           </a>

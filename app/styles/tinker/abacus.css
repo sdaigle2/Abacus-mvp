@@ -1,13 +1,13 @@
 
 #wrapper {
-  min-width: 1150px;
+  min-width: 980px;
 
 }
 
 /*************************************************Top Bar*****************************************/
 
 #background {
-  min-width: 1180px;
+  min-width: 980px;
   left: 0px;
   top: 0px;
   height: 50vh;
@@ -553,7 +553,7 @@
 .main-custom .main-custom-wheelchairDisplay {
   margin-top: 25px;
   /*margin-left: calc(20vw - 176px);*/
-  margin-left: calc(20vw - 100px);
+  margin-left: calc(20vw - 150px);
   min-width: 600px;
   min-height: 450px;
   width: calc(60vw - 198px);
@@ -567,7 +567,7 @@
 
 .swiper {
   margin-top: 40px;
-  margin-left: calc(20vw - 66px);
+  margin-left: calc(20vw - 116px);
   min-width: 600px;
   min-height: 450px;
   width: calc(60vw - 198px);
@@ -580,9 +580,9 @@
   position: absolute;
   top: calc(46.3vw - 110px);
   /*left: 38vw;*/
-  margin-left: calc(20vw - 100px);
-  width: calc(60vw - 198px);    
+  margin-left: calc(20vw - 150px);
   min-width: 600px; 
+  width: calc(60vw - 198px);
   text-align: center; 
   z-index: 21;
 }
@@ -603,14 +603,17 @@
 
 /*************************Main-Measure******************************/
 .main-measure {
-  margin-left: calc(22vw - 176px);
+  margin-left: calc(20vw - 176px);
   margin-right: -100px;
   float: left;
   clear: left;
+  z-index: 1;
 }
 
 .main-measure .measure-top {
-  width: 711px;
+  width: calc(100vw - 318px - 120px);
+  max-width: 711px;
+  min-width: 586px;
   height: 100px;
   margin: 80px auto 0;
 }
@@ -622,7 +625,9 @@
 }
 
 .main-measure .measure-body {
-  width: 711px;
+  width: calc(100vw - 318px - 160px);
+  max-width: 711px;
+  min-width: 586px;
   height: 421px;
   background-color: #FFFFFF;
   border: 1px solid #eaeaea;
@@ -638,7 +643,9 @@
 }
 
 .main-measure .measure-tab .measure-tab-title {
-  width: 236px;
+  width: calc((100vw - 318px - 160px)/3);
+  min-width: 195px;
+  max-width: 237px;   
   text-align: center;
   color: #939597;
   border: 1px solid #eaeaea;
@@ -647,13 +654,16 @@
 }
 
 .measure-comments {
+  width: calc(100vw - 318px - 160px);
+  max-width: 711px;
+  min-width: 586px;    
   margin-top: 30px;
   margin-bottom:30px;
-  padding:20px;    
-  width: 711px;
+  padding:20px;
   background-color: #FFFFFF;
   border: 1px solid #eaeaea;
-  border-collapse: collapse;   
+  border-collapse: collapse;
+  z-index: 1;
 }
 
 .main-measure .measure-tab td:hover {
@@ -737,7 +747,7 @@
 }
 
 .sideBarWrapper {
-  position: relative;
+  position: absolute;
   z-index: 50;
   display: inline-block;
   float: right;
@@ -746,7 +756,7 @@
   max-width: 430px;
   height: calc(100vh - 220px);
   top: 54px;
-  margin-right: 60px;
+  right:40px;
 }
 
 .panelMask{
@@ -1648,6 +1658,7 @@ body {
   bottom: 15px;
   left: 50px;
   font-size: 0.75em;
+  z-index: 0;
 }
 
 .bottom-banner {
@@ -1656,7 +1667,7 @@ body {
 	opacity: 1;
 	z-index: 9000;
 	position: fixed;
-    height: calc(100vh - 750px);
+    height: calc(100vh - 768px);
     padding:0px;
     max-height: 37px;
     min-height:0px;
