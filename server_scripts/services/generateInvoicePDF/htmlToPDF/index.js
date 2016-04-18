@@ -2,6 +2,8 @@ const _          = require('lodash');
 const fs         = require('fs');
 const jsreport   = require('jsreport');
 
+const DEFAULT_TIMEOUT = 7e3; // default resource timeout is 5 seconds
+
 /**
  * This function will spawn a new process which is responsible for creating a single PDF
  * Given: filepath where the output pdf should be saved + a String with raw html
@@ -9,7 +11,12 @@ const jsreport   = require('jsreport');
  * 
  * More info on jsreport module used: http://www.janblaha.net/blog/converting-html-to-pdf-in-nodejs
  */
-function htmlToPDF(pdfFilePath, rawHTML, cb) {
+function htmlToPDF(pdfFilePath, rawHTML, timeout, cb) {
+	if (_.isFunction(timeout) && _.isUndefined(cb)) {
+		cb = timeout;
+		timeout = DEFAULT_TIMEOUT;
+	}
+	console.log(`Invoice Timeout: ${timeout}`);
 	cb = _.once(cb); // ensure the callback is only called once
 	
 	jsreport.render({
@@ -19,7 +26,8 @@ function htmlToPDF(pdfFilePath, rawHTML, cb) {
 			recipe: 'phantom-pdf',
 			'phantom': {
 				format: 'A4',
-				margin: '0px'
+				margin: '0px',
+				printDelay: timeout
 			}
 		}
 	})

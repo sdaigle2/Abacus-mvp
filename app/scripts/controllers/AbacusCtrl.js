@@ -52,6 +52,8 @@ angular.module('abacuApp')
 
       $scope.loginPanel = loginPanelStatus.MAIN;
 
+      $scope.selectedColor = {};
+
 
       /**********************Main Variables****************************/
 
@@ -453,13 +455,14 @@ angular.module('abacuApp')
         else
           $scope.getCurPage().visitstatus = visitstatus.UNVISITED;  //set current page to visit status: visited
         $scope.setCurPage(page.index); //set new current page
-        $scope.getCurPage().visitstatus = visitstatus.CURRENT; //set new current page to visit status : current
+        $scope.getCurPage().visitstatus = visitstatus.CURRENT;
+          //set new current page to visit status : current
         $scope.closeAllPanels(); //close any panels we may have opened
         if ($scope.getCurPageType() === $scope.pageType.MEASURE) { //resets the selected image in the measure panel
           resetSelectedMeasureImageIndex();
           $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL);
         }
-
+          $scope.$digest();
       };
 
       //Returns the image for the given progress bar segment based on visit status and index
@@ -620,6 +623,10 @@ angular.module('abacuApp')
         $scope.curEditWheelchair.setMultiOptionForPart($scope.getCurPartData().partID, newOptionID);
       };
 
+      $scope.setSelectedColor = function (colorObject) {
+        $scope.selectedColor = colorObject;
+      };
+
       $scope.setCurOptionColor = function (newColorID) {
         console.log($scope.getCurPanelID());
         if ($scope.getCurPanelID() !== $scope.getCurWheelchairPart().optionID) {
@@ -673,7 +680,6 @@ angular.module('abacuApp')
       $scope.setPanel = function (id) {
           if ($scope.isPanelSelected(id)) {
             curPanel = -1;
-            console.log('I am true')
             $scope.curOption = $scope.getCurPartData().getDefaultOption();
           }
           else {

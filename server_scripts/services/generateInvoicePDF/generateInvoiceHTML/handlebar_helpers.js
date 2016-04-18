@@ -16,11 +16,7 @@ const angles = {
     'Front': 4
 };
 
-/**
- * Get the url for the images based on the wheelchair part
- */
-function getPartPreviewImageURL(wheelchair, curPart, subImageIndex) {
-  var baseURL = `http://localhost:${APP_PORT}/images/chairPic/`;
+function getImageKey(wheelchair, curPart, subImageIndex) {
   var frameIDString = '' + wheelchair.frameID;
   var partIDString = '' + curPart.partID;
 
@@ -28,10 +24,14 @@ function getPartPreviewImageURL(wheelchair, curPart, subImageIndex) {
   var colorString = `_${curPart.colorID}`;
   var subIndString = `_${subImageIndex}`;
   var angleString = '_FrontRight';
-  var partURL = `${baseURL}frame${frameIDString}/`;
-  partURL += `part${partIDString}/`;
-  partURL += `${optionIDString}${colorString}${subIndString}${angleString}.png`;
-  return partURL;
+  return `frame${frameIDString}/part${partIDString}/${optionIDString}${colorString}${subIndString}${angleString}.png`;
+}
+
+/**
+ * Get the url for the images based on the wheelchair part
+ */
+function getPartPreviewImageURL(wheelchair, curPart, subImageIndex) {
+  return `http://localhost:${APP_PORT}/images/chairPic/${getImageKey(wheelchair, curPart, subImageIndex)}`;
 }
 
 /**
@@ -45,7 +45,7 @@ function getImageArray(wheelchair, parts) {
     var numSubImages = curPart.numSubImages;
     for (var j = 0; j < numSubImages; j++) {
       images.push({
-        URL: getPartPreviewImageURL(wheelchair, curPart, j),
+        src: getPartPreviewImageURL(wheelchair, curPart, j),
         zRank: curPart.zRank[j][angles['FrontRight']]
       });
     }
@@ -392,11 +392,12 @@ function getBulletLetter(index) {
   return String.fromCharCode('A'.charCodeAt(0) + index);
 }
 
-/**
- * Given a wheelchair configuration
- * returns all images for visualzing the wheelchair from a FrontRight angle in zRank order
- */
-function getChairImages(chair) {
+function getChairImageObjects(chair) {
+  // If the images attribute is attached, just return that since it contains the pngs in base64 string encoded format
+  if (_.has(chair, 'images') && _.isArray(chair.images)) {
+    return chair.images.map(imgStr => ({src: imgStr}));
+  }
+
   var frame = getChairFrame(chair);
   var chairParts = chair.parts.map(partOption => {
     var part = _.find(frame.parts, {'partID': partOption.partID});
@@ -410,8 +411,18 @@ function getChairImages(chair) {
     };
   });
 
-  var images = getImageArray(chair, chairParts);
-  return _.map(images, 'URL'); // just return the image URLs in z-rank order
+  return getImageArray(chair, chairParts);
+}
+
+/**
+ * Given a wheelchair configuration
+ * returns all images for visualzing the wheelchair from a FrontRight angle in zRank order
+ * Each value in the returned images array can be used directly as a value for the 'src' attribute in an img element
+ */
+function getChairImages(chair) {
+  var images = getChairImageObjects(chair);
+  console.log(`images: ${JSON.stringify(images, null, 2)}`);
+  return _.map(images, 'src'); // just return the image URLs in z-rank order
 }
 
 /**
@@ -529,6 +540,7 @@ const EXPORTED_HELPERS = {
   getChairOptionColorName,
   calculatePartsSubtotal,
   getBulletLetter,
+  getChairImageObjects,
   getChairImages,
   getTaxCost,
   getTotalShipping,
@@ -538,7 +550,8 @@ const EXPORTED_HELPERS = {
   getTotalPrice,
   toUpperCase,
   getPaginatedParts,
-  getPaginatedMeasures
+  getPaginatedMeasures,
+  getImageKey
 };
 
 // Wrap all functions to round integers to nearest decimal

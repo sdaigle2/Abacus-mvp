@@ -3,20 +3,20 @@
  */
 "use strict";
 
-var router = require('express').Router();
-var _      = require('lodash');
-var async  = require('async');
+const router = require('express').Router();
+const _      = require('lodash');
+const async  = require('async');
 
 // Import services
-var verifyOrder        = require('../services/data').verifyOrder;
-var verifyChair        = require('../services/data').verifyWheelchair;
-var generateInvoicePDF = require('../services/generateInvoicePDF');
-var priceCalculator    = require('../services/priceCalculator');
-var stripe             = require('../services/stripe');
-var sendgrid           = require('../services/sendgrid');
-var dbService          = require('../services/db');
-var orderNumber        = require('../services/orderNumber');
-var dbUtils            = require('../services/dbUtils');
+const verifyOrder        = require('../services/data').verifyOrder;
+const verifyChair        = require('../services/data').verifyWheelchair;
+const generateInvoicePDF = require('../services/generateInvoicePDF');
+const priceCalculator    = require('../services/priceCalculator');
+const stripe             = require('../services/stripe');
+const sendgrid           = require('../services/sendgrid');
+const dbService          = require('../services/db');
+const orderNumber        = require('../services/orderNumber');
+const dbUtils            = require('../services/dbUtils');
 
 // Manufacturer Email to send invoices to
 const MANUFACTURER_EMAIL = 'sourabhdesai@gmail.com';

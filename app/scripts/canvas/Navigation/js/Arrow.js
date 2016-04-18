@@ -49,7 +49,7 @@ var Arrow = function(image, name, page, x, width, custom){
       lastMeasureArrow = me;
     }
     focusedIndex= index;
-
+    console.log('jump to' + JSON.stringify(page));
     myScope.pageSwitchJump(page);
     //TODO better completion detection
     me.complete = true;
@@ -74,8 +74,9 @@ var Arrow = function(image, name, page, x, width, custom){
 
   function hover_on(m){
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        pressed(m);
+//        console.log('send press event')
 
-      return pressed(m);
     }
     var ratio = canvasWidth/$(window).width();
     span.style.visibility = "visible";
