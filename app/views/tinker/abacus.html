@@ -131,12 +131,12 @@
       <!-- BODY -->
       <div class="main">
         <!-- CUSTOMIZE: Wheelchair Display and controls -->
-        <div id="main-custom" class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
-          <div class="main-custom-rotatebuttons" data-ng-class="{'slide-over': !isPanelSelected(-1)}" ng-class="{'wide-screen': screenWideQuery()}">
+        <div class="main-custom" data-ng-show="getCurPageType() == pageType.CUSTOMIZE">
+          <div class="main-custom-rotatebuttons" data-ng-class="{'slide-over': !isPanelSelected(-1)}">
             <img class="leftButton" src="../../images/icons/rotate_left.png" alt="Previous" width="30" height="30"
                  data-ng-click="rotatePreview(1)" />
             <img class="rightButton" src="../../images/icons/rotate_right.png" alt="Next" width="30" height="30"
-                 data-ng-click="rotatePreview(-1)" />
+            data-ng-click="rotatePreview(-1)" />
           </div>
           <img class="main-custom-wheelchairDisplay"
                data-ng-class="{'slide-over': !isPanelSelected(-1)}"
@@ -278,6 +278,7 @@
                          alt="See color options">
                     <div class="sideBar-custom-item-choose-size text-center"
                          data-ng-if="option.sizes.length !== 0"
+                         data-ng-click="setPanel(option.optionID);">
                          data-ng-click="setPanel(option.optionID);">
                          Sizes
                     </div>

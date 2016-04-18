@@ -544,6 +544,13 @@
   top: 20px;
   display: inline-block;
   float: left;
+  width: calc(70vw);
+  max-width: calc(100vw - 400px);
+  min-width: 580px;
+  height: calc(100vh - 153px);
+  min-height: 468px;
+  max-height: calc(100vw - 440px);
+  background-color:aqua;  
 }
 
 .main-custom .leftButton, .main-custom .rightButton {
@@ -551,55 +558,49 @@
 }
 
 .main-custom .main-custom-wheelchairDisplay {
-  margin-top: 25px;
-  /*margin-left: calc(20vw - 176px);*/
-  margin-left: calc(20vw - 150px);
-  min-width: 600px;
-  min-height: 450px;
-  width: calc(60vw - 198px);
   position: absolute;
-  top: 0;     
+  top: 20px;
+  right: 0px;
+  width: calc(100vh - 40px);
+  min-width: 538px;
+  max-width: 100%;
+  border-color:aquamarine;
+  border-style: solid;
+  border-width: 5px;
 }
 
 .main-custom-wheelchairDisplay.slide-over {
-  margin-left: 0px;
-}
-
-.swiper {
-  margin-top: 40px;
-  margin-left: calc(20vw - 116px);
-  min-width: 600px;
-  min-height: 450px;
-  width: calc(60vw - 198px);
-  position: absolute;
-  top: 0;
-  z-index: 200;
+  left: 0px;
 }
 
 .main-custom-rotatebuttons {
   position: absolute;
-  top: calc(46.3vw - 110px);
-  /*left: 38vw;*/
-  margin-left: calc(20vw - 150px);
-  min-width: 600px; 
-  width: calc(60vw - 198px);
+  right: 0px;
+  width: calc(100vh - 80px); 
+  min-width: 538px;
+  max-width: 100%;
+  bottom: 0px;
+  margin: auto;
   text-align: center; 
   z-index: 21;
+  background-color:coral;
 }
 .main-custom-rotatebuttons.slide-over {
-  margin-left: 0px;
+
   
 }
 .main-custom-rotatebuttons img {
   margin: 15px 10px 0 0;
 }
 
+/*
 @media screen and (max-width: 1320px) {
   .main-custom-rotatebuttons {
     position: relative;
-    top: 498px;
+    top: calc(46.3vw - 120px);
   }
 }
+*/
 
 /*************************Main-Measure******************************/
 .main-measure {
@@ -773,7 +774,7 @@
   border-radius: 0px;
   height: 100%;
   border: 1px solid #EAEAEA;
-  min-height: 500px;
+  min-height: 400px;
 }
 
 .sidebarM{
@@ -798,24 +799,6 @@
   padding-right: 30px;
   height: 53px; 
 }
-
-/*
-img.leftButtonNav {
-  width: 23px;
-  height: 53px;
-  position: absolute;
-  top: 1px;
-  left: 0;
-}
-
-img.rightButtonNav {
-  width: 23px;
-  height: 53px;
-  position: absolute;
-  top: 1px;
-  right: 0px;
-}
-*/
 
 .leftButtonNav:hover {
   cursor: pointer;
