@@ -329,12 +329,12 @@
 
           <div class="panel-block">
             <section data-ng-if="curOption.colors.length>0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000 && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame'">
-              <h5><strong>Color</strong></h5>
+              <h5><strong>Color</strong> <span ng-if="!_.isEmpty(selectedColor)">-</span> <span ng-if="!_.isEmpty(selectedColor)" style="color: {{selectedColor.hex}};">{{selectedColor.name}}</span></h5>
             <div>
               <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
                    data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
                    data-ng-style="{'background-color': color.hex, 'max-height':90}"
-                   data-ng-click="getCurPartData().allowMultipleChoices ? setCurMultiOptionColor(curOption.optionID, color.colorID) : setCurOptionColor(color.colorID);"
+                   data-ng-click="setSelectedColor(color) || getCurPartData().allowMultipleChoices ? setCurMultiOptionColor(curOption.optionID, color.colorID) : setCurOptionColor(color.colorID);"
                    title="{{color.name}}">
               </div>
             </div>

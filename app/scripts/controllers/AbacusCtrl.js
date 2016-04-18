@@ -52,6 +52,8 @@ angular.module('abacuApp')
 
       $scope.loginPanel = loginPanelStatus.MAIN;
 
+      $scope.selectedColor = {};
+
 
       /**********************Main Variables****************************/
 
@@ -618,6 +620,10 @@ angular.module('abacuApp')
 
       $scope.setCurMultiOption = function (newOptionID) {
         $scope.curEditWheelchair.setMultiOptionForPart($scope.getCurPartData().partID, newOptionID);
+      };
+
+      $scope.setSelectedColor = function (colorObject) {
+        $scope.selectedColor = colorObject;
       };
 
       $scope.setCurOptionColor = function (newColorID) {
