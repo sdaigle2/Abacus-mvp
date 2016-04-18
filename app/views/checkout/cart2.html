@@ -27,7 +27,7 @@
       </div>
       <div id="mainContent">
         <div id="emptyCart" data-ng-if="wheelchairUIOpts.length === 0">
-          <span class="medium">Your currently do not have any designs</span>
+          <span class="medium">Your currently do not have any designs saved to your cart</span>
           <p ng-click="jumpFrame()"> START A NEW DESIGN</p>
         </div>
         <ul class="chairBlock" ng-if="wheelchairUIOpts.length">
@@ -105,7 +105,7 @@
     </div>
 
 
-    <div id="summary" class="gBook">
+    <div id="summary" class="gBook" data-ng-if="wheelchairUIOpts.length !== 0">
       <section>
         <div>
           <section id="totalPanel">
