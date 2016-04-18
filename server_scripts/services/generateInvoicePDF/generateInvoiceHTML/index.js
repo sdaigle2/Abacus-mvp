@@ -1,9 +1,9 @@
-const _          = require('lodash');
-const path       = require('path');
-const Handlebars = require('handlebars');
-const os         = require('os');
-const fs         = require('fs');
-const helpers    = require('./handlebar_helpers');
+const _               = require('lodash');
+const path            = require('path');
+const Handlebars      = require('handlebars');
+const os              = require('os');
+const fs              = require('fs');
+const helpers         = require('./handlebar_helpers');
 
 const GENERATED_PDFS_DIR = path.join(os.homedir(), '/invoice_pdfs');
 

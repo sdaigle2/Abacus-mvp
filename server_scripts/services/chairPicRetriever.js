@@ -27,7 +27,11 @@ function getPathForImageKey(imageKey) {
 function deleteLocalFile(imageKey) {
 	const filePath = getPathForImageKey(imageKey);
 	console.log(`deleting '${filePath}'`);
-	fs.unlink(filePath, err => console.log(JSON.stringify(err, null, 2)));
+	fs.unlink(filePath, err => {
+		if (err) {
+			console.log(JSON.stringify(err, null, 2));
+		}
+	});
 }
 
 function getS3ImageStream(imageKey) {
@@ -48,15 +52,21 @@ const imageCache = new LRU({
 
 exports.get = (imageKey) => {
 	if (imageCache.has(imageKey)) {
-		 // returns a promise
-		 console.log(`pulling locally: ${imageKey}`);
+		// returns a promise
+		console.log(`pulling locally: ${imageKey}`);
 		return imageCache.get(imageKey)
-		.then(imagePath => fs.createReadStream(imagePath)); // resolve to a readstream for the image to be consistent
+		.then(imagePath => {
+			const localImageStream = fs.createReadStream(imagePath);
+			localImageStream.on('error', () => imageCache.del(imageKey));
+			return localImageStream;// resolve to a readstream for the image to be consistent
+		}); 
 	} else {
 		console.log(`pulling from s3: ${imageKey}`);
 		const s3ImageStream = getS3ImageStream(imageKey);
 
 		var localImagePathPromise = new Promise((resolve, reject) => {
+			reject = _.once(reject);
+			
 			s3ImageStream.on('error', (err) => {
 				// if the readstream has an error, delete it's cache entry and reject this promise
 				console.log(`s3 error for ${imageKey}: ${JSON.stringify(err)}`);
