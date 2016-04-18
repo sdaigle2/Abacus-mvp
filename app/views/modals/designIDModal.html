@@ -1,7 +1,7 @@
-<link href="../../styles/modals/designidmodal.css" rel="stylesheet" ng-controller="DesignIDModalCtrl"/>
-<div class="designidmodal-page-body">
+<link href="../../styles/modals/designidmodal.css" rel="stylesheet"/>
+<div class="designidmodal-page-body" ng-controller="DesignIDModalCtrl">
 	<h4 style="display: inline-block; width: 100%;">Access via the link</h4>
-  <a style="display: inline-block; width: 100%;"  href="www.tinker.fit/#!/{{modalDesign._id}}">www.tinker.fit/#!/{{modalDesign._id}}</a>
+  <a style="display: inline-block; width: 100%;"  href="{{getTinkerLink(modalDesign._id)}}">{{getTinkerLink(modalDesign._id)}}</a>
 
 
   <h4> Or share your design ID</h4>

@@ -8,8 +8,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-	.controller('DesignIDModalCtrl', ['$scope',
-	function ($scope) {
+	.controller('DesignIDModalCtrl', ['$scope', '$location',
+	function ($scope, $location) {
 		$scope.copied = false;
 
 		$scope.onCopySuccess = function (e) {
@@ -18,5 +18,10 @@ angular.module('abacuApp')
 
 		$scope.onCopyFailure = function (e) {
 			$scope.copied = false;
+		};
+
+		$scope.getTinkerLink = function (designID) {
+			var baseURL = _.trimEnd($location.absUrl(), $location.path());
+			return baseURL + '/tinker/' + designID;
 		};
 	}]);
