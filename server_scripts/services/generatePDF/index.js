@@ -8,6 +8,8 @@ const shortid             = require('shortid');
 
 const GENERATED_PDFS_DIR = path.join(os.homedir(), 'generated_pdfs/');
 
+exports.GENERATED_PDFS_DIR = GENERATED_PDFS_DIR;
+
 // Check if the PDF directory exists, if it doesn't, create it
 if (!fs.existsSync(GENERATED_PDFS_DIR)) {
 	console.log(`Making PDF directory at: ${GENERATED_PDFS_DIR}`);
@@ -20,6 +22,12 @@ const TIMEOUT_PER_INVOICE = 2e3;
 function getOrderInvoiceFilename(order) {
 	const orderID = order.id || order._id;
 	return `order_${orderID}_invoice.pdf`;
+}
+
+// generates a unique filename for a wheelchair pdf that is to be generated
+function getWheelchairsPDFFilename(designs) {
+	designs = _.isArray(designs) ? designs : [designs]; // might just be given a single design object
+	return `wheelchairs_${shortid.generate()}_${Math.random()}_${designs.length}.pdf`
 }
 
 /**
@@ -39,7 +47,12 @@ function getTimeoutLength(order) {
 // 	fs.writeFileSync(path.resolve(__dirname, './invoice_templates/test.html'), html);
 // }
 
-function generateInvoicePDF(order, cb) {
+function generateInvoicePDF(order, asStream, cb) {
+	if (_.isFunction(asStream)) {
+		cb = asStream;
+		asStream = false;
+	}
+
 	const invoiceHTML = generateHTML.forInvoice(order);
 	// pasteDebugHTML(invoiceHTML);
 	const invoiceRenderingTimeout = getTimeoutLength(order);
@@ -48,31 +61,66 @@ function generateInvoicePDF(order, cb) {
 	const invoiceFilePath = path.join(GENERATED_PDFS_DIR, invoiceFilename);
 	
 	const pdfGenArgs = {
-		pdfFilePath: invoiceFilePath,
 		rawHTML: invoiceHTML,
 		timeout: invoiceRenderingTimeout
 	};
 
-	htmlToPDF(pdfGenArgs, cb);
+	if (!asStream) {
+		pdfGenArgs.pdfFilePath = invoiceFilePath;
+	}
+
+	htmlToPDF(pdfGenArgs, function (err, res) {
+		if (err) {
+			return cb(err);
+		}
+		if (asStream) {
+			var stream = res;
+			cb(null, stream);
+		} else {
+			cb(null, {filename: invoiceFilename, absPath: res});
+		}
+	});
 }
 
 exports.forInvoice = generateInvoicePDF;
 
 // takes in array of designs (or single designs) and generates PDF for it
 // callback will return a stream for the PDF, not an absolute path to it like generateInvoicePDF (see above)
-function generateWheelchairsPDF(wheelchairs, cb) {
+function generateWheelchairsPDF(wheelchairs, asStream, cb) {
+	if (_.isFunction(asStream)) {
+		cb = asStream;
+		asStream = false;
+	}
+
 	wheelchairs = _.isArray(wheelchairs) ? wheelchairs : [wheelchairs]; // can be given a single wheelchair or an array of them
 
 	const pdfHTML = generateHTML.forWheelchairs(wheelchairs);
 	// pasteDebugHTML(invoiceHTML);
 	const pdfRenderingTimeout = getTimeoutLength(wheelchairs);
 
+	const pdfFilename = getWheelchairsPDFFilename(wheelchairs);
+	const pdfFilePath = path.join(GENERATED_PDFS_DIR, pdfFilename);
+
 	const pdfGenArgs = {
 		rawHTML: pdfHTML,
 		timeout: pdfRenderingTimeout
 	};
 
-	htmlToPDF(pdfGenArgs, cb);
+	if (!asStream) {
+		pdfGenArgs.pdfFilePath = pdfFilePath;
+	}
+
+	htmlToPDF(pdfGenArgs, function (err, res) {
+		if (err) {
+			return cb(err);
+		}
+		if (asStream) {
+			var stream = res;
+			cb(null, stream);
+		} else {
+			cb(null, {filename: pdfFilename, absPath: res});
+		}
+	});
 }
 
 exports.forWheelchairs = generateWheelchairsPDF;

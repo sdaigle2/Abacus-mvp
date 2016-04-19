@@ -519,13 +519,7 @@ angular.module('abacuApp')
 
         //Returns an array of all orders that have been sent (ignores "unsent" orders)
         getSentOrders: function () {
-          var sentOrders = orders;
-          if (sentOrders.length > 0) {
-            var lastOrder = sentOrders[sentOrders.length - 1];
-            if (!lastOrder.hasBeenSent())
-              sentOrders.splice(sentOrders.length - 1, 1);
-          }
-          return sentOrders;
+          return orders;
         },
 
         //Creates a new "unsent" order - overwriting a previous unset order if one exists

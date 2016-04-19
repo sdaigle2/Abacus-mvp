@@ -4,6 +4,8 @@
 "use strict";
 
 const router  = require('express').Router();
+const path    = require('path');
+const fs      = require('fs');
 const shortid = require('shortid');
 const _       = require('lodash');
 
@@ -118,9 +120,37 @@ router.put('/design/:id', restrict, function (req, res) {
   });
 });
 
+// The following two routes are for downloading wheelchair PDF files
+
+router.get('/design/pdf/download/:filename', (req, res) => {
+  var filename = req.params.filename;
+
+  if (!_.isString(filename) || (_.isString() && _.isEmpty(filename)) ) {
+    res.status(400);
+    res.json({err: `Bad filename given: ${filename}`});
+    return;
+  }
+
+  var absoluteFilePath = path.join(generatePDF.GENERATED_PDFS_DIR, filename);
+  res.download(absoluteFilePath, err => {
+    if (err) {
+      res.status(400);
+      res.json(err);
+    }
+
+    // Now that the user has downloaded the PDF (or not), delete it to save space
+    // Even if the download failed, subsequent tries by the user will result in a new pdf file being created
+    fs.unlink(absoluteFilePath, err => {
+      if (err)
+        console.log(err)
+    });
+  });
+
+});
+
 // Allows a user to download a PDF for a given design
 // Multiple designs can be specified by including them in the request body
-router.all('/design/pdf/:id?', (req, res) => {
+router.post('/design/pdf/:id?', (req, res) => {
   var designID = req.params.id;
 
   const getDesignForPDF = cb => {
@@ -145,18 +175,17 @@ router.all('/design/pdf/:id?', (req, res) => {
     }
 
     designs = _.isArray(designs) ? designs : [designs];
-    generatePDF.forWheelchairs(designs, (err, stream) => {
+    generatePDF.forWheelchairs(designs, (err, pdfFileInfo) => {
       if (err) {
         console.log(JSON.stringify(err, null, 2));
         res.status(400);
         return res.json(err);
       }
 
-      res.setHeader('Content-disposition', 'attachment; filename=wheelchairs.pdf');
-      res.header("Content-Type", "application/pdf");
-      // Let the user download the PDF
-      stream.pipe(res)
-      .on('error', err => console.log(err));
+      res.json({
+        filename: pdfFileInfo.filename,
+        url: `/design/pdf/download/${pdfFileInfo.filename}` // the path that will allow them to immediately download the file
+      });
     });
   });
 });
