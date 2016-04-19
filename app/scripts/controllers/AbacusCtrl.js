@@ -462,7 +462,7 @@ angular.module('abacuApp')
           resetSelectedMeasureImageIndex();
           $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL);
         }
-          $scope.$digest();
+          // $scope.$apply();
       };
 
       //Returns the image for the given progress bar segment based on visit status and index

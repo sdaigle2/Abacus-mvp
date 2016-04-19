@@ -241,10 +241,10 @@
   clear: left;
   float: left;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   border-bottom: 1px solid rgba(182, 184, 182, 1);
   width: 92%;
-
+  padding-bottom: 21px;
 }
 
 #settingsOrdersContent .settingsOrdersContentItem-image {
@@ -299,16 +299,18 @@
   position: relative;
   display: inline-block;
   margin-left: 30px;
-
+  border-radius: 0;
+  padding: 10px;
+  color: #4F9DFF;
+  font-size: 1.2em;
+  background-color: white;
+  margin-top: 10px;
+  border: 1px solid #939597;
+  vertical-align: top;
+  height:38px;
 }
 
-#contactInfo p{
-  position: relative;
-  padding: 10px 10px;
-  background-color: #eaeaea;
-  margin-bottom: 10px;
-  line-height: 1.5;
-}
+
 
 
 
