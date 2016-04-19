@@ -147,14 +147,8 @@ angular.module('abacuApp')
         //Array of orders
         //TODO: needs to be integrated with the Order factory
       var orders = User.getSentOrders();
-
       $scope.orderWheelchairs = _.chain(User.getSentOrders())
-      .map(function (order) {
-        if (!order.orderNum) {
-          console.log('no order number');
-          console.log(order);
-        }
-        
+      .map(function (order) {        
         var chairs = _.map(order.wheelchairs, 'wheelchair');
         chairs = _.reject(chairs, _.isNull);
         

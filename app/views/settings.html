@@ -167,13 +167,11 @@
               </tbody>
             </table>
           </section>
-          <button><a style="text-decoration: none;" href="/order/download/{{item.order._id}}" target="_blank">View Invoice</a></button>
           <section id="contactInfo">
-            <button ng-init="infoShow = false" ng-click="infoShow = !infoShow">Contact Manufacturer</button>
-            <p ng-show="infoShow">
-              Per4max<br> Tel: 866.648.6891 <br> sales@per4max.com
-            </p>
-
+            <a href="/order/download/{{item.order._id}}" target="_blank">View Invoice</a>
+          </section>
+          <section id="contactInfo">
+            <a  href="http://per4max.com/contact/" target="_blank">Contact Manufacturer</a>
           </section>
 
           <!--<div class="settingsOrdersContentItemMid">-->

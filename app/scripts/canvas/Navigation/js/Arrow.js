@@ -76,6 +76,8 @@ var Arrow = function(image, name, page, x, width, custom){
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         pressed(m);
 //        console.log('send press event')
+      $scope.$apply();
+
 
     }
     var ratio = canvasWidth/$(window).width();
