@@ -8,15 +8,15 @@ const _      = require('lodash');
 const async  = require('async');
 
 // Import services
-const verifyOrder        = require('../services/data').verifyOrder;
-const verifyChair        = require('../services/data').verifyWheelchair;
-const generateInvoicePDF = require('../services/generateInvoicePDF');
-const priceCalculator    = require('../services/priceCalculator');
-const stripe             = require('../services/stripe');
-const sendgrid           = require('../services/sendgrid');
-const dbService          = require('../services/db');
-const orderNumber        = require('../services/orderNumber');
-const dbUtils            = require('../services/dbUtils');
+const verifyOrder     = require('../services/data').verifyOrder;
+const verifyChair     = require('../services/data').verifyWheelchair;
+const generatePDF     = require('../services/generatePDF');
+const priceCalculator = require('../services/priceCalculator');
+const stripe          = require('../services/stripe');
+const sendgrid        = require('../services/sendgrid');
+const dbService       = require('../services/db');
+const orderNumber     = require('../services/orderNumber');
+const dbUtils         = require('../services/dbUtils');
 
 // Manufacturer Email to send invoices to
 const MANUFACTURER_EMAIL = 'sourabhdesai@gmail.com';
@@ -141,7 +141,7 @@ router.post('/order', function (req, res) {
     manufactureCopy.to = MANUFACTURER_EMAIL;
     manufactureCopy.text = 'An order just been placed, here is a copy of the invoice';
 
-    generateInvoicePDF(order, function (err, pdfPath) {
+    generatePDF.forInvoice(order, function (err, pdfPath) {
       if (err) {
         cb(err);
       } else {
