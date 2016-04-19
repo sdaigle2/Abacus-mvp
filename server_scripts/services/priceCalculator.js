@@ -3,7 +3,7 @@
  * Mostly pulls its functionality from generateInvoicePDF/generateInvoiceHTML/handlebar_helpers.js
  */
 
-const helpers = require('./generateInvoicePDF/generateInvoiceHTML/handlebar_helpers');
+const helpers = require('./generatePDF/generateHTML/handlebar_helpers');
 
 /**
  * Given an order, returns total for the order

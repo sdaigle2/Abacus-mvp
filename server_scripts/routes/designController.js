@@ -3,18 +3,19 @@
  */
 "use strict";
 
-var router  = require('express').Router();
-var shortid = require('shortid');
-var _       = require('lodash');
+const router  = require('express').Router();
+const shortid = require('shortid');
+const _       = require('lodash');
 
 // Import services
-var dbService = require('../services/db');
-var generateUniqueID = require('../services/generateUniqueID');
+const dbService        = require('../services/db');
+const generateUniqueID = require('../services/generateUniqueID');
+const generatePDF      = require('../services/generatePDF');
 
 // Import policies
-var restrict = require('../policies/restrict');
+const restrict = require('../policies/restrict');
 
-var REQUIRED_DESIGN_PROPERTIES = []; // TODO: Fill list with required properties
+const REQUIRED_DESIGN_PROPERTIES = []; // TODO: Fill list with required properties
 
 // fetch design
 router.get('/design/:id',function(req,res){
@@ -114,6 +115,49 @@ router.put('/design/:id', restrict, function (req, res) {
         }
       });
     }
+  });
+});
+
+// Allows a user to download a PDF for a given design
+// Multiple designs can be specified by including them in the request body
+router.all('/design/pdf/:id?', (req, res) => {
+  var designID = req.params.id;
+
+  const getDesignForPDF = cb => {
+    if (!_.isString(designID) || (_.isString() && _.isEmpty(designID)) ) {
+      // check the request body for the design objects
+      if (_.isObject(req.body)) {
+        // design was given through request body
+        process.nextTick(() => cb(null, req.body));
+      } else {
+        process.nextTick(() => cb(new Error('No valid design given')));
+      }
+    } else {
+      dbService.designs.get(designID, cb);
+    }
+  };
+
+  getDesignForPDF((err, designs) => {
+    if (err) {
+      console.log(JSON.stringify(err, null, 2));
+      res.status(400);
+      return res.json(err);
+    }
+
+    designs = _.isArray(designs) ? designs : [designs];
+    generatePDF.forWheelchairs(designs, (err, stream) => {
+      if (err) {
+        console.log(JSON.stringify(err, null, 2));
+        res.status(400);
+        return res.json(err);
+      }
+
+      res.setHeader('Content-disposition', 'attachment; filename=wheelchairs.pdf');
+      res.header("Content-Type", "application/pdf");
+      // Let the user download the PDF
+      stream.pipe(res)
+      .on('error', err => console.log(err));
+    });
   });
 });
 

@@ -267,6 +267,21 @@ angular.module('abacuApp')
         return wheelchair.getMeasureDetails(measure.measureID, User.getUnitSys());
       };
 
+      $scope.downloadDesignPDF = function (design) {
+        return $http({
+          'method': 'POST',
+          'url': '/design/pdf/',
+          'data': design.allDetails()
+        })
+        .then(function (res) {
+          var blob = new Blob([res.data], {type: 'application/pdf;charset=utf-8'});
+          saveAs(blob, 'wheelchairs.pdf');
+        })
+        .catch(function (err) {
+          alert('Failed to download Wheelchair PDF');
+        });
+      };
+
       init();
 
       $scope.$on('$destroy', function() {

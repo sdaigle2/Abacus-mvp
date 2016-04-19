@@ -421,7 +421,6 @@ function getChairImageObjects(chair) {
  */
 function getChairImages(chair) {
   var images = getChairImageObjects(chair);
-  console.log(`images: ${JSON.stringify(images, null, 2)}`);
   return _.map(images, 'src'); // just return the image URLs in z-rank order
 }
 
