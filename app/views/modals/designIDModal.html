@@ -1,10 +1,12 @@
-<link href="../../styles/modals/designidmodal.css" rel="stylesheet"/>
-<div class="designidmodal-page-body" ng-controller="DesignIDModalCtrl">
+<link href="../../styles/modals/designidmodal.css" rel="stylesheet" ng-controller="DesignIDModalCtrl"/>
+<div class="designidmodal-page-body">
 	<h4 style="display: inline-block; width: 100%;">Access via the link</h4>
-	<a style="display: inline-block; width: 100%;"  href="{{getTinkerLink(modalDesign._id)}}">{{getTinkerLink(modalDesign._id)}}</a>
-	<h4> Or share your design ID</h4>
+  <a style="display: inline-block; width: 100%;"  href="http://per4max.fit/#!/tinker/{{modalDesign._id}}">www.per4max.fit/#!/tinker/{{modalDesign._id}}</a>
+
+
+  <h4> Or share your design ID</h4>
 	<h3 style="display: inline-block; width: 100%;" id="designID">{{modalDesign._id}}</h3>
-	<p ng-init="showExplanation = false;" ng-show="!showExplanation" ng-click="showExplanation = true;" class="explaination-button">What is a Design ID?</p>
-	<p ng-show="showExplanation" class="explaination-text">Every design saved in this website has a unique Design ID. If you would like to share your design with someone else, simply give them your Design ID</p>
+  <p ng-init="showExplanation = false;" ng-show="!showExplanation" ng-click="showExplanation = true;" class="explaination-button">What is a Design ID?</p>
+  <p ng-show="showExplanation" class="explaination-text">Every design saved in this website has a unique Design ID. If you would like to share your design with someone else, simply give them your Design ID</p>
 	<button class="btn" ngclipboard style="display: inline-block;" data-clipboard-target="#designID" ngclipboard-success="onCopySuccess(e);" ngclipboard-error="onCopyFailure(e);">{{copied ? 'Copied!' : 'Copy Design ID to Clipboard'}}</button>
 </div>
