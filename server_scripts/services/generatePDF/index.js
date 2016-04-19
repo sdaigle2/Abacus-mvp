@@ -17,7 +17,7 @@ if (!fs.existsSync(GENERATED_PDFS_DIR)) {
 }
 
 const TIMEOUT_PER_CHAIR = 6e3;
-const TIMEOUT_PER_INVOICE = 2e3;
+const TIMEOUT_PER_INVOICE = 3e3;
 
 function getOrderInvoiceFilename(order) {
 	const orderID = order.id || order._id;

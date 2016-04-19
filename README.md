@@ -7,7 +7,7 @@ in the project directory:
 (1) npm install
 (2) bower install
 
-## Notes on Server Code Design
+## Notes on Server Code Structure
 
 The server side code is no longer under one long `server.js` script.
 It has now been split up into seperate files inside the `server_scripts` directory.

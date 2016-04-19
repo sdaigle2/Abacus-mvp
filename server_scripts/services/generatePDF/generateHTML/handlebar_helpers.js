@@ -437,7 +437,7 @@ function toUpperCase(str) {
  */
 
 const LINES_PER_PAGE = 28;
-const LINES_PER_PART = 2; // doesnt include comment line, that is taken into account seperately
+const LINES_PER_PART = 3; // doesnt include comment line, that is taken into account seperately
 const LINES_PER_MEASURE = 2; // doesnt include comment line, that is taken into account seperately
 // number of characters that a comment can have to be considered taking up a full line
 const COMMENT_LINE_LENGTH = 55;

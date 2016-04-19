@@ -8,8 +8,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', ['$scope', '$location', 'localJSONStorage', '$routeParams', 'FrameData', 'User', 'Angles', 'Units', 'Drop', 'Design', '_', '$q', 'ngDialog', 'Errors',
-    function ($scope, $location, localJSONStorage, $routeParams, FrameData, User, Angles, Units, Drop, Design, _, $q, ngDialog, Errors) {
+  .controller('AbacusCtrl', ['$scope', '$location', 'localJSONStorage', '$routeParams', 'FrameData', 'User', 'Angles', 'Units', 'Drop', 'Design', '_', '$q', 'ngDialog', 'Errors', 'DownloadPDF',
+    function ($scope, $location, localJSONStorage, $routeParams, FrameData, User, Angles, Units, Drop, Design, _, $q, ngDialog, Errors, DownloadPDF) {
 
       Drop.setFalse();
       /*********************Enums*******************************/
@@ -97,6 +97,14 @@ angular.module('abacuApp')
       }
 
       $scope.currChairIsNew = User.isNewWheelchair();
+
+      $scope.downloadChairPDF = function () {
+        var curChair = $scope.curEditWheelchair;
+        DownloadPDF.forWheelchairs(new Design({wheelchair: curChair}))
+        .catch(function (err) {
+          alert('Failed to download Wheelchair PDF');
+        });
+      };
 
       /***************************Initialization****************************/
 
@@ -754,11 +762,6 @@ angular.module('abacuApp')
         .then(function (user) {
           $location.path('/cart');
         });
-      };
-
-      $scope.saveComputer = function () {
-        $scope.saveDropdown = false;
-        User.saveComputer();
       };
 
       /*******************Sharing***********************/
