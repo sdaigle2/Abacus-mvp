@@ -146,9 +146,9 @@
     <div class="settingsContent" id="settingsOrdersContent"
          ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ORDERS}">
       <ul id="settingsOrdersContentItems">
-        <li class="settingsOrdersContentItem" data-ng-repeat="w in wheelchairs">
-          <p><h4><strong data-ng-bind="w.getTitle()"></strong></h4></p>
-          <canvas my-canvas img_arr={{w.getPreviewImages(3)}} width="200"></canvas>
+        <li class="settingsOrdersContentItem" data-ng-repeat="w in orderWheelchairs">
+          <p><h4><strong data-ng-bind="w.wheelchair.getTitle()"></strong></h4></p>
+          <canvas my-canvas img_arr={{w.wheelchair.getPreviewImages(3)}} width="200"></canvas>
           <section>
             <p>Order number: {{w.orderNum}}</p>
             <table class="orderTable book">
@@ -158,7 +158,7 @@
                 <td>Frame: {{}}</td>
               </tr>
               <tr>
-                <td>Total: ${{w.getTotalPrice().toFixed(2)}}</td>
+                <td>Total: ${{w.wheelchair.getTotalPrice().toFixed(2)}}</td>
                 <td>Manufacturer: Ti Arrow</td>
               </tr>
               <tr>

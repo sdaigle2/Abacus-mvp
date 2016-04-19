@@ -148,7 +148,7 @@ angular.module('abacuApp')
         //TODO: needs to be integrated with the Order factory
       var orders = User.getSentOrders();
 
-      $scope.wheelchairs = [];
+      $scope.orderWheelchairs = [];
       for(var i=0; i<orders.length; i++){
         var wheelchairs = orders[i].getWheelchairs();
         for(var j=0; j<wheelchairs.length; j++){
@@ -156,7 +156,7 @@ angular.module('abacuApp')
           wheelchairs[j].date = orders[i].getSentDate();
           wheelchairs[j].fName = orders[i].getShippingDetails().fName;
           wheelchairs[j].lName = orders[i].getShippingDetails().lName;
-          $scope.wheelchairs.push(wheelchairs[j].wheelchair);
+          $scope.orderWheelchairs.push(wheelchairs[j]);
         }
       };
 
