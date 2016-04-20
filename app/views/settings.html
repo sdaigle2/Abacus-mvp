@@ -146,34 +146,32 @@
     <div class="settingsContent" id="settingsOrdersContent"
          ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ORDERS}">
       <ul id="settingsOrdersContentItems">
-        <li class="settingsOrdersContentItem" data-ng-repeat="w in orderWheelchairs">
-          <p><h4><strong data-ng-bind="w.wheelchair.getTitle()"></strong></h4></p>
-          <canvas my-canvas img_arr={{w.wheelchair.getPreviewImages(3)}} width="200"></canvas>
+        <li class="settingsOrdersContentItem" ng-repeat="item in orderWheelchairs">
+          <p><h4><strong data-ng-bind="item.chair.getTitle()"></strong></h4></p>
+          <canvas my-canvas img_arr={{item.chair.getPreviewImages(3)}} width="200"></canvas>
           <section>
-            <p>Order number: {{w.orderNum}}</p>
+            <p>Order number: {{item.order.orderNum}}</p>
             <table class="orderTable book">
               <tbody>
               <tr>
-                <td>Order Date: <span data-ng-bind="w.date.toLocaleDateString()"></span></td>
-                <td>Frame: {{}}</td>
+                <td>Order Date: <span data-ng-bind="item.order.sentDate.toLocaleDateString()"></span></td>
+                <td>Frame: {{getChairFrame(item.chair).name}}</td>
               </tr>
               <tr>
-                <td>Total: ${{w.wheelchair.getTotalPrice().toFixed(2)}}</td>
-                <td>Manufacturer: Ti Arrow</td>
+                <td>Total: ${{item.chair.getTotalPrice().toFixed(2)}}</td>
+                <td>Manufacturer: {{getChairFrame(item.chair).manufacturer}}</td>
               </tr>
               <tr>
-                <td>Ship to: {{w.fName}} {{w.lName}}</td>
+                <td>Ship to: {{item.order.shippingDetails.fName}} {{item.order.shippingDetails.lName}}</td>
               </tr>
               </tbody>
             </table>
           </section>
-          <button>View Invoice</button>
+          <section id="contactInfo">
+            <a href="/order/download/{{item.order._id}}" target="_blank">View Invoice</a>
+          </section>
           <section id="contactInfo">
             <a  href="http://per4max.com/contact/" target="_blank">Contact Manufacturer</a>
-            <!--<p ng-show="infoShow">-->
-              <!--Ti arrow<br> Tel: 08-420 566 73 <br> Mobile: 070-453 9655 <br> vigand@tiarrow.com-->
-            <!--</p>-->
-
           </section>
 
           <!--<div class="settingsOrdersContentItemMid">-->

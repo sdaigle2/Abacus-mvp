@@ -13,7 +13,7 @@ angular.module('abacuApp')
       Design.prototype.init = function(designObj) {
         this._id = designObj._id || designObj.id || null;
         this._rev = designObj._rev || designObj.rev || null;
-        this.creator = designObj.creator;
+        this.creator = designObj.creator || null;
         this.wheelchair = new Wheelchair(designObj.wheelchair);
         this.createdAt = new Date(designObj.createdAt || Date.now());
         this.updatedAt = new Date(designObj.updatedAt || Date.now());
@@ -68,8 +68,19 @@ angular.module('abacuApp')
         .then(function (res) {
           var updatedDesignObj = res.data;
           this.init(updatedDesignObj);
-          return this; 
+          return this;
         })
+      };
+
+      // Creates a copy of the current design but with the ID and revision number attributes removed
+      Design.prototype.clone = function () {
+        var designDetails = this.allDetails();
+
+        // Trying to make a fresh copy so remove these attrs
+        delete designDetails._id;
+        delete designDetails._rev;
+
+        return new Design(designDetails);
       };
 
       this.init(designObj); // call the constructor

@@ -13,8 +13,8 @@ angular.module('abacuApp')
   .constant('WHEELCHAIR_CANVAS_WIDTH', 187) // width of canvas that renders wheelchair
   .constant('PAYMENT_METHODS', [{'name': 'Credit Card', 'requiresAccount': false}, {'name': 'Credit Card when Order Ships', 'requiresAccount': true}, {'name': 'Grant', 'requiresAccount': false}, {'name': 'Bill me Net 30', 'requiresAccount': true}])
   .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', 'PAYMENT_METHODS',
-    '$q', 'Errors', 'ngDialog', 'PromiseUtils', 'Discount', '$http',
-    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, PAYMENT_METHODS, $q, Errors, ngDialog, PromiseUtils, Discount, $http) {
+    '$q', 'Errors', 'ngDialog', 'PromiseUtils', 'Discount', '$http', 'DownloadPDF',
+    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, PAYMENT_METHODS, $q, Errors, ngDialog, PromiseUtils, Discount, $http, DownloadPDF) {
       $scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
       $scope.USER_TYPES = USER_TYPES;
       $scope.PAYMENT_METHODS = PAYMENT_METHODS;
@@ -37,7 +37,7 @@ angular.module('abacuApp')
       $scope.hoverImage = 'add_icon';
       //A reference to User.curEditOrder (set during init())
       $scope.curOrder = null;
-      $scope.discountCode = "";
+      $scope.discount = {code: ""};
       $scope.promoErr = "";
 
       var discount = new Discount();
@@ -71,7 +71,7 @@ angular.module('abacuApp')
       function getParts(wheelchair){
         var frames = FrameData.getFrame(wheelchair.frameID);
         for (var i = 0; i < wheelchair.parts.length; i++) {
-          $scope.parts.push(wheelchair.parts[i]);
+          $scope.parts.push(_.clone(wheelchair.parts[i]));
           $scope.parts[i].name = frames.getPart(wheelchair.parts[i].partID).getName();
           $scope.parts[i].optionName = frames.getPart(wheelchair.parts[i].partID).getOption(wheelchair.parts[i].optionID).getName();
         }
@@ -137,12 +137,10 @@ angular.module('abacuApp')
         });
       };
 
-      $scope.duplicateWheelchair = function (index) {
-        alert('TODO: duplicateWheelchair implementation');
-      };
-
       //Deletes wheelchair from user's My Designs
       $scope.deleteWheelchair = function (index) {
+        var design = $scope.wheelchairUIOpts[index].design;
+        ComparedDesigns.cart.removeDesign(design);
 
         //$scope.wOrderIndex.splice(index, 1);
         $scope.wheelchairUIOpts.splice(index, 1);
@@ -301,7 +299,7 @@ angular.module('abacuApp')
       /*****discount  function*******/
       $scope.applyDiscount = function(){
 
-        Discount.fetchDiscount($scope.discountCode)
+        Discount.fetchDiscount($scope.discount.code)
           .then(function(newDiscount){
             discount = newDiscount;
             $scope.curOrder.addDiscount(discount);
@@ -331,29 +329,7 @@ angular.module('abacuApp')
       });
 
       $scope.downloadDesignPDF = function (design) {
-        var deferred = $q.defer();
-        var browserSupportExists = ['Blob', 'URL.createObjectURL', 'open'].every(function (requiredFuncs) {
-          return _.has(window, requiredFuncs);
-        });
-
-        if (!browserSupportExists) {
-          deferred.reject(new Error('Browser Support doesnt exist'));
-        } else {
-          deferred.resolve();
-        }
-
-        return deferred.promise
-        .then(function () {
-          return $http({
-            'method': 'POST',
-            'url': '/design/pdf/',
-            'data': design.allDetails()
-          });
-        })
-        .then(function (res) {
-          var blob = new Blob([res.data], {type: 'application/pdf;charset=utf-8'});
-          saveAs(blob, 'wheelchairs.pdf');
-        })
+        return DownloadPDF.forWheelchairs(design)
         .catch(function (err) {
           alert('Failed to download Wheelchair PDF');
         });

@@ -1484,7 +1484,7 @@
             "desc": "Experience the protection of Iron Cap Puncture Resistant Technology from Kenda on Wheelchair Tires for Court or Everyday Use.",
             "price": 150,
             "defaultSizeIndex": -1,
-            "sizes": [],  
+            "sizes": [],
             "comments":"",
             "defaultColorID": 8702,
             "colors": [
@@ -3196,7 +3196,7 @@
             "desc": "High quality Schwalbe tires with colorful options!",
             "price": 150,
             "defaultSizeIndex": -1,
-            "sizes": [],  
+            "sizes": [],
             "comments": "",
             "defaultColorID": 8602,
             "colors": [
@@ -3229,7 +3229,7 @@
             "desc": "Experience the protection of Iron Cap Puncture Resistant Technology from Kenda on Wheelchair Tires for Court or Everyday Use.",
             "price": 150,
             "defaultSizeIndex": -1,
-            "sizes": [],  
+            "sizes": [],
             "comments": "",
             "defaultColorID": 8702,
             "colors": [
@@ -4383,7 +4383,7 @@
     "measures": [
       {
         "name": "Wheel Size",
-        "measureID": 15001,
+        "measureID": 15005,
 		"desc": "Wheel Size = Tire Diameter",
         "details": "The wheel size is the diameter of the wheel with a tire on it.  It get's a bit confusing though because different tires will give the wheel a different overall size.  A 24\" wheel can measure as small as 23\" in diameter if it has a small tire.  It's important to match the wheel size that your chair was designed for.  So if you are putting these on a chair that already uses 25\" wheels, you should order new 25\" wheels.",
         "tip": "It's a good idea to match your new wheel size to your old wheel size if you are putting these on your old wheelchair.",
@@ -4400,7 +4400,7 @@
       },
       {
 			"name": "Ball Bearing Size",
-			"measureID": 15002,
+			"measureID": 15003,
 			"desc": "Generally, 1/2\" ball bearings are used in the US, and 12mm ball bearings are used in Europe.",
 			"details": "If you are ordering these to use with a Per4max chair, you definitely want the 1/2\" axles.  Otherwise, you might want the 12mm axles.  If you're not certain of your axle size, ask us and we'll help you figure it out.",
 			"tip": "Generally, 1/2\" ball bearings are used in the US, and 12mm ball bearings are used in Europe.",
@@ -4417,7 +4417,7 @@
 		},
         {
 			"name": "Hub Style",
-			"measureID": 15002,
+			"measureID": 15004,
 			"desc": "There are two hub styles available.  The Standard style has a recessed ball bearing on the inboard side of the wheel.  The X2 style does not.",
 			"details": "Spinergy offers a Standard hub with 1.8\" bearing spacing, and an X2 hub with 2.3\" bearing spacing. The standard hub will result in the wheels positioning closer to the chair (too close for some wheelchair designs and the spokes interfere with a part of the chair). The X2 hub will result in the wheel positioning a little further away from the chair allowing for additional clearance. Which one works for you depends on the wheelchair you use.",
 			"tip": "The X2 hub will make the wheels fit further from your chair.",

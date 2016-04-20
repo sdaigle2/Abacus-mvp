@@ -36,6 +36,31 @@ router.post('/save', function (req, res) {
   }
 });
 
+router.get('/order/download/:id', (req, res) => {
+  var id = req.params.id;
+
+  if (!_.isString(id) || (id === '')) {
+    res.status(400);
+    return res.json({err: `Bad ID value given: ${id}`});
+  }
+
+  dbUtils.getOrderByID(id, (err, order) => {
+    if (err) {
+      res.status(400);
+      return res.json(err);
+    }
+    generatePDF.forInvoice(order, true, (err, stream) => {
+      if (err) {
+        res.status(400);
+        return res.json(err);
+      }
+
+      stream.pipe(res)
+      .on('error', err => console.log(err)); // log any errors that occurr during pipe
+    });
+  });
+});
+
 //Save order to the db, create a stripe payment, and email pdf to the user
 router.post('/order', function (req, res) {
   delete req.body.order.orderNum;
@@ -141,13 +166,13 @@ router.post('/order', function (req, res) {
     manufactureCopy.to = MANUFACTURER_EMAIL;
     manufactureCopy.text = 'An order just been placed, here is a copy of the invoice';
 
-    generatePDF.forInvoice(order, function (err, pdfPath) {
+    generatePDF.forInvoice(order, function (err, pdfFileInfo) {
       if (err) {
         cb(err);
       } else {
         const sendInvoiceMail = function (cb) {
           invoiceEmail.addFile({
-            path: pdfPath
+            path: pdfFileInfo.absPath
           });
           sendgrid.send(invoiceEmail, function (err, json) {
             if (err) {
@@ -160,7 +185,7 @@ router.post('/order', function (req, res) {
 
         const sendManufacturerEmail = function (cb) {
           manufactureCopy.addFile({
-            path: pdfPath
+            path: pdfFileInfo.absPath
           });
           sendgrid.send(manufactureCopy, function (err, json) {
             if (err) {
@@ -183,9 +208,11 @@ router.post('/order', function (req, res) {
 
       }
     });
+  };
 
-
-
+  const updateOrdersOrderNumber = (orderNumber, cb) => {
+    order.orderNum = orderNumber;
+    dbService.orders.insert(order, order._id, cb);
   };
 
   validateOrderDiscounts(valid => {
@@ -211,7 +238,7 @@ router.post('/order', function (req, res) {
         }
 
         const userIsLoggedIn = _.isObject(user) && !_.isEmpty(user);
-        insertOrder(userIsLoggedIn, (err) => {
+        insertOrder(userIsLoggedIn, (err, order) => {
           if (err) {
             res.status(500);
             res.json({err: err});
@@ -221,14 +248,21 @@ router.post('/order', function (req, res) {
           orderNumber.increment()
           .then(curOrderNum => {
             // Respond with 200 status and user & order number in the response body
-            res.json({user: user, orderNum: curOrderNum});
-            
-            sendInvoiceEmails(curOrderNum, (err, orderNum) => {
+            updateOrdersOrderNumber(curOrderNum, function (err) {
               if (err) {
-                console.log(`ERROR WHILE SENDING INVOICE EMAIL: ${JSON.stringify(err, null, 2)}`);
+                res.status(400);
+                return res.json(err);
               }
-            });
 
+              res.json({user: user, orderNum: curOrderNum});
+              
+              sendInvoiceEmails(curOrderNum, (err, orderNum) => {
+                if (err) {
+                  console.log(`ERROR WHILE SENDING INVOICE EMAIL: ${JSON.stringify(err, null, 2)}`);
+                }
+              });
+
+            });
           })
           .catch(err => {
             res.status(400);

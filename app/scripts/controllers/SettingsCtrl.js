@@ -10,8 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('SettingsCtrl', ['$scope', '$location', '$http', 'User', 'Units', 'Drop', 'FrameData','WHEELCHAIR_CANVAS_WIDTH', 'UserData',
-    function ($scope, $location, $http, User, Units, Drop, FrameData, WHEELCHAIR_CANVAS_WIDTH, UserData) {
+  .controller('SettingsCtrl', ['$scope', '$location', '$http', 'User', 'Units', 'Drop', 'FrameData','WHEELCHAIR_CANVAS_WIDTH', 'UserData', '_',
+    function ($scope, $location, $http, User, Units, Drop, FrameData, WHEELCHAIR_CANVAS_WIDTH, UserData, _) {
       Drop.setFalse();
       //Kick user off page if not logged in
       if (User.isLoggedIn() === false) {
@@ -147,19 +147,27 @@ angular.module('abacuApp')
         //Array of orders
         //TODO: needs to be integrated with the Order factory
       var orders = User.getSentOrders();
+      $scope.orderWheelchairs = _.chain(User.getSentOrders())
+      .map(function (order) {        
+        var chairs = _.map(order.wheelchairs, 'wheelchair');
+        chairs = _.reject(chairs, _.isNull);
+        
+        return chairs.map(function (chair) {
+          return {
+            chair: chair,
+            order: order
+          };
+        });
+      })
+      .flatten()
+      .value()
+      $scope.orderWheelchairs = _.orderBy($scope.orderWheelchairs, 'date', 'desc');
+      
 
-      $scope.orderWheelchairs = [];
-      for(var i=0; i<orders.length; i++){
-        var wheelchairs = orders[i].getWheelchairs();
-        for(var j=0; j<wheelchairs.length; j++){
-          wheelchairs[j].orderNum = orders[i].orderNum;
-          wheelchairs[j].date = orders[i].getSentDate();
-          wheelchairs[j].fName = orders[i].getShippingDetails().fName;
-          wheelchairs[j].lName = orders[i].getShippingDetails().lName;
-          $scope.orderWheelchairs.push(wheelchairs[j]);
-        }
-        $scope.orderWheelchairs = _.orderBy($scope.orderWheelchairs, 'date', 'desc');
-      };
+      $scope.getChairFrame = function (chair) {
+        var frameID = chair.frameID;
+        return FrameData.getFrame(frameID);
+      }
 
       $scope.openOrderDetails = function (index) {
         //TODO: Display order details from the User service
@@ -269,15 +277,7 @@ angular.module('abacuApp')
       };
 
       $scope.downloadDesignPDF = function (design) {
-        return $http({
-          'method': 'POST',
-          'url': '/design/pdf/',
-          'data': design.allDetails()
-        })
-        .then(function (res) {
-          var blob = new Blob([res.data], {type: 'application/pdf;charset=utf-8'});
-          saveAs(blob, 'wheelchairs.pdf');
-        })
+        return DownloadPDF.forWheelchairs(design)
         .catch(function (err) {
           alert('Failed to download Wheelchair PDF');
         });

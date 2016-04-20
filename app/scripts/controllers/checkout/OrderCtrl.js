@@ -150,6 +150,8 @@ angular.module('abacuApp')
                   $scope.curStage++;
                   $scope.completeClicked = false;
                 }
+
+                User.clearCart();
               })
               .catch(function () {
                 alert('Error sending order');
