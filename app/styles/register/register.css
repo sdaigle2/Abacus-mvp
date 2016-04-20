@@ -92,5 +92,10 @@ input{
 
 .error-mesg{
   float: left;
-  padding-top: 13px;
+  padding-top: 0px;
+  font-size: 1.2em;
+}
+
+.glyphicon{
+  color: red;
 }

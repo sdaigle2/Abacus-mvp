@@ -148,7 +148,7 @@ router.post('/register', function (req, res) {
             }
             //Send an email to the user using the sendgrid API
             email.to = data.email;
-            email.text = 'Thank you for registering an account with Abacus.';
+            email.text = 'Thank you for registering with the Per4max Wheelchair Configurator powered by Tinker.  To confirm your account, please go to http://per4max.fit.';
             sendgrid.send(email, function () {
               res.json({'success': true});
             });

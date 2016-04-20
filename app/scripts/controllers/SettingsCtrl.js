@@ -158,6 +158,7 @@ angular.module('abacuApp')
           wheelchairs[j].lName = orders[i].getShippingDetails().lName;
           $scope.orderWheelchairs.push(wheelchairs[j]);
         }
+        $scope.orderWheelchairs = _.orderBy($scope.orderWheelchairs, 'date', 'desc');
       };
 
       $scope.openOrderDetails = function (index) {

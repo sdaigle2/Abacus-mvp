@@ -4,9 +4,9 @@
 $(window).load(function()
 {
    var phones = [{ "mask": "(###) ###-####"}, { "mask": "(###) ###-##############"}];
-    $('#textbox').inputmask({ 
-        mask: phones, 
-        greedy: false, 
+    $('#textbox').inputmask({
+        mask: phones,
+        greedy: false,
         definitions: { '#': { validator: "[0-9]", cardinality: 1}} });
 });
 </script>
@@ -20,40 +20,46 @@ $(window).load(function()
 
         <div class="settingsContentSectionTitle book">Account Information</div>
         <div class="form-group form-inline">
-          <label for="settingsContentInput-contact-firstName" class="book">First Name</label><br>
+          <label for="settingsContentInput-contact-firstName" class="book">First Name
+            <span ng-show="emptyField.fName" class="glyphicon glyphicon-asterisk"></span></label><br>
           <input id="settingsContentInput-contact-firstName" name="firstName" type="text"
                  class="form-control" data-ng-model="accountModel.fName"/>
         </div>
         <div class="form-group form-inline form-last">
-          <label for="settingsContentInput-contact-lastName" class="book">Last Name</label><br>
+          <label for="settingsContentInput-contact-lastName" class="book">Last Name
+            <span ng-show="emptyField.lName" class="glyphicon glyphicon-asterisk"></span></label><br>
           <input id="settingsContentInput-contact-lastName" name="lastName" type="text"
                  class="form-control" data-ng-model="accountModel.lName"/>
         </div>
 
         <div class="form-group">
-          <label for="settingsContentInput-contact-email" class="book">Email Address</label>
+          <label for="settingsContentInput-contact-email" class="book">Email Address
+            <span ng-show="emptyField.email" class="glyphicon glyphicon-asterisk"></span></label>
           <input id="settingsContentInput-contact-email" name="email" type="email" class="form-control"
                  data-ng-model="accountModel.email"/>
         </div>
 
         <div class="form-group">
-          <label for="settingsContentInput-contact-phone" class="book">Phone Number</label>
-          <input 
+          <label for="settingsContentInput-contact-phone" class="book">Phone Number
+            <span ng-show="emptyField.phone" class="glyphicon glyphicon-asterisk"></span></label>
+          <input
                  id="settingsContentInput-contact-phone"
-                 name="phone" 
-                 type="tel" 
+                 name="phone"
+                 type="tel"
                  class="form-control"
                  phone-input
                  ng-model="accountModel.phone"/>
         </div>
 
         <div class="form-group form-inline">
-          <label for="settingsContentInput-contact-pass" class="book">Password</label><br>
+          <label for="settingsContentInput-contact-pass" class="book">Password
+            <span ng-show="emptyField.password" class="glyphicon glyphicon-asterisk"></span></label><br>
           <input id="settingsContentInput-contact-pass" name="password" type="password"
                  class="form-control" data-ng-model="accountModel.password"/>
         </div>
         <div class="form-group form-inline form-last">
-          <label for="settingsContentInput-contact-confirm" class="book">Confirm Password</label><br>
+          <label for="settingsContentInput-contact-confirm" class="book">Confirm Password
+            <span ng-show="emptyField.password" class="glyphicon glyphicon-asterisk"></span></label><br>
           <input id="settingsContentInput-contact-confirm" name="password" type="password"
                  class="form-control" data-ng-model="accountModel.confirm"/>
         </div>
@@ -63,7 +69,8 @@ $(window).load(function()
         <img class="img-circle" data-ng-src="images/register_page/circle_two.png">
         <div class="settingsContentSectionTitle book">Shipping Address</div>
         <div class="form-group">
-          <label for="settingsContentInput-contact-address" class="book">Street Address</label><br>
+          <label for="settingsContentInput-contact-address" class="book">Street Address
+            <span ng-show="emptyField.addr" class="glyphicon glyphicon-asterisk"></span></label><br>
           <input id="settingsContentInput-contact-address" name="Address" type="text"
                  class="form-control" data-ng-model="accountModel.addr"/>
         </div>
@@ -73,12 +80,14 @@ $(window).load(function()
                  class="form-control" data-ng-model="accountModel.addr2"/>
         </div>
         <div class="form-group form-inline-small">
-          <label for="settingsContentInput-contact-city" class="book">City</label><br>
+          <label for="settingsContentInput-contact-city" class="book">City
+            <span ng-show="emptyField.city" class="glyphicon glyphicon-asterisk"></span></label><br>
           <input id="settingsContentInput-contact-city" name="City" type="text"
                  class="form-control" data-ng-model="accountModel.city"/>
         </div>
         <div class="form-group form-inline-small">
-          <label for="settingsContentInput-contact-state" class="book">State</label><br>
+          <label for="settingsContentInput-contact-state" class="book">State
+            <span ng-show="emptyField.state" class="glyphicon glyphicon-asterisk"></span></label><br>
           <select id="settingsContentInput-contact-state" name="State" type="text"
                   class="form-control" data-ng-model="accountModel.state" name="state">
             <option value="AL">Alabama</option>
@@ -135,7 +144,8 @@ $(window).load(function()
           </select>
         </div>
         <div class="form-group form-inline-small">
-          <label for="settingsContentInput-contact-zip" class="book">Zip Code</label><br>
+          <label for="settingsContentInput-contact-zip" class="book">Zip Code
+            <span ng-show="emptyField.zip" class="glyphicon glyphicon-asterisk"></span></label><br>
           <input id="settingsContentInput-contact-zip" name="Zip" type="text"
                  class="form-control" data-ng-model="accountModel.zip"/>
         </div>
