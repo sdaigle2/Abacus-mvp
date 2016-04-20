@@ -20,23 +20,26 @@ angular.module('abacuApp')
         state: '',
         zip: '',
         password: '',
-        confirm: '',
-        orders: []
+        confirm: ''
       };
 
+
       var checkField = function(){
+        var emptyField = {};
         for(key in $scope.accountModel){
-          if(_.isEmpty($scope.accountModel[key])){
-            return true
+          emptyField[key] = false;
+          if($scope.accountModel[key] == '' && (key != 'addr2')){
+            emptyField[key] = true;
           }
-            return false
         }
+        return emptyField
       };
 
       $scope.register = function(){
         var deferred = $q;
         $scope.error = '';
-        if(checkField()){
+        $scope.emptyField = checkField();
+        if(!_.every($scope.emptyField, function(key){return key == false;})){
           deferred.reject('Missing field');
           $scope.error = 'Missing field';
           return deferred.promise
@@ -72,7 +75,8 @@ angular.module('abacuApp')
       $scope.registerAction = function(){
         var deferred = $q;
         $scope.error = '';
-        if(checkField()){
+        $scope.emptyField = checkField();
+        if(!_.every($scope.emptyField, function(key){return key == false;})){
           deferred.reject('Missing field');
           $scope.error = 'Missing field';
           return deferred.promise

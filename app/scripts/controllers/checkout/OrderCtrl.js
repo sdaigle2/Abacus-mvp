@@ -43,7 +43,7 @@ angular.module('abacuApp')
         },
         { //COMPLETE
           title: "Complete",
-          button: "GO TO MY ORDER >>"
+          button: "GO TO MY ORDERS >>"
         }
       ];
 
@@ -148,6 +148,7 @@ angular.module('abacuApp')
                 $scope.orderNum = response.orderNum;
                 if($scope.orderNum !== -1) {
                   $scope.curStage++;
+                  $scope.completeClicked = false;
                 }
 
                 User.clearCart();
@@ -159,7 +160,6 @@ angular.module('abacuApp')
 
 
           case $scope.stages.COMPLETE:
-            $scope.completeClicked = false;
             User.setContentSection('orders');
             $location.path('/settings');
             break;

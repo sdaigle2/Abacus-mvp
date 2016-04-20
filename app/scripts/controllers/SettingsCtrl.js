@@ -160,7 +160,9 @@ angular.module('abacuApp')
         });
       })
       .flatten()
-      .value();
+      .value()
+      $scope.orderWheelchairs = _.orderBy($scope.orderWheelchairs, 'date', 'desc');
+      
 
       $scope.getChairFrame = function (chair) {
         var frameID = chair.frameID;
