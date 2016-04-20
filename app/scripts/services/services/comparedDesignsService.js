@@ -20,11 +20,15 @@ angular.module('abacuApp')
   .constant('LOCAL_CART_COMPARED_DESIGNS_KEY', 'cartComparedDesigns')
   .constant('LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY', 'myDesignComparedDesigns')
   .constant('MAX_COMPARISON_CHAIRS', 3)
-  .service('ComparedDesigns', ['localJSONStorage', 'Design', 'LOCAL_CART_COMPARED_DESIGNS_KEY', 'LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY', '_', 'MAX_COMPARISON_CHAIRS','Wheelchair',
-    function (localJSONStorage, Design, LOCAL_CART_COMPARED_DESIGNS_KEY, LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY, _, MAX_COMPARISON_CHAIRS , Wheelchair) {
+  .service('ComparedDesigns', ['localJSONStorage', 'Design', 'LOCAL_CART_COMPARED_DESIGNS_KEY', 'LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY', '_', 'MAX_COMPARISON_CHAIRS','Wheelchair', '$rootScope',
+    function (localJSONStorage, Design, LOCAL_CART_COMPARED_DESIGNS_KEY, LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY, _, MAX_COMPARISON_CHAIRS , Wheelchair, $rootScope) {
 
     function isDesign(value) {
       return value instanceof Design;
+    }
+
+    function objectToDesign(designObj) {
+      return new Design(designObj);
     }
 
     function isWheelchair(value){
@@ -35,6 +39,7 @@ angular.module('abacuApp')
   	var ComparedDesignsStorage = function (localStorageKey) {
       this.localStorageKey = localStorageKey;
   		this.designs = localJSONStorage.get(this.localStorageKey) || []; // restore from localStorage...default to empty array
+      this.designs = this.designs.map(objectToDesign);
 
       ComparedDesignsStorage.prototype.saveLocally = function() {
         localJSONStorage.put(this.localStorageKey, this.designs);
@@ -96,10 +101,23 @@ angular.module('abacuApp')
         return this.designs.length >= MAX_COMPARISON_CHAIRS;
       };
 
+      ComparedDesignsStorage.prototype.clear = function () {
+        this.designs = [];
+        this.saveLocally();
+      }
   	};
 
-  	return {
+  	var stores = {
       cart: new ComparedDesignsStorage(LOCAL_CART_COMPARED_DESIGNS_KEY),
       myDesigns: new ComparedDesignsStorage(LOCAL_MYDESIGNS_COMPARED_DESIGNS_KEY)
     };
+
+    // Every time user logs in or out, clear the ComparedDesigns storage
+    $rootScope.$on('userChange', function () {
+      _.forEach(stores, function (storage) {
+        storage.clear();
+      });
+    });
+
+    return stores;
   }]);

@@ -71,7 +71,7 @@ angular.module('abacuApp')
       function getParts(wheelchair){
         var frames = FrameData.getFrame(wheelchair.frameID);
         for (var i = 0; i < wheelchair.parts.length; i++) {
-          $scope.parts.push(wheelchair.parts[i]);
+          $scope.parts.push(_.clone(wheelchair.parts[i]));
           $scope.parts[i].name = frames.getPart(wheelchair.parts[i].partID).getName();
           $scope.parts[i].optionName = frames.getPart(wheelchair.parts[i].partID).getOption(wheelchair.parts[i].optionID).getName();
         }
