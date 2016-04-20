@@ -17,10 +17,12 @@ angular.module('abacuApp')
 
       // design is locked if it is part of the users order history
       function designIsLocked(design) {
+        var designID = _.isString(design) ? design : design._id;
+        
         var sentOrders = User.getSentOrders();
         return sentOrders.some(function (order) {
           return order.wheelchairs.some(function (lockedDesign) {
-            return lockedDesign._id === design._id || _.isEqual(lockedDesign, design);
+            return lockedDesign._id === designID || _.isEqual(lockedDesign, design);
           });
         });
       }

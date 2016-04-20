@@ -143,18 +143,50 @@ angular.module('abacuApp')
         curPage.page[$scope.pageType.MEASURE] = pages.measurePages[0];
       }
 
+      // design is locked if it is part of the users order history
+      function designIsLocked(design) {
+        var designID = _.isString(design) ? design : design._id;
+
+        var sentOrders = User.getSentOrders();
+        return sentOrders.some(function (order) {
+          return order.wheelchairs.some(function (lockedDesign) {
+            return lockedDesign._id === designID || _.isEqual(lockedDesign, design);
+          });
+        });
+      }
+
       //Initialize the page - called on pageLoad
       function init() {
         var id = $routeParams.param1;
-        console.log(id);
+
         if(id != null) {
-          User.fetchDesign(id)
-            .then(function(design){
+          if (designIsLocked(id)) {
+            ngDialog.open({
+              template: "views/modals/lockedDesignModal.html",
+              controller: "LockedDesignModalCtrl"
+            }).closePromise
+            .then(function (result) {
+              if (result.value === 'copy') {
+                return User.fetchDesign(id)
+                  .then(function(design){
+                    var cloneDesign = design.clone();
+                    User.createCurrentDesign(cloneDesign);
+                    $scope.curEditWheelchair = cloneDesign.wheelchair;
+                  });
+              } else {
+                $location.path('/frames')
+              }
+            });
+          } else {
+            User.fetchDesign(id)
+            .then(function (design) {
+              User.createCurrentDesign(design);
               $scope.curEditWheelchair = design.wheelchair;
             })
-            .catch(function(err){
+            .catch(function (err) {
               console.log(err);
-            })
+            });
+          }
         }
 
 
@@ -804,9 +836,10 @@ angular.module('abacuApp')
           if (err instanceof Errors.NotLoggedInError) {
             ngDialog.open({
               'template': 'views/modals/loginPromptModal.html'
-            }).closePromise.then(function(){
-                return Drop.setTrue();
-              });
+            }).closePromise
+            .then(function(){
+              return Drop.setTrue();
+            });
           }
         });
       };
