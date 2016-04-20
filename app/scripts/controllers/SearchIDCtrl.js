@@ -2,8 +2,8 @@
  * Created by sourabhd on 2/10/16.
  */
 angular.module('abacuApp')
-  .controller('SearchIDCtrl', ['$scope', 'UserData', '$http', 'User', '_', 'Wheelchair', '$location', 'Design',
-    function ($scope, UserData, $http, User, _, Wheelchair, $location, Design) {
+  .controller('SearchIDCtrl', ['$scope', 'UserData', '$http', 'User', '_', 'Wheelchair', '$location', 'Design', 'ngDialog',
+    function ($scope, UserData, $http, User, _, Wheelchair, $location, Design, ngDialog) {
       $scope.currentUser = UserData;
       $scope.searchForm = {
       	searchInput: ''
@@ -15,6 +15,16 @@ angular.module('abacuApp')
       // searchResult contains response from server for users design id query
       $scope.searchResult = null;
 
+      // design is locked if it is part of the users order history
+      function designIsLocked(design) {
+        var sentOrders = User.getSentOrders();
+        return sentOrders.some(function (order) {
+          return order.wheelchairs.some(function (lockedDesign) {
+            return lockedDesign._id === design._id || _.isEqual(lockedDesign, design);
+          });
+        });
+      }
+
       /**
        * Gets search input from $scope.searchForm.searchInput
        * Queries backend for design that has this id and then renders it
@@ -24,13 +34,28 @@ angular.module('abacuApp')
       	User.fetchDesign(input)
       	.then(function (design) {
       		$scope.searchSubmitted = true;
-      		$scope.searchResult = design;
+          if (designIsLocked(design)) {
+            return ngDialog.open({
+              template: "views/modals/lockedDesignModal.html",
+              controller: "LockedDesignModalCtrl"
+            }).closePromise
+            .then(function (result) {
+              if (result.value === 'copy') {
+                $scope.searchResult = design.clone(); // clone creates a copy of design without id or revision number
+                $scope.editWheelchairDesign();
+              } else {
+                $scope.searchSubmitted = false;
+              }
+            });
+          } else {
+            $scope.searchResult = design;
+          }
       	})
       	.catch(function (err) {
       		$scope.searchSubmitted = true;
       		$scope.searchResult = null;
       	});
-      	
+
       };
 
       $scope.editWheelchairDesign = function () {
