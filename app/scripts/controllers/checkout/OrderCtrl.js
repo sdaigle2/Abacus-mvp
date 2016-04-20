@@ -149,6 +149,8 @@ angular.module('abacuApp')
                 if($scope.orderNum !== -1) {
                   $scope.curStage++;
                 }
+
+                User.clearCart();
               })
               .catch(function () {
                 alert('Error sending order');

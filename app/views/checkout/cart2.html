@@ -161,7 +161,7 @@
           <section id="orderType" class="oReg">
             <div>
               <p class="sectionTitle">Discount Code</p>
-              <input type="text" class="discount-input" ng-model="discountCode">
+              <input type="text" class="discount-input" ng-model="discount.code">
               <button type="button" class="pull-right button apply-button" ng-disabled="!curOrder.canAddDiscount()" ng-click="applyDiscount()">Apply</button>
               <p ng-if="!curOrder.canAddDiscount()">Your current discount can't be combined with other discounts</p>
             </div>

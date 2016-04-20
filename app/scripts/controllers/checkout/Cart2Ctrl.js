@@ -37,7 +37,7 @@ angular.module('abacuApp')
       $scope.hoverImage = 'add_icon';
       //A reference to User.curEditOrder (set during init())
       $scope.curOrder = null;
-      $scope.discountCode = "";
+      $scope.discount = {code: ""};
       $scope.promoErr = "";
 
       var discount = new Discount();
@@ -137,12 +137,10 @@ angular.module('abacuApp')
         });
       };
 
-      $scope.duplicateWheelchair = function (index) {
-        alert('TODO: duplicateWheelchair implementation');
-      };
-
       //Deletes wheelchair from user's My Designs
       $scope.deleteWheelchair = function (index) {
+        var design = $scope.wheelchairUIOpts[index].design;
+        ComparedDesigns.cart.removeDesign(design);
 
         //$scope.wOrderIndex.splice(index, 1);
         $scope.wheelchairUIOpts.splice(index, 1);
@@ -301,7 +299,7 @@ angular.module('abacuApp')
       /*****discount  function*******/
       $scope.applyDiscount = function(){
 
-        Discount.fetchDiscount($scope.discountCode)
+        Discount.fetchDiscount($scope.discount.code)
           .then(function(newDiscount){
             discount = newDiscount;
             $scope.curOrder.addDiscount(discount);
