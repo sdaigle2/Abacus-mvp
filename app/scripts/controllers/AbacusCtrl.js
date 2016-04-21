@@ -881,10 +881,20 @@ angular.module('abacuApp')
                 }
                 case 'overwrite': {
                   if (User.getID() === design.creator || User.isAdmin()) {
-                    return User.updateDesign(design);
+                    return User.updateDesign(design)
+                      .then(function (updatedDesign) {
+                        // Replace cart Item with newest version of chair
+                        var userCart = User.getCart();
+                        userCart.wheelchairs = userCart.wheelchairs.map(function (design) {
+                          design = design._id == updatedDesign._id ? updatedDesign : design;
+                          return design;
+                        });
+
+                        return updatedDesign;
+                      });
                   } else {
                     return ngDialog.open({
-                      'template': '<div><h2>Sorry, you can\'t overwrite this design</h2></div>',
+                      'template': '<div style="text-align: center;"><h2>Sorry, you can\'t overwrite this design</h2></div>',
                       'plain': true
                     })
                     .closePromise

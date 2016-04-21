@@ -297,7 +297,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       } else if (!(design instanceof Design) || !design.hasID()) {
         return PromiseUtils.rejected(new Error("Invalid design arg"));
       }
-
+      
       var designDetails = design.allDetails();
       designDetails.updatedAt = new Date();
       return $http({
@@ -418,6 +418,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
       if (currentWheelchair.isNew === true ) {
         cart.wheelchairs.push(new Design({
+          'creator': email,
           'wheelchair': currentWheelchair.editingWheelchair
         }));
         cartWheelchairIndex = cart.wheelchairs.length - 1;
