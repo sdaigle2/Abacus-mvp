@@ -132,7 +132,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     if (index >= 0 && index < cart.wheelchairs.length) {
       cartWheelchairIndex = index;
     }
-    currentWheelchair.editingWheelchair = $.extend(true, cart.wheelchairs[index].wheelchair);
+    currentWheelchair.editingWheelchair = _.clone(cart.wheelchairs[index].wheelchair);
     currentWheelchair.isNew = false;
     currentWheelchair.design = design;
 
@@ -188,7 +188,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
   }
 
   function restoreUserFromBackend(data) {
-    if (_.isEmpty(data)) {
+    if (_.isEmpty(data) || !_.isObject(data)) {
       return;
     }
 
@@ -280,9 +280,10 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         return deferred.promise;
       }
       // $http({ ... }) returns a promise
+      var designInstance = design instanceof Design ? design : new Design(design);
       return $http({
         url:'/design',
-        data: design instanceof Design ? design.allDetails() : design,
+        data: designInstance.clone().allDetails(),
         method: 'POST'
       })
         .then(function (response) {
@@ -405,7 +406,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       });
 
       localJSONStorage.remove('promo');
-      
+
       cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
     },
 

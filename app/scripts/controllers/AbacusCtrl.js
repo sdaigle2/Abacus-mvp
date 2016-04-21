@@ -966,6 +966,10 @@ angular.module('abacuApp')
           initNavBar();
       });
 
+      $scope.$watch('curEditWheelchair', function (oldVal, newVal) {
+        console.log('change for curEditWheelchair');
+        console.log([oldVal, newVal]);
+      })
 
 
 

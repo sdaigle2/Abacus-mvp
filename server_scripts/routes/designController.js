@@ -40,6 +40,11 @@ router.get('/design/:id',function(req,res){
 // post design
 router.post('/design', restrict, function (req, res) {
   var userDesign = req.body;
+  
+  // Remove an ID or Revision number that may be attached
+  delete userDesign._id;
+  delete userDesign._rev;
+  
   // Check that uploaded design has some required properties
   var hasRequiredProps = REQUIRED_DESIGN_PROPERTIES.every(function (property) {
     return property in userDesign;
