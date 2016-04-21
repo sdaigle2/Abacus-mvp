@@ -498,7 +498,7 @@
 			"name": "5th Wheel & Backrest",
 			"partID": 4000,
 			"numSubImages": 1,
-			"zRank": [[12,9,6,3,10]],
+			"zRank": [[12,9,7,3,10]],
 			"shortName": "5W",
 			"defaultOptionID": 4100,
 			"options": [
@@ -1770,10 +1770,10 @@
 
       },
       {
-        "name": "Taper (Knee Width)",
+        "name": "Taper (Knee Width) $125",
         "measureID": 15002,
         "desc": "The width of the chair at the knee. (inside of tube to inside of tube)",
-        "details": " Taper allows a more tailored fit and helps to increase chair control and overall feel while assisting to achieve proper body alignment.  To measure taper place your hand between your legs and measure the outside distance of the contact patch where your legs meet the frame.",
+        "details": " Taper allows a more tailored fit and helps to increase chair control and overall feel while assisting to achieve proper body alignment.  To measure taper place your hand between your legs and measure the outside distance of the contact patch where your legs meet the frame. If you select no taper, the knee width will be the same as seat width.",
         "tip": "Greater taper will make it easier to maneuver on the court.",
         "gifDesc": "You gain more control and body alignment as the taper increases.",
         "units": ["cm","in"],
@@ -1782,10 +1782,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": ["/images/abacus_page/measure/thunder/illustration/taper.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/illustration/taper.svg",
-        "measureOptions": [["20.3", "21.6", "22.9", "24.1", "25.4", "26.7", "27.9", "29.2", "30.5", "31.8", "33", "34.3", "35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "34.5", "45.7", "Other"],["8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["none", "20.3", "21.6", "22.9", "24.1", "25.4", "26.7", "27.9", "29.2", "30.5", "31.8", "33", "34.3", "35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "34.5", "45.7", "Other"],["none", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120]
       },
       {
         "name": "Seat Depth",
@@ -1799,10 +1799,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/seat_depth.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/seat_depth.gif",
-        "measureOptions": [["30.5", "33", "35.6", "38.1", "40.6", "43.2", "45.7", "Other"],["12", "13", "14", "15", "16", "17", "18", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["25.4", "27.9", "30.5", "33", "35.6", "38.1", "40.6", "43.2", "45.7", "Other"],["10", "11", "12", "13", "14", "15", "16", "17", "18", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Total Length",
@@ -1960,10 +1960,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/center_axle_to_caster_housing.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/center_axle_to_caster_housing.gif",
-        "measureOptions": [["38.1", "40.6", "43.2", "45.7", "Other"],["15", "16", "17", "18", "Other"]],
-        "weights": [0, 0, 0, 0, 0],
+        "measureOptions": [["38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "Other"],["15", "16", "17", "18", "19", "20", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Caster Housing To Front Foot Plate",
@@ -2013,11 +2013,29 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/camber_angle.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/camber_angle.gif",
-        "measureOptions": [["12", "15", "17", "18", "Other"],["12", "15", "17", "18", "Other"]],
-        "weights": [0, 0, 0, 0],
+        "measureOptions": [["9", "12", "15", "17", "18", "20", "Other"],["9", "12", "15", "17", "18", "20", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0]
-      }
+        "prices": [0, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "name": "Axle Size",
+        "measureID": 15016,
+        "desc": "The diameter of the Axle",
+        "details": "If you are supplying your own wheels, we need to know what size axles they use.  The standard is 1/2\", but R10 Spinergy Wheels have big 5/8\" axles to prevent bending.  If you need help selecting this, please write in the comments box.",
+        "tip": "Most wheels use 1/2\" axles, but the R10 Spinergy Wheel and a few others use 5/8\" axles.",
+        "gifDesc": "Bigger axles are more resistant to being bent.",
+        "units": ["in","in"],
+        "writeInLabel": "",
+        "shortName": "Cam",
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": [" /images/abacus_page/measure/thunder/illustration/axle_size.svg"],
+        "gifURL": "/images/abacus_page/measure/thunder/illustration/axle_size.svg",
+        "measureOptions": [["1/2\"", "5/8\""],["1/2\"", "5/8\""]],
+        "weights": [0, 0],
+        "comments":"",
+        "prices": [0, 100]
+      }    
     ]
   },
   {
@@ -3515,10 +3533,10 @@
 
       },
       {
-        "name": "Taper (Knee Width)",
+        "name": "Taper (Knee Width) $125",
         "measureID": 15002,
         "desc": "The width of the chair at the knee. (inside of tube to inside of tube)",
-        "details": " Taper allows a more tailored fit and helps to increase chair control and overall feel while assisting to achieve proper body alignment.  To measure taper place your hand between your legs and measure the outside distance of the contact patch where your legs meet the frame.",
+        "details": " Taper allows a more tailored fit and helps to increase chair control and overall feel while assisting to achieve proper body alignment.  To measure taper place your hand between your legs and measure the outside distance of the contact patch where your legs meet the frame.  If you select no taper, the knee width will be the same as seat width.",
         "tip": "Greater taper will make it easier to maneuver on the court.",
         "gifDesc": "You gain more control and body alignment as the taper increases.",
         "units": ["cm","in"],
@@ -3527,10 +3545,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": ["/images/abacus_page/measure/thunder/illustration/taper.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/illustration/taper.svg",
-        "measureOptions": [["20.3", "21.6", "22.9", "24.1", "25.4", "26.7", "27.9", "29.2", "30.5", "31.8", "33", "34.3", "35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "34.5", "45.7", "Other"],["8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["none", "20.3", "21.6", "22.9", "24.1", "25.4", "26.7", "27.9", "29.2", "30.5", "31.8", "33", "34.3", "35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "34.5", "45.7", "Other"],["none", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120, 120]
       },
       {
         "name": "Seat Depth",
@@ -3544,10 +3562,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/seat_depth.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/seat_depth.gif",
-        "measureOptions": [["30.5", "33", "35.6", "38.1", "40.6", "43.2", "45.7", "Other"],["12", "13", "14", "15", "16", "17", "18", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["25.4", "27.9", "30.5", "33", "35.6", "38.1", "40.6", "43.2", "45.7", "Other"],["10", "11", "12", "13", "14", "15", "16", "17", "18", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Total Length",
@@ -3705,10 +3723,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/center_axle_to_caster_housing.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/center_axle_to_caster_housing.gif",
-        "measureOptions": [["38.1", "40.6", "43.2", "45.7", "Other"],["15", "16", "17", "18", "Other"]],
-        "weights": [0, 0, 0, 0, 0],
+        "measureOptions": [["38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "Other"],["15", "16", "17", "18", "19", "20", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Caster Housing To Front Foot Plate",
@@ -3758,11 +3776,29 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/camber_angle.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/camber_angle.gif",
-        "measureOptions": [["12", "15", "17", "18", "Other"],["12", "15", "17", "18", "Other"]],
-        "weights": [0, 0, 0, 0],
+        "measureOptions": [["9", "12", "15", "17", "18", "20", "Other"],["9", "12", "15", "17", "18", "20", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0]
-      }
+        "prices": [0, 0, 0, 0, 0, 0, 0]
+      },
+      {
+        "name": "Axle Size",
+        "measureID": 15016,
+        "desc": "The diameter of the Axle",
+        "details": "If you are supplying your own wheels, we need to know what size axles they use.  The standard is 1/2\", but R10 Spinergy Wheels have big 5/8\" axles to prevent bending.  If you need help selecting this, please write in the comments box.",
+        "tip": "Most wheels use 1/2\" axles, but the R10 Spinergy Wheel and a few others use 5/8\" axles.",
+        "gifDesc": "Bigger axles are more resistant to being bent.",
+        "units": ["in","in"],
+        "writeInLabel": "",
+        "shortName": "Cam",
+        "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
+        "imageURLs": [" /images/abacus_page/measure/thunder/illustration/axle_size.svg"],
+        "gifURL": "/images/abacus_page/measure/thunder/illustration/axle_size.svg",
+        "measureOptions": [["1/2\"", "5/8\""],["1/2\"", "5/8\""]],
+        "weights": [0, 0],
+        "comments":"",
+        "prices": [0, 100]
+      }    
     ]
   },
   {
