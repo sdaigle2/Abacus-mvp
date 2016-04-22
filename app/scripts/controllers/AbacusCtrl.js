@@ -8,8 +8,9 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('AbacusCtrl', ['$scope', '$location', 'localJSONStorage', '$routeParams', 'FrameData', 'User', 'Angles', 'Units', 'Drop', 'Design', '_', '$q', 'ngDialog', 'Errors', 'DownloadPDF',
-    function ($scope, $location, localJSONStorage, $routeParams, FrameData, User, Angles, Units, Drop, Design, _, $q, ngDialog, Errors, DownloadPDF) {
+  .constant('REFRESH_WARNING_TEXT', "Please Make sure you save your design before refreshing the page!")
+  .controller('AbacusCtrl', ['$scope', '$location', 'localJSONStorage', '$routeParams', 'FrameData', 'User', 'Angles', 'Units', 'Drop', 'Design', '_', '$q', 'ngDialog', 'Errors', 'DownloadPDF', 'REFRESH_WARNING_TEXT',
+    function ($scope, $location, localJSONStorage, $routeParams, FrameData, User, Angles, Units, Drop, Design, _, $q, ngDialog, Errors, DownloadPDF, REFRESH_WARNING_TEXT) {
 
       Drop.setFalse();
       /*********************Enums*******************************/
@@ -204,6 +205,11 @@ angular.module('abacuApp')
         //Load data about the frame type of curEditWheelchair
         $scope.curFrameData = FrameData.getFrame($scope.curEditWheelchair.getFrameID());
         generatePages();
+
+        // Warn user before they reload the page to save their changes
+        window.onbeforeunload = function () {
+          return REFRESH_WARNING_TEXT;
+        };
 
 
       }
@@ -984,7 +990,11 @@ angular.module('abacuApp')
       $scope.$watch('curEditWheelchair', function (oldVal, newVal) {
         console.log('change for curEditWheelchair');
         console.log([oldVal, newVal]);
-      })
+      });
+
+      $scope.$on('$destroy', function () {
+        window.onbeforeunload = null;
+      });
 
 
 
