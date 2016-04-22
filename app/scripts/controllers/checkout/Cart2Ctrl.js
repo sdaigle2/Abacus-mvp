@@ -66,7 +66,9 @@ angular.module('abacuApp')
         });
       }
 
-
+      $scope.printValue = function(printval){
+        console.log(printval);
+      };
 
       function getParts(wheelchair){
         var frames = FrameData.getFrame(wheelchair.frameID);

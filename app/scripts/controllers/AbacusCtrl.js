@@ -189,6 +189,10 @@ angular.module('abacuApp')
           }
         }
 
+        $scope.printval = function(val){
+          console.log(val);
+        };
+
 
         //Send the user back to Frames if no curEditWheelchair set
         $scope.curEditWheelchair = User.getCurEditWheelchair();
@@ -727,6 +731,7 @@ angular.module('abacuApp')
             var partID = $scope.getCurPage().partID;
             var part = $scope.curFrameData.getPart(partID);
             $scope.curOption = part.getOption(id);
+            $scope.curOption.comments = $scope.curEditWheelchair.getPart(partID).comments
           }
           //console.log("set");
       };

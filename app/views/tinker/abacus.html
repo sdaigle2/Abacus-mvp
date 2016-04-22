@@ -353,7 +353,7 @@
               </div>
             </div>
           </div>
-          <div class="panel-block">
+          <div class="panel-block" ng-init="printval(curOption.comments)">
               <h5><strong>Comments and Special Requests</strong></h5>
               <textarea data-ng-model="curOption.comments" placeholder="Type your comments, special requests, or questions here" rows="4" cols="32">{{curOption.comments}}</textarea>
           </div>
@@ -435,9 +435,10 @@
                 <p data-ng-click="pageSwitchStep(1)"
                     data-ng-show="getCurPage().index < getCurPages().length - 1 || getCurPageType() == pageType.CUSTOMIZE"
                    >NEXT</p>
-                <img data-ng-src="images/abacus_page/next-arrow-gray.svg"
+                <img data-ng-src="images/abacus_page/next-arrow-gray.svg" ng-click="saveDropDown()"
                     data-ng-show="getCurPage().index === getCurPages().length - 1 && getCurPageType() == pageType.MEASURE"/>
-                <p data-ng-show="getCurPage().index === getCurPages().length - 1 && getCurPageType() == pageType.MEASURE">NEXT</p>
+                <p data-ng-show="getCurPage().index === getCurPages().length - 1 && getCurPageType() == pageType.MEASURE"
+                   ng-click="saveDropDown()">NEXT</p>
             </div>
         </div>
         <!-- TEMPORARILY DISSABLE UNITS CHANGE UNTIL IT CAN BE FIXED
