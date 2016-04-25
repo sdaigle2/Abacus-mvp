@@ -270,7 +270,7 @@
   -moz-user-select: -moz-none;
   -ms-user-select: none;
   -o-user-select: none;
-   user-select: none;     
+   user-select: none;
 }
 
 #prevButton{
@@ -298,7 +298,7 @@
   margin-left:18px;
   color: #FFFFFF;
   font-size: 12pt;
-  font-weight: 550; 
+  font-weight: 550;
 }
 
 #nextButton p{
@@ -306,7 +306,7 @@
   margin-right: 20px;
   color: #FFFFFF;
   font-size: 12pt;
-  font-weight: 550; 
+  font-weight: 550;
 }
 
 #saveButtonInline {
@@ -575,17 +575,17 @@
 .main-custom-rotatebuttons {
   position: absolute;
   right: 0px;
-  width: calc(100vh - 100px); 
+  width: calc(100vh - 100px);
   min-width: 538px;
   max-width: 100%;
   bottom: 0px;
-  text-align: center; 
+  text-align: center;
   z-index: 21;
   /*background-color:coral;
   opacity: .5;*/
 }
 .main-custom-rotatebuttons.slide-over {
-  left: 0px;  
+  left: 0px;
 }
 .main-custom-rotatebuttons img {
   margin: 15px 10px 0 0;
@@ -644,7 +644,7 @@
 .main-measure .measure-tab .measure-tab-title {
   width: calc((100vw - 318px - 160px)/3);
   min-width: 195px;
-  max-width: 237px;   
+  max-width: 237px;
   text-align: center;
   color: #939597;
   border: 1px solid #eaeaea;
@@ -655,7 +655,7 @@
 .measure-comments {
   width: calc(100vw - 318px - 160px);
   max-width: 711px;
-  min-width: 586px;    
+  min-width: 586px;
   margin-top: 30px;
   margin-bottom:30px;
   padding:20px;
@@ -786,16 +786,16 @@
 
 .sideBar-header {
   z-index: 3;
-  position: relative;   
+  position: relative;
 }
 
 .sideBar-header h3 {
   font-size: 12pt;
-  font-weight: 700;    
+  font-weight: 700;
   margin:auto 0 auto 0;
   padding-left: 30px;
   padding-right: 30px;
-  height: 53px; 
+  height: 53px;
 }
 
 .leftButtonNav:hover {
@@ -874,10 +874,10 @@
 
 .sideBar-custom-item-COLORS {
   position:absolute;
-  z-index:3;    
-  height:120px;  
+  z-index:3;
+  height:120px;
   top:0px;
-  left:0px;  
+  left:0px;
 }
 .sideBar-custom-item-COLORS:hover {
   cursor: pointer;
@@ -976,7 +976,7 @@
   width: 43%;
   border-radius: 2px;
   margin-right: 8px;
-  float: right;  
+  float: right;
   font-weight: 10;
   text-decoration-color: #A7A9AC;
   /*font-size: 13px;*/
@@ -1133,7 +1133,7 @@
   .sideBar-measure-bottom .help-image {
     height: 39%;
     width: auto;
-    max-width: 300px;  
+    max-width: 300px;
     left: 0;
     right: 0;
     margin-top: 15%;
@@ -1165,6 +1165,26 @@
   color: #525355;
   transition: .5s;
 }
+
+/************Color block display***********/
+.colorBlock{
+  position: absolute;
+  left: -100px;
+  max-height: 320px;
+  top: 15px;
+  width: 92px;
+  background: lightgrey;
+  padding: 5px;
+  overflow: auto;
+}
+
+.colorBlock>p{
+  font-weight: 600;
+  text-align: center;
+  margin: 2px 0 5px;
+}
+
+
 
 /*******************************************Panels*********************************************/
 

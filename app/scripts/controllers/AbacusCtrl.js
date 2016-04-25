@@ -22,6 +22,11 @@ angular.module('abacuApp')
         Warning: 'warning'
       };
 
+      //Indicates the current panel
+      //ID = -1 indicates no panel open
+      var curPanel = -1;
+      var curColorPanel = -1;
+
       $scope.saveDropdown = false;
 
       //The two states for pages to be in
@@ -142,6 +147,14 @@ angular.module('abacuApp')
         //set our current pages to the beginning
         curPage.page[$scope.pageType.CUSTOMIZE] = pages.customizePages[0];
         curPage.page[$scope.pageType.MEASURE] = pages.measurePages[0];
+
+        var partID = pages.customizePages[0].partID;
+        if(partID) {
+          var part = $scope.curFrameData.getPart(partID);
+          var id = $scope.curEditWheelchair.getOptionIDForPart(partID)
+          $scope.curOption = part.getOption(id);
+          curColorPanel = id;
+        }
       }
 
       // design is locked if it is part of the users order history
@@ -207,9 +220,9 @@ angular.module('abacuApp')
         generatePages();
 
         // Warn user before they reload the page to save their changes
-        window.onbeforeunload = function () {
-          return REFRESH_WARNING_TEXT;
-        };
+        // window.onbeforeunload = function () {
+        //   return REFRESH_WARNING_TEXT;
+        // };
 
 
       }
@@ -493,6 +506,14 @@ angular.module('abacuApp')
         resetSelectedMeasureImageIndex();
         navigateArrows(dir)
         $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL);
+
+        var partID = $scope.getCurPage().partID;
+        if(partID) {
+          var part = $scope.curFrameData.getPart(partID);
+          var id = $scope.curEditWheelchair.getOptionIDForPart(partID)
+          $scope.curOption = part.getOption(id);
+          curColorPanel = id;
+        }
       };
 
 
@@ -512,7 +533,13 @@ angular.module('abacuApp')
           resetSelectedMeasureImageIndex();
           $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL);
         }
-          // $scope.$apply();
+        var partID = $scope.getCurPage().partID;
+        if(partID) {
+          var part = $scope.curFrameData.getPart(partID);
+          var id = $scope.curEditWheelchair.getOptionIDForPart(partID)
+          $scope.curOption = part.getOption(id);
+          curColorPanel = id;
+        }
       };
 
       //Returns the image for the given progress bar segment based on visit status and index
@@ -667,6 +694,13 @@ angular.module('abacuApp')
             $scope.curEditWheelchair.setColorForPart(1000, oldColorID);
             $scope.curEditWheelchair.setColorForPart(ID, oldColorID);
           }
+        var partID = $scope.getCurPage().partID;
+        if(partID) {
+          var part = $scope.curFrameData.getPart(partID);
+          var id = $scope.curEditWheelchair.getOptionIDForPart(partID)
+          $scope.curOption = part.getOption(id);
+          curColorPanel = id;
+        }
       };
 
       $scope.setCurMultiOption = function (newOptionID) {
@@ -679,7 +713,7 @@ angular.module('abacuApp')
 
       $scope.setCurOptionColor = function (newColorID) {
         console.log($scope.getCurPanelID());
-        if ($scope.getCurPanelID() !== $scope.getCurWheelchairPart().optionID) {
+        if ($scope.getCurColorPanelID() !== $scope.getCurWheelchairPart().optionID) {
             $scope.setCurOption($scope.getCurPanelID());
         }
         $scope.curEditWheelchair.setColorForPart($scope.getCurWheelchairPart().partID, newColorID);
@@ -721,9 +755,8 @@ angular.module('abacuApp')
 
       $scope.curOption = $scope.getCurPartData().getDefaultOption();
 
-      //Indicates the current panel
-      //ID = -1 indicates no panel open
-      var curPanel = -1;
+
+
 
       //Sets curPanel to the chosen panel
       //Closes the panel if id and type match curPanel
@@ -762,6 +795,10 @@ angular.module('abacuApp')
 
       $scope.getCurPanelID = function () {
         return curPanel;
+      };
+
+      $scope.getCurColorPanelID = function() {
+        return curColorPanel;
       };
 
       /*******************Sidebar Colors***************/

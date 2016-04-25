@@ -302,7 +302,7 @@
                     </div>
                     <div class="sideBar-custom-item-button text-center"
                          ng-if="!curChairHasOption(option.optionID)"
-                         ng-click="getCurPartData().allowMultipleChoices ? setCurMultiOption(option.optionID) : setCurOption(option.optionID); setPanel(option.optionID)">Select
+                         ng-click="getCurPartData().allowMultipleChoices ? setCurMultiOption(option.optionID) : setCurOption(option.optionID);">Select
                     </div>
                   </div>
                 </td>
@@ -310,6 +310,18 @@
             </table>
           </div>
         </div>
+
+        <!--color block display-->
+        <section data-ng-if="isPanelSelected(-1) && curOption.colors.length>0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000 && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame'"
+                 class="colorBlock">
+          <p>Color</p>
+          <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
+               data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurColorPanelID())}"
+               data-ng-style="{'background-color': color.hex, 'max-height':90}"
+               data-ng-click="setSelectedColor(color) || getCurPartData().allowMultipleChoices ? setCurMultiOptionColor(curOption.optionID, color.colorID) : setCurOptionColor(color.colorID);"
+               title="{{color.name}}">
+          </div>
+        </section>
 
         <!-- detail panel-->
         <div class="panel" data-ng-class="{'hidden': isPanelSelected(-1)}" data-ng-if="!isPanelSelected(-1)">
