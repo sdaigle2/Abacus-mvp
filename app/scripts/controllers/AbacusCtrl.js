@@ -513,6 +513,8 @@ angular.module('abacuApp')
           var id = $scope.curEditWheelchair.getOptionIDForPart(partID)
           $scope.curOption = part.getOption(id);
           curColorPanel = id;
+          $scope.setSelectedColor($scope.curOption.getColor($scope.curEditWheelchair.getColorIDForPart(partID)));
+
         }
       };
 
@@ -539,6 +541,8 @@ angular.module('abacuApp')
           var id = $scope.curEditWheelchair.getOptionIDForPart(partID)
           $scope.curOption = part.getOption(id);
           curColorPanel = id;
+          $scope.setSelectedColor($scope.curOption.getColor($scope.curEditWheelchair.getColorIDForPart(partID)));
+
         }
       };
 
@@ -742,7 +746,7 @@ angular.module('abacuApp')
       };
 
       $scope.setCurOptionSize = function (newSizeIndex) {
-        if ($scope.getCurPanelID() !== $scope.getCurWheelchairPart().optionID) {
+        if ($scope.getCurColorPanelID() !== $scope.getCurWheelchairPart().optionID) {
             $scope.setCurOption($scope.getCurPanelID());
         } $scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, newSizeIndex);  console.log('Changed size option');
       };
@@ -800,6 +804,7 @@ angular.module('abacuApp')
       $scope.getCurColorPanelID = function() {
         return curColorPanel;
       };
+
 
       /*******************Sidebar Colors***************/
 

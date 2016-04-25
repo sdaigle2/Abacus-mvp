@@ -153,6 +153,13 @@ angular.module('abacuApp')
           return p.colorID;
         return -1;
       },
+      
+      getColorNameForPart: function(pID) {
+        var p = this.getPart(pID);
+        if(p != null){
+          
+        }
+      },
 
       getSizeIndexForPart: function (pID) {
         var p = this.getPart(pID);
