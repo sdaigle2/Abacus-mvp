@@ -1,5 +1,5 @@
 
-.locked-design-body {
+.start-new-body {
   margin: 5px;
   margin-bottom: 35px;
   text-align: center;
@@ -14,7 +14,7 @@
 .button-container {
   width: 100%;
   float: left;
-  padding-bottom: 25px;
+  padding-bottom: 10px;
 }
 
 .confirm-button {
@@ -23,8 +23,9 @@
   margin-left: 0px;
   border: 1px solid #4896FF;
   border-radius: 0;
+  padding: 0px;
   padding-top: 6px;
-  padding-bottom: 6px;
+  padding-bottom: 10px;
 }
 
 .confirm-button:hover {

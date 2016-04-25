@@ -113,11 +113,13 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       currentWheelchair.design= new Design(frameID);
       currentWheelchair.editingWheelchair  = currentWheelchair.design.wheelchair;
       currentWheelchair.isNew = true;
-    } else {
+    } else if (_.isNumber(frameID)) {
       // its either an integer respresenting a frame id or a wheelchair object
       currentWheelchair.editingWheelchair = new Wheelchair(frameID);
       currentWheelchair.isNew = true;
       currentWheelchair.design = null;
+    } else {
+      throw new Error('Bad value given to createCurrentDesign: ' + JSON.stringify(frameID));
     }
 
     // decide where to persist the currentWheelchair based on whether the user is logged in
@@ -297,7 +299,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       } else if (!(design instanceof Design) || !design.hasID()) {
         return PromiseUtils.rejected(new Error("Invalid design arg"));
       }
-      
+
       var designDetails = design.allDetails();
       designDetails.updatedAt = new Date();
       return $http({
