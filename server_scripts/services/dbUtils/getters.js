@@ -26,7 +26,14 @@ exports.getObjectID = getObjectID;
 // a list of all the entries corresponding to the given IDs
 // Eventually, use this for bulk read: https://docs.cloudant.com/database.html#get-documents
 function getAllByID(db, ids, cb) {
-	async.map(ids, db.get, cb); // async is a great npm module: https://www.npmjs.com/package/async
+  // Does a bulk get request...one request gets all of the documents given by their ids
+  db.fetch({keys: ids}, (err, body) => {
+    if (err) {
+      cb(err);
+    } else {
+      cb(body.rows);
+    }
+  });
 }
 
 // Expose this helper method

@@ -41,15 +41,27 @@ app.get('/', function (req, res) {
   res.sendFile('./app/index.html', {root:__dirname});
 });
 
+// Starts the server and returns a promise that resolves to the express app instance that is already alive
+function startServer() {
+  return orderNumber.initPromise
+    .then(function () {
+      var port = process.env.PORT || 8080;
 
-orderNumber.initPromise
-.then(function () {
-	var port = process.env.PORT || 8080;
+      console.log('Server will run on port ' + port);
 
-	console.log('Server will run on port ' + port);
+      app.listen(port);
 
-	app.listen(port);
-})
-.catch(function (err) {
-	console.log(`GOT ERROR WHILE INITIALIZING ORDER NUMBER SERVICE: ${JSON.stringify(err, null, 2)}`);
-});
+      return app; // return the app instance...used for testing
+    })
+    .catch(function (err) {
+      console.log(`GOT ERROR WHILE INITIALIZING ORDER NUMBER SERVICE: ${JSON.stringify(err, null, 2)}`);
+    });
+}
+
+if (!module.parent) {
+  startServer();
+} else {
+  // If somebody is require'ing in this script, then just expose the startServer method which will
+  // then given them the app instance
+  module.exports = startServer;
+}

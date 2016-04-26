@@ -56,6 +56,7 @@
     "karma-jasmine": "^0.3.5",
     "karma-phantomjs-launcher": "^0.1.4",
     "load-grunt-tasks": "^0.4.0",
+    "supertest": "^1.2.0",
     "time-grunt": "^0.3.1"
   },
   "engines": {
@@ -63,8 +64,10 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "grunt test",
+    "test": "grunt test && mocha tests/backend_test/bootstrap.test.js tests/backend_test/unit/**/*.test.js",
     "postinstall": "bower install",
-    "clean": "rm ~/temp_chair_pics/* && rm ~/generated_pdfs/*"
+    "clean": "rm ~/temp_chair_pics/* && rm ~/generated_pdfs/*",
+    "test_frontend": "grunt test",
+    "test_backend": "mocha tests/backend_test/bootstrap.test.js tests/backend_test/unit/**/*.test.js"
   }
 }
