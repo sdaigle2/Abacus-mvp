@@ -31,7 +31,8 @@ function getAllByID(db, ids, cb) {
     if (err) {
       cb(err);
     } else {
-      cb(body.rows);
+      var documents = _.map(body.rows, 'doc');
+      cb(null, documents);
     }
   });
 }
