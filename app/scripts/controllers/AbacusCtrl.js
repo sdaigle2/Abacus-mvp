@@ -674,8 +674,9 @@ angular.module('abacuApp')
 
       /************Color panel function***********/
       $scope.hideColor = function(optionID){
+        var partID = $scope.getCurPartData().partID;
         var id = optionID;
-        if((id !== 3100) && (id !== 11200))
+        if((id !== 3100) && (id !== 11200) &&( partID !== 4000 ))
           return true;
         else
           return false;
@@ -699,6 +700,14 @@ angular.module('abacuApp')
         if((newOptionID == 3100 || newOptionID == 3150 || newOptionID == 3200 || newOptionID == 3300) && ($scope.curEditWheelchair.getPart(11000).optionID === 11200)){
           var color = $scope.curEditWheelchair.getPart(3000).colorID;
           $scope.curEditWheelchair.setColorForPart(11000, color);
+        }
+        if((newOptionID == 2100) || (newOptionID == 2300)){
+          var color = $scope.curEditWheelchair.getPart(1000).colorID;
+          $scope.curEditWheelchair.setColorForPart(4000, color);
+        }
+        if(newOptionID == 3100){
+          var color = $scope.curEditWheelchair.getPart(1000).colorID;
+          $scope.curEditWheelchair.setColorForPart(3000, color);
         }
 
         console.log('Changed option');
