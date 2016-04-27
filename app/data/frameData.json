@@ -239,7 +239,27 @@
 							"name": "Matte Navy Blue",
 							"colorID": 1115,
 							"hex": "#295E6D"
-						}	
+						},
+                        {
+							"name": "Candy Blue",
+							"colorID": 1116,
+							"hex": "#0d2c91"
+						},
+						{
+							"name": "Sparkle Green",
+							"colorID": 1117,
+							"hex": "#3A4923"
+						},
+						{
+							"name": "Bonded Silver",
+							"colorID": 1118,
+							"hex": "#BDBDBD"
+						},
+						{
+							"name": "Candy Red",
+							"colorID": 1119,
+							"hex": "#D22038"
+						}
 					]		
 				},			
 				{			
@@ -381,6 +401,7 @@
 						{	
 							"name": "Bonded Silver",
 							"colorID": 1118,
+                            
 							"hex": "#BDBDBD"
 						},	
 						{	
@@ -2275,7 +2296,7 @@
         "shortName": "Tap",
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": ["/images/abacus_page/measure/thunder/illustration/taper.svg"],
-        "gifURL": "/images/abacus_page/measure/thunder/illustration/taper.svg",
+        "gifURL": "/images/abacus_page/measure/thunder/gif/taper.gif",
         "measureOptions": [["none", "20.3", "21.6", "22.9", "24.1", "25.4", "26.7", "27.9", "29.2", "30.5", "31.8", "33", "34.3", "35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "34.5", "45.7", "Other"],["none", "8", "8.5", "9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5", "13", "13.5", "14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "Other"]],
         "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
