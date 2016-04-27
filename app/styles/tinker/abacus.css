@@ -1182,8 +1182,44 @@
   font-weight: 600;
   text-align: center;
   margin: 2px 0 5px;
+  font-size:0.9em;
 }
 
+.sColorBlock{
+  max-height: 250px;
+}
+
+/*********size block display**********/
+.sizeBlock{
+  position: absolute;
+  left: -100px;
+  top: 280px;
+  width: 92px;
+  padding:5px;
+  background: lightgrey;
+  overflow: auto hidden;
+}
+
+.sizeBlock>p{
+  font-weight: 600;
+  text-align: center;
+  margin: 2px 0 5px;
+}
+
+.sizeBlock .size-button{
+  height:auto;
+  padding: 4px 10px;
+  display: inline-block;
+  margin-bottom: 5px;
+  background-color: white;
+  width: 82px;
+  text-align: center;
+  color: black;
+}
+.topSizeBox{
+  position: absolute;
+  top:15px;
+}
 
 
 /*******************************************Panels*********************************************/

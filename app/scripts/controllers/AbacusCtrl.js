@@ -171,6 +171,14 @@ angular.module('abacuApp')
 
       //Initialize the page - called on pageLoad
       function init() {
+        var initCurrentWheelchair = function (chair) {
+          $scope.curEditWheelchair = chair;
+          //Load data about the frame type of curEditWheelchair
+          $scope.curFrameData = FrameData.getFrame($scope.curEditWheelchair.getFrameID());
+          $scope.curOption = $scope.getCurPartData().getDefaultOption();
+          generatePages();
+        };
+
         var id = $routeParams.param1;
 
         if(id != null) {
@@ -182,10 +190,10 @@ angular.module('abacuApp')
             .then(function (result) {
               if (result.value === 'copy') {
                 return User.fetchDesign(id)
-                  .then(function(design){
+                  .then(function (design) {
                     var cloneDesign = design.clone();
                     User.createCurrentDesign(cloneDesign);
-                    $scope.curEditWheelchair = cloneDesign.wheelchair;
+                    initCurrentWheelchair(cloneDesign.wheelchair);
                   });
               } else {
                 $location.path('/frames')
@@ -195,18 +203,13 @@ angular.module('abacuApp')
             User.fetchDesign(id)
             .then(function (design) {
               User.createCurrentDesign(design);
-              $scope.curEditWheelchair = design.wheelchair;
+              initCurrentWheelchair(design.wheelchair);
             })
             .catch(function (err) {
               console.log(err);
             });
           }
         }
-
-        $scope.printval = function(val){
-          console.log(val);
-        };
-
 
         //Send the user back to Frames if no curEditWheelchair set
         $scope.curEditWheelchair = User.getCurEditWheelchair();
@@ -220,9 +223,9 @@ angular.module('abacuApp')
         generatePages();
 
         // Warn user before they reload the page to save their changes
-        // window.onbeforeunload = function () {
-        //   return REFRESH_WARNING_TEXT;
-        // };
+        window.onbeforeunload = function () {
+          return REFRESH_WARNING_TEXT;
+        };
 
 
       }
@@ -513,6 +516,8 @@ angular.module('abacuApp')
           var id = $scope.curEditWheelchair.getOptionIDForPart(partID)
           $scope.curOption = part.getOption(id);
           curColorPanel = id;
+          $scope.setSelectedColor($scope.curOption.getColor($scope.curEditWheelchair.getColorIDForPart(partID)));
+
         }
       };
 
@@ -539,6 +544,8 @@ angular.module('abacuApp')
           var id = $scope.curEditWheelchair.getOptionIDForPart(partID)
           $scope.curOption = part.getOption(id);
           curColorPanel = id;
+          $scope.setSelectedColor($scope.curOption.getColor($scope.curEditWheelchair.getColorIDForPart(partID)));
+
         }
       };
 
@@ -742,7 +749,7 @@ angular.module('abacuApp')
       };
 
       $scope.setCurOptionSize = function (newSizeIndex) {
-        if ($scope.getCurPanelID() !== $scope.getCurWheelchairPart().optionID) {
+        if ($scope.getCurColorPanelID() !== $scope.getCurWheelchairPart().optionID) {
             $scope.setCurOption($scope.getCurPanelID());
         } $scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, newSizeIndex);  console.log('Changed size option');
       };
@@ -752,12 +759,6 @@ angular.module('abacuApp')
       };
 
       /*****************Panels*********************/
-
-      $scope.curOption = $scope.getCurPartData().getDefaultOption();
-
-
-
-
       //Sets curPanel to the chosen panel
       //Closes the panel if id and type match curPanel
       $scope.setPanel = function (id) {
@@ -800,6 +801,7 @@ angular.module('abacuApp')
       $scope.getCurColorPanelID = function() {
         return curColorPanel;
       };
+
 
       /*******************Sidebar Colors***************/
 
