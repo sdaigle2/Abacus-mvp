@@ -1046,7 +1046,33 @@ angular.module('abacuApp')
         window.onbeforeunload = null;
       });
 
+      function getBaseURL() {
+        var absUrl = $location.absUrl();
+        var path = $location.url();
+        var baseUrl = _.trimEnd(absUrl, path);
+        return baseUrl;
+      }
 
+      // This code is from: http://weblogs.asp.net/dwahlin/cancelling-route-navigation-in-angularjs-controllers
+      var onRouteChangeOff = $scope.$on('$locationChangeStart', function (event, newUrl) {
+
+        ngDialog.open({
+          template: 'views/modals/saveDesignModal.html'
+        }).closePromise
+          .then(function (result) {
+            if (result.value === 'continue') {
+              onRouteChangeOff();
+
+              var baseURL = getBaseURL();
+              var newPath = newUrl.replace(baseURL, '');
+              $location.url(newPath);
+            }
+          });
+
+        //prevent navigation by default since we'll handle it
+        //once the user selects a dialog option
+        event.preventDefault();
+      });
 
 
 

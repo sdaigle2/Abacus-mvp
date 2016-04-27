@@ -5,18 +5,26 @@
 
 var startServer = require('../../server');
 
-var app; // variable is set in the before clause below
+// Expose some common modules as global variables as well so you dont have to keep importing them
+should = require('should');
+_ = require('lodash');
+async = require('async');
 
-before(done => {
+server = undefined; // variable is set in the before clause below
+app = undefined; // variable is set in the before clause below
+
+before(function (done) {
+  this.timeout(10e3); // give the start server some time
   startServer()
-    .then(appInstance => {
-      app = appInstance;
+    .then(instances => {
+      app = instances.app;
+      server = instances.server;
       done();
     })
     .catch(done);
 });
 
 after(done => {
-  app.close();
+  server.close();
   done();
 });
