@@ -5,6 +5,11 @@
 
 var startServer = require('../../server');
 
+// Expose some common modules as global variables as well so you dont have to keep importing them
+should = require('should');
+_ = require('lodash');
+async = require('async');
+
 server = undefined; // variable is set in the before clause below
 app = undefined; // variable is set in the before clause below
 

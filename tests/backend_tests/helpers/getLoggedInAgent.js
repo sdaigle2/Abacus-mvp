@@ -24,6 +24,11 @@ exports.fromExistingUser = (app, userObj) => {
         email: userObj.email,
         password: userObj.password
       })
+      .expect(res => {
+        res.should.have.property("body");
+        res.body.should.have.property("email");
+        res.body.email.should.equal(userObj.email);
+      })
       .expect(200, err => {
         if (err) {
           reject(err);
@@ -41,6 +46,11 @@ exports.fromUser = (app, userObj) => {
     request(app)
       .post('/register')
       .send(userObj)
+      .expect(res => {
+        res.should.have.property("body");
+        res.body.should.have.property('success');
+        res.body.success.should.equal(true);
+      })
       .expect(200, err => {
         if (err) {
           reject(err);
@@ -53,7 +63,15 @@ exports.fromUser = (app, userObj) => {
   });
 };
 
+// Returns promise that resolves to an object containing the logged-in request agent + the logged-in user object
 exports.newUser = app => {
-  return exports.fromUser(app, createNewUser());
+  var user = createNewUser();
+  return exports.fromUser(app, user)
+    .then(agent => {
+      return {
+        "agent": agent,
+        "user": user
+      };
+    });
 };
 

@@ -156,7 +156,7 @@ router.post('/register', function (req, res) {
         });
       }
       else { // No error in query means the user exists
-        res.json({err: 'user already exists', field: 'email'});
+        res.json({err: 'user already exists', field: 'email', success: false});
       }
     });
 });

@@ -9,12 +9,14 @@ const _       = require('lodash');
 
 const chance = new Chance();
 
+const TEST_EMAIL_DOMAIN = 'intelliwheels_development.com';
+
 module.exports = () => {
-  var password = chance.string({length: 5});
+  var password = chance.string({length: 9}); // password should be at least 8 chars
   return {
     fName: chance.first(),
     lName: chance.last(),
-    email: chance.email(),
+    email: chance.email({domain: TEST_EMAIL_DOMAIN}),
     phone: chance.phone(),
     addr: chance.address(),
     addr2: '',
