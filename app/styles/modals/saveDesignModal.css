@@ -1,0 +1,59 @@
+
+.save-design-body {
+  margin: 5px;
+  margin-bottom: 35px;
+  text-align: center;
+  border-radius: 0px;
+}
+
+.main-text {
+  display: inline-block;
+  width: 100%;
+}
+
+.button-container {
+  width: 100%;
+  float: left;
+  padding-bottom: 25px;
+}
+
+.confirm-button {
+  background-color: #4896FF;
+  color: white;
+  margin-left: 0px;
+  border: 1px solid #4896FF;
+  border-radius: 0;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.confirm-button:hover {
+  background-color: white;
+  color: #4896FF;
+  margin-left: 0px;
+  border: 1px solid #4896FF;
+}
+
+.cancel-button {
+  background-color: #4896FF;
+  color: white;
+  margin-left: 5px;
+  border: 1px solid #4896FF;
+  border-radius: 0;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.cancel-button:hover {
+  background-color: white;
+  color: #4896FF;
+  margin-left: 0px;
+  border: 1px solid #4896FF;
+}
+
+h3 h4{
+  margin-top: 16px;
+}
+
+
+

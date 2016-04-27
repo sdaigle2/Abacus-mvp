@@ -49,9 +49,12 @@ function startServer() {
 
       console.log('Server will run on port ' + port);
 
-      app.listen(port);
+      var server = app.listen(port);
 
-      return app; // return the app instance...used for testing
+      return { // return the server & app instances...used for testing
+        "app": app,
+        "server": server
+      };
     })
     .catch(function (err) {
       console.log(`GOT ERROR WHILE INITIALIZING ORDER NUMBER SERVICE: ${JSON.stringify(err, null, 2)}`);

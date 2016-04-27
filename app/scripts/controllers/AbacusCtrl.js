@@ -672,6 +672,16 @@ angular.module('abacuApp')
         $scope.getCurPage().visitstatus = visitstatus.CURRENT;
       };
 
+      /************Color panel function***********/
+      $scope.hideColor = function(optionID){
+        var partID = $scope.getCurPartData().partID;
+        var id = optionID;
+        if((id !== 3100) && (id !== 11200) &&( partID !== 4000 ))
+          return true;
+        else
+          return false;
+      }
+
       /*****************Building CurWheelchair*****/
 
       $scope.curChairHasOption = function (optionID) {
@@ -680,31 +690,29 @@ angular.module('abacuApp')
       };
 
       $scope.setCurOption = function (newOptionID) {
-        var oldColorID = $scope.getCurWheelchairPart().colorID
         $scope.curEditWheelchair.setOptionForPart($scope.getCurPartData().partID, newOptionID);
-        console.log('Changed option');
-        var ID = $scope.getCurWheelchairPart().partID
-        var ID2 = $scope.getCurWheelchairPart().optionID
-          if(ID == 4000){
-            $scope.curEditWheelchair.setColorForPart(ID, oldColorID);
-          }
-          if(ID == 1000){
-            $scope.curEditWheelchair.setColorForPart(1000, oldColorID);
-            $scope.curEditWheelchair.setColorForPart(2000, oldColorID);
-            $scope.curEditWheelchair.setColorForPart(4000, oldColorID);
-            $scope.curEditWheelchair.setColorForPart(2222, oldColorID);
-          }
-          if(ID == 2222 && ID2 == 2100){
-            $scope.curEditWheelchair.setColorForPart(1000, oldColorID);
-            $scope.curEditWheelchair.setColorForPart(ID, oldColorID);
-          }
-        var partID = $scope.getCurPage().partID;
-        if(partID) {
-          var part = $scope.curFrameData.getPart(partID);
-          var id = $scope.curEditWheelchair.getOptionIDForPart(partID)
-          $scope.curOption = part.getOption(id);
-          curColorPanel = id;
+
+        //linking colors
+        if(newOptionID == 11200){
+          var color = $scope.curEditWheelchair.getPart(3000).colorID;
+          $scope.curEditWheelchair.setColorForPart(11000, color);
         }
+        if((newOptionID == 3100 || newOptionID == 3150 || newOptionID == 3200 || newOptionID == 3300) && ($scope.curEditWheelchair.getPart(11000).optionID === 11200)){
+          var color = $scope.curEditWheelchair.getPart(3000).colorID;
+          $scope.curEditWheelchair.setColorForPart(11000, color);
+        }
+        if((newOptionID == 2100) || (newOptionID == 2300)){
+          var color = $scope.curEditWheelchair.getPart(1000).colorID;
+          $scope.curEditWheelchair.setColorForPart(4000, color);
+        }
+        if(newOptionID == 3100){
+          var color = $scope.curEditWheelchair.getPart(1000).colorID;
+          $scope.curEditWheelchair.setColorForPart(3000, color);
+        }
+
+        console.log('Changed option');
+
+        setColor();
       };
 
       $scope.setCurMultiOption = function (newOptionID) {
@@ -721,15 +729,26 @@ angular.module('abacuApp')
             $scope.setCurOption($scope.getCurPanelID());
         }
         $scope.curEditWheelchair.setColorForPart($scope.getCurWheelchairPart().partID, newColorID);
-        var ID = $scope.getCurWheelchairPart().partID
-        if(ID == 1000){
-            $scope.curEditWheelchair.setColorForPart(2000, newColorID);
-            $scope.curEditWheelchair.setColorForPart(4000, newColorID);
-            $scope.curEditWheelchair.setColorForPart(2222, newColorID);
-            $scope.curEditWheelchair.setColorForPart(3000, newColorID+2100);
-        }
-        console.log('Changed color option');
+        $scope.curEditWheelchair.setColorIn($scope.getCurWheelchairPart().partID);
 
+       //update the linking color
+        var ID = $scope.getCurWheelchairPart().partID;
+        if(ID == 1000 && ($scope.curEditWheelchair.getPart(3000).colorIn == true)){
+          $scope.curEditWheelchair.setColorForPart(3000, newColorID);
+          $scope.curEditWheelchair.setColorForPart(11000, newColorID);
+
+          $scope.curEditWheelchair.setColorForPart(2222, newColorID);
+        }
+        if (ID == 1000 && ($scope.curEditWheelchair.getPart(4000).colorIn == true)){
+          $scope.curEditWheelchair.setColorForPart(4000, newColorID);
+        }
+
+        if(ID == 3000 && $scope.curEditWheelchair.getPart(11000).optionID === 11200){
+          var color = $scope.curEditWheelchair.getPart(3000).colorID;
+          $scope.curEditWheelchair.setColorForPart(11000, color);
+        }
+
+        console.log('Changed color option');
       };
 
       $scope.setCurMultiOptionColor = function (optionID, newColorID) {
@@ -761,14 +780,14 @@ angular.module('abacuApp')
       $scope.setPanel = function (id) {
           if ($scope.isPanelSelected(id)) {
             curPanel = -1;
-            $scope.curOption = $scope.getCurPartData().getDefaultOption();
+            // $scope.curOption = $scope.getCurPartData().getDefaultOption();
           }
           else {
             curPanel = id;
             var partID = $scope.getCurPage().partID;
             var part = $scope.curFrameData.getPart(partID);
             $scope.curOption = part.getOption(id);
-            $scope.curOption.comments = $scope.curEditWheelchair.getPart(partID).comments
+            $scope.curOption. comments = $scope.curEditWheelchair.getPart(partID).comments
           }
           //console.log("set");
       };
@@ -776,7 +795,7 @@ angular.module('abacuApp')
       //Closes any open panel
       $scope.closeAllPanels = function () {
         $scope.setPanel(-1);
-        $scope.curOption = $scope.getCurPartData().getDefaultOption();
+        // $scope.curOption = $scope.getCurPartData().getDefaultOption();
         $scope.closeSaveDropDown();
       };
 
@@ -1036,7 +1055,33 @@ angular.module('abacuApp')
         window.onbeforeunload = null;
       });
 
+      function getBaseURL() {
+        var absUrl = $location.absUrl();
+        var path = $location.url();
+        var baseUrl = _.trimEnd(absUrl, path);
+        return baseUrl;
+      }
 
+      // This code is from: http://weblogs.asp.net/dwahlin/cancelling-route-navigation-in-angularjs-controllers
+      var onRouteChangeOff = $scope.$on('$locationChangeStart', function (event, newUrl) {
+
+        ngDialog.open({
+          template: 'views/modals/saveDesignModal.html'
+        }).closePromise
+          .then(function (result) {
+            if (result.value === 'continue') {
+              onRouteChangeOff();
+
+              var baseURL = getBaseURL();
+              var newPath = newUrl.replace(baseURL, '');
+              $location.url(newPath);
+            }
+          });
+
+        //prevent navigation by default since we'll handle it
+        //once the user selects a dialog option
+        event.preventDefault();
+      });
 
 
 
