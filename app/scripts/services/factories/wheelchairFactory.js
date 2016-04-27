@@ -33,7 +33,8 @@ angular.module('abacuApp')
             optionID: p.getDefaultOptionID(),
             colorID: p.getDefaultOption().getDefaultColorID(),
             sizeIndex: p.getDefaultOption().getDefaultSizeIndex(),
-            comments: p.getDefaultOption().getComments()
+            comments: p.getDefaultOption().getComments(),
+            colorIn: true       //indicator of if the part should follow other color choice
           };
           this.parts.push(defaultPart);
         }
@@ -66,7 +67,8 @@ angular.module('abacuApp')
             optionID: p.optionID,
             colorID: p.colorID,
             sizeIndex: p.sizeIndex,
-            comments: p.comments
+            comments: p.comments,
+            colorIn: p.colorIn
           };
           this.parts.push(copyPart);
         }
@@ -153,11 +155,11 @@ angular.module('abacuApp')
           return p.colorID;
         return -1;
       },
-      
+
       getColorNameForPart: function(pID) {
         var p = this.getPart(pID);
         if(p != null){
-          
+
         }
       },
 
@@ -296,6 +298,11 @@ angular.module('abacuApp')
           p.colorID = cID;
           this.previewImageGenerator.setColorForPart(pID, cID);
         }
+      },
+
+      setColorIn: function(pID) {
+        var part = this.getPart(pID);
+        part.colorIn = false;
       },
 
       setColorForMultiPart: function (pID, oID, cID) {

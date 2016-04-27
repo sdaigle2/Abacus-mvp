@@ -262,7 +262,7 @@
                     />
                   <img class="sideBar-custom-item-COLORS"
                        data-ng-src="images/abacus_page/customize/COLORS-icon-banner.png"
-                       data-ng-if="option.colors.length !== 0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000 && option.name != 'Same as Main Spoke Color' && option.name != 'Same as Frame'"
+                       data-ng-if="option.colors.length !== 0 && hideColor(option.optionID) && option.name != 'Same as Main Spoke Color' && option.name != 'Same as Frame'"
                        data-ng-click="setPanel(option.optionID);"
                        alt="See color options">
                 </td>
@@ -273,10 +273,7 @@
                     <strong>$<span data-ng-bind="option.price.toFixed(2)"></span> <!--| <span
                       data-ng-bind="(option.weight * getCurUnitSysWeightFactor()).toFixed(2)"></span>
                       <span data-ng-bind="getCurUnitSysWeightName()"></span>--></strong>
-                    <img width="7px" data-ng-src="images/abacus_page/customize/color_option.png"
-                         data-ng-if="option.colors.length !== 0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000 && option.name != 'Same as Main Spoke Color' && option.name != 'Same as Frame'"
-                         data-ng-click="setPanel(option.optionID);"
-                         alt="See color options">
+                  
                     <div class="sideBar-custom-item-choose-size text-center"
                          data-ng-if="option.sizes.length !== 0"
                          data-ng-click="setPanel(option.optionID);">
@@ -312,7 +309,7 @@
         </div>
 
         <!--color block display-->
-        <section data-ng-if="isPanelSelected(-1) && curOption.colors.length>0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000 && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame'"
+        <section data-ng-if="isPanelSelected(-1) && curOption.colors.length>0 && hideColor(curOption.optionID) && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame'"
                  class="colorBlock" ng-class="{'sColorBlock': curOption.sizes.length>0}">
           <p>Color</p>
           <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
@@ -327,7 +324,7 @@
 
         <!--size block display-->
         <section data-ng-if="isPanelSelected(-1) && curOption.sizes.length>0"
-                 ng-class="{'topSizeBox': !(isPanelSelected(-1) && curOption.colors.length>0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000 && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame')}"
+                 ng-class="{'topSizeBox': !(isPanelSelected(-1) && curOption.colors.length>0 && hideColor(curOption.optionID) && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame')}"
           class="sizeBlock">
           <p>Size</p>
 
@@ -359,7 +356,7 @@
           </div>
 
           <div class="panel-block">
-            <section data-ng-if="curOption.colors.length>0 && getCurCustomizePage().partID !== 2000 && getCurCustomizePage().partID !== 4000 && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame'">
+            <section data-ng-if="curOption.colors.length>0 && hideColor(curOption.optionID) && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame'">
               <h5><strong>Color</strong> <span ng-if="!_.isEmpty(selectedColor)">-</span> <span ng-if="!_.isEmpty(selectedColor)" ">{{curOption.getColor((curEditWheelchair.getColorIDForPart(getCurCustomizePage().partID))).name}}</span></h5>
             <div>
               <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
