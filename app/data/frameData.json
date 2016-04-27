@@ -2188,6 +2188,32 @@
             "defaultColorID": 0
           },
           {
+            "name": "Height Adjustable Back Rest",
+            "optionID": 10700,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
+            "desc": "Selecting this option will allow your back rest to be adjusted 2\" higher or 2\" lower.",
+            "price": 80,
+            "defaultColorID": 0
+          },
+          {
+            "name": "Welded Side Guards",
+            "optionID": 10800,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/side_guard/side-guard-black.jpg",
+            "desc": "For extra rigidity and durability, serious players who know their equipment have their side guards welded to the frame.",
+            "price": 500,
+            "defaultColorID": 0
+          },  
+          {
             "name": "Other",
             "optionID": 10999,
             "comments":"",
