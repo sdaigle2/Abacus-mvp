@@ -478,6 +478,19 @@ angular.module('abacuApp')
 
 
       /****************ProgressBar******************/
+      function setColor(){
+        var partID = $scope.getCurPage().partID;
+        if(partID) {
+          var part = $scope.curFrameData.getPart(partID);
+          var id = $scope.curEditWheelchair.getOptionIDForPart(partID)
+          $scope.curOption = part.getOption(id);
+          curColorPanel = id;
+        }else{
+          curColorPanel = -1;
+          $scope.curOption = {};
+        }
+      }
+
 
         //Switches pages left/right based on dir
       $scope.pageSwitchStep = function (dir) {
@@ -510,15 +523,7 @@ angular.module('abacuApp')
         navigateArrows(dir)
         $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL);
 
-        var partID = $scope.getCurPage().partID;
-        if(partID) {
-          var part = $scope.curFrameData.getPart(partID);
-          var id = $scope.curEditWheelchair.getOptionIDForPart(partID)
-          $scope.curOption = part.getOption(id);
-          curColorPanel = id;
-          $scope.setSelectedColor($scope.curOption.getColor($scope.curEditWheelchair.getColorIDForPart(partID)));
-
-        }
+       setColor();
       };
 
 
@@ -538,15 +543,7 @@ angular.module('abacuApp')
           resetSelectedMeasureImageIndex();
           $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL);
         }
-        var partID = $scope.getCurPage().partID;
-        if(partID) {
-          var part = $scope.curFrameData.getPart(partID);
-          var id = $scope.curEditWheelchair.getOptionIDForPart(partID)
-          $scope.curOption = part.getOption(id);
-          curColorPanel = id;
-          $scope.setSelectedColor($scope.curOption.getColor($scope.curEditWheelchair.getColorIDForPart(partID)));
-
-        }
+        setColor()
       };
 
       //Returns the image for the given progress bar segment based on visit status and index
@@ -787,6 +784,10 @@ angular.module('abacuApp')
       $scope.isPanelSelected = function (id) {
         return (curPanel === id);
       };
+
+      $scope.isColorPanelselected = function(id) {
+        return(curColorPanel === id);
+      }
 
 
       $scope.panelReset = function(){
