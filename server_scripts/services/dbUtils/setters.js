@@ -8,6 +8,7 @@ var async = require('async');
 
 var dbService = require('../db');
 var generateUniqueID = require('../generateUniqueID');
+var dbGetters = require('./getters');
 
 function isValidID(id) {
 	if (_.isString(id)) {

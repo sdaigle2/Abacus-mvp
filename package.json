@@ -65,7 +65,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "test": "grunt test && mocha tests/backend_test/bootstrap.test.js tests/backend_test/unit/**/*.test.js",
+    "test": "npm run test_backend && npm run test_frontend",
     "postinstall": "bower install",
     "clean": "rm ~/temp_chair_pics/* && rm ~/generated_pdfs/*",
     "test_frontend": "grunt test",
