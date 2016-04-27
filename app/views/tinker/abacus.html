@@ -318,7 +318,7 @@
           <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
                data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurColorPanelID())}"
                data-ng-style="{'background-color': color.hex, 'max-height':90}"
-               data-ng-click="setSelectedColor(color) || getCurPartData().allowMultipleChoices ? setCurMultiOptionColor(curOption.optionID, color.colorID) : setCurOptionColor(color.colorID);"
+               data-ng-click="getCurPartData().allowMultipleChoices ? setCurMultiOptionColor(curOption.optionID, color.colorID) : setCurOptionColor(color.colorID);"
                title="{{color.name}}">
           </div>
           <p  >{{curOption.getColor((curEditWheelchair.getColorIDForPart(getCurCustomizePage().partID))).name}}</p>
@@ -365,7 +365,7 @@
               <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
                    data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurPanelID())}"
                    data-ng-style="{'background-color': color.hex, 'max-height':90}"
-                   data-ng-click="setSelectedColor(color) || getCurPartData().allowMultipleChoices ? setCurMultiOptionColor(curOption.optionID, color.colorID) : setCurOptionColor(color.colorID);"
+                   data-ng-click="setCurOption(curOption.optionID); getCurPartData().allowMultipleChoices ? setCurMultiOptionColor(curOption.optionID, color.colorID) : setCurOptionColor(color.colorID);"
                    title="{{color.name}}">
               </div>
             </div>

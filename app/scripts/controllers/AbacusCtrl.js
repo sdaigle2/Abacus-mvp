@@ -761,14 +761,14 @@ angular.module('abacuApp')
       $scope.setPanel = function (id) {
           if ($scope.isPanelSelected(id)) {
             curPanel = -1;
-            $scope.curOption = $scope.getCurPartData().getDefaultOption();
+            // $scope.curOption = $scope.getCurPartData().getDefaultOption();
           }
           else {
             curPanel = id;
             var partID = $scope.getCurPage().partID;
             var part = $scope.curFrameData.getPart(partID);
             $scope.curOption = part.getOption(id);
-            $scope.curOption.comments = $scope.curEditWheelchair.getPart(partID).comments
+            $scope.curOption. comments = $scope.curEditWheelchair.getPart(partID).comments
           }
           //console.log("set");
       };
