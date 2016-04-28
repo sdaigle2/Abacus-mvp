@@ -545,8 +545,8 @@
   display: inline-block;
   float: left;
   width: calc(70vw);
-  max-width: calc(100vw - 400px);
-  min-width: 580px;
+  max-width: calc(100vw - 460px);
+  min-width: 500px;
   height: calc(100vh - 175px);
   min-height: 448px;
   max-height: calc(100vw - 460px);
@@ -1170,7 +1170,6 @@
 .colorBlock{
   position: absolute;
   left: -100px;
-  max-height: 320px;
   top: 15px;
   width: 92px;
   background: lightgrey;
@@ -1187,6 +1186,7 @@
 
 .sColorBlock{
   max-height: 250px;
+  background: lightgrey;    
 }
 
 /*********size block display**********/
