@@ -307,37 +307,39 @@
             </table>
           </div>
         </div>
+        
+        <section class="colorSizeBlockWrapper">
+            <!--color block display-->
+            <section data-ng-if="isPanelSelected(-1) && curOption.colors.length>0 && hideColor(curOption.optionID) && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame'" class="colorBlock">
+                <p class="colorHeader">Color</p>
+                <div id="colorsInColorBlock">
+                    <div data-ng-repeat="color in curOption.colors" class="colorPanelItem" data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurColorPanelID())}"
+                       data-ng-style="{'background-color': color.hex, 'max-height':90}"
+                       data-ng-click="getCurPartData().allowMultipleChoices ? setCurMultiOptionColor(curOption.optionID, color.colorID) : setCurOptionColor(color.colorID);"
+                       title="{{color.name}}">
+                    </div>
+                </div>
+              <p class="colorSelected">{{curOption.getColor((curEditWheelchair.getColorIDForPart(getCurCustomizePage().partID))).name}} Selected</p>
 
-        <!--color block display-->
-        <section data-ng-if="isPanelSelected(-1) && curOption.colors.length>0 && hideColor(curOption.optionID) && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame'"
-                 class="colorBlock" ng-class="{'sColorBlock': curOption.sizes.length>0}">
-          <p>Color</p>
-          <div data-ng-repeat="color in curOption.colors" class="colorPanelItem"
-               data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurColorPanelID())}"
-               data-ng-style="{'background-color': color.hex, 'max-height':90}"
-               data-ng-click="getCurPartData().allowMultipleChoices ? setCurMultiOptionColor(curOption.optionID, color.colorID) : setCurOptionColor(color.colorID);"
-               title="{{color.name}}">
-          </div>
-          <p>{{curOption.getColor((curEditWheelchair.getColorIDForPart(getCurCustomizePage().partID))).name}} Selected</p>
+            </section>
 
+            <!--size block display-->
+            <section data-ng-if="isPanelSelected(-1) && curOption.sizes.length>0"
+              class="sizeBlock">
+              <p data-ng-if="getCurPartData().name != 'Hand Rims' && getCurPartData().name != 'Cushions'">Size</p>
+              <p data-ng-if="getCurPartData().name == 'Hand Rims' || getCurPartData().name == 'Cushions'">Options</p>    
+
+              <div>
+                <div data-ng-repeat="size in curOption.sizes"
+                     data-ng-bind="size"
+                     class="size-button medium"
+                     data-ng-click=" setCurOptionSize($index);"
+                     data-ng-class="{'active': ($index === getCurWheelchairPart().sizeIndex) && (getCurWheelchairPart().optionID === getCurColorPanelID())}">
+                </div>
+              </div>
+            </section>
         </section>
-
-        <!--size block display-->
-        <section data-ng-if="isPanelSelected(-1) && curOption.sizes.length>0"
-                 ng-class="{'topSizeBox': !(isPanelSelected(-1) && curOption.colors.length>0 && hideColor(curOption.optionID) && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame')}"
-          class="sizeBlock">
-          <p>Size</p>
-
-          <div>
-            <div data-ng-repeat="size in curOption.sizes"
-                 data-ng-bind="size"
-                 class="size-button medium"
-                 data-ng-click=" setCurOptionSize($index);"
-                 data-ng-class="{'active': ($index === getCurWheelchairPart().sizeIndex) && (getCurWheelchairPart().optionID === getCurColorPanelID())}">
-            </div>
-          </div>
-
-        </section>
+          
         <!-- detail panel-->
         <div class="panel" data-ng-class="{'hidden': isPanelSelected(-1)}" data-ng-if="!isPanelSelected(-1)">
           <div class="panel-block">

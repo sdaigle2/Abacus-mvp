@@ -1166,14 +1166,23 @@
   transition: .5s;
 }
 
+/**********Color, Size block wrapper*******/
+.colorSizeBlockWrapper{
+    position: absolute;
+    left: -200px;
+    top: 0px;
+    width:200px;
+    /*background-color:aqua;
+    opacity:.5;*/
+}
 /************Color block display***********/
 .colorBlock{
-  position: absolute;
-  left: -100px;
-  top: 15px;
+  position: relative;
+  float: right;
   width: 92px;
-  background: lightgrey;
+  /*background: lightgrey;*/
   padding: 5px;
+  margin-right: 5px;    
   overflow: auto;
 }
 
@@ -1184,19 +1193,25 @@
   font-size:0.9em;
 }
 
-.sColorBlock{
-  max-height: 250px;
-  background: lightgrey;    
+.colorSelected {
+  font-weight:300;
+  color: dimgray;
+  text-align: center;
+  font-size:0.9em;
+}
+
+#colorsInColorBlock{
+  padding-left: 9px;
 }
 
 /*********size block display**********/
 .sizeBlock{
-  position: absolute;
-  left: -100px;
-  top: 280px;
+  position:relative;
   width: 92px;
   padding:5px;
-  background: lightgrey;
+  margin-right:5px;
+  float: right;
+  /*background: lightgrey;*/
   overflow: auto hidden;
 }
 
@@ -1204,6 +1219,7 @@
   font-weight: 600;
   text-align: center;
   margin: 2px 0 5px;
+  font-size:0.9em;
 }
 
 .sizeBlock .size-button{
