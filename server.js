@@ -65,6 +65,6 @@ if (!module.parent) {
   startServer();
 } else {
   // If somebody is require'ing in this script, then just expose the startServer method which will
-  // then given them the app instance
+  // then given them the app & server instances
   module.exports = startServer;
 }
