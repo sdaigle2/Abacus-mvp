@@ -417,7 +417,7 @@
 			"name": "Side Guards",				
 			"partID": 11000,				
 			"numSubImages": 1,				
-			"zRank": [[11,9,8,8,10]],				
+			"zRank": [[11,9,8,9,10]],				
 			"shortName": "Acc",				
 			"defaultOptionID": 11100,				
 			"options": [				
@@ -677,7 +677,7 @@
 			"name": "5th Wheel & Backrest",
 			"partID": 4000,
 			"numSubImages": 1,
-			"zRank": [[12,9,7,3,10]],
+			"zRank": [[12,9,7,8,11]],
 			"shortName": "5W",
 			"defaultOptionID": 4100,
 			"options": [
