@@ -28,6 +28,12 @@ exports.fromExistingUser = (app, userObj) => {
         res.should.have.property("body");
         res.body.should.have.property("email");
         res.body.email.should.equal(userObj.email);
+
+        res.body.should.have.property('_id');
+        userObj._id = res.body._id;
+
+        res.body.should.have.property('_rev');
+        userObj._rev = res.body._rev;
       })
       .expect(200, err => {
         if (err) {
