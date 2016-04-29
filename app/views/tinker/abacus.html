@@ -275,7 +275,7 @@
                       <span data-ng-bind="getCurUnitSysWeightName()"></span>--></strong>
 
                     <div class="sideBar-custom-item-choose-size text-center"
-                         data-ng-if="option.sizes.length !== 0"
+                         data-ng-if="option.sizes.length>0"
                          data-ng-click="setPanel(option.optionID);">
                          Sizes
                     </div>
@@ -308,9 +308,9 @@
           </div>
         </div>
         
-        <section class="colorSizeBlockWrapper">
+        <section class="colorSizeBlockWrapper" data-ng-class="{'slide-over': !isPanelSelected(-1)}">
             <!--color block display-->
-            <section data-ng-if="isPanelSelected(-1) && curOption.colors.length>0 && hideColor(curOption.optionID) && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame'" class="colorBlock">
+            <section data-ng-if= "curOption.colors.length>0 && hideColor(curOption.optionID) && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame'" class="colorBlock">
                 <p class="colorHeader">Color</p>
                 <div id="colorsInColorBlock">
                     <div data-ng-repeat="color in curOption.colors" class="colorPanelItem" data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurColorPanelID())}"
@@ -319,12 +319,11 @@
                        title="{{color.name}}">
                     </div>
                 </div>
-              <p class="colorSelected">{{curOption.getColor((curEditWheelchair.getColorIDForPart(getCurCustomizePage().partID))).name}} Selected</p>
-
+                <p class="colorSelected">{{curOption.getColor((curEditWheelchair.getColorIDForPart(getCurCustomizePage().partID))).name}} Selected</p>
             </section>
 
             <!--size block display-->
-            <section data-ng-if="isPanelSelected(-1) && curOption.sizes.length>0"
+            <section data-ng-if= "curOption.sizes.length>0"
               class="sizeBlock">
               <p data-ng-if="getCurPartData().name != 'Hand Rims' && getCurPartData().name != 'Cushions'">Size</p>
               <p data-ng-if="getCurPartData().name == 'Hand Rims' || getCurPartData().name == 'Cushions'">Options</p>    
@@ -357,7 +356,7 @@
             <div data-ng-bind-html="curOption.getDesc()"></div>
           </div>
 
-          <div class="panel-block">
+          <!--<div class="panel-block">
             <section data-ng-if="curOption.colors.length>0 && hideColor(curOption.optionID) && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame'">
               <h5><strong>Color</strong> <span ng-if="!_.isEmpty(selectedColor)">-</span> <span ng-if="!_.isEmpty(selectedColor)" ">{{curOption.getColor((curEditWheelchair.getColorIDForPart(getCurCustomizePage().partID))).name}}</span></h5>
             <div>
@@ -369,8 +368,8 @@
               </div>
             </div>
             </section>
-          </div>
-          <div class="panel-block" data-ng-if="curOption.sizes.length>0">
+          </div>-->
+          <!--<div class="panel-block" data-ng-if="curOption.sizes.length>0">
             <h5><strong>Size</strong></h5>
 
             <div>
@@ -381,7 +380,7 @@
                    data-ng-class="{'active': ($index === getCurWheelchairPart().sizeIndex) && (getCurWheelchairPart().optionID === getCurPanelID())}">
               </div>
             </div>
-          </div>
+          </div>-->
           <div class="panel-block" ng-init="printval(curOption.comments)">
               <h5><strong>Comments and Special Requests</strong></h5>
               <textarea data-ng-model="curOption.comments" placeholder="Type your comments, special requests, or questions here" rows="4" cols="32">{{curOption.comments}}</textarea>

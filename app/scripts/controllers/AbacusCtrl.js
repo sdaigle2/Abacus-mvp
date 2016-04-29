@@ -797,13 +797,15 @@ angular.module('abacuApp')
             var partID = $scope.getCurPage().partID;
             var part = $scope.curFrameData.getPart(partID);
             $scope.curOption = part.getOption(id);
-            $scope.curOption. comments = $scope.curEditWheelchair.getPart(partID).comments
+            $scope.curOption. comments = $scope.curEditWheelchair.getPart(partID).comments;
+            $scope.setCurOption(id);
           }
           //console.log("set");
       };
 
       //Closes any open panel
       $scope.closeAllPanels = function () {
+        curPanel = -1;
         $scope.setPanel(-1);
         // $scope.curOption = $scope.getCurPartData().getDefaultOption();
         $scope.closeSaveDropDown();

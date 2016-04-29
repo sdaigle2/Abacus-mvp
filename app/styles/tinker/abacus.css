@@ -1172,16 +1172,19 @@
     left: -200px;
     top: 0px;
     width:200px;
-    /*background-color:aqua;
-    opacity:.5;*/
 }
+
+.colorSizeBlockWrapper.slide-over{
+    left: -510px;
+}
+
 /************Color block display***********/
 .colorBlock{
   position: relative;
   float: right;
   width: 92px;
-  /*background: lightgrey;*/
-  padding: 5px;
+  padding: 0px;
+  margin-top: 5px;
   margin-right: 5px;    
   overflow: auto;
 }
@@ -1201,7 +1204,7 @@
 }
 
 #colorsInColorBlock{
-  padding-left: 9px;
+  padding-left: 17px;
 }
 
 /*********size block display**********/
