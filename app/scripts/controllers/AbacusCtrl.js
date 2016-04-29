@@ -709,6 +709,16 @@ angular.module('abacuApp')
           var color = $scope.curEditWheelchair.getPart(1000).colorID;
           $scope.curEditWheelchair.setColorForPart(3000, color);
         }
+        if((newOptionID == 4100) || (newOptionID == 4300) || (newOptionID == 4200) || (newOptionID == 4400) || (newOptionID == 4500) || (newOptionID == 4600)){
+          var color = $scope.curEditWheelchair.getPart(1000).colorID;
+          $scope.curEditWheelchair.setColorForPart(4000, color);
+        }
+        //if((newOptionID == 2100) || (newOptionID == 2300)){
+        //    if($scope.curEditWheelchair.getPart(3000).colorIn == true){
+        //      $scope.curEditWheelchair.setColorForPart(3000, newColorID);
+        //      $scope.curEditWheelchair.setColorForPart(11000, newColorID);
+        //    }
+        //}
 
         console.log('Changed option');
 
