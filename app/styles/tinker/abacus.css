@@ -559,7 +559,7 @@
 
 .main-custom .main-custom-wheelchairDisplay {
   position: absolute;
-  right: 0px;
+  right: calc(20% - 100px);
   width: calc(100vh - 100px);
   min-width: 538px;
   max-width: 100%;
@@ -574,7 +574,7 @@
 
 .main-custom-rotatebuttons {
   position: absolute;
-  right: 0px;
+  right: calc(20% - 100px);
   width: calc(100vh - 100px);
   min-width: 538px;
   max-width: 100%;
