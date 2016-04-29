@@ -693,6 +693,12 @@ angular.module('abacuApp')
         $scope.curEditWheelchair.setOptionForPart($scope.getCurPartData().partID, newOptionID);
 
         //linking colors
+        if(newOptionID == 2300 || newOptionID ==2100){
+          if($scope.curEditWheelchair.getPart(3000).optionID === 3100){
+            var color = $scope.curEditWheelchair.getPart(1000).colorID;
+            $scope.curEditWheelchair.setColorForPart(3000, color);
+          }
+        }
         if(newOptionID == 11200){
           var color = $scope.curEditWheelchair.getPart(3000).colorID;
           $scope.curEditWheelchair.setColorForPart(11000, color);
