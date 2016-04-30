@@ -725,6 +725,16 @@ angular.module('abacuApp')
         //      $scope.curEditWheelchair.setColorForPart(11000, newColorID);
         //    }
         //}
+        if(newOptionID == 6100){ 
+            // they just selected NONE as their option for wheels    
+            $scope.curEditWheelchair.setOptionForPart(7000, 7500);
+            $scope.curEditWheelchair.setOptionForPart(8000, 8800);            
+        }
+        if((newOptionID == 6200) || (newOptionID == 6300) || (newOptionID == 6400) || (newOptionID ==6500) || (newOptionID == 6600)){
+            //They just elected a wheel, select the default hand rim and tire too
+            $scope.curEditWheelchair.setOptionForPart(7000, 7100);
+            $scope.curEditWheelchair.setOptionForPart(8000, 8100);            
+        }
 
         console.log('Changed option');
 
