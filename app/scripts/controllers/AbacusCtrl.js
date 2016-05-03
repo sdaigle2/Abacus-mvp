@@ -725,15 +725,15 @@ angular.module('abacuApp')
         //      $scope.curEditWheelchair.setColorForPart(11000, newColorID);
         //    }
         //}
-        if(newOptionID == 6100){ 
-            // they just selected NONE as their option for wheels    
+        if(newOptionID == 6100){
+            // they just selected NONE as their option for wheels
             $scope.curEditWheelchair.setOptionForPart(7000, 7500);
-            $scope.curEditWheelchair.setOptionForPart(8000, 8800);            
+            $scope.curEditWheelchair.setOptionForPart(8000, 8800);
         }
         if((newOptionID == 6200) || (newOptionID == 6300) || (newOptionID == 6400) || (newOptionID ==6500) || (newOptionID == 6600)){
             //They just elected a wheel, select the default hand rim and tire too
             $scope.curEditWheelchair.setOptionForPart(7000, 7100);
-            $scope.curEditWheelchair.setOptionForPart(8000, 8100);            
+            $scope.curEditWheelchair.setOptionForPart(8000, 8100);
         }
 
         console.log('Changed option');
@@ -804,17 +804,17 @@ angular.module('abacuApp')
       //Sets curPanel to the chosen panel
       //Closes the panel if id and type match curPanel
       $scope.setPanel = function (id) {
+        var partID = $scope.getCurPage().partID;
+        var part = $scope.curFrameData.getPart(partID);
           if ($scope.isPanelSelected(id)) {
             curPanel = -1;
-            // $scope.curOption = $scope.getCurPartData().getDefaultOption();
+            var optionID = $scope.curEditWheelchair.getPart(partID).optionID;
+            $scope.curOption = part.getOption(optionID);
           }
           else {
             curPanel = id;
-            var partID = $scope.getCurPage().partID;
-            var part = $scope.curFrameData.getPart(partID);
             $scope.curOption = part.getOption(id);
             $scope.curOption. comments = $scope.curEditWheelchair.getPart(partID).comments;
-            $scope.setCurOption(id);
           }
           //console.log("set");
       };

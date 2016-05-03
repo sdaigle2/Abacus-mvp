@@ -4,7 +4,7 @@
 const path = require('path');
 var router = require('express').Router();
 
-
+// URL for cloudfront
 const CLOUDFRONT_BASE_URL = 'http://duqb7w6xgn312.cloudfront.net/';
 
 const chairPicRetriever = require('../services/chairPicRetriever');

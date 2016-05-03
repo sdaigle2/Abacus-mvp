@@ -307,10 +307,11 @@
             </table>
           </div>
         </div>
-        
+
         <section class="colorSizeBlockWrapper" data-ng-class="{'slide-over': !isPanelSelected(-1)}">
             <!--color block display-->
-            <section data-ng-if= "curOption.colors.length>0 && hideColor(curOption.optionID) && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame'" class="colorBlock">
+            <section data-ng-if= "curOption.colors.length>0 && hideColor(curOption.optionID) && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame'"
+                     class="colorBlock" ng-class="{'greyBackGround': !isPanelSelected(-1)}">
                 <p class="colorHeader">Color</p>
                 <div id="colorsInColorBlock">
                     <div data-ng-repeat="color in curOption.colors" class="colorPanelItem" data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurColorPanelID())}"
@@ -323,10 +324,10 @@
             </section>
 
             <!--size block display-->
-            <section data-ng-if= "curOption.sizes.length>0"
+            <section data-ng-if= "curOption.sizes.length>0" ng-class="{'greyBackGround': !isPanelSelected(-1)}"
               class="sizeBlock">
               <p data-ng-if="getCurPartData().name != 'Hand Rims' && getCurPartData().name != 'Cushions'">Size</p>
-              <p data-ng-if="getCurPartData().name == 'Hand Rims' || getCurPartData().name == 'Cushions'">Options</p>    
+              <p data-ng-if="getCurPartData().name == 'Hand Rims' || getCurPartData().name == 'Cushions'">Options</p>
 
               <div>
                 <div data-ng-repeat="size in curOption.sizes"
@@ -338,7 +339,7 @@
               </div>
             </section>
         </section>
-          
+
         <!-- detail panel-->
         <div class="panel" data-ng-class="{'hidden': isPanelSelected(-1)}" data-ng-if="!isPanelSelected(-1)">
           <div class="panel-block">
