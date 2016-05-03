@@ -1,30 +1,20 @@
 /*
  * This contains all the amazon s3 storage function
  */
-
+const path = require('path');
 var router = require('express').Router();
+
+
+const CLOUDFRONT_BASE_URL = 'http://duqb7w6xgn312.cloudfront.net/';
 
 const chairPicRetriever = require('../services/chairPicRetriever');
 
 router.get('/images/chairPic/*',function(req,res){
-  var imgURL = req.path;
-  var imgKey = imgURL.replace('/images/chairPic/', '');
+  const imgURL = req.path;
+  const imgKey = imgURL.replace('/images/chairPic/', '');
 
-  chairPicRetriever.get(imgKey)
-  .then(imageStream => {
-    imageStream
-    .on('error', function(e){
-      console.log(e);
-      res.status(404);
-      res.send('Not found')
-    })
-    .pipe(res)
-    .on('error', function(e){
-      console.log(e);
-      res.status(404);
-      res.send('Not found')
-    });
-  });
+  const cloudfrontURL = CLOUDFRONT_BASE_URL + imgKey;
+  res.redirect(cloudfrontURL);
 });
 
 module.exports = router;
