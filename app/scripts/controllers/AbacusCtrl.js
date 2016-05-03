@@ -291,7 +291,7 @@ angular.module('abacuApp')
       };
 
       $scope.saveMessage = function(){
-        User.setContentSection('measurements');
+        User.setContentSection('measurements'); // set content section for my account page
         $location.path('/settings').search({section: 'myDesigns'});
       };
 
@@ -321,6 +321,7 @@ angular.module('abacuApp')
       /*******************Unit Systems ****************************/
 
         //Options for the Unit System Drop-Down-List
+        //set default to imperial
       $scope.unitSysList = [
         {
           name: 'Metric',
@@ -367,6 +368,7 @@ angular.module('abacuApp')
 
       /****************Page Functions******************/
 
+      //return array of current page objects
       $scope.getCurPages = function () {
 
         if (curPage.type === $scope.pageType.CUSTOMIZE) {
@@ -375,6 +377,8 @@ angular.module('abacuApp')
         return pages.measurePages;
         //.concat(pages.customizePages);
       };
+
+      //return array of customize page
       $scope.getCustomizePages = function () {
         return pages.customizePages;
       };
@@ -478,6 +482,7 @@ angular.module('abacuApp')
 
 
       /****************ProgressBar******************/
+      // initialize $scope.curOption
       function setColor(){
         var partID = $scope.getCurPage().partID;
         if(partID) {
@@ -523,6 +528,7 @@ angular.module('abacuApp')
         navigateArrows(dir)
         $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL);
 
+        // initial $scope.curOption after page jump
        setColor();
       };
 
@@ -595,11 +601,11 @@ angular.module('abacuApp')
 
       $scope.getCustomizeTooltipText = function (page){
            return $scope.curEditWheelchair.getPartDetails(page.partID, 0).partName;
-      }
+      };
 
       $scope.getMeasurementTooltipText = function (page){
           return $scope.curEditWheelchair.getMeasureDetails(page.measureID, 0).name;
-      }
+      };
 
       /*********Save $ review Dropdown*********/
 
@@ -673,6 +679,7 @@ angular.module('abacuApp')
       };
 
       /************Color panel function***********/
+      //hide color option for special parts
       $scope.hideColor = function(optionID){
         var partID = $scope.getCurPartData().partID;
         var id = optionID;
@@ -680,7 +687,7 @@ angular.module('abacuApp')
           return true;
         else
           return false;
-      }
+      };
 
       /*****************Building CurWheelchair*****/
 
@@ -692,7 +699,7 @@ angular.module('abacuApp')
       $scope.setCurOption = function (newOptionID) {
         $scope.curEditWheelchair.setOptionForPart($scope.getCurPartData().partID, newOptionID);
 
-        //linking colors
+        //sync colors between parts
         if(newOptionID == 2300 || newOptionID ==2100){
           if($scope.curEditWheelchair.getPart(3000).optionID === 3100){
             var color = $scope.curEditWheelchair.getPart(1000).colorID;
@@ -777,6 +784,7 @@ angular.module('abacuApp')
         console.log('Changed color option');
       };
 
+      // setting color for parts that allows multiple color options
       $scope.setCurMultiOptionColor = function (optionID, newColorID) {
         if ($scope.getCurPanelID() !== $scope.getCurWheelchairPart().optionID) {
             $scope.setCurMultiOption($scope.getCurPanelID());
@@ -823,7 +831,6 @@ angular.module('abacuApp')
       $scope.closeAllPanels = function () {
         curPanel = -1;
         $scope.setPanel(-1);
-        // $scope.curOption = $scope.getCurPartData().getDefaultOption();
         $scope.closeSaveDropDown();
       };
 
@@ -916,6 +923,7 @@ angular.module('abacuApp')
         return designPromise;
       }
 
+      // share design function in tinker page
       $scope.shareDesignID = function () {
         generateDesignIDForCurrentChair()
         .then(function (design) {
@@ -946,6 +954,7 @@ angular.module('abacuApp')
 
       // save the current wheelchair to the wishlist and make sure its not the currently editing wheelchair anymore
       $scope.saveForLater = function () {
+        //check if user has login
         if (!User.isLoggedIn()) {
           $scope.loginPanel = loginPanelStatus.LOGIN;
         }
@@ -977,6 +986,7 @@ angular.module('abacuApp')
                   design.creator = User.getID();
                   return User.saveDesign(design);
                 }
+                // overwrite the existing design
                 case 'overwrite': {
                   if (User.getID() === design.creator || User.isAdmin()) {
                     return User.updateDesign(design)
