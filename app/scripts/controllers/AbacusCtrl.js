@@ -769,7 +769,7 @@ angular.module('abacuApp')
 
        //update the linking color
         var ID = $scope.getCurWheelchairPart().partID;
-        if(ID == 1000 && ($scope.curEditWheelchair.getPart(3000).colorIn == true)){
+        if(ID == 1000 && ($scope.curEditWheelchair.getPart(3000).optionID == 3100)){
           $scope.curEditWheelchair.setColorForPart(3000, newColorID);
           $scope.curEditWheelchair.setColorForPart(11000, newColorID);
 
