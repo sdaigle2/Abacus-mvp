@@ -316,7 +316,8 @@
                 <div id="colorsInColorBlock">
                     <div data-ng-repeat="color in curOption.colors" class="colorPanelItem" data-ng-class="{'active': (color.colorID === getCurWheelchairPart().colorID) && (getCurWheelchairPart().optionID === getCurColorPanelID())}"
                        data-ng-style="{'background-color': color.hex, 'max-height':90}"
-                       data-ng-click="getCurPartData().allowMultipleChoices ? setCurMultiOptionColor(curOption.optionID, color.colorID) : setCurOptionColor(color.colorID);"
+                       data-ng-click="getCurPartData().allowMultipleChoices ? setCurMultiOption(curOption.optionID) : setCurOption(curOption.optionID);
+                       getCurPartData().allowMultipleChoices ? setCurMultiOptionColor(curOption.optionID, color.colorID) : setCurOptionColor(color.colorID);"
                        title="{{color.name}}">
                     </div>
                 </div>
@@ -333,7 +334,8 @@
                 <div data-ng-repeat="size in curOption.sizes"
                      data-ng-bind="size"
                      class="size-button medium"
-                     data-ng-click=" setCurOptionSize($index);"
+                     data-ng-click=" getCurPartData().allowMultipleChoices ? setCurMultiOption(curOption.optionID) : setCurOption(curOption.optionID);
+                     setCurOptionSize($index);"
                      data-ng-class="{'active': ($index === getCurWheelchairPart().sizeIndex) && (getCurWheelchairPart().optionID === getCurColorPanelID())}">
                 </div>
               </div>

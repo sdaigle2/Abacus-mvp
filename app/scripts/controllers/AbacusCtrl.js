@@ -27,6 +27,8 @@ angular.module('abacuApp')
       var curPanel = -1;
       var curColorPanel = -1;
 
+
+      //
       $scope.saveDropdown = false;
 
       //The two states for pages to be in
@@ -47,6 +49,7 @@ angular.module('abacuApp')
         email: '',
         password: ''
       };
+      
 
       var loginPanelStatus = {
         MAIN:'main',
