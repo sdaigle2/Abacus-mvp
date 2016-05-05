@@ -12,14 +12,14 @@ const verifyOrder     = require('../services/data').verifyOrder;
 const verifyChair     = require('../services/data').verifyWheelchair;
 const generatePDF     = require('../services/generatePDF');
 const priceCalculator = require('../services/priceCalculator');
-const stripe          = require('../services/stripe');
+const stripe          = require('../services/payment');
 const sendgrid        = require('../services/sendgrid');
 const dbService       = require('../services/db');
 const orderNumber     = require('../services/orderNumber');
 const dbUtils         = require('../services/dbUtils');
 
 // Manufacturer Email to send invoices to
-const MANUFACTURER_EMAIL = 'sourabhdesai@gmail.com';
+const MANUFACTURER_EMAIL = 'brian@intelliwheels.net';
 console.log(`NOTE: Invoice Emails will be sent to Manufacturer at this email: ${MANUFACTURER_EMAIL}`);
 
 //Send a pdf of the given wheelchair to the user
@@ -178,7 +178,7 @@ router.post('/order', function (req, res) {
             if (err) {
               console.log(`Error while sending user invoice email:\n${JSON.stringify(err, null, 2)}`);
             }
-            
+
             cb(err);
           });
         };
@@ -191,7 +191,7 @@ router.post('/order', function (req, res) {
             if (err) {
               console.log(`Error while sending manufacturer invoice email:\n${JSON.stringify(err, null, 2)}`);
             }
-            
+
             cb(err);
           });
         };
@@ -255,7 +255,7 @@ router.post('/order', function (req, res) {
               }
 
               res.json({user: user, orderNum: curOrderNum});
-              
+
               sendInvoiceEmails(curOrderNum, (err, orderNum) => {
                 if (err) {
                   console.log(`ERROR WHILE SENDING INVOICE EMAIL: ${JSON.stringify(err, null, 2)}`);

@@ -1,5 +1,7 @@
 /**
  * Exposes all necessary variables needed to interact with Cloudant DB
+ *
+ * Also attaches an important deleteDoc function to each db instance; See comment block below
  */
 "use strict";
 
@@ -44,7 +46,7 @@ const EXPORTED_DBS = {
  *      SO...Even though you meant to only destroy the single document, it ends up destroy the entire database.... great
  *      For this reason, I am attaching a deleteDoc function that does checks on all the arguments before passing them on to
  *      db.destroy() to make sure you don't accidentally destroy the entire DB. Just make sure to use deleteDoc instead of destroy
- * 
+ *
  * Destroy Docs: https://github.com/apache/couchdb-nano#dbdestroydocname-rev-callback
  */
 _.forEach(EXPORTED_DBS, db => {

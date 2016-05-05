@@ -1,6 +1,6 @@
 /**
  * Calculates total price for orders and wheelchairs
- * Mostly pulls its functionality from generateInvoicePDF/generateInvoiceHTML/handlebar_helpers.js
+ * Mostly pulls its functionality from generatePDF/generateHTML/handlebar_helpers.js
  */
 
 const helpers = require('./generatePDF/generateHTML/handlebar_helpers');

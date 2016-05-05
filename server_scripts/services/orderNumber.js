@@ -2,12 +2,13 @@
  * The Order Number is stored in a DB of its own in Cloudant
  * This DB is called 'order_number' and it contains one document with the ID 'MAIN'
  * This document has a 'number' field which starts as 1000 and can be incremented with the functions in this file
- * 
+ *
  * This function also keeps a local copy of the order number
  * This is used to keep track of what the current order number is and should be consistent with what is in the DB
  *
  * The increment function here is a central point of congestion.
  * That is, any calls to the function will have to wait till any previous calls to it are resolved
+ * It was designed this way so that we can keep consistency between the local copy of the MAIN doc & the copy that exists in the Cloudant DB
  *
  * Also, make sure to NOT turn of the caching feature of the require() method, that is crucial to the behaviour of this script
  */
@@ -98,7 +99,7 @@ const incrementQueue = async.queue(function (opts, cb) {
 
 // Will do an atomic increment....this will only work if we have one instance of our web server running
 exports.increment = () => {
-	return orderNumInitPromise
+	return orderNumInitPromise // wait on the initpromise first
 	.then(() => {
 		return new Promise((resolve, reject) => {
 			var numberHolder = {};

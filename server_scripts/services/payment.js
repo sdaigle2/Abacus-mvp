@@ -6,7 +6,7 @@
 //Stripe Payment API
 var stripe = require("stripe")(process.env.STRIPE_TKEY);
 
-module.exports = stripe; // just exposes logged in stripe instance
+exports.stripe = stripe; // just exposes logged in stripe instance
 
 
 //paypal setup
@@ -18,4 +18,4 @@ paypal.configure({
   'client_secret': process.env.Paypal_Secret
 });
 
-module.exports = paypal;
+exports.paypal = paypal;
