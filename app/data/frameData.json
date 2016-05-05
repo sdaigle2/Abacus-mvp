@@ -108,24 +108,8 @@
 							"name": "Matte Navy Blue",
 							"colorID": 1115,
 							"hex": "#295E6D"
-						}	
-					]		
-				},			
-				{			
-					"name": "Premium Colors",		
-					"optionID": 2300,		
-					"colors": [],		
-					"defaultSizeIndex": -1,		
-					"sizes": [],		
-					"comments": 0,		
-					"displayColor": 0,		
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/premium-color-swatch.jpg",		
-					"desc": "Our premium colors have a top clear coat for extra gloss and extra style.  Sparkle Green and Bonded Silver have metal flakes in them to get that high-end look.  Hover over each color to see its full name.",		
-					"weight": 0,		
-					"price": 100,		
-					"defaultColorID": 1116,		
-					"colors": [		
-						{
+						},
+                        {
 							"name": "Candy Blue",
 							"colorID": 1116,
 							"hex": "#0d2c91"
@@ -145,7 +129,7 @@
 							"colorID": 1119,
 							"hex": "#D22038"
 						}
-					]
+					]		
 				}
 			]
 		},
@@ -371,33 +355,17 @@
 							"name": "Matte Navy Blue",
 							"colorID": 1115,
 							"hex": "#295E6D"
-						}	
-					]		
-				},			
-				{			
-					"name": "Premium Colors",		
-					"optionID": 3300,		
-					"colors": [],		
-					"defaultSizeIndex": -1,		
-					"sizes": [],		
-					"comments": 0,		
-					"displayColor": 1,		
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/premium-color-swatch.jpg",		
-					"desc": "Customize your rig with our premium colors.  All of our premium colors have a clear top coat to make them shine like a brand new car.",		
-					"weight": 0,		
-					"price": 350,		
-					"defaultColorID": 1116,		
-					"colors": [		
-						{	
+						},
+                        {	
 							"name": "Candy Blue",
 							"colorID": 1116,
 							"hex": "#0d2c91"
-						},	
-						{	
+                        },
+                        {	
 							"name": "Sparkle Green",
 							"colorID": 1117,
 							"hex": "#3A4923"
-						},	
+						},
 						{	
 							"name": "Bonded Silver",
 							"colorID": 1118,
@@ -408,7 +376,7 @@
 							"name": "Candy Red",
 							"colorID": 1119,
 							"hex": "#D22038"
-						}	
+						}
 					]		
 				}
 			]
@@ -1552,14 +1520,14 @@
             "defaultColorID": 0
           },
           {
-            "name": "Spinergy SL",
+            "name": "Spinergy SPOX Sport",
             "optionID": 6300,
             "defaultSizeIndex": 1,
             "sizes": ["24\"", "25\"", "26\"", "27\""],
             "comments":"",
             "displayColor": 1,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SPOX.jpg",
-            "desc": "For serious athletes, the Spinergy wheels are the only choice. Spinergy wheels use PBO spokes that absorb impacts and will stay true no matter what.",
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SPOX-sport.jpg",
+            "desc": "An excellent value minded wheel in a tried and true design from Spinergy. The SPOX Sport is an excellent all-purpose wheel built-to-last without sacrificing style and performance. Ideal for minimal or no contact sports such as tennis, junior basketball, and so on... Features 24, patented 3mm PBO FIBER spokes. This is a quick accelerating lightweight wheel, that is a \"must upgrade\" from a standard steel spoke wheel.",
             "weight": 0,
             "price": 695,
             "defaultColorID": 6302,
@@ -1654,7 +1622,7 @@
             "sizes": ["24\"", "25\"", "26\"", "27\""],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX-R10.jpg",
             "desc": "The SLX R-10 is a tried and true design from Spinergy with a strong and durable, stylish radial laced spoke pattern. Take the benefits of the SLX 24 spoke wheel and add the durability of a 5/8\" axle. Mostly used in contact sports where the 1/2\" axles tend to bend the most. These wheels deliver confidence and performance on the courts.",
-            "price": 895,
+            "price": 950,
             "defaultColorID": 6401,
             "colors": [
               {
