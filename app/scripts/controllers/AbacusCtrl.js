@@ -1090,11 +1090,11 @@ angular.module('abacuApp')
 
       $scope.nothing = function(){
         return
-      }
+      };
       $scope.measureChanged = function(){
         measureChanged();
         calcCompleteness();
-      }
+      };
       $scope.$on('$viewContentLoaded', function() {
           initNavBar();
       });

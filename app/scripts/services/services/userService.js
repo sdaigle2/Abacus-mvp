@@ -45,6 +45,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     contentSection = 'orders';
     isAdmin = false;
     _rev = null;
+    // restoreUserFromCookies();
   }
 
   var instance = this;
