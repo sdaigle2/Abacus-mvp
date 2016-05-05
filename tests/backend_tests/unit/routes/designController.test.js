@@ -109,19 +109,11 @@ describe('Test CRUD Ops', () => { // no delete functionality right now
 
   after(done => {
     var cleanupUser = cb => {
-      if (_.has(user, '_id') && _.has(user, '_rev')) {
-        dbService.users.deleteDoc(user._id, user._rev, cb);
-      } else {
-        cb(new Error('Invalid User Value'));
-      }
+      dbService.users.deleteDoc(user._id, user._rev, cb);
     };
 
     var cleanupDesign = cb => {
-      if (_.has(dummyDesign, '_id') && _.has(dummyDesign, '_rev')) {
-        dbService.designs.deleteDoc(dummyDesign._id, dummyDesign._rev, cb);
-      } else {
-        cb(new Error('Invalid Design Value'));
-      }
+      dbService.designs.deleteDoc(dummyDesign._id, dummyDesign._rev, cb);
     };
 
     async.parallel([cleanupDesign, cleanupUser], done);

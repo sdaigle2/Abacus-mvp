@@ -28,7 +28,8 @@ angular.module('abacuApp')
       var curColorPanel = -1;
 
 
-      //
+      $scope.designIsSaved = true;
+
       $scope.saveDropdown = false;
 
       //The two states for pages to be in
@@ -49,7 +50,7 @@ angular.module('abacuApp')
         email: '',
         password: ''
       };
-      
+
 
       var loginPanelStatus = {
         MAIN:'main',
@@ -489,11 +490,13 @@ angular.module('abacuApp')
       function setColor(){
         var partID = $scope.getCurPage().partID;
         if(partID) {
+          $scope.designIsSaved = false;
           var part = $scope.curFrameData.getPart(partID);
           var id = $scope.curEditWheelchair.getOptionIDForPart(partID)
           $scope.curOption = part.getOption(id);
           curColorPanel = id;
         }else{
+          $scope.designIsSaved = false;
           curColorPanel = -1;
           $scope.curOption = {};
         }
@@ -752,14 +755,17 @@ angular.module('abacuApp')
       };
 
       $scope.setCurMultiOption = function (newOptionID) {
+        $scope.designIsSaved = false;
         $scope.curEditWheelchair.setMultiOptionForPart($scope.getCurPartData().partID, newOptionID);
       };
 
       $scope.setSelectedColor = function (colorObject) {
+        $scope.designIsSaved = false;
         $scope.selectedColor = colorObject;
       };
 
       $scope.setCurOptionColor = function (newColorID) {
+        $scope.designIsSaved = false;
         console.log($scope.getCurPanelID());
         if ($scope.getCurColorPanelID() !== $scope.getCurWheelchairPart().optionID) {
             $scope.setCurOption($scope.getCurPanelID());
@@ -789,6 +795,7 @@ angular.module('abacuApp')
 
       // setting color for parts that allows multiple color options
       $scope.setCurMultiOptionColor = function (optionID, newColorID) {
+        $scope.designIsSaved = false;
         if ($scope.getCurPanelID() !== $scope.getCurWheelchairPart().optionID) {
             $scope.setCurMultiOption($scope.getCurPanelID());
         } $scope.curEditWheelchair.setColorForMultiPart($scope.getCurWheelchairPart().partID, optionID, newColorID);
@@ -802,12 +809,14 @@ angular.module('abacuApp')
       };
 
       $scope.setCurOptionSize = function (newSizeIndex) {
+        $scope.designIsSaved = false;
         if ($scope.getCurColorPanelID() !== $scope.getCurWheelchairPart().optionID) {
             $scope.setCurOption($scope.getCurPanelID());
         } $scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, newSizeIndex);  console.log('Changed size option');
       };
 
       $scope.removeMultiOptionPart = function (optionID) {
+        $scope.designIsSaved = false;
         $scope.curEditWheelchair.removeMultiOption(optionID);
       };
 
@@ -900,6 +909,7 @@ angular.module('abacuApp')
       $scope.saveDesign = function () {
         User.pushNewWheelchair()
         .then(function (user) {
+          $scope.designIsSaved = true;
           $location.path('/cart');
         });
       };
@@ -940,6 +950,7 @@ angular.module('abacuApp')
         })
         .then(function () {
           $scope.modalDesign = null;
+          $scope.designIsSaved = true;
         })
         .catch(function (err) {
           if (err instanceof Errors.NotLoggedInError) {
@@ -1029,6 +1040,7 @@ angular.module('abacuApp')
             })
             .then(function (updatedUserData) {
               if (updatedUserData) { // only show Saved dialog if a user update was made
+                $scope.designIsSaved = true;
                 $scope.loginPanel = loginPanelStatus.SAVED;
               }
             })
@@ -1105,6 +1117,10 @@ angular.module('abacuApp')
 
       // This code is from: http://weblogs.asp.net/dwahlin/cancelling-route-navigation-in-angularjs-controllers
       var onRouteChangeOff = $scope.$on('$locationChangeStart', function (event, newUrl) {
+
+        if ($scope.designIsSaved) {
+          return; // let the navigation happen, chair is already saved
+        }
 
         ngDialog.open({
           template: 'views/modals/saveDesignModal.html'
