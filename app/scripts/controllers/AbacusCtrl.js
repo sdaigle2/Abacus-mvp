@@ -713,6 +713,10 @@ angular.module('abacuApp')
           var color = $scope.curEditWheelchair.getPart(3000).colorID;
           $scope.curEditWheelchair.setColorForPart(11000, color);
         }
+        if(newOptionID == 3100){
+          var color = $scope.curEditWheelchair.getPart(1000).colorID;
+          $scope.curEditWheelchair.setColorForPart(3000, color);
+        }
         if((newOptionID == 3100 || newOptionID == 3150 || newOptionID == 3200 || newOptionID == 3300) && (_.get($scope.curEditWheelchair.getPart(11000), 'optionID') === 11200)){
           var color = $scope.curEditWheelchair.getPart(3000).colorID;
           $scope.curEditWheelchair.setColorForPart(11000, color);
@@ -720,10 +724,6 @@ angular.module('abacuApp')
         if((newOptionID == 2100) || (newOptionID == 2300)){
           var color = $scope.curEditWheelchair.getPart(1000).colorID;
           $scope.curEditWheelchair.setColorForPart(4000, color);
-        }
-        if(newOptionID == 3100){
-          var color = $scope.curEditWheelchair.getPart(1000).colorID;
-          $scope.curEditWheelchair.setColorForPart(3000, color);
         }
         if((newOptionID == 4100) || (newOptionID == 4300) || (newOptionID == 4200) || (newOptionID == 4400) || (newOptionID == 4500) || (newOptionID == 4600)){
           var color = $scope.curEditWheelchair.getPart(1000).colorID;
