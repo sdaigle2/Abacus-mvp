@@ -17,6 +17,7 @@ before(function (done) {
   this.timeout(10e3); // give the start server some time
   startServer()
     .then(instances => {
+      console.log('Server Started for Tests');
       app = instances.app;
       server = instances.server;
       done();

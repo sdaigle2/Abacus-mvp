@@ -36,6 +36,7 @@ router.post('/save', function (req, res) {
   }
 });
 
+// downloads Invoice PDF for a given order
 router.get('/order/download/:id', (req, res) => {
   var id = req.params.id;
 
