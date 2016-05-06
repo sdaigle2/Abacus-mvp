@@ -81,3 +81,18 @@ describe('Simulates Registration, Log-in, Log-out', function () {
   });
 
 });
+
+describe('Should not have a session before logging in', () => {
+
+  it('Should not be able to retrieve session info before logging in', done => {
+    request(app)
+      .post('/session')
+      .expect(res => {
+        res.should.have.property('body');
+        res.body.should.have.property('userID');
+        res.body.userID.should.equal(-1);
+      })
+      .expect(200, done);
+  });
+
+});

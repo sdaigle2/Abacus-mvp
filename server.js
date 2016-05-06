@@ -10,6 +10,7 @@ var app = express();
 var bodyParser = require('body-parser');
 var shortid = require('shortid');
 var path = require('path');
+var _ = require('lodash');
 var orderNumber = require('./server_scripts/services/orderNumber');
 
 app.use(bodyParser.json());
@@ -66,5 +67,6 @@ if (!module.parent) {
 } else {
   // If somebody is require'ing in this script, then just expose the startServer method which will
   // then given them the app & server instances
-  module.exports = startServer;
+  // Wrap function with once so that it can only be called once. Subsequent calls get the same return value as the first call
+  module.exports = _.once(startServer);
 }
