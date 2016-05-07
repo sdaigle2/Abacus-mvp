@@ -1674,6 +1674,130 @@
                 "hex": "#FF33FF"
               }
             ]
+          },
+          {
+            "name": "Spinergy XSLX",
+            "optionID": 6600,
+            "comments":"",
+            "displayColor": 1,
+            "defaultSizeIndex": 1,
+            "sizes": ["24\"", "25\"", "26\"", "27\""],
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX-R10.jpg",
+            "desc": "The latest design evolution from Spinergy that takes wheel performance to the next level. The Sport Lite Extreme SLX X-Laced with patented 4mm PBO FIBER spokes provides added torsional stiffness and a quicker push response. Developed for athletes wanting to turn up the dial a little more in wheelchair performance.",
+            "price": 950,
+            "defaultColorID": 6401,
+            "colors": [
+              {
+                "name": "Black",
+                "colorID": 6401,
+                "linkToColorID": 6401,
+                "hex": "#17202A"
+              },
+              {
+                "name": "White",
+                "colorID": 6402,
+                "linkToColorID": 6402,
+                "hex": "#FDFEFE"
+              },
+              {
+                "name": "Blue",
+                "colorID": 6403,
+                "linkToColorID": 6403,
+                "hex": "#3498DB"
+              },
+              {
+                "name": "Red",
+                "colorID": 6404,
+                "linkToColorID": 6404,
+                "hex": "#FF5733"
+              },
+              {
+                "name": "Yellow",
+                "colorID": 6405,
+	              "linkToColorID": 6405,
+                "hex": "#FFC300"
+              },
+              {
+                "name": "Green",
+                "colorID": 6406,
+		            "linkToColorID": 6406,
+                "hex": "#27AE60"
+              },
+              {
+                "name": "Orange",
+                "colorID": 6407,
+                "linkToColorID": 6407,
+                "hex": "#FF6F00"
+              },
+              {
+                "name": "Pink",
+                "colorID": 6408,
+                "linkToColorID": 6408,
+                "hex": "#FF33FF"
+              }
+            ]
+          },
+          {
+            "name": "Spinergy XSLX-R10",
+            "optionID": 6700,
+            "comments":"",
+            "displayColor": 1,
+            "defaultSizeIndex": 1,
+            "sizes": ["24\"", "25\"", "26\"", "27\""],
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX-R10.jpg",
+            "desc": "he SLX R-10 X-laced model combines the benefits of the SLX X-laced design with the added durability of a 5/8\" axle. The \"R10\" bearings have an inner diameter to accommodate a 5/8\" axle. If you're bending the standard 1/2\" axles, this is the solution. The X-laced spoke design delivers nearly instant body movement feedback and immediate push response, and the 5/8\" axles give you confidence you won't bend an axle in extreme impacts.",
+            "price": 995,
+            "defaultColorID": 6401,
+            "colors": [
+              {
+                "name": "Black",
+                "colorID": 6401,
+                "linkToColorID": 6401,
+                "hex": "#17202A"
+              },
+              {
+                "name": "White",
+                "colorID": 6402,
+                "linkToColorID": 6402,
+                "hex": "#FDFEFE"
+              },
+              {
+                "name": "Blue",
+                "colorID": 6403,
+                "linkToColorID": 6403,
+                "hex": "#3498DB"
+              },
+              {
+                "name": "Red",
+                "colorID": 6404,
+                "linkToColorID": 6404,
+                "hex": "#FF5733"
+              },
+              {
+                "name": "Yellow",
+                "colorID": 6405,
+	              "linkToColorID": 6405,
+                "hex": "#FFC300"
+              },
+              {
+                "name": "Green",
+                "colorID": 6406,
+		            "linkToColorID": 6406,
+                "hex": "#27AE60"
+              },
+              {
+                "name": "Orange",
+                "colorID": 6407,
+                "linkToColorID": 6407,
+                "hex": "#FF6F00"
+              },
+              {
+                "name": "Pink",
+                "colorID": 6408,
+                "linkToColorID": 6408,
+                "hex": "#FF33FF"
+              }
+            ]
           }
         ]
       },

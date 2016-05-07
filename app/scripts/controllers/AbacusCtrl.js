@@ -743,10 +743,16 @@ angular.module('abacuApp')
             $scope.curEditWheelchair.setOptionForPart(7000, 7500);
             $scope.curEditWheelchair.setOptionForPart(8000, 8800);
         }
-        if((newOptionID == 6200) || (newOptionID == 6300) || (newOptionID == 6400) || (newOptionID ==6500) || (newOptionID == 6600)){
+        if((newOptionID == 6200) || (newOptionID == 6300) || (newOptionID == 6400) || (newOptionID ==6500) || (newOptionID == 6600) || (newOptionID == 6700)){
             //They just elected a wheel, select the default hand rim and tire too
-            $scope.curEditWheelchair.setOptionForPart(7000, 7100);
-            $scope.curEditWheelchair.setOptionForPart(8000, 8100);
+            if($scope.curEditWheelchair.getPart(7000).optionID === 7500){
+                //there is currently no hand rim selected
+                $scope.curEditWheelchair.setOptionForPart(7000, 7100);
+            }
+            if($scope.curEditWheelchair.getPart(8000).optionID === 8800){
+                //there is currently no tire selected
+                $scope.curEditWheelchair.setOptionForPart(8000, 8100);
+            }
         }
 
         console.log('Changed option');
