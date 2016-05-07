@@ -1487,7 +1487,7 @@
         "name": "Wheels",
         "partID": 6000,
         "numSubImages": 2,
-        "zRank": [[12,1,3,2,10],[2,10,10,10,10]],
+        "zRank": [[12,2,3,2,10],[2,10,10,10,10]],
         "shortName": "Whl",
         "defaultOptionID": 6100,
         "options": [
