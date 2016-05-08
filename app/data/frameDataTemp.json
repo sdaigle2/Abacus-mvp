@@ -10,7 +10,7 @@
 	"parts": [						
 		{					
 			"name": "Frame Color",				
-			"partID": 1000,				
+			"partID": 2000,				
 			"numSubImages": 1,				
 			"zRank": [[10,7,6,7,10]],				
 			"shortName": "Spt",				
@@ -156,7 +156,6 @@
 				{			
 					"name": "Same as Frame Color",		
 					"optionID": 3100,		
-					"desc": "Match your back rest and foot plate to the frame.",		
 					"defaultColorID": 1101,		
 					"colors": [		
 						{	
@@ -245,7 +244,7 @@
 					"comments": 0,		
 					"displayColor": 0,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/standard.png",		
-					"desc": "A sleek and classic look for your back rest and foot plate.",		
+					"desc": "A sleek and classic look.",		
 					"weight": 0,		
 					"price": 0,		
 					"defaultColorID": 1103,		
@@ -265,7 +264,6 @@
 				{			
 					"name": "Standard Colors",		
 					"optionID": 3200,		
-					"desc": "Choose any color to show off your team colors.",		
 					"weight": 0,		
 					"price": 350,		
 					"defaultColorID": 1101,		
@@ -356,7 +354,7 @@
 					"comments": 0,		
 					"displayColor": 1,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/custom.png",		
-					"desc": "Customize your rig with our premium colors.  All of our premium colors have a clear top coat to make them shine like a brand new car.",		
+					"desc": "Customize your rig with your team colors!",		
 					"weight": 0,		
 					"price": 350,		
 					"defaultColorID": 1116,		
@@ -389,7 +387,7 @@
 			"name": "Side Guards",				
 			"partID": 11000,				
 			"numSubImages": 1,				
-			"zRank": [[10,7,6,7,10]],				
+			"zRank": [[11,9,8,8,10]],				
 			"shortName": "Acc",				
 			"defaultOptionID": 11100,				
 			"options": [				
@@ -416,7 +414,7 @@
 					"comments": 0,		
 					"displayColor": 1,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/custom.png",		
-					"desc": "Match your side guards to the color of your back rest and foot rest.",		
+					"desc": "Customize your rig with your team colors!",		
 					"weight": 350,		
 					"price": 140,		
 					"defaultColorID": 1101,		
@@ -638,61 +636,10 @@
 					"comments": 0,		
 					"displayColor": 1,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/custom.png",		
-					"desc": "Carbon fiber is light, strong, and beautiful.",		
+					"desc": "Customize your rig with your team colors!",		
 					"weight": 350,		
-					"price": 420		
-				}			
-			]				
-		},					
-		{					
-			"name": "Foot Plate",				
-			"partID": 12000,				
-			"numSubImages": 1,				
-			"zRank": [[10,7,6,7,10]],				
-			"shortName": "Acc",				
-			"defaultOptionID": 12100,				
-			"options": [				
-				{			
-					"name": "None, I'll supply my own",		
-					"optionID": 12100,		
-					"colors": [],		
-					"defaultSizeIndex": -1,		
-					"sizes": [],		
-					"comments": 0,		
-					"displayColor": 0,		
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/standard.png",		
-					"desc": "A sleek and classic look.",		
-					"weight": 0,		
-					"price": 0,		
+					"price": 420,		
 					"defaultColorID": 0		
-				},			
-				{			
-					"name": "Plastic",		
-					"optionID": 12200,		
-					"colors": [],		
-					"defaultSizeIndex": -1,		
-					"sizes": [],		
-					"comments": 0,		
-					"displayColor": 1,		
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/custom.png",		
-					"desc": "Customize your rig with your team colors!",		
-					"weight": 350,		
-					"price": 80,		
-					"defaultColorID": 3202		
-				},			
-				{			
-					"name": "Carbon Fiber",		
-					"optionID": 12300,		
-					"colors": [],		
-					"defaultSizeIndex": -1,		
-					"sizes": [],		
-					"comments": 0,		
-					"displayColor": 1,		
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/custom.png",		
-					"desc": "Customize your rig with your team colors!",		
-					"weight": 350,		
-					"price": 175,		
-					"defaultColorID": 3202		
 				}			
 			]				
 		},					
@@ -1356,14 +1303,14 @@
 				},			
 				{			
 					"name": "Removable 5th Wheel & Continuous Backrest",		
-					"optionID": 4500,		
+					"optionID": 4600,		
 					"colors": [],		
 					"defaultSizeIndex": -1,		
 					"sizes": [],		
 					"comments": 0,		
 					"displayColor": 0,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/removeable.png",		
-					"desc": "Experience the added benefits of a 5th wheel with the convenience of removing it seconds.  The removable 5th wheel is great for individuals with smaller cars with limited space!  When you are ready to compete simply install the 5th wheel clamp it down and off you go!",		
+					"desc": "Experience the added benefits of a 5th wheel with the convenience of removing it seconds.  The removable 5th wheel is great for individuals with smaller cars with limited space!  When you are ready to compete simply install the 5th wheel clamp it down and off you go!  Adding a continuous backrest helps to add rigidity  to the chair.",		
 					"weight": 350,		
 					"price": 530,		
 					"defaultColorID": 1101,		
@@ -1487,12 +1434,64 @@
 			]				
 		},					
 		{					
+			"name": "Foot Plate",				
+			"partID": 12000,				
+			"numSubImages": 1,				
+			"zRank": [[11,8,7,7,11]],				
+			"shortName": "Acc",				
+			"defaultOptionID": 12100,				
+			"options": [				
+				{			
+					"name": "None, I'll supply my own",		
+					"optionID": 12100,		
+					"colors": [],		
+					"defaultSizeIndex": -1,		
+					"sizes": [],		
+					"comments": 0,		
+					"displayColor": 0,		
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/standard.png",		
+					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",		
+					"weight": 0,		
+					"price": 0,		
+					"defaultColorID": 0		
+				},			
+				{			
+					"name": "Plastic",		
+					"optionID": 12200,		
+					"colors": [],		
+					"defaultSizeIndex": -1,		
+					"sizes": [],		
+					"comments": 0,		
+					"displayColor": 1,		
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/custom.png",		
+					"desc": "A black plastic plate on your foot rest is a high quality and economical option.",		
+					"weight": 350,		
+					"price": 80,		
+					"defaultColorID": 0		
+				},			
+				{			
+					"name": "Carbon Fiber",		
+					"optionID": 12300,		
+					"colors": [],		
+					"defaultSizeIndex": -1,		
+					"sizes": [],		
+					"comments": 0,		
+					"displayColor": 1,		
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/accessories/custom.png",		
+					"desc": "Select carbon fiber for the ulitimate quality and performance.",		
+					"weight": 350,		
+					"price": 175,		
+					"defaultColorID": 0		
+				}			
+			]				
+		},					
+		{					
 			"name": "Wheels",				
 			"partID": 6000,				
 			"numSubImages": 2,				
 			"zRank": [[13,3,3,4,13],[4,10,10,10,7]],				
 			"shortName": "Whl",				
-			"defaultOptionID": 6200,				
+			"defaultOptionID": 6100,				
 			"options": [				
 				{			
 					"name": "None, I'll supply my own",		
@@ -1523,14 +1522,14 @@
 					"defaultColorID": 0		
 				},			
 				{			
-					"name": "Spinergy Wheels",		
+					"name": "Spinergy SPOX Sport",		
 					"optionID": 6300,		
 					"defaultSizeIndex": 1,		
 					"sizes": ["24\"", "25\"", "26\"", "27\""],		
 					"comments": 0,		
 					"displayColor": 1,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SPOX.jpg",		
-					"desc": "For serious athletes, the Spinergy wheels are the only choice. Spinergy wheels use PBO spokes that absorb impacts and will stay true no matter what.",		
+					"desc": "An excellent value minded wheel in a tried and true design from Spinergy. The SPOX Sport is an excellent all-purpose wheel built-to-last without sacrificing style and performance. Ideal for minimal or no contact sports such as tennis, junior basketball, and so on... Features 24, patented 3mm PBO FIBER spokes. This is a quick accelerating lightweight wheel, that is a "must upgrade" from a standard steel spoke wheel.",		
 					"weight": 0,		
 					"price": 695,		
 					"defaultColorID": 6302,		
@@ -1625,7 +1624,123 @@
 					"displayColor": 1,		
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX-R10.jpg",		
 					"desc": "The SLX R-10 is a tried and true design from Spinergy with a strong and durable, stylish radial laced spoke pattern. Take the benefits of the SLX 24 spoke wheel and add the durability of a 5/8\" axle. Mostly used in contact sports where the 1/2\" axles tend to bend the most. These wheels deliver confidence and performance on the courts.",		
-					"price": 895,		
+					"price": 950,		
+					"defaultColorID": 6501,		
+					"colors": [		
+						{	
+							"name": "Black",
+							"colorID": 6401,
+							"linkToColorID": 6401,
+							"hex": "#17202A"
+						},	
+						{	
+							"name": "White",
+							"colorID": 6402,
+							"linkToColorID": 6402,
+							"hex": "#FDFEFE"
+						},	
+						{	
+							"name": "Blue",
+							"colorID": 6403,
+							"linkToColorID": 6403,
+							"hex": "#3498DB"
+						},	
+						{	
+							"name": "Red",
+							"colorID": 6404,
+							"linkToColorID": 6404,
+							"hex": "#FF5733"
+						},	
+						{	
+							"name": "Yellow",
+							"colorID": 6405,
+							"linkToColorID": 6405,
+							"hex": "#FFC300"
+						},	
+						{	
+							"name": "Green",
+							"colorID": 6406,
+							"linkToColorID": 6406,
+							"hex": "#27AE60"
+						},	
+						{	
+							"name": "Orange",
+							"colorID": 6407,
+							"linkToColorID": 6407,
+							"hex": "#FF6F00"
+						},	
+						{	
+							"name": "Pink",
+							"colorID": 6408,
+							"linkToColorID": 6408,
+							"hex": "#FF33FF"
+						}	
+					]		
+				},			
+				{			
+					"name": "Spinergy XSLX",		
+					"optionID": 6600,		
+					"defaultSizeIndex": 1,		
+					"sizes": ["24\"", "25\"", "26\"", "27\""],		
+					"comments": 0,		
+					"displayColor": 1,		
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX.jpg",		
+					"desc": "The latest design evolution from Spinergy that takes wheel performance to the next level. The Sport Lite Extreme SLX X-Laced with patented 4mm PBO FIBER spokes provides added torsional stiffness and a quicker push response. Developed for athletes wanting to turn up the dial a little more in wheelchair performance.",		
+					"price": 950,		
+					"defaultColorID": 6401,		
+					"colors": [		
+						{	
+							"name": "Black",
+							"colorID": 6401,
+							"hex": "#17202A"
+						},	
+						{	
+							"name": "White",
+							"colorID": 6402,
+							"hex": "#FDFEFE"
+						},	
+						{	
+							"name": "Blue",
+							"colorID": 6403,
+							"hex": "#3498DB"
+						},	
+						{	
+							"name": "Red",
+							"colorID": 6404,
+							"hex": "#FF5733"
+						},	
+						{	
+							"name": "Yellow",
+							"colorID": 6405,
+							"hex": "#FFC300"
+						},	
+						{	
+							"name": "Green",
+							"colorID": 6406,
+							"hex": "#27AE60"
+						},	
+						{	
+							"name": "Orange",
+							"colorID": 6407,
+							"hex": "#FF6F00"
+						},	
+						{	
+							"name": "Pink",
+							"colorID": 6408,
+							"hex": "#FF33FF"
+						}	
+					]		
+				},			
+				{			
+					"name": "Spinergy XSLX-R10",		
+					"optionID": 6700,		
+					"defaultSizeIndex": 1,		
+					"sizes": ["24\"", "25\"", "26\"", "27\""],		
+					"comments": 0,		
+					"displayColor": 1,		
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX-R10.jpg",		
+					"desc": "The SLX R-10 X-laced model combines the benefits of the SLX X-laced design with the added durability of a 5/8" axle. The "R10" bearings have an inner diameter to accommodate a 5/8\" axle. If you're bending the standard 1/2\" axles, this is the solution. The X-laced spoke design delivers nearly instant body movement feedback and immediate push response, and the 5/8\" axles give you confidence you won't bend an axle in extreme impacts.",		
+					"price": 995,		
 					"defaultColorID": 6501,		
 					"colors": [		
 						{	
@@ -1686,7 +1801,7 @@
 			"numSubImages": 2,				
 			"zRank": [[13,3,3,4,13],[4,10,10,10,7]],				
 			"shortName": "HR",				
-			"defaultOptionID": 7100,				
+			"defaultOptionID": 7500,				
 			"options": [				
 				{			
 					"name": "Hard Anodized 6 tab",		
@@ -1753,7 +1868,7 @@
 			"numSubImages": 2,				
 			"zRank": [[13,3,3,4,13],[4,10,10,10,7]],				
 			"shortName": "Tir",				
-			"defaultOptionID": 8100,				
+			"defaultOptionID": 8800,				
 			"options": [				
 				{			
 					"name": "High Pressure Tires",		
@@ -1815,7 +1930,7 @@
 					]		
 				},			
 				{			
-					"name": "Kenda Court Iron Cap Tires",		
+					"name": "Kenda Tires",		
 					"optionID": 8700,		
 					"colors": [],		
 					"defaultSizeIndex": -1,		
@@ -1859,6 +1974,20 @@
 					"weight": 0,		
 					"price": 0,		
 					"defaultColorID": 0		
+				},			
+				{			
+					"name": "None, I'll supply my own",		
+					"optionID": 8800,		
+					"colors": [],		
+					"defaultSizeIndex": -1,		
+					"sizes": [],		
+					"comments": 1,		
+					"displayColor": 0,		
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",		
+					"desc": "No need for tires, I'll supply my own.",		
+					"weight": 0,		
+					"price": 0,		
+					"defaultColorID": 0		
 				}			
 			]				
 		},					
@@ -1894,12 +2023,20 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/black-leather.jpg",		
 					"desc": "Leather trimmed upholstery to adds extra strength and style to your backrest and seat.",		
 					"weight": -0.1,		
-					"price": 175,		
+					"price": 80,		
 					"defaultColorID": 0		
 				},			
 				{			
 					"name": "Tension Adjustable & Leather Trim",		
-					"optionID": 5300		
+					"optionID": 5300,		
+					"colors": [],		
+					"defaultSizeIndex": -1,		
+					"sizes": [],		
+					"comments": 0,		
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",		
+					"desc": "With the tension adjustable upholstery, you can fine tune your lumbar support.",		
+					"price": 175,		
+					"defaultColorID": 0		
 				}			
 			]				
 		},					
