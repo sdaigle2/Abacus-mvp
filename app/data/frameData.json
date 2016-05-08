@@ -2669,7 +2669,7 @@
 	},
     "baseWeight": 6,
     "frameID": 22,
-    "imageURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+    "imageURL": "images/frame_page_img/thunder-tennis.jpg",
     "parts": [
       {
 			"name": "Frame Color",
@@ -7554,7 +7554,7 @@
 	},
     "baseWeight": 6,
     "frameID": 24,
-    "imageURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+    "imageURL": "images/frame_page_img/thunder-tennis-adj.jpg",
     "parts": [
       {
 			"name": "Frame Color",
