@@ -231,7 +231,7 @@ angular.module('abacuApp')
 
       //Sends the user back to abacus with the selected wheelchair
       $scope.editWheelchair = function (index) {
-        User.setEditWheelchair(index, $scope.wOrderIndex[index]);
+        User.setDesignedWheelchair(index, $scope.wOrderIndex[index]);
         $location.path('/tinker');
       };
 

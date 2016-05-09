@@ -142,7 +142,7 @@ angular.module('abacuApp')
 
             $scope.completeClicked = true;
             //div show
-            User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.billingForm, $scope.curOrder.payMethod, token)
+            User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.billingForm, $scope.curOrder.payMethod, token, $scope.card)
               .then(function (response) {
                 //div go
                 $scope.orderNum = response.orderNum;
@@ -265,6 +265,10 @@ angular.module('abacuApp')
         cvc: '',
         exp_month: '',
         exp_year: ''
+      };
+
+      $scope.paypal = {
+
       };
 
       $scope.payment_errors = '';

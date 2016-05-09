@@ -147,10 +147,13 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     }
   }
 
+
+
+
+
   function setEditWheelchairFromMyDesign(index, design){
     if (index >= 0 && index < savedDesigns.length) {
-      cartWheelchairIndex = index;
-      currentWheelchair.editingWheelchair = $.extend(true, savedDesigns[index].wheelchair);
+      currentWheelchair.editingWheelchair =_.clone(savedDesigns[index].wheelchair);
       currentWheelchair.isNew = false;
       currentWheelchair.design = design;
     }
@@ -568,12 +571,12 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     },
 
     //Sends the curEditOrder to the distributor
-    sendCurEditOrder: function (userData, shippingData, billingData, payMethod, token) {
+    sendCurEditOrder: function (userData, shippingData, billingData, payMethod, token, card) {
       var editOrder = this.getCurEditOrder();
       if (editOrder === null) {
         return PromiseUtils.rejected(new Error('CurEditOrder does not exist'));
       } else {
-        return editOrder.send(userID, userData, shippingData, billingData, payMethod, token)
+        return editOrder.send(userID, userData, shippingData, billingData, payMethod, token, card)
           .then(function (response) {
             restoreUserFromBackend(response.user);
             return response;

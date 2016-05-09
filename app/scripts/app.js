@@ -38,20 +38,20 @@ angular
       .when('/tinker', {
         templateUrl: '../views/tinker/abacus.html',
         controller: 'AbacusCtrl',
-        //resolve:{
-        //  UserData: ['$q', 'User', function($q, User) {
-        //    return User.getPromise();
-        //  }]
-        //}
+        resolve: {
+          UserData: ['$q', 'User', function($q, User) {
+            return User.getPromise();
+          }]
+        }
       })
       .when('/tinker/:param1', {
         templateUrl: '../views/tinker/abacus.html',
-        controller: 'AbacusCtrl'
-        //resolve:{
-        //  UserData: ['$q', 'User', function($q, User) {
-        //    return User.getPromise();
-        //  }]
-        //}
+        controller: 'AbacusCtrl',
+        resolve: {
+          UserData: ['$q', 'User', function($q, User) {
+            return User.getPromise();
+          }]
+        }
       })
       .when('/about', {
         templateUrl: 'views/about.html',

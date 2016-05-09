@@ -430,6 +430,7 @@ angular.module('abacuApp')
 
       $scope.setCurPageType = function (newType) {
         curPage.type = newType;
+        $scope.curOption = {};
       };
 
       $scope.setCurPage = function (newIndex) {
@@ -531,7 +532,7 @@ angular.module('abacuApp')
         $scope.getCurPage().visitstatus = visitstatus.CURRENT;
         $scope.closeAllPanels();
         resetSelectedMeasureImageIndex();
-        navigateArrows(dir)
+        navigateArrows(dir);
         $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL);
 
         // initial $scope.curOption after page jump
@@ -703,7 +704,14 @@ angular.module('abacuApp')
       };
 
       $scope.setCurOption = function (newOptionID) {
-        $scope.curEditWheelchair.setOptionForPart($scope.getCurPartData().partID, newOptionID);
+
+        var curPartID = $scope.getCurPartData().partID;
+
+        if($scope.curEditWheelchair.getPart(curPartID).optionID == newOptionID){
+          return
+        }
+
+        $scope.curEditWheelchair.setOptionForPart(curPartID, newOptionID);
 
         //sync colors between parts
         if(newOptionID == 2300 || newOptionID ==2100){
@@ -840,7 +848,7 @@ angular.module('abacuApp')
           else {
             curPanel = id;
             $scope.curOption = part.getOption(id);
-            $scope.curOption. comments = $scope.curEditWheelchair.getPart(partID).comments;
+            $scope.curEditOption= $scope.curEditWheelchair.getPart(partID);
           }
           //console.log("set");
       };
