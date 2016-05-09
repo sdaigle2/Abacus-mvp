@@ -5705,22 +5705,8 @@
 			"numSubImages": 1,				
 			"zRank": [[11,9,8,9,10]],				
 			"shortName": "Acc",				
-			"defaultOptionID": 11100,				
-			"options": [				
-				{			
-					"name": "No Side Guards",		
-					"optionID": 11100,		
-					"colors": [],		
-					"defaultSizeIndex": -1,		
-					"sizes": [],		
-					"comments": "",		
-					"displayColor": 0,		
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",		
-					"desc": "Leave out the side guards if you don't need them.",		
-					"weight": 0,		
-					"price": 0,		
-					"defaultColorID": 0		
-				},			
+			"defaultOptionID": 11200,				
+			"options": [						
 				{			
 					"name": "Alum. Side Guards (Painted)",		
 					"optionID": 11200,		
@@ -5732,7 +5718,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-black.jpg",		
 					"desc": "The standard aluminum side guards match the color of your back rest and foot rest.  Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",		
 					"weight": 350,		
-					"price": 140,		
+					"price": 0,		
 					"defaultColorID": 1101,		
 					"colors": [		
 						{	
@@ -7931,22 +7917,8 @@
 			"numSubImages": 1,				
 			"zRank": [[11,9,8,9,10]],				
 			"shortName": "Acc",				
-			"defaultOptionID": 11100,				
-			"options": [				
-				{			
-					"name": "No Side Guards",		
-					"optionID": 11100,		
-					"colors": [],		
-					"defaultSizeIndex": -1,		
-					"sizes": [],		
-					"comments": "",		
-					"displayColor": 0,		
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",		
-					"desc": "Leave out the side guards if you don't need them.",		
-					"weight": 0,		
-					"price": 0,		
-					"defaultColorID": 0		
-				},			
+			"defaultOptionID": 11200,				
+			"options": [							
 				{			
 					"name": "Alum. Side Guards (Painted)",		
 					"optionID": 11200,		
@@ -7958,7 +7930,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-black.jpg",		
 					"desc": "The standard aluminum side guards match the color of your back rest and foot rest.  Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",		
 					"weight": 350,		
-					"price": 140,		
+					"price": 0,		
 					"defaultColorID": 1101,		
 					"colors": [		
 						{	

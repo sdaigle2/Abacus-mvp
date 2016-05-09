@@ -113,8 +113,10 @@ angular.module('abacuApp')
           ComparedDesigns.cart.removeDesign($scope.wheelchairUIOpts[index].design);
         }
 
-        User.setEditWheelchair(index, $scope.wheelchairUIOpts[index].design);
-        $location.path('/tinker');
+        User.setEditWheelchair(index, $scope.wheelchairUIOpts[index].design)
+          .then(function () {
+            $location.path('/tinker');
+          });
       };
 
       // removes wheelchair from cart and puts it into the users wishlist

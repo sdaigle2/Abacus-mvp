@@ -125,9 +125,10 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
     // decide where to persist the currentWheelchair based on whether the user is logged in
     if (userID !== -1) {
-      //updateDB();
+      return updateDB();
     } else {
       localJSONStorage.put('currentWheelchair', {frameID: frameID, isNew: true, index: -1});
+      return PromiseUtils.resolved();
     }
   }
 
@@ -141,27 +142,25 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
     // decide where to persist the currentWheelchair based on whether the user is logged in
     if (userID !== -1) {
-      updateDB();
+      return updateDB();
     } else {
       localJSONStorage.put('currentWheelchair', {frameID: -1, isNew: false, index: index, 'design': design});
+      return PromiseUtils.resolved();
     }
   }
 
-
-
-
-
-  function setEditWheelchairFromMyDesign(index, design){
+  function setEditWheelchairFromMyDesign(index){
     if (index >= 0 && index < savedDesigns.length) {
-      currentWheelchair.editingWheelchair =_.clone(savedDesigns[index].wheelchair);
+      currentWheelchair.editingWheelchair = _.clone(savedDesigns[index].wheelchair);
       currentWheelchair.isNew = false;
-      currentWheelchair.design = design;
+      currentWheelchair.design = savedDesigns[index];
     }
 
     if (userID !== -1) {
-      updateDB();
+      return updateDB();
     } else {
       localJSONStorage.put('currentWheelchair', {frameID: -1, isNew: false, index: index, 'design': design});
+      return PromiseUtils.resolved();
     }
   }
 
@@ -502,7 +501,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     //Returns the wheelchair currently set as "curEditWheelchair"
     //Returns null if no chair set as curEditWheelchair
     getCurEditWheelchair: function () {
-      return currentWheelchair.editingWheelchair;
+      return currentWheelchair.editingWheelchair || currentWheelchair.design.wheelchair;
     },
 
     getCurEditWheelchairDesign: function () {

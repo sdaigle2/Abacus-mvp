@@ -79,8 +79,10 @@ angular.module('abacuApp')
           ComparedDesigns.myDesigns.removeDesign($scope.wheelchairUIOpts[index].design);
         }
 
-  			User.setEditWheelchairFromMyDesign(index, $scope.wheelchairUIOpts[index].design);
-  			$location.path('/tinker');
+  			User.setEditWheelchairFromMyDesign(index, $scope.wheelchairUIOpts[index].design)
+          .then(function () {
+            $location.search({}).path('/tinker');
+          });
   		};
 
   		$scope.addToCart = function (chairIdx) {
