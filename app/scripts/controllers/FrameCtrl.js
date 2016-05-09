@@ -45,9 +45,11 @@ angular.module('abacuApp')
         //     });
         // }
         //Create a new wheelchair and set is as curEditWheelchair
-        User.createCurrentDesign(frameID);
-        //Send the user to Abacus
-        $location.path('/tinker');
+        User.createCurrentDesign(frameID)
+          .then(function () {
+            //Send the user to Abacus
+            $location.path('/tinker');
+          });
       };
 
       $scope.toggleDetail = function(){

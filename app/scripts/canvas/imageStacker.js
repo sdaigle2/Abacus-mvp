@@ -19,6 +19,7 @@ function stackImages(canvy, image_dirs, width, height, cfpLoadingBar) {
   //console.log("stacking images");
   var images = [];
   var loaded = [];
+  var numErrored = 0;
   for (var i = 0; i < image_dirs.length; i++) {
     loaded.push(false);
     var image = new Image();
@@ -31,7 +32,7 @@ function stackImages(canvy, image_dirs, width, height, cfpLoadingBar) {
       return sum + isLoaded;
     }, 0);
 
-    return totalLoaded / loaded.length;
+    return totalLoaded / (loaded.length - numErrored);
   }
 
   cfpLoadingBar.start();
@@ -53,6 +54,10 @@ function stackImages(canvy, image_dirs, width, height, cfpLoadingBar) {
         }
       }
     })(i);
+    
+    images[i].onerror = function () {
+      numErrored++;
+    };
   }
 }
 

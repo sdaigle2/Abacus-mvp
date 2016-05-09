@@ -1097,13 +1097,16 @@ angular.module('abacuApp')
       $scope.nothing = function(){
         return
       };
+      
       $scope.measureChanged = function(){
         measureChanged();
         calcCompleteness();
       };
-      $scope.$on('$viewContentLoaded', function() {
-          initNavBar();
-      });
+      // $scope.$on('$viewContentLoaded', _.once(function() {
+      //     initNavBar();
+      // }));
+
+      $scope.initNavBar = _.once(initNavBar);
 
       $scope.$watch('curEditWheelchair', function (oldVal, newVal) {
         console.log('change for curEditWheelchair');
