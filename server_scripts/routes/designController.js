@@ -40,11 +40,11 @@ router.get('/design/:id',function(req,res){
 // post design
 router.post('/design', restrict, function (req, res) {
   var userDesign = req.body;
-  
+
   // Remove an ID or Revision number that may be attached
   delete userDesign._id;
   delete userDesign._rev;
-  
+
   // Check that uploaded design has some required properties
   var hasRequiredProps = REQUIRED_DESIGN_PROPERTIES.every(function (property) {
     return property in userDesign;
@@ -106,7 +106,7 @@ router.put('/design/:id', restrict, function (req, res) {
           // merge properties of new object with old object.
           // Replace missing fields in the new object with the corresponding value in the old object
           // For conflicts, keep the new value
-          var updatedDesign = _.defaultsDeep(updatedDesign, currentDesign);
+          updatedDesign = _.defaultsDeep(updatedDesign, currentDesign);
           dbService.designs.insert(updatedDesign, id, function (err, body, header) {
             if (err) {
               res.status(404);

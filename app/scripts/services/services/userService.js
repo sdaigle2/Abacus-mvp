@@ -107,18 +107,18 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
   function createCurrentDesign(frameID) {
     if (frameID instanceof Design) {
       var design = frameID; // frameID is actually a design instance
-      currentWheelchair.editingWheelchair = design.wheelchair;
       currentWheelchair.isNew = !design.hasID();
       currentWheelchair.design = design;
     } else if (_.isObject(frameID)) {
       currentWheelchair.design= new Design(frameID);
-      currentWheelchair.editingWheelchair  = currentWheelchair.design.wheelchair;
       currentWheelchair.isNew = true;
     } else if (_.isNumber(frameID)) {
       // its either an integer respresenting a frame id or a wheelchair object
-      currentWheelchair.editingWheelchair = new Wheelchair(frameID);
       currentWheelchair.isNew = true;
-      currentWheelchair.design = null;
+      currentWheelchair.design = new Design({
+        'creator': userID,
+        'wheelchair': new Wheelchair(frameID)
+      });
     } else {
       throw new Error('Bad value given to createCurrentDesign: ' + JSON.stringify(frameID));
     }
@@ -136,13 +136,15 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     if (index >= 0 && index < cart.wheelchairs.length) {
       cartWheelchairIndex = index;
     }
-    currentWheelchair.editingWheelchair = _.clone(cart.wheelchairs[index].wheelchair);
     currentWheelchair.isNew = false;
     currentWheelchair.design = design;
 
     // decide where to persist the currentWheelchair based on whether the user is logged in
     if (userID !== -1) {
-      return updateDB();
+      return updateDB()
+        .then(function () {
+          currentWheelchair.design._rev = cart.wheelchairs[index]._rev; // update the revision number
+        });
     } else {
       localJSONStorage.put('currentWheelchair', {frameID: -1, isNew: false, index: index, 'design': design});
       return PromiseUtils.resolved();
@@ -151,13 +153,15 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
   function setEditWheelchairFromMyDesign(index){
     if (index >= 0 && index < savedDesigns.length) {
-      currentWheelchair.editingWheelchair = _.clone(savedDesigns[index].wheelchair);
       currentWheelchair.isNew = false;
       currentWheelchair.design = savedDesigns[index];
     }
 
     if (userID !== -1) {
-      return updateDB();
+      return updateDB()
+        .then(function () {
+          currentWheelchair.design._rev = savedDesigns[index]._rev;
+        });
     } else {
       localJSONStorage.put('currentWheelchair', {frameID: -1, isNew: false, index: index, 'design': design});
       return PromiseUtils.resolved();
@@ -214,7 +218,6 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       });
 
       currentWheelchair = data.currentWheelchair || currentWheelchair;
-      currentWheelchair.editingWheelchair = currentWheelchair.editingWheelchair ? new Wheelchair(currentWheelchair.editingWheelchair) : currentWheelchair.editingWheelchair;
       currentWheelchair.design = currentWheelchair.design ? new Design(currentWheelchair.design) : null;
 
       // Setup the cart...it is null if the user doesnt have a cart
@@ -422,10 +425,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       }
 
       if (currentWheelchair.isNew === true ) {
-        cart.wheelchairs.push(new Design({
-          'creator': email,
-          'wheelchair': currentWheelchair.editingWheelchair
-        }));
+        cart.wheelchairs.push(currentWheelchair.design);
         cartWheelchairIndex = cart.wheelchairs.length - 1;
       }
       else if (currentWheelchair.isNew === false) {
@@ -501,7 +501,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     //Returns the wheelchair currently set as "curEditWheelchair"
     //Returns null if no chair set as curEditWheelchair
     getCurEditWheelchair: function () {
-      return currentWheelchair.editingWheelchair || currentWheelchair.design.wheelchair;
+      return currentWheelchair.design.wheelchair;
     },
 
     getCurEditWheelchairDesign: function () {
