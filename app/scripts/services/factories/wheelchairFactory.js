@@ -23,6 +23,11 @@ angular.module('abacuApp')
         var frame = FrameData.getFrame(frameID);
         this.name = frame.getName();
         var parts = frame.getParts();
+        parts.forEach(function(pPart){
+          pPart.options.forEach(function(pOption){
+            pOption.setComments('');
+          })
+        });
         var meas = frame.getMeasures();
 
         //Generate parts array and set defaults
@@ -33,7 +38,7 @@ angular.module('abacuApp')
             optionID: p.getDefaultOptionID(),
             colorID: p.getDefaultOption().getDefaultColorID(),
             sizeIndex: p.getDefaultOption().getDefaultSizeIndex(),
-            comments: p.getDefaultOption().getComments(),
+            comments: '',
             colorIn: true       //indicator of if the part should follow other color choice
           };
           this.parts.push(defaultPart);

@@ -86,9 +86,14 @@ angular.module('abacuApp')
 
       getDefaultSize: function () {
         return this.getSize(this.defaultSizeIndex);
+      },
+      setComments: function(word){
+        this.comments = word;
       }
 
     };
+
+
 
 
 
