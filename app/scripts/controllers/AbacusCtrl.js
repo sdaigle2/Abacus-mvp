@@ -842,8 +842,10 @@ angular.module('abacuApp')
         var part = $scope.curFrameData.getPart(partID);
           if ($scope.isPanelSelected(id)) {
             curPanel = -1;
-            var optionID = $scope.curEditWheelchair.getPart(partID).optionID;
-            $scope.curOption = part.getOption(optionID);
+            if($scope.getCurPageType() === $scope.pageType.CUSTOMIZE) {
+              var optionID = $scope.curEditWheelchair.getPart(partID).optionID;
+              $scope.curOption = part.getOption(optionID);
+            }
           }
           else {
             curPanel = id;
@@ -1105,7 +1107,7 @@ angular.module('abacuApp')
       $scope.nothing = function(){
         return
       };
-      
+
       $scope.measureChanged = function(){
         measureChanged();
         calcCompleteness();
