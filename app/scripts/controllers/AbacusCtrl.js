@@ -850,7 +850,6 @@ angular.module('abacuApp')
           else {
             curPanel = id;
             $scope.curOption = part.getOption(id);
-            $scope.curEditOption= $scope.curEditWheelchair.getPart(partID);
           }
           //console.log("set");
       };

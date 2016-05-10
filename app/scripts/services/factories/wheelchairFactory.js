@@ -288,7 +288,8 @@ angular.module('abacuApp')
             partID: pID,
             optionID: oID,
             colorID: o.getDefaultColorID(),
-            sizeIndex: o.getDefaultSizeIndex()
+            sizeIndex: o.getDefaultSizeIndex(),
+            comments: o.getComments()
           });
       },
 
