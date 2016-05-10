@@ -6,7 +6,7 @@
 	</div> -->
 	<div class="container-block">
 		<div class="search-form-container" id="searchContainer">
-			<p class="search-header-text">Look up a DesignID</p>
+			<p class="search-header-text">Look up a Design ID</p>
 			<form name="searchForm.form" class="css-form" ng-submit="search()" novalidate>
 				<input type="text" class="search-input" ng-model="searchForm.searchInput" required>
 				<button type="submit" class="search-button" id="submit" ng-disabled="searchForm.form.$invalid">SEARCH</button>
@@ -15,12 +15,12 @@
 		</div>
 	</div>
 	<div class="arrow-down"></div>
-	
+
 	<!-- This block is shown before the user ever submits a search query -->
 	<div ng-if="!searchSubmitted" class="container-block">
 		<div class="results-container" style="min-width: {{getWidth()}}px;">
-			<p>Please type in a DesignID</p>
-			<p><a href="#">What is a DesignID?</a></p>
+			<p>Please type in a Design ID</p>
+			<p><a href="#">What is a Design ID?</a></p>
 		</div>
 	</div>
 

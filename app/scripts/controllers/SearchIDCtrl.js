@@ -18,7 +18,7 @@ angular.module('abacuApp')
       // design is locked if it is part of the users order history
       function designIsLocked(design) {
         var designID = _.isString(design) ? design : design._id;
-        
+
         var sentOrders = User.getSentOrders();
         return sentOrders.some(function (order) {
           return order.wheelchairs.some(function (lockedDesign) {
@@ -60,10 +60,41 @@ angular.module('abacuApp')
 
       };
 
+      /**
+       * Searches through all user attributes to find a particular design (indexed by design ID)
+       * Returns the design if its found, otherwise returns undefined
+       * @param design
+       * @returns {Design|undefined}
+         */
+      function findDesignInUser(design) {
+        var findDesignInArray = function (designs) {
+          return _.find(designs, {_id: design._id});
+        };
+
+        var findDesignInOrder = function (order) {
+          return findDesignInArray(order.wheelchairs);
+        };
+
+        return findDesignInArray(User.getSavedDesigns()) ||
+          findDesignInOrder(User.getCart()) ||
+          _.find(User.getAllOrders(), findDesignInOrder);
+      }
+
       $scope.editWheelchairDesign = function () {
         if ($scope.searchResult) {
-          User.createCurrentDesign($scope.searchResult);
-          $location.path('/tinker');
+          User.createCurrentDesign($scope.searchResult)
+            .then(function () {
+              // If the user searched up one of their own designs, then the call to User.createCurrentDesign would have updated the revision number for it
+              // The following code finds out whether the searched design belongs to the user, and if so,
+              // attaches the latest revision number to the currentEditWheelchair design
+              var latestDesign = findDesignInUser($scope.searchResult);
+              if (User.isLoggedIn() && latestDesign) {
+                User.getCurEditWheelchairDesign()._rev = latestDesign._rev; // attach the latest revision number
+              }
+
+              // Navigate to the tinker page
+              $location.path('/tinker');
+            });
         }
       };
 
@@ -74,8 +105,8 @@ angular.module('abacuApp')
       };
 
       // This is to update the width of the result containers...comment out the $scope.$digest() to see what I mean
-      setTimeout(function () {
-        $scope.$digest();
-      }, 10);
+      $scope.$on('$viewContentLoaded', function () {
+        // $scope.$digest();
+      });
 
     }]);
