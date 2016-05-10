@@ -278,6 +278,7 @@ angular.module('abacuApp')
           p.optionID = oID;
           p.colorID = o.getDefaultColorID();
           p.sizeIndex = o.getDefaultSizeIndex();
+          p.comments = o.getComments();
           this.previewImageGenerator.setOptionForPart(pID, oID);
         }
       },

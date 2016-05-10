@@ -854,6 +854,14 @@ angular.module('abacuApp')
           //console.log("set");
       };
 
+      $scope.$watch('curOption.comments', function(oVal, nVal){
+        console.log(nVal);
+        var partID = $scope.getCurPage().partID;
+        if($scope.curOption.optionID == $scope.curEditWheelchair.getPart(partID).optionID){
+          $scope.curEditWheelchair.getPart(partID).comments = nVal;
+        }
+      });
+
       //Closes any open panel
       $scope.closeAllPanels = function () {
         curPanel = -1;
