@@ -8,8 +8,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('MyDesignsCtrl', ['$scope', '$location', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'WHEELCHAIR_CANVAS_WIDTH', 'FrameData', '$q', 'Design', 'PromiseUtils',
-  	function ($scope, $location, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, WHEELCHAIR_CANVAS_WIDTH, FrameData, $q, Design, PromiseUtils) {
+  .controller('MyDesignsCtrl', ['$scope', '$location', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'WHEELCHAIR_CANVAS_WIDTH', 'FrameData', '$q', 'Design', 'PromiseUtils', 'DownloadPDF',
+  	function ($scope, $location, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, WHEELCHAIR_CANVAS_WIDTH, FrameData, $q, Design, PromiseUtils, DownloadPDF) {
   		$scope.MAX_COMPARISON_CHAIRS = MAX_COMPARISON_CHAIRS;
   		$scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
 
@@ -93,7 +93,7 @@ angular.module('abacuApp')
 
   		$scope.dowloadDesignPDF = function (chairIdx) {
   			var design = $scope.wheelchairUIOpts[chairIdx].design;
-  			alert('TODO: dowloadDesignPDF');
+        DownloadPDF.forWheelchairs(design);
   		};
 
   		$scope.numChecked = function () {
