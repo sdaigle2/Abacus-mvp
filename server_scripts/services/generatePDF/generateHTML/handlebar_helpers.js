@@ -6,6 +6,7 @@ const _ = require('lodash');
 const frameData = require('../../../../app/data/frameData.json');
 const frameIDMap = _.mapValues(_.groupBy(frameData, 'frameID'), _.first);
 
+const CLOUDFRONT_BASE_URL = 'http://duqb7w6xgn312.cloudfront.net/';
 const APP_PORT = process.env.PORT || 8080; // make sure this is consistent with the port in server.js
 //Map angles to their array index
 const angles = {
@@ -31,7 +32,7 @@ function getImageKey(wheelchair, curPart, subImageIndex) {
  * Get the url for the images based on the wheelchair part
  */
 function getPartPreviewImageURL(wheelchair, curPart, subImageIndex) {
-  return `http://localhost:${APP_PORT}/images/chairPic/${getImageKey(wheelchair, curPart, subImageIndex)}`;
+  return `${CLOUDFRONT_BASE_URL}${getImageKey(wheelchair, curPart, subImageIndex)}`;
 }
 
 /**
@@ -122,7 +123,7 @@ function getChairMeasureOption(chair, measureID) {
   if (_.isUndefined(measureOptionIndex) || measureOptionIndex < 0) {
     measureOptionIndex = -1;
   }
-  
+
   return {
     'name': measure.name || '--',
     'cm': measure.measureOptions[0][measureOptionIndex] || '--',
@@ -138,7 +139,7 @@ function getChairMeasureOption(chair, measureID) {
 function getChairMeasureOptionByName(chair, measureName) {
   var frame = getChairFrame(chair);
   var measure = _.find(frame.measures, {'name': measureName});
-  
+
   if (measure) {
     return getChairMeasureOption(chair, measure.measureID);
   } else {
@@ -323,7 +324,7 @@ function getTotalTax() {
   var chairs = _.map(this.wheelchairs, 'wheelchair');
 
   var getTaxCostBound = getTaxCost.bind(this);
-  
+
   var taxFees = chairs
     .map(calculatePartsSubtotal)
     .map(subTotal => getTaxCostBound(subTotal));
@@ -387,7 +388,7 @@ function getChairWeight(chair) {
  * i.e. 0 -> A, 1 -> B, 2 -> C ...
  * Used for A,B,C bulleted lists
  */
-// 
+//
 function getBulletLetter(index) {
   return String.fromCharCode('A'.charCodeAt(0) + index);
 }
@@ -401,7 +402,7 @@ function getChairImageObjects(chair) {
   var frame = getChairFrame(chair);
   var chairParts = chair.parts.map(partOption => {
     var part = _.find(frame.parts, {'partID': partOption.partID});
-    
+
     return {
       partID: partOption.partID,
       colorID: partOption.colorID,
@@ -462,7 +463,7 @@ function getPaginatedParts(chair) {
 
   const estimatePageLines = parts => {
     var partComments = parts.map(part => _.isString(part.option.comments) ? part.option.comments : '');
-    
+
     var partLines = parts.length * LINES_PER_PART;
     var commentLines = _.sumBy(partComments, comment => (comment.length / COMMENT_LINE_LENGTH) + 1);
 
