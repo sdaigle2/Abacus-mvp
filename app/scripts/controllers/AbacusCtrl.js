@@ -861,6 +861,7 @@ angular.module('abacuApp')
           $scope.curEditWheelchair.getPart(partID).comments = nVal;
         }
       });
+      
 
       //Closes any open panel
       $scope.closeAllPanels = function () {
