@@ -41,11 +41,12 @@ function getTimeoutLength(order) {
 	return (wheelchairs.length * TIMEOUT_PER_CHAIR) + TIMEOUT_PER_INVOICE;
 }
 
-// function pasteDebugHTML(html) {
-// 	console.log('NOTE TO DEVELOPER: REMOVE pasteDebugHTML FUNCTION BEFORE DEPLOYING.....ITS JUST FOR DEVELOPMENT');
-// 	var fs = require('fs');
-// 	fs.writeFileSync(path.resolve(__dirname, './invoice_templates/test.html'), html);
-// }
+// this is for debugging only...make sure to comment out before deploying site
+function pasteDebugHTML(html) {
+	console.log('NOTE TO DEVELOPER: REMOVE pasteDebugHTML FUNCTION BEFORE DEPLOYING.....ITS JUST FOR DEVELOPMENT');
+	var fs = require('fs');
+	fs.writeFileSync(path.resolve(__dirname, './invoice_templates/test.html'), html);
+}
 
 function generateInvoicePDF(order, asStream, cb) {
 	if (_.isFunction(asStream)) {
@@ -56,10 +57,10 @@ function generateInvoicePDF(order, asStream, cb) {
 	const invoiceHTML = generateHTML.forInvoice(order);
 	// pasteDebugHTML(invoiceHTML);
 	const invoiceRenderingTimeout = getTimeoutLength(order);
-	
+
 	const invoiceFilename = getOrderInvoiceFilename(order);
 	const invoiceFilePath = path.join(GENERATED_PDFS_DIR, invoiceFilename);
-	
+
 	const pdfGenArgs = {
 		rawHTML: invoiceHTML,
 		timeout: invoiceRenderingTimeout
@@ -95,7 +96,7 @@ function generateWheelchairsPDF(wheelchairs, asStream, cb) {
 	wheelchairs = _.isArray(wheelchairs) ? wheelchairs : [wheelchairs]; // can be given a single wheelchair or an array of them
 
 	const pdfHTML = generateHTML.forWheelchairs(wheelchairs);
-	// pasteDebugHTML(invoiceHTML);
+	pasteDebugHTML(pdfHTML);
 	const pdfRenderingTimeout = getTimeoutLength(wheelchairs);
 
 	const pdfFilename = getWheelchairsPDFFilename(wheelchairs);

@@ -166,6 +166,11 @@
 						{{#each (getChairImages this.wheelchair)}}
 						<img class="_idGenObjectAttribute-1" src="{{this}}" alt="" />
 						{{/each}}
+            {{#if this._id}}
+            <p class="image-hint-text">
+                If the image rendering above is incomplete, you can view it at <a href="{{BASE_URL}}#!/tinker/{{this._id}}">{{BASE_URL}}#!/tinker/{{this._id}}</a>
+            </p>
+            {{/if}}
 					</div>
 					<div id="_idContainer043" class="Basic-Text-Frame">
 						{{#with ..}}
