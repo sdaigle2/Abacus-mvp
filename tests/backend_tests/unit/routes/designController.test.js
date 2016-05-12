@@ -120,3 +120,95 @@ describe('Test CRUD Ops', () => { // no delete functionality right now
   });
 
 });
+
+describe.only('Tests Wheelchair pdf generation', function () {
+  var user = null;
+  var agent = null;
+  var sampleDesign = _.first(require('../../../test_assets/json_samples/chairs.json'));
+  sampleDesign = _.omit(sampleDesign, ['creator', '_id', '_rev']);
+
+  var pdfDownloadURL_ID = null; // will store download URL for ID specified request
+  var pdfDownloadURL_Body = null; // will store download URL for body specified request
+
+  before(done => {
+    getLoggedInAgent.newUser(app)
+      .then(result => {
+        user = result.user;
+        agent = result.agent;
+        sampleDesign.creator = user._id;
+        done();
+      })
+      .catch(done);
+  });
+
+  it('Should create a design object', done => {
+    agent
+      .post('/design')
+      .send(sampleDesign)
+      .expect(res => {
+        res.should.have.property("body");
+
+        res.body.should.have.property("creator");
+        res.body.creator.should.equal(sampleDesign.creator);
+
+        res.body.should.have.property('rev');
+        res.body.should.have.property('id');
+
+        // Attach ID and revision number for next tests
+        sampleDesign._id = res.body.id;
+        sampleDesign._rev = res.body.rev;
+      })
+      .expect(200, done);
+  });
+
+  it('Should send request to backend to generate the PDF with design specified by ID', function (done) {
+    this.timeout(20e3); // this request doesnt complete until the pdf is generated so it takes a while
+
+    agent
+      .post(`/design/pdf/${sampleDesign._id}`)
+      .expect(res => {
+        res.should.have.property('body');
+
+        res.body.should.have.property('filename');
+        res.body.should.have.property('url');
+
+        pdfDownloadURL_ID = res.body.url; // set the url for the next test that attempts to download the pdf
+      })
+      .expect(200, done);
+  });
+
+  it('Should download PDF from URL from ID specified request', done => {
+    agent
+      .get(pdfDownloadURL_ID)
+      .expect(200, done);
+  });
+
+  it('Should send request to backend to generate the PDF with design given in body', function (done) {
+    this.timeout(20e3); // this request doesnt complete until the pdf is generated so it takes a while
+
+    agent
+      .post('/design/pdf/')
+      .send(sampleDesign)
+      .expect(res => {
+        res.should.have.property('body');
+
+        res.body.should.have.property('filename');
+        res.body.should.have.property('url');
+
+        pdfDownloadURL_Body = res.body.url; // set the url for the next test that attempts to download the pdf
+      })
+      .expect(200, done);
+  });
+
+  it('Should download PDF from URL from body specified request', done => {
+    agent
+      .get(pdfDownloadURL_Body)
+      .expect(200, done);
+  });
+
+  after(done => {
+    dbService.designs.deleteDoc(sampleDesign._id, sampleDesign._rev, done);
+  });
+
+
+});
