@@ -264,12 +264,11 @@ angular.module('abacuApp')
         number: '',
         cvc: '',
         exp_month: '',
-        exp_year: ''
+        exp_year: '',
+        type:''
       };
 
-      $scope.paypal = {
 
-      };
 
       $scope.payment_errors = '';
 

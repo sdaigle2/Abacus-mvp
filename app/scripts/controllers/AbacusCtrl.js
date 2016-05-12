@@ -423,8 +423,6 @@ angular.module('abacuApp')
         return $scope.curFrameData.getMeasure($scope.getCurMeasurePage().measureID);
       };
       
-     
-
       //Returns the current measure from curEditWheelchair based on curPage.page[MEASURE].ID
       $scope.getCurWheelchairMeasure = function () {
         return $scope.curEditWheelchair.getMeasure($scope.getCurMeasurePage().measureID);
