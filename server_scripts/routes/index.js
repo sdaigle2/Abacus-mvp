@@ -10,7 +10,7 @@ var express = require('express');
 
 var centralRouter = express.Router();
 
-// Load all files in server_routes directory that export a router instance
+// Load all files in server_scripts/routes directory that export a router instance
 // This excludes this file though (index.js)
 var ROUTER_SCRIPTS = fs.readdirSync(__dirname)
 	.filter(function (filename) { // exclude this index.js file

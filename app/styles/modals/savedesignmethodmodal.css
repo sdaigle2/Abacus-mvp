@@ -4,8 +4,10 @@
 	margin-left: 0px;
 	border: 1px solid #4896FF;
 	border-radius: 0;
-    padding-top: 6px;
-    padding-bottom: 6px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .save-method-button:hover {
@@ -13,4 +15,8 @@
 	color: #4896FF;
 	margin-left: 0px;
 	border: 1px solid #4896FF;
+}
+
+.button-container {
+  text-align: center;
 }
