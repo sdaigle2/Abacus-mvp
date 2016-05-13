@@ -82,13 +82,25 @@
         <div class="order-form-header">Enter Credit Card Number</div>
         <div class="paymentWindow">
           <strong>Pay by Credit Card</strong>
-          <div >
+          <div>
             <form>
               <span class="payment-errors" data-ng-bind="payment_errors"></span>
               <div class="form-row">
                 <label>
                   <span>Card Number<br></span>
                   <input type="text" size="20" data-ng-model="card.number"/>
+                </label>
+
+                <label id="cardType">
+                  <span>Card Type</span>
+                  <select id="" name="CreditCard_type" type="text"
+                          class="form-control medium" data-ng-model="card.type" name="CreditCard_type">
+                    <option value="visa">visa</option>
+                    <option value="mastercard">mastercard</option>
+                    <option value="discover">discover</option>
+                    <option value="amex">amex</option>
+
+                  </select>
                 </label>
               </div>
               <div class="form-row">
@@ -99,7 +111,7 @@
               </div>
               <div class="form-row">
                 <label>
-                  <span>Expiration (MM/YYYY)<br></span>
+                  <span>Expiration (MM/YY)<br></span>
                   <input type="text" data-ng-model="card.exp_month"/>
                   <span> / </span>
                   <input type="text" data-ng-model="card.exp_year"/>

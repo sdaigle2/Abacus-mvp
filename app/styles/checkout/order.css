@@ -141,6 +141,18 @@
   margin-top: 20px;
 }
 
+#cardType{
+  margin-left: 30px;
+}
+
+#cardType>select{
+  height:25px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  -webkit-appearance: none;
+}
+
 
 
 

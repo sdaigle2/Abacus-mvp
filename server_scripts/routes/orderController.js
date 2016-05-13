@@ -105,10 +105,10 @@ router.post('/order', function (req, res) {
           "payment_method": "credit_card",
           "funding_instruments": [{
             "credit_card": {
-              "type": "visa",
+              "type": card.type,
               "number": card.number,
               "expire_month": card.exp_month,
-              "expire_year": card.exp_year,
+              "expire_year": '20' + card.exp_year,
               "cvv2": card.cvc
             }}]},
         "transactions": [{
