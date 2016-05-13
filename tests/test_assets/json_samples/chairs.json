@@ -1,39 +1,73 @@
 [
   {
-    "_id": "VJ1nyx61Z",
-    "_rev": "3-e419bca30e22ceb4484248fe71871aa7",
-    "createdAt": "2016-04-17T21:30:53.690Z",
-    "updatedAt": "2016-04-17T21:30:53.690Z",
+    "createdAt": "2016-05-12T21:20:52.026Z",
+    "updatedAt": "2016-05-12T21:20:52.026Z",
     "wheelchair": {
-      "frameID": 4,
+      "frameID": 21,
       "title": "My Custom Wheelchair",
       "parts": [
         {
           "partID": 1000,
-          "optionID": 2200,
-          "colorID": 1111,
+          "optionID": 2100,
+          "colorID": 1115,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Spoke Color",
-          "optionName": "PBO Spokes (3mm)"
+          "colorIn": false
         },
         {
           "partID": 3000,
-          "optionID": 3100,
-          "colorID": 3211,
+          "optionID": 3150,
+          "colorID": 1113,
           "sizeIndex": -1,
+          "colorIn": false
+        },
+        {
+          "partID": 11000,
+          "optionID": 11200,
+          "colorID": 1113,
+          "sizeIndex": 1,
           "comments": "",
-          "name": "Back Spoke Color",
-          "optionName": "Same as Main Spoke Color"
+          "colorIn": true
         },
         {
           "partID": 4000,
-          "optionID": 4400,
-          "colorID": 1111,
+          "optionID": 4300,
+          "colorID": 1115,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Hub Color",
-          "optionName": "Standard Black"
+          "colorIn": true
+        },
+        {
+          "partID": 12000,
+          "optionID": 12200,
+          "colorID": 0,
+          "sizeIndex": -1,
+          "comments": "",
+          "colorIn": true
+        },
+        {
+          "partID": 6000,
+          "optionID": 6300,
+          "colorID": 6304,
+          "sizeIndex": 1,
+          "comments": "",
+          "colorIn": false
+        },
+        {
+          "partID": 7000,
+          "optionID": 7100,
+          "colorID": 0,
+          "sizeIndex": 1,
+          "comments": "",
+          "colorIn": true
+        },
+        {
+          "partID": 8000,
+          "optionID": 8100,
+          "colorID": 0,
+          "sizeIndex": 0,
+          "comments": "",
+          "colorIn": true
         },
         {
           "partID": 5000,
@@ -41,44 +75,23 @@
           "colorID": 0,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Rim Color",
-          "optionName": "Standard Black"
+          "colorIn": true
         },
         {
-          "partID": 6000,
-          "optionID": 6200,
-          "colorID": 0,
-          "sizeIndex": 1,
-          "comments": "",
-          "name": "Hand Rims",
-          "optionName": "Hard Anodized 6 tab"
-        },
-        {
-          "partID": 7000,
-          "optionID": 7300,
+          "partID": 13000,
+          "optionID": 13100,
           "colorID": 0,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Tires",
-          "optionName": "High Pressure Tires"
+          "colorIn": true
         },
         {
-          "partID": 8000,
-          "optionID": 8700,
-          "colorID": 8702,
-          "sizeIndex": -1,
-          "comments": "",
-          "name": "Quick Release Axles",
-          "optionName": "None"
-        },
-        {
-          "partID": 9000,
-          "optionID": 9100,
+          "partID": 14000,
+          "optionID": 14998,
           "colorID": 0,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Casters",
-          "optionName": "3\" (72mm) Micro"
+          "colorIn": true
         },
         {
           "partID": 10000,
@@ -86,8 +99,7 @@
           "colorID": 0,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Miscellaneous",
-          "optionName": "None"
+          "colorIn": true
         }
       ],
       "measures": [
@@ -98,72 +110,77 @@
         },
         {
           "measureID": 15002,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "5",
           "comments": ""
         },
         {
           "measureID": 15003,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "0",
           "comments": ""
         },
         {
           "measureID": 15004,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "0",
           "comments": ""
         },
         {
           "measureID": 15005,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "3",
           "comments": ""
         },
         {
           "measureID": 15006,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "7",
           "comments": ""
         },
         {
           "measureID": 15007,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "6",
           "comments": ""
         },
         {
           "measureID": 15008,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "2",
           "comments": ""
         },
         {
           "measureID": 15009,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "1",
           "comments": ""
         },
         {
           "measureID": 15010,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "4",
           "comments": ""
         },
         {
           "measureID": 15011,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "2",
           "comments": ""
         },
         {
           "measureID": 15012,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "1",
           "comments": ""
         },
         {
           "measureID": 15013,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "2",
           "comments": ""
         },
         {
           "measureID": 15014,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "1",
           "comments": ""
         },
         {
           "measureID": 15015,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "3",
+          "comments": ""
+        },
+        {
+          "measureID": 15016,
+          "measureOptionIndex": "0",
           "comments": ""
         }
       ],
@@ -171,40 +188,74 @@
     }
   },
   {
-    "_id": "VJ1nyx61Z",
-    "_rev": "3-e419bca30e22ceb4484248fe71871aa7",
-    "createdAt": "2016-04-17T21:30:53.690Z",
-    "updatedAt": "2016-04-17T21:30:53.690Z",
+    "createdAt": "2016-05-12T21:20:52.026Z",
+    "updatedAt": "2016-05-12T21:20:52.026Z",
     "wheelchair": {
-      "frameID": 4,
+      "frameID": 21,
       "title": "My Custom Wheelchair",
       "parts": [
         {
           "partID": 1000,
-          "optionID": 2200,
-          "colorID": 1111,
+          "optionID": 2100,
+          "colorID": 1115,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Spoke Color",
-          "optionName": "PBO Spokes (3mm)"
+          "colorIn": false
         },
         {
           "partID": 3000,
-          "optionID": 3100,
-          "colorID": 3211,
+          "optionID": 3150,
+          "colorID": 1113,
           "sizeIndex": -1,
+          "colorIn": false
+        },
+        {
+          "partID": 11000,
+          "optionID": 11200,
+          "colorID": 1113,
+          "sizeIndex": 1,
           "comments": "",
-          "name": "Back Spoke Color",
-          "optionName": "Same as Main Spoke Color"
+          "colorIn": true
         },
         {
           "partID": 4000,
-          "optionID": 4400,
-          "colorID": 1111,
+          "optionID": 4300,
+          "colorID": 1115,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Hub Color",
-          "optionName": "Standard Black"
+          "colorIn": true
+        },
+        {
+          "partID": 12000,
+          "optionID": 12200,
+          "colorID": 0,
+          "sizeIndex": -1,
+          "comments": "",
+          "colorIn": true
+        },
+        {
+          "partID": 6000,
+          "optionID": 6300,
+          "colorID": 6304,
+          "sizeIndex": 1,
+          "comments": "",
+          "colorIn": false
+        },
+        {
+          "partID": 7000,
+          "optionID": 7100,
+          "colorID": 0,
+          "sizeIndex": 1,
+          "comments": "",
+          "colorIn": true
+        },
+        {
+          "partID": 8000,
+          "optionID": 8100,
+          "colorID": 0,
+          "sizeIndex": 0,
+          "comments": "",
+          "colorIn": true
         },
         {
           "partID": 5000,
@@ -212,44 +263,23 @@
           "colorID": 0,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Rim Color",
-          "optionName": "Standard Black"
+          "colorIn": true
         },
         {
-          "partID": 6000,
-          "optionID": 6200,
-          "colorID": 0,
-          "sizeIndex": 1,
-          "comments": "",
-          "name": "Hand Rims",
-          "optionName": "Hard Anodized 6 tab"
-        },
-        {
-          "partID": 7000,
-          "optionID": 7300,
+          "partID": 13000,
+          "optionID": 13100,
           "colorID": 0,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Tires",
-          "optionName": "High Pressure Tires"
+          "colorIn": true
         },
         {
-          "partID": 8000,
-          "optionID": 8700,
-          "colorID": 8702,
-          "sizeIndex": -1,
-          "comments": "",
-          "name": "Quick Release Axles",
-          "optionName": "None"
-        },
-        {
-          "partID": 9000,
-          "optionID": 9100,
+          "partID": 14000,
+          "optionID": 14998,
           "colorID": 0,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Casters",
-          "optionName": "3\" (72mm) Micro"
+          "colorIn": true
         },
         {
           "partID": 10000,
@@ -257,8 +287,7 @@
           "colorID": 0,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Miscellaneous",
-          "optionName": "None"
+          "colorIn": true
         }
       ],
       "measures": [
@@ -269,72 +298,77 @@
         },
         {
           "measureID": 15002,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "5",
           "comments": ""
         },
         {
           "measureID": 15003,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "0",
           "comments": ""
         },
         {
           "measureID": 15004,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "0",
           "comments": ""
         },
         {
           "measureID": 15005,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "3",
           "comments": ""
         },
         {
           "measureID": 15006,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "7",
           "comments": ""
         },
         {
           "measureID": 15007,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "6",
           "comments": ""
         },
         {
           "measureID": 15008,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "2",
           "comments": ""
         },
         {
           "measureID": 15009,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "1",
           "comments": ""
         },
         {
           "measureID": 15010,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "4",
           "comments": ""
         },
         {
           "measureID": 15011,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "2",
           "comments": ""
         },
         {
           "measureID": 15012,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "1",
           "comments": ""
         },
         {
           "measureID": 15013,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "2",
           "comments": ""
         },
         {
           "measureID": 15014,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "1",
           "comments": ""
         },
         {
           "measureID": 15015,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "3",
+          "comments": ""
+        },
+        {
+          "measureID": 15016,
+          "measureOptionIndex": "0",
           "comments": ""
         }
       ],
@@ -342,40 +376,74 @@
     }
   },
   {
-    "_id": "VJ1nyx61Z",
-    "_rev": "3-e419bca30e22ceb4484248fe71871aa7",
-    "createdAt": "2016-04-17T21:30:53.690Z",
-    "updatedAt": "2016-04-17T21:30:53.690Z",
+    "createdAt": "2016-05-12T21:20:52.026Z",
+    "updatedAt": "2016-05-12T21:20:52.026Z",
     "wheelchair": {
-      "frameID": 4,
+      "frameID": 21,
       "title": "My Custom Wheelchair",
       "parts": [
         {
           "partID": 1000,
-          "optionID": 2200,
-          "colorID": 1111,
+          "optionID": 2100,
+          "colorID": 1115,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Spoke Color",
-          "optionName": "PBO Spokes (3mm)"
+          "colorIn": false
         },
         {
           "partID": 3000,
-          "optionID": 3100,
-          "colorID": 3211,
+          "optionID": 3150,
+          "colorID": 1113,
           "sizeIndex": -1,
+          "colorIn": false
+        },
+        {
+          "partID": 11000,
+          "optionID": 11200,
+          "colorID": 1113,
+          "sizeIndex": 1,
           "comments": "",
-          "name": "Back Spoke Color",
-          "optionName": "Same as Main Spoke Color"
+          "colorIn": true
         },
         {
           "partID": 4000,
-          "optionID": 4400,
-          "colorID": 1111,
+          "optionID": 4300,
+          "colorID": 1115,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Hub Color",
-          "optionName": "Standard Black"
+          "colorIn": true
+        },
+        {
+          "partID": 12000,
+          "optionID": 12200,
+          "colorID": 0,
+          "sizeIndex": -1,
+          "comments": "",
+          "colorIn": true
+        },
+        {
+          "partID": 6000,
+          "optionID": 6300,
+          "colorID": 6304,
+          "sizeIndex": 1,
+          "comments": "",
+          "colorIn": false
+        },
+        {
+          "partID": 7000,
+          "optionID": 7100,
+          "colorID": 0,
+          "sizeIndex": 1,
+          "comments": "",
+          "colorIn": true
+        },
+        {
+          "partID": 8000,
+          "optionID": 8100,
+          "colorID": 0,
+          "sizeIndex": 0,
+          "comments": "",
+          "colorIn": true
         },
         {
           "partID": 5000,
@@ -383,44 +451,23 @@
           "colorID": 0,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Rim Color",
-          "optionName": "Standard Black"
+          "colorIn": true
         },
         {
-          "partID": 6000,
-          "optionID": 6200,
-          "colorID": 0,
-          "sizeIndex": 1,
-          "comments": "",
-          "name": "Hand Rims",
-          "optionName": "Hard Anodized 6 tab"
-        },
-        {
-          "partID": 7000,
-          "optionID": 7300,
+          "partID": 13000,
+          "optionID": 13100,
           "colorID": 0,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Tires",
-          "optionName": "High Pressure Tires"
+          "colorIn": true
         },
         {
-          "partID": 8000,
-          "optionID": 8700,
-          "colorID": 8702,
-          "sizeIndex": -1,
-          "comments": "",
-          "name": "Quick Release Axles",
-          "optionName": "None"
-        },
-        {
-          "partID": 9000,
-          "optionID": 9100,
+          "partID": 14000,
+          "optionID": 14998,
           "colorID": 0,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Casters",
-          "optionName": "3\" (72mm) Micro"
+          "colorIn": true
         },
         {
           "partID": 10000,
@@ -428,8 +475,7 @@
           "colorID": 0,
           "sizeIndex": -1,
           "comments": "",
-          "name": "Miscellaneous",
-          "optionName": "None"
+          "colorIn": true
         }
       ],
       "measures": [
@@ -440,243 +486,77 @@
         },
         {
           "measureID": 15002,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "5",
           "comments": ""
         },
         {
           "measureID": 15003,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "0",
           "comments": ""
         },
         {
           "measureID": 15004,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "0",
           "comments": ""
         },
         {
           "measureID": 15005,
-          "measureOptionIndex": -1,
-          "comments": ""
-        },
-        {
-          "measureID": 15006,
-          "measureOptionIndex": -1,
-          "comments": ""
-        },
-        {
-          "measureID": 15007,
-          "measureOptionIndex": -1,
-          "comments": ""
-        },
-        {
-          "measureID": 15008,
-          "measureOptionIndex": -1,
-          "comments": ""
-        },
-        {
-          "measureID": 15009,
-          "measureOptionIndex": -1,
-          "comments": ""
-        },
-        {
-          "measureID": 15010,
-          "measureOptionIndex": -1,
-          "comments": ""
-        },
-        {
-          "measureID": 15011,
-          "measureOptionIndex": -1,
-          "comments": ""
-        },
-        {
-          "measureID": 15012,
-          "measureOptionIndex": -1,
-          "comments": ""
-        },
-        {
-          "measureID": 15013,
-          "measureOptionIndex": -1,
-          "comments": ""
-        },
-        {
-          "measureID": 15014,
-          "measureOptionIndex": -1,
-          "comments": ""
-        },
-        {
-          "measureID": 15015,
-          "measureOptionIndex": -1,
-          "comments": ""
-        }
-      ],
-      "inCurOrder": false
-    }
-  },
-  {
-    "_id": "VJ1nyx61Z",
-    "_rev": "3-e419bca30e22ceb4484248fe71871aa7",
-    "createdAt": "2016-04-17T21:30:53.690Z",
-    "updatedAt": "2016-04-17T21:30:53.690Z",
-    "wheelchair": {
-      "frameID": 4,
-      "title": "My Custom Wheelchair",
-      "parts": [
-        {
-          "partID": 1000,
-          "optionID": 2200,
-          "colorID": 1111,
-          "sizeIndex": -1,
-          "comments": "",
-          "name": "Spoke Color",
-          "optionName": "PBO Spokes (3mm)"
-        },
-        {
-          "partID": 3000,
-          "optionID": 3100,
-          "colorID": 3211,
-          "sizeIndex": -1,
-          "comments": "",
-          "name": "Back Spoke Color",
-          "optionName": "Same as Main Spoke Color"
-        },
-        {
-          "partID": 4000,
-          "optionID": 4400,
-          "colorID": 1111,
-          "sizeIndex": -1,
-          "comments": "",
-          "name": "Hub Color",
-          "optionName": "Standard Black"
-        },
-        {
-          "partID": 5000,
-          "optionID": 5100,
-          "colorID": 0,
-          "sizeIndex": -1,
-          "comments": "",
-          "name": "Rim Color",
-          "optionName": "Standard Black"
-        },
-        {
-          "partID": 6000,
-          "optionID": 6200,
-          "colorID": 0,
-          "sizeIndex": 1,
-          "comments": "",
-          "name": "Hand Rims",
-          "optionName": "Hard Anodized 6 tab"
-        },
-        {
-          "partID": 7000,
-          "optionID": 7300,
-          "colorID": 0,
-          "sizeIndex": -1,
-          "comments": "",
-          "name": "Tires",
-          "optionName": "High Pressure Tires"
-        },
-        {
-          "partID": 8000,
-          "optionID": 8700,
-          "colorID": 8702,
-          "sizeIndex": -1,
-          "comments": "",
-          "name": "Quick Release Axles",
-          "optionName": "None"
-        },
-        {
-          "partID": 9000,
-          "optionID": 9100,
-          "colorID": 0,
-          "sizeIndex": -1,
-          "comments": "",
-          "name": "Casters",
-          "optionName": "3\" (72mm) Micro"
-        },
-        {
-          "partID": 10000,
-          "optionID": 10998,
-          "colorID": 0,
-          "sizeIndex": -1,
-          "comments": "",
-          "name": "Miscellaneous",
-          "optionName": "None"
-        }
-      ],
-      "measures": [
-        {
-          "measureID": 15001,
           "measureOptionIndex": "3",
           "comments": ""
         },
         {
-          "measureID": 15002,
-          "measureOptionIndex": -1,
-          "comments": ""
-        },
-        {
-          "measureID": 15003,
-          "measureOptionIndex": -1,
-          "comments": ""
-        },
-        {
-          "measureID": 15004,
-          "measureOptionIndex": -1,
-          "comments": ""
-        },
-        {
-          "measureID": 15005,
-          "measureOptionIndex": -1,
-          "comments": ""
-        },
-        {
           "measureID": 15006,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "7",
           "comments": ""
         },
         {
           "measureID": 15007,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "6",
           "comments": ""
         },
         {
           "measureID": 15008,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "2",
           "comments": ""
         },
         {
           "measureID": 15009,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "1",
           "comments": ""
         },
         {
           "measureID": 15010,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "4",
           "comments": ""
         },
         {
           "measureID": 15011,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "2",
           "comments": ""
         },
         {
           "measureID": 15012,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "1",
           "comments": ""
         },
         {
           "measureID": 15013,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "2",
           "comments": ""
         },
         {
           "measureID": 15014,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "1",
           "comments": ""
         },
         {
           "measureID": 15015,
-          "measureOptionIndex": -1,
+          "measureOptionIndex": "3",
+          "comments": ""
+        },
+        {
+          "measureID": 15016,
+          "measureOptionIndex": "0",
           "comments": ""
         }
       ],
