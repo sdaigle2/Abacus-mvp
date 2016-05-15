@@ -1726,13 +1726,28 @@ body {
 }
 
 .unit-toggle{
-    float: right;
+  float: right;
   clear: right;
 }
 #unitLabel {
   display: inline-block;
   position: relative;
   bottom: 9px;
+}
+
+#shareIcon {
+  /*display: inline;*/
+  position: fixed;
+  bottom: 40px;
+  left: 50px; 
+  height: 30px;
+  font-size: 1em;
+  color: #4F9DFF;
+  z-index: 9999;  
+}
+
+#shareIcon:hover {
+  cursor: pointer;  
 }
 
 #siteCredit {
