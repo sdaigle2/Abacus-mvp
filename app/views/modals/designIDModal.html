@@ -1,13 +1,23 @@
 <link href="../../styles/modals/designidmodal.css" rel="stylesheet" ng-controller="DesignIDModalCtrl"/>
 <div class="designidmodal-page-body">
-	<h4 style="display: inline-block; width: 100%;">Access via the link</h4>
-  <a style="display: inline-block; width: 100%;"  href="http://per4max.fit/#!/tinker/{{modalDesign._id}}" target="_blank">
-    www.per4max.fit/#!/tinker/{{modalDesign._id}}</a>
+    <h1>SHARE YOUR DESIGN</h1>    
+    <div class="section1">
+        <h4>Share the link</h4>
+        <div class="targetText">
+            <a id="designIDlink" href="http://per4max.fit/#!/tinker/{{modalDesign._id}}" target="_blank">www.per4max.fit/#!/tinker/{{modalDesign._id}}</a>
+        </div>
+        <button class="btn" id="thisButton" ngclipboard style="display: inline-block;" data-clipboard-target="#designIDlink" ngclipboard-success="onCopySuccess(e);" ngclipboard-error="onCopyFailure(e);">{{copied ? 'Copied!' : 'Copy Link to Clipboard'}}</button>
+    </div>
 
-
-  <h4> Or share your design ID</h4>
-	<h3 style="display: inline-block; width: 100%;" id="designID">{{modalDesign._id}}</h3>
-  <p ng-init="showExplanation = false;" ng-show="!showExplanation" ng-click="showExplanation = true;" class="explaination-button">What is a Design ID?</p>
-  <p ng-show="showExplanation" class="explaination-text">Every design saved in this website has a unique Design ID. If you would like to share your design with someone else, simply give them your Design ID</p>
-	<button class="btn" ngclipboard style="display: inline-block;" data-clipboard-target="#designID" ngclipboard-success="onCopySuccess(e);" ngclipboard-error="onCopyFailure(e);">{{copied ? 'Copied!' : 'Copy Design ID to Clipboard'}}</button>
+  <div class="section2">
+      <h4>Or Share your DesignID</h4>
+      <div class="targetText">
+        <a id="designID">{{modalDesign._id}}</a>
+      </div>
+      
+      <button class="btn" id="thisButton" ngclipboard style="display: inline-block;" data-clipboard-target="#designID" ngclipboard-success="onCopySuccess(e);" ngclipboard-error="onCopyFailure(e);">{{copied ? 'Copied!' : 'Copy Design ID to Clipboard'}}</button>
+      <p ng-init="showExplanation = false;" ng-show="!showExplanation" ng-click="showExplanation = true;" class="explaination-button">How does design sharing work?</p>
+      <p ng-show="showExplanation" class="explaination-text">Every design saved in this website has a unique Design ID. Anyone who has that Design ID can type it into the search bar by clicking the magnifying glass icon in the navbar.</p>
+      <p ng-show="showExplanation" class="explaination-text">Other users will be able to see your design, but they won't be able to save any changes to it.  Your design is your design.</p>
+  </div>
 </div>

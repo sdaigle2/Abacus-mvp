@@ -4,8 +4,8 @@
 'use strict';
 
 angular.module('abacuApp')
-  .controller('CompareCtrl',['$scope', 'Design', 'TEMP_CHAIR', '_', 'FrameData', 'User', 'MAX_COMPARISON_CHAIRS', 'ComparedDesigns', '$location',
-  	function ($scope, Design, TEMP_CHAIR, _, FrameData, User, MAX_COMPARISON_CHAIRS, ComparedDesigns, $location) {
+  .controller('CompareCtrl',['$scope', 'Design', '_', 'FrameData', 'User', 'MAX_COMPARISON_CHAIRS', 'ComparedDesigns', '$location',
+  	function ($scope, Design, _, FrameData, User, MAX_COMPARISON_CHAIRS, ComparedDesigns, $location) {
       //define the maximum number of chair allowed in comparison page
       $scope.MAX_COMPARISON_CHAIRS = MAX_COMPARISON_CHAIRS;
 

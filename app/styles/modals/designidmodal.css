@@ -1,6 +1,38 @@
 .designidmodal-page-body {
-	text-align: center;
+	/*text-align: center;*/
 	border-radius: 0px;
+}
+
+.section1 {
+    border-bottom: thin dotted #000000;
+}
+
+.section2 {
+    
+}
+
+.targetText {
+    display: inline-block;
+    width: 100%;
+    border: thin solid #000000; 
+    background-color: #e6e6e6;
+    border-radius: 2px;
+    padding: 2px;
+}
+
+#designIDlink {
+    
+}
+
+#designID {
+
+}
+
+#thisButton {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #4F9DFF;
+    color: #FFFFFF;
 }
 
 .explaination-button {
@@ -16,5 +48,5 @@ a{
   outline:none!important;
 }
 .explaination-text {
-
+    
 }

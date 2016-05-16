@@ -274,12 +274,6 @@
                     <strong>$<span data-ng-bind="option.price.toFixed(2)"></span> <!--| <span
                       data-ng-bind="(option.weight * getCurUnitSysWeightFactor()).toFixed(2)"></span>
                       <span data-ng-bind="getCurUnitSysWeightName()"></span>--></strong>
-
-                    <div class="sideBar-custom-item-choose-size text-center"
-                         data-ng-if="option.sizes.length>0"
-                         data-ng-click="setPanel(option.optionID);">
-                         Sizes
-                    </div>
                   </h4>
 
                   <div class="sideBar-custom-item-buttonRow">
@@ -487,10 +481,13 @@
         -->
       </div>
 
-      <!--Unit Toggle-->
-
-      <div id="siteCredit"
-           data-ng-if="getCurPageType() !== pageType.MEASURE">
+      <!--Unit Toggle--> 
+      <span id="shareIcon" data-ng-if="getCurPageType() !== pageType.MEASURE" data-ng-click="shareDesignID()">
+          <img style="height:20px; display: inline;" data-ng-src="images/abacus_page/share-icon.svg"/>
+          <p style="display: inline;">share</p>
+      </span>    
+        
+      <div id="siteCredit" data-ng-if="getCurPageType() !== pageType.MEASURE">
           <!--<a ng-href="#/about"><img ng-src="images/tinker_logo_small.png"></a>-->
           <a href="http://www.intelliwheels.net/tinker" target="_blank"><img ng-src="images/Powered-by-Tinker-Logo-Gray.png" alt="Powered by Tinker">
           </a>

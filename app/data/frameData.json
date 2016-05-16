@@ -5,7 +5,7 @@
     "desc": "The PER4MAX Thunder is an elite performance sports wheelchair built by the best for the best!  Offered in different configurations depending on sport, the Thunder has propelled elite athletes for decades in an array of sports! Crush the courts in our feather light tennis model with it’s eliminated front bumper and extended 5th wheel!  Ball with the best of them in a sturdy custom fit tapered lightweight basketball chair. Take on the softball field, rugby courts, lacrosse field, or running trail with The PER4MAX Thunder!!  The Thunder is hand built in the USA with aircraft quality aluminum and custom P4X machined parts highly scrutinized to produce a precise end product!",
     "basePrice": 2849,
     "shippingInfo": {
-    	"cost": 47.98,
+    	"cost": 140,
     	"weight": 0
 	},
     "baseWeight": 6,
@@ -2455,10 +2455,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/rear_seat_height.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/rear_seat_height.gif",
-        "measureOptions": [["35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "53.3", "Other"],["14", "15", "16", "17", "18", "19", "20", "21", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "44.5", "45.7", "47", "48.3", "49.5", "50.8", "52.1", "53.3", "Other"],["14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "18.5", "19", "19.5", "20", "20.5", "21", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Front Seat Height",
@@ -2472,10 +2472,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/front_seat_height.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/front_seat_height.gif",
-        "measureOptions": [["35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "53.3", "Other"],["14", "15", "16", "17", "18", "19", "20", "21", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "44.5", "45.7", "47", "48.3", "49.5", "50.8", "52.1", "53.3", "Other"],["14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "18.5", "19", "19.5", "20", "20.5", "21", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Backrest Height",
@@ -2516,8 +2516,8 @@
       {
         "name": "Foot Width",
         "measureID": 15009,
-        "desc": "The width of the flat portion of the foot rest.",
-        "details": "Foot rest width is generally a personal preference.  Some people like the comfort of a wide foot rest, where others prefer the compactness and maneuverability of narrow foot rest.  Make certain that your foot rest is at least as wide as your feet when wearing a pair of shoes.",
+        "desc": "The width of the foot rest.",
+        "details": "Foot rest width is generally a personal preference.  Some people like the comfort of a wide foot rest, where others prefer the compactness and maneuverability of narrow foot rest.  Make certain that your foot rest is at least as wide as your feet when wearing a pair of shoes.  If you are a double amputee, you might choose \"Exclude\" and we'll leave the foot rest off of your chair.",
         "tip": "The foot rest should be at least as wide as your feet when wearing a pair of shoes.",
         "gifDesc": "As the foot rest width increases, the size of the wheelchair increases.",
         "units": ["cm","in"],
@@ -2526,10 +2526,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/foot_width.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/foot_width.gif",
-        "measureOptions": [["17.8", "20.3", "22.9", "25.4", "Other"],["7", "8", "9", "10", "Other"]],
-        "weights": [0, 0, 0, 0, 0],
+        "measureOptions": [["17.8", "19.1", "20.3",  "21.6", "22.9", "24.1", "25.4", "Exclude Foot Rest", "Other"],["7", "7.5", "8", "8.5", "9", "9.5", "10", "Exclude Foot Rest", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Lower Leg Length",
@@ -2664,7 +2664,7 @@
     "desc": "The PER4MAX Thunder is an elite performance sports wheelchair built by the best for the best!  Offered in different configurations depending on sport, the Thunder has propelled elite athletes for decades in an array of sports! Crush the courts in our feather light tennis model with it’s eliminated front bumper and extended 5th wheel!  Ball with the best of them in a sturdy custom fit tapered lightweight basketball chair. Take on the softball field, rugby courts, lacrosse field, or running trail with The PER4MAX Thunder!!  The Thunder is hand built in the USA with aircraft quality aluminum and custom P4X machined parts highly scrutinized to produce a precise end product!",
     "basePrice": 2849,
     "shippingInfo": {
-    	"cost": 47.98,
+    	"cost": 140,
     	"weight": 0
 	},
     "baseWeight": 6,
@@ -5114,10 +5114,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/rear_seat_height.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/rear_seat_height.gif",
-        "measureOptions": [["35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "53.3", "Other"],["14", "15", "16", "17", "18", "19", "20", "21", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "44.5", "45.7", "47", "48.3", "49.5", "50.8", "52.1", "53.3", "Other"],["14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "18.5", "19", "19.5", "20", "20.5", "21", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Front Seat Height",
@@ -5131,10 +5131,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/front_seat_height.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/front_seat_height.gif",
-        "measureOptions": [["35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "53.3", "Other"],["14", "15", "16", "17", "18", "19", "20", "21", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "44.5", "45.7", "47", "48.3", "49.5", "50.8", "52.1", "53.3", "Other"],["14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "18.5", "19", "19.5", "20", "20.5", "21", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Backrest Height",
@@ -5175,8 +5175,8 @@
       {
         "name": "Foot Width",
         "measureID": 15009,
-        "desc": "The width of the flat portion of the foot rest.",
-        "details": "Foot rest width is generally a personal preference.  Some people like the comfort of a wide foot rest, where others prefer the compactness and maneuverability of narrow foot rest.  Make certain that your foot rest is at least as wide as your feet when wearing a pair of shoes.",
+        "desc": "The width of the foot rest.",
+        "details": "Foot rest width is generally a personal preference.  Some people like the comfort of a wide foot rest, where others prefer the compactness and maneuverability of narrow foot rest.  Make certain that your foot rest is at least as wide as your feet when wearing a pair of shoes.  If you are a double amputee, you might choose \"Exclude\" and we'll leave the foot rest off of your chair.",
         "tip": "The foot rest should be at least as wide as your feet when wearing a pair of shoes.",
         "gifDesc": "As the foot rest width increases, the size of the wheelchair increases.",
         "units": ["cm","in"],
@@ -5185,10 +5185,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/foot_width.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/foot_width.gif",
-        "measureOptions": [["17.8", "20.3", "22.9", "25.4", "Other"],["7", "8", "9", "10", "Other"]],
-        "weights": [0, 0, 0, 0, 0],
+        "measureOptions": [["17.8", "19.1", "20.3",  "21.6", "22.9", "24.1", "25.4", "Exclude Foot Rest", "Other"],["7", "7.5", "8", "8.5", "9", "9.5", "10", "Exclude Foot Rest", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Lower Leg Length",
@@ -5323,7 +5323,7 @@
     "desc": "The Thunder Adjustable is the most versatile performance sports chair on the market today! It is made of optional 6061 T6 or optional 7000 series aluminum.  With the front seat height fixed, the rear seat height is easily adjusted in seconds utilizing P4X custom machined parts and clamps used on bicycle seats.  Simply slide the seat to the desired height and lock into that position!  Backrest angle and option height adjust post allow you to adjust this chair to vertually any user.  Also comes with center of gravity adjustment and lower leg length adjustability to find the perfect fit!  Great for new wheelchair athletes and programs searching for chairs that fit everybody.  Also great for the universal athlete looking for a great all around chair that can be adjusted to your sport of choice.  Contact your local Representative or us for more information on the Thunder Adjustable Sport Wheelchair!",
     "basePrice": 3149,
     "shippingInfo": {
-    	"cost": 47.98,
+    	"cost": 140,
     	"weight": 0
 	},
     "baseWeight": 6,
@@ -7326,10 +7326,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/rear_seat_height.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/rear_seat_height.gif",
-        "measureOptions": [["35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "53.3", "Other"],["14", "15", "16", "17", "18", "19", "20", "21", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "44.5", "45.7", "47", "48.3", "49.5", "50.8", "52.1", "53.3", "Other"],["14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "18.5", "19", "19.5", "20", "20.5", "21", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Front Seat Height",
@@ -7343,10 +7343,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/front_seat_height.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/front_seat_height.gif",
-        "measureOptions": [["35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "53.3", "Other"],["14", "15", "16", "17", "18", "19", "20", "21", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "44.5", "45.7", "47", "48.3", "49.5", "50.8", "52.1", "53.3", "Other"],["14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "18.5", "19", "19.5", "20", "20.5", "21", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Backrest Height",
@@ -7387,8 +7387,8 @@
       {
         "name": "Foot Width",
         "measureID": 15009,
-        "desc": "The width of the flat portion of the foot rest.",
-        "details": "Foot rest width is generally a personal preference.  Some people like the comfort of a wide foot rest, where others prefer the compactness and maneuverability of narrow foot rest.  Make certain that your foot rest is at least as wide as your feet when wearing a pair of shoes.",
+        "desc": "The width of the foot rest.",
+        "details": "Foot rest width is generally a personal preference.  Some people like the comfort of a wide foot rest, where others prefer the compactness and maneuverability of narrow foot rest.  Make certain that your foot rest is at least as wide as your feet when wearing a pair of shoes.  If you are a double amputee, you might choose \"Exclude\" and we'll leave the foot rest off of your chair.",
         "tip": "The foot rest should be at least as wide as your feet when wearing a pair of shoes.",
         "gifDesc": "As the foot rest width increases, the size of the wheelchair increases.",
         "units": ["cm","in"],
@@ -7397,10 +7397,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/foot_width.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/foot_width.gif",
-        "measureOptions": [["17.8", "20.3", "22.9", "25.4", "Other"],["7", "8", "9", "10", "Other"]],
-        "weights": [0, 0, 0, 0, 0],
+        "measureOptions": [["17.8", "19.1", "20.3",  "21.6", "22.9", "24.1", "25.4", "Exclude Foot Rest", "Other"],["7", "7.5", "8", "8.5", "9", "9.5", "10", "Exclude Foot Rest", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Lower Leg Length",
@@ -7535,7 +7535,7 @@
     "desc": "The Thunder Adjustable is the most versatile performance sports chair on the market today! It is made of optional 6061 T6 or optional 7000 series aluminum.  With the front seat height fixed, the rear seat height is easily adjusted in seconds utilizing P4X custom machined parts and clamps used on bicycle seats.  Simply slide the seat to the desired height and lock into that position!  Backrest angle and option height adjust post allow you to adjust this chair to vertually any user.  Also comes with center of gravity adjustment and lower leg length adjustability to find the perfect fit!  Great for new wheelchair athletes and programs searching for chairs that fit everybody.  Also great for the universal athlete looking for a great all around chair that can be adjusted to your sport of choice.  Contact your local Representative or us for more information on the Thunder Adjustable Sport Wheelchair!",
     "basePrice": 3149,
     "shippingInfo": {
-    	"cost": 47.98,
+    	"cost": 140,
     	"weight": 0
 	},
     "baseWeight": 6,
@@ -9538,10 +9538,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/rear_seat_height.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/rear_seat_height.gif",
-        "measureOptions": [["35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "53.3", "Other"],["14", "15", "16", "17", "18", "19", "20", "21", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "44.5", "45.7", "47", "48.3", "49.5", "50.8", "52.1", "53.3", "Other"],["14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "18.5", "19", "19.5", "20", "20.5", "21", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Front Seat Height",
@@ -9555,10 +9555,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/front_seat_height.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/front_seat_height.gif",
-        "measureOptions": [["35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "53.3", "Other"],["14", "15", "16", "17", "18", "19", "20", "21", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["35.6", "36.8", "38.1", "39.4", "40.6", "41.9", "43.2", "44.5", "45.7", "47", "48.3", "49.5", "50.8", "52.1", "53.3", "Other"],["14", "14.5", "15", "15.5", "16", "16.5", "17", "17.5", "18", "18.5", "19", "19.5", "20", "20.5", "21", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Backrest Height",
@@ -9599,8 +9599,8 @@
       {
         "name": "Foot Width",
         "measureID": 15009,
-        "desc": "The width of the flat portion of the foot rest.",
-        "details": "Foot rest width is generally a personal preference.  Some people like the comfort of a wide foot rest, where others prefer the compactness and maneuverability of narrow foot rest.  Make certain that your foot rest is at least as wide as your feet when wearing a pair of shoes.",
+        "desc": "The width of the foot rest.",
+        "details": "Foot rest width is generally a personal preference.  Some people like the comfort of a wide foot rest, where others prefer the compactness and maneuverability of narrow foot rest.  Make certain that your foot rest is at least as wide as your feet when wearing a pair of shoes.  If you are a double amputee, you might choose \"Exclude\" and we'll leave the foot rest off of your chair.",
         "tip": "The foot rest should be at least as wide as your feet when wearing a pair of shoes.",
         "gifDesc": "As the foot rest width increases, the size of the wheelchair increases.",
         "units": ["cm","in"],
@@ -9609,10 +9609,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/foot_width.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/foot_width.gif",
-        "measureOptions": [["17.8", "20.3", "22.9", "25.4", "Other"],["7", "8", "9", "10", "Other"]],
-        "weights": [0, 0, 0, 0, 0],
+        "measureOptions": [["17.8", "19.1", "20.3",  "21.6", "22.9", "24.1", "25.4", "Exclude Foot Rest", "Other"],["7", "7.5", "8", "8.5", "9", "9.5", "10", "Exclude Foot Rest", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Lower Leg Length",
@@ -9747,7 +9747,7 @@
     "desc": "PRICE INCLUDES A SET OF TWO WHEELS.  Spinergy built its reputation as a market leader with the SPOX Everyday wheelchair wheel. They have been our best seller for 15 years and are built to last. Wheels are the most rewarding upgrade you can make on a wheelchair and the SPOX Everyday wheels are our entry wheel with a budget in mind.",
     "basePrice": 695,
     "shippingInfo": {
-    	"cost": 18.45,
+    	"cost": 38.45,
     	"weight": 0
 	},
 	"baseWeight": 6,

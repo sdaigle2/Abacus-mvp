@@ -971,22 +971,6 @@
   height: 25px;
 }
 
-.sideBar-custom-item-right .sideBar-custom-item-choose-size {
-  border: 1px solid #A7A9Ac;
-  display: inline-block;
-  width: 43%;
-  border-radius: 2px;
-  margin-right: 8px;
-  float: right;
-  font-weight: 10;
-  text-decoration-color: #A7A9AC;
-  /*font-size: 13px;*/
-}
-
-.sideBar-custom-item-choose-size:hover {
-  cursor: pointer;
-}
-
 .sideBar-custom-item-right-selected .sideBar-custom-item-buttonRow {
   height: 25px;
   padding: 0px 8px;
@@ -1743,13 +1727,28 @@ body {
 }
 
 .unit-toggle{
-    float: right;
+  float: right;
   clear: right;
 }
 #unitLabel {
   display: inline-block;
   position: relative;
   bottom: 9px;
+}
+
+#shareIcon {
+  /*display: inline;*/
+  position: fixed;
+  bottom: 40px;
+  left: 50px; 
+  height: 30px;
+  font-size: 1em;
+  color: #4F9DFF;
+  z-index: 9999;  
+}
+
+#shareIcon:hover {
+  cursor: pointer;  
 }
 
 #siteCredit {
