@@ -690,6 +690,7 @@
 .main-measure .measure-body .measure-content .measure-content-title {
   height: 20px;
   width: 100%;
+  font-size: 1.9em;
 }
 
 .main-measure .measure-body .measure-content iframe {

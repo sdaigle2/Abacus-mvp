@@ -121,7 +121,7 @@ describe('Test CRUD Ops', () => { // no delete functionality right now
 
 });
 
-describe.only('Tests Wheelchair pdf generation', function () {
+describe('Tests Wheelchair pdf generation', function () {
   var user = null;
   var agent = null;
   var sampleDesign = _.first(require('../../../test_assets/json_samples/chairs.json'));
