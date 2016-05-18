@@ -10,8 +10,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('SettingsCtrl', ['$scope', '$location', '$http', 'User', 'Units', 'Drop', 'FrameData','WHEELCHAIR_CANVAS_WIDTH', 'UserData', '_',
-    function ($scope, $location, $http, User, Units, Drop, FrameData, WHEELCHAIR_CANVAS_WIDTH, UserData, _) {
+  .controller('SettingsCtrl', ['$scope', '$location', '$http', 'User', 'Units', 'Drop', 'FrameData','WHEELCHAIR_CANVAS_WIDTH', 'UserData', '_', 'Errors', 'PromiseUtils','ngDialog','$q',
+    function ($scope, $location, $http, User, Units, Drop, FrameData, WHEELCHAIR_CANVAS_WIDTH, UserData, _, Errors, PromiseUtils, ngDialog,$q) {
       Drop.setFalse();
       //Kick user off page if not logged in
       if (User.isLoggedIn() === false) {
@@ -167,7 +167,7 @@ angular.module('abacuApp')
       $scope.getChairFrame = function (chair) {
         var frameID = chair.frameID;
         return FrameData.getFrame(frameID);
-      }
+      };
 
       $scope.openOrderDetails = function (index) {
         //TODO: Display order details from the User service
@@ -246,6 +246,37 @@ angular.module('abacuApp')
         //
         ////Remove wheelchair from My Designs
         User.deleteWheelchair(index);
+      };
+
+      // // Creates a design from the current wheelchair configuration and saves it in the DB (must be logged in)
+      // //
+      // function generateDesignIDForCurrentChair(index) {
+      //   var design = User.getOneSavedDesign(index);
+      //
+      //   if (_.isNull(design)) {
+      //     design = new Design({
+      //       'creator': User.getID(),
+      //       'wheelchair': User.getOneSavedDesign(index).wheelchair
+      //     });
+      //   }
+      //
+      //   design.wheelchair = User.getOneSavedDesign(index).wheelchair;
+      //
+      //   // If the design doesn't have an ID, generate one by saving it to the backend
+      //   var designPromise = design.hasID() ? User.updateDesign(design) : User.saveDesign(design);
+      //
+      //   return designPromise;
+      // }
+
+      // share design function in tinker page
+      $scope.shareDesignID = function (index) {
+
+            $scope.modalDesign = User.getOneSavedDesign(index);
+            return ngDialog.open({
+              'template': 'views/modals/designIDModal.html',
+              'scope': $scope
+            })
+
       };
 
 

@@ -153,6 +153,55 @@ angular.module('abacuApp')
         return User.deleteWheelchair(index);
       };
 
+      //share function
+
+      // Creates a design from the current wheelchair configuration and saves it in the DB (must be logged in)
+      //
+      function generateDesignIDForCurrentChair(index) {
+        var design = User.getWheelchair(index);
+        
+        if (_.isNull(design)) {
+          design = new Design({
+            'creator': User.getID(),
+            'wheelchair': User.getWheelchair(index).wheelchair
+          });
+        }
+
+        design.wheelchair = User.getWheelchair(index).wheelchair;
+
+        // If the design doesn't have an ID, generate one by saving it to the backend
+        var designPromise = design.hasID() ? User.updateDesign(design) : User.saveDesign(design);
+
+        return designPromise;
+      }
+
+      // share design function in tinker page
+      $scope.shareDesignID = function (index) {
+        generateDesignIDForCurrentChair(index)
+          .then(function (design) {
+            $scope.modalDesign = design;
+            User.createCurrentDesign(design);
+            return ngDialog.open({
+              'template': 'views/modals/designIDModal.html',
+              'scope': $scope
+            })
+              .closePromise;
+          })
+          .then(function () {
+            $scope.modalDesign = null;
+            $scope.designIsSaved = true;
+          })
+          .catch(function (err) {
+            if (err instanceof Errors.NotLoggedInError) {
+              ngDialog.open({
+                'template': 'views/modals/loginPromptModal.html'
+              }).closePromise
+                .then(function(){
+                  return Drop.setTrue();
+                });
+            }
+          });
+      };
       /*********************CHECK OUT***********************************/
       $scope.showLoginModal = function () {
         if (User.isLoggedIn()) {

@@ -480,8 +480,8 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
 
     getWheelchair: function (index) {
-      if (index >= 0 && index < cartWheelchairs.length)
-        return cartWheelchairs[index];
+      if (index >= 0 && index < cart.wheelchairs.length)
+        return cart.wheelchairs[index];
       return null;
     },
 
@@ -490,7 +490,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       return savedDesigns;
     },
 
-    getSavedDesign: function (index) {
+    getOneSavedDesign: function (index) {
       if (index >= 0 && index < savedDesigns.length) {
         return savedDesigns[index];
       } else {
