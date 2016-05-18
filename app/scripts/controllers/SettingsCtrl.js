@@ -248,25 +248,7 @@ angular.module('abacuApp')
         User.deleteWheelchair(index);
       };
 
-      // // Creates a design from the current wheelchair configuration and saves it in the DB (must be logged in)
-      // //
-      // function generateDesignIDForCurrentChair(index) {
-      //   var design = User.getOneSavedDesign(index);
-      //
-      //   if (_.isNull(design)) {
-      //     design = new Design({
-      //       'creator': User.getID(),
-      //       'wheelchair': User.getOneSavedDesign(index).wheelchair
-      //     });
-      //   }
-      //
-      //   design.wheelchair = User.getOneSavedDesign(index).wheelchair;
-      //
-      //   // If the design doesn't have an ID, generate one by saving it to the backend
-      //   var designPromise = design.hasID() ? User.updateDesign(design) : User.saveDesign(design);
-      //
-      //   return designPromise;
-      // }
+     
 
       // share design function in tinker page
       $scope.shareDesignID = function (index) {
