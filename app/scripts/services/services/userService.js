@@ -570,12 +570,12 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     },
 
     //Sends the curEditOrder to the distributor
-    sendCurEditOrder: function (userData, shippingData, billingData, payMethod, token, card) {
+    sendCurEditOrder: function (userData, shippingData, billingData, payMethod, token) {
       var editOrder = this.getCurEditOrder();
       if (editOrder === null) {
         return PromiseUtils.rejected(new Error('CurEditOrder does not exist'));
       } else {
-        return editOrder.send(userID, userData, shippingData, billingData, payMethod, token, card)
+        return editOrder.send(userID, userData, shippingData, billingData, payMethod, token)
           .then(function (response) {
             restoreUserFromBackend(response.user);
             return response;
