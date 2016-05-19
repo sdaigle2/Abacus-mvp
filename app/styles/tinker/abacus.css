@@ -60,6 +60,7 @@
   top: 43%;
   left: 20px;
   font-size: 1.4em;
+  z-index:10;
 }
 
 #saveAction .actionPanel>span:hover{
@@ -190,6 +191,10 @@
   height: auto;
   top: 3vh;
 }
+
+
+
+
 
 /*saved message panel*/
 
@@ -711,7 +716,6 @@
   margin-right: 10px;
   position: relative;
   top: -8px;
-  font-size: 1em;
   font-weight: 400;
   padding: 10px 0;
   font-size: 0.95em;
@@ -1740,15 +1744,15 @@ body {
   /*display: inline;*/
   position: fixed;
   bottom: 40px;
-  left: 50px; 
+  left: 50px;
   height: 30px;
   font-size: 1em;
   color: #4F9DFF;
-  z-index: 9999;  
+  z-index: 9999;
 }
 
 #shareIcon:hover {
-  cursor: pointer;  
+  cursor: pointer;
 }
 
 #siteCredit {

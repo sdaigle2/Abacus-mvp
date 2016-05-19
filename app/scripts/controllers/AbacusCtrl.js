@@ -980,13 +980,18 @@ angular.module('abacuApp')
         .catch(function (err) {
           if (err instanceof Errors.NotLoggedInError) {
             ngDialog.open({
-              'template': 'views/modals/loginPromptModal.html'
+              'template': 'views/modals/loginPromptModal.html',
+              'scope': $scope
             }).closePromise
             .then(function(){
-              return Drop.setTrue();
+              // return Drop.setTrue();
             });
           }
         });
+      };
+
+      $scope.loginPanelDrop = function(){
+        Drop.setTrue();
       };
 
       /*********************Saving For Later*********************/
