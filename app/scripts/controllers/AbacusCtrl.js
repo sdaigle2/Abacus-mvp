@@ -787,21 +787,32 @@ angular.module('abacuApp')
         $scope.curEditWheelchair.setColorForPart($scope.getCurWheelchairPart().partID, newColorID);
         $scope.curEditWheelchair.setColorIn($scope.getCurWheelchairPart().partID);
 
-       //update the linking color
         var ID = $scope.getCurWheelchairPart().partID;
-        if(ID == 1000 && ($scope.curEditWheelchair.getPart(3000).optionID == 3100)){
-          $scope.curEditWheelchair.setColorForPart(3000, newColorID);
-          $scope.curEditWheelchair.setColorForPart(11000, newColorID);
 
-          $scope.curEditWheelchair.setColorForPart(2222, newColorID);
-        }
-        if (ID == 1000 && ($scope.curEditWheelchair.getPart(4000).colorIn == true)){
-          $scope.curEditWheelchair.setColorForPart(4000, newColorID);
-        }
+          if (($scope.curEditWheelchair.frameID >= 20) && ($scope.curEditWheelchair.frameID < 30))  {
+           //update the linking color for the THunders
+            if(ID == 1000 && ($scope.curEditWheelchair.getPart(3000).optionID == 3100)){
+              $scope.curEditWheelchair.setColorForPart(3000, newColorID);
+              $scope.curEditWheelchair.setColorForPart(11000, newColorID);
 
-        if(ID == 3000 && $scope.curEditWheelchair.getPart(11000).optionID === 11200){
-          var color = $scope.curEditWheelchair.getPart(3000).colorID;
-          $scope.curEditWheelchair.setColorForPart(11000, color);
+              $scope.curEditWheelchair.setColorForPart(2222, newColorID);
+            }
+
+            if (ID == 1000 && ($scope.curEditWheelchair.getPart(4000).colorIn == true)){
+              $scope.curEditWheelchair.setColorForPart(4000, newColorID);
+            }
+
+            if(ID == 3000 && $scope.curEditWheelchair.getPart(11000).optionID === 11200){
+              var color = $scope.curEditWheelchair.getPart(3000).colorID;
+              $scope.curEditWheelchair.setColorForPart(11000, color);
+            }
+        }
+          
+        if (($scope.curEditWheelchair.frameID >= 10) && ($scope.curEditWheelchair.frameID < 20)) {
+            //for the spinergy wheels
+            if(ID == 1000 && ($scope.curEditWheelchair.getPart(2222).optionID == 2100)){
+              $scope.curEditWheelchair.setColorForPart(2222, newColorID);
+            }
         }
 
         console.log('Changed color option');
