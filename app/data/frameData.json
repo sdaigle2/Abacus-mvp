@@ -9769,7 +9769,7 @@
 			"sizes": [],
 			"comments": "",
 			"displayColor": 1,
-			"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+			"thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/spinergy-spokes-SPOX.jpg",
 			"desc": "Spinergy's patented PBO Power spokes, which are encased in a chemical resistant, water / UV proof composite containing over 30,000 strands of polyphenylene bensobisoxazole fiber. This delivers 3-times the strength of stainless steel at just half the weight resulting in less rotational weight and a faster responding wheel. PBO Power spokes are incredibly strong and will absorb impact more efficiently while staying in true. Performance and all day comfort—only from Spinergy.",
 			"weight": 0,
 			"price": 0,
@@ -9861,7 +9861,7 @@
 					"sizes": [],
 					"comments": "",
 					"displayColor": 0,
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/spinergy-spokes-SPOX.jpg",
 					"desc": "Spinergy's patented PBO Power spokes, which are encased in a chemical resistant, water / UV proof composite containing over 30,000 strands of polyphenylene bensobisoxazole fiber. This delivers 3-times the strength of stainless steel at just half the weight resulting in less rotational weight and a faster responding wheel. PBO Power spokes are incredibly strong and will absorb impact more efficiently while staying in true. Performance and all day comfort—only from Spinergy.",
 					"weight": 0,
 					"price": 200,
@@ -9917,7 +9917,7 @@
 					"sizes": [],
 					"comments": "",
 					"displayColor": 0,
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/hub/black-hub.jpg",
 					"desc": "A sleek and classic look.",
 					"weight": 0,
 					"price": 0,
@@ -9931,7 +9931,7 @@
 					"sizes": [],
 					"comments": "",
 					"displayColor": 0,
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/hub/silver-hub.jpg",
 					"desc": "A sleek and classic look.",
 					"weight": 350,
 					"price": 0,
@@ -9945,7 +9945,7 @@
 					"sizes": [],
 					"comments": "",
 					"displayColor": 1,
-                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/hub/red-hub.jpg",
 					"desc": "Customize your wheels with custom aluminum anodizing",
 					"price": 300,
 					"defaultColorID": 3201,
@@ -10000,7 +10000,7 @@
 					"sizes": [],
 					"comments": "",
 					"displayColor": 0,
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/rim/black-rim.jpg",
 					"desc": "A sleek and classic look.",
 					"weight": 0,
 					"price": 0,
@@ -10014,7 +10014,7 @@
 					"sizes": [],
 					"comments": "",
 					"displayColor": 0,
-                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/rim/red-rim.jpg",
 					"desc": "Customize your wheels with custom aluminum anodizing",
 					"price": 300,
 					"defaultColorID": 3201,
@@ -10069,7 +10069,7 @@
 					"sizes": ["Close Mounted", "Far Mounted"],
 					"comments": "",
 					"displayColor": 0,
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/magnesium.png",
 					"desc": "The standard hard anodized aluminum hand rim can take a beating and keep running true.  Remember to choose close or far mounting depending on your preferences.",
 					"weight": 0,
 					"price": 0,
@@ -10083,7 +10083,7 @@
 					"sizes": ["Close Mounted", "Far Mounted"],
 					"comments": "",
 					"displayColor": 0,
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/q-grip.png",
 					"desc": "Top quality coated handrim that provides extra grip and control.  Remember to choose close or far mounting depending on your preferences.",
 					"weight": 0.2,
 					"price": 150,
@@ -10091,7 +10091,7 @@
 				},
 				{
 					"name": "Custom Anodized",
-                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/red-rim.jpg",
 					"optionID": 7300,
 					"desc": "Customize your wheels with custom aluminum anodizing",
 					"price": 300,
@@ -10176,7 +10176,7 @@
                     "defaultSizeIndex": -1,
                     "sizes": [],
                     "comments": "",
-                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-marathon.jpg",
 					"desc": "Schwalbe Marathon Plus tires have excelent tread and are built to last.  These tires work greate in all enviroments.",
 					"price": 150,
 					"defaultColorID": 0
@@ -10189,7 +10189,7 @@
                     "comments": "",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"desc": "Aggressive tread.",
-					"price": 100,
+					"price": 110,
 					"defaultColorID": 0
 				},
 				{
@@ -10199,7 +10199,7 @@
                     "sizes": [],
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"desc": "Never get a flat again with airless tires.  But beware, these are not the lightest tires in the world.",
-					"price": 110,
+					"price": 118,
 					"defaultColorID": 0
 				},
 				{
@@ -10211,7 +10211,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-speedair.jpg",
-					"desc": "Choose these lightweight tires to amp up your performance.",
+					"desc": "Choose these lightweight tires to amp up your performance. Available for 24\", 25\", and  26\" wheels.",
 					"weight": 0,
 					"price": 150,
 					"defaultColorID": 0
@@ -10223,8 +10223,8 @@
                     "sizes": [],
                     "comments": "",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
-					"desc": "High quality Schwalbe tires with colorful options!",
-					"price": 150,
+					"desc": "High quality Schwalbe tires with colorful options! Available for 24\", 25\", and  26\" wheels.",
+					"price": 60,
 					"defaultColorID": 8602,
 					"colors": [
 						{
@@ -10250,14 +10250,14 @@
 					]
 				},
                 {
-                    "name": "Kenda Court Iron Cap Tires",
+                    "name": "Kenda Tires",
                     "optionID": 8700,
                     "defaultSizeIndex": -1,
                     "sizes": [],
                     "comments": "",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
-                    "desc": "Experience the protection of Iron Cap Puncture Resistant Technology from Kenda on Wheelchair Tires for Court or Everyday Use.",
-                    "price": 150,
+                    "desc": "Experience the protection of Iron Cap Puncture Resistant Technology from Kenda on Wheelchair Tires for Court or Everyday Use. Available in all sizes.",
+                    "price": 40,
                     "defaultColorID": 8702,
                     "colors": [
                         {
@@ -10279,6 +10279,11 @@
                             "name": "Yellow",
                             "colorID": 8704,
                             "hex": "#FFFF00"
+                        },
+                        {
+                            "name": "Orange",
+                            "colorID": 8705,
+                            "hex": "#FF6F00"
                         }
                     ]
                 },
@@ -10314,7 +10319,7 @@
 					"sizes": [],
 					"comments": "",
 					"displayColor": 0,
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/axle/small-button.jpg",
 					"desc": "Standard Small Button Quick Release Axles.",
 					"weight": 0.09,
 					"price": 75,
@@ -10327,6 +10332,7 @@
 					"sizes": [],
 					"comments": "",
 					"displayColor": 0,
+                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/axle/big-button.jpg",
 					"desc": "A large button is easy on the eyes and the thumbs.",
 					"price": 100,
 					"defaultColorID": 0
@@ -10338,6 +10344,7 @@
 					"sizes": [],
 					"comments": "",
 					"displayColor": 0,
+                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/axle/lever.jpg",
 					"desc": "A large lever makes this easy to grab onto.  Great for anyone with reduced hand dexterity.",
 					"price": 150,
 					"defaultColorID": 0
@@ -10349,6 +10356,7 @@
 					"sizes": [],
 					"comments": "",
 					"displayColor": 0,
+                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"desc": "If you don't need axles, that's no problem.  We'll leave them out.",
 					"price": 0,
 					"defaultColorID": 0
@@ -10368,8 +10376,8 @@
         "shortName": "SW",
         "comments": "",
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-        "imageURLs": ["http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1"],
-        "gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+        "imageURLs": ["images/abacus_page/customize/thumbnail_images/p4x.png"],
+        "gifURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
         "measureOptions": [["50.8", "55.9", "61", "63.5", "66"],["20", "22", "24", "25", "26"]],
         "weights": [0, 0, 0, 0, 0, 0],
         "prices": [0, 0, 0, 0, 0, 0]
@@ -10385,8 +10393,8 @@
 			"shortName": "Tap",
             "comments": "",
 			"videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-			"imageURLs": ["http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1"],
-			"gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+			"imageURLs": ["images/abacus_page/customize/thumbnail_images/p4x.png"],
+			"gifURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 			"measureOptions": [["1/2\"", "12mm"],["1/2\"", "12mm"]],
 			"weights": [0, 0],
 			"prices": [0, 0]
@@ -10402,8 +10410,8 @@
             "comments": "",
 			"shortName": "BB",
 			"videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
-			"imageURLs": ["http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1,http://i.imgur.com/nCcOxqP.png?1"],
-			"gifURL": "http://i.imgur.com/nCcOxqP.png?1",
+			"imageURLs": ["images/abacus_page/customize/thumbnail_images/p4x.png"],
+			"gifURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 			"measureOptions": [["Standard", "X2"],["1/2\"", "12mm"]],
 			"weights": [0, 0],
 			"prices": [0, 0]
