@@ -14,7 +14,7 @@
 * The data in FrameData should not be modified, only accessed
 */
 angular.module('abacuApp')
-  .service('FrameData', ['Frame', 'syncJSON', function (Frame, syncJSON) {
+  .service('FrameData', ['Frame', 'syncJSON', '_', function (Frame, syncJSON, _) {
 
     //Load in data from database
     var frames = [];
@@ -27,6 +27,26 @@ angular.module('abacuApp')
 
       getFrames: function () {
         return frames;
+      },
+
+      getWheelchairFrames: function () {
+        var wheelchairframes = [];
+        _.map(frames, function(wheelchair){
+          if(wheelchair.frameID > 20 && wheelchair.frameID <30){
+            wheelchairframes.push(wheelchair);
+          }
+        });
+        return wheelchairframes
+      },
+
+      getWheels: function(){
+        var wheels = [];
+        _.map(frames, function(wheel) {
+          if (wheel.frameID < 20 && wheel.frameID > 10) {
+            wheels.push(wheel);
+          }
+        });
+          return wheels;
       },
 
       getFrame: function (fID) {

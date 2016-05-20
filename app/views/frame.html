@@ -4,7 +4,7 @@
 
 </head>
 <div id="background"></div>
-<div class="wrapper">  
+<div class="wrapper">
 
   <!-- Google Tag Manager -->
   <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5BJDWF"
@@ -17,11 +17,11 @@
   <!-- End Google Tag Manager -->
 
   <div class="frame-header medium">
-    <h2 class="pageTitle">Frames</h2>
+    <h2 class="pageTitle" >Frames</h2>
   </div>
-  
-  <!-- Commmented out the horizontal/vertical layout buttons-->    
-  <!--    
+
+  <!-- Commmented out the horizontal/vertical layout buttons-->
+  <!--
   <div class="horizontal-layout-icons" data-ng-if="getOrientation() === 'horizontal'">
       <img src="images/frame_page_img/box_style.png"
            ng-click="setOrientation('vertical')"
@@ -92,7 +92,7 @@
     <div class="frame-item text-center horizontal"
          data-ng-repeat="f in frames"
          data-ng-class="{'right-border': ($even && ($index !== frames.length-1)), 'bottom-border': ($index < frames.length-2)}"
-         data-ng-if="orientation === 'horizontal'">
+         data-ng-if="orientation === 'horizontal'" >
       <div class="frame-item-image">
         <div class="img" data-ng-mouseenter="hoverItem = f.getFrameID()"
              data-ng-mouseleave="hoverItem = -1">
@@ -104,6 +104,33 @@
 
         <div class="frame-item-footer-details">
             <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
+        </div>
+        <div class="frame-item-desc">
+          <p class="frame-item-description book" data-ng-bind="f.getDesc()"></p>
+        </div>
+        <div class="button addButton" data-ng-click="selectFrame(f.frameID)">Customize</div>
+      </div>
+    </div>
+
+    <div class="frame-header medium" >
+      <h2 class="pageTitle" id="wheels">Custom Wheels</h2>
+    </div>
+
+    <div class="frame-item text-center horizontal"
+         data-ng-repeat="f in wheels"
+         data-ng-class="{'right-border': ($even && ($index !== frames.length-1)), 'bottom-border': ($index < frames.length-2)}"
+         data-ng-if="orientation === 'horizontal'" >
+      <div class="frame-item-image">
+        <div class="img" data-ng-mouseenter="hoverItem = f.getFrameID()"
+             data-ng-mouseleave="hoverItem = -1">
+          <img data-ng-src="{{f.getImageURL()}}" width="250" alt="{{f.manufacturer}} {{f.name}}"/>
+        </div>
+      </div>
+      <div class="frame-item-footer">
+        <span class="medium" data-ng-bind="f.name"></span>
+
+        <div class="frame-item-footer-details">
+          <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
         </div>
         <div class="frame-item-desc">
           <p class="frame-item-description book" data-ng-bind="f.getDesc()"></p>

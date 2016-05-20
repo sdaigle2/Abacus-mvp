@@ -8,12 +8,13 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('FrameCtrl', ['$scope', '$location', 'FrameData', 'User', 'Units', 'Drop', 'ngDialog',
-    function ($scope, $location, FrameData, User, Units, Drop, ngDialog) {
+  .controller('FrameCtrl', ['$scope', '$location', 'FrameData', 'User', 'Units', 'Drop', 'ngDialog','$anchorScroll',
+    function ($scope, $location, FrameData, User, Units, Drop, ngDialog, $anchorScroll) {
 
       Drop.setFalse();
       //An array of all Frames
-      $scope.frames = FrameData.getFrames();
+      $scope.frames = FrameData.getWheelchairFrames();
+      $scope.wheels = FrameData.getWheels();
       $scope.detailPanel = false;
 
       $scope.orientation = 'horizontal'; //change to vertical
@@ -77,5 +78,7 @@ angular.module('abacuApp')
       $scope.getOrientation = function(){
         return $scope.orientation;
       }
+
+      
 
     }]);

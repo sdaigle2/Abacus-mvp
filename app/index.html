@@ -66,10 +66,10 @@
         </a>
       </div>
       <ul class="mainNavbar-left">
-        <li ng-click="jumpFrame()" class="frameNavButton" ng-class="{ active: isActive('/frames')}">
+        <li ng-click="jumpFrame(); goToFrames()" class="frameNavButton" ng-class="{ active: isActive('/frames')}" id="wheelchairFrames">
           <a class="medium">WHEELCHAIRS</a>
         </li>
-	    <li ng-click="jumpWheels()" class="wheelsNavButton" ng-class="{ active: isActive('/frames')}">
+	    <li ng-click="jumpWheels(); goToWheels()" class="wheelsNavButton" ng-class="{ active: isActive('/frames')}">
           <a class="medium">CUSTOM WHEELS</a>
         </li>
         <li ng-click="jumpAbout()" class="aboutNavButton" ng-class="{ active: isActive('/about')}">
@@ -165,7 +165,7 @@
       ></div>
   </header>
 
-  <div id="appContainer" ng-view=""></div>
+  <div id="appContainer" ng-view="" autoscroll="true"></div>
   <!-- Angular App -->
 </div>
 

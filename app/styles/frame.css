@@ -60,13 +60,22 @@ section{
   margin-left: 34px;
 }
 
-.frame-item {   
+#wheels{
+  margin-left: 0;
+  width: 100%;
+  border-bottom: 2px solid darkgrey;
+  padding-bottom: 9px;
+  height:auto;
+  margin-bottom: 30px;
+}
+
+.frame-item {
   line-height: 1;
   display: inline-block;
   width: 400px;
   margin-bottom: 40px;
   border: solid 1px #eaeaea;
-  background-color: #FFFFFF;    
+  background-color: #FFFFFF;
 }
 
 .frame-item.right-border {
@@ -81,10 +90,10 @@ section{
 .frame-item.horizontal {
   margin-bottom: 0;
   width: 87.5%;
-  min-width: 600px;    
+  min-width: 600px;
   margin-left: 6.25%;
   padding-left: 20px;
-  padding-top: 15px;   
+  padding-top: 15px;
 }
 
 
@@ -100,11 +109,8 @@ section{
 }
 
 .frame-item-description {
-<<<<<<< HEAD
   background-color: #4F9DFF;
-=======
-  background-color: #4F9DFF ;
->>>>>>> origin/master
+
   font-size: 18px;
   height: 180px;
   line-height: 25px;
@@ -114,8 +120,8 @@ section{
 }
 
 .horizontal .frame-item-description{
-  clear: both;    
-  float: right;    
+  clear: both;
+  float: right;
   text-align: left;
   padding-left: 0;
 }
@@ -224,7 +230,7 @@ background: white;
   cursor: pointer;
 }
 
-.frame-item-footer {  
+.frame-item-footer {
   border: solid 1px #eaeaea;
   padding:20px;
 }
@@ -234,7 +240,7 @@ background: white;
   float: left;
 }
 
-.horizontal .frame-item-footer>span {    
+.horizontal .frame-item-footer>span {
   padding-top: 10px;
 }
 
@@ -243,9 +249,9 @@ background: white;
 }
 
 .horizontal .frame-item-footer-details {
-  float: right;    
+  float: right;
   display: inline-block;
-  text-align: right;    
+  text-align: right;
   margin-left: 0;
   margin-top: 0;
 }
@@ -283,7 +289,7 @@ td {
 
 .horizontal .addButton{
   position: relative;
-  float: right;  
+  float: right;
   width: 150px;
   height: 33px;
   font-size: 19px;
