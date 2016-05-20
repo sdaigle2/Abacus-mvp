@@ -12,7 +12,7 @@ const verifyOrder     = require('../services/data').verifyOrder;
 const verifyChair     = require('../services/data').verifyWheelchair;
 const generatePDF     = require('../services/generatePDF');
 const priceCalculator = require('../services/priceCalculator');
-const stripe          = require('../services/stripe');
+const stripe          = require('../services/payment');
 const paypal          = require('../services/paypal');
 const sendgrid        = require('../services/sendgrid');
 const dbService       = require('../services/db');
@@ -82,49 +82,20 @@ router.post('/order', function (req, res) {
   }
 
   // returns error value with a charge object ... if payMethod isnt 'Credit Card', just returns {} for charges object
-  // const createStripeCharge = cb => {
-  //   if (order.payMethod === 'Credit Card') {
-  //     //Create a new stripe payment
-  //     var charge = stripe.charges.create({
-  //       amount: total,
-  //       currency: "usd",
-  //       source: stripeToken,
-  //       description: "Tinker order"
-  //     }, cb );
-  //   } else {
-  //     cb(null, {});
-  //   }
-  // };
-
-  const createPaypalCharge = cb => {
+  const createStripeCharge = cb => {
     if (order.payMethod === 'Credit Card') {
-      var card = req.body.card;
-      var payment_details = {
-        "intent": "sale",
-        "payer": {
-          "payment_method": "credit_card",
-          "funding_instruments": [{
-            "credit_card": {
-              "type": card.type,
-              "number": card.number,
-              "expire_month": card.exp_month,
-              "expire_year": '20' + card.exp_year,
-              "cvv2": card.cvc
-            }}]},
-        "transactions": [{
-          "amount": {
-            "total": total,
-            "currency": "USD"
-          },
-          "description": "payment" }]};
       //Create a new stripe payment
-
-
-      var charge = paypal.payment.create(payment_details, cb );
+      var charge = stripe.charges.create({
+        amount: total,
+        currency: "usd",
+        source: stripeToken,
+        description: "Tinker order"
+      }, cb );
     } else {
       cb(null, {});
     }
   };
+
   // returns true/false depending on whether the discounts were valid
   const validateOrderDiscounts = cb => {
     dbUtils.areValidOrderDiscounts(order.discounts, cb);
@@ -253,7 +224,7 @@ router.post('/order', function (req, res) {
       return;
     }
 
-    createPaypalCharge((err, charge) => {
+    createStripeCharge((err, charge) => {
       if (err) {
         console.log(err);
         res.status(400);

@@ -324,7 +324,7 @@ angular.module('abacuApp')
       //This asyncronous funtion takes in various user information
       //and sends the Order to the distibutor with it.
       //This method also saves the Order to the database and marks it as "sent"
-      send: function (userID, userData, shippingData, billingData, payMethod, token, card) {
+      send: function (userID, userData, shippingData, billingData, payMethod, token) {
         //Need a reference to the current scope when inside the callback function
         var curThis = this;
 
@@ -354,7 +354,7 @@ angular.module('abacuApp')
 
         return $http({
           url: '/order',
-          data: {order: this.getAll(), token: token, totalPrice: this.getTotalCost(), card: card},
+          data: {order: this.getAll(), token: token, totalPrice: this.getTotalCost()},
           method: 'POST'
         })
         .then(function(res) {

@@ -142,7 +142,7 @@ angular.module('abacuApp')
 
             $scope.completeClicked = true;
             //div show
-            User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.billingForm, $scope.curOrder.payMethod, token, $scope.card)
+            User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.billingForm, $scope.curOrder.payMethod, token)
               .then(function (response) {
                 //div go
                 $scope.orderNum = response.orderNum;
@@ -265,7 +265,6 @@ angular.module('abacuApp')
         cvc: '',
         exp_month: '',
         exp_year: '',
-        type:''
       };
 
 
@@ -275,7 +274,7 @@ angular.module('abacuApp')
 
       var token = '';
       function payment(){
-        console.log($scope.card);
+        // console.log($scope.card);
         Stripe.setPublishableKey('pk_live_IDUKUfHE9yeCm8x1qmFBemBZ');
         Stripe.card.createToken($scope.card, stripeResponseHandler);
       }
