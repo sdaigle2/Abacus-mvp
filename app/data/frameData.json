@@ -1995,6 +1995,11 @@
                     "name": "Yellow",
                     "colorID": 8704,
                     "hex": "#FFFF00"
+                },
+                {
+                    "name": "Orange",
+                    "colorID": 8705,
+                    "hex": "#FF6F00"
                 }
             ]
           },
@@ -4654,6 +4659,11 @@
                     "name": "Yellow",
                     "colorID": 8704,
                     "hex": "#FFFF00"
+                },
+                {
+                    "name": "Orange",
+                    "colorID": 8705,
+                    "hex": "#FF6F00"
                 }
             ]
           },
@@ -6909,6 +6919,11 @@
                     "name": "Yellow",
                     "colorID": 8704,
                     "hex": "#FFFF00"
+                },
+                {
+                    "name": "Orange",
+                    "colorID": 8705,
+                    "hex": "#FF6F00"
                 }
             ]
           },
@@ -9121,6 +9136,11 @@
                     "name": "Yellow",
                     "colorID": 8704,
                     "hex": "#FFFF00"
+                },
+                {
+                    "name": "Orange",
+                    "colorID": 8705,
+                    "hex": "#FF6F00"
                 }
             ]
           },
