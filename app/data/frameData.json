@@ -11955,9 +11955,9 @@
       {
 			"name": "Ball Bearing Size",
 			"measureID": 15003,
-			"desc": "Generally, 1/2\" ball bearings are used in the US, and 12mm ball bearings are used in Europe.",
-			"details": "If you are ordering these to use with a Per4max chair, you definitely want the 1/2\" axles.  Otherwise, you might want the 12mm axles.  If you're not certain of your axle size, ask us and we'll help you figure it out.",
-			"tip": "Generally, 1/2\" ball bearings are used in the US, and 12mm ball bearings are used in Europe.",
+			"desc": "The R-10 Wheel only comes with ball bearings made for 5/8\" axles.  Having bigger axles will make them less likely to bend.",
+			"details": "",
+			"tip": "The R-10 Wheel only comes with ball bearings made for 5/8\" axles.  Having bigger axles will make them less likely to bend.",
 			"gifDesc": "You gain more control and body alignment as the taper increases.",
 			"units": ["cm","in"],
 			"shortName": "Tap",
@@ -11965,7 +11965,7 @@
 			"videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
 			"imageURLs": ["images/abacus_page/customize/thumbnail_images/p4x.png"],
 			"gifURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-			"measureOptions": [["1/2\"", "12mm"],["1/2\"", "12mm"]],
+			"measureOptions": [["5/8\""],["5/8\""]],
 			"weights": [0, 0],
 			"prices": [0, 0]
 		}
