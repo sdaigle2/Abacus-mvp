@@ -9758,7 +9758,7 @@
         "name": "Spoke Color",
         "partID": 1000,
         "numSubImages": 1,
-        "zRank": [[10,7,6,7,10]],
+        "zRank": [[3,3,1,3,3]],
         "shortName": "Frm",
         "defaultOptionID": 1100,
         "options": [
@@ -9808,7 +9808,7 @@
 			"name": "Back Spoke Color",
 			"partID": 2222,
 			"numSubImages": 1,
-			"zRank": [[10,7,6,7,10]],
+			"zRank": [[4,2,2,2,2]],
 			"shortName": "Spt",
 			"defaultOptionID": 2100,
 			"options": [
@@ -9905,7 +9905,7 @@
 			"name": "Hub Color",
 			"partID": 3333,
 			"numSubImages": 1,
-			"zRank": [[10,7,6,7,10]],
+			"zRank": [[1,1,3,1,1]],
 			"shortName": "Acc",
 			"defaultOptionID": 3100,
 			"options": [
@@ -9988,7 +9988,7 @@
 			"name": "Rim Color",
 			"partID": 4444,
 			"numSubImages": 1,
-			"zRank": [[10,7,6,7,10]],
+			"zRank": [[0,0,0,0,0]],
 			"shortName": "Acc",
 			"defaultOptionID": 4100,
 			"options": [
@@ -10057,7 +10057,7 @@
 			"name": "Hand Rims",
 			"partID": 7000,
 			"numSubImages": 1,
-			"zRank": [[1,1,1,3,4]],
+			"zRank": [[5,6,6,6,4]],
 			"shortName": "HR",
 			"defaultOptionID": 7100,
 			"options": [
@@ -10167,7 +10167,7 @@
 			"name": "Tires",
 			"partID": 8000,
 			"numSubImages": 1,
-			"zRank": [[13,3,3,4,13]],
+			"zRank": [[6,5,5,5,6]],
 			"shortName": "Tir",
 			"defaultOptionID": 8100,
 			"options": [
