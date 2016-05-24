@@ -137,7 +137,8 @@ angular
     $sceDelegateProvider.resourceUrlWhitelist([
       'self',
       'https://www.youtube.com/embed/**',
-      'http://www.youtube.com/embed/**'
+      'http://www.youtube.com/embed/**',
+      'http://http://www.intelliwheels.net/**'
     ]);
     $httpProvider.defaults.useXDomain = true;
 
