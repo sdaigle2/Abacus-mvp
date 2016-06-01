@@ -225,7 +225,8 @@
 							<div>
 								<section class="optionTable">
 									<div class="parts themeBlue">{{this.part.name}}</div>
-									<div class="details">{{this.option.name}}<span class="colorInfo">{{getChairOptionColorName ../../wheelchair this.option.optionID}}</span> {{getOptionSize ../../wheelchair this.option.optionID}} inch</div>
+									<div class="details">{{this.option.name}}<span class="colorInfo">{{getChairOptionColorName ../../wheelchair this.option.optionID}}</span>
+                    {{getOptionSize ../../wheelchair this.option.optionID}} inch</div>
 									<div class="price">${{getChairPartOptionPrice ../../wheelchair this.option.optionID}}</div>
 								</section>
 								<section class="comments">
@@ -277,7 +278,7 @@
 							<div>
 								<section class="optionTable">
 									<div class="mParts themeBlue" style="float:left;">{{measureInfo.name}}</div>
-									<div class="mInput"> {{measureInfo.in}}in ({{measureInfo.cm}}cm)</div>
+									<div class="mInput"> {{measureInfo.in}}{{measureInfo.unit}}</div>
 								</section>
 								<section class="comments">
 									<p>  {{measureInfo.comments}}</p>

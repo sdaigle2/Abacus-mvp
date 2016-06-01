@@ -131,6 +131,7 @@ function getChairMeasureOption(chair, measureID) {
     'cm': measure.measureOptions[0][measureOptionIndex] || '--',
     'in': measure.measureOptions[1][measureOptionIndex] || '--',
     'weight': measure.weights[measureOptionIndex] || 0,
+    'unit': measure.units[1],
     'comments': chairMeasure.comments || 'No Comments'
   };
 }
