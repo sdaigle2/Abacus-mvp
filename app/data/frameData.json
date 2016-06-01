@@ -2549,10 +2549,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/lower_leg_length.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/lower_leg_length.gif",
-        "measureOptions": [["30.5",	"33", "35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "Other"],["12", "13", "14", "15", "16", "17", "18", "19", "20", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["30.5",	"33", "35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "53.3", "Other"],["12", "13", "14", "15", "16", "17", "18", "19", "20",  "21", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Backrest to Center Axle",
@@ -5213,10 +5213,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/lower_leg_length.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/lower_leg_length.gif",
-        "measureOptions": [["30.5",	"33", "35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "Other"],["12", "13", "14", "15", "16", "17", "18", "19", "20", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["30.5",	"33", "35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "53.3", "Other"],["12", "13", "14", "15", "16", "17", "18", "19", "20",  "21", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Backrest to Center Axle",
@@ -7430,10 +7430,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/lower_leg_length.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/lower_leg_length.gif",
-        "measureOptions": [["30.5",	"33", "35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "Other"],["12", "13", "14", "15", "16", "17", "18", "19", "20", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["30.5",	"33", "35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "53.3", "Other"],["12", "13", "14", "15", "16", "17", "18", "19", "20",  "21", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Backrest to Center Axle",
@@ -9647,10 +9647,10 @@
         "videoURL": "https://www.youtube.com/watch?v=Lu_mVOJroZg",
         "imageURLs": [" /images/abacus_page/measure/thunder/illustration/lower_leg_length.svg"],
         "gifURL": "/images/abacus_page/measure/thunder/gif/lower_leg_length.gif",
-        "measureOptions": [["30.5",	"33", "35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "Other"],["12", "13", "14", "15", "16", "17", "18", "19", "20", "Other"]],
-        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        "measureOptions": [["30.5",	"33", "35.6", "38.1", "40.6", "43.2", "45.7", "48.3", "50.8", "53.3", "Other"],["12", "13", "14", "15", "16", "17", "18", "19", "20",  "21", "Other"]],
+        "weights": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         "comments":"",
-        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        "prices": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       },
       {
         "name": "Backrest to Center Axle",
