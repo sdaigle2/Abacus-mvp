@@ -26,13 +26,13 @@
 					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
-                    "comments":"",
+          "comments":"",
 					"displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
 					"desc": "Our standard colors are applied with a high quality powder coating process.  Glossy and matte options are available.  Hover over each color to see its full name.",
 					"weight": 0,
 					"price": 0,
-                    "defaultColorID": 1101,
+          "defaultColorID": 1101,
 					"colors": [
 						{
 							"name": "Sky White",
@@ -2142,7 +2142,7 @@
             "numSubImages": 0,
 			"allowMultipleChoices": 1,
 			"shortName": "Msc.",
-			"defaultOptionID": 14998,
+			"defaultOptionID": -1,
 			"options": [
 				{
 					"name": "Waist Click Strap",
@@ -2223,22 +2223,8 @@
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 400,
 					"defaultColorID": 0
-				},
-                {
-                    "name": "None",
-                    "optionID": 14998,
-                    "comments":"",
-                    "colors": [],
-                    "defaultSizeIndex": -1,
-                    "sizes": [],
-                    "comments": "",
-                    "displayColor": 0,
-                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-                    "desc": "No Strap Selected",
-                    "price": 0,
-                    "priceTBD": 1,
-                    "defaultColorID": 0
-                }
+				}
+
 			]
 		},
       {
@@ -2247,7 +2233,7 @@
         "numSubImages": 0,
         "allowMultipleChoices": 1,
         "shortName": "Msc.",
-        "defaultOptionID": 10998,
+        "defaultOptionID": -1,
         "options": [
           {
             "name": "7000 Series Frame",
@@ -2349,20 +2335,6 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Want something else?  Write it in the comments box, and one of our customer service representatives will email you after your order is placed.",
-            "price": 0,
-            "priceTBD": 1,
-            "defaultColorID": 0
-          },
-          {
-            "name": "None",
-            "optionID": 10998,
-            "comments":"",
-            "colors": [],
-            "defaultSizeIndex": -1,
-            "sizes": [],
-            "displayColor": 0,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "No miscellaneous options.",
             "price": 0,
             "priceTBD": 1,
             "defaultColorID": 0
@@ -4801,7 +4773,7 @@
             "numSubImages": 0,
 			"allowMultipleChoices": 1,
 			"shortName": "Msc.",
-			"defaultOptionID": 14998,
+			"defaultOptionID": -1,
 			"options": [
 				{
 					"name": "Waist Click Strap",
@@ -4882,22 +4854,7 @@
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 400,
 					"defaultColorID": 0
-				},
-                {
-                    "name": "None",
-                    "optionID": 14998,
-                    "comments":"",
-                    "colors": [],
-                    "defaultSizeIndex": -1,
-                    "sizes": [],
-                    "comments": "",
-                    "displayColor": 0,
-                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-                    "desc": "No Strap Selected",
-                    "price": 0,
-                    "priceTBD": 1,
-                    "defaultColorID": 0
-                }
+				}
 			]
 		},
       {
@@ -4906,7 +4863,7 @@
         "numSubImages": 0,
         "allowMultipleChoices": 1,
         "shortName": "Msc.",
-        "defaultOptionID": 10998,
+        "defaultOptionID": -1,
         "options": [
           {
             "name": "7000 Series Frame",
@@ -5008,20 +4965,6 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Want something else?  Write it in the comments box, and one of our customer service representatives will email you after your order is placed.",
-            "price": 0,
-            "priceTBD": 1,
-            "defaultColorID": 0
-          },
-          {
-            "name": "None",
-            "optionID": 10998,
-            "comments":"",
-            "colors": [],
-            "defaultSizeIndex": -1,
-            "sizes": [],
-            "displayColor": 0,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "No miscellaneous options.",
             "price": 0,
             "priceTBD": 1,
             "defaultColorID": 0
@@ -7056,7 +6999,7 @@
             "numSubImages": 0,
 			"allowMultipleChoices": 1,
 			"shortName": "Msc.",
-			"defaultOptionID": 14998,
+			"defaultOptionID": -1,
 			"options": [
 				{
 					"name": "Waist Click Strap",
@@ -7137,22 +7080,7 @@
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 400,
 					"defaultColorID": 0
-				},
-                {
-                    "name": "None",
-                    "optionID": 14998,
-                    "comments":"",
-                    "colors": [],
-                    "defaultSizeIndex": -1,
-                    "sizes": [],
-                    "comments": "",
-                    "displayColor": 0,
-                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-                    "desc": "No Strap Selected",
-                    "price": 0,
-                    "priceTBD": 1,
-                    "defaultColorID": 0
-                }
+				}
 			]
 		},
       {
@@ -7161,7 +7089,7 @@
         "numSubImages": 0,
         "allowMultipleChoices": 1,
         "shortName": "Msc.",
-        "defaultOptionID": 10998,
+        "defaultOptionID": -1,
         "options": [
           {
             "name": "7000 Series Frame",
@@ -7238,20 +7166,6 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Want something else?  Write it in the comments box, and one of our customer service representatives will email you after your order is placed.",
-            "price": 0,
-            "priceTBD": 1,
-            "defaultColorID": 0
-          },
-          {
-            "name": "None",
-            "optionID": 10998,
-            "comments":"",
-            "colors": [],
-            "defaultSizeIndex": -1,
-            "sizes": [],
-            "displayColor": 0,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "No miscellaneous options.",
             "price": 0,
             "priceTBD": 1,
             "defaultColorID": 0
@@ -9268,7 +9182,7 @@
             "numSubImages": 0,
 			"allowMultipleChoices": 1,
 			"shortName": "Msc.",
-			"defaultOptionID": 14998,
+			"defaultOptionID": -1,
 			"options": [
 				{
 					"name": "Waist Click Strap",
@@ -9349,22 +9263,7 @@
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 400,
 					"defaultColorID": 0
-				},
-                {
-                    "name": "None",
-                    "optionID": 14998,
-                    "comments":"",
-                    "colors": [],
-                    "defaultSizeIndex": -1,
-                    "sizes": [],
-                    "comments": "",
-                    "displayColor": 0,
-                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-                    "desc": "No Strap Selected",
-                    "price": 0,
-                    "priceTBD": 1,
-                    "defaultColorID": 0
-                }
+				}
 			]
 		},
       {
@@ -9373,7 +9272,7 @@
         "numSubImages": 0,
         "allowMultipleChoices": 1,
         "shortName": "Msc.",
-        "defaultOptionID": 10998,
+        "defaultOptionID": -1,
         "options": [
           {
             "name": "7000 Series Frame",
@@ -9450,20 +9349,6 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Want something else?  Write it in the comments box, and one of our customer service representatives will email you after your order is placed.",
-            "price": 0,
-            "priceTBD": 1,
-            "defaultColorID": 0
-          },
-          {
-            "name": "None",
-            "optionID": 10998,
-            "comments":"",
-            "colors": [],
-            "defaultSizeIndex": -1,
-            "sizes": [],
-            "displayColor": 0,
-            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
-            "desc": "No miscellaneous options.",
             "price": 0,
             "priceTBD": 1,
             "defaultColorID": 0

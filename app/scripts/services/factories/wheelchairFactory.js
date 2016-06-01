@@ -33,14 +33,23 @@ angular.module('abacuApp')
         //Generate parts array and set defaults
         for (var i = 0; i < parts.length; i++) {
           var p = parts[i];
-          var defaultPart = {
-            partID: p.getID(),
-            optionID: p.getDefaultOptionID(),
-            colorID: p.getDefaultOption().getDefaultColorID(),
-            sizeIndex: p.getDefaultOption().getDefaultSizeIndex(),
-            comments: '',
-            colorIn: true       //indicator of if the part should follow other color choice
-          };
+          if(p.getDefaultOptionID() == -1){
+            var defaultPart = {
+              partID: p.getID(),
+              optionID: p.getDefaultOptionID(),
+              comments: '',
+              colorIn: true       //indicator of if the part should follow other color choice
+            }
+          }else {
+            var defaultPart = {
+              partID: p.getID(),
+              optionID: p.getDefaultOptionID(),
+              colorID: p.getDefaultOption().getDefaultColorID(),
+              sizeIndex: p.getDefaultOption().getDefaultSizeIndex(),
+              comments: '',
+              colorIn: true       //indicator of if the part should follow other color choice
+            };
+          }
           this.parts.push(defaultPart);
         }
 
@@ -214,24 +223,34 @@ angular.module('abacuApp')
 
         var part = FrameData.getFramePart(this.frameID, pID);
         var option = part.getOption(oID);
-        var color = option.getColor(cID);
-        var size = option.getSize(sizeIndex);
+        if(oID != -1) {
+          var color = option.getColor(cID);
+          var size = option.getSize(sizeIndex);
 
-        var colorName = (color === null) ? '' : color.getName();
+          var colorName = (color === null) ? '' : color.getName();
 
-        var priceString = (option.getPrice() < 0) ? '-$' : '$';
-        priceString += Math.abs(option.getPrice()).toFixed(2);
+          var priceString = (option.getPrice() < 0) ? '-$' : '$';
+          priceString += Math.abs(option.getPrice()).toFixed(2);
 
-        var weightString = (option.getWeight() * Units.getWeightFactor(unitSys)).toFixed(2) + ' ' + Units.getWeightName(unitSys);
+          var weightString = (option.getWeight() * Units.getWeightFactor(unitSys)).toFixed(2) + ' ' + Units.getWeightName(unitSys);
 
-        return {
-          partName: part.getName(),
-          optionName: option.getName(),
-          colorName: colorName,
-          size: size,
-          priceString: priceString,
-          weightString: weightString
-        };
+          return {
+            partName: part.getName(),
+            optionName: option.getName(),
+            colorName: colorName,
+            size: size,
+            priceString: priceString,
+            weightString: weightString
+          };
+        }else{
+          return {
+            partName: part.getName(),
+           
+          }
+        }
+
+
+
       },
 
       //Returns an object of display-formatted details about the given measure
@@ -389,7 +408,9 @@ angular.module('abacuApp')
         for (var i = 0; i < this.parts.length; i++) {
           var p = frame.getPart(this.parts[i].partID);
           var o = p.getOption(this.parts[i].optionID);
-          totalPrice += o.getPrice();
+          if(this.parts[i].optionID != -1) {
+            totalPrice += o.getPrice();
+          }
         }
         for (var j = 0; j < this.measures.length; j++) {
           if (this.measures[j].measureOptionIndex !== -1) {

@@ -75,7 +75,9 @@ angular.module('abacuApp')
         for (var i = 0; i < wheelchair.parts.length; i++) {
           $scope.parts.push(_.clone(wheelchair.parts[i]));
           $scope.parts[i].name = frames.getPart(wheelchair.parts[i].partID).getName();
-          $scope.parts[i].optionName = frames.getPart(wheelchair.parts[i].partID).getOption(wheelchair.parts[i].optionID).getName();
+          if(wheelchair.parts[i].optionID != -1) {
+            $scope.parts[i].optionName = frames.getPart(wheelchair.parts[i].partID).getOption(wheelchair.parts[i].optionID).getName();
+          }
         }
       }
 
@@ -159,7 +161,7 @@ angular.module('abacuApp')
       //
       function generateDesignIDForCurrentChair(index) {
         var design = User.getWheelchair(index);
-        
+
         if (_.isNull(design)) {
           design = new Design({
             'creator': User.getID(),
