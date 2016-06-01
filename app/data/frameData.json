@@ -2228,8 +2228,22 @@
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 400,
 					"defaultColorID": 0
-				}
-
+				},
+                {
+                    "name": "None",
+                    "optionID": 99999,
+                    "comments":"",
+                    "colors": [],
+                    "defaultSizeIndex": -1,
+                    "sizes": [],
+                    "comments": "",
+                    "displayColor": 0,
+                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+                    "desc": "No Strap Selected",
+                    "price": 0,
+                    "priceTBD": 1,
+                    "defaultColorID": 0
+                }
 			]
 		},
       {
@@ -2340,6 +2354,20 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Want something else?  Write it in the comments box, and one of our customer service representatives will email you after your order is placed.",
+            "price": 0,
+            "priceTBD": 1,
+            "defaultColorID": 0
+          },
+          {
+            "name": "None",
+            "optionID": 99999,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "No miscellaneous options.",
             "price": 0,
             "priceTBD": 1,
             "defaultColorID": 0
@@ -4864,7 +4892,22 @@
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 400,
 					"defaultColorID": 0
-				}
+				},
+                {
+                    "name": "None",
+                    "optionID": 99999,
+                    "comments":"",
+                    "colors": [],
+                    "defaultSizeIndex": -1,
+                    "sizes": [],
+                    "comments": "",
+                    "displayColor": 0,
+                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+                    "desc": "No Strap Selected",
+                    "price": 0,
+                    "priceTBD": 1,
+                    "defaultColorID": 0
+                }
 			]
 		},
       {
@@ -4975,6 +5018,20 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Want something else?  Write it in the comments box, and one of our customer service representatives will email you after your order is placed.",
+            "price": 0,
+            "priceTBD": 1,
+            "defaultColorID": 0
+          },
+          {
+            "name": "None",
+            "optionID": 99999,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "No miscellaneous options.",
             "price": 0,
             "priceTBD": 1,
             "defaultColorID": 0
@@ -7095,7 +7152,22 @@
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 400,
 					"defaultColorID": 0
-				}
+				},
+                {
+                    "name": "None",
+                    "optionID": 99999,
+                    "comments":"",
+                    "colors": [],
+                    "defaultSizeIndex": -1,
+                    "sizes": [],
+                    "comments": "",
+                    "displayColor": 0,
+                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+                    "desc": "No Strap Selected",
+                    "price": 0,
+                    "priceTBD": 1,
+                    "defaultColorID": 0
+                }
 			]
 		},
       {
@@ -7181,6 +7253,20 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Want something else?  Write it in the comments box, and one of our customer service representatives will email you after your order is placed.",
+            "price": 0,
+            "priceTBD": 1,
+            "defaultColorID": 0
+          },
+          {
+            "name": "None",
+            "optionID": 99999,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "No miscellaneous options.",
             "price": 0,
             "priceTBD": 1,
             "defaultColorID": 0
@@ -9283,7 +9369,22 @@
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 400,
 					"defaultColorID": 0
-				}
+				},
+                {
+                    "name": "None",
+                    "optionID": 99999,
+                    "comments":"",
+                    "colors": [],
+                    "defaultSizeIndex": -1,
+                    "sizes": [],
+                    "comments": "",
+                    "displayColor": 0,
+                    "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+                    "desc": "No Strap Selected",
+                    "price": 0,
+                    "priceTBD": 1,
+                    "defaultColorID": 0
+                }
 			]
 		},
       {
@@ -9369,6 +9470,20 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "Want something else?  Write it in the comments box, and one of our customer service representatives will email you after your order is placed.",
+            "price": 0,
+            "priceTBD": 1,
+            "defaultColorID": 0
+          },
+          {
+            "name": "None",
+            "optionID": 99999,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "No miscellaneous options.",
             "price": 0,
             "priceTBD": 1,
             "defaultColorID": 0
@@ -10371,46 +10486,46 @@
 			"price": 0,
 			"defaultColorID": 1101,
             "colors": [
-                {	
+                {
                     "name": "Black",
                     "colorID": 1101,
                     "hex": "#17202A"
-                },	
-                {	
+                },
+                {
                     "name": "White",
                     "colorID": 1102,
                     "hex": "#FDFEFE"
-                },	
-                {	
+                },
+                {
                     "name": "Blue",
                     "colorID": 1103,
                     "hex": "#3498DB"
-                },	
-                {	
+                },
+                {
                     "name": "Red",
                     "colorID": 1104,
                     "hex": "#FF5733"
-                },	
-                {	
+                },
+                {
                     "name": "Yellow",
                     "colorID": 1105,
                     "hex": "#FFC300"
-                },	
-                {	
+                },
+                {
                     "name": "Green",
                     "colorID": 1106,
                     "hex": "#27AE60"
-                },	
-                {	
+                },
+                {
                     "name": "Orange",
                     "colorID": 1107,
                     "hex": "#FF6F00"
-                },	
-                {	
+                },
+                {
                     "name": "Pink",
                     "colorID": 1108,
                     "hex": "#FF33FF"
-                }	
+                }
             ]
           }
         ]
@@ -10437,46 +10552,46 @@
 					"price": 0,
 					"defaultColorID": 1101,
 					"colors": [
-                        {	
+                        {
                             "name": "Black",
                             "colorID": 1101,
                             "hex": "#17202A"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "White",
                             "colorID": 1102,
                             "hex": "#FDFEFE"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Blue",
                             "colorID": 1103,
                             "hex": "#3498DB"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Red",
                             "colorID": 1104,
                             "hex": "#FF5733"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Yellow",
                             "colorID": 1105,
                             "hex": "#FFC300"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Green",
                             "colorID": 1106,
                             "hex": "#27AE60"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Orange",
                             "colorID": 1107,
                             "hex": "#FF6F00"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Pink",
                             "colorID": 1108,
                             "hex": "#FF33FF"
-                        }		
+                        }
                     ]
 				},
 				{
@@ -10493,46 +10608,46 @@
 					"price": 200,
 					"defaultColorID": 1101,
 					"colors": [
-                        {	
+                        {
                             "name": "Black",
                             "colorID": 1101,
                             "hex": "#17202A"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "White",
                             "colorID": 1102,
                             "hex": "#FDFEFE"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Blue",
                             "colorID": 1103,
                             "hex": "#3498DB"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Red",
                             "colorID": 1104,
                             "hex": "#FF5733"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Yellow",
                             "colorID": 1105,
                             "hex": "#FFC300"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Green",
                             "colorID": 1106,
                             "hex": "#27AE60"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Orange",
                             "colorID": 1107,
                             "hex": "#FF6F00"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Pink",
                             "colorID": 1108,
                             "hex": "#FF33FF"
-                        }		
+                        }
                     ]
 				}
 			]
@@ -10711,7 +10826,7 @@
 					"price": 0,
 					"defaultColorID": 0
 				},
-                {	
+                {
                     "name": "Hard Anodized 12 tab",
                     "optionID": 7200,
                     "colors": [],
@@ -11135,46 +11250,46 @@
 			"price": 0,
 			"defaultColorID": 1101,
             "colors": [
-                {	
+                {
                     "name": "Black",
                     "colorID": 1101,
                     "hex": "#17202A"
-                },	
-                {	
+                },
+                {
                     "name": "White",
                     "colorID": 1102,
                     "hex": "#FDFEFE"
-                },	
-                {	
+                },
+                {
                     "name": "Blue",
                     "colorID": 1103,
                     "hex": "#3498DB"
-                },	
-                {	
+                },
+                {
                     "name": "Red",
                     "colorID": 1104,
                     "hex": "#FF5733"
-                },	
-                {	
+                },
+                {
                     "name": "Yellow",
                     "colorID": 1105,
                     "hex": "#FFC300"
-                },	
-                {	
+                },
+                {
                     "name": "Green",
                     "colorID": 1106,
                     "hex": "#27AE60"
-                },	
-                {	
+                },
+                {
                     "name": "Orange",
                     "colorID": 1107,
                     "hex": "#FF6F00"
-                },	
-                {	
+                },
+                {
                     "name": "Pink",
                     "colorID": 1108,
                     "hex": "#FF33FF"
-                }	
+                }
             ]
           }
         ]
@@ -11201,46 +11316,46 @@
 					"price": 0,
 					"defaultColorID": 1101,
 					"colors": [
-                        {	
+                        {
                             "name": "Black",
                             "colorID": 1101,
                             "hex": "#17202A"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "White",
                             "colorID": 1102,
                             "hex": "#FDFEFE"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Blue",
                             "colorID": 1103,
                             "hex": "#3498DB"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Red",
                             "colorID": 1104,
                             "hex": "#FF5733"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Yellow",
                             "colorID": 1105,
                             "hex": "#FFC300"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Green",
                             "colorID": 1106,
                             "hex": "#27AE60"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Orange",
                             "colorID": 1107,
                             "hex": "#FF6F00"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Pink",
                             "colorID": 1108,
                             "hex": "#FF33FF"
-                        }		
+                        }
                     ]
 				},
 				{
@@ -11257,46 +11372,46 @@
 					"price": 200,
 					"defaultColorID": 1101,
 					"colors": [
-                        {	
+                        {
                             "name": "Black",
                             "colorID": 1101,
                             "hex": "#17202A"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "White",
                             "colorID": 1102,
                             "hex": "#FDFEFE"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Blue",
                             "colorID": 1103,
                             "hex": "#3498DB"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Red",
                             "colorID": 1104,
                             "hex": "#FF5733"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Yellow",
                             "colorID": 1105,
                             "hex": "#FFC300"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Green",
                             "colorID": 1106,
                             "hex": "#27AE60"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Orange",
                             "colorID": 1107,
                             "hex": "#FF6F00"
-                        },	
-                        {	
+                        },
+                        {
                             "name": "Pink",
                             "colorID": 1108,
                             "hex": "#FF33FF"
-                        }		
+                        }
                     ]
 				}
 			]
@@ -11466,7 +11581,7 @@
 					"price": 0,
 					"defaultColorID": 0
 				},
-                {	
+                {
                     "name": "Hard Anodized 12 tab",
                     "optionID": 7200,
                     "colors": [],

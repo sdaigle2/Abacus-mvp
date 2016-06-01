@@ -251,6 +251,7 @@
 
               <tr class="sideBar-custom-item"
                   data-ng-repeat="option in getCurPartData().options"
+                  data-ng-if="option.optionID != 99999"
                   data-ng-style="(isSidebarColored(option.optionID)) && {'border-left': 'solid 5px ' + getSidebarColor(option.optionID) }"
                 >
                 <td class="sideBar-custom-item-left">
