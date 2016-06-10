@@ -1,0 +1,11 @@
+<link href="../../styles/modals/grantModal.css" rel="stylesheet" ng-controller="GrantModalCtrl"/>
+<div class="locked-design-body">
+  <h4 class="main-text ">CAF Grants</h4>
+  <h5 class="main-text" style="font-weight: 400;">CAF grant recipients can get a standard Thunder wheelchair with standard wheels, side guards, and free shipping for $1,919 plus a 10% discount on any additional features like Spinergy wheels or a dual 5th wheel.
+    <br><br> Please enter the amount that the grant will cover</h5>
+
+  <div class="button-container">
+    <input type="number" data-ng-model="grantAmount" ng-keypress="enterGrant($event)">
+    <button class="cancel-button" ng-click="closeThisDialog(grantAmount)">enter</button>
+  </div>
+</div>

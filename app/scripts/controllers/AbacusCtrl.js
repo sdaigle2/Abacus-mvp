@@ -65,6 +65,9 @@ angular.module('abacuApp')
       $scope.selectedColor = {};
 
 
+
+
+
       /**********************Main Variables****************************/
 
 
@@ -185,7 +188,7 @@ angular.module('abacuApp')
 
         var id = $routeParams.param1;
 
-        if(id != null) {
+        if(id != null && id != 'grant') {
           if (designIsLocked(id)) {
             ngDialog.open({
               template: "views/modals/lockedDesignModal.html",
@@ -213,6 +216,15 @@ angular.module('abacuApp')
               console.log(err);
             });
           }
+        } else if(id == 'grant'){
+          User.createCurrentDesign(25);
+          ngDialog.open({
+            template: "views/modals/grantModal.html",
+            scope: $scope
+          }).closePromise
+            .then(function(val){
+              User.getCurEditWheelchair().setGrantAmount(val.value);
+            })
         }
 
         //Send the user back to Frames if no curEditWheelchair set
@@ -235,7 +247,7 @@ angular.module('abacuApp')
       }
 
       init(); //Initialize the page
-
+      
       /******login action group*******/
       $scope.login = function () {
         $scope.loginText = 'Loading..';
@@ -807,7 +819,7 @@ angular.module('abacuApp')
               $scope.curEditWheelchair.setColorForPart(11000, color);
             }
         }
-          
+
         if (($scope.curEditWheelchair.frameID >= 10) && ($scope.curEditWheelchair.frameID < 20)) {
             //for the spinergy wheels
             if(ID == 1000 && ($scope.curEditWheelchair.getPart(2222).optionID == 2100)){

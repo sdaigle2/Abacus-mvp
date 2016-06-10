@@ -92,7 +92,7 @@
     <div class="frame-item text-center horizontal"
          data-ng-repeat="f in frames"
          data-ng-class="{'right-border': ($even && ($index !== frames.length-1)), 'bottom-border': ($index < frames.length-2)}"
-         data-ng-if="orientation === 'horizontal'" >
+         data-ng-if="orientation === 'horizontal' && f.frameID !=25" >
       <div class="frame-item-image">
         <div class="img" data-ng-mouseenter="hoverItem = f.getFrameID()"
              data-ng-mouseleave="hoverItem = -1">

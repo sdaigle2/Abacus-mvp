@@ -15,6 +15,7 @@ angular.module('abacuApp')
       this.parts = [];
       this.measures = [];
       this.inCurOrder = false;
+      this.grantAmount = 0;
       if (typeof frameID === 'number') {
         this.frameID = frameID;
         this.title = 'My Custom Wheelchair';
@@ -72,6 +73,7 @@ angular.module('abacuApp')
         this.title = wheelchair.title;
         var frame = FrameData.getFrame(this.frameID);
         this.name = frame.getName();
+        this.grantAmount = wheelchair.grantAmount;
         this.inCurOrder = wheelchair.inCurOrder;
         //Copy Parts
         for (var i = 0; i < wheelchair.parts.length; i++) {
@@ -114,7 +116,8 @@ angular.module('abacuApp')
           title: this.title,
           parts: this.parts,
           measures: this.measures,
-          inCurOrder: this.inCurOrder
+          inCurOrder: this.inCurOrder,
+          grantAmount: this.grantAmount
         }
       },
 
@@ -245,7 +248,7 @@ angular.module('abacuApp')
         }else{
           return {
             partName: part.getName(),
-           
+
           }
         }
 
@@ -292,6 +295,10 @@ angular.module('abacuApp')
 
       getFrameImages: function (angle) {
         return this.frameImageGenerator.getImages(angle);
+      },
+
+      getGrantAmount: function() {
+        return this.grantAmount;
       },
 
       //SETS
@@ -376,6 +383,10 @@ angular.module('abacuApp')
           m.measureOptionIndex = index;
       },
 
+      setGrantAmount: function(val) {
+        this.grantAmount = val;
+      },
+
       removeMultiOption: function (optionID) {
         this.parts = _.reject(this.parts, {'optionID': optionID});
       },
@@ -419,7 +430,8 @@ angular.module('abacuApp')
           }
         }
 
-        return totalPrice;
+        var updateTotal = totalPrice - this.grantAmount;
+        return (updateTotal >=0 ? updateTotal : 0);
       },
 
 

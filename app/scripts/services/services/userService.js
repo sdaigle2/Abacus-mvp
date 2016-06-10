@@ -583,6 +583,8 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       }
     },
 
+
+
     //***********get/sets
     getID: function () {
       return userID;
@@ -630,6 +632,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     getContentSection: function () {
       return contentSection;
     },
+
     isAdmin: function () {
       return isAdmin;
     },
