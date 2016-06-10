@@ -294,8 +294,13 @@ angular.module('abacuApp')
       // Returns amount of money to take off of subtotal given the current discounts in the order
       getDiscountAmount: function () {
         var subtotal = this.getSubtotal();
-        
-        var discountPercent = _.sumBy(this.discounts, 'percent');
+
+
+        var discountPercent =1;
+
+        this.discounts.forEach(function(discount){
+          discountPercent *= discount.percent;
+        });
         return subtotal * discountPercent;
       },
 
