@@ -247,7 +247,7 @@ angular.module('abacuApp')
       }
 
       init(); //Initialize the page
-      
+
       /******login action group*******/
       $scope.login = function () {
         $scope.loginText = 'Loading..';

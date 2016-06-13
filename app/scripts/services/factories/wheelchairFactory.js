@@ -429,7 +429,7 @@ angular.module('abacuApp')
             totalPrice += m.getPrice(this.measures[j].measureOptionIndex);
           }
         }
-
+        console.log(this.grantAmount);
         var updateTotal = totalPrice - this.grantAmount;
         return (updateTotal >=0 ? updateTotal : 0);
       },

@@ -147,19 +147,19 @@
             </div>
           </section>
 
-          <!--<section id="orderType" class="oReg">-->
-            <!--<p class="sectionTitle">Choose Order Type*</p>-->
-            <!--<div class="btn-group dropDown">-->
-              <!--<button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" style="word-wrap: break-word;" data-toggle="dropdown">-->
-                <!--{{curOrder.payMethod}}<span class="pull-right caret caretShape"></span>-->
-              <!--</button>-->
-              <!--<ul class="dropdown-menu" role="menu" style="word-wrap: break-word;">-->
-                <!--<li ng-repeat="paymentMethod in PAYMENT_METHODS" ng-if="!(curOrder.userType == 'User' && (paymentMethod.name == 'Bill me Net 30' || paymentMethod.name == 'Credit Card when Order Ships'))">-->
-                  <!--<a ng-click="choosePayment(paymentMethod)">{{paymentMethod.name}} {{curOrder.payMethod === paymentMethod.name ? '✓' : ''}}</a>-->
-                <!--</li>-->
-              <!--</ul>-->
-            <!--</div>-->
-          <!--</section>-->
+          <section id="orderType" class="oReg">
+            <p class="sectionTitle">Choose Order Type*</p>
+            <div class="btn-group dropDown">
+              <button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" style="word-wrap: break-word;" data-toggle="dropdown">
+                {{curOrder.payMethod}}<span class="pull-right caret caretShape"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu" style="word-wrap: break-word;">
+                <li ng-repeat="paymentMethod in PAYMENT_METHODS" ng-if="!(curOrder.userType == 'User' && (paymentMethod.name == 'Bill me Net 30' || paymentMethod.name == 'Credit Card when Order Ships'))">
+                  <a ng-click="choosePayment(paymentMethod)">{{paymentMethod.name}} {{curOrder.payMethod === paymentMethod.name ? '✓' : ''}}</a>
+                </li>
+              </ul>
+            </div>
+          </section>
           <section id="orderType" class="oReg">
             <div>
               <p class="sectionTitle">Discount Code</p>

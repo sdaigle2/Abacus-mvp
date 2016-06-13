@@ -301,7 +301,7 @@ angular.module('abacuApp')
         this.discounts.forEach(function(discount){
           discountPercent *= discount.percent;
         });
-        return subtotal * discountPercent;
+        return discountPercent;
       },
 
       //The estimated cost of shipping this Order
@@ -320,7 +320,7 @@ angular.module('abacuApp')
 
       //The sum of Subtotal, Shipping Cost, and Tax Cost
       getTotalCost: function () {
-        return this.getSubtotal() + this.getShippingCost() + this.getTaxCost() - this.getDiscountAmount();
+        return (this.getSubtotal() + this.getShippingCost() + this.getTaxCost()) * this.getDiscountAmount();
       },
 
 
