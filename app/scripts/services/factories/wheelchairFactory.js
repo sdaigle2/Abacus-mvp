@@ -434,6 +434,29 @@ angular.module('abacuApp')
         return (updateTotal >=0 ? updateTotal : 0);
       },
 
+      //Calculate the subtotal price of the Wheelchair for abacus ctrl without grantAmount due to sync problem
+      getTotalPriceForAbcusCtrl: function () {
+        var frame = FrameData.getFrame(this.frameID);
+        var totalPrice = frame.getBasePrice();
+        for (var i = 0; i < this.parts.length; i++) {
+          var p = frame.getPart(this.parts[i].partID);
+          var o = p.getOption(this.parts[i].optionID);
+          if(this.parts[i].optionID != -1) {
+            totalPrice += o.getPrice();
+          }
+        }
+        for (var j = 0; j < this.measures.length; j++) {
+          if (this.measures[j].measureOptionIndex !== -1) {
+            var m = frame.getMeasure(this.measures[j].measureID);
+            totalPrice += m.getPrice(this.measures[j].measureOptionIndex);
+          }
+        }
+      
+        return totalPrice;
+      },
+
+
+
 
       //Returns true if all measurements have a selected option
       //A Wheelchair should not be purchaseable if any of the measurements are unset

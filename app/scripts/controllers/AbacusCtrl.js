@@ -64,6 +64,8 @@ angular.module('abacuApp')
 
       $scope.selectedColor = {};
 
+      var grantAmount = 0;
+
 
 
 
@@ -224,6 +226,7 @@ angular.module('abacuApp')
           }).closePromise
             .then(function(val){
               User.getCurEditWheelchair().setGrantAmount(val.value);
+              grantAmount = val.value;
             })
         }
 
@@ -331,7 +334,7 @@ angular.module('abacuApp')
       };
 
       $scope.getTotalPrice = function () {
-        return $scope.curEditWheelchair.getTotalPrice();
+        return $scope.curEditWheelchair.getTotalPriceForAbcusCtrl() - grantAmount;
       };
 
       /*******************Unit Systems ****************************/
