@@ -1,4 +1,4 @@
-﻿<link href="../../styles/checkout/order.css" rel="stylesheet" />
+<link href="../../styles/checkout/order.css" rel="stylesheet" />
 
 
 <div class="purchase_pending_fade">
@@ -72,16 +72,15 @@
         <div class="order-form-label"><strong>Zipcode</strong></div>
         <input class="text-input" type="text" data-ng-model="billingForm.zip" />
       </div>
-      <div class="order-form payment">
+      <div class="order-form">
         <div class="order-form-header">Optional Information</div>
         <div class="order-form-label"><strong>PO Number</strong></div>
         <input class="text-input" type="text" data-ng-model="curOrder.poNumber" />
       </div>
 
       <div class="order-form payment" ng-if="creditCardRequired()">
-        <div class="order-form-header">Enter Credit Card Number</div>
+        <div class="order-form-header">Credit Card Information</div>
         <div class="paymentWindow">
-          <strong>Pay by Credit Card</strong>
           <div>
             <form>
               <span class="payment-errors" data-ng-bind="payment_errors"></span>
@@ -116,11 +115,6 @@
                   <span> / </span>
                   <input type="text" data-ng-model="card.exp_year"/>
                 </label>
-              <div id="paymentInfo" >
-                30% will be charged to your credit card now . When your chair is ready to be shipped, you will be
-               contacted to pay the other 70%
-              </div>
-
               </div>
             </form>
           </div>
