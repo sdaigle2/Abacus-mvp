@@ -309,7 +309,7 @@ function getTaxCost(total) {
  */
 function getChairPrice(chair, order) {
   var subTotal = calculatePartsSubtotal(chair);
-  return subTotal + getChairShippingCost(chair) + getTaxCost.apply(order, [subTotal]);
+  return subTotal + getChairShippingCost(chair) + getTaxCost.apply(order, [subTotal]) - chair.grantAmount;
 }
 
 /**
@@ -351,6 +351,10 @@ function getTotalDiscount() {
   var subTotal = getTotalSubtotal.apply(this);
   var discountPercent = _.sumBy(this.discounts, 'percent');
   return subTotal * discountPercent;
+}
+
+function getTotalGrantAmount() {
+  return _.sumBy(this.wheelchairs, 'wheelchair.grantAmount');
 }
 
 /**
@@ -554,7 +558,8 @@ const EXPORTED_HELPERS = {
   toUpperCase,
   getPaginatedParts,
   getPaginatedMeasures,
-  getImageKey
+  getImageKey,
+  getTotalGrantAmount
 };
 
 // Wrap all functions to round integers to nearest decimal

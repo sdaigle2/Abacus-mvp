@@ -381,6 +381,11 @@ angular.module('abacuApp')
           })
       };
 
+      $scope.emptyDiscount = function() {
+        $scope.curOrder.emptyDiscount();
+        localJSONStorage.remove('promo')
+      };
+
       $scope.$on('userChange', function () {
         init();
         $scope.$digest();

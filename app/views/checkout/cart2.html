@@ -138,7 +138,7 @@
           </section>
 
           <section id="userType" class="oReg">
-            <p class="sectionTitle">I am a:</p>
+            <p class="">I am a:</p>
             <div class="btn-group dropDown">
               <button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" data-toggle="dropdown">
                 {{curOrder.userType}}<span class="pull-right caret caretShape"></span>
@@ -152,7 +152,7 @@
           </section>
 
           <section id="orderType" class="oReg">
-            <p class="sectionTitle">Choose Order Type*</p>
+            <p class="">Choose Order Type*</p>
             <div class="btn-group dropDown">
               <button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" style="word-wrap: break-word;" data-toggle="dropdown">
                 {{curOrder.payMethod}}<span class="pull-right caret caretShape"></span>
@@ -166,7 +166,10 @@
           </section>
           <section id="orderType" class="oReg">
             <div>
-              <p class="sectionTitle">Discount Code</p>
+              <div>
+                <p class="oReg pull-left">Discount Code</p>
+                <p class="pull-right cleanDiscount" ng-click="emptyDiscount()">Clear Discount</p>
+              </div>
               <input type="text" class="discount-input" ng-model="discount.code">
               <button type="button" class="pull-right button apply-button" ng-disabled="!curOrder.canAddDiscount()" ng-click="applyDiscount()">Apply</button>
               <p ng-if="!curOrder.canAddDiscount()">Your current discount can't be combined with other discounts</p>

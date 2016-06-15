@@ -131,6 +131,10 @@ angular.module('abacuApp')
         }
       },
 
+      emptyDiscount: function(){
+        this.discounts = [];
+      },
+
       addWheelchair: function (newDesign) {
         if (newDesign instanceof Design) {
           this.wheelchairs.push(newDesign);
@@ -290,7 +294,7 @@ angular.module('abacuApp')
           return design.wheelchair.getTotalPrice();
         });
       },
-      
+
       getSubtotalNoGrant: function () {
         return _.sumBy(this.wheelchairs, function (design) {
           return design.wheelchair.getTotalPriceForAbacusCtrl();
@@ -305,7 +309,7 @@ angular.module('abacuApp')
         var discountPercent =1;
 
         this.discounts.forEach(function(discount){
-          discountPercent *= discount.percent;
+          discountPercent *= (1 - discount.percent);
         });
         return discountPercent;
       },
@@ -326,7 +330,7 @@ angular.module('abacuApp')
 
       //The sum of Subtotal, Shipping Cost, and Tax Cost
       getTotalCost: function () {
-        return (this.getSubtotal() + this.getShippingCost() + this.getTaxCost()) * (1 - this.getDiscountAmount());
+        return (this.getSubtotal() + this.getShippingCost() + this.getTaxCost()) * (this.getDiscountAmount());
       },
 
 
