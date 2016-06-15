@@ -2226,7 +2226,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
-					"price": 400,
+					"price": 65,
 					"defaultColorID": 0
 				},
                 {
@@ -4890,7 +4890,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
-					"price": 400,
+					"price": 65,
 					"defaultColorID": 0
 				},
                 {
@@ -7150,7 +7150,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
-					"price": 400,
+					"price": 65,
 					"defaultColorID": 0
 				},
                 {
@@ -9367,7 +9367,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
-					"price": 400,
+					"price": 65,
 					"defaultColorID": 0
 				},
                 {
@@ -11926,7 +11926,7 @@
             "numSubImages": 0,
 			"allowMultipleChoices": 1,
 			"shortName": "Msc.",
-			"defaultOptionID": 14300,
+			"defaultOptionID": 14100,
 			"options": [
 				{
 					"name": "Waist Click Strap",
@@ -11938,7 +11938,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/click-strap.jpg",
 					"desc": "Our click straps are the sale ratchet design on snowboard bindings.",
-					"price": 90,
+					"price": 0,
 					"defaultColorID": 0
 				},
 				{
@@ -11951,7 +11951,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
-					"price": 58.5,
+					"price": -35,
 					"defaultColorID": 0
 				},
 				{
@@ -11964,7 +11964,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/click-strap.jpg",
 					"desc": "Our click straps are the sale ratchet design on snowboard bindings.",
-					"price": 0,
+					"price": 67.5,
 					"priceTBD": 1,
 					"defaultColorID": 0
 				},
@@ -11978,7 +11978,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
-					"price": -10,
+					"price": 58.5,
 					"priceTBD": 1,
 					"defaultColorID": 0
 				},
@@ -12005,7 +12005,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
-					"price": 360,
+					"price": 58.5,
 					"defaultColorID": 0
 				},
                 {
