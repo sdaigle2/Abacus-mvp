@@ -334,7 +334,7 @@ angular.module('abacuApp')
       };
 
       $scope.getTotalPrice = function () {
-        return $scope.curEditWheelchair.getTotalPriceForAbcusCtrl() - grantAmount;
+        return $scope.curEditWheelchair.getTotalPriceForAbacusCtrl() - grantAmount;
       };
 
       /*******************Unit Systems ****************************/

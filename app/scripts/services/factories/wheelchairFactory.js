@@ -435,7 +435,7 @@ angular.module('abacuApp')
       },
 
       //Calculate the subtotal price of the Wheelchair for abacus ctrl without grantAmount due to sync problem
-      getTotalPriceForAbcusCtrl: function () {
+      getTotalPriceForAbacusCtrl: function () {
         var frame = FrameData.getFrame(this.frameID);
         var totalPrice = frame.getBasePrice();
         for (var i = 0; i < this.parts.length; i++) {

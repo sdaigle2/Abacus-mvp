@@ -334,7 +334,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
       var httpPromise = $http({
         url: '/login',
-        data: {email: in_email, password: pass},
+        data: {email: _.lowerFirst(in_email), password: pass},
         method: 'POST'
       });
 
