@@ -39,6 +39,7 @@ angular.module('abacuApp')
       $scope.curOrder = null;
       $scope.discount = {code: ""};
       $scope.promoErr = "";
+      $scope.totalGrantAmount = 0;
 
       var discount = new Discount();
 
@@ -64,6 +65,8 @@ angular.module('abacuApp')
         $scope.wheelchairUIOpts.forEach(function (chairOpts) {
           getParts(chairOpts.design.wheelchair);
         });
+
+        $scope.totalGrantAmount = _.sumBy($scope.curOrder.wheelchairs, 'wheelchair.grantAmount');
       }
 
       $scope.printValue = function(printval){

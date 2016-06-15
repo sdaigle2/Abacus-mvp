@@ -290,6 +290,12 @@ angular.module('abacuApp')
           return design.wheelchair.getTotalPrice();
         });
       },
+      
+      getSubtotalNoGrant: function () {
+        return _.sumBy(this.wheelchairs, function (design) {
+          return design.wheelchair.getTotalPriceForAbacusCtrl();
+        });
+      },
 
       // Returns amount of money to take off of subtotal given the current discounts in the order
       getDiscountAmount: function () {
