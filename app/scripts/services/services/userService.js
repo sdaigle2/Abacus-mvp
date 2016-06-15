@@ -191,9 +191,9 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       }
     }
 
-    if(localJSONStorage.get('promo')) {
-      cart.discounts = localJSONStorage.get('promo');
-    }
+    // if(localJSONStorage.get('promo')) {
+    //   cart.discounts = localJSONStorage.get('promo');
+    // }
   }
 
   function restoreUserFromBackend(data) {
