@@ -237,6 +237,8 @@ angular.module('abacuApp')
           return;
         }
 
+        grantAmount = $scope.curEditWheelchair.getGrantAmount();
+
         //Load data about the frame type of curEditWheelchair
         $scope.curFrameData = FrameData.getFrame($scope.curEditWheelchair.getFrameID());
         generatePages();
