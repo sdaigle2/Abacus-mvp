@@ -340,7 +340,7 @@ function getTotalTax() {
  */
 function getTotalSubtotal() {
   var chairs = _.map(this.wheelchairs, 'wheelchair');
-  return _.sumBy(chairs, chair => calculatePartsSubtotal(chair));
+  return _.sumBy(chairs, chair => calculatePartsSubtotal(chair)) - getTotalGrantAmount();
 }
 
 /**
