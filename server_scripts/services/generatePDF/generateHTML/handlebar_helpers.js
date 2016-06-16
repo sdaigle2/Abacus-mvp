@@ -363,7 +363,7 @@ function getTotalGrantAmount() {
 function getTotalPrice() {
   var chairs = _.map(this.wheelchairs, 'wheelchair');
   var getChairPriceBound = getChairPrice.bind(this);
-  return _.sumBy(chairs, chair => getChairPriceBound(chair, this));
+  return _.sumBy(chairs, chair => getChairPriceBound(chair, this)) - getTotalGrantAmount();
 }
 
 

@@ -28,6 +28,7 @@
 					<div id="_idContainer037" class="Basic-Text-Frame">
 						<p class="Subtitle" lang="en-US">Manufacturer: </p>
 						<p class="Subtitle" lang="en-US">Price:</p>
+						<p class="Subtitle" lang="en-US">Grant Amount:</p>
 						<p class="Subtitle" lang="en-US">Model:</p>
 						<p class="Subtitle" lang="en-US">Design Date:</p>
 						<p class="Subtitle" lang="en-US">Quantity:</p>
@@ -48,10 +49,13 @@
 						{{/with}}
 						<p class="Numbers" style="height: 15px; margin-top: 0px;">${{getChairPrice this.wheelchair ..}}</p>
 						{{#with (getChairFrame this.wheelchair) as |frame|}}
-						<p class="Numbers" style="height: 15px; margin-top: 0px;">{{frame.name}}</p>
+                <p class="Numbers" style="height: 15px; margin-top: 0px;">${{this.wheelchair.grantAmount}}</p>
+
+                <p class="Numbers" style="height: 15px; margin-top: 0px;">{{frame.name}}</p>
 						{{/with}}
 						<p class="Numbers" style="height: 15px; margin-top: 0px;">{{displayDate this.updatedAt}}</p>
-						<p class="Numbers" style="height: 15px; margin-top: 0px;">1</p>
+
+              <p class="Numbers" style="height: 15px; margin-top: 0px;">1</p>
 					</div>
 				</div>
 			</div>

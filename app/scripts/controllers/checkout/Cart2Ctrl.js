@@ -378,7 +378,8 @@ angular.module('abacuApp')
               console.log(err);
               $scope.promoErr = err;
             }
-          })
+          });
+        $scope.discount.code = '';
       };
 
       $scope.emptyDiscount = function() {
