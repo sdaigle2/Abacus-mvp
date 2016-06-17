@@ -117,7 +117,7 @@
             </div>
             <div ng-if="totalGrantAmount > 0">
               <span class="pull-left">Grant Amount</span>
-              <span class="pull-right">-{{totalGrantAmount}}</span>
+              <span class="pull-right">-${{totalGrantAmount.toFixed(2)}}</span>
             </div>
             <div ng-if="curOrder.discounts.length">
               <span class="pull-left">Discounts</span>
