@@ -202,16 +202,16 @@
               <div class="measure-content">
                 <h4 class="measure-content-title">
                   <span data-ng-bind="getCurMeasureData().name"></span></h4>
-                <div ng-include="'https://munchery.com/menus/sf/#/0/dinner'"></div>
 
-                <h3 style="font-size: 17px;" data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">Tutorial Video Coming Soon</h3>
+                <h3 style="font-size: 17px;" data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL">
+                  <span ng-show="getCurMeasureData().videoURL == ''"> Video coming soon</span></h3>
 
-                <!--<iframe-->
-                  <!--data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL"-->
-                  <!--data-ng-src="http://www.intelliwheels.net"-->
-                  <!--autoplay="0"-->
-                  <!--allowfullscreen>-->
-                <!--</iframe>-->
+                <iframe ng-show="getCurMeasureData().videoURL != ''"
+                  data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.TUTORIAL"
+                  data-ng-src="{{getCurMeasureData().videoURL}}"
+                  autoplay="0"
+                  allowfullscreen>
+                </iframe>
                 <img
                   data-ng-if="getCurPageType() === pageType.MEASURE && getMeasureTabs() === MeasureTabs.ERGONOMICS"
                   data-ng-src="{{getCurMeasureData().gifURL}}" alt="Ergonomic chart">

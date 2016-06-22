@@ -460,6 +460,10 @@ angular.module('abacuApp')
         curPage.page[$scope.pageType.MEASURE] = pages.measurePages[newIndex];
       };
 
+      $scope.getMeasurePage = function(index){
+        return pages.measurePages[index];
+      };
+
 
 
 
@@ -550,7 +554,11 @@ angular.module('abacuApp')
         $scope.closeAllPanels();
         resetSelectedMeasureImageIndex();
         navigateArrows(dir);
-        $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL);
+        var newIndex = $scope.getCurPage().index + dir;
+        if($scope.curFrameData.getMeasure($scope.getMeasurePage(newIndex -1).measureID).videoURL != '')
+        $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL); else{
+          $scope.setMeasureTabs($scope.MeasureTabs.ERGONOMICS);
+        }
 
         // initial $scope.curOption after page jump
        setColor();
@@ -571,7 +579,11 @@ angular.module('abacuApp')
         $scope.closeAllPanels(); //close any panels we may have opened
         if ($scope.getCurPageType() === $scope.pageType.MEASURE) { //resets the selected image in the measure panel
           resetSelectedMeasureImageIndex();
-          $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL);
+          var newIndex = page.index;
+          if($scope.curFrameData.getMeasure($scope.getMeasurePage(newIndex).measureID).videoURL != '')
+            $scope.setMeasureTabs($scope.MeasureTabs.TUTORIAL); else{
+            $scope.setMeasureTabs($scope.MeasureTabs.ERGONOMICS);
+          }
         }
         setColor()
       };
