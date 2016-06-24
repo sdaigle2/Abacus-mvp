@@ -464,6 +464,11 @@ angular.module('abacuApp')
         return pages.measurePages[index];
       };
 
+      
+      // $scope.getCustomizePage = function(index){
+      //   return pages.customizePages[index];
+      // };
+
 
 
 

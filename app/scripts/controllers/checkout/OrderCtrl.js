@@ -28,6 +28,7 @@ angular.module('abacuApp')
       $scope.curStage = $scope.stages.INFO;
 
 
+
       $scope.display = [
         { //INFO
           title: "Your Info",
@@ -51,6 +52,9 @@ angular.module('abacuApp')
       /*************************** LOADING CUREDITORDER ****************************/
 
       $scope.curOrder = User.getCurEditOrder();
+
+      $scope.totalGrantAmount = _.sumBy($scope.curOrder.wheelchairs, 'wheelchair.grantAmount');
+
 
       //Send user to My Designs if orders page reached without having an unsent order
       if ($scope.curOrder === null) {

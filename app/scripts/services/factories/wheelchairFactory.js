@@ -73,7 +73,7 @@ angular.module('abacuApp')
         this.title = wheelchair.title;
         var frame = FrameData.getFrame(this.frameID);
         this.name = frame.getName();
-        if(typeof grantAmount == 'undefined' ) {
+        if(typeof wheelchair.grantAmount == 'undefined' ) {
           this.grantAmount = 0;
         }else {
           this.grantAmount = wheelchair.grantAmount;
@@ -433,7 +433,6 @@ angular.module('abacuApp')
             totalPrice += m.getPrice(this.measures[j].measureOptionIndex);
           }
         }
-        console.log(this.grantAmount);
         var updateTotal = totalPrice - this.grantAmount;
         return (updateTotal >=0 ? updateTotal : 0);
       },

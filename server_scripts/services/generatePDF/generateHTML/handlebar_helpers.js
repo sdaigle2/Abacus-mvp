@@ -349,8 +349,12 @@ function getTotalSubtotal() {
  */
 function getTotalDiscount() {
   var subTotal = getTotalSubtotal.apply(this);
-  var discountPercent = _.sumBy(this.discounts, 'percent');
-  return subTotal * discountPercent;
+  var discountPercent = 1;
+  this.discounts.forEach(function(discount){
+    discountPercent *= (1 - discount.percent);
+  });
+
+  return subTotal * (1-discountPercent);
 }
 
 function getTotalGrantAmount() {
@@ -363,7 +367,7 @@ function getTotalGrantAmount() {
 function getTotalPrice() {
   var chairs = _.map(this.wheelchairs, 'wheelchair');
   var getChairPriceBound = getChairPrice.bind(this);
-  return _.sumBy(chairs, chair => getChairPriceBound(chair, this)) - getTotalGrantAmount();
+  return _.sumBy(chairs, chair => getChairPriceBound(chair, this));
 }
 
 
