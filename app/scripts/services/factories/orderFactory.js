@@ -330,7 +330,7 @@ angular.module('abacuApp')
       },
 
       //The sum of Subtotal, Shipping Cost, and Tax Cost
-      getTotalCost: function () {
+      ƒ: function () {
         return this.getShippingCost() + this.getTaxCost() + (this.getSubtotal() * (this.getDiscountAmount()));
       },
 

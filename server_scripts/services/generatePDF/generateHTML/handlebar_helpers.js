@@ -361,6 +361,8 @@ function getTotalDiscount() {
 
 
 
+
+
 function getGrantAmount() {
   if(typeof (this.wheelchair.grantAmount) == 'undefined'){
     return 0;
@@ -379,8 +381,8 @@ function getTotalGrantAmount() {
 function getTotalPrice() {
   var chairs = _.map(this.wheelchairs, 'wheelchair');
   var getChairPriceBound = getChairPrice.bind(this);
-  return _.sumBy(chairs, chair => getChairPriceBound(chair, this)) - getTotalDiscount() ;
-  // return getTotalSubtotal() - getTotalDiscount() + getTotalShipping() + getTotalTax();
+  return _.sumBy(chairs, chair => getChairPriceBound(chair, this))  ;
+
 }
 
 
