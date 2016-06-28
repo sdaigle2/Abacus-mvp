@@ -301,6 +301,7 @@ angular.module('abacuApp')
         });
       },
 
+      // Returns percentage to multiply the subtotal given the current discounts in the order
       getDiscountAmount: function () {
         var subtotal = this.getSubtotal();
 
