@@ -191,9 +191,9 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       }
     }
 
-    if(localJSONStorage.get('promo')) {
-      cart.discounts = localJSONStorage.get('promo');
-    }
+    // if(localJSONStorage.get('promo')) {
+    //   cart.discounts = localJSONStorage.get('promo');
+    // }
   }
 
   function restoreUserFromBackend(data) {
@@ -394,8 +394,8 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
           localJSONStorage.put('design' + i, cart.wheelchairs[i].allDetails());
         }
 
-        localJSONStorage.remove('promo');
-        localJSONStorage.put('promo', cart.discounts)
+        // localJSONStorage.remove('promo');
+        // localJSONStorage.put('promo', cart.discounts)
 
 
         // Send a successfull promise resolved to the current user object

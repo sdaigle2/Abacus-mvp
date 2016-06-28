@@ -340,7 +340,7 @@ function getTotalTax() {
  */
 function getTotalSubtotal() {
   var chairs = _.map(this.wheelchairs, 'wheelchair');
-  return _.sumBy(chairs, chair => calculatePartsSubtotal(chair)) - getTotalGrantAmount();
+  return (_.sumBy(chairs, chair => calculatePartsSubtotal(chair))) - getTotalGrantAmount();
 }
 
 /**
@@ -350,12 +350,16 @@ function getTotalSubtotal() {
 function getTotalDiscount() {
   var subTotal = getTotalSubtotal.apply(this);
   var discountPercent = 1;
-  this.discounts.forEach(function(discount){
-    discountPercent *= (1 - discount.percent);
-  });
+  if(!_.isEmpty(this.discounts)) {
+    this.discounts.forEach(function (discount) {
+      discountPercent *= (1 - discount.percent);
+    });
+  }
 
   return subTotal * (1-discountPercent);
 }
+
+
 
 function getGrantAmount() {
   if(typeof (this.wheelchair.grantAmount) == 'undefined'){
@@ -373,10 +377,10 @@ function getTotalGrantAmount() {
  * Returns total cost for the whole order
  */
 function getTotalPrice() {
-  // var chairs = _.map(this.wheelchairs, 'wheelchair');
-  // var getChairPriceBound = getChairPrice.bind(this);
-  // return _.sumBy(chairs, chair => getChairPriceBound(chair, this)) ;
-  return getTotalSubtotal() - getTotalDiscount() + getTotalShipping() + getTotalTax();
+  var chairs = _.map(this.wheelchairs, 'wheelchair');
+  var getChairPriceBound = getChairPrice.bind(this);
+  return _.sumBy(chairs, chair => getChairPriceBound(chair, this)) - getTotalDiscount() ;
+  // return getTotalSubtotal() - getTotalDiscount() + getTotalShipping() + getTotalTax();
 }
 
 
