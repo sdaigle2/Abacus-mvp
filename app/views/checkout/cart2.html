@@ -120,8 +120,8 @@
               <span class="pull-right">-${{totalGrantAmount.toFixed(2)}}</span>
             </div>
             <div ng-if="curOrder.discounts.length">
-              <span class="pull-left">Discounts</span>
-              <span class="pull-right"> {{((1-curOrder.getDiscountAmount())*100).toFixed(0)}}%</span>
+              <span class="pull-left">Discount ({{((1-curOrder.getDiscountAmount())*100).toFixed(0)}}%)</span>
+              <span class="pull-right"> -${{((1-curOrder.getDiscountAmount())*(curOrder.getSubtotalNoGrant()-totalGrantAmount) ).toFixed(2)}}</span>
             </div>
             <div>
               <span class="pull-left">Tax</span>
