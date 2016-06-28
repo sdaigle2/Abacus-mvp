@@ -314,6 +314,7 @@ angular.module('abacuApp')
         return discountPercent;
       },
 
+
       //The estimated cost of shipping this Order
       getShippingCost: function () {
         var orderInstance = this;
@@ -330,7 +331,7 @@ angular.module('abacuApp')
 
       //The sum of Subtotal, Shipping Cost, and Tax Cost
       getTotalCost: function () {
-        return (this.getSubtotal() + this.getShippingCost() + this.getTaxCost()) * (this.getDiscountAmount());
+        return this.getShippingCost() + this.getTaxCost() + (this.getSubtotal() * (this.getDiscountAmount()));
       },
 
 

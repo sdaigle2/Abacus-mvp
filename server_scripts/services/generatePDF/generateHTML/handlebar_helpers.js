@@ -357,6 +357,14 @@ function getTotalDiscount() {
   return subTotal * (1-discountPercent);
 }
 
+function getGrantAmount() {
+  if(typeof (this.wheelchair.grantAmount) == 'undefined'){
+    return 0;
+  } else{
+    return this.wheelchair.grantAmount;
+  }
+}
+
 function getTotalGrantAmount() {
   return _.sumBy(this.wheelchairs, 'wheelchair.grantAmount');
 }
@@ -563,7 +571,8 @@ const EXPORTED_HELPERS = {
   getPaginatedParts,
   getPaginatedMeasures,
   getImageKey,
-  getTotalGrantAmount
+  getTotalGrantAmount,
+  getGrantAmount
 };
 
 // Wrap all functions to round integers to nearest decimal
