@@ -373,9 +373,10 @@ function getTotalGrantAmount() {
  * Returns total cost for the whole order
  */
 function getTotalPrice() {
-  var chairs = _.map(this.wheelchairs, 'wheelchair');
-  var getChairPriceBound = getChairPrice.bind(this);
-  return _.sumBy(chairs, chair => getChairPriceBound(chair, this));
+  // var chairs = _.map(this.wheelchairs, 'wheelchair');
+  // var getChairPriceBound = getChairPrice.bind(this);
+  // return _.sumBy(chairs, chair => getChairPriceBound(chair, this)) ;
+  return getTotalSubtotal() - getTotalDiscount() + getTotalShipping() + getTotalTax();
 }
 
 
