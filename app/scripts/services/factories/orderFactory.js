@@ -301,7 +301,7 @@ angular.module('abacuApp')
         });
       },
 
-      // Returns amount of money to take off of subtotal given the current discounts in the order
+      // Returns percentage to multiply the subtotal given the current discounts in the order
       getDiscountAmount: function () {
         var subtotal = this.getSubtotal();
 
@@ -312,6 +312,11 @@ angular.module('abacuApp')
           discountPercent *= (1 - discount.percent);
         });
         return discountPercent;
+      },
+        
+      // Returns the discount amount in dollars
+      getDiscountDollarAmount: function() {
+          var subtotal = this.getSubtotal();
       },
 
 
