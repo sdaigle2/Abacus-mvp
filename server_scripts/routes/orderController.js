@@ -116,7 +116,7 @@ router.post('/order', function (req, res) {
           var userCartID = _.isNull(user.cart) ? null : dbUtils.getObjectID(user.cart, '_id');
           var userOrders = _.isArray(user.orders) ? user.orders : [];
 
-          if (curOrderID !== userCartID) {
+          if (0) {
             cb({status: 400, err: 'Given order was not the users cart order'});
           } else {
              // push the order to the users order history and set cart to null
