@@ -313,7 +313,7 @@ angular.module('abacuApp')
         });
         return discountPercent;
       },
-        
+
       // Returns the discount amount in dollars
       getDiscountDollarAmount: function() {
           var subtotal = this.getSubtotal();
@@ -336,7 +336,7 @@ angular.module('abacuApp')
 
       //The sum of Subtotal, Shipping Cost, and Tax Cost
       getTotalCost: function () {
-        return this.getShippingCost() + this.getTaxCost() + (this.getSubtotal() * (this.getDiscountAmount()));
+        return (this.getShippingCost() + this.getTaxCost() + (this.getSubtotal() * (this.getDiscountAmount())));
       },
 
 
@@ -376,7 +376,7 @@ angular.module('abacuApp')
 
         return $http({
           url: '/order',
-          data: {order: this.getAll(), token: token, totalPrice: this.getTotalCost()},
+          data: {order: this.getAll(), token: token, totalPrice: this.getTotalCost().toFixed(2)},
           method: 'POST'
         })
         .then(function(res) {

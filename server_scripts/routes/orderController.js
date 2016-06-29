@@ -73,8 +73,8 @@ router.post('/order', function (req, res) {
   var order = req.body.order;
 
   //Cross check all wheelchairs in the order against the JSON, while calculating the total price
-  const total = req.body.totalPrice.toFixed(2);
-
+  const total = req.body.totalPrice;
+  console.log('order\'s total amount is ' + total );
   // Check the total value to make sure its valid...send 400 error if its not
   if (!_.isNumber(total) || (_.isNumber(total) && total <= 0)) {
     res.status(400);
