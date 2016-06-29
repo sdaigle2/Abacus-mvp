@@ -376,7 +376,7 @@ angular.module('abacuApp')
 
         return $http({
           url: '/order',
-          data: {order: this.getAll(), token: token, totalPrice: this.getTotalCost().toFixed(2)},
+          data: {order: this.getAll(), token: token, totalPrice: _.round(this.getTotalCost(), 2)},
           method: 'POST'
         })
         .then(function(res) {
