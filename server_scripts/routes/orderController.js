@@ -73,7 +73,7 @@ router.post('/order', function (req, res) {
   var order = req.body.order;
 
   //Cross check all wheelchairs in the order against the JSON, while calculating the total price
-  const total = req.body.totalPrice;
+  const total = req.body.totalPrice.toFixed(2);
 
   // Check the total value to make sure its valid...send 400 error if its not
   if (!_.isNumber(total) || (_.isNumber(total) && total <= 0)) {
@@ -86,7 +86,7 @@ router.post('/order', function (req, res) {
   const createStripeCharge = cb => {
     if (order.payMethod === 'Credit Card') {
       //Create a new stripe payment
-      var charge = stripe.charges.create({
+      var stripeCharge = stripe.charges.create({
         amount: total,
         currency: "usd",
         source: stripeToken,
@@ -225,7 +225,7 @@ router.post('/order', function (req, res) {
       return;
     }
 
-    createStripeCharge((err, charge) => {
+    createStripeCharge((err, stripeCharge) => {
       if (err) {
         console.log(err);
         res.status(400);

@@ -221,9 +221,11 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       currentWheelchair.design = currentWheelchair.design ? new Design(currentWheelchair.design) : null;
 
       // Setup the cart...it is null if the user doesnt have a cart
-      if (_.isEmpty(cart.wheelchairs)) {
+      if (data.cart) {
         var cartID = data.cart.id || data.cart._id || null;
         cart = data.cart && cartID !== null ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
+      } else {
+        cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
       }
 
       isAdmin = data.isAdmin || false;
