@@ -151,14 +151,15 @@ angular.module('abacuApp')
         var design = $scope.wheelchairUIOpts[index].design;
         ComparedDesigns.cart.removeDesign(design);
 
+        var grantPrice = $scope.wheelchairUIOpts[index].design.wheelchair.grantAmount
+
+        if(typeof( grantPrice) != 0) {
+          $scope.totalGrantAmount -= $scope.wheelchairUIOpts[index].design.wheelchair.grantAmount;
+        }
         //$scope.wOrderIndex.splice(index, 1);
         $scope.wheelchairUIOpts.splice(index, 1);
         //
-        // var grantPrice = $scope.wheelchairUIOpts[index].design.wheelchair.grantAmount
-        //
-        // if(typeof( grantPrice) != 'undefined') {
-        //   $scope.totalGrantAmount -= $scope.wheelchairUIOpts[index].design.wheelchair.grantAmount;
-        // }
+
           ////Remove wheelchair from cart
         return User.deleteWheelchair(index);
       };
