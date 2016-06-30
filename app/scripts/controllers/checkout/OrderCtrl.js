@@ -1,4 +1,4 @@
-﻿// jshint unused:false
+// jshint unused:false
 'use strict';
 
 /**
@@ -287,7 +287,8 @@ angular.module('abacuApp')
         if (response.error) {
           // Show the errors on the form
           $scope.payment_errors = response.error.message;
-          console.log('stripe created error' + response.error.message);
+          alert(response.error.message);    
+          console.log('stripe created error: ' + response.error.message);
         } else {
           // response contains id and card, which contains additional card details
           token = response.id;
