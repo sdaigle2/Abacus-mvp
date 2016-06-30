@@ -95,7 +95,10 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       })
         .then(function (response) {
           // TODO: Update the revisions for all the design objects here
-          var userData = response.data.user;
+          if(typeof(response.data.user) == 'undefined'){
+            var userData = response.config.data;
+          } else
+            var userData = response.data.user;
           restoreUserFromBackend(userData);
           return userData;
         });
@@ -221,9 +224,11 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       currentWheelchair.design = currentWheelchair.design ? new Design(currentWheelchair.design) : null;
 
       // Setup the cart...it is null if the user doesnt have a cart
-      if (_.isEmpty(cart.wheelchairs)) {
+      if (data.cart) {
         var cartID = data.cart.id || data.cart._id || null;
         cart = data.cart && cartID !== null ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
+      } else {
+        cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
       }
 
       isAdmin = data.isAdmin || false;
@@ -280,8 +285,11 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     },
 
     saveDesign: function(design) {
+      var deferred = $q.defer();
+      var secDeferred = $q.defer();
+      var instance = this;
+
       if (!this.isLoggedIn()) {
-        var deferred = $q.defer();
         deferred.reject(new Errors.NotLoggedInError("Must Be Logged In"));
         return deferred.promise;
       }
@@ -293,8 +301,15 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         method: 'POST'
       })
         .then(function (response) {
-          return new Design(response.data);
-        });
+          var newDesign = new Design(response.data);
+          // User.addDesignIDToSavedDesigns(newDesign._id);
+          // this.addDesignIDToSavedDesigns(newDesign._id);
+          instance.addDesignIDToSavedDesigns(newDesign._id);
+          return secDeferred.resolve;
+        })
+        .catch(function (err){
+          console.log('save design gone wrong' + err);
+        })
     },
 
     updateDesign: function (design) {

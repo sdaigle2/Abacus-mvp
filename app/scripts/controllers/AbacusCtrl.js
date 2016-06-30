@@ -464,7 +464,7 @@ angular.module('abacuApp')
         return pages.measurePages[index];
       };
 
-      
+
       // $scope.getCustomizePage = function(index){
       //   return pages.customizePages[index];
       // };
@@ -1104,6 +1104,22 @@ angular.module('abacuApp')
           } else {
             // just go ahead and save the design to the DB, its new anyways
             designPromise = User.saveDesign(design);
+              designPromise
+              
+                .then(function (updatedUserData) {
+                  if (1) { // only show Saved dialog if a user update was made
+                    $scope.designIsSaved = true;
+                    $scope.loginPanel = loginPanelStatus.SAVED;
+                  }
+                })
+                .catch(function (err) {
+                  console.log(err);
+                  ngDialog.open({
+                    //TODO: design and incorporate error message
+                    'template': '<div><h2>Oops! An Error Occurred</h2></div>',
+                    'plain': true
+                  });
+                });
           }
 
           if (designPromise) {
