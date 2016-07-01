@@ -312,6 +312,33 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         })
     },
 
+    saveDesignForAbacus: function(design) {
+      var deferred = $q.defer();
+      var secDeferred = $q.defer();
+      var instance = this;
+
+      if (!this.isLoggedIn()) {
+        deferred.reject(new Errors.NotLoggedInError("Must Be Logged In"));
+        return deferred.promise;
+      }
+      // $http({ ... }) returns a promise
+      var designInstance = design instanceof Design ? design : new Design(design);
+      return $http({
+        url:'/design',
+        data: designInstance.clone().allDetails(),
+        method: 'POST'
+      })
+        .then(function (response) {
+          var newDesign = new Design(response.data);
+          // User.addDesignIDToSavedDesigns(newDesign._id);
+          // this.addDesignIDToSavedDesigns(newDesign._id);
+          return newDesign;
+        })
+        .catch(function (err){
+          console.log('save design gone wrong' + err);
+        })
+    },
+
     updateDesign: function (design) {
       if (!this.isLoggedIn()) {
         return PromiseUtils.rejected(new Errors.NotLoggedInError("Must Be Logged In"));

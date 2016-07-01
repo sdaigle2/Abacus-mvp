@@ -184,7 +184,7 @@ angular.module('abacuApp')
           $scope.curEditWheelchair = chair;
           //Load data about the frame type of curEditWheelchair
           $scope.curFrameData = FrameData.getFrame($scope.curEditWheelchair.getFrameID());
-          $scope.curOption = $scope.getCurPartData().getDefaultOption();
+          // $scope.curOption = $scope.getCurPartData().getDefaultOption();
           generatePages();
         };
 
@@ -212,7 +212,6 @@ angular.module('abacuApp')
             User.fetchDesign(id)
             .then(function (design) {
               User.createCurrentDesign(design);
-              initCurrentWheelchair(design.wheelchair);
             })
             .catch(function (err) {
               console.log(err);
@@ -975,7 +974,7 @@ angular.module('abacuApp')
 
       /*******************Saving***********************/
 
-        //Saves the current design and updates the database if the user is logged in
+        //Saves the current design to cart and updates the database if the user is logged in
       $scope.saveDesign = function () {
         User.pushNewWheelchair()
         .then(function (user) {
@@ -1001,7 +1000,7 @@ angular.module('abacuApp')
         design.wheelchair = $scope.curEditWheelchair;
 
         // If the design doesn't have an ID, generate one by saving it to the backend
-        var designPromise = design.hasID() ? User.updateDesign(design) : User.saveDesign(design);
+        var designPromise = design.hasID() ? User.updateDesign(design) : User.saveDesignForAbacus(design);
 
         return designPromise;
       }
@@ -1105,7 +1104,7 @@ angular.module('abacuApp')
             // just go ahead and save the design to the DB, its new anyways
             designPromise = User.saveDesign(design);
               designPromise
-              
+
                 .then(function (updatedUserData) {
                   if (1) { // only show Saved dialog if a user update was made
                     $scope.designIsSaved = true;
