@@ -459,11 +459,11 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     },
 
     //Create a new wheelchair object of given frame type and set edit pointer to it
-    pushNewWheelchair: function () {
+    pushNewWheelchair: function (wheelchair) {
       if (_.isNull(cart)) {
         cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
       }
-
+      currentWheelchair.design.wheelchair = wheelchair;
       if (currentWheelchair.isNew === true ) {
         cart.wheelchairs.push(currentWheelchair.design);
         cartWheelchairIndex = cart.wheelchairs.length - 1;

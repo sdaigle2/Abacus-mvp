@@ -976,7 +976,8 @@ angular.module('abacuApp')
 
         //Saves the current design to cart and updates the database if the user is logged in
       $scope.saveDesign = function () {
-        User.pushNewWheelchair()
+        $scope.curEditWheelchair.grantAmount = grantAmount
+        User.pushNewWheelchair($scope.curEditWheelchair)
         .then(function (user) {
           $scope.designIsSaved = true;
           $location.path('/cart');
@@ -1056,6 +1057,7 @@ angular.module('abacuApp')
             });
           }
 
+          $scope.curEditWheelchair.grantAmount = grantAmount;
           design.wheelchair = $scope.curEditWheelchair;
 
           var designPromise = null;
