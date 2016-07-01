@@ -229,9 +229,14 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         if(!_.isEmpty(cart.wheelchairs)){
           // var mergeCart;
           _.map(cart.wheelchairs,function(wheelchair){
-            if (!_.includes(data.cart.wheelchair, wheelchair._id ))
-            data.cart.wheelchairs.push(wheelchair);
+            var temp = true;
+            data.cart.wheelchairs.forEach(function(remoteWheelchair){
+              temp = temp && (!_.includes(remoteWheelchair, wheelchair._id ));
+            });
+            if (temp)
+              data.cart.wheelchairs.push(wheelchair);
           })
+
         }
         cart = data.cart && cartID !== null ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
         // updateDB();
