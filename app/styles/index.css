@@ -744,6 +744,7 @@ div{
 }
 
 .button1{
+  background-color: #fff;
   display: inline-block;
   color: #4F9DFF;
   height: 40px;
@@ -764,4 +765,3 @@ div{
 .button1:focus{
   outline:none;
 }
-

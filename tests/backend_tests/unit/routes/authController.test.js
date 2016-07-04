@@ -23,7 +23,8 @@ before(done => {
 describe('Simulates Registration, Log-in, Log-out', function () {
   var agent = null;
   var user = createNewUser();
-
+  var latestUserRev = ''; 
+  var resetLink = '';
   before(done => {
     agent = request.agent(app);
     done();
@@ -76,8 +77,91 @@ describe('Simulates Registration, Log-in, Log-out', function () {
       .expect(200, done);
   });
 
+  it('Should successfully change password', done => {
+    agent
+      .put('/change-user-password')
+      .send({
+        email: user.email,
+        newPassword: 'newPassword'
+      })
+      .expect(res => {
+        res.should.have.property('body');
+        res.body.success.should.equal(true);
+      })
+      .expect(200, done);
+  });
+
+  it('Should throw 400 if new password is less than 8 characters', done => {
+    agent
+      .put('/change-user-password')
+      .send({
+        email: user.email,
+        newPassword: '5char'
+      })
+      .expect(res => {
+        res.should.have.property('body');
+        res.body.msg.should.equal('New password should be at least 8 characters long');
+      })
+      .expect(400, done);
+  });
+
+  it('Should throw 404 if provided email does not correspond to a valid user', done => {
+    agent
+      .put('/change-user-password')
+      .send({
+        email: 'unexisting@mail.com',
+        newPassword: 'newPassword'
+      })
+      .expect(res => {
+        res.should.have.property('body');
+        res.body.msg.should.equal('No user found with email unexisting@mail.com');
+      })
+      .expect(404, done);
+  });
+
+  it('Should request a reset link if user with provided email exists', done => {
+    agent
+      .post('/reset-link/' + user.email)
+      .expect(res => {
+        res.should.have.property('body');
+        res.body.success.should.equal(true);
+        latestUserRev = res.body.newRev;
+        resetLink = res.body.resetLink;
+      })
+      .expect(200, done);
+  });
+
+  it('Should throw 404 if user with provided email does not exist', done => {
+    agent
+      .post('/reset-link/unexisting@mail.com')
+      .expect(res => {
+        res.should.have.property('body');
+        res.body.msg.should.equal('No user found with email unexisting@mail.com')
+      })
+      .expect(404, done);
+  });
+
+  it('Should throw 404 if reset-link does not exist in the user object', done => {
+    agent
+      .get('/password-reset-key/unexisting')
+      .expect(res => {
+        res.should.have.property('body');
+      })
+      .expect(404, done);
+  });
+
+  it('Should send 200 if reset-link does exist', done => {
+    agent
+      .get('/password-reset-key/' + resetLink)
+      .expect(res => {
+        res.should.have.property('body');
+        res.body.success.should.equal(true);
+      })
+      .expect(200, done);
+  });
+
   after(done => {
-    dbService.users.deleteDoc(user._id, user._rev, done);
+    dbService.users.deleteDoc(user._id, latestUserRev, done);
   });
 
 });

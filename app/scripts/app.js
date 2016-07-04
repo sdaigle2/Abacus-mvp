@@ -20,7 +20,13 @@ angular
     'ngclipboard',
     'angular-loading-bar'
   ])
-  .run(['$rootScope', function ($rootScope) {
+  .run(['$rootScope', '$location', function ($rootScope, $location) {
+    var forceSSL = function() {
+      if ($location.protocol() !== 'https' && window.location.hostname !== 'localhost') {
+        window.location.href = $location.absUrl().replace(/http/g, 'https');
+      }
+    };
+    forceSSL();
     // Attach lodash object to $rootScope so it can be used in views
     $rootScope._ = window._;
   }])
@@ -34,6 +40,14 @@ angular
       .when('/frames', {
         templateUrl: 'views/frame.html',
         controller: 'FrameCtrl'
+      })
+      .when('/password-reset', {
+        templateUrl: 'views/forgot/resetLink.html',
+        controller: 'ForgotCtrl'
+      })
+      .when('/change-password/:resetToken', {
+        templateUrl: 'views/forgot/changePassword.html',
+        controller: 'ForgotCtrl'
       })
       .when('/tinker', {
         templateUrl: '../views/tinker/abacus.html',

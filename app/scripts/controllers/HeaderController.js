@@ -50,6 +50,11 @@ angular.module('abacuApp')
       window.alert('Password Recovery coming soon');
     };
 
+    //Sends the user to a forgot password page
+    $scope.forgot = function () {
+      $scope.toggleLoginDropdown();
+      $location.path('/password-reset');
+    };
     //Sends the user to a registration page
     $scope.register = function () {
       $location.path('/register');
