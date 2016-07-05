@@ -7,6 +7,10 @@ in the project directory:
 (1) npm install
 (2) bower install
 
+## Notes on general library used
+
+loadash (with the symbol _.) is used for array, and object manipulation. details see:https://lodash.com/
+
 ## Notes on Server Code Structure
 
 The server side code is no longer under one long `server.js` script.
