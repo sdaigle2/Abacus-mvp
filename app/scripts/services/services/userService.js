@@ -226,22 +226,40 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       // Setup the cart...it is null if the user doesnt have a cart
       if (data.cart) {
         var cartID = data.cart.id || data.cart._id || null;
-        if(!_.isEmpty(cart.wheelchairs)){
-          // var mergeCart;
-          _.map(cart.wheelchairs,function(wheelchair){
-            var temp = true;
-            data.cart.wheelchairs.forEach(function(remoteWheelchair){
-              temp = temp && (!_.includes(remoteWheelchair, wheelchair._id ));
-            });
-            if (temp)
-              data.cart.wheelchairs.push(wheelchair);
-          })
-
+        var wIndex = 0;
+        while (localJSONStorage.get('design' + wIndex)){
+          var wheelchair = localJSONStorage.get('design' + wIndex);
+          var temp = true;
+          data.cart.wheelchairs.forEach(function(remoteWheelchair){
+            temp = temp && (!_.includes(remoteWheelchair, wheelchair._id ));
+          });
+          if (temp)
+            data.cart.wheelchairs.push(wheelchair);
+          localJSONStorage.remove('design' + wIndex);
+          wIndex++;
         }
+        //
+        // if(!_.isEmpty(cart.wheelchairs)){
+        //   // var mergeCart;
+        //   _.map(cart.wheelchairs,function(wheelchair){
+        //     var temp = true;
+        //     data.cart.wheelchairs.forEach(function(remoteWheelchair){
+        //       temp = temp && (!_.includes(remoteWheelchair, wheelchair._id ));
+        //     });
+        //     if (temp)
+        //       data.cart.wheelchairs.push(wheelchair);
+        //   });
+        // }
         cart = data.cart && cartID !== null ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
         // updateDB();
       } else {
         cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
+      }
+
+      var wIndex = 0;
+      while (localJSONStorage.get('design' + wIndex)){
+        localJSONStorage.remove('design' + wIndex);
+        wIndex++;
       }
 
       isAdmin = data.isAdmin || false;
