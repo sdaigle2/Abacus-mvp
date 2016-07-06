@@ -447,8 +447,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         .error(function (data) {
           console.log('Request Failed');
         });
-      this.getCurEditOrder().wheelchairs = cart.wheelchairs;
-      this.updateCart();
+
 
 
     },
@@ -471,8 +470,6 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
           localJSONStorage.put('design' + i, cart.wheelchairs[i].allDetails());
         }
 
-        // localJSONStorage.remove('promo');
-        // localJSONStorage.put('promo', cart.discounts)
 
 
         // Send a successfull promise resolved to the current user object
@@ -485,6 +482,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
     createCurrentDesign: createCurrentDesign,
 
+    //clear all the local storage
     clearCart: function () {
       cart.wheelchairs.forEach(function (chair, idx) {
         localJSONStorage.remove('design' + idx); // clear the localStorage from the saved cart designs
@@ -503,7 +501,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       currentWheelchair.design.wheelchair = wheelchair;
       if (currentWheelchair.isNew === true ) {
         cart.wheelchairs.push(currentWheelchair.design);
-        cartWheelchairIndex = cart.wheelchairs.length - 1;
+        cartWheelchairIndex = cart.wheelchairs.length - 1;  //
       }
       else if (currentWheelchair.isNew === false) {
         if (cartWheelchairIndex === -1 && _.isEmpty(cart.wheelchairs)) {
@@ -530,6 +528,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       return this.updateDB();
     },
 
+    //design can either be a design object or a design ID
     removeDesignFromSavedDesigns: function (design) {
       var designID = _.isString(design) ? design : design._id;
       savedDesigns = _.reject(savedDesigns, {'_id': designID});
@@ -555,7 +554,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     },
 
 
-
+    //return specific wheelchair in the cart
     getWheelchair: function (index) {
       if (index >= 0 && index < cart.wheelchairs.length)
         return cart.wheelchairs[index];
