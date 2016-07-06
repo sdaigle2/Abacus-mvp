@@ -1,4 +1,5 @@
 'use strict';
+//notice: most of the wheelchair instance in controller will be the design instance, which contains a wheelchair instance and creator info.
 
 /*
 * This Factory creates a Design object
@@ -12,8 +13,8 @@ angular.module('abacuApp')
 
       Design.prototype.init = function(designObj) {
         this._id = designObj._id || designObj.id || null;
-        this._rev = designObj._rev || designObj.rev || null;
-        this.creator = designObj.creator || null;
+        this._rev = designObj._rev || designObj.rev || null;      //important to keep _rev in sync with remoteDB
+        this.creator = designObj.creator || null;                 //contains userID
         this.wheelchair = new Wheelchair(designObj.wheelchair);
         this.createdAt = new Date(designObj.createdAt || Date.now());
         this.updatedAt = new Date(designObj.updatedAt || Date.now());
@@ -86,5 +87,6 @@ angular.module('abacuApp')
       this.init(designObj); // call the constructor
   	};
 
+    //Do not touch this
   	return Design;
   }]);

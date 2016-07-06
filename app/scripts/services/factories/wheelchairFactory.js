@@ -1,5 +1,6 @@
 ﻿'use strict';
 
+
 /*
  * This factory produces Wheelchair objects
  * A Wheelchair object keeps track of a user-created wheelchair design
@@ -12,10 +13,10 @@ angular.module('abacuApp')
     //##########################  Constructor  #########################
 
     function Wheelchair(frameID) {
-      this.parts = [];
-      this.measures = [];
+      this.parts = [];            // all the part instance based on partFactory
+      this.measures = [];         // all the measurement instance based on measureFactory
       this.inCurOrder = false;
-      this.grantAmount = 0;
+      this.grantAmount = 0;       //variable for grant
       if (typeof frameID === 'number') {
         this.frameID = frameID;
         this.title = 'My Custom Wheelchair';
@@ -65,6 +66,7 @@ angular.module('abacuApp')
         }
       }
 
+      // Copy constructor
       else {
         var wheelchair = frameID; //in this case frameID is a wheelchair json
         //####################### COPY CONSTRUCTOR ############################
@@ -146,6 +148,8 @@ angular.module('abacuApp')
       getNumParts: function () {
         return this.parts.length;
       },
+
+      //length of measurement
       getNumMeasures: function () {
         return this.measures.length;
       },
