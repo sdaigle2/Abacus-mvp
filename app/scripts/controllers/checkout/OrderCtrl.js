@@ -279,7 +279,7 @@ angular.module('abacuApp')
       var token = '';
       function payment(){
         // console.log($scope.card);
-        Stripe.setPublishableKey('pk_live_IDUKUfHE9yeCm8x1qmFBemBZ');
+        Stripe.setPublishableKey('pk_live_KwYnVzZylrafo9Y0RTjZmcM1');
         Stripe.card.createToken($scope.card, stripeResponseHandler);
       }
 
