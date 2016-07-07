@@ -253,8 +253,6 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         //important step to keep cart sync. update the reveision number
         cart = data.cart && cartID !== null ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
         // updateDB();
-      } else {
-        cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
       }
 
       //clear the local storage to avoid repetitive copy
