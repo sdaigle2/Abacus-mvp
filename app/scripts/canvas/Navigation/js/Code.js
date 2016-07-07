@@ -1,5 +1,5 @@
 var margin = -30;       				  // Margin Between Arrows
-var customArrows = new Array();		  
+var customArrows = new Array();
 var measureArrows = new Array();
 var arrows = null;	//This alternates between custom and measure arrows array.
 var myScope;
@@ -10,8 +10,8 @@ var cBtn;
 
 var tweenSpeed = 800;
 var tweenType = createjs.Ease.getElasticInOut(2, 5);
-var mArrowWidth = 100; 
-var cArrowWidth = 100;  
+var mArrowWidth = 100;
+var cArrowWidth = 100;
 
 var done_txt;          //complete percentage
 var canvasWidth = 2560;
@@ -70,8 +70,8 @@ function initStuff(container){
 	document.getElementById("NavigationBar").addEventListener("mouseout", changeCursorDefault);
     initArrows();
 	fixFirefox();
-	customChanged();
-	measureChanged();
+	// customChanged();
+	// measureChanged();
 	stage.setChildIndex( cBtn, stage.getNumChildren()-1);
 	stage.setChildIndex( mBtn, stage.getNumChildren()-1);
   }
@@ -238,15 +238,15 @@ function highlightUnfilledArrows(){
 
 function measureChanged(){
 	var unFinPages = myScope.completed();
-	if(!unFinPages){
+	if(0){
 		mBtn.gotoAndStop(1);
 	}
 }
 
 function customChanged(){
 	var unFinPages = myScope.completedC();
-	if(!unFinPages){
-		cBtn.gotoAndStop(1);
+	if(0){
+		cBtn.gotoAndStop(0);
 	}
 
 

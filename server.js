@@ -46,7 +46,7 @@ app.get('/', function (req, res) {
 function startServer() {
   return orderNumber.initPromise
     .then(function () {
-      var port = process.env.PORT || 9000;
+      var port = process.env.PORT || 8080;
 
       console.log('Server will run on port ' + port);
 

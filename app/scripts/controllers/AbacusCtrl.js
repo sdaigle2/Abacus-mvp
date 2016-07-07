@@ -30,7 +30,7 @@ angular.module('abacuApp')
 
       $scope.designIsSaved = true;
 
-      
+
       $scope.saveDropdown = false;
 
       //The two states for pages to be in
@@ -701,6 +701,7 @@ angular.module('abacuApp')
         for(var i = 0; i < unfinishedPages.length; i++){
           unfinishedPages[i].visitstatus = visitstatus.CURRENT
         }
+        // unfinishedPages.push(pages.measurePages[0]);
         return unfinishedPages;
       };
 
