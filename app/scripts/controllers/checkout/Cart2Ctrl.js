@@ -191,7 +191,7 @@ angular.module('abacuApp')
         generateDesignIDForCurrentChair(index)
           .then(function (design) {
             $scope.modalDesign = design;
-            User.createCurrentDesign(design);
+            User.updateCartWheelchair(index,design);
             return ngDialog.open({
               'template': 'views/modals/designIDModal.html',
               'scope': $scope

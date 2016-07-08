@@ -143,6 +143,11 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     }
   }
 
+  //update cart wheelchair
+  function updateCartWheelchair(index, design){
+    cart.wheelchairs[index] = design;
+  }
+
   //mark a design and send it to tinker page
   function setEditWheelchair(index, design) {
     if (index >= 0 && index < cart.wheelchairs.length) {
@@ -479,6 +484,8 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     /*************************MY DESIGNS*******************************/
 
     createCurrentDesign: createCurrentDesign,
+
+    updateCartWheelchair: updateCartWheelchair,
 
     //clear all the local storage
     clearCart: function () {
