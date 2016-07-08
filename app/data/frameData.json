@@ -1941,7 +1941,7 @@
             "sizes": [],
             "price": 60,
             "comments":"",
-            "defaultColorID": 8602,
+            "defaultColorID": 8601,
             "colors": [
                 {
                     "name": "Gray",
@@ -4605,7 +4605,7 @@
             "sizes": [],
             "price": 60,
             "comments":"",
-            "defaultColorID": 8602,
+            "defaultColorID": 8601,
             "colors": [
                 {
                     "name": "Gray",
@@ -6865,7 +6865,7 @@
             "sizes": [],
             "price": 60,
             "comments":"",
-            "defaultColorID": 8602,
+            "defaultColorID": 8601,
             "colors": [
                 {
                     "name": "Gray",
@@ -9082,7 +9082,7 @@
             "sizes": [],
             "price": 60,
             "comments":"",
-            "defaultColorID": 8602,
+            "defaultColorID": 8601,
             "colors": [
                 {
                     "name": "Gray",
@@ -11720,7 +11720,7 @@
             "sizes": [],
             "price": 54,
             "comments":"",
-            "defaultColorID": 8602,
+            "defaultColorID": 8601,
             "colors": [
                 {
                     "name": "Gray",
@@ -12940,7 +12940,7 @@
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
 					"desc": "High quality Schwalbe tires with colorful options! Available for 24\", 25\", and  26\" wheels.",
 					"price": 60,
-					"defaultColorID": 8602,
+					"defaultColorID": 8601,
 					"colors": [
 						{
 							"name": "Gray",
@@ -13697,7 +13697,7 @@
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
 					"desc": "High quality Schwalbe tires with colorful options! Available for 24\", 25\", and  26\" wheels.",
 					"price": 60,
-					"defaultColorID": 8602,
+					"defaultColorID": 8601,
 					"colors": [
 						{
 							"name": "Gray",
@@ -14452,7 +14452,7 @@
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
 					"desc": "High quality Schwalbe tires with colorful options! Available for 24\", 25\", and  26\" wheels.",
 					"price": 60,
-					"defaultColorID": 8602,
+					"defaultColorID": 8601,
 					"colors": [
 						{
 							"name": "Gray",
