@@ -803,11 +803,6 @@ angular.module('abacuApp')
                     $scope.curEditWheelchair.setOptionForPart(8000, 8100);
                 }
             }
-            if (newOptionID == 6100){
-                //They just selected no wheels, take off the hand rims and the tires
-                $scope.curEditWheelchair.setOptionForPart(7000, 7500);
-                $scope.curEditWheelchair.setOptionForPart(8000, 8800);
-            }
         }
         
         /********* Color syncing spinergies ****************/

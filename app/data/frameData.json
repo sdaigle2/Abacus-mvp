@@ -144,6 +144,8 @@
 				{
 					"name": "Same as Frame Color",
 					"optionID": 3100,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
                     "price": 0,
 					"desc": "Match your back rest and foot plate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
@@ -2808,6 +2810,8 @@
 				{
 					"name": "Same as Frame Color",
 					"optionID": 3100,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
                     "price": 0,
 					"desc": "Match your back rest and foot plate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
@@ -5472,6 +5476,8 @@
 				{
 					"name": "Same as Frame Color",
 					"optionID": 3100,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
                     "price": 0,
 					"desc": "Match your back rest and foot plate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
@@ -7689,6 +7695,8 @@
 				{
 					"name": "Same as Frame Color",
 					"optionID": 3100,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
                     "price": 0,
 					"desc": "Match your back rest and foot plate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
@@ -9922,6 +9930,8 @@
 				{
 					"name": "Same as Frame Color",
 					"optionID": 3100,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
                     "price": 0,
 					"desc": "Match your back rest and foot plate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
