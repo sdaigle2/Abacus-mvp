@@ -741,6 +741,8 @@ angular.module('abacuApp')
       $scope.setCurOption = function (newOptionID) {
 
         var curPartID = $scope.getCurPartData().partID;
+        var prevSizeOptions = $scope.curOption.sizes;
+        var prevSizeIndex = $scope.getCurWheelchairPart().sizeIndex;
         var curFrameID = $scope.curEditWheelchair.frameID;
           
         //Detect no change, and return after doing nothing
@@ -787,7 +789,7 @@ angular.module('abacuApp')
             /*****************wheels on the thunders**************/
             if(newOptionID == 6100){
                 // they just selected NONE as their option for wheels
-                $scope.curEditWheelchair.setOptionForPart(7000, 750);
+                $scope.curEditWheelchair.setOptionForPart(7000, 7500);
                 $scope.curEditWheelchair.setOptionForPart(8000, 8800);
             }
             if((newOptionID == 6200) || (newOptionID == 6300) || (newOptionID == 6400) || (newOptionID ==6500) || (newOptionID == 6600) || (newOptionID == 6700)){
@@ -801,18 +803,29 @@ angular.module('abacuApp')
                     $scope.curEditWheelchair.setOptionForPart(8000, 8100);
                 }
             }
+            if (newOptionID == 6100){
+                //They just selected no wheels, take off the hand rims and the tires
+                $scope.curEditWheelchair.setOptionForPart(7000, 7500);
+                $scope.curEditWheelchair.setOptionForPart(8000, 8800);
+            }
         }
         
-        //color syncing spinergies
+        /********* Color syncing spinergies ****************/
         if (curFrameID < 20 && curFrameID >= 10) {
             if (newOptionID == 2100){
                 //they just chose the back spokes identical to the front spokes
-                console.log("HEY SAME AS FRAME COLOR");
                 var color = $scope.curEditWheelchair.getPart(1000).colorID;
-                console.log("We should chage it to color id: " + color);
                 $scope.curEditWheelchair.setColorForPart(2222, color);
             }
         }
+          
+        /************** Make Sizes Permanet ***********/
+        // if the size options for the new part are identical to the old part, then keep the old option
+        if (prevSizeOptions === $scope.curOption.sizes && prevSizeOptions.length > 0){
+            $scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, prevSizeIndex);   
+        }
+
+        //$scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, newSizeIndex);
 
         console.log('Changed option');
 
