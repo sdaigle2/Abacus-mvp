@@ -251,7 +251,6 @@
 				{
 					"name": "Black (Glossy or Matte)",
 					"optionID": 3150,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -277,6 +276,8 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 3200,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
 					"desc": "Choose any color to show off your team colors.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
 					"weight": 0,
@@ -2943,6 +2944,8 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 3200,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
 					"desc": "Choose any color to show off your team colors.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
 					"weight": 0,
@@ -5609,6 +5612,8 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 3200,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
 					"desc": "Choose any color to show off your team colors.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
 					"weight": 0,
@@ -7828,6 +7833,8 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 3200,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
 					"desc": "Choose any color to show off your team colors.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
 					"weight": 0,
@@ -10063,6 +10070,8 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 3200,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
 					"desc": "Choose any color to show off your team colors.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
 					"weight": 0,
