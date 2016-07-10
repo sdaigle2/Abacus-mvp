@@ -30,7 +30,7 @@ angular.module('abacuApp')
 
       $scope.designIsSaved = true;
 
-      
+
       $scope.saveDropdown = false;
 
       //The two states for pages to be in
@@ -701,6 +701,7 @@ angular.module('abacuApp')
         for(var i = 0; i < unfinishedPages.length; i++){
           unfinishedPages[i].visitstatus = visitstatus.CURRENT
         }
+        // unfinishedPages.push(pages.measurePages[0]);
         return unfinishedPages;
       };
 
@@ -740,62 +741,86 @@ angular.module('abacuApp')
       $scope.setCurOption = function (newOptionID) {
 
         var curPartID = $scope.getCurPartData().partID;
-
+        var prevSizeOptions = $scope.curOption.sizes;
+        var prevSizeIndex = $scope.getCurWheelchairPart().sizeIndex;
+        var curFrameID = $scope.curEditWheelchair.frameID;
+          
+        //Detect no change, and return after doing nothing
         if($scope.curEditWheelchair.getPart(curPartID).optionID == newOptionID){
           return
         }
 
         $scope.curEditWheelchair.setOptionForPart(curPartID, newOptionID);
+          
+        //color syncing for the thunders
+        if (curFrameID < 30 && curFrameID >= 20) {
 
-        //sync colors between parts
-        if(newOptionID == 2300 || newOptionID ==2100){
-          if($scope.curEditWheelchair.getPart(3000).optionID === 3100){
-            var color = $scope.curEditWheelchair.getPart(1000).colorID;
-            $scope.curEditWheelchair.setColorForPart(3000, color);
-          }
-        }
-        if(newOptionID == 11200){
-          var color = $scope.curEditWheelchair.getPart(3000).colorID;
-          $scope.curEditWheelchair.setColorForPart(11000, color);
-        }
-        if(newOptionID == 3100){
-          var color = $scope.curEditWheelchair.getPart(1000).colorID;
-          $scope.curEditWheelchair.setColorForPart(3000, color);
-        }
-        if((newOptionID == 3100 || newOptionID == 3150 || newOptionID == 3200 || newOptionID == 3300) && (_.get($scope.curEditWheelchair.getPart(11000), 'optionID') === 11200)){
-          var color = $scope.curEditWheelchair.getPart(3000).colorID;
-          $scope.curEditWheelchair.setColorForPart(11000, color);
-        }
-        if((newOptionID == 2100) || (newOptionID == 2300)){
-          var color = $scope.curEditWheelchair.getPart(1000).colorID;
-          $scope.curEditWheelchair.setColorForPart(4000, color);
-        }
-        if((newOptionID == 4100) || (newOptionID == 4300) || (newOptionID == 4200) || (newOptionID == 4400) || (newOptionID == 4500) || (newOptionID == 4600)){
-          var color = $scope.curEditWheelchair.getPart(1000).colorID;
-          $scope.curEditWheelchair.setColorForPart(4000, color);
-        }
-        //if((newOptionID == 2100) || (newOptionID == 2300)){
-        //    if($scope.curEditWheelchair.getPart(3000).colorIn == true){
-        //      $scope.curEditWheelchair.setColorForPart(3000, newColorID);
-        //      $scope.curEditWheelchair.setColorForPart(11000, newColorID);
-        //    }
-        //}
-        if(newOptionID == 6100){
-            // they just selected NONE as their option for wheels
-            $scope.curEditWheelchair.setOptionForPart(7000, 7500);
-            $scope.curEditWheelchair.setOptionForPart(8000, 8800);
-        }
-        if((newOptionID == 6200) || (newOptionID == 6300) || (newOptionID == 6400) || (newOptionID ==6500) || (newOptionID == 6600) || (newOptionID == 6700)){
-            //They just elected a wheel, select the default hand rim and tire too
-            if($scope.curEditWheelchair.getPart(7000).optionID === 7500){
-                //there is currently no hand rim selected
-                $scope.curEditWheelchair.setOptionForPart(7000, 7100);
+            if(newOptionID == 2300 || newOptionID ==2100){
+              //They chose a frame color
+              if($scope.curEditWheelchair.getPart(3000).optionID === 3100){
+                 var color = $scope.curEditWheelchair.getPart(1000).colorID;
+                 $scope.curEditWheelchair.setColorForPart(3000, color);
+              }
             }
-            if($scope.curEditWheelchair.getPart(8000).optionID === 8800){
-                //there is currently no tire selected
-                $scope.curEditWheelchair.setOptionForPart(8000, 8100);
+            if(newOptionID == 11200){
+              //They chose side guards,make then the same color as accessories
+              var color = $scope.curEditWheelchair.getPart(3000).colorID;
+              $scope.curEditWheelchair.setColorForPart(11000, color);
+            }
+            if(newOptionID == 3100){
+              //They chose accessories
+              var color = $scope.curEditWheelchair.getPart(1000).colorID;
+              $scope.curEditWheelchair.setColorForPart(3000, color);
+            }
+            if((newOptionID == 3100 || newOptionID == 3150 || newOptionID == 3200 || newOptionID == 3300) && (_.get($scope.curEditWheelchair.getPart(11000), 'optionID') === 11200)){
+              var color = $scope.curEditWheelchair.getPart(3000).colorID;
+              $scope.curEditWheelchair.setColorForPart(11000, color);
+            }
+            if((newOptionID == 2100) || (newOptionID == 2300)){
+              //they chose frame color
+              var color = $scope.curEditWheelchair.getPart(1000).colorID;
+              $scope.curEditWheelchair.setColorForPart(4000, color);
+            }
+            if((newOptionID == 4100) || (newOptionID == 4300) || (newOptionID == 4200) || (newOptionID == 4400) || (newOptionID == 4500) || (newOptionID == 4600)){
+              //they chose one of the 5th wheel options
+              var color = $scope.curEditWheelchair.getPart(1000).colorID;
+              $scope.curEditWheelchair.setColorForPart(4000, color);
+            }
+            /*****************wheels on the thunders**************/
+            if(newOptionID == 6100){
+                // they just selected NONE as their option for wheels
+                $scope.curEditWheelchair.setOptionForPart(7000, 7500);
+                $scope.curEditWheelchair.setOptionForPart(8000, 8800);
+            }
+            if((newOptionID == 6200) || (newOptionID == 6300) || (newOptionID == 6400) || (newOptionID ==6500) || (newOptionID == 6600) || (newOptionID == 6700)){
+                //They just elected a wheel, select the default hand rim and tire too
+                if($scope.curEditWheelchair.getPart(7000).optionID === 7500){
+                    //there is currently no hand rim selected
+                    $scope.curEditWheelchair.setOptionForPart(7000, 7100);
+                }
+                if($scope.curEditWheelchair.getPart(8000).optionID === 8800){
+                    //there is currently no tire selected
+                    $scope.curEditWheelchair.setOptionForPart(8000, 8100);
+                }
             }
         }
+        
+        /********* Color syncing spinergies ****************/
+        if (curFrameID < 20 && curFrameID >= 10) {
+            if (newOptionID == 2100){
+                //they just chose the back spokes identical to the front spokes
+                var color = $scope.curEditWheelchair.getPart(1000).colorID;
+                $scope.curEditWheelchair.setColorForPart(2222, color);
+            }
+        }
+          
+        /************** Make Sizes Permanet ***********/
+        // if the size options for the new part are identical to the old part, then keep the old option
+        if (prevSizeOptions === $scope.curOption.sizes && prevSizeOptions.length > 0){
+            $scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, prevSizeIndex);   
+        }
+
+        //$scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, newSizeIndex);
 
         console.log('Changed option');
 

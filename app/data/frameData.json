@@ -144,6 +144,8 @@
 				{
 					"name": "Same as Frame Color",
 					"optionID": 3100,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
                     "price": 0,
 					"desc": "Match your back rest and foot plate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
@@ -249,7 +251,6 @@
 				{
 					"name": "Black (Glossy or Matte)",
 					"optionID": 3150,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -275,6 +276,8 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 3200,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
 					"desc": "Choose any color to show off your team colors.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
 					"weight": 0,
@@ -2052,7 +2055,7 @@
             "sizes": [],
             "price": 60,
             "comments":"",
-            "defaultColorID": 8602,
+            "defaultColorID": 8601,
             "colors": [
                 {
                     "name": "Gray",
@@ -2906,6 +2909,8 @@
 				{
 					"name": "Same as Frame Color",
 					"optionID": 3100,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
                     "price": 0,
 					"desc": "Match your back rest and foot plate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
@@ -3037,6 +3042,8 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 3200,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
 					"desc": "Choose any color to show off your team colors.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
 					"weight": 0,
@@ -4814,7 +4821,7 @@
             "sizes": [],
             "price": 60,
             "comments":"",
-            "defaultColorID": 8602,
+            "defaultColorID": 8601,
             "colors": [
                 {
                     "name": "Gray",
@@ -5668,6 +5675,8 @@
 				{
 					"name": "Same as Frame Color",
 					"optionID": 3100,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
                     "price": 0,
 					"desc": "Match your back rest and foot plate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
@@ -5799,6 +5808,8 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 3200,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
 					"desc": "Choose any color to show off your team colors.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
 					"weight": 0,
@@ -7061,7 +7072,7 @@
             "sizes": [],
             "price": 60,
             "comments":"",
-            "defaultColorID": 8602,
+            "defaultColorID": 8601,
             "colors": [
                 {
                     "name": "Gray",
@@ -7885,6 +7896,8 @@
 				{
 					"name": "Same as Frame Color",
 					"optionID": 3100,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
                     "price": 0,
 					"desc": "Match your back rest and foot plate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
@@ -8016,6 +8029,8 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 3200,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
 					"desc": "Choose any color to show off your team colors.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
 					"weight": 0,
@@ -9278,7 +9293,7 @@
             "sizes": [],
             "price": 60,
             "comments":"",
-            "defaultColorID": 8602,
+            "defaultColorID": 8601,
             "colors": [
                 {
                     "name": "Gray",
@@ -10118,6 +10133,8 @@
 				{
 					"name": "Same as Frame Color",
 					"optionID": 3100,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
                     "price": 0,
 					"desc": "Match your back rest and foot plate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
@@ -10249,6 +10266,8 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 3200,
+                    "defaultSizeIndex": -1,
+					"sizes": [],
 					"desc": "Choose any color to show off your team colors.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
 					"weight": 0,
@@ -12027,7 +12046,7 @@
             "sizes": [],
             "price": 54,
             "comments":"",
-            "defaultColorID": 8602,
+            "defaultColorID": 8601,
             "colors": [
                 {
                     "name": "Gray",
@@ -13234,7 +13253,7 @@
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
 					"desc": "High quality Schwalbe tires with colorful options! Available for 24\", 25\", and  26\" wheels.",
 					"price": 60,
-					"defaultColorID": 8602,
+					"defaultColorID": 8601,
 					"colors": [
 						{
 							"name": "Gray",
@@ -13991,7 +14010,7 @@
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
 					"desc": "High quality Schwalbe tires with colorful options! Available for 24\", 25\", and  26\" wheels.",
 					"price": 60,
-					"defaultColorID": 8602,
+					"defaultColorID": 8601,
 					"colors": [
 						{
 							"name": "Gray",
@@ -14746,7 +14765,7 @@
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
 					"desc": "High quality Schwalbe tires with colorful options! Available for 24\", 25\", and  26\" wheels.",
 					"price": 60,
-					"defaultColorID": 8602,
+					"defaultColorID": 8601,
 					"colors": [
 						{
 							"name": "Gray",
