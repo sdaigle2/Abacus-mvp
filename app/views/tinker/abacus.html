@@ -347,8 +347,9 @@
             <h4 class="medium" data-ng-bind="curOption.name"></h4>
 
             <div id="imgBlock" class="noColor">
-              <img data-ng-src="{{curOption.thumbnailURL}}" height="220" alt="{{option.name}}"/>
-
+              <img data-ng-if="getCurCustomizePage().partID != 4000" data-ng-src="{{curOption.thumbnailURL}}" height="220" alt="{{option.name}}"/>
+              <!--the video for 5th 6th wheels-->
+              <iframe data-ng-if="getCurCustomizePage().partID == 4000" width="300" height="169" src="https://www.youtube.com/embed/DbMPYGv7DMU?start=19" frameborder="0" allowfullscreen></iframe>
             </div>
           </div>
           <div class="panel-block" id="lowerPanel">
