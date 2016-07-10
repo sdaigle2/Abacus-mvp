@@ -267,7 +267,7 @@
                     />
                   <img class="sideBar-custom-item-COLORS"
                        data-ng-src="images/abacus_page/customize/COLORS-icon-banner.png"
-                       data-ng-if="option.colors.length !== 0 && hideColor(option.optionID) && option.name != 'Same as Main Spoke Color' && option.name != 'Same as Frame'"
+                       data-ng-if="option.colors.length !== 0 && hideColor(option.optionID) && option.name != 'Same as Main Spoke Color' && option.name != 'Same as Frame' && option.name != 'Welded Side Guards'"
                        data-ng-click="setPanel(option.optionID);"
                        alt="See color options">
                 </td>
@@ -309,7 +309,7 @@
 
         <section class="colorSizeBlockWrapper" data-ng-class="{'slide-over': !isPanelSelected(-1)}">
             <!--color block display-->
-            <section data-ng-if= "curOption.colors.length>0 && hideColor(curOption.optionID) && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame'"
+            <section data-ng-if= "curOption.colors.length>0 && hideColor(curOption.optionID) && curOption.name != 'Same as Main Spoke Color' && curOption.name != 'Same as Frame' && curOption.name != 'Welded Side Guards'"
                      class="colorBlock" ng-class="{'greyBackGround': !isPanelSelected(-1)}">
                 <p class="colorHeader">Color</p>
                 <div id="colorsInColorBlock">
