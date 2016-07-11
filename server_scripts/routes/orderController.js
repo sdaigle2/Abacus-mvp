@@ -20,6 +20,7 @@ const orderNumber     = require('../services/orderNumber');
 const dbUtils         = require('../services/dbUtils');
 
 // Manufacturer Email to send invoices to
+const MANUFACTURER_EMAIL = ['sales@per4max.com', 'ckommer@per4max.com', 'dfik@per4max.com', 'coliva@per4max.com', 'p4x@intelliwheels.net'];
 //const MANUFACTURER_EMAIL = ['scott@intelliwheels.net', 'brian@intelliwheels.net'];
 console.log(`NOTE: Invoice Emails will be sent to Manufacturer at this email: ${MANUFACTURER_EMAIL}`);
 
