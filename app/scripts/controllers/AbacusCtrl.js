@@ -937,7 +937,7 @@ angular.module('abacuApp')
       };
 
       $scope.$watch('curOption.comments', function(oVal, nVal){
-        console.log(nVal);
+        // console.log(nVal);
         $scope.designIsSaved = oVal === nVal;
         var partID = $scope.getCurPage().partID;
         if($scope.curOption.optionID == $scope.curEditWheelchair.getPart(partID).optionID){

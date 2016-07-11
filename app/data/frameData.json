@@ -2261,7 +2261,7 @@
             "numSubImages": 0,
 			"allowMultipleChoices": 1,
 			"shortName": "Msc.",
-			"defaultOptionID": -1,
+			"defaultOptionID": 14998,
 			"options": [
 				{
 					"name": "Waist Click Strap",
@@ -2366,7 +2366,7 @@
         "numSubImages": 0,
         "allowMultipleChoices": 1,
         "shortName": "Msc.",
-        "defaultOptionID": -1,
+        "defaultOptionID": 10998,
         "options": [
           {
             "name": "7000 Series Frame",
@@ -5027,7 +5027,7 @@
             "numSubImages": 0,
 			"allowMultipleChoices": 1,
 			"shortName": "Msc.",
-			"defaultOptionID": -1,
+			"defaultOptionID": 14998,
 			"options": [
 				{
 					"name": "Waist Click Strap",
@@ -5132,7 +5132,7 @@
         "numSubImages": 0,
         "allowMultipleChoices": 1,
         "shortName": "Msc.",
-        "defaultOptionID": -1,
+        "defaultOptionID": 10998,
         "options": [
           {
             "name": "7000 Series Frame",
@@ -7278,7 +7278,7 @@
             "numSubImages": 0,
 			"allowMultipleChoices": 1,
 			"shortName": "Msc.",
-			"defaultOptionID": -1,
+			"defaultOptionID": 14998,
 			"options": [
 				{
 					"name": "Waist Click Strap",
@@ -7383,7 +7383,7 @@
         "numSubImages": 0,
         "allowMultipleChoices": 1,
         "shortName": "Msc.",
-        "defaultOptionID": -1,
+        "defaultOptionID": 10998,
         "options": [
           {
             "name": "7000 Series Frame",
@@ -9499,7 +9499,7 @@
             "numSubImages": 0,
 			"allowMultipleChoices": 1,
 			"shortName": "Msc.",
-			"defaultOptionID": -1,
+			"defaultOptionID": 14998,
 			"options": [
 				{
 					"name": "Waist Click Strap",
@@ -9604,7 +9604,7 @@
         "numSubImages": 0,
         "allowMultipleChoices": 1,
         "shortName": "Msc.",
-        "defaultOptionID": -1,
+        "defaultOptionID": 10998,
         "options": [
           {
             "name": "7000 Series Frame",
@@ -12252,7 +12252,7 @@
             "numSubImages": 0,
 			"allowMultipleChoices": 1,
 			"shortName": "Msc.",
-			"defaultOptionID": 14100,
+			"defaultOptionID": 14998,
 			"options": [
 				{
 					"name": "Waist Click Strap",
@@ -12357,7 +12357,7 @@
         "numSubImages": 0,
         "allowMultipleChoices": 1,
         "shortName": "Msc.",
-        "defaultOptionID": -1,
+        "defaultOptionID": 10998,
         "options": [
           {
             "name": "7000 Series Frame",

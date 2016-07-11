@@ -383,6 +383,13 @@ function getTotalPrice() {
 
 }
 
+function getPayments(){
+  if(this.payMethod = 'Credit Card'){
+    return getTotalPrice().apply(this);
+  } else
+    return 0;
+}
+
 
 /**
  * Gives total weight of a given chair
