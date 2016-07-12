@@ -12,6 +12,12 @@ var shortid = require('shortid');
 var path = require('path');
 var _ = require('lodash');
 var orderNumber = require('./server_scripts/services/orderNumber');
+var fs = require('fs');
+var https = require('https');
+var options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+};
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -39,18 +45,20 @@ app.use(express.static(__dirname + '/app'));
 //Initial request to server
 app.get('/', function (req, res) {
   res.writeHead(200, {"Content-Type": "text/html"});
-  res.sendFile('././app/index.html', {root:__dirname});
+  res.sendFile('./app/index.html', {root:__dirname});
 });
 
 // Starts the server and returns a promise that resolves to the express app instance that is already alive
 function startServer() {
   return orderNumber.initPromise
     .then(function () {
-      var port = process.env.PORT || 8080;
+      var port = process.env.PORT || 8443;
 
       console.log('Server will run on port ' + port);
 
-      var server = app.listen(port);
+      var httpsServer = https.createServer(options, app);
+
+      var server = httpsServer.listen(port);
 
       return { // return the server & app instances...used for testing
         "app": app,
