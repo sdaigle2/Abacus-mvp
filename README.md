@@ -11,6 +11,9 @@ in the project directory:
 
 loadash (with the symbol _.) is used for array, and object manipulation. details see:https://lodash.com/
 
+## Notes on frontend docs
+docs are available in the docs folder
+
 ## Notes on Server Code Structure
 
 ECMAScript 6 are being used here like '=>' make sure to turn on ECMAScript 6 interpreter in your IDE. Otherwise it will be considered as syntax error.

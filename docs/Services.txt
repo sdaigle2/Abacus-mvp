@@ -24,6 +24,9 @@ Contents:
 1f) Wheelchair
 1g) PreviewImage
 1h) Order
+1i) lodash
+1j) error
+1k) discount
 
 2) Services (Static Factories)
 2a) FrameData
@@ -193,6 +196,38 @@ SetOptionIndexForMeasure(mID, index)
 toggleInOrder() - Toggles whether the wheelchair is in the current order.
 getTotalWeight()
 getTotalPrice()
+
+----------------------------------------------------------------------------
+
+1i) lodash
+A great library for direct array and object manipulation. specification is available at https://lodash.com/
+
+
+-----------------------------------------------------------------------------------
+
+1j) error
+
+This Factory exposes an object with constructors for various Error types
+Useful for easily resolving what went wrong when an error is received.
+For example, you can just do `err instanceof Errors.NotLoggedInError` to see if
+the error was raised because the user wasnt logged in for some action
+
+-----------------------------------------------------------------------------------
+
+1k) discount
+
+This Factory creates a Discount object
+An order can have multiple discount objects
+When calculating the price of an order, discounts specify how much percent to take off of each orders SubTotal price
+
+Some disounts can be used with other discounts. For those discounts, the 'isMultiDiscount' will be set to true
+Other discounts cannot be used with other discounts. For these, 'isMultiDiscount' is false
+
+public function:
+isExpired()  -- return a boolean if the discount code has expired
+allDetails()  -- return all values within the a discount instance
+
+
 
 ----------------------------------------------------------------------------
 
