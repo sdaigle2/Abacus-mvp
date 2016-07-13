@@ -786,6 +786,11 @@ angular.module('abacuApp')
               var color = $scope.curEditWheelchair.getPart(1000).colorID;
               $scope.curEditWheelchair.setColorForPart(4000, color);
             }
+            if(newOptionID == 11500){
+                //they chose welded side guards
+                var color = $scope.curEditWheelchair.getPart(1000).colorID;
+              $scope.curEditWheelchair.setColorForPart(11000, color);
+            }
             /*****************wheels on the thunders**************/
             if(newOptionID == 6100){
                 // they just selected NONE as their option for wheels
@@ -851,6 +856,7 @@ angular.module('abacuApp')
           if (($scope.curEditWheelchair.frameID >= 20) && ($scope.curEditWheelchair.frameID < 30))  {
            //update the linking color for the THunders
             if(ID == 1000 && ($scope.curEditWheelchair.getPart(3000).optionID == 3100)){
+              //they just chose the frame color, and the accessories are set to be the same as the frame. 
               $scope.curEditWheelchair.setColorForPart(3000, newColorID);
               $scope.curEditWheelchair.setColorForPart(11000, newColorID);
 
@@ -858,7 +864,13 @@ angular.module('abacuApp')
             }
 
             if (ID == 1000 && ($scope.curEditWheelchair.getPart(4000).colorIn == true)){
+              //they just chose the frame color, so we better update the 5th wheel color too.
               $scope.curEditWheelchair.setColorForPart(4000, newColorID);
+            }
+            
+            if (ID == 1000 && ($scope.curEditWheelchair.getPart(11000).optionID ==11500)){
+                //they just chose a frame color and the welded side guards are there so we have to change those too.
+                $scope.curEditWheelchair.setColorForPart(11000, newColorID);
             }
 
             if(ID == 3000 && $scope.curEditWheelchair.getPart(11000).optionID === 11200){

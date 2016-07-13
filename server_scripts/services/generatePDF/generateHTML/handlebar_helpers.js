@@ -384,12 +384,20 @@ function getTotalPrice() {
 }
 
 function getPayments(){
-  if(this.payMethod = 'Credit Card'){
-    return getTotalPrice().apply(this);
-  } else
+  if(this.payMethod == 'Credit Card'){
+    return (getTotalSubtotal.apply(this) - getTotalDiscount.apply(this) + getTotalShipping.apply(this) + getTotalTax.apply(this));
+  } else {
     return 0;
+  }
 }
 
+function getBalanceDue(){
+  if(this.payMethod == 'Credit Card'){
+    return 0;
+  } else {
+    return (getTotalSubtotal.apply(this) - getTotalDiscount.apply(this) + getTotalShipping.apply(this) + getTotalTax.apply(this));
+  }
+}
 
 /**
  * Gives total weight of a given chair
@@ -579,6 +587,8 @@ const EXPORTED_HELPERS = {
   getTotalSubtotal,
   getTotalDiscount,
   getTotalPrice,
+  getPayments,
+  getBalanceDue,
   toUpperCase,
   getPaginatedParts,
   getPaginatedMeasures,
