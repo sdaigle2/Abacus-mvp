@@ -12,6 +12,7 @@ var update = require('../services/user').update;
 var restrict = require('../policies/restrict');
 
 //UPDATE USER INFO
+//TODO: find out if cloudant allows single field update. i.e. update only fName or lName.
 router.post('/update', restrict, function (req, res) {
   console.log('/update');
 

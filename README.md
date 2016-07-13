@@ -13,6 +13,7 @@ loadash (with the symbol _.) is used for array, and object manipulation. details
 
 ## Notes on Server Code Structure
 
+ECMAScript 6 are being used here like '=>' make sure to turn on ECMAScript 6 interpreter in your IDE. Otherwise it will be considered as syntax error.
 The server side code is no longer under one long `server.js` script.
 It has now been split up into seperate files inside the `server_scripts` directory.
 

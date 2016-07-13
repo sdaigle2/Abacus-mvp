@@ -23,6 +23,9 @@ var email = new sendgrid.Email({
 });
 
 //LOGIN
+
+//TODO: cancel out the console.log( password);
+
 router.post('/login', function (req, res) {
   //Retrieve request parameters
   var email = req.body.email;
