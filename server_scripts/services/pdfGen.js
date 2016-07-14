@@ -1,7 +1,7 @@
 /**
  * Created by Dhruv on 7/8/2015.
  *
- * This code is now deprecated
+ * This code is no longer in use now. For pdf generation, please check out the generatePDF folder
  */
 "use strict";
 

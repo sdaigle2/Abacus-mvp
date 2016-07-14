@@ -45,8 +45,7 @@ exports.update = function (obj, key, callback) {
           // The full user object
           obj = dbUtils.getMinimizedUserEntry(updatedUserFull);
           if (!obj.newPass1 || obj.newPass1.length < 8 || obj.newPass1 !== obj.newPass2) {
-            // If the new password doesn't exist, is too short or does not match the confirmation
-            console.log('bad newpass');
+         
             // Insert new object without replacing the password
             delete obj.oldPass;
             delete obj.newPass1;

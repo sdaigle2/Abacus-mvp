@@ -110,6 +110,7 @@ angular.module('abacuApp')
         return true;
       },
 
+      // return a boolean
       canAddDiscount: function () {
         return _.every(this.discounts, 'isMultiDiscount');
       },
@@ -135,6 +136,7 @@ angular.module('abacuApp')
         this.discounts = [];
       },
 
+      //add a design instance to an order
       addWheelchair: function (newDesign) {
         if (newDesign instanceof Design) {
           this.wheelchairs.push(newDesign);

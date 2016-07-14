@@ -1,5 +1,12 @@
 ﻿'use strict';
 
+/*Important: To keep wheelchairFactory consistent, remember to add it to the 1 )constructor, 2) copy constructor, 3)updateDB, 4)getAll() 5)corresponding getter and setter
+ * 6) update pdf generator in the backend
+ */
+
+
+
+
 /*
  * This factory produces Wheelchair objects
  * A Wheelchair object keeps track of a user-created wheelchair design
@@ -12,20 +19,21 @@ angular.module('abacuApp')
     //##########################  Constructor  #########################
 
     function Wheelchair(frameID) {
-      this.parts = [];
-      this.measures = [];
+      this.parts = [];            // all the part instance based on partFactory
+      this.measures = [];         // all the measurement instance based on measureFactory
       this.inCurOrder = false;
-      this.grantAmount = 0;
+      this.grantAmount = 0;       //variable for grant
       if (typeof frameID === 'number') {
         this.frameID = frameID;
         this.title = 'My Custom Wheelchair';
 
-        //Get data from FrameData
+        //Get data from FrameData. Frame data is the full set of options
         var frame = FrameData.getFrame(frameID);
         this.name = frame.getName();
+
         var parts = frame.getParts();
         parts.forEach(function(pPart){
-          pPart.options.forEach(function(pOption){
+          pPart.options.forEach(function(pOption){ //setting comments field
             pOption.setComments('');
           })
         });
@@ -34,7 +42,7 @@ angular.module('abacuApp')
         //Generate parts array and set defaults
         for (var i = 0; i < parts.length; i++) {
           var p = parts[i];
-          if(p.getDefaultOptionID() == -1){
+          if(p.getDefaultOptionID() == -1){   //TODO: allow part with no default option. This currently will lead to pdf generation crush
             var defaultPart = {
               partID: p.getID(),
               optionID: p.getDefaultOptionID(),
@@ -60,11 +68,12 @@ angular.module('abacuApp')
           this.measures.push({
             measureID: m.getID(),
             comments: m.getComments(),
-            measureOptionIndex: -1
+            measureOptionIndex: -1         //index of measurement
           })
         }
       }
 
+      // Copy constructor
       else {
         var wheelchair = frameID; //in this case frameID is a wheelchair json
         //####################### COPY CONSTRUCTOR ############################
@@ -114,6 +123,7 @@ angular.module('abacuApp')
 
 
       //GETS
+      //remember to update this field whenever change structure of wheelchair class
       getAll: function () {
         return {
           frameID: this.frameID,
@@ -146,6 +156,8 @@ angular.module('abacuApp')
       getNumParts: function () {
         return this.parts.length;
       },
+
+      //length of measurement
       getNumMeasures: function () {
         return this.measures.length;
       },

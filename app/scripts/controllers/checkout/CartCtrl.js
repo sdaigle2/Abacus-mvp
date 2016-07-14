@@ -1,5 +1,6 @@
 // jshint unused:false
-/* globals frameDataFromDB:true, cartDataFromDB:true, curWheelchair:true, $ */
+// TODO: no longer in use, need to be cleaned
+
 'use strict';
 
 /**
@@ -24,8 +25,7 @@ angular.module('abacuApp')
       //Array tracking if wheelchair is in curOrder
       $scope.wInOrder = [];
 
-      //Array tracking wheelchairs in current order (wInOrder[i] = j means $scope.wheelchairs[i] is at index j in curOrder)
-      //If j === -1 then $scope.wheelchairs[i] is not in curOrder
+      
       $scope.wOrderIndex = [];
 
       $scope.imageDisplay1 = -1;

@@ -8,6 +8,8 @@ Full Variable List
 Change Log
 5/19/15 - Scott Blessing - Created File
 
+7/13/16 - Brian Zhou -- update
+
 ##############################################################################
 
 
@@ -50,6 +52,7 @@ NumSubImages                                             | The number of images 
 ZRank[[<Int>]]                                           | A 2D array of z-index rankings.  The first dimension is subimageIndex, the second is Angle
 DefaultOptionID                                          | The ID of the default Option associated with this Part
 Options[<Option>]                                        | An array of Options available for this Part (must have at least one element)
+allowMultipleChoices                                     | boolean show if part can contain multiple option
                                                          |
                                                          |
 ~~~Option~~~                                             |
@@ -73,6 +76,7 @@ Hex                                                      | The hex value of the 
                                                          |
 *****User*****                                           |
 UserID                                                   | The User's unique ID (-1 if not logged in)
+_rev                                                     | version number from cloudant, important to keep it sync with cloudant
 FName                                                    | The first name of the User
 LName                                                    | The last name of the User
 Email                                                    | The email of the User
@@ -84,23 +88,29 @@ State                                                    | The state of the User
 Zip                                                      | The Zipcode of the User
 UnitSys                                                  | The Unit System the User is using for the site (See "Units")
 Orders[<Order>]                                          | An array of Orders associated with the User (both sent and unsent)
+cartWheelchairs                                          | An array hold all the wheelchairs in the cart
+cartWheelchairIndex                                      | Index associate with cartWheelchairs i.e cartwheelchair
+savedDesign                                              | An array of user saved designs
 DesignedWheelchairs[<Wheelchair>]                        | An array of Wheelchairs designed by the User
-CurEditWheelchairIndex                                   | The index of the Wheelchair designated as the "CurEditWheelchair"
-CommonMeasures                                           | An object consisting of the User's default choice for some common Measures
 CurrentWheelchair                                        | A copy of the wheelchair being edited along with an indicator whether it is new
 contentSection                                           | The current content section which is visited in the settings page
+isAdmin                                                  | boolean to show if user is a admin
+
                                                          |
                                                          |
 ~~~Wheelchair~~~                                         |
 FrameID                                                  | The ID of the Frame this Wheelchair is modeling
 Title                                                    | The title given to this Wheelchair by the User
-Parts[{PartID, OptionID, ColorID, sizeIndex}]            | An array of Part ID's, Option ID's, Color ID's and Size Index that model the User's design decisions
-Measures[{MeasureID, MeasureOptionIndex}]                | An array of Measure ID's and Option indices that model the User's chosen measurements
+grantAmount                                              | For CAF grant
+Parts[{PartID, OptionID, ColorID, sizeIndex,comments}]   | An array of Part ID's, Option ID's, Color ID's and Size Index that model the User's design decisions
+Measures[{MeasureID, MeasureOptionIndex,comments}]       | An array of Measure ID's and Option indices that model the User's chosen measurements
 PreviewImageGenerator                                    | A reference to a helper class that generates this Wheelchair's Preview Image
-inCurOrder                                               | Boolean indicating whether the wheelchair is in the current order
                                                          |
                                                          |
 ~~~Order~~~                                              |
+_id                                                      | ID from cloudant
+_rev                                                     | version ID from cloudant
+userType                                                 | default to 'User' user, it can also be 'dealer', 'VA', '4X Sales Rep'
 OrderNum                                                 | This Order's unique "Num"
 TaxRate                                                  | The tax rate when this Order was sent
 ShippingFee                                              | The shipping fee when this Order was sent
@@ -115,8 +125,10 @@ Addr2                                                    | An additional address
 City                                                     | The city of the orderer
 State                                                    | The state of the orderer
 Zip                                                      | The zipcode of the orderer
+billingDetails                                           | store billing info
 PayMethod                                                | The method of payment the orderer is using
 Wheelchairs[<Wheelchair>]                                | An array of Wheelchairs being ordered
+discounts                                                | array of discount instance
                                                          |
                                                          |
 ~~~PreviewImage~~~                                       |

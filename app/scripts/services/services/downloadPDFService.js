@@ -1,10 +1,12 @@
 'use strict';
 
+// no longer in use
+
 /**
  * @ngdoc function
  * @name abacuApp.static factory:downloadPDF
  * @description
- * # downloadPDF
+ * # downloadPDF 
  * Service of the abacuApp
  */
 angular.module('abacuApp')
