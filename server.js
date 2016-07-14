@@ -13,7 +13,7 @@ var path = require('path');
 var _ = require('lodash');
 var orderNumber = require('./server_scripts/services/orderNumber');
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '1mb'}));
 app.use(bodyParser.urlencoded({
   extended: true
 }));
