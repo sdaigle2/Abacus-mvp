@@ -23,6 +23,9 @@ var email = new sendgrid.Email({
 });
 
 //LOGIN
+
+//TODO: cancel out the console.log( password);
+
 router.post('/login', function (req, res) {
   //Retrieve request parameters
   var email = req.body.email;
@@ -92,6 +95,7 @@ router.post('/logout', restrict, function (req, res) {
 router.post('/session', restrict, function (req, res) {
   dbUtils.getUserByID(req.session.user, function (err, body) { //Query the database using the session cookie
     if (!err) {
+      //clean the trace
       delete body.salt;
       delete body.password;
       res.json(body); //Respond with details from database AFTER removing stored hash and salt
@@ -128,6 +132,7 @@ router.post('/register', function (req, res) {
     res.json({err: checkRes});  //If response is not true, it is an error
   }
   else
+    //query the database
     dbService.users.get(data.email, function (err, body) { //Query the database for a user with the given email
       if (err) {  //No user exists, we can continue registering
 

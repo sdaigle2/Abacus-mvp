@@ -11,8 +11,12 @@ in the project directory:
 
 loadash (with the symbol _.) is used for array, and object manipulation. details see:https://lodash.com/
 
+## Notes on frontend docs
+docs are available in the docs folder
+
 ## Notes on Server Code Structure
 
+ECMAScript 6 are being used here like '=>' make sure to turn on ECMAScript 6 interpreter in your IDE. Otherwise it will be considered as syntax error.
 The server side code is no longer under one long `server.js` script.
 It has now been split up into seperate files inside the `server_scripts` directory.
 
@@ -32,6 +36,7 @@ This directory contains all middleware policies. These are small checks that hap
 Services are fairly generic. Anytime you want to define a function or expose a variable that needs to be referenced in multiple places, expose it in a file under `server_scripts/services` and then import it with `require` wherever you need it.
 
 ## Testing
+
 
 To run the tests for this project, just run `npm test`
 
