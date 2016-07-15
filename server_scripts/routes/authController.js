@@ -46,7 +46,7 @@ router.post('/reset-link/:email', function (req, res) {
       var newMail = new sendgrid.Email({
         from: 'tinker@intelliwheels.net',
         subject: 'Per4max Password Reset',
-        text: 'To reset your password for per4max.fit, please click the link - http://per4max.fit/reset/' + data.docs[0].resetLink,
+        text: 'To reset your password for per4max.fit, please click the link - http://per4max.fit/#!/change-password/' + data.docs[0].resetLink,
         to: userEmail
       });
       sendgrid.send(newMail, function (resp) {
