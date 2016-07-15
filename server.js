@@ -39,7 +39,7 @@ app.use(express.static(__dirname + '/app'));
 //Initial request to server
 app.get('/', function (req, res) {
   res.writeHead(200, {"Content-Type": "text/html"});
-  res.sendFile('./app/index.html', {root:__dirname});
+  res.sendFile('././app/index.html', {root:__dirname});
 });
 
 // Starts the server and returns a promise that resolves to the express app instance that is already alive

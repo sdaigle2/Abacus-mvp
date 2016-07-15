@@ -18,6 +18,7 @@ angular.module('abacuApp')
 
       $scope.completeClicked = false;
 
+      // indicator of current section
       $scope.stages = {
         INFO: 0,
         PAYMENT: 1,
@@ -25,10 +26,11 @@ angular.module('abacuApp')
         COMPLETE: 3
       };
 
+      //init page with user info section
       $scope.curStage = $scope.stages.INFO;
 
 
-
+      // variable for button group on the right side
       $scope.display = [
         { //INFO
           title: "Your Info",
@@ -103,26 +105,31 @@ angular.module('abacuApp')
         }
       };
 
-      //Advance to the next stage of checkout
+      //Advance to the next stage of checkout, controll
       $scope.next = function () {
+
         switch ($scope.curStage) {
 
           case $scope.stages.INFO:
             $scope.completeClicked = false;
+            //check if all field has been field
             if (allInputsFilled() === false) {
               alert('You must fill in all contact information');
               return;
             }
+            // go on to next stage
             $scope.curStage++;
             break;
 
 
           case $scope.stages.PAYMENT:
+            // disable complete button once it is clicked
             $scope.completeClicked = false;
             if (!allFormFieldsComplete($scope.billingForm, ['addr2'])) {
               alert('You must fill in all billing information');
               return;
             }
+            //check if credit card info is required and check the info
             if ($scope.creditCardRequired() && !allFormFieldsComplete($scope.card)) {
               alert('Incomplete Credit Card Information');
               return;
@@ -131,6 +138,8 @@ angular.module('abacuApp')
             if ($scope.creditCardRequired() && allFormFieldsComplete($scope.card)) {
               payment();
             } else if (!$scope.creditCardRequired()) {
+
+              //go on to next stage
               $scope.curStage++;
             }
 
@@ -138,23 +147,25 @@ angular.module('abacuApp')
 
 
           case $scope.stages.CONFIRM:
-
+            // check if user has agree to agreement
             if (!$scope.termsForm.hasReadTerms) {
               alert("You must accept the Terms and Conditions to continue");
               return;
             }
 
+            // disable the complete button
             $scope.completeClicked = true;
-            //div show
+            //sending the order
             User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.billingForm, $scope.curOrder.payMethod, token)
               .then(function (response) {
-                //div go
+
                 $scope.orderNum = response.orderNum;
                 if($scope.orderNum !== -1) {
                   $scope.curStage++;
+                  //resume the stage button
                   $scope.completeClicked = false;
                 }
-
+                // clean the item in the cart
                 User.clearCart();
               })
               .catch(function () {
@@ -279,15 +290,16 @@ angular.module('abacuApp')
       var token = '';
       function payment(){
         // console.log($scope.card);
-        Stripe.setPublishableKey('pk_live_IDUKUfHE9yeCm8x1qmFBemBZ');
+        Stripe.setPublishableKey('pk_live_KwYnVzZylrafo9Y0RTjZmcM1');
+        //stripe api
         Stripe.card.createToken($scope.card, stripeResponseHandler);
       }
-
+      
       function stripeResponseHandler(status, response) {
         if (response.error) {
           // Show the errors on the form
           $scope.payment_errors = response.error.message;
-          alert(response.error.message);    
+          alert(response.error.message);
           console.log('stripe created error: ' + response.error.message);
         } else {
           // response contains id and card, which contains additional card details
@@ -333,6 +345,7 @@ angular.module('abacuApp')
       /**************************** COMPLETE *****************************/
 
         //The Number assigned to the user's order
+        // it will be initialized later from cloudant
       $scope.orderNum = "0000";
 
       // Make sure that the zipcode field only has numbers in it

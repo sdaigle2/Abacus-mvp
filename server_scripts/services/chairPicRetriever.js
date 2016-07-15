@@ -20,7 +20,7 @@
  * When the image for the given imageKey isnt in the LRU cache, it retrieves a readstream for it from S3.
  * This S3 readstream is piped into a writestream that will save the file locally, and the
  * promise that is returned resolves to the S3 readstream.
- * 
+ *
  */
 
 const fs   = require('fs');

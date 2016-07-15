@@ -35,7 +35,7 @@ angular.module('abacuApp')
       return value instanceof Wheelchair;
     }
 
-
+    
   	var ComparedDesignsStorage = function (localStorageKey) {
       this.localStorageKey = localStorageKey;
   		this.designs = localJSONStorage.get(this.localStorageKey) || []; // restore from localStorage...default to empty array
