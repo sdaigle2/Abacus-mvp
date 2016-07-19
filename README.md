@@ -12,6 +12,9 @@ in the project directory:
     c) SendGrid
     d) Stripe
 (4) ways to run
+    a) **node server.js** //this runs the whole app at localhost:8080 and it connects to all of the databases. It communicates with the server with http. Use this most of the time.  The only thing that you can't do with this is test stripe because it's an unsecure library.
+    b) **node server.js https** //this runs the whole app at https://localhost:8443 and it connects to all of the databases.  It communicates with the server with https so it's good for testing stripe.  The only problem is that it uses a self-signed certificate so looks sketchy.
+    c) **grunt serve** //if you don't have an internet connection and are only doing front end bugs, this is the way to go.  The system won't connect to any databases or anything remote.
 
 ## Notes on general library used
 
