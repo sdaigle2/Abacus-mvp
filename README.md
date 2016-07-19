@@ -6,6 +6,12 @@ Check out the project (follow Github instructions)
 in the project directory:
 (1) npm install
 (2) bower install
+(3) set environment variables (Ask scott for the variables)
+    a) AWS
+    b) Coloudant
+    c) SendGrid
+    d) Stripe
+(4) ways to run
 
 ## Notes on general library used
 
