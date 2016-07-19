@@ -18,6 +18,7 @@ var options = {
   key: fs.readFileSync('key.pem'),
   cert: fs.readFileSync('cert.pem')
 };
+var runHttps = process.argv[2] === 'https' ? true : false;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -52,13 +53,17 @@ app.get('/', function (req, res) {
 function startServer() {
   return orderNumber.initPromise
     .then(function () {
-      var port = process.env.PORT || 8443;
+      var port;
+      if (runHttps) {
+        port = process.env.PORT || 8443;
+        var httpsServer = https.createServer(options, app);
+      } else {
+        port = process.env.PORT || 8080;
+      }
 
       console.log('Server will run on port ' + port);
 
-      var httpsServer = https.createServer(options, app);
-
-      var server = httpsServer.listen(port);
+      var server = runHttps ? httpsServer.listen(port) : app.listen(port);
 
       return { // return the server & app instances...used for testing
         "app": app,
