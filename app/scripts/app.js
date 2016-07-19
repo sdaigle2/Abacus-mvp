@@ -41,6 +41,14 @@ angular
         templateUrl: 'views/frame.html',
         controller: 'FrameCtrl'
       })
+      .when('/password-reset', {
+        templateUrl: 'views/forgot/resetLink.html',
+        controller: 'ForgotCtrl'
+      })
+      .when('/change-password/:resetToken', {
+        templateUrl: 'views/forgot/changePassword.html',
+        controller: 'ForgotCtrl'
+      })
       .when('/tinker', {
         templateUrl: '../views/tinker/abacus.html',
         controller: 'AbacusCtrl',

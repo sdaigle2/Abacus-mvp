@@ -1,0 +1,41 @@
+.forgot{
+  max-width: 600px;
+  margin: 30px auto 0;
+}
+
+.forgot-wrapper {
+  margin: 0 auto;
+  max-width: 600px;
+  display: flex;
+  justify-content: space-between;
+  -ms-align-items: center;
+  align-items: center;
+}
+
+.pw-input{
+  text-align: left;
+}
+
+.success-mesg {
+  color: green;
+  font-size: 1.2em;;
+}
+
+button[disabled]:hover {
+  color: #4F9DFF;
+  background-color: #fff;
+}
+.pw-inputs-wrapper {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.pw-inputs input {
+  margin-bottom: 10px;
+}
+.pw-confirm button {
+  margin-top: 0;
+}
+.glyphicon {
+  color: red;
+}

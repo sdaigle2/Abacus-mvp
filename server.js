@@ -20,7 +20,7 @@ var options = {
 };
 var runHttps = process.argv[2] === 'https' ? true : false;
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '1mb'}));
 app.use(bodyParser.urlencoded({
   extended: true
 }));

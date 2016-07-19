@@ -6,6 +6,8 @@
 
 var router = require('express').Router();
 var _      = require('lodash');
+var crypto = require('crypto');
+var Promise = require("bluebird");
 
 // Import services
 var dbService = require('../services/db');
@@ -22,7 +24,105 @@ var email = new sendgrid.Email({
   subject: 'Tinker Registration'
 });
 
+var findUserPr = Promise.promisify(dbService.users.find);
+var insertUserPr = Promise.promisify(dbService.users.insert);
+
+//RESET PASSWOD LINK
+router.post('/reset-link/:email', function (req, res) {
+  var userEmail = req.params.email;
+  var query = { selector: { email: userEmail }};
+  findUserPr(query)
+  .then(function(data) {
+    if (data.docs.length === 0) {
+      res.status(404);
+      res.json({
+        msg: 'No user found with email ' + userEmail
+      });
+      return;
+    }
+    data.docs[0].resetLink = crypto.randomBytes(16).toString('hex');
+    insertUserPr(data.docs[0], data.docs[0].id)
+    .then(function(nData) {
+      var newMail = new sendgrid.Email({
+        from: 'tinker@intelliwheels.net',
+        subject: 'Per4max Password Reset',
+        text: 'To reset your password for per4max.fit, please click the link - http://per4max.fit/#!/change-password/' + data.docs[0].resetLink,
+        to: userEmail
+      });
+      sendgrid.send(newMail, function (resp) {
+        res.json({'success': true, 'newRev': nData.rev, 'resetLink': data.docs[0].resetLink});
+      });
+    })
+    .catch(function(err) {
+      res.status(500);
+      return res.json(err);
+    })
+  })
+});
+
+//CHECKS IF RESET PASSWORD LINK EXISTS
+router.get('/password-reset-key/:resetPasswordCode', function(req, res) {
+  var passwordCode = req.params.resetPasswordCode;
+  var query = { selector: { resetLink: passwordCode }};
+  findUserPr(query)
+  .then(function(data) {
+    if (data.docs.length === 0) {
+      res.status(404);
+      res.json({
+        msg: 'No user found with resetLink ' + passwordCode
+      });
+      return;
+    }
+    res.json({'success': true});
+  })
+  .catch(function(err) {
+    res.status(500);
+    return res.json(err);
+  })
+});
+
+//CHANGES PASSWORD
+router.put('/change-user-password', function(req, res) {
+  var newPassword = req.body.newPassword;
+  var userEmail = req.body.email;
+  var query = { selector: { email: userEmail }};
+  if (!newPassword || newPassword.length < 8) {
+    res.status(400);
+    res.json({
+      msg: 'New password should be at least 8 characters long'
+    });
+  } else {
+    findUserPr(query)
+    .then(function(data) {
+      if (data.docs.length === 0) {
+        res.status(404);
+        res.json({
+          msg: 'No user found with email ' + userEmail
+        });
+        return;
+      } else {
+        hash(newPassword, function (err, salt, hash) {
+          if (err) throw err;
+          data.docs[0].password = hash;
+          data.docs[0].salt = salt;
+          insertUserPr(data.docs[0], data.docs[0].id)
+          .then(function() {
+            res.json({'success': true});
+          })
+          .catch(function(err) {
+            res.status(500);
+            return res.json(err);
+          })
+        });
+      }
+    })
+  }
+});
+
 //LOGIN
+
+//TODO: cancel out the console.log( password);
+
 router.post('/login', function (req, res) {
   //Retrieve request parameters
   var email = req.body.email;
@@ -92,6 +192,7 @@ router.post('/logout', restrict, function (req, res) {
 router.post('/session', restrict, function (req, res) {
   dbUtils.getUserByID(req.session.user, function (err, body) { //Query the database using the session cookie
     if (!err) {
+      //clean the trace
       delete body.salt;
       delete body.password;
       res.json(body); //Respond with details from database AFTER removing stored hash and salt
@@ -128,6 +229,7 @@ router.post('/register', function (req, res) {
     res.json({err: checkRes});  //If response is not true, it is an error
   }
   else
+    //query the database
     dbService.users.get(data.email, function (err, body) { //Query the database for a user with the given email
       if (err) {  //No user exists, we can continue registering
 
@@ -149,7 +251,8 @@ router.post('/register', function (req, res) {
             //Send an email to the user using the sendgrid API
             email.to = data.email;
             email.text = 'Thank you for registering with the Per4max Wheelchair Configurator powered by Tinker.  To confirm your account, please go to http://per4max.fit.';
-            sendgrid.send(email, function () {
+            sendgrid.send(email, function (err) {
+
               res.json({'success': true});
             });
           });

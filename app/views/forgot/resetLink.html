@@ -1,0 +1,15 @@
+<link href="styles/forgot.css" rel="stylesheet" />
+<div class="forgot">
+    <h2>Password recovery</h2>
+    <p>Please enter the email address that you entered when creating your account</p>
+    <form name="form.forgotPassword" class="forgot-wrapper">
+        <div class="pw-input">
+            <p class="book paddingtop-fontsize">Email address</p>
+            <input ng-model="params.email" validate-email required type="email" placeholder="Enter your Email">
+        </div>
+        <button ng-disabled="linkSent" class="button1" data-ng-click="getResetLink(form.forgotPassword)" >Restore
+        </button>
+    </form>
+    <div class="success-mesg" data-ng-bind="success"></div>
+    <div class="error-mesg" data-ng-bind="error"></div>
+</div>

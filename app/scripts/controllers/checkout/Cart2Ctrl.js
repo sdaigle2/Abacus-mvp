@@ -1,5 +1,5 @@
 // jshint unused:false
-/* globals frameDataFromDB:true, cartDataFromDB:true, curWheelchair:true, $ */
+
 'use strict';
 
 /**
@@ -7,7 +7,8 @@
  * @name abacuApp.controller:CartCtrl
  * @description
  * # CartCtrl
- * Controller of the abacuApp
+ * Controller of the abacuApp  
+ * make sure to update compare module with every action on the cart
  */
 angular.module('abacuApp')
   .constant('WHEELCHAIR_CANVAS_WIDTH', 187) // width of canvas that renders wheelchair
@@ -19,6 +20,7 @@ angular.module('abacuApp')
       $scope.USER_TYPES = USER_TYPES;
       $scope.PAYMENT_METHODS = PAYMENT_METHODS;
 
+      //user login dropdown
       Drop.setFalse();
 
       $scope.guideSection = false;
@@ -38,6 +40,8 @@ angular.module('abacuApp')
       //A reference to User.curEditOrder (set during init())
       $scope.curOrder = null;
       $scope.discount = {code: ""};
+      
+      //error message for promotion code
       $scope.promoErr = "";
       $scope.totalGrantAmount = 0;
 

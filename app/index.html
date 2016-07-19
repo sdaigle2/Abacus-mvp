@@ -117,6 +117,7 @@
 
             <p class="book paddingtop-fontsize">Password</p>
             <input type="password" data-ng-model="loginModel.password" ng-keypress="enterLogin($event)"/>
+            <a href="" style="display:block;" data-ng-click="forgot()">I forgot my password</a>
 
             <p class="book error-mesg" data-ng-bind="error"></p>
           </td>
@@ -244,6 +245,8 @@
 <script src="scripts/controllers/ConfirmCtrl.js"></script>
 <script src="scripts/controllers/LandingCtrl.js"></script>
 <script src="scripts/controllers/MyDesignsCtrl.js"></script>
+<script src="scripts/controllers/forgotPassword/ForgotCtrl.js"></script>
+<script src="scripts/controllers/forgotPassword/ForgotApi.js"></script>
 
 <!-- endbuild -->
 
