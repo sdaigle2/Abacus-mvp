@@ -30,7 +30,7 @@ angular.module('abacuApp')
         //Get data from FrameData. Frame data is the full set of options
         var frame = FrameData.getFrame(frameID);
         this.name = frame.getName();
-
+        this.userInfo = {};
         var parts = frame.getParts();
         parts.forEach(function(pPart){
           pPart.options.forEach(function(pOption){ //setting comments field
@@ -77,9 +77,9 @@ angular.module('abacuApp')
       else {
         var wheelchair = frameID; //in this case frameID is a wheelchair json
         //####################### COPY CONSTRUCTOR ############################
-
         this.frameID = wheelchair.frameID;
         this.title = wheelchair.title;
+        this.userInfo = wheelchair.userInfo || {};
         var frame = FrameData.getFrame(this.frameID);
         this.name = frame.getName();
         if(typeof wheelchair.grantAmount == 'undefined' ) {
@@ -131,7 +131,8 @@ angular.module('abacuApp')
           parts: this.parts,
           measures: this.measures,
           inCurOrder: this.inCurOrder,
-          grantAmount: this.grantAmount
+          grantAmount: this.grantAmount,
+          userInfo: this.userInfo
         }
       },
 
@@ -316,8 +317,14 @@ angular.module('abacuApp')
       getGrantAmount: function() {
         return this.grantAmount;
       },
+      getUserInfo: function() {
+        return this.userInfo;
+      },
 
       //SETS
+      setUserInfo: function(userInfo) {
+        this.userInfo = userInfo;
+      },
       setOptionForPart: function (pID, oID) {
         var p = this.getPart(pID);
         if (p !== null) {
@@ -409,6 +416,9 @@ angular.module('abacuApp')
 
       toggleInOrder: function () {
         this.inCurOrder = !this.inCurOrder;
+      },
+      clearUserInfo: function() {
+        this.userInfo = {};
       },
       //Calculate the total weight of the Wheelchair
       getTotalWeight: function () {

@@ -115,8 +115,6 @@ function getChairMeasures(chair) {
  */
 function getChairMeasureOption(chair, measureID) {
   var chairMeasure = _.find(chair.measures, {'measureID': measureID});
-  console.log(`chair: ${JSON.stringify(chair, null, 2)}`);
-  console.log(`chairMeasure: ${JSON.stringify(chairMeasure, null, 2)}`);
   var frame = getChairFrame(chair);
   var measure = _.find(frame.measures, {'measureID': measureID});
   var measureOptionIndex = _.find(chair.measures, {'measureID': measureID}).measureOptionIndex;

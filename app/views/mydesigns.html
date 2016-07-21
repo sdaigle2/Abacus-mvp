@@ -21,7 +21,7 @@
         <ul class="chairBlock" ng-if="wheelchairUIOpts.length">
           <li ng-repeat="chairInfo in wheelchairUIOpts" class="cart-item {{chairInfo.checked ? 'checked-item' : ''}}">
             <div class="chairTitle" ng-class="{'selectedChair': chairInfo.checked }">
-              <span class="medium">{{_.has(chairInfo, 'design.wheelchair') ? (chairInfo.design.wheelchair.getName() || '--') : '--'}}</span>
+              <span class="medium">{{_.has(chairInfo, 'design.wheelchair') ? (chairInfo.design.wheelchair.userInfo.wheelchairName || chairInfo.design.wheelchair.getName()) : '--'}}</span>
               <input type="checkbox" class="checkbox-button pull-right" ng-model="chairInfo.checked"
                      ng-click="closeGuide()"
                      ng-disabled="numChecked() >= MAX_COMPARISON_CHAIRS && !chairInfo.checked">
@@ -59,14 +59,31 @@
                 </section>
                 <div class="moreInfo" style="padding:{{WHEELCHAIR_CANVAS_WIDTH}};">
                   <!-- Parts Table...only shown if toggled -->
-                  <h3 ng-if="chairInfo.showInfo">Parts</h3>
+                  <!-- UserInformation Table...only shown if toggled -->
+                  <h3 ng-if="chairInfo.showInfo && chairInfo.design.wheelchair.userInfo">User Information</h3>
                   <table ng-if="chairInfo.showInfo">
-                    <tr class="part-row" ng-repeat="part in chairInfo.design.wheelchair.getParts()">
+                    <tr class="part-row" ng-if="chairInfo.design.wheelchair.userInfo.name">
                       <td class="title-column">
-                        <p>{{getPartDetails(chairInfo.design.wheelchair, part).partName}}</p>
+                        <p>Name</p>
                       </td>
                       <td class="value-column pull-right">
-                        <p data-ng-bind="getPartOption(chairInfo.design.wheelchair, part)"></p>
+                        <p data-ng-bind="chairInfo.design.wheelchair.userInfo.name"></p>
+                      </td>
+                    </tr>
+                    <tr class="part-row" ng-if="chairInfo.design.wheelchair.userInfo.disability">
+                      <td class="title-column">
+                        <p>Disability</p>
+                      </td>
+                      <td class="value-column pull-right">
+                        <p data-ng-bind="chairInfo.design.wheelchair.userInfo.disability"></p>
+                      </td>
+                    </tr>
+                    <tr class="part-row" ng-if="chairInfo.design.wheelchair.userInfo.paymentMethod">
+                      <td class="title-column">
+                        <p>Payment Method</p>
+                      </td>
+                      <td class="value-column pull-right">
+                        <p data-ng-bind="chairInfo.design.wheelchair.userInfo.paymentMethod"></p>
                       </td>
                     </tr>
                   </table>

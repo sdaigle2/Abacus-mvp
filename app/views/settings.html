@@ -147,7 +147,7 @@
          ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ORDERS}">
       <ul id="settingsOrdersContentItems">
         <li class="settingsOrdersContentItem" ng-repeat="item in orderWheelchairs">
-          <p><h4><strong data-ng-bind="item.chair.getTitle()"></strong></h4></p>
+          <p><h4><strong data-ng-bind="item.chair.userInfo.wheelchairName || item.chair.getTitle()"></strong></h4></p>
           <canvas my-canvas img_arr={{item.chair.getPreviewImages(3)}} width="200"></canvas>
           <section>
             <p>Order number: {{item.order.orderNum}}</p>

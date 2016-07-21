@@ -33,7 +33,7 @@
         <ul class="chairBlock" ng-if="wheelchairUIOpts.length">
           <li ng-repeat="chairOpts in wheelchairUIOpts" class="cart-item {{chairOpts.checked ? 'checked-item' : ''}}">
             <div class="chairTitle" ng-class="{'selectedChair': chairOpts.checked }">
-              <span class="medium">{{chairOpts.design.wheelchair.getName()}}</span>
+              <span class="medium">{{chairOpts.design.wheelchair.userInfo.wheelchairName || chairOpts.design.wheelchair.getName()}}</span>
               <input type="checkbox" class="checkbox-button pull-right" ng-model="chairOpts.checked"
                      ng-click="closeGuide()"
                      ng-disabled="numChecked() >= MAX_COMPARISON_CHAIRS && !chairOpts.checked">
@@ -71,6 +71,35 @@
                        ng-click="deleteWheelchair($index)"></a>
                 </section>
                 <div class="moreInfo" style="padding:{{WHEELCHAIR_CANVAS_WIDTH}};">
+                  <!-- UserInformation Table...only shown if toggled -->
+                  <h3 ng-if="chairOpts.showInfo && chairOpts.design.wheelchair.userInfo">User Information</h3>
+                  <table ng-if="chairOpts.showInfo">
+                    <tr class="part-row" ng-if="chairOpts.design.wheelchair.userInfo.name">
+                      <td class="title-column">
+                        <p>Name</p>
+                      </td>
+                      <td class="value-column pull-right">
+                        <p data-ng-bind="chairOpts.design.wheelchair.userInfo.name"></p>
+                      </td>
+                    </tr>
+                    <tr class="part-row" ng-if="chairOpts.design.wheelchair.userInfo.disability">
+                      <td class="title-column">
+                        <p>Disability</p>
+                      </td>
+                      <td class="value-column pull-right">
+                        <p data-ng-bind="chairOpts.design.wheelchair.userInfo.disability"></p>
+                      </td>
+                    </tr>
+                    <tr class="part-row" ng-if="chairOpts.design.wheelchair.userInfo.paymentMethod">
+                      <td class="title-column">
+                        <p>Payment Method</p>
+                      </td>
+                      <td class="value-column pull-right">
+                        <p data-ng-bind="chairOpts.design.wheelchair.userInfo.paymentMethod"></p>
+                      </td>
+                    </tr>
+                  </table>
+                  <br>
                   <!-- Parts Table...only shown if toggled -->
                   <h3 ng-if="chairOpts.showInfo">Parts</h3>
                   <table ng-if="chairOpts.showInfo">

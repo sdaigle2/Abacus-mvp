@@ -66,28 +66,17 @@ angular.module('abacuApp')
         switch ($scope.getContentSection()) {
           case $scope.ContentSection.ACCOUNT:
             $scope.saveMessage = 'SAVING ...';
-            $http({
-              url: '/update'
-              , data: $scope.accountModel
-              , method: 'POST'
-            }).success(function (data) {
-              User.setFname($scope.accountModel.fName);
-              User.setLname($scope.accountModel.lName);
-              User.setPhone($scope.accountModel.phone);
-              User.setAddr($scope.accountModel.addr);
-              User.setAddr2($scope.accountModel.addr2);
-              User.setCity($scope.accountModel.city);
-              User.setState($scope.accountModel.state);
-              User.setZip($scope.accountModel.zip);
+            User.updateUserInfo($scope.accountModel).then(function(resp) {
               $scope.accountModel.oldPass = '';
               $scope.accountModel.newPass1 = '';
               $scope.accountModel.newPass2 = '';
               $scope.saveMessage = 'SAVED';
-              $scope.errMessage = data.message;
-              setTimeout(function(){$scope.$apply($scope.saveMessage = 'SAVE >>'); $scope.$apply($scope.errMessage = '')},3000);
-            });
-            break;
+              $scope.errMessage = resp.data.message;
 
+              setTimeout(function(){$scope.saveMessage = 'SAVE >>'; 
+                $scope.$apply($scope.errMessage = '')},3000);
+            })
+            break;
           case $scope.ContentSection.ORDERS:
             break;
 
@@ -147,6 +136,7 @@ angular.module('abacuApp')
         //Array of orders
         //TODO: needs to be integrated with the Order factory
       var orders = User.getSentOrders();
+
       $scope.orderWheelchairs = _.chain(User.getSentOrders())
       .map(function (order) {
         var chairs = _.map(order.wheelchairs, 'wheelchair');
@@ -161,6 +151,7 @@ angular.module('abacuApp')
       })
       .flatten()
       .value();
+      console.log($scope.orderWheelchairs)
       $scope.orderWheelchairs = _.orderBy($scope.orderWheelchairs, 'order.sentDate', 'desc');
 
 

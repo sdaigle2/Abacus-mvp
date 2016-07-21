@@ -12,79 +12,102 @@
  *
  */
 angular.module('abacuApp')
-.service('User', ['$http', '$location', '$q', 'localJSONStorage', 'Order', 'Wheelchair', 'Units', 'Costs', 'Design', 'Errors', 'PromiseUtils', '$rootScope',
-function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Costs, Design, Errors, PromiseUtils, $rootScope) {
+.service('User', ['$http', '$location', '$q', 'localJSONStorage', 'Order', 'Wheelchair', 'Units', 'Costs', 'Design',
+ 'Errors', 'PromiseUtils', '$rootScope', 'WheelchairUpdate', 'DesignUpdate', 'CartUpdate',
+function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Costs, 
+  Design, Errors, PromiseUtils, $rootScope, WheelchairUpdate, DesignUpdate, CartUpdate) {
 
   // declare all User variables here.
   // savedDesigns are the designs saved under account. This is feature only enables when user loggin.
   // currentwhelchair holds what goes into tinker page,
   // contentSection is the section indicator of my account function
-  var orders, currentWheelchair, cartWheelchairIndex, savedDesigns,
-    userID, fName, lName, email, phone, addr, addr2, city, state,
-    zip, unitSys, contentSection, cart, isAdmin, _rev;
+
+  var self = this;
 
   // initialize all user variables here
   function init() {
-    orders = [];
-    cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
-    currentWheelchair = { // indicate the status of current design and hold the wheelchair instance
+    self.orders = [];
+    self.cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
+    self.currentWheelchair = { // indicate the status of current design and hold the wheelchair instance
       isNew: false,
       editingWheelchair: null,
       design: null
     };
-    cartWheelchairIndex = -1;  //Index associate with cartWheelchairs i.e cartwheelchair
-    savedDesigns = [];                    // array of saved wheelchair\
-    userID = -1; //-1 means not logged in
-    fName = '';
-    lName = '';
-    email = '';
-    phone = '';
-    addr = '';
-    addr2 = '';
-    city = '';
-    state = '';
-    zip = '';
-    unitSys = Units.unitSys.IMPERIAL;   // no longer used
-    contentSection = 'orders';          // section name under my account
-    isAdmin = false;
-    _rev = null;                        //revision number from cloudant, Important to keep in sync with, otherwise update will fail
+    self.cartWheelchairIndex = -1;  //Index associate with cartWheelchairs i.e cartwheelchair
+    self.savedDesigns = [];                    // array of saved wheelchair\
+    self.userID = -1; //-1 means not logged in
+    self.fName = '';
+    self.lName = '';
+    self.email = '';
+    self.phone = '';
+    self.addr = '';
+    self.addr2 = '';
+    self.city = '';
+    self.state = '';
+    self.zip = '';
+    self.unitSys = Units.unitSys.IMPERIAL;   // no longer used
+    self.contentSection = 'orders';          // section name under my account
+    self.isAdmin = false;
+    self._rev = null;                        //revision number from cloudant, Important to keep in sync with, otherwise update will fail
     // restoreUserFromCookies();
   }
 
-  var instance = this;
-
   init(); // initialize all the user variables
+
+  function getDesigns() {
+    var details = {
+      'savedDesigns': self.savedDesigns.map(function (design) {
+        if (design instanceof Design) {
+          return design.allDetails();
+        }
+        return design;
+      })
+    };
+    if (self._rev) {
+      details._rev = self._rev;
+    }
+
+    return details;
+  }
+
+  function getCartItems() {
+    var details = {
+      'cart': !_.isNull(self.cart) ? self.cart.getAll() : null
+    };
+
+    return details;
+  }
 
   //return all details of user object
   function allDetails() {
     var details = {
-      'userID': userID,
-      'fName': fName,
-      'lName': lName,
-      'email': email,
-      'phone': phone,
-      'addr': addr,
-      'addr2': addr2,
-      'city': city,
-      'state': state,
-      'zip': zip,
-      'unitSys': unitSys,
-      'currentWheelchair': currentWheelchair,
-      'orders': orders.map(function (order) {
+      'userID': self.userID,
+      'fName': self.fName,
+      'lName': self.lName,
+      'email': self.email,
+      'phone': self.phone,
+      'addr': self.addr,
+      'addr2': self.addr2,
+      'city': self.city,
+      'state': self.state,
+      'zip': self.zip,
+      'unitSys': self.unitSys,
+      'currentWheelchair': self.currentWheelchair,
+      'orders': self.orders.map(function (order) {
         return order.getAll();
       }),
-      'savedDesigns': savedDesigns.map(function (design) {
+      'savedDesigns': self.savedDesigns.map(function (design) {
         if (design instanceof Design) {
           return design.allDetails();
         }
         return design;
       }),
-      'cart': !_.isNull(cart) ? cart.getAll() : null,
-      'isAdmin': isAdmin
+      'cart': !_.isNull(self.cart) ? self.cart.getAll() : null,
+      'isAdmin': self.isAdmin
     };
 
-    if (_rev) { // attach the _rev only if it exists
-      details._rev = _rev;
+    if (self._rev) { // attach the _rev only if it exists
+      details._rev = self._rev;
     }
 
     return details;
@@ -92,42 +115,35 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
   //universal DB update. It fetched all the user details and upload to DB, it also update the local file when the data receive from DB
   //TODO: build different section update function to replace the universal update method
-  function updateDB() {
-    if (userID !== -1) {
-      return $http({
-        url: '/update',
-        data: allDetails(),
-        method: 'POST'
-      })
-        .then(function (response) {
-          // TODO: Update the revisions for all the design objects here
-          if(typeof(response.data.user) == 'undefined'){
-            var userData = response.config.data;
-          } else
-            var userData = response.data.user;
-          restoreUserFromBackend(userData);
-          return userData;
-        });
-    } else {
-      //generate rejected promise. details see in the promiseUtil under services in the server_script
-      return PromiseUtils.rejected(new Errors.NotLoggedInError('User Must Be Logged In For This Action'));
-    }
+
+  function updateUserInfo(userInfo) {
+    return $http({
+      url: '/update-user-info'
+      , data: userInfo
+      , method: 'POST'
+    }).success(function(data) {
+      restoreUserInfo(data);
+      return data.message;
+    })
+    .catch(function(err) {
+      throw new Error(err);
+    });
   }
 
   //create a currentDesign object.
   function createCurrentDesign(frameID) {
     if (frameID instanceof Design) {
       var design = frameID; // frameID is actually a design instance
-      currentWheelchair.isNew = !design.hasID();  // isNew: false: design is being re editing  true:this is a new design
-      currentWheelchair.design = design;
+      self.currentWheelchair.isNew = !design.hasID();  // isNew: false: design is being re editing  true:this is a new design
+      self.currentWheelchair.design = design;
     } else if (_.isObject(frameID)) { //frameID is a wheelchair instance
-      currentWheelchair.design= new Design(frameID);
-      currentWheelchair.isNew = true;
+      self.currentWheelchair.design= new Design(frameID);
+      self.currentWheelchair.isNew = true;
     } else if (_.isNumber(frameID)) { //frameID is a ID
       // its either an integer respresenting a frame id or a wheelchair object
-      currentWheelchair.isNew = true;
-      currentWheelchair.design = new Design({
-        'creator': userID,
+      self.currentWheelchair.isNew = true;
+      self.currentWheelchair.design = new Design({
+        'creator': self.userID,
         'wheelchair': new Wheelchair(frameID)
       });
     } else {
@@ -135,8 +151,11 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     }
 
     // decide where to persist the currentWheelchair based on whether the user is logged in
-    if (userID !== -1) {
-      return updateDB();
+    if (self.userID !== -1) {
+      return WheelchairUpdate.update(self.currentWheelchair)
+      .then(function(updatedWheelchair){
+        self.currentWheelchair = updatedWheelchair;
+      })
     } else {
       localJSONStorage.put('currentWheelchair', {frameID: frameID, isNew: true, index: -1});
       return PromiseUtils.resolved();
@@ -145,22 +164,25 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
   //update cart wheelchair
   function updateCartWheelchair(index, design){
-    cart.wheelchairs[index] = design;
+    self.cart.wheelchairs[index] = design;
   }
 
   //mark a design and send it to tinker page
   function setEditWheelchair(index, design) {
-    if (index >= 0 && index < cart.wheelchairs.length) {
-      cartWheelchairIndex = index;
+    if (index >= 0 && index < self.cart.wheelchairs.length) {
+      self.cartWheelchairIndex = index;
     }
-    currentWheelchair.isNew = false;   // mark the editing status of a wheelchair
-    currentWheelchair.design = design;
+    
+    self.currentWheelchair.isNew = false;   // mark the editing status of a wheelchair
+    self.currentWheelchair.design = design;
+    
 
     // decide where to persist the currentWheelchair based on whether the user is logged in
-    if (userID !== -1) {
-      return updateDB()
-        .then(function () {
-          currentWheelchair.design._rev = cart.wheelchairs[index]._rev; // update the revision number
+    if (self.userID !== -1) {
+      return WheelchairUpdate.update(self.currentWheelchair)
+        .then(function (updatedWheelchair) {
+          self.currentWheelchair = updatedWheelchair;
+          self.currentWheelchair.design._rev = self.cart.wheelchairs[index]._rev; // update the revision number
         });
     } else {
       localJSONStorage.put('currentWheelchair', {frameID: -1, isNew: false, index: index, 'design': design});
@@ -169,15 +191,22 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
   }
 
   function setEditWheelchairFromMyDesign(index){
-    if (index >= 0 && index < savedDesigns.length) {
-      currentWheelchair.isNew = false;
-      currentWheelchair.design = savedDesigns[index];
+    if (index >= 0 && index < self.savedDesigns.length) {
+      self.currentWheelchair.isNew = false;
+      if (_.isString(self.savedDesigns[index])) {
+        return this.fetchDesign(self.savedDesigns[index]).then(function(resp){
+          self.savedDesigns[index] = resp;
+          self.currentWheelchair.design = resp;
+        })
+      }
+      self.currentWheelchair.design = self.savedDesigns[index];
     }
 
-    if (userID !== -1) {
-      return updateDB()
-        .then(function () {
-          currentWheelchair.design._rev = savedDesigns[index]._rev;
+    if (self.userID !== -1) {
+      return WheelchairUpdate.update(self.currentWheelchair)
+        .then(function (updatedWheelchair) {
+          self.currentWheelchair = updatedWheelchair;
+          self.currentWheelchair.design._rev = self.savedDesigns[index]._rev;
         });
     } else {
       localJSONStorage.put('currentWheelchair', {frameID: -1, isNew: false, index: index, 'design': design});
@@ -192,12 +221,12 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     var wIndex = 0;
     while (localJSONStorage.get('design' + wIndex)){
       var design = localJSONStorage.get('design' + wIndex);
-      cart.wheelchairs.push(new Design(design));
+      self.cart.wheelchairs.push(new Design(design));
       wIndex ++;
     }
 
-    if (cart.wheelchairs.length > 0) {
-      orders.push(cart);
+    if (self.cart.wheelchairs.length > 0) {
+      self.orders.push(self.cart);
     }
 
     var tempCurrentWheelchair = localJSONStorage.get('currentWheelchair');
@@ -215,29 +244,41 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     // }
   }
 
+  function restoreUserInfo(data) {
+    self.fName = data.user.fName;
+    self.lName = data.user.lName;
+    self.email = data.user.email;
+    self.phone = data.user.phone;
+    self.addr = data.user.addr;
+    self.addr2 = data.user.addr2;
+    self.city = data.user.city;
+    self.state = data.user.state;
+    self.zip = data.user.zip;
+  } 
+
   function restoreUserFromBackend(data) {
     if (_.isEmpty(data) || !_.isObject(data)) {
       return;
     }
 
-    userID = data.userID || data.email;
+    self.userID = data.userID || data.email;
 
-    if (userID !== -1) {
-      fName = data.fName;
-      lName = data.lName;
-      email = data.email;
-      phone = data.phone;
-      addr = data.addr;
-      addr2 = data.addr2;
-      city = data.city;
-      state = data.state;
-      zip = data.zip;
-      savedDesigns = !_.isArray(data.savedDesigns) ? [] : data.savedDesigns.map(function (designObj) {
+    if (self.userID !== -1) {
+      self.fName = data.fName;
+      self.lName = data.lName;
+      self.email = data.email;
+      self.phone = data.phone;
+      self.addr = data.addr;
+      self.addr2 = data.addr2;
+      self.city = data.city;
+      self.state = data.state;
+      self.zip = data.zip;
+      self.savedDesigns = !_.isArray(data.savedDesigns) ? [] : data.savedDesigns.map(function (designObj) {
         return _.isObject(designObj) ? new Design(designObj) : designObj; // might just be a design ID string
       });
 
-      currentWheelchair = data.currentWheelchair || currentWheelchair;
-      currentWheelchair.design = currentWheelchair.design ? new Design(currentWheelchair.design) : null;
+      self.currentWheelchair = data.currentWheelchair || self.currentWheelchair;
+      self.currentWheelchair.design = self.currentWheelchair.design ? new Design(self.currentWheelchair.design) : null;
 
       // Setup the cart...it is null if the user doesnt have a cart
       if (data.cart) {
@@ -256,7 +297,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         }
 
         //important step to keep cart sync. update the reveision number
-        cart = data.cart && cartID !== null ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
+        self.cart = data.cart && cartID !== null ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
         // updateDB();
       }
 
@@ -267,10 +308,10 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         wIndex++;
       }
 
-      isAdmin = data.isAdmin || false;
-      _rev = data._rev || null;
+      self.isAdmin = data.isAdmin || false;
+      self._rev = data._rev || null;
       var orderObjs = _.isArray(data.orders) ? data.orders : [];
-      orders = orderObjs.map(function (orderObj) {
+      self.orders = orderObjs.map(function (orderObj) {
         return new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, orderObj);
       });
     }
@@ -323,6 +364,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       var deferred = $q.defer();
       var secDeferred = $q.defer();
       var instance = this;
+
 
       if (!this.isLoggedIn()) {   //test if user is loggin
         deferred.reject(new Errors.NotLoggedInError("Must Be Logged In"));
@@ -379,7 +421,6 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       } else if (!(design instanceof Design) || !design.hasID()) {
         return PromiseUtils.rejected(new Error("Invalid design arg"));
       }
-
       var designDetails = design.allDetails();
       designDetails.updatedAt = new Date();
       return $http({
@@ -418,8 +459,8 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       return httpPromise
         .then(function (response) {
           var data = response.data;
-          userID = data.userID;
-          if (userID !== -1) {
+          self.userID = data.userID;
+          if (self.userID !== -1) {
             restoreUserFromBackend(data);
             $rootScope.$broadcast('userChange');
           } else {
@@ -436,9 +477,9 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       // If there is a current order the user is working on, dont lose it
 
       // this.cart.wheelchairs = cart.wheelchairs;
-      orders = [];
+      self.orders = [];
       if (cart) {
-        orders.push(cart);
+        self.orders.push(cart);
       }
 
       $http({
@@ -450,32 +491,28 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         .error(function (data) {
           console.log('Request Failed');
         });
-
-
-
     },
 
     //Returns true if the user is logged in
     isLoggedIn: function () {
-      return (userID !== -1);
+      return (self.userID !== -1);
     },
 
-    updateDB: updateDB,
+    updateUserInfo: updateUserInfo,
 
     updateCart: function () {
-
       if (this.isLoggedIn()) {
-        return this.updateDB();
+        return CartUpdate.update(getCartItems())
+        .then(function(updatedCart) {
+          self.cart = updatedCart;
+        });
       } else {
         // sync in memory cart with cookie storage
-        localJSONStorage.remove('design'+cart.wheelchairs.length);
-        for (var i = 0; i < cart.wheelchairs.length; i++) {
-          localJSONStorage.put('design' + i, cart.wheelchairs[i].allDetails());
+        localJSONStorage.remove('design'+self.cart.wheelchairs.length);
+        for (var i = 0; i < self.cart.wheelchairs.length; i++) {
+          localJSONStorage.put('design' + i, self.cart.wheelchairs[i].allDetails());
         }
 
-
-
-        // Send a successfull promise resolved to the current user object
         return PromiseUtils.resolved(allDetails());
       }
     },
@@ -489,33 +526,32 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
     //clear all the local storage
     clearCart: function () {
-      cart.wheelchairs.forEach(function (chair, idx) {
+      self.cart.wheelchairs.forEach(function (chair, idx) {
         localJSONStorage.remove('design' + idx); // clear the localStorage from the saved cart designs
       });
 
       localJSONStorage.remove('promo');
 
-      cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
+      self.cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
     },
 
     //Create a new wheelchair object of given frame type and set edit pointer to it
     pushNewWheelchair: function (wheelchair) {
-      if (_.isNull(cart)) {
-        cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
+      if (_.isNull(self.cart)) {
+        self.cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
       }
-      currentWheelchair.design.wheelchair = wheelchair;
-      if (currentWheelchair.isNew === true ) {
-        cart.wheelchairs.push(currentWheelchair.design);
-        cartWheelchairIndex = cart.wheelchairs.length - 1;  //
+      self.currentWheelchair.design.wheelchair = wheelchair;
+      if (self.currentWheelchair.isNew === true ) {
+        self.cart.wheelchairs.push(self.currentWheelchair.design);
+        self.cartWheelchairIndex = self.cart.wheelchairs.length - 1;  //
       }
-      else if (currentWheelchair.isNew === false) {
-        if (cartWheelchairIndex === -1 && _.isEmpty(cart.wheelchairs)) {
-          cart.wheelchairs.push(currentWheelchair.design.clone()); // means the first chair theyre trying to add is someone elses
+      else if (self.currentWheelchair.isNew === false) {
+        if (self.cartWheelchairIndex === -1 && _.isEmpty(self.cart.wheelchairs)) {
+          self.cart.wheelchairs.push(self.currentWheelchair.design.clone()); // means the first chair theyre trying to add is someone elses
         } else {
-          cart.wheelchairs[cartWheelchairIndex] = currentWheelchair.design;
+          self.cart.wheelchairs[self.cartWheelchairIndex] = self.currentWheelchair.design;
         }
       }
-
       return this.updateCart();
     },
 
@@ -528,52 +564,64 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
     // Saves the currentWheelchair into the saved wheelchairs list and resets the currentWheelchair
     addDesignIDToSavedDesigns: function (designID) {
-      savedDesigns = _.reject(savedDesigns, {'_id': designID});
-      savedDesigns.push(designID);
-      return this.updateDB();
+      self.savedDesigns = _.reject(self.savedDesigns, {'_id': designID});
+      self.savedDesigns.push(designID);
+      return DesignUpdate.update(self.savedDesigns)
+      .then(function(updatedDesigns) {
+        self.savedDesigns = updatedDesigns;
+      })
     },
 
     //design can either be a design object or a design ID
-    removeDesignFromSavedDesigns: function (design) {
+    removeDesignFromSavedDesigns: function (design, andToCart) {
       var designID = _.isString(design) ? design : design._id;
-      savedDesigns = _.reject(savedDesigns, {'_id': designID});
-      return this.updateDB();
+      self.savedDesigns = _.reject(self.savedDesigns, {'_id': designID});
+      if (andToCart) {
+        CartUpdate.update(getCartItems())
+        .then(function(updatedCart) {
+          self.cart = updatedCart;
+        });
+      }
+      return DesignUpdate.update(self.savedDesigns)
+      .then(function(updatedDesigns) {
+        self.savedDesigns = updatedDesigns;
+      })
     },
 
     //Removes the wheelchair at the given index from the user's myDesign
     deleteWheelchair: function (index) {
-      cart.wheelchairs.splice(index, 1);
+      self.cart.wheelchairs.splice(index, 1);
       return this.updateCart();
     },
 
     getCart: function () {
-      return cart;
+      return self.cart;
     },
 
     //Returns the full array of user-defined wheelchairs
     getCartWheelchairs: function () {
-      if(_.isNull(cart)){
+      if(_.isNull(self.cart)){
         return [];
       }
-      return _.map(cart.wheelchairs, 'wheelchair');
+      return _.map(self.cart.wheelchairs, 'wheelchair');
     },
 
 
     //return specific wheelchair in the cart
     getWheelchair: function (index) {
-      if (index >= 0 && index < cart.wheelchairs.length)
-        return cart.wheelchairs[index];
+      if (index >= 0 && index < self.cart.wheelchairs.length)
+        return self.cart.wheelchairs[index];
       return null;
     },
 
     // returns full array of users wishlist/my design wheelchairs
     getSavedDesigns: function () {
-      return savedDesigns;
+      return self.savedDesigns;
     },
 
     getOneSavedDesign: function (index) {
-      if (index >= 0 && index < savedDesigns.length) {
-        return savedDesigns[index];
+      if (index >= 0 && index < self.savedDesigns.length) {
+        return self.savedDesigns[index];
       } else {
         return null;
       }
@@ -581,20 +629,25 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
     //Returns the wheelchair currently set as "curEditWheelchair"
     //Returns null if no chair set as curEditWheelchair
+    getCurrentWheelchair: function() {
+      return {
+        'currentWheelchair': self.currentWheelchair
+      };
+    },
     getCurEditWheelchair: function () {
-      return currentWheelchair.design.wheelchair;
+      return self.currentWheelchair.design.wheelchair;
     },
 
     getCurEditWheelchairDesign: function () {
-      return currentWheelchair.design;
+      return self.currentWheelchair.design;
     },
 
     isNewWheelchair: function () {
-      return currentWheelchair.isNew;
+      return self.currentWheelchair.isNew;
     },
 
     getNumCartWheelchairs: function () {
-      return _.isNull(cart) ? 0 : cart.wheelchairs.length;
+      return _.isNull(self.cart) ? 0 : self.cart.wheelchairs.length;
     },
 
     saveComputer: function () {
@@ -618,35 +671,35 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     /******************************MY ORDERS*******************************/
 
     getAllOrders: function () {
-      return orders;
+      return self.orders;
     },
     getNumOrders: function () {
-      return orders.length;
+      return self.orders.length;
     },
 
     //Returns an array of all orders that have been sent (ignores "unsent" orders)
     getSentOrders: function () {
-      return orders;
+      return self.orders;
     },
 
     //Creates a new "unsent" order - overwriting a previous unset order if one exists
     createNewOrder: function () {
-      var lastOrder = orders[orders.length - 1];
-      if (orders.length === 0 || lastOrder.hasBeenSent()) {
-        cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
+      var lastOrder = self.orders[self.orders.length - 1];
+      if (self.orders.length === 0 || lastOrder.hasBeenSent()) {
+        self.cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
       }
     },
 
     //Returns the unsent Order set as the "curEditOrder"
     //If no such Order exists, returns null
     getCurEditOrder: function () {
-      return cart;
+      return self.cart;
     },
 
     //Returns the last order whether it is sent or unsent
     getLastOrder: function () {
-      if (orders.length > 0) {
-        return orders[orders.length - 1];
+      if (self.orders.length > 0) {
+        return self.orders[self.orders.length - 1];
       }
     },
 
@@ -656,7 +709,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       if (editOrder === null) {
         return PromiseUtils.rejected(new Error('CurEditOrder does not exist'));
       } else {
-        return editOrder.send(userID, userData, shippingData, billingData, payMethod, token)
+        return editOrder.send(self.userID, userData, shippingData, billingData, payMethod, token)
           .then(function (response) {
             restoreUserFromBackend(response.user);
             return response;
@@ -668,91 +721,100 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
     //***********get/sets
     getID: function () {
-      return userID;
+      return self.userID;
     },
     getFname: function () {
-      return (fName.charAt(0).toUpperCase() + fName.slice(1));
+      return (self.fName.charAt(0).toUpperCase() + self.fName.slice(1));
     },
     getLname: function () {
-      return (lName.charAt(0).toUpperCase() + lName.slice(1));
+      return (self.lName.charAt(0).toUpperCase() + self.lName.slice(1));
     },
     getEmail: function () {
-      return email;
+      return self.email;
     },
     getPhone: function () {
-      return phone;
+      return self.phone;
     },
     getAddr: function () {
-      return addr;
+      return self.addr;
     },
     getAddr2: function () {
-      return addr2;
+      return self.addr2;
     },
     getCity: function () {
-      return city;
+      return self.city;
     },
     getState: function () {
-      return state;
+      return self.state;
     },
     getZip: function () {
-      return zip;
+      return self.zip;
     },
     getUnitSys: function () {
-      return unitSys;
+      return self.unitSys;
     },
 
     getFullName: function () {
       return this.getFname() + ' ' + this.getLname();
     },
     getFullAddr: function () {
-      var a2 = addr2;
-      if (addr2 !== '')
+      var a2 = self.addr2;
+      if (self.addr2 !== '')
         a2 = ' ' + a2;
-      return addr + a2;
+      return self.addr + a2;
     },
     getContentSection: function () {
-      return contentSection;
+      return self.contentSection;
     },
 
     isAdmin: function () {
-      return isAdmin;
+      return self.isAdmin;
     },
     setFname: function (newFName) {
-      fName = newFName;
+      self.fName = newFName;
     },
     setLname: function (newLName) {
-      lName = newLName;
+      self.lName = newLName;
     },
     setEmail: function (newEmail) {
-      email = newEmail;
+      self.email = newEmail;
     },
     setPhone: function (newPhone) {
-      phone = newPhone;
+      self.phone = newPhone;
     },
     setAddr: function (newAddr) {
-      addr = newAddr;
+      self.addr = newAddr;
     },
     setAddr2: function (newAddr2) {
-      addr2 = newAddr2;
+      self.addr2 = newAddr2;
     },
     setCity: function (newCity) {
-      city = newCity;
+      self.city = newCity;
     },
     setState: function (newState) {
-      state = newState;
+      self.state = newState;
     },
     setZip: function (newZip) {
-      zip = newZip;
+      self.zip = newZip;
     },
     setUnitSys: function (newUnitSys) {
-      unitSys = newUnitSys;
+      self.unitSys = newUnitSys;
     },
     setContentSection: function (newSection) {
-      contentSection = newSection;
+      self.contentSection = newSection;
+    },
+    //mock setters only for testing purposes
+    setUser: function () {
+      self.userID = true;
+    },
+    setCart: function (data) {
+      self.cart = data;
+    },
+    setDesign: function(designs) {
+      self.savedDesigns = designs;
+    },
+    setCurrentWheelchair: function(wheelchair) {
+      self.currentWheelchair = wheelchair;
     }
   };
-
 }]);
-
-
-

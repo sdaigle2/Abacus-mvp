@@ -561,7 +561,117 @@
 .main-custom .leftButton, .main-custom .rightButton {
   cursor: pointer;
 }
+.main-custom .main-custom-user-info {
+  height: 100%;
+  position: absolute;
+  border: 1px solid #999;
+  left: -72%;
+  width: 70%;
+  background-color: #fff;
+  z-index: 9999;
+  transition: all 0.5s ease-in-out;
+}
+.main-custom .main-custom-user-info .info-handler {
+  position: absolute;
+  background-color: #fff;
+  padding: 2px;
+  height: 31px;
+  right: -131px;
+  border: 1px solid #999;
+  text-align: center;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  top: 46%;
+  width: 100px;
+  transform: translateY(-50%) rotate(90deg);
+  transform-origin: left top 0;
+  color: black;
+  font-weight: bold;
+}
 
+.handler::after {
+  font-family: 'FontAwesome';
+  content:"\f0d8";
+  position: absolute;
+  right: 3px;
+}
+.handler::before {
+  font-family: 'FontAwesome';
+  content:"\f0d8";
+  position: absolute;
+  left: 3px;
+}
+.open-handler::after {
+  font-family: 'FontAwesome';
+  content:"\f0d7";
+  position: absolute;
+  right: 3px;
+}
+.open-handler::before {
+  font-family: 'FontAwesome';
+  content:"\f0d7";
+  position: absolute;
+  left: 3px;
+}
+
+.main-custom .open {
+  left: -17px;
+}
+.main-custom .main-custom-user-info .form-wrapper {
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.main-custom .main-custom-user-info .user-info-form {
+  margin-left: 10px;
+}
+.main-custom .main-custom-user-info .user-info-form .input-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 10px
+}
+.main-custom .main-custom-user-info .user-info-form .input-div label {
+  margin-bottom: 0;
+  width: 27%;
+  text-align: right;
+}
+
+.main-custom .main-custom-user-info .user-info-form .input-div label span {
+  line-height: 26px;
+}
+
+.main-custom .main-custom-user-info .user-info-form .info-input {
+  width: 70%;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.main-custom .main-custom-user-info .user-info-form .info-input input {
+  width: 150px;
+}
+.main-custom .main-custom-user-info .user-info-form .long input,
+.main-custom .main-custom-user-info .user-info-form .long textarea {
+  width: 225px;
+}
+.main-custom .main-custom-user-info .user-info-form .long textarea {
+  border-color: #cccccc;
+}
+.save-button {
+  width: 70px;
+  height: 32px;
+  padding-top: 6px;
+  color: #FFFFFF;
+  background-color: #f3bc19;
+  border-radius: 0px;
+  border-color: transparent;
+  text-align: center;
+  display: inline-block;
+  position: absolute;
+  right: 50px;
+  bottom: 18px;
+}
 .main-custom .main-custom-wheelchairDisplay {
   position: absolute;
   right: calc(20% - 100px);
@@ -1748,7 +1858,7 @@ body {
   height: 30px;
   font-size: 1em;
   color: #4F9DFF;
-  z-index: 9999;
+  z-index: 8999;
 }
 
 #shareIcon:hover {

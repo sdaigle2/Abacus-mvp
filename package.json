@@ -55,6 +55,7 @@
     "jasmine-core": "^2.2.0",
     "jshint-stylish": "^0.2.0",
     "karma": "^0.12.31",
+    "karma-chrome-launcher": "^1.0.1",
     "karma-jasmine": "^0.3.5",
     "karma-phantomjs-launcher": "^0.1.4",
     "load-grunt-tasks": "^0.4.0",
@@ -71,6 +72,6 @@
     "postinstall": "bower install",
     "clean": "rm ~/temp_chair_pics/* && rm ~/generated_pdfs/*",
     "test_frontend": "grunt test",
-    "test_backend": "mocha tests/backend_tests/bootstrap.test.js tests/backend_tests/unit/**/*.test.js"
+    "test_backend": "mocha tests/backend_tests/bootstrap.test.js tests/backend_tests/unit/**/*.test.js --timeout 5000"
   }
 }

@@ -11,7 +11,6 @@ angular.module('abacuApp')
   .constant('REFRESH_WARNING_TEXT', "Please Make sure you save your design before refreshing the page!")
   .controller('AbacusCtrl', ['$scope', '$location', 'localJSONStorage', '$routeParams', 'FrameData', 'User', 'Angles', 'Units', 'Drop', 'Design', '_', '$q', 'ngDialog', 'Errors', 'DownloadPDF', 'REFRESH_WARNING_TEXT',
     function ($scope, $location, localJSONStorage, $routeParams, FrameData, User, Angles, Units, Drop, Design, _, $q, ngDialog, Errors, DownloadPDF, REFRESH_WARNING_TEXT) {
-
       Drop.setFalse();
       /*********************Enums*******************************/
       //The visitation status for pages (parts/measures)
@@ -73,13 +72,13 @@ angular.module('abacuApp')
 
       /**********************Main Variables****************************/
 
-
+      $scope.userInfo = {};
 
       $scope.left_button = 'arrow_left.png';
       $scope.right_button = 'arrow_right.png';
         //All the data about the current frame (loaded by init)
       $scope.curFrameData = null;
-
+      
       //Arrays that store information about the pages
       var pages = {
         customizePages: [],
@@ -113,6 +112,15 @@ angular.module('abacuApp')
       }
 
       $scope.currChairIsNew = User.isNewWheelchair();
+
+      $scope.submitUserInfo = function() {
+        $scope.curEditWheelchair.userInfo = $scope.userInfo;
+        $scope.curEditWheelchair.userInfo.wheelchairName = $scope.curFrameData.name + ' for ' + 
+        $scope.curEditWheelchair.userInfo.name;
+        if ($scope.userInfo.grantAmount) {
+          grantAmount = $scope.userInfo.grantAmount
+        }
+      }
 
       $scope.downloadChairPDF = function () {
         var curChair = $scope.curEditWheelchair;
@@ -945,6 +953,10 @@ angular.module('abacuApp')
         }
       });
 
+      $scope.$watch('userInfo.name', function(nVal, oVal){
+        console.log($scope.userInfo)
+      });
+
 
       //Closes any open panel
       $scope.closeAllPanels = function () {
@@ -1112,6 +1124,8 @@ angular.module('abacuApp')
                 case 'copy': {
                   delete design._id; // remove the id
                   design.creator = User.getID();
+                  $scope.designIsSaved = true;
+                  $scope.loginPanel = loginPanelStatus.SAVED;
                   return User.saveDesign(design);
                 }
                 // overwrite the existing design
@@ -1125,6 +1139,8 @@ angular.module('abacuApp')
                           design = design._id == updatedDesign._id ? updatedDesign : design;
                           return design;
                         });
+                        $scope.designIsSaved = true;
+                        $scope.loginPanel = loginPanelStatus.SAVED;
 
                         return updatedDesign;
                       });

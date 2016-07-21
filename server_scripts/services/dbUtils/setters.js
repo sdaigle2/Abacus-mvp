@@ -263,7 +263,6 @@ function updateLinkedUserFields(userObj, cb) {
 
 	var updateCart = function (cb) {
 		var cart = userObj.cart;
-
 		if (_.isString(cart)) {
 			// it's just the cart's order id, get the order and return it
 			dbService.order.get(cart, cb);
