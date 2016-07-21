@@ -10,7 +10,6 @@
 angular.module('abacuApp')
   .factory('Design', ['Wheelchair', '_', '$http', function (Wheelchair, _, $http) {
   	var Design = function (designObj) {
-
       Design.prototype.init = function(designObj) {
         this._id = designObj._id || designObj.id || null;
         this._rev = designObj._rev || designObj.rev || null;      //important to keep _rev in sync with remoteDB

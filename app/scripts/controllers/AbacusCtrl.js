@@ -1112,6 +1112,8 @@ angular.module('abacuApp')
                 case 'copy': {
                   delete design._id; // remove the id
                   design.creator = User.getID();
+                  $scope.designIsSaved = true;
+                  $scope.loginPanel = loginPanelStatus.SAVED;
                   return User.saveDesign(design);
                 }
                 // overwrite the existing design
@@ -1125,6 +1127,8 @@ angular.module('abacuApp')
                           design = design._id == updatedDesign._id ? updatedDesign : design;
                           return design;
                         });
+                        $scope.designIsSaved = true;
+                        $scope.loginPanel = loginPanelStatus.SAVED;
 
                         return updatedDesign;
                       });
