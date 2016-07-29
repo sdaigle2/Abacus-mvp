@@ -484,7 +484,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       // If there is a current order the user is working on, dont lose it
 
       // this.cart.wheelchairs = cart.wheelchairs;
-      orders = [];
+      self.orders = [];
       if (cart) {
         self.orders.push(cart);
       }
