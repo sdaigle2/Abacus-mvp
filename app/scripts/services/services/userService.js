@@ -63,6 +63,22 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     return details;
   }
 
+  function getDesigns() {
+    var details = {
+      'savedDesigns': self.savedDesigns.map(function (design) {
+        if (design instanceof Design) {
+          return design.allDetails();
+        }
+        return design;
+      })
+    };
+    if (self._rev) {
+      details._rev = self._rev;
+    }
+
+    return details;
+  }
+
   //return all details of user object
   function allDetails() {
     console.log('all details worked')
@@ -132,6 +148,26 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       })
         .then(function (response) {
           restoreCurrentWheelchair(response.data);
+          return response;
+        })
+        .catch(function(err) {
+          throw new Error(err)
+        });
+    } else {
+      //generate rejected promise. details see in the promiseUtil under services in the server_script
+      return PromiseUtils.rejected(new Errors.NotLoggedInError('User Must Be Logged In For This Action'));
+    }
+  }
+
+  function updateSavedDesigns() {
+    if (self.userID !== -1) {
+      return $http({
+        url: '/update-saved-designs',
+        data: getDesigns(),
+        method: 'POST'
+      })
+        .then(function (response) {
+          restoreSavedDesigns(response.data);
           return response;
         })
         .catch(function(err) {
@@ -259,6 +295,24 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       self._rev = data._rev || null;
       self.currentWheelchair = data.currentWheelchair || self.currentWheelchair;
       self.currentWheelchair.design = self.currentWheelchair.design ? new Design(self.currentWheelchair.design) : null;
+    }
+  }
+
+  function restoreSavedDesigns(data) {
+    if (_.isEmpty(data) || !_.isObject(data)) {
+      return self.savedDesigns = [];
+    }
+
+    self.userID = data.userID;
+    if (self.userID !== -1) {
+      var wIndex = 0;
+      while (localJSONStorage.get('design' + wIndex)){
+        localJSONStorage.remove('design' + wIndex);
+        wIndex++;
+      }
+      self.savedDesigns = !_.isArray(data.savedDesigns) ? [] : data.savedDesigns.map(function (designObj) {
+        return _.isObject(designObj) ? new Design(designObj) : designObj; // might just be a design ID string
+      }); 
     }
   }
 
@@ -578,14 +632,14 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     addDesignIDToSavedDesigns: function (designID) {
       self.savedDesigns = _.reject(self.savedDesigns, {'_id': designID});
       self.savedDesigns.push(designID);
-      return this.updateDB();
+      return updateSavedDesigns();
     },
 
     //design can either be a design object or a design ID
     removeDesignFromSavedDesigns: function (design) {
       var designID = _.isString(design) ? design : design._id;
       self.savedDesigns = _.reject(self.savedDesigns, {'_id': designID});
-      return this.updateDB();
+      return updateSavedDesigns();
     },
 
     //Removes the wheelchair at the given index from the user's myDesign

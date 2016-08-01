@@ -86,4 +86,32 @@ describe('Tests main userService functions exposed to controllers', function () 
     expect(wheelchairFromRestore.currentWheelchair.design._id).toBe('testId');
   });
 
+  it('should add design to saved designs', function () {
+    var expectedSavedDesignsObj = {
+      'savedDesigns': ['testDesign']
+    };
+    User.setUser();
+    httpBackend.expectPOST('/update-saved-designs', expectedSavedDesignsObj)
+    .respond(200, expectedSavedDesignsObj);
+    httpBackend.whenPOST('/session', '').respond(200, '');
+    User.addDesignIDToSavedDesigns(expectedSavedDesignsObj.savedDesigns[0])
+    httpBackend.flush();
+    var savedDesignsFromRestore = User.getSavedDesigns();
+    expect(savedDesignsFromRestore[0]).toBe('testDesign');
+  });
+
+  it('should remove design from saved designs', function () {
+    var expectedSavedDesignsObj = {
+      'savedDesigns': ['testId']
+    };
+    User.setUser();
+    User.setDesign(['testId']);
+    httpBackend.expectPOST('/update-saved-designs', expectedSavedDesignsObj)
+    .respond(200, []);
+    httpBackend.whenPOST('/session', '').respond(200, '');
+    User.removeDesignFromSavedDesigns('testId')
+    httpBackend.flush();
+    var savedDesignsFromRestore = User.getSavedDesigns();
+    expect(savedDesignsFromRestore.length).toBe(0);
+  });
 });
