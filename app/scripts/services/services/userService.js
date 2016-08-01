@@ -65,6 +65,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
   //return all details of user object
   function allDetails() {
+    console.log('all details worked')
     var details = {
       'userID': self.userID,
       'fName': self.fName,
@@ -79,7 +80,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       'unitSys': self.unitSys,
       'currentWheelchair': self.currentWheelchair,
       'orders': self.orders.map(function (order) {
-        return self.order.getAll();
+        return order.getAll();
       }),
       'savedDesigns': self.savedDesigns.map(function (design) {
         if (design instanceof Design) {
