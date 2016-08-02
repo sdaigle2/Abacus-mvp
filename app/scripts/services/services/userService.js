@@ -79,6 +79,17 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     return details;
   }
 
+  function getCartItems() {
+    var details = {
+      'cart': !_.isNull(self.cart) ? self.cart.getAll() : null
+    };
+    if (self._rev) {
+      details._rev = self._rev;
+    }
+
+    return details;
+  }
+
   //return all details of user object
   function allDetails() {
     console.log('all details worked')
