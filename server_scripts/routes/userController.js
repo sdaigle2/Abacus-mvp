@@ -92,11 +92,25 @@ router.post('/update-saved-designs', restrict, function (req, res) {
   updateUserObj(updateData, req, res);
 });
 
+router.post('/update-cart', restrict, function (req, res) {
+  var updateData = {
+    'currentWheelchair': req.body.currentWheelchair,
+    'cart': req.body.cart
+  }
+  console.log(updateData)
+  if (req.body._rev) {
+    updateData._rev = req.body._rev;
+  }
+
+  updateUserObj(updateData, req, res);
+});
+
 function updateUserObj(updateData, req, res) {
   var userID = req.session.user;
   dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
   function cb(error, response) {
     if (error) {
+      console.log(error)
       res.json({
         'err': error
       });

@@ -190,6 +190,27 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     }
   }
 
+  function updateUserCart() {
+    if (self.userID !== -1) {
+      return $http({
+        url: '/update-cart',
+        data: _.merge(getCartItems(), getCurrentWheelchair()),
+        method: 'POST'
+      })
+        .then(function (response) {
+          restoreCart(response.data);
+          restoreCurrentWheelchair(response.data);
+          return response;
+        })
+        .catch(function(err) {
+          throw new Error(err)
+        });
+    } else {
+      //generate rejected promise. details see in the promiseUtil under services in the server_script
+      return PromiseUtils.rejected(new Errors.NotLoggedInError('User Must Be Logged In For This Action'));
+    }
+  }
+
   //create a currentDesign object.
   function createCurrentDesign(frameID) {
     if (frameID instanceof Design) {
@@ -309,6 +330,35 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     }
   }
 
+  function restoreCart(data) {
+    if (data.cart) {
+      console.log('does update')
+      var cartID = data.cart.id || data.cart._id || null;
+      var wIndex = 0;
+      while (localJSONStorage.get('design' + wIndex)){
+        var wheelchair = localJSONStorage.get('design' + wIndex);
+        var temp = true;
+        data.cart.wheelchairs.forEach(function(remoteWheelchair){
+          temp = temp && (!_.includes(remoteWheelchair, wheelchair._id ));
+        });
+        if (temp)
+          data.cart.wheelchairs.push(wheelchair);
+        localJSONStorage.remove('design' + wIndex);
+        wIndex++;
+      }
+
+      var wIndex = 0;
+      while (localJSONStorage.get('design' + wIndex)){
+        localJSONStorage.remove('design' + wIndex);
+        wIndex++;
+      }
+      //important step to keep cart sync. update the reveision number
+      self.cart = data.cart && cartID !== null ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
+      // updateDB();
+      console.log(allDetails())
+    }
+  }
+
   function restoreSavedDesigns(data) {
     if (_.isEmpty(data) || !_.isObject(data)) {
       return self.savedDesigns = [];
@@ -398,6 +448,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         // this means user is not logged in
         restoreUserFromCookies();
       } else {
+        console.log('from session', response.data.cart.wheelchairs)
         restoreUserFromBackend(response.data);
       }
 
@@ -578,7 +629,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
       if (this.isLoggedIn()) {
         // updateCurrentWheelchair();
-        return this.updateDB();
+        return updateUserCart();
       } else {
         // sync in memory cart with cookie storage
         localJSONStorage.remove('design'+self.cart.wheelchairs.length);
@@ -613,6 +664,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
     //Create a new wheelchair object of given frame type and set edit pointer to it
     pushNewWheelchair: function (wheelchair) {
+      console.log('updating cart')
       if (_.isNull(self.cart)) {
         self.cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
       }
@@ -628,7 +680,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
           self.cart.wheelchairs[self.cartWheelchairIndex] = self.currentWheelchair.design;
         }
       }
-
+      console.log('get to the right place')
       return this.updateCart();
     },
 
