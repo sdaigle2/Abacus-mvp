@@ -102,6 +102,7 @@ router.post('/update-cart', restrict, function (req, res) {
   } else if (_.isObject(cart)) {
     dbUtils.updateOrInsertAllEntries({
       db: dbService.orders,
+      dbInsert: dbUtils.insertDesign,
       idField: '_id',
       entries: [cart]
     }, function (err, cartArr) {
