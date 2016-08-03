@@ -11,7 +11,7 @@ var dbUtils   = require('../services/dbUtils');
 var dbService = require('../services/db');
 // Import policies
 var restrict = require('../policies/restrict');
-
+var _ = require('lodash');
 var _designFunctionId = '69777e82324ef175df6ee184cc7c93cd';
 //UPDATE USER INFO
 //TODO: find out if cloudant allows single field update. i.e. update only fName or lName.
@@ -93,16 +93,32 @@ router.post('/update-saved-designs', restrict, function (req, res) {
 });
 
 router.post('/update-cart', restrict, function (req, res) {
-  var updateData = {
-    'currentWheelchair': req.body.currentWheelchair,
-    'cart': req.body.cart
-  }
-  console.log(updateData)
-  if (req.body._rev) {
-    updateData._rev = req.body._rev;
-  }
+    // 
+  var cart = req.body.cart;
 
-  updateUserObj(updateData, req, res);
+  if (_.isString(cart)) {
+    // it's just the cart's order id, get the order and return it
+    dbService.order.get(cart, cb);
+  } else if (_.isObject(cart)) {
+    dbUtils.updateOrInsertAllEntries({
+      db: dbService.orders,
+      idField: '_id',
+      entries: [cart]
+    }, function (err, cartArr) {
+      if (err) {
+        cb(err);
+      } else {
+        const cart = _.first(cartArr);
+        cb(null, cart);
+      }
+    });
+  } else {
+    cb(new Error("Bad Cart Value:\n" + JSON.stringify(cart, null, 2)));
+  }
+  function cb(err, resp) {
+    console.log(resp)
+    res.sendStatus(200)
+  }
 });
 
 function updateUserObj(updateData, req, res) {
