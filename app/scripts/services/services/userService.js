@@ -448,7 +448,6 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         // this means user is not logged in
         restoreUserFromCookies();
       } else {
-        console.log('from session', response.data.cart.wheelchairs)
         restoreUserFromBackend(response.data);
       }
 

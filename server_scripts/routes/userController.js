@@ -102,7 +102,7 @@ router.post('/update-cart', restrict, function (req, res) {
   } else if (_.isObject(cart)) {
     dbUtils.updateOrInsertAllEntries({
       db: dbService.orders,
-      dbInsert: dbUtils.insertDesign,
+      dbInsert: dbUtils.insertOrder,
       idField: '_id',
       entries: [cart]
     }, function (err, cartArr) {
@@ -110,6 +110,11 @@ router.post('/update-cart', restrict, function (req, res) {
         cb(err);
       } else {
         const cart = _.first(cartArr);
+        // !!!!!!!!!!!!!!!!!!!!!from here!!!!!!!!!!!
+        var updateData = {
+          'cart': cart.id
+        }
+        updateUserObj(updateData, req, res);
         cb(null, cart);
       }
     });
