@@ -99,6 +99,7 @@ router.post('/update-cart', restrict, function (req, res) {
   if (_.isString(cart)) {
     dbService.order.get(cart, cb);
   } else if (_.isObject(cart)) {
+    console.
     dbUtils.updateOrInsertAllEntries({
       db: dbService.orders,
       dbInsert: dbUtils.insertOrder,
