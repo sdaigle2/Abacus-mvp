@@ -4,14 +4,18 @@
 'use strict';
 
 var router = require('express').Router();
+var _ = require('lodash');
+var promise = require('bluebird');
+
 
 // Import services
 var update = require('../services/user').update;
 var dbUtils   = require('../services/dbUtils');
 var dbService = require('../services/db');
+var updateOrInsertAllEntriesPr = promise.promisify(dbUtils.updateOrInsertAllEntries);
 // Import policies
 var restrict = require('../policies/restrict');
-var _ = require('lodash');
+
 var _designFunctionId = '69777e82324ef175df6ee184cc7c93cd';
 //UPDATE USER INFO
 //TODO: find out if cloudant allows single field update. i.e. update only fName or lName.
@@ -93,44 +97,43 @@ router.post('/update-saved-designs', restrict, function (req, res) {
 });
 
 router.post('/update-cart', restrict, function (req, res) {
-    // 
   var cart = req.body.cart;
 
   if (_.isString(cart)) {
     dbService.order.get(cart, cb);
   } else if (_.isObject(cart)) {
-    console.
-    dbUtils.updateOrInsertAllEntries({
+    updateOrInsertAllEntriesPr({
       db: dbService.orders,
       dbInsert: dbUtils.insertOrder,
       idField: '_id',
       entries: [cart]
-    }, function (err, cartArr) {
-      if (err) {
-        console.log(err);
-      } else {
-        var cart = _.first(cartArr);
-        var updateData = {
-          'cart': cart.id
-        }
-        var userID = req.session.user;
-        dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
-        function cb(error, response) {
-          if (error) {
-            res.json({
-              'err': error
-            });
-          } else {
-            req.session.regenerate(function () {
-              req.session.user = userID;
-              updateData._rev = response;
-              updateData.userID = userID;
-              res.send(cart);
-            });   
-          }
+    }).then(function (cartArr) {
+      var cart = _.first(cartArr);
+      var updateData = {
+        'cart': cart.id
+      };
+      var userID = req.session.user;
+      dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
+      function cb(error, response) {
+        if (error) {
+          res.json({
+            'err': error
+          });
+        } else {
+          req.session.regenerate(function () {
+            req.session.user = userID;
+            updateData._rev = response;
+            updateData.userID = userID;
+            res.send(cart);
+          });   
         }
       }
-    });
+    })
+    .catch(function(err) {
+      res.json({
+        'err': err
+      });
+    })
   }
 });
 

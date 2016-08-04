@@ -92,7 +92,6 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
   //return all details of user object
   function allDetails() {
-    console.log('all details worked')
     var details = {
       'userID': self.userID,
       'fName': self.fName,
@@ -198,9 +197,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         method: 'POST'
       })
         .then(function (response) {
-          console.log('restoring cart', response.data)
           restoreCart(response.data);
-          console.log(self.cart)
           return response;
         })
         .catch(function(err) {
@@ -333,7 +330,6 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
   function restoreCart(data) {
     if (data.cart) {
-      console.log('does update')
       var cartID = data.cart.id || data.cart._id || null;
       var wIndex = 0;
       while (localJSONStorage.get('design' + wIndex)){
@@ -356,7 +352,6 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       //important step to keep cart sync. update the reveision number
       self.cart = data.cart && cartID !== null ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
       // updateDB();
-      console.log(allDetails())
     }
   }
 
@@ -626,7 +621,6 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     updateCurrentWheelchair: updateCurrentWheelchair,
 
     updateCart: function () {
-
       if (this.isLoggedIn()) {
         // updateCurrentWheelchair();
         return updateUserCart();
@@ -664,7 +658,6 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
     //Create a new wheelchair object of given frame type and set edit pointer to it
     pushNewWheelchair: function (wheelchair) {
-      console.log('updating cart')
       if (_.isNull(self.cart)) {
         self.cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
       }
@@ -680,7 +673,6 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
           self.cart.wheelchairs[self.cartWheelchairIndex] = self.currentWheelchair.design;
         }
       }
-      console.log('get to the right place')
       return this.updateCart();
     },
 
@@ -699,9 +691,12 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     },
 
     //design can either be a design object or a design ID
-    removeDesignFromSavedDesigns: function (design) {
+    removeDesignFromSavedDesigns: function (design, andToCart) {
       var designID = _.isString(design) ? design : design._id;
       self.savedDesigns = _.reject(self.savedDesigns, {'_id': designID});
+      if (andToCart) {
+        updateUserCart();
+      }
       return updateSavedDesigns();
     },
 
@@ -924,6 +919,9 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     },
     setDesign: function(designs) {
       self.savedDesigns = designs;
+    },
+    setCurrentWheelchair: function(wheelchair) {
+      self.currentWheelchair = wheelchair;
     }
   };
 }]);
