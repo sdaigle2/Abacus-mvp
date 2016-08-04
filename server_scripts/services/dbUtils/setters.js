@@ -66,6 +66,7 @@ function updateOrInsertAllEntries(argsObj, cb) {
 					}
 				});
 			} else {
+
 				// No ID field present, must be a new object so create an entry for it
 				dbInsert(entry, function (err, res) {
 					if (err) {

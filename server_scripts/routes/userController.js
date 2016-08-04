@@ -98,7 +98,6 @@ router.post('/update-saved-designs', restrict, function (req, res) {
 
 router.post('/update-cart', restrict, function (req, res) {
   var cart = req.body.cart;
-
   if (_.isString(cart)) {
     dbService.order.get(cart, cb);
   } else if (_.isObject(cart)) {
@@ -116,6 +115,7 @@ router.post('/update-cart', restrict, function (req, res) {
       dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
       function cb(error, response) {
         if (error) {
+
           res.json({
             'err': error
           });

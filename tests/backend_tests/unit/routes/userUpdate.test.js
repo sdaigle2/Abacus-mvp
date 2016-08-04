@@ -4,7 +4,8 @@ const Chance = require('chance');
 const getLoggedInAgent = require('../../helpers/getLoggedInAgent');
 const dbService = require('../../../../server_scripts/services/db');
 const promise = require('bluebird');
-const getPr = promise.promisify(dbService.users.get);
+const getUserPr = promise.promisify(dbService.users.get);
+const getOrdersPr = promise.promisify(dbService.orders.get);
 const chance = new Chance();
 
 before(done => {
@@ -25,7 +26,7 @@ describe('Test user updates', () => {
       .then(result => {
         agent = result.agent;
         user = result.user;
-
+        user.cart = {};
         done();
       })
       .catch(done);
@@ -41,7 +42,7 @@ describe('Test user updates', () => {
       .post('/update-current-wheelchair')
       .send(wheelchair)
       .then(() => {
-        getPr(user._id).then(function (resp) {
+        getUserPr(user._id).then(function (resp) {
           user._rev = resp._rev;
           resp.should.have.property('currentWheelchair');
           _.isEqual(resp.currentWheelchair, wheelchair.currentWheelchair).should.equal(true);
@@ -73,7 +74,7 @@ describe('Test user updates', () => {
       .post('/update-saved-designs')
       .send(testDesigns)
       .then(() => {
-        getPr(user._id).then(function (resp) {
+        getUserPr(user._id).then(function (resp) {
           user._rev = resp._rev;
           resp.should.have.property('savedDesigns');
           _.isEqual(resp.savedDesigns, testDesigns.savedDesigns).should.equal(true);
@@ -94,10 +95,88 @@ describe('Test user updates', () => {
       .expect(200, done);
   });
 
+  it('Should update cart', done => {
+    let expectedCartObj = {
+      "cart": { 'orderNum': 'OrderNumNotSet',
+        'taxRate': 0,
+        'shippingFee': 15,
+        'sentDate': null,
+        'userID': 'testUserId',
+        'email': '',
+        'phone': '',
+        'shippingDetails': 
+         { 'fName': '',
+           'lName': '',
+           'addr': '',
+           'addr2': '',
+           'city': '',
+           'state': '',
+           'zip': '' },
+        'billingDetails': 
+         { 'fName': '',
+           'lName': '',
+           'addr': '',
+           'addr2': '',
+           'city': '',
+           'state': '',
+           'zip': '' },
+        'payMethod': 'Credit Card',
+        'userType': 'User',
+        'poNumber': '',
+        'wheelchairs': 
+         [ { 'creator': 'prozrachniy@gmail.com',
+             'createdAt': '2016-08-04T13:13:13.029Z',
+             'updatedAt': '2016-08-04T13:13:13.029Z',
+             'wheelchair': [
+             { 'frameID': 21,
+              'title': 'My Custom Wheelchair',
+              'parts': [ 'parts' ],
+              'measures': [ 'measures' ],
+              'inCurOrder': false,
+              'grantAmount': 0 }] } ],
+        'discounts': [] }
+    }
+
+    agent
+      .post('/update-cart')
+      .send(expectedCartObj)
+      .then((response) => {
+        let cartId = response.body._id;
+        getUserPr(user._id).then(function (resp) {
+          user._rev = resp._rev;
+          user.cart._rev = response.body.rev;
+          user.cart._id = cartId
+          resp.should.have.property('cart');
+          resp.cart.should.equal(cartId);
+          getOrdersPr(cartId).then(function(resp) {
+            resp.userID.should.equal('testUserId');
+            done();
+          });
+        })
+      })
+      .expect(200);
+  });
+
+  it('Should not be able to update cart if user is not logged in', done => {
+    request(app)
+      .post('/update-cart')
+      .expect(res => {
+        res.should.have.property('body');
+        res.body.should.have.property('userID');
+        res.body.userID.should.equal(-1);
+      })
+      .expect(200, done);
+  });
+
   after(done => {
     var cleanupUser = cb => {
       dbService.users.deleteDoc(user._id, user._rev, cb);
     };
-    cleanupUser(done);
+
+    var cleanupOrders = cb => {
+      dbService.orders.deleteDoc(user.cart._id, user.cart._rev, cb);
+    };
+
+    async.parallel([cleanupOrders, cleanupUser], done);
   });
 });
