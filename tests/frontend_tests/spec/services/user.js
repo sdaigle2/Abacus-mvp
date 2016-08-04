@@ -1,7 +1,31 @@
 'use strict';
 
 describe('Tests main userService functions exposed to controllers', function () {
-  var User, httpBackend;
+  var User, httpBackend, 
+  expectedCartObj = {
+    "cart": {
+      "orderNum":"OrderNumNotSet",
+      "taxRate":0,
+      "shippingFee":15,
+      "sentDate":null,
+      "userID":-1,
+      "email":"",
+      "phone":"",
+      "id": "testId",
+      "shippingDetails":{"fName":"","lName":"","addr":"","addr2":"","city":"","state":"","zip":""},
+      "billingDetails":{"fName":"","lName":"","addr":"","addr2":"","city":"","state":"","zip":""},
+      "payMethod":"Credit Card",
+      "userType":"User",
+      "poNumber":"",
+      "wheelchairs":[{
+        "_id": "testWheelchairId"
+      }],
+      "discounts":[],
+      getAll: function() {
+        return User.getCart()
+      }
+    }
+  };
 
   beforeEach(module('abacuApp'));
 
@@ -113,5 +137,37 @@ describe('Tests main userService functions exposed to controllers', function () 
     httpBackend.flush();
     var savedDesignsFromRestore = User.getSavedDesigns();
     expect(savedDesignsFromRestore.length).toBe(0);
+  });
+
+  it('should push a new wheelchair to cart', function () {
+    User.setUser();
+    User.setCart(expectedCartObj.cart)
+    User.setCurrentWheelchair({
+      'design': {}
+    })
+    httpBackend.expectPOST('/update-cart', expectedCartObj)
+    .respond(200, expectedCartObj);
+    httpBackend.whenPOST('/session', '').respond(200, '');
+    
+    User.pushNewWheelchair('testWheelchair');
+    User.setCart(null); // intentionally setting cart to null to check if it updates on response from server
+    httpBackend.flush();
+    expect(User.getCart().wheelchairs[0]._id).toBe('testWheelchairId');
+    expect(User.getCart()._id).toBe('testId');
+  });
+
+  it('should removed a wheelchair from cart', function () {
+    User.setUser();
+    User.setCart(expectedCartObj.cart)
+    User.setCurrentWheelchair({
+      'design': {}
+    })
+    httpBackend.expectPOST('/update-cart', expectedCartObj)
+    .respond(200, expectedCartObj);
+    httpBackend.whenPOST('/session', '').respond(200, '');
+    
+    User.deleteWheelchair(0);
+    httpBackend.flush();
+    expect(User.getCart().wheelchairs.length).toBe(0);
   });
 });

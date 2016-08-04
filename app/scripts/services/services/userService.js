@@ -79,9 +79,19 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     return details;
   }
 
+  function getCartItems() {
+    var details = {
+      'cart': !_.isNull(self.cart) ? self.cart.getAll() : null
+    };
+    if (self._rev) {
+      details._rev = self._rev;
+    }
+
+    return details;
+  }
+
   //return all details of user object
   function allDetails() {
-    console.log('all details worked')
     var details = {
       'userID': self.userID,
       'fName': self.fName,
@@ -168,6 +178,26 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       })
         .then(function (response) {
           restoreSavedDesigns(response.data);
+          return response;
+        })
+        .catch(function(err) {
+          throw new Error(err)
+        });
+    } else {
+      //generate rejected promise. details see in the promiseUtil under services in the server_script
+      return PromiseUtils.rejected(new Errors.NotLoggedInError('User Must Be Logged In For This Action'));
+    }
+  }
+
+  function updateUserCart() {
+    if (self.userID !== -1) {
+      return $http({
+        url: '/update-cart',
+        data: getCartItems(),
+        method: 'POST'
+      })
+        .then(function (response) {
+          restoreCart(response.data);
           return response;
         })
         .catch(function(err) {
@@ -295,6 +325,33 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       self._rev = data._rev || null;
       self.currentWheelchair = data.currentWheelchair || self.currentWheelchair;
       self.currentWheelchair.design = self.currentWheelchair.design ? new Design(self.currentWheelchair.design) : null;
+    }
+  }
+
+  function restoreCart(data) {
+    if (data.cart) {
+      var cartID = data.cart.id || data.cart._id || null;
+      var wIndex = 0;
+      while (localJSONStorage.get('design' + wIndex)){
+        var wheelchair = localJSONStorage.get('design' + wIndex);
+        var temp = true;
+        data.cart.wheelchairs.forEach(function(remoteWheelchair){
+          temp = temp && (!_.includes(remoteWheelchair, wheelchair._id ));
+        });
+        if (temp)
+          data.cart.wheelchairs.push(wheelchair);
+        localJSONStorage.remove('design' + wIndex);
+        wIndex++;
+      }
+
+      var wIndex = 0;
+      while (localJSONStorage.get('design' + wIndex)){
+        localJSONStorage.remove('design' + wIndex);
+        wIndex++;
+      }
+      //important step to keep cart sync. update the reveision number
+      self.cart = data.cart && cartID !== null ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
+      // updateDB();
     }
   }
 
@@ -564,10 +621,9 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     updateCurrentWheelchair: updateCurrentWheelchair,
 
     updateCart: function () {
-
       if (this.isLoggedIn()) {
         // updateCurrentWheelchair();
-        return this.updateDB();
+        return updateUserCart();
       } else {
         // sync in memory cart with cookie storage
         localJSONStorage.remove('design'+self.cart.wheelchairs.length);
@@ -617,7 +673,6 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
           self.cart.wheelchairs[self.cartWheelchairIndex] = self.currentWheelchair.design;
         }
       }
-
       return this.updateCart();
     },
 
@@ -636,9 +691,12 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     },
 
     //design can either be a design object or a design ID
-    removeDesignFromSavedDesigns: function (design) {
+    removeDesignFromSavedDesigns: function (design, andToCart) {
       var designID = _.isString(design) ? design : design._id;
       self.savedDesigns = _.reject(self.savedDesigns, {'_id': designID});
+      if (andToCart) {
+        updateUserCart();
+      }
       return updateSavedDesigns();
     },
 
@@ -861,6 +919,9 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     },
     setDesign: function(designs) {
       self.savedDesigns = designs;
+    },
+    setCurrentWheelchair: function(wheelchair) {
+      self.currentWheelchair = wheelchair;
     }
   };
 }]);

@@ -61,15 +61,14 @@ angular.module('abacuApp')
 
   		init();
 
-  		$scope.deleteWheelchair = function (wheelchairIndex) {
+  		$scope.deleteWheelchair = function (wheelchairIndex, addCart) {
   			var designToRemove = $scope.wheelchairUIOpts[wheelchairIndex].design;
   			$scope.wheelchairUIOpts.splice(wheelchairIndex, 1);
 
   			if (isAComparedDesign(designToRemove)) {
   				ComparedDesigns.myDesigns.removeDesign(designToRemove);
   			}
-
-        return User.removeDesignFromSavedDesigns(designToRemove);
+        return addCart ? User.removeDesignFromSavedDesigns(designToRemove, true) : User.removeDesignFromSavedDesigns(designToRemove);
   		};
 
   		//Sends the user back to abacus with the selected wheelchair
@@ -88,7 +87,7 @@ angular.module('abacuApp')
   		$scope.addToCart = function (chairIdx) {
   			var design = $scope.wheelchairUIOpts[chairIdx].design;
   			User.getCart().addWheelchair(design);
-        return $scope.deleteWheelchair(chairIdx);
+        return $scope.deleteWheelchair(chairIdx, true);
   		};
 
   		$scope.dowloadDesignPDF = function (chairIdx) {
