@@ -1,16 +1,21 @@
 /**
  * Contains any necessary CRUD routes for user object
  */
-"use strict";
+'use strict';
 
 var router = require('express').Router();
+var _ = require('lodash');
+var promise = require('bluebird');
 
 // Import services
 var update = require('../services/user').update;
-
+var dbUtils   = require('../services/dbUtils');
+var dbService = require('../services/db');
+var updateOrInsertAllEntriesPr = promise.promisify(dbUtils.updateOrInsertAllEntries);
 // Import policies
 var restrict = require('../policies/restrict');
 
+var _designFunctionId = '69777e82324ef175df6ee184cc7c93cd';
 //UPDATE USER INFO
 //TODO: find out if cloudant allows single field update. i.e. update only fName or lName.
 router.post('/update', restrict, function (req, res) {
@@ -67,5 +72,86 @@ router.post('/update', restrict, function (req, res) {
     }
   });
 });
+
+router.post('/update-current-wheelchair', restrict, function (req, res) {
+  var updateData = {
+    'currentWheelchair': req.body.currentWheelchair
+  }
+  if (req.body._rev) {
+    updateData._rev = req.body._rev;
+  }
+
+  updateUserObj(updateData, req, res);
+});
+
+router.post('/update-saved-designs', restrict, function (req, res) {
+  var updateData = {
+    'savedDesigns': req.body.savedDesigns
+  }
+  if (req.body._rev) {
+    updateData._rev = req.body._rev;
+  }
+
+  updateUserObj(updateData, req, res);
+});
+
+router.post('/update-cart', restrict, function (req, res) {
+  var cart = req.body.cart;
+  if (_.isString(cart)) {
+    dbService.order.get(cart, cb);
+  } else if (_.isObject(cart)) {
+    updateOrInsertAllEntriesPr({
+      db: dbService.orders,
+      dbInsert: dbUtils.insertOrder,
+      idField: '_id',
+      entries: [cart]
+    }).then(function (cartArr) {
+      var cart = _.first(cartArr);
+      var updateData = {
+        'cart': cart.id
+      };
+      var userID = req.session.user;
+      dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
+      function cb(error, response) {
+        if (error) {
+          res.json({
+            'err': error
+          });
+        } else {
+          req.session.regenerate(function () {
+            req.session.user = userID;
+            updateData._rev = response;
+            updateData.userID = userID;
+            res.send(cart);
+          });   
+        }
+      }
+    })
+    .catch(function(err) {
+      res.json({
+        'err': err
+      });
+    })
+  }
+});
+
+function updateUserObj(updateData, req, res) {
+  var userID = req.session.user;
+  dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
+  function cb(error, response) {
+    if (error) {
+      res.json({
+        'err': error
+      });
+    } else {
+      req.session.regenerate(function () {
+        req.session.user = userID;
+        updateData._rev = response;
+        updateData.userID = userID;
+        res.send(updateData);
+      });   
+    }
+  }
+}
 
 module.exports = router; // expose the router
