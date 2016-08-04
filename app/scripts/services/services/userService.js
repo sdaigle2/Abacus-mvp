@@ -194,12 +194,13 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     if (self.userID !== -1) {
       return $http({
         url: '/update-cart',
-        data: _.merge(getCartItems(), getCurrentWheelchair()),
+        data: getCartItems(),
         method: 'POST'
       })
         .then(function (response) {
+          console.log('restoring cart', response.data)
           restoreCart(response.data);
-          restoreCurrentWheelchair(response.data);
+          console.log(self.cart)
           return response;
         })
         .catch(function(err) {

@@ -97,7 +97,6 @@ router.post('/update-cart', restrict, function (req, res) {
   var cart = req.body.cart;
 
   if (_.isString(cart)) {
-    // it's just the cart's order id, get the order and return it
     dbService.order.get(cart, cb);
   } else if (_.isObject(cart)) {
     dbUtils.updateOrInsertAllEntries({
@@ -107,23 +106,30 @@ router.post('/update-cart', restrict, function (req, res) {
       entries: [cart]
     }, function (err, cartArr) {
       if (err) {
-        cb(err);
+        console.log(err);
       } else {
-        const cart = _.first(cartArr);
-        // !!!!!!!!!!!!!!!!!!!!!from here!!!!!!!!!!!
+        var cart = _.first(cartArr);
         var updateData = {
           'cart': cart.id
         }
-        updateUserObj(updateData, req, res);
-        cb(null, cart);
+        var userID = req.session.user;
+        dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
+        function cb(error, response) {
+          if (error) {
+            res.json({
+              'err': error
+            });
+          } else {
+            req.session.regenerate(function () {
+              req.session.user = userID;
+              updateData._rev = response;
+              updateData.userID = userID;
+              res.send(cart);
+            });   
+          }
+        }
       }
     });
-  } else {
-    cb(new Error("Bad Cart Value:\n" + JSON.stringify(cart, null, 2)));
-  }
-  function cb(err, resp) {
-    console.log(resp)
-    res.sendStatus(200)
   }
 });
 
@@ -132,7 +138,6 @@ function updateUserObj(updateData, req, res) {
   dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
   function cb(error, response) {
     if (error) {
-      console.log(error)
       res.json({
         'err': error
       });
