@@ -1,9 +1,3 @@
-/**
- * Created by sourabhdesai on 5/6/16.
- *
- * Tests for making sure registration/log in works as expected
- */
-
 const request = require('supertest');
 const Chance = require('chance');
 

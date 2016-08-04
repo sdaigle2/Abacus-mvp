@@ -18,21 +18,24 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'bower_components/angular/angular.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      'bower_components/angular-animate/angular-animate.js',
-      'bower_components/angular-cookies/angular-cookies.js',
-      'bower_components/angular-resource/angular-resource.js',
-      'bower_components/angular-route/angular-route.js',
-      'bower_components/angular-sanitize/angular-sanitize.js',
-      'bower_components/angular-touch/angular-touch.js',
+      'app/bower_components/angular/angular.js',
+      'app/bower_components/angular-mocks/angular-mocks.js',
+      'app/bower_components/angular-animate/angular-animate.js',
+      'app/bower_components/angular-cookies/angular-cookies.js',
+      'app/bower_components/angular-resource/angular-resource.js',
+      'app/bower_components/angular-route/angular-route.js',
+      'app/bower_components/angular-sanitize/angular-sanitize.js',
+      'app/bower_components/angular-touch/angular-touch.js',
+      'app/bower_components/ng-dialog/js/ngDialog.js',
+      'app/bower_components/ngclipboard/dist/ngclipboard.js',
+      'app/bower_components/angular-loading-bar/src/loading-bar.js',
+      'app/bower_components/lodash/dist/lodash.min.js',
       'app/scripts/**/*.js',
-      'test/mock/**/*.js',
-      'test/spec/**/*.js'
+      'tests/frontend_tests/**/*.js'
     ],
 
     // list of files / patterns to exclude
-    exclude: [],
+    exclude: ['app/scripts/canvas/**/*.js'],
 
     // web server port
     port: 8080,
@@ -46,14 +49,16 @@ module.exports = function(config) {
     // - PhantomJS
     // - IE (only Windows)
     browsers: [
-      'PhantomJS'
+      'Chrome_without_security'
     ],
 
     // Which plugins to enable
-    plugins: [
-      'karma-phantomjs-launcher',
-      'karma-jasmine'
-    ],
+    customLaunchers: {
+      Chrome_without_security: {
+        base: 'Chrome',
+        flags: ['--disable-web-security']
+      }
+    },
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
