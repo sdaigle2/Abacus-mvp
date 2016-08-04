@@ -66,7 +66,6 @@ function updateOrInsertAllEntries(argsObj, cb) {
 					}
 				});
 			} else {
-
 				// No ID field present, must be a new object so create an entry for it
 				dbInsert(entry, function (err, res) {
 					if (err) {
@@ -283,7 +282,6 @@ function updateLinkedUserFields(userObj, cb) {
 					cb(err);
 				} else {
 					const cart = _.first(cartArr);
-					console.log(cart)
 					cb(null, cart);
 				}
 			});

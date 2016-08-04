@@ -7,7 +7,6 @@ var router = require('express').Router();
 var _ = require('lodash');
 var promise = require('bluebird');
 
-
 // Import services
 var update = require('../services/user').update;
 var dbUtils   = require('../services/dbUtils');
@@ -115,7 +114,6 @@ router.post('/update-cart', restrict, function (req, res) {
       dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
       function cb(error, response) {
         if (error) {
-
           res.json({
             'err': error
           });
