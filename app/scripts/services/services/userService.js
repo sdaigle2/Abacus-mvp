@@ -201,7 +201,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
           return response;
         })
         .catch(function(err) {
-          throw new Error(err)
+          throw new Error(err);
         });
     } else {
       //generate rejected promise. details see in the promiseUtil under services in the server_script
@@ -215,11 +215,11 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       , data: userInfo
       , method: 'POST'
     }).success(function(data) {
-      restoreUserInfo(data)
-      return data.message
+      restoreUserInfo(data);
+      return data.message;
     })
     .catch(function(err) {
-      throw new Error(err)
+      throw new Error(err);
     });
   }
 
