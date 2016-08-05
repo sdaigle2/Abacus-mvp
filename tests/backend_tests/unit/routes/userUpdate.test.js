@@ -168,6 +168,47 @@ describe('Test user updates', () => {
       .expect(200, done);
   });
 
+  it('Should update user information', done => {
+    user.fName = 'differentName';
+    agent
+      .post('/update-user-info')
+      .send(user)
+      .then(() => {
+        getUserPr(user._id).then(function (resp) {
+          user._rev = resp._rev;
+          resp.fName.should.equal('differentName');
+          done();
+        })
+      })
+      .expect(200);
+  });
+
+  it('Should validate new password', done => {
+    user.newPass1 = '5char';
+    agent
+      .post('/update-user-info')
+      .send(user)
+      .then((res) => {
+        res.body.message.should.equal('New password is not valid');
+        getUserPr(user._id).then(function (resp) {
+          user._rev = resp._rev;
+          done();
+        })
+      })
+      .expect(200);
+  });
+
+  it('Should not be able to update user info if user is not logged in', done => {
+    request(app)
+      .post('/update-user-info')
+      .expect(res => {
+        res.should.have.property('body');
+        res.body.should.have.property('userID');
+        res.body.userID.should.equal(-1);
+      })
+      .expect(200, done);
+  });
+
   after(done => {
     var cleanupUser = cb => {
       dbService.users.deleteDoc(user._id, user._rev, cb);

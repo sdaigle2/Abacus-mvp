@@ -170,4 +170,32 @@ describe('Tests main userService functions exposed to controllers', function () 
     httpBackend.flush();
     expect(User.getCart().wheelchairs.length).toBe(0);
   });
+
+  it('should update user info', function () {
+    var userInfo = {
+      'user': {
+      fName: 'testName',
+      lName: 'testLastName',
+      email: 'testEmail@email.com',
+      phone: '000',
+      addr: 'testAddr',
+      addr2: 'testAddr2',
+      city: 'testCity',
+      state: 'testState',
+      zip: 'testZip',
+      oldPass: '',
+      newPass1: '',
+      newPass2: ''
+    }
+    };
+    User.setUser();
+    httpBackend.expectPOST('/update-user-info', userInfo.user)
+    .respond(200, userInfo);
+    httpBackend.whenPOST('/session', '').respond(200, '');
+    
+    User.updateUserInfo(userInfo.user);
+    httpBackend.flush();
+    expect(User.getFname()).toBe('TestName');
+    expect(User.getEmail()).toBe('testEmail@email.com');
+  });
 });

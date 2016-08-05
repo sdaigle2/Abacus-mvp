@@ -100,6 +100,7 @@ router.post('/update-saved-designs', restrict, function (req, res) {
 });
 
 router.post('/update-user-info', restrict, function (req, res) {
+  console.log('gets here')
   var errNo = null;
   var obj = {
     fName: req.body.fName,
@@ -120,16 +121,19 @@ router.post('/update-user-info', restrict, function (req, res) {
   .then(function (existing) {
     //Sanitize the obj to be inserted
     fixObject(obj, existing);
-
+    obj._rev = existing._rev;
     //Set the password in the object, may be replaced later
     obj.password = existing.password;
     obj.salt = existing.salt;
 
     if (!obj.newPass1 || obj.newPass1.length < 8 || obj.newPass1 !== obj.newPass2) {
+      if (obj.newPass1 && obj.newPass1.length < 8 || obj.newPass1 !== obj.newPass2) {
+        errNo = 1;
+      }
       delete obj.oldPass;
       delete obj.newPass1;
       delete obj.newPass2;
-      errNo = 1;
+
       dbService.users.atomic(_designFunctionId, 'inplace', req.session.user, obj, cb);
     } else {
       hash(obj.oldPass, existing.salt, function (err, oldHash) {
@@ -193,10 +197,7 @@ router.post('/update-user-info', restrict, function (req, res) {
 
 router.post('/update-cart', restrict, function (req, res) {
   var cart = req.body.cart;
-  if (_.isString(cart)) {
-    dbService.order.get(cart, cb); // fix this
-  } else if (_.isObject(cart)) {
-    updateOrInsertAllEntriesPr({
+  updateOrInsertAllEntriesPr({
       db: dbService.orders,
       dbInsert: dbUtils.insertOrder,
       idField: '_id',
@@ -228,7 +229,6 @@ router.post('/update-cart', restrict, function (req, res) {
         'err': err
       });
     })
-  }
 });
 
 function updateUserObj(updateData, req, res) {

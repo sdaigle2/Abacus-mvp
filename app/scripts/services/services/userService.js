@@ -388,7 +388,6 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
   }
 
   function restoreUserInfo(data) {
-    console.log(data)
     self.fName = data.user.fName;
     self.lName = data.user.lName;
     self.email = data.user.email;
