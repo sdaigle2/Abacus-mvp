@@ -214,7 +214,13 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       url: '/update-user-info'
       , data: userInfo
       , method: 'POST'
+    }).success(function(data) {
+      restoreUserInfo(data)
+      return data.message
     })
+    .catch(function(err) {
+      throw new Error(err)
+    });
   }
 
   //create a currentDesign object.
@@ -380,6 +386,19 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       }); 
     }
   }
+
+  function restoreUserInfo(data) {
+    console.log(data)
+    self.fName = data.user.fName;
+    self.lName = data.user.lName;
+    self.email = data.user.email;
+    self.phone = data.user.phone;
+    self.addr = data.user.addr;
+    self.addr2 = data.user.addr2;
+    self.city = data.user.city;
+    self.state = data.user.state;
+    self.zip = data.user.zip;
+  } 
 
   function restoreUserFromBackend(data) {
     if (_.isEmpty(data) || !_.isObject(data)) {

@@ -66,29 +66,17 @@ angular.module('abacuApp')
         switch ($scope.getContentSection()) {
           case $scope.ContentSection.ACCOUNT:
             $scope.saveMessage = 'SAVING ...';
-            User.updateUserInfo($scope.accountModel)
-            .success(function (data) {
-              User.setFname($scope.accountModel.fName);
-              User.setLname($scope.accountModel.lName);
-              User.setPhone($scope.accountModel.phone);
-              User.setAddr($scope.accountModel.addr);
-              User.setAddr2($scope.accountModel.addr2);
-              User.setCity($scope.accountModel.city);
-              User.setState($scope.accountModel.state);
-              User.setZip($scope.accountModel.zip);
+            User.updateUserInfo($scope.accountModel).then(function(resp) {
               $scope.accountModel.oldPass = '';
               $scope.accountModel.newPass1 = '';
               $scope.accountModel.newPass2 = '';
               $scope.saveMessage = 'SAVED';
-              $scope.errMessage = data.message;
-              setTimeout(function(){$scope.$apply($scope.saveMessage = 'SAVE >>'); 
+              $scope.errMessage = resp.data.message;
+
+              setTimeout(function(){$scope.saveMessage = 'SAVE >>'; 
                 $scope.$apply($scope.errMessage = '')},3000);
             })
-            .catch(function(err){
-              $scope.errMessage = err.message || err;
-            })
             break;
-
           case $scope.ContentSection.ORDERS:
             break;
 
