@@ -21,7 +21,7 @@ function fixObject(obj, existing) {
     }
   });
 }
-
+exports.fixObject = fixObject;
 // Updates the given user object
 exports.update = function (obj, key, callback) {
   //Query the database for the existing user

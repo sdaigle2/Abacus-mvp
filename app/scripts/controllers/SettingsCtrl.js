@@ -66,11 +66,8 @@ angular.module('abacuApp')
         switch ($scope.getContentSection()) {
           case $scope.ContentSection.ACCOUNT:
             $scope.saveMessage = 'SAVING ...';
-            $http({
-              url: '/update'
-              , data: $scope.accountModel
-              , method: 'POST'
-            }).success(function (data) {
+            User.updateUserInfo($scope.accountModel)
+            .success(function (data) {
               User.setFname($scope.accountModel.fName);
               User.setLname($scope.accountModel.lName);
               User.setPhone($scope.accountModel.phone);
@@ -84,8 +81,12 @@ angular.module('abacuApp')
               $scope.accountModel.newPass2 = '';
               $scope.saveMessage = 'SAVED';
               $scope.errMessage = data.message;
-              setTimeout(function(){$scope.$apply($scope.saveMessage = 'SAVE >>'); $scope.$apply($scope.errMessage = '')},3000);
-            });
+              setTimeout(function(){$scope.$apply($scope.saveMessage = 'SAVE >>'); 
+                $scope.$apply($scope.errMessage = '')},3000);
+            })
+            .catch(function(err){
+              $scope.errMessage = err.message || err;
+            })
             break;
 
           case $scope.ContentSection.ORDERS:

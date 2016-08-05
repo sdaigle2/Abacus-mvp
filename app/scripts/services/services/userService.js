@@ -209,6 +209,14 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     }
   }
 
+  function updateUserInfo(userInfo) {
+    return $http({
+      url: '/update-user-info'
+      , data: userInfo
+      , method: 'POST'
+    })
+  }
+
   //create a currentDesign object.
   function createCurrentDesign(frameID) {
     if (frameID instanceof Design) {
@@ -619,6 +627,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
     updateDB: updateDB,
     updateCurrentWheelchair: updateCurrentWheelchair,
+    updateUserInfo: updateUserInfo,
 
     updateCart: function () {
       if (this.isLoggedIn()) {
