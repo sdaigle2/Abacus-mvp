@@ -77,7 +77,6 @@ angular.module('abacuApp')
       else {
         var wheelchair = frameID; //in this case frameID is a wheelchair json
         //####################### COPY CONSTRUCTOR ############################
-
         this.frameID = wheelchair.frameID;
         this.title = wheelchair.title;
         var frame = FrameData.getFrame(this.frameID);

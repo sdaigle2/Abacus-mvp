@@ -21,12 +21,11 @@ function fixObject(obj, existing) {
     }
   });
 }
-
+exports.fixObject = fixObject;
 // Updates the given user object
 exports.update = function (obj, key, callback) {
   //Query the database for the existing user
   dbService.users.get(key, function (error, existing) {
-
     //Sanitize the obj to be inserted
     fixObject(obj, existing);
     obj._rev = existing._rev; //Copying the revision number is necessary for an update
