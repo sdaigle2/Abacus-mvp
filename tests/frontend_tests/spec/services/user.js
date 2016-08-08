@@ -146,7 +146,7 @@ describe('Tests main userService functions exposed to controllers', function () 
       'design': {}
     })
     httpBackend.expectPOST('/update-cart', expectedCartObj)
-    .respond(200, expectedCartObj);
+    .respond(200, expectedCartObj.cart);
     httpBackend.whenPOST('/session', '').respond(200, '');
     
     User.pushNewWheelchair('testWheelchair');
@@ -163,7 +163,7 @@ describe('Tests main userService functions exposed to controllers', function () 
       'design': {}
     })
     httpBackend.expectPOST('/update-cart', expectedCartObj)
-    .respond(200, expectedCartObj);
+    .respond(200, expectedCartObj.cart);
     httpBackend.whenPOST('/session', '').respond(200, '');
     
     User.deleteWheelchair(0);

@@ -342,18 +342,18 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     }
   }
 
-  function restoreCart(data) {
-    if (data.cart) {
-      var cartID = data.cart.id || data.cart._id || null;
+  function restoreCart(cart) {
+    if (cart) {
+      var cartID = cart.id || cart._id || null;
       var wIndex = 0;
       while (localJSONStorage.get('design' + wIndex)){
         var wheelchair = localJSONStorage.get('design' + wIndex);
         var temp = true;
-        data.cart.wheelchairs.forEach(function(remoteWheelchair){
+        cart.wheelchairs.forEach(function(remoteWheelchair){
           temp = temp && (!_.includes(remoteWheelchair, wheelchair._id ));
         });
         if (temp)
-          data.cart.wheelchairs.push(wheelchair);
+          cart.wheelchairs.push(wheelchair);
         localJSONStorage.remove('design' + wIndex);
         wIndex++;
       }
@@ -364,7 +364,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         wIndex++;
       }
       //important step to keep cart sync. update the reveision number
-      self.cart = data.cart && cartID !== null ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, data.cart) : null;
+      self.cart = cart && cartID !== null ? new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, cart) : null;
       // updateDB();
     }
   }
