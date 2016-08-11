@@ -60,9 +60,7 @@ angular.module('abacuApp')
   		}
 
   		init();
-      $scope.showData = function() {
-        console.log($scope.wheelchairUIOpts)
-      }
+
   		$scope.deleteWheelchair = function (wheelchairIndex, addCart) {
   			var designToRemove = $scope.wheelchairUIOpts[wheelchairIndex].design;
   			$scope.wheelchairUIOpts.splice(wheelchairIndex, 1);

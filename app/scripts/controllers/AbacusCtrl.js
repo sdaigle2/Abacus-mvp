@@ -953,11 +953,6 @@ angular.module('abacuApp')
         }
       });
 
-      $scope.$watch('userInfo.name', function(nVal, oVal){
-        console.log($scope.userInfo)
-      });
-
-
       //Closes any open panel
       $scope.closeAllPanels = function () {
         curPanel = -1;
