@@ -14,7 +14,13 @@ body {
 .preload {
   display: none;
 }
-
+.custom-pagination .active a {
+  background-color: #4f9dff !important;
+  border-color: #4f9dff !important;
+}
+.custom-pagination {
+  padding: 15px !important;
+}
 
 /* nav bar */
 .mainNavbar  {

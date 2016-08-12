@@ -18,7 +18,8 @@ angular
     'ngTouch',
     'ngDialog',
     'ngclipboard',
-    'angular-loading-bar'
+    'angular-loading-bar',
+    'ui.bootstrap'
   ])
   .run(['$rootScope', '$location', function ($rootScope, $location) {
     var forceSSL = function() {

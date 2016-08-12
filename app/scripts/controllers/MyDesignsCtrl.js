@@ -36,6 +36,16 @@ angular.module('abacuApp')
 
       $scope.wheelchairUIOpts = [];
 
+      $scope.currentPage = 1;
+      $scope.numPerPage = 10;
+      $scope.maxSize = 5;
+      $scope.$watch('currentPage + numPerPage', function() {
+        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+        , end = begin + $scope.numPerPage;
+        
+        $scope.filteredWheelchairUIOpts = $scope.wheelchairUIOpts.slice(begin, end);
+      });
+
   		function init() {
         // Load all the designs asynchronously and then set wheelchairUIOpts once they're loaded
         var wheelchairUIOptsUserPromises = User.getSavedDesigns()

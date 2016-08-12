@@ -154,6 +154,15 @@ angular.module('abacuApp')
       console.log($scope.orderWheelchairs)
       $scope.orderWheelchairs = _.orderBy($scope.orderWheelchairs, 'order.sentDate', 'desc');
 
+      $scope.currentPage = 1;
+      $scope.numPerPage = 10;
+      $scope.maxSize = 5;
+      $scope.$watch('currentPage + numPerPage', function() {
+        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
+        , end = begin + $scope.numPerPage;
+        
+        $scope.filteredOrderWheelchairs = $scope.orderWheelchairs.slice(begin, end);
+      });
 
       $scope.getChairFrame = function (chair) {
         var frameID = chair.frameID;
