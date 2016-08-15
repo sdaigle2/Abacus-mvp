@@ -565,8 +565,8 @@
   height: 100%;
   position: absolute;
   border: 1px solid #999;
-  left: -72%;
-  width: 70%;
+  left: -716px;
+  width: 700px;
   background-color: #fff;
   z-index: 9999;
   transition: all 0.5s ease-in-out;

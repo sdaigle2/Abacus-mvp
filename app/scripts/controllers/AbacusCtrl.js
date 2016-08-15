@@ -72,8 +72,6 @@ angular.module('abacuApp')
 
       /**********************Main Variables****************************/
 
-      $scope.userInfo = {};
-
       $scope.left_button = 'arrow_left.png';
       $scope.right_button = 'arrow_right.png';
         //All the data about the current frame (loaded by init)
@@ -112,15 +110,6 @@ angular.module('abacuApp')
       }
 
       $scope.currChairIsNew = User.isNewWheelchair();
-
-      $scope.submitUserInfo = function() {
-        $scope.curEditWheelchair.userInfo = $scope.userInfo;
-        $scope.curEditWheelchair.userInfo.wheelchairName = $scope.curFrameData.name + ' for ' + 
-        $scope.curEditWheelchair.userInfo.name;
-        if ($scope.userInfo.grantAmount) {
-          grantAmount = $scope.userInfo.grantAmount
-        }
-      }
 
       $scope.downloadChairPDF = function () {
         var curChair = $scope.curEditWheelchair;
@@ -191,6 +180,9 @@ angular.module('abacuApp')
       function init() {
         var initCurrentWheelchair = function (chair) {
           $scope.curEditWheelchair = chair;
+          if (!$scope.curEditWheelchair.userInfo) {
+            $scope.curEditWheelchair.userInfo = {};
+          }
           //Load data about the frame type of curEditWheelchair
           $scope.curFrameData = FrameData.getFrame($scope.curEditWheelchair.getFrameID());
           // $scope.curOption = $scope.getCurPartData().getDefaultOption();
@@ -235,6 +227,7 @@ angular.module('abacuApp')
             .then(function(val){
               User.getCurEditWheelchair().setGrantAmount(val.value);
               grantAmount = val.value;
+              $scope.curEditWheelchair.grantAmount = grantAmount;
             })
         }
 
@@ -943,6 +936,13 @@ angular.module('abacuApp')
           }
           //console.log("set");
       };
+      $scope.$watch('curEditWheelchair.userInfo', function(nVal, oVal){
+        $scope.curEditWheelchair.userInfo.wheelchairName = $scope.curEditWheelchair.userInfo.name ? 
+          $scope.curEditWheelchair.name + ' for ' + $scope.curEditWheelchair.userInfo.name : $scope.curEditWheelchair.name;
+        if ($scope.curEditWheelchair.userInfo.grantAmount) {
+          grantAmount = $scope.curEditWheelchair.userInfo.grantAmount;
+        }
+      }, true);
 
       $scope.$watch('curOption.comments', function(nVal, oVal){
         // console.log(nVal);
