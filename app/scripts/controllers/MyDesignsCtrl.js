@@ -39,11 +39,15 @@ angular.module('abacuApp')
       $scope.currentPage = 1;
       $scope.numPerPage = 10;
       $scope.maxSize = 5;
-      $scope.$watch('currentPage + numPerPage', function() {
-        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
-        , end = begin + $scope.numPerPage;
-        
-        $scope.filteredWheelchairUIOpts = $scope.wheelchairUIOpts.slice(begin, end);
+      function getPagination() {
+        var begin = ($scope.currentPage - 1) * $scope.numPerPage
+        return {
+          'begin': begin,
+          'end': begin + $scope.numPerPage
+        }
+      }
+      $scope.$watch('[currentPage, numPerPage]', function() {
+        $scope.filteredWheelchairUIOpts = $scope.wheelchairUIOpts.slice(getPagination().begin, getPagination().end);
       });
 
   		function init() {
@@ -62,7 +66,9 @@ angular.module('abacuApp')
 
         $q.all(wheelchairUIOptsUserPromises)
         .then(function (wheelchairUIOpts) {
-          $scope.wheelchairUIOpts = wheelchairUIOpts;
+          $scope.wheelchairUIOpts = wheelchairUIOpts;    
+          var reversedWheelchairs = _.reverse($scope.wheelchairUIOpts);
+          $scope.filteredWheelchairUIOpts = reversedWheelchairs.slice(getPagination().begin, getPagination().end);
         })
         .catch(function (err) {
           console.log(err);
@@ -72,8 +78,9 @@ angular.module('abacuApp')
   		init();
 
   		$scope.deleteWheelchair = function (wheelchairIndex, addCart) {
-  			var designToRemove = $scope.wheelchairUIOpts[wheelchairIndex].design;
-  			$scope.wheelchairUIOpts.splice(wheelchairIndex, 1);
+        var designToRemove = $scope.wheelchairUIOpts[getPagination().begin + wheelchairIndex].design;
+        $scope.wheelchairUIOpts.splice(getPagination().begin + wheelchairIndex, 1);
+        $scope.filteredWheelchairUIOpts = $scope.wheelchairUIOpts.slice(getPagination().begin, getPagination().end);
 
   			if (isAComparedDesign(designToRemove)) {
   				ComparedDesigns.myDesigns.removeDesign(designToRemove);

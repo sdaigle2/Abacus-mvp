@@ -18,7 +18,7 @@
           <span class="medium">Your currently do not have any designs</span>
           <p ng-click="jumpFrame()"> START A NEW DESIGN</p>
         </div>
-        <ul class="chairBlock" ng-if="filteredWheelchairUIOpts.length">
+        <ul class="chairBlock" ng-if="wheelchairUIOpts.length">
           <li ng-repeat="chairInfo in filteredWheelchairUIOpts" class="cart-item {{chairInfo.checked ? 'checked-item' : ''}}">
             <div class="chairTitle" ng-class="{'selectedChair': chairInfo.checked }">
               <span class="medium">{{_.has(chairInfo, 'design.wheelchair') ? (chairInfo.design.wheelchair.userInfo.wheelchairName || chairInfo.design.wheelchair.getName()) : '--'}}</span>
@@ -106,7 +106,7 @@
             </div>
           </li>
         </ul>
-        <ul uib-pagination class="custom-pagination" 
+        <ul ng-show="filteredWheelchairUIOpts.length" uib-pagination class="custom-pagination" 
           ng-model="currentPage"
           total-items="wheelchairUIOpts.length">
         </ul>
