@@ -19,12 +19,10 @@ var check     = require('../services/security').check;
 // Import policies
 var restrict = require('../policies/restrict');
 
-var _designFunctionId = '69777e82324ef175df6ee184cc7c93cd';
+var _designFunctionId = '90e3fa2f51a7470a708c7aede3121ccf';
 //UPDATE USER INFO
 //TODO: find out if cloudant allows single field update. i.e. update only fName or lName.
 router.post('/update', restrict, function (req, res) {
-  console.log('/update');
-
   //Retrieve request parameters that we need, ignoring any others.
   var data = {
     fName: req.body.fName,
