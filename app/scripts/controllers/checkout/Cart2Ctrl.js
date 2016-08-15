@@ -70,7 +70,9 @@ angular.module('abacuApp')
           getParts(chairOpts.design.wheelchair);
         });
 
-        $scope.totalGrantAmount = _.sumBy($scope.curOrder.wheelchairs, 'wheelchair.grantAmount');
+        $scope.totalGrantAmount = _.sumBy($scope.curOrder.wheelchairs, function(o) {
+          return parseInt(o.wheelchair.grantAmount);
+        });
       }
 
       $scope.printValue = function(printval){

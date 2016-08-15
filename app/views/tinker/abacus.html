@@ -139,53 +139,53 @@
               <form class="user-info-form" name="userInformation">
                 <div class="input-div">
                   <label for="name"> <span>Name</span></label>
-                  <input class="info-input" ng-value="curEditWheelchair.userInfo.name" data-ng-model="userInfo.name" type="text" placeholder="Name" name="name">
+                  <input class="info-input" ng-value="curEditWheelchair.userInfo.name" data-ng-model="curEditWheelchair.userInfo.name" type="text" placeholder="Name" name="name">
                 </div>
                 <div class="input-div">
                   <label for="Address"> <span>Address</span></label>
-                  <input class="info-input" ng-value="curEditWheelchair.userInfo.address" data-ng-model="userInfo.address" type="text" placeholder="Address line 1" name="Address">
+                  <input class="info-input" ng-value="curEditWheelchair.userInfo.address" data-ng-model="curEditWheelchair.userInfo.address" type="text" placeholder="Address line 1" name="Address">
                 </div>
                 <div class="input-div">
                   <label for="Address2"></label>
-                  <input class="info-input" ng-value="curEditWheelchair.userInfo.address1" data-ng-model="userInfo.address1" type="text" placeholder="Address line 2" name="Address2">
+                  <input class="info-input" ng-value="curEditWheelchair.userInfo.address1" data-ng-model="curEditWheelchair.userInfo.address1" type="text" placeholder="Address line 2" name="Address2">
                 </div>
                 <div class="input-div">
                   <label for="Address2"><span>City, State, Zip</span></label>
                   <div class="info-input">
-                    <input type="text" ng-value="curEditWheelchair.userInfo.city" data-ng-model="userInfo.city" placeholder="city" name="city">
-                    <input type="text" ng-value="curEditWheelchair.userInfo.state" data-ng-model="userInfo.state" placeholder="state" name="state">
-                    <input type="text" ng-value="curEditWheelchair.userInfo.zip" data-ng-model="userInfo.zip" placeholder="zip" name="zip">
+                    <input type="text" ng-value="curEditWheelchair.userInfo.city" data-ng-model="curEditWheelchair.userInfo.city" placeholder="city" name="city">
+                    <input type="text" ng-value="curEditWheelchair.userInfo.state" data-ng-model="curEditWheelchair.userInfo.state" placeholder="state" name="state">
+                    <input type="text" ng-value="curEditWheelchair.userInfo.zip" data-ng-model="curEditWheelchair.userInfo.zip" placeholder="zip" name="zip">
                   </div>
                 </div>
                 <div class="input-div">
                   <label for="Phone, Email"><span>Phone, Email</span></label>
                   <div class="info-input long">
-                    <input type="text" ng-value="curEditWheelchair.userInfo.phone" data-ng-model="userInfo.phone" placeholder="Phone" name="Phone">
-                    <input type="text" ng-value="curEditWheelchair.userInfo.email" data-ng-model="userInfo.email" placeholder="Email" name="Email">
+                    <input type="text" ng-value="curEditWheelchair.userInfo.phone" data-ng-model="curEditWheelchair.userInfo.phone" placeholder="Phone" name="Phone">
+                    <input type="text" ng-value="curEditWheelchair.userInfo.email" data-ng-model="curEditWheelchair.userInfo.email" placeholder="Email" name="Email">
                   </div>
                 </div>
                 <div class="input-div">
                   <label for="Age, Height, Weight"><span>Age, Height, Weight</span></label>
                   <div class="info-input">
-                    <input type="text" ng-value="curEditWheelchair.userInfo.age" data-ng-model="userInfo.age" placeholder="Age" name="Age">
-                    <input type="text" ng-value="curEditWheelchair.userInfo.height" data-ng-model="userInfo.height" placeholder="Height" name="Height">
-                    <input type="text" ng-value="curEditWheelchair.userInfo.weight" data-ng-model="userInfo.weight" placeholder="Weight" name="Weight">
+                    <input type="text" ng-value="curEditWheelchair.userInfo.age" data-ng-model="curEditWheelchair.userInfo.age" placeholder="Age" name="Age">
+                    <input type="text" ng-value="curEditWheelchair.userInfo.height" data-ng-model="curEditWheelchair.userInfo.height" placeholder="Height" name="Height">
+                    <input type="text" ng-value="curEditWheelchair.userInfo.weight" data-ng-model="curEditWheelchair.userInfo.weight" placeholder="Weight" name="Weight">
                   </div>
                 </div>
                 <div class="input-div">
                   <label for="Disability"> <span>Disability</span></label>
-                  <input class="info-input" ng-value="curEditWheelchair.userInfo.disability" data-ng-model="userInfo.disability" type="text" placeholder="Disability" name="Disability">
+                  <input class="info-input" ng-value="curEditWheelchair.userInfo.disability" data-ng-model="curEditWheelchair.userInfo.disability" type="text" placeholder="Disability" name="Disability">
                 </div>
                 <div class="input-div">
                   <label for="SSN#"><span>SSN#</span></label>
                   <div class="info-input">
-                    <input type="text" ng-value="curEditWheelchair.userInfo.ssn" data-ng-model="userInfo.ssn" placeholder="XXX - XX -" name="SSN#">
+                    <input type="text" ng-value="curEditWheelchair.userInfo.ssn" data-ng-model="curEditWheelchair.userInfo.ssn" placeholder="XXX - XX -" name="SSN#">
                   </div>
                 </div>
                 <div class="input-div">
                   <label for="Payment method"><span>Payment method</span></label>
                   <div class="info-input long">
-                    <input type="text" ng-value="curEditWheelchair.userInfo.paymentMethod" data-ng-model="userInfo.paymentMethod" name="Payment method" list="PaymentList"/>
+                    <input type="text" ng-value="curEditWheelchair.userInfo.paymentMethod" data-ng-model="curEditWheelchair.userInfo.paymentMethod" name="Payment method" list="PaymentList"/>
                     <datalist id="PaymentList">
                         <option value="Credit card">Credit card</option>
                         <option value="Net 30">Net 30</option>
@@ -193,16 +193,16 @@
                     </datalist>
                   </div>
                 </div>
-                <div class="input-div">
+                <div class="input-div" ng-if="curFrameData.frameID === 25">
                   <label for="Grant amount"><span>Grant amount</span></label>
                   <div class="info-input long">
-                    <input type="text" ng-value="curEditWheelchair.userInfo.grantAmount" data-ng-model="userInfo.grantAmount" placeholder="$0.00" name="Grant amount">
+                    <input type="text" ng-value="curEditWheelchair.grantAmount" data-ng-model="curEditWheelchair.userInfo.grantAmount" placeholder="$0.00" name="Grant amount">
                   </div>
                 </div>
                 <div class="input-div">
                   <label for="Rep"><span>Rep</span></label>
                   <div class="info-input long">
-                    <input type="text" ng-value="curEditWheelchair.userInfo.rep" data-ng-model="userInfo.rep" name="Rep" list="RepList"/>
+                    <input type="text" ng-value="curEditWheelchair.userInfo.rep" data-ng-model="curEditWheelchair.userInfo.rep" name="Rep" list="RepList"/>
                     <datalist id="RepList">
                         <option value="Chris Kommer">Chris Kommer</option>
                         <option value="Scott Daigle">Scott Daigle</option>
@@ -212,12 +212,11 @@
                 <div class="input-div">
                   <label for="Other info"><span>Other info</span></label>
                   <div class="info-input long">
-                    <textarea name="Other info" ng-value="curEditWheelchair.userInfo.otherInfo" data-ng-model="userInfo.otherInfo" placeholder="Other information"></textarea>
+                    <textarea name="Other info" ng-value="curEditWheelchair.userInfo.otherInfo" data-ng-model="curEditWheelchair.userInfo.otherInfo" placeholder="Other information"></textarea>
                   </div>
                 </div>
               </form>
             </div>
-            <button class="save-button" toggle-class="open" ng-click="submitUserInfo()" data-ng-show="userInformation.$dirty">SAVE</button>
             <div class="info-handler" toggle-class="open"><p class="handler">User Info</p></div>
           </div>
           <div class="main-custom-rotatebuttons" data-ng-class="{'slide-over': !isPanelSelected(-1)}">
