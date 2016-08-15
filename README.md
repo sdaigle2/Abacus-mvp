@@ -8,7 +8,7 @@ in the project directory:
 (2) bower install
 (3) set environment variables (Ask scott for the variables)
     a) AWS
-    b) Coloudant
+    b) Cloudant
     c) SendGrid
     d) Stripe
 (4) ways to run
@@ -16,8 +16,10 @@ in the project directory:
     b) **node server.js https** //this runs the whole app at https://localhost:8443 and it connects to all of the databases.  It communicates with the server with https so it's good for testing stripe.  The only problem is that it uses a self-signed certificate so looks sketchy.
     c) **grunt serve** //if you don't have an internet connection and are only doing front end bugs, this is the way to go.  The system won't connect to any databases or anything remote.
 
-## Notes on general library used
+## Notes on Cloudant Database
+We have two databases.  The real database is called intelliwheels.  The database for testing is called intelliwheels-testing.  If you want to use the testing database, you will have to uncomment line 22 of userController.js
 
+## Notes on general library used
 loadash (with the symbol _.) is used for array, and object manipulation. details see:https://lodash.com/
 
 ## Notes on frontend docs
