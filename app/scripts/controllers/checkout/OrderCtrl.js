@@ -55,7 +55,9 @@ angular.module('abacuApp')
 
       $scope.curOrder = User.getCurEditOrder();
 
-      $scope.totalGrantAmount = _.sumBy($scope.curOrder.wheelchairs, 'wheelchair.grantAmount');
+      $scope.totalGrantAmount = _.sumBy($scope.curOrder.wheelchairs, function(o) {
+        return parseInt(o.wheelchair.grantAmount);
+      });
 
 
       //Send user to My Designs if orders page reached without having an unsent order
