@@ -17,7 +17,7 @@ in the project directory:
     c) **grunt serve** //if you don't have an internet connection and are only doing front end bugs, this is the way to go.  The system won't connect to any databases or anything remote.
 
 ## Notes on Cloudant Database
-We have two databases.  The real database is called intelliwheels.  The database for testing is called intelliwheels-testing.  If you want to use the testing database, you will have to uncomment line 22 of userController.js
+We have two databases.  The real database is called intelliwheels.  The database for testing is called intelliwheels-testing.  line 22 of userController.js has the _designFunctionID for the real database.  The testing database has a special handler that redirects it when you use it.
 
 ## Notes on general library used
 loadash (with the symbol _.) is used for array, and object manipulation. details see:https://lodash.com/
