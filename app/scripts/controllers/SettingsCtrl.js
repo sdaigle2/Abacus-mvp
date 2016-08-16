@@ -252,7 +252,7 @@ angular.module('abacuApp')
 
       // share design function in tinker page
       $scope.shareDesignID = function (index) {
-
+            var index = 10;
             $scope.modalDesign = User.getOneSavedDesign(index);
             return ngDialog.open({
               'template': 'views/modals/designIDModal.html',

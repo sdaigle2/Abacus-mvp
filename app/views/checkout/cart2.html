@@ -31,7 +31,7 @@
           <p ng-click="jumpFrame()"> START A NEW DESIGN</p>
         </div>
         <ul class="chairBlock" ng-if="wheelchairUIOpts.length">
-          <li ng-repeat="chairOpts in wheelchairUIOpts" class="cart-item {{chairOpts.checked ? 'checked-item' : ''}}">
+          <li ng-repeat="chairOpts in filteredWheelchairUIOpts" class="cart-item {{chairOpts.checked ? 'checked-item' : ''}}">
             <div class="chairTitle" ng-class="{'selectedChair': chairOpts.checked }">
               <span class="medium">{{chairOpts.design.wheelchair.userInfo.wheelchairName || chairOpts.design.wheelchair.getName()}}</span>
               <input type="checkbox" class="checkbox-button pull-right" ng-model="chairOpts.checked"
@@ -43,7 +43,7 @@
              <div class="media-object">
                 <canvas my-canvas img_arr={{chairOpts.design.wheelchair.getPreviewImages(3)}} ng-mouseover="editPanelShow = true"
                         ng-mouseleave="editPanelShow = false"
-                        ng-click="toggleImageDisplay($index)"
+                        ng-click="toggleImageDisplay(chairOpts.design._id)"
                         width="{{WHEELCHAIR_CANVAS_WIDTH}}"
                         alt="wheelchairImage">
                 </canvas>
@@ -56,10 +56,10 @@
                 <table class="actions oReg">
                   <tbody>
                     <tr>
-                      <td ng-click="editWheelchair($index)"><a>EDIT</a></td>
-                      <td ng-click="moveToWishlist($index)" ng-if="isLoggedIn()"><a>SAVE FOR LATER</a></td>
+                      <td ng-click="editWheelchair(chairOpts.design._id)"><a>EDIT</a></td>
+                      <td ng-click="moveToWishlist(chairOpts.design._id)" ng-if="isLoggedIn()"><a>SAVE FOR LATER</a></td>
                       <td ng-click="downloadDesignPDF(chairOpts.design)"><a>DOWNLOAD PDF</a></td>
-                      <td ng-click="shareDesignID($index)"><a>SHARE DESIGN</a></td>
+                      <td ng-click="shareDesignID(chairOpts.design._id)"><a>SHARE DESIGN</a></td>
                     </tr>
                   </tbody>
                 </table>
@@ -68,7 +68,7 @@
                   <a class="pull-right">
                     <img data-ng-src="images/my_design_page/delete.png"
                        width="20"
-                       ng-click="deleteWheelchair($index)"></a>
+                       ng-click="deleteWheelchair(chairOpts.design._id)"></a>
                 </section>
                 <div class="moreInfo" style="padding:{{WHEELCHAIR_CANVAS_WIDTH}};">
                   <!-- UserInformation Table...only shown if toggled -->

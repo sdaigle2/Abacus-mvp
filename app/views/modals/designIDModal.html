@@ -4,7 +4,7 @@
     <div class="section1">
         <h4>Share the link</h4>
         <div class="targetText">
-            <a id="designIDlink" href="http://per4max.fit/#!/tinker/{{modalDesign._id}}" target="_blank">www.per4max.fit/#!/tinker/{{modalDesign._id}}</a>
+            <a id="designIDlink" href="http://per4max.fit/#!/tinker/{{modalDesign._id || modalDesign}}" target="_blank">www.per4max.fit/#!/tinker/{{modalDesign._id || modalDesign}}</a>
         </div>
         <button class="btn" id="thisButton" ngclipboard style="display: inline-block;" data-clipboard-target="#designIDlink" ngclipboard-success="onCopySuccess(e);" ngclipboard-error="onCopyFailure(e);">{{copied ? 'Copied!' : 'Copy Link to Clipboard'}}</button>
     </div>
@@ -12,7 +12,7 @@
   <div class="section2">
       <h4>Or Share your DesignID</h4>
       <div class="targetText">
-        <a id="designID">{{modalDesign._id}}</a>
+        <a id="designID">{{modalDesign._id || modalDesign}}</a>
       </div>
       
       <button class="btn" id="thisButton" ngclipboard style="display: inline-block;" data-clipboard-target="#designID" ngclipboard-success="onCopySuccess(e);" ngclipboard-error="onCopyFailure(e);">{{copied ? 'Copied!' : 'Copy Design ID to Clipboard'}}</button>
