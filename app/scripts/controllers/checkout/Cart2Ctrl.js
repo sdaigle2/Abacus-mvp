@@ -64,7 +64,7 @@ angular.module('abacuApp')
             'showInfo': false // whether to show the table of wheelchair parts
           };
         });
-
+        $scope.wheelchairUIOpts = _.reverse($scope.wheelchairUIOpts); // reverse the order in order for the latest designs to come first in the list
         // download the parts in $scope.parts
         $scope.wheelchairUIOpts.forEach(function (chairOpts) {
           getParts(chairOpts.design.wheelchair);
