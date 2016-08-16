@@ -462,7 +462,21 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
           self.userID = data.userID;
           if (self.userID !== -1) {
             restoreUserFromBackend(data);
-            $rootScope.$broadcast('userChange');
+            if (self.cart) {
+              _.forEach(self.cart.wheelchairs, function(item){
+                if (!item._id) {
+                  $rootScope.$broadcast('userChange'); // let the user see the cart without waiting for the db to update
+                  CartUpdate.update(getCartItems())
+                  .then(function(updatedCart) {
+                    self.cart = updatedCart;
+                    $rootScope.$broadcast('userChange'); // update view once again in order for the latest design id to appear
+                  });
+                  return false;
+                }
+              })
+            } else {
+              $rootScope.$broadcast('userChange');
+            }     
           } else {
             throw new Error('Incorrect email or password');
 
