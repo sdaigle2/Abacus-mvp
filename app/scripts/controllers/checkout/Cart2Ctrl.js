@@ -64,12 +64,13 @@ angular.module('abacuApp')
             'showInfo': false // whether to show the table of wheelchair parts
           };
         });
-
         // download the parts in $scope.parts
         $scope.wheelchairUIOpts.forEach(function (chairOpts) {
           getParts(chairOpts.design.wheelchair);
         });
 
+        $scope.filteredWheelchairUIOpts = _.cloneDeep($scope.wheelchairUIOpts);
+        _.reverse($scope.filteredWheelchairUIOpts);
         $scope.totalGrantAmount = _.sumBy($scope.curOrder.wheelchairs, function(o) {
           return parseInt(o.wheelchair.grantAmount);
         });
@@ -103,6 +104,12 @@ angular.module('abacuApp')
         return User.isLoggedIn();
       };
 
+      function getItemIndex(id) {
+        return _.findIndex($scope.wheelchairUIOpts, function(o) {
+          return o.design._id == id; 
+        });
+      }
+
 
       /********************CART ITEM BUTTONS******************************/
 
@@ -118,7 +125,8 @@ angular.module('abacuApp')
       };
 
       //Sends the user back to abacus with the selected wheelchair
-      $scope.editWheelchair = function (index) {
+      $scope.editWheelchair = function (id) {
+        var index = getItemIndex(id);
         if ($scope.wheelchairUIOpts[index].checked) {
           // if the item is checked, remove it from ComparedDesigns
           ComparedDesigns.cart.removeDesign($scope.wheelchairUIOpts[index].design);
@@ -131,7 +139,8 @@ angular.module('abacuApp')
       };
 
       // removes wheelchair from cart and puts it into the users wishlist
-      $scope.moveToWishlist = function (index) {
+      $scope.moveToWishlist = function (id) {
+        var index = getItemIndex(id);
         var design = $scope.wheelchairUIOpts[index].design;
         // Remove the wheelchair from the cart and move it into the wishlist
         $scope.deleteWheelchair(index)
@@ -153,18 +162,19 @@ angular.module('abacuApp')
       };
 
       //Deletes wheelchair from user's My Designs
-      $scope.deleteWheelchair = function (index) {
+      $scope.deleteWheelchair = function (id) {
+        var index = typeof id === 'number' ? id : getItemIndex(id);
         var design = $scope.wheelchairUIOpts[index].design;
         ComparedDesigns.cart.removeDesign(design);
 
         var grantPrice = $scope.wheelchairUIOpts[index].design.wheelchair.grantAmount
-
         if(typeof( grantPrice) != 0) {
           $scope.totalGrantAmount -= $scope.wheelchairUIOpts[index].design.wheelchair.grantAmount;
         }
         //$scope.wOrderIndex.splice(index, 1);
         $scope.wheelchairUIOpts.splice(index, 1);
-        //
+        $scope.filteredWheelchairUIOpts = _.cloneDeep($scope.wheelchairUIOpts);
+        _.reverse($scope.filteredWheelchairUIOpts);
 
           ////Remove wheelchair from cart
         return User.deleteWheelchair(index);
@@ -193,7 +203,8 @@ angular.module('abacuApp')
       }
 
       // share design function in tinker page
-      $scope.shareDesignID = function (index) {
+      $scope.shareDesignID = function (id) {
+        var index = getItemIndex(id);
         generateDesignIDForCurrentChair(index)
           .then(function (design) {
             $scope.modalDesign = design;
@@ -281,7 +292,8 @@ angular.module('abacuApp')
         return $scope.curOrder.getNumWheelchairs() > 0;
       };
 
-      $scope.toggleImageDisplay = function (index) {
+      $scope.toggleImageDisplay = function (id) {
+        var index = getItemIndex(id);
         $scope.imageDisplay1 = index;
       };
 

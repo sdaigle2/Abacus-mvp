@@ -42,11 +42,10 @@
                 <table class="actions oReg">
                   <tbody>
                     <tr>
-                      <td ng-click="editWheelchair($index)"><a>EDIT</a></td>
-                      <td ng-click="addToCart($index)"><a>ADD TO CART</a></td>
-                      <td ng-click="dowloadDesignPDF($index)" ><a>DOWNLOAD PDF</a></td>
-                      <td ng-click="shareDesignID($index)"><a>SHARE DESIGN</a></td>
-
+                      <td ng-click="editWheelchair(chairInfo.design._id)"><a>EDIT</a></td>
+                      <td ng-click="addToCart(chairInfo.design._id)"><a>ADD TO CART</a></td>
+                      <td ng-click="dowloadDesignPDF(chairInfo.design._id)" ><a>DOWNLOAD PDF</a></td>
+                      <td ng-click="shareDesignId(chairInfo.design._id)"><a>SHARE DESIGN</a></td>
                     </tr>
                   </tbody>
                 </table>
@@ -55,7 +54,7 @@
                   <a class="pull-right">
                     <img data-ng-src="images/my_design_page/delete.png"
                        width="20"
-                       ng-click="deleteWheelchair($index)"></a>
+                       ng-click="deleteWheelchair(chairInfo.design._id)"></a>
                 </section>
                 <div class="moreInfo" style="padding:{{WHEELCHAIR_CANVAS_WIDTH}};">
                   <!-- Parts Table...only shown if toggled -->
@@ -106,7 +105,7 @@
             </div>
           </li>
         </ul>
-        <ul ng-show="filteredWheelchairUIOpts.length" uib-pagination class="custom-pagination" 
+        <ul ng-show="wheelchairUIOpts.length" uib-pagination class="custom-pagination" 
           ng-model="currentPage"
           total-items="wheelchairUIOpts.length">
         </ul>

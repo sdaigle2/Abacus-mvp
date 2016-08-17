@@ -8,8 +8,10 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('MyDesignsCtrl', ['$scope', '$location', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'WHEELCHAIR_CANVAS_WIDTH', 'FrameData', '$q', 'Design', 'PromiseUtils', 'DownloadPDF',
-  	function ($scope, $location, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, WHEELCHAIR_CANVAS_WIDTH, FrameData, $q, Design, PromiseUtils, DownloadPDF) {
+  .controller('MyDesignsCtrl', ['$scope', '$location', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS',
+   'WHEELCHAIR_CANVAS_WIDTH', 'FrameData', '$q', 'Design', 'PromiseUtils', 'DownloadPDF', 'ngDialog',
+  	function ($scope, $location, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, WHEELCHAIR_CANVAS_WIDTH, 
+      ameData, $q, Design, PromiseUtils, DownloadPDF, ngDialog) {
   		$scope.MAX_COMPARISON_CHAIRS = MAX_COMPARISON_CHAIRS;
   		$scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
 
@@ -34,11 +36,12 @@ angular.module('abacuApp')
         }
       }
 
-      $scope.wheelchairUIOpts = [];
+      function getItemIndex(id) {
+        return _.findIndex($scope.wheelchairUIOpts, function(o) {
+          return o.design._id == id; 
+        });
+      }
 
-      $scope.currentPage = 1;
-      $scope.numPerPage = 10;
-      $scope.maxSize = 5;
       function getPagination() {
         var begin = ($scope.currentPage - 1) * $scope.numPerPage
         return {
@@ -46,8 +49,16 @@ angular.module('abacuApp')
           'end': begin + $scope.numPerPage
         }
       }
-      $scope.$watch('[currentPage, numPerPage]', function() {
-        $scope.filteredWheelchairUIOpts = $scope.wheelchairUIOpts.slice(getPagination().begin, getPagination().end);
+
+      $scope.wheelchairUIOpts = [];
+
+      $scope.currentPage = 1;
+      $scope.numPerPage = 10;
+      $scope.maxSize = 5;
+      $scope.$watch('currentPage + numPerPage', function() {
+        $scope.filteredWheelchairUIOpts = _.cloneDeep($scope.wheelchairUIOpts);
+        _.reverse($scope.filteredWheelchairUIOpts);
+        $scope.filteredWheelchairUIOpts = $scope.filteredWheelchairUIOpts.slice(getPagination().begin, getPagination().end);
       });
 
   		function init() {
@@ -66,9 +77,10 @@ angular.module('abacuApp')
 
         $q.all(wheelchairUIOptsUserPromises)
         .then(function (wheelchairUIOpts) {
-          $scope.wheelchairUIOpts = wheelchairUIOpts;    
-          var reversedWheelchairs = _.reverse($scope.wheelchairUIOpts);
-          $scope.filteredWheelchairUIOpts = reversedWheelchairs.slice(getPagination().begin, getPagination().end);
+          $scope.wheelchairUIOpts = wheelchairUIOpts;
+          $scope.filteredWheelchairUIOpts = _.cloneDeep($scope.wheelchairUIOpts);
+          _.reverse($scope.filteredWheelchairUIOpts);
+          $scope.filteredWheelchairUIOpts = $scope.filteredWheelchairUIOpts.slice(getPagination().begin, getPagination().end);
         })
         .catch(function (err) {
           console.log(err);
@@ -77,10 +89,14 @@ angular.module('abacuApp')
 
   		init();
 
-  		$scope.deleteWheelchair = function (wheelchairIndex, addCart) {
-        var designToRemove = $scope.wheelchairUIOpts[getPagination().begin + wheelchairIndex].design;
-        $scope.wheelchairUIOpts.splice(getPagination().begin + wheelchairIndex, 1);
-        $scope.filteredWheelchairUIOpts = $scope.wheelchairUIOpts.slice(getPagination().begin, getPagination().end);
+  		$scope.deleteWheelchair = function (wheelchairId, addCart) {
+        var itemIndex = typeof wheelchairId === 'number' ? wheelchairId : getItemIndex(wheelchairId);
+        var designToRemove = $scope.wheelchairUIOpts[itemIndex].design;
+        $scope.wheelchairUIOpts.splice(itemIndex, 1);
+
+        $scope.filteredWheelchairUIOpts = _.cloneDeep($scope.wheelchairUIOpts);
+        _.reverse($scope.filteredWheelchairUIOpts);
+        $scope.filteredWheelchairUIOpts = $scope.filteredWheelchairUIOpts.slice(getPagination().begin, getPagination().end);
 
   			if (isAComparedDesign(designToRemove)) {
   				ComparedDesigns.myDesigns.removeDesign(designToRemove);
@@ -88,27 +104,39 @@ angular.module('abacuApp')
         return addCart ? User.removeDesignFromSavedDesigns(designToRemove, true) : User.removeDesignFromSavedDesigns(designToRemove);
   		};
 
+      $scope.shareDesignId = function (id) {
+        var index = getItemIndex(id);
+        $scope.modalDesign = User.getOneSavedDesign(index);
+        return ngDialog.open({
+          'template': 'views/modals/designIDModal.html',
+          'scope': $scope
+        })
+      };
+
   		//Sends the user back to abacus with the selected wheelchair
-  		$scope.editWheelchair = function (index) {
-        if ($scope.wheelchairUIOpts[index].checked) {
+  		$scope.editWheelchair = function (id) {
+        var itemIndex = getItemIndex(id);
+        if ($scope.wheelchairUIOpts[itemIndex].checked) {
           // if it is a comared design, remove it from ComparedDesigns storage
-          ComparedDesigns.myDesigns.removeDesign($scope.wheelchairUIOpts[index].design);
+          ComparedDesigns.myDesigns.removeDesign($scope.wheelchairUIOpts[itemIndex].design);
         }
 
-  			User.setEditWheelchairFromMyDesign(index, $scope.wheelchairUIOpts[index].design)
+  			User.setEditWheelchairFromMyDesign(itemIndex, $scope.wheelchairUIOpts[itemIndex].design)
           .then(function () {
             $location.search({}).path('/tinker');
           });
   		};
 
-  		$scope.addToCart = function (chairIdx) {
-  			var design = $scope.wheelchairUIOpts[chairIdx].design;
+  		$scope.addToCart = function (id) {
+        var itemIndex = getItemIndex(id);
+  			var design = $scope.wheelchairUIOpts[itemIndex].design;
   			User.getCart().addWheelchair(design);
-        return $scope.deleteWheelchair(chairIdx, true);
+        return $scope.deleteWheelchair(itemIndex, true);
   		};
 
-  		$scope.dowloadDesignPDF = function (chairIdx) {
-  			var design = $scope.wheelchairUIOpts[chairIdx].design;
+  		$scope.dowloadDesignPDF = function (id) {
+        var itemIndex = getItemIndex(id);
+  			var design = $scope.wheelchairUIOpts[itemIndex].design;
         DownloadPDF.forWheelchairs(design);
   		};
 
