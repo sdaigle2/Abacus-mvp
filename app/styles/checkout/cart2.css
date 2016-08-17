@@ -42,6 +42,7 @@
   height: 80vh;
   width: 100%;
   z-index: -5000;
+  background: -webkit-linear-gradient(#EAEAEA, #FFFFFF);
   background: linear-gradient(#EAEAEA, #FFFFFF);
 }
 

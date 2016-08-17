@@ -589,9 +589,18 @@ div{
 }
 
 /*******Save & reveiw drodown buttun***********/
+@-webkit-keyframes expandLogin {
+  from {top: -200px;}
+  to {top: 40px;}
+}
 @keyframes expandLogin {
   from {top: -200px;}
   to {top: 40px;}
+}
+
+@-webkit-keyframes leaveLogin {
+  from {top: 40px;}
+  to {top: -200px;}
 }
 
 @keyframes leaveLogin {
@@ -613,15 +622,18 @@ div{
 }
 
 .fixPosition.ng-enter{
-  animation: expandLogin 0.5s;
+  -webkit-animation: expandLogin 0.5s;
+          animation: expandLogin 0.5s;
 }
 
 .fixPosition.ng-leave{
-  animation: leaveLogin 0.5s;
+  -webkit-animation: leaveLogin 0.5s;
+          animation: leaveLogin 0.5s;
 }
 
 #foreground{
   position: absolute;
+  background: -webkit-linear-gradient(bottom, gray, black);
   background: linear-gradient(0deg, gray, black);
   top: 40px;
   width: 100%;
@@ -687,13 +699,17 @@ div{
 }
 
 .dropdownButton.ng-enter{
-  animation-name: expand;
-  animation-duration: 0.5s;
+  -webkit-animation-name: expand;
+          animation-name: expand;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 .dropdownButton.ng-leave{
-  animation-name: leave;
-  animation-duration: 0.5s;
+  -webkit-animation-name: leave;
+          animation-name: leave;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 

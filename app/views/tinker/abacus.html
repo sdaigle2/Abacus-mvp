@@ -28,13 +28,11 @@
     <div class="panelMask" ng-click="closeSaveDropDown()"></div>
     <div  class="actionPanel center" ng-if="loginPanel == 'main' ">
       <section data-ng-click="saveDesign()" >
-        <img
-             data-ng-src="images/abacus_page/save_review/add_to_cart.png" alt="save to my design">
+        <div class="save-cart"></div>
         <h6 class="medium"> ADD TO CART </h6>
       </section>
       <section data-ng-click="saveForLater()">
-        <img
-             data-ng-src="images/abacus_page/save_review/add_to_mydesigns.png" alt="save to my design">
+        <div class="save-mydesign"></div>
         <h6 class="medium"> SAVE TO MY DESIGN
           <span class="glyphicon glyphicon-question-sign"
                 data-ng-init="addiInfo1 = false" data-ng-mouseover="addiInfo1 = true"
@@ -42,13 +40,11 @@
         <p ng-show="addiInfo1" class="medium">Design will be saved under your account for future use</p>
       </section>
       <section data-ng-click="downloadChairPDF()" >
-        <img
-             data-ng-src="images/abacus_page/save_review/download_pdf.png" alt="save to my design">
+        <div class="download-pdf"></div>
         <h6 class="medium"> DOWNLOAD PDF</h6>
       </section>
       <section data-ng-click="shareDesignID()">
-        <img
-             data-ng-src="images/abacus_page/save_review/share.png" alt="save to my design">
+        <div class="share-design"></div>
         <h6 class="medium"> SHARE DESIGN
           <span class="glyphicon glyphicon-question-sign"
                 data-ng-init="addiInfo2 = false" data-ng-mouseover="addiInfo2 = true"

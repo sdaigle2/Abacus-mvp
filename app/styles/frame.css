@@ -11,6 +11,7 @@
   height: 50vh;
   width: 100%;
   z-index: -5000;
+  background: -webkit-linear-gradient(#EAEAEA, #FFFFFF);
   background: linear-gradient(#EAEAEA, #FFFFFF);
 }
 
@@ -186,6 +187,7 @@ background: white;
 .img .frame-item-desc {
   position: absolute;
   width: 100%;
+  -webkit-transition: all 0.2s ease 0s;
   transition: all 0.2s ease 0s;
   height: 100%;
   opacity: 0.9;
