@@ -115,7 +115,7 @@ function getUserByID(userID, cb) {
 		var getUserSavedDesigns = function (cb) {
 			var savedDesigns = user.savedDesigns || [];
 			var savedDesignIDs = savedDesigns.map(function (design) {
-				return getObjectID(design, '_id');
+				if (design) return getObjectID(design, '_id');
 			});
 			getAllByID(dbService.designs, savedDesignIDs, cb);
 		};
@@ -124,7 +124,7 @@ function getUserByID(userID, cb) {
 		var getUserOrders = function (cb) {
 			var userOrders = user.orders || [];
 			var orderIDS = userOrders.map(function (order) {
-				return getObjectID(order, '_id');
+				if (order) return getObjectID(order, '_id');
 			});
 			// Gets all the orders with their linked fields populated. (Only linked field in Orders is 'wheelchairs' which are designs)
 			async.map(orderIDS, getOrderByID, cb);
