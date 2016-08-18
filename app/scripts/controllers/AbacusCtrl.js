@@ -202,8 +202,8 @@ angular.module('abacuApp')
                 return User.fetchDesign(id)
                   .then(function (design) {
                     var cloneDesign = design.clone();
-                    User.createCurrentDesign(cloneDesign);
                     initCurrentWheelchair(cloneDesign.wheelchair);
+                    User.createCurrentDesign(cloneDesign);
                   });
               } else {
                 $location.path('/frames')
@@ -212,6 +212,7 @@ angular.module('abacuApp')
           } else {
             User.fetchDesign(id)
             .then(function (design) {
+              initCurrentWheelchair(design.wheelchair);
               User.createCurrentDesign(design);
             })
             .catch(function (err) {
