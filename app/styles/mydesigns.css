@@ -154,9 +154,7 @@
   height: 26px;
   right: -47px;
   top: 2px;
-  -webkit-animation: arrow-jump 1s infinite; /* Safari 4+ */
-  -moz-animation:    arrow-jump 1s infinite; /* Fx 5+ */
-  -o-animation:      arrow-jump 1s infinite; /* Opera 12+ */
+  -webkit-animation: arrow-jump 1s infinite; /* Safari 4+ */ /* Fx 5+ */ /* Opera 12+ */
   animation:         arrow-jump 1s infinite; /* IE 10+, Fx 29+ */
 }
 
@@ -164,8 +162,6 @@
   0%   { opacity: 0.3;}
   100% { opacity: 1;
     -webkit-transform: translateX(10px);
-    -moz-transform: translateX(10px);
-    -o-transform: translateX(10px);
     transform: translateX(10px);
   }
 

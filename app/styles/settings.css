@@ -103,6 +103,7 @@
 }
 .settingsSidebarOption.active {
   border-right: 8px solid rgba(79, 157, 255, 1);
+  -webkit-transition: .5s;
   transition: .5s;
   font-weight: 500;
 
@@ -120,11 +121,13 @@
 }
 .settingsSidebarButtons.showSettingsSidebarButtons {
   display: initial;
-  animation: fadeIn 0.3s;
+  -webkit-animation: fadeIn 0.3s;
+          animation: fadeIn 0.3s;
 }
 .settingsSidebarButtons.hideSettingsSidebarButtons {
   display: none;
-  animation: fadeOut 0.3s;
+  -webkit-animation: fadeOut 0.3s;
+          animation: fadeOut 0.3s;
 }
 
 .settingsSidebarButton {
@@ -175,7 +178,8 @@
   top: 0;
   right: 0;
   z-index: 500;
-  animation: fadeInShift 0.5s;
+  -webkit-animation: fadeInShift 0.5s;
+          animation: fadeInShift 0.5s;
 }
 
 

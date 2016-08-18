@@ -46,6 +46,10 @@ This directory contains all middleware policies. These are small checks that hap
 ### server_scripts/services
 Services are fairly generic. Anytime you want to define a function or expose a variable that needs to be referenced in multiple places, expose it in a file under `server_scripts/services` and then import it with `require` wherever you need it.
 
+## Writing CSS
+
+After writing or altering CSS, make sure to run `npm run autoprefixer` in order to have style prefixes required for different browsers.
+
 ## Testing
 
 

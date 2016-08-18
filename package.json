@@ -30,6 +30,7 @@
     "wkhtmltopdf": "^0.1.5"
   },
   "devDependencies": {
+    "autoprefixer": "^6.4.0",
     "chance": "^1.0.2",
     "grunt": "^0.4.1",
     "grunt-autoprefixer": "^0.7.3",
@@ -59,6 +60,7 @@
     "karma-jasmine": "^0.3.5",
     "karma-phantomjs-launcher": "^0.1.4",
     "load-grunt-tasks": "^0.4.0",
+    "postcss-cli": "^2.5.2",
     "should": "^8.3.1",
     "supertest": "^1.2.0",
     "time-grunt": "^0.3.1"
@@ -71,6 +73,7 @@
     "test": "npm run test_backend && npm run test_frontend",
     "postinstall": "bower install",
     "clean": "rm ~/temp_chair_pics/* && rm ~/generated_pdfs/*",
+    "autoprefixer": "postcss -u autoprefixer -r app/styles/**/*.css",
     "test_frontend": "grunt test",
     "test_backend": "mocha tests/backend_tests/bootstrap.test.js tests/backend_tests/unit/**/*.test.js --timeout 5000"
   }

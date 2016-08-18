@@ -13,6 +13,7 @@
   height: 50vh;
   width: 100%;
   z-index: -5000;
+  background: -webkit-linear-gradient(#EAEAEA, #FFFFFF);
   background: linear-gradient(#EAEAEA, #FFFFFF);
 }
 
@@ -40,8 +41,12 @@
 }
 
 .center{
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 #saveAction .actionPanel{
@@ -69,6 +74,7 @@
 
 
 #saveAction.ng-enter {
+  -webkit-transition: 0.2s linear all;
   transition:0.2s linear all;
   opacity:0;
 }
@@ -88,9 +94,6 @@
 #saveAction.animate-leave
 {
   -webkit-transition: 925ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-  -moz-transition: 925ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-  -ms-transition: 925ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
-  -o-transition: 925ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
   transition: 925ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
 }
 #saveAction.animate-enter {
@@ -122,17 +125,49 @@
   cursor: pointer;
 }
 
-#saveAction section img{
-  width: 70px;
+#saveAction .save-cart {
   height: 70px;
-  object-fit: none;
-  object-position: 0 0;
+  width: 70px;
+  margin: 0 auto;
+  background: url(../../images/abacus_page/save_review/add_to_cart.png) 0 0;
 }
 
-#saveAction section img:hover{
-  object-position: -70px 0;
+#saveAction .save-cart:hover {
+  background: url(../../images/abacus_page/save_review/add_to_cart.png) -71px 0;
 }
 
+#saveAction .save-mydesign {
+  height: 70px;
+  width: 70px;
+  margin: 0 auto;
+  background: url(../../images/abacus_page/save_review/add_to_mydesigns.png) 0 0;
+}
+
+#saveAction .save-mydesign:hover {
+  background: url(../../images/abacus_page/save_review/add_to_mydesigns.png) -71px 0;
+}
+
+#saveAction .download-pdf {
+  height: 70px;
+  width: 70px;
+  margin: 0 auto;
+  background: url(../../images/abacus_page/save_review/download_pdf.png) 0 0;
+}
+
+#saveAction .download-pdf:hover {
+  background: url(../../images/abacus_page/save_review/download_pdf.png) -71px 0;
+}
+
+#saveAction .share-design {
+  height: 70px;
+  width: 70px;
+  margin: 0 auto;
+  background: url(../../images/abacus_page/save_review/share.png) 0 0;
+}
+
+#saveAction .share-design:hover {
+  background: url(../../images/abacus_page/save_review/share.png) -71px 0;
+}
 
 #saveAction section span{
   position: relative;
@@ -255,6 +290,15 @@
 
 /******************Save Button********** **********/
 
+@-webkit-keyframes flash {
+  from {
+    background-color: #fec44f
+  }
+  to {
+    background-color: #00A89C
+  }
+}
+
 @keyframes flash {
   from {
     background-color: #fec44f
@@ -271,7 +315,6 @@
   text-align: center;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -khtml-user-select: none;
   -moz-user-select: -moz-none;
   -ms-user-select: none;
   -o-user-select: none;
@@ -340,12 +383,22 @@
 }
 
 #SaveButton.complete {
-  animation: flash 1s infinite;
+  -webkit-animation: flash 1s infinite;
+          animation: flash 1s infinite;
 }
 
 #progressSaveBar .saveButton {
   background-color: white;
   color: #00a89c;
+}
+
+@-webkit-keyframes expand {
+  from {
+    top: -200px;
+  }
+  to {
+    top: 0;
+  }
 }
 
 @keyframes expand {
@@ -354,6 +407,15 @@
   }
   to {
     top: 0;
+  }
+}
+
+@-webkit-keyframes leave {
+  from {
+    top: 0;
+  }
+  to {
+    top: -200px;
   }
 }
 
@@ -376,13 +438,17 @@
 }
 
 .dropdownButton.ng-enter {
-  animation-name: expand;
-  animation-duration: 0.5s;
+  -webkit-animation-name: expand;
+          animation-name: expand;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 .dropdownButton.ng-leave {
-  animation-name: leave;
-  animation-duration: 0.5s;
+  -webkit-animation-name: leave;
+          animation-name: leave;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 .dropdownButton td {
@@ -413,13 +479,17 @@
 }
 
 .appBodyShow {
-  animation-name: expand;
-  animation-duration: 0.5s;
+  -webkit-animation-name: expand;
+          animation-name: expand;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 .appBodyShow-remove {
-  animation-name: leave;
-  animation-duration: 0.5s;
+  -webkit-animation-name: leave;
+          animation-name: leave;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
 }
 
 /******************* Price & Weight Display *****************/
@@ -569,6 +639,7 @@
   width: 700px;
   background-color: #fff;
   z-index: 9999;
+  -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
 }
 .main-custom .main-custom-user-info .info-handler {
@@ -583,8 +654,10 @@
   border-top-left-radius: 5px;
   top: 46%;
   width: 100px;
-  transform: translateY(-50%) rotate(90deg);
-  transform-origin: left top 0;
+  -webkit-transform: translateY(-50%) rotate(90deg);
+          transform: translateY(-50%) rotate(90deg);
+  -webkit-transform-origin: left top 0;
+          transform-origin: left top 0;
   color: black;
   font-weight: bold;
 }
@@ -626,9 +699,16 @@
   margin-left: 10px;
 }
 .main-custom .main-custom-user-info .user-info-form .input-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   margin-bottom: 10px
 }
 .main-custom .main-custom-user-info .user-info-form .input-div label {
@@ -644,9 +724,16 @@
 .main-custom .main-custom-user-info .user-info-form .info-input {
   width: 70%;
   margin-right: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 .main-custom .main-custom-user-info .user-info-form .info-input input {
   width: 150px;
@@ -1262,6 +1349,7 @@
 
 .sideBar-measure-bottom .dots i:hover {
   color: #525355;
+  -webkit-transition: .5s;
   transition: .5s;
 }
 
@@ -1272,18 +1360,12 @@
     top: 0px;
     width:200px;
   -webkit-transition: left 1s;
-  -moz-transition: left 1s ;
-  -ms-transition: left 1s;
-  -o-transition: left 1s;
   transition: left 1s;
 }
 
 .colorSizeBlockWrapper.slide-over{
     left: -510px;
   -webkit-transition: left 1s;
-  -moz-transition: left 1s ;
-  -ms-transition: left 1s;
-  -o-transition: left 1s;
   transition: left 1s;
 }
 
@@ -1391,12 +1473,30 @@
   height: 100%;
 }
 
+@-webkit-keyframes slideLeft {
+  from {
+    left: 0px;
+  }
+  to{
+    left: -310px;
+  }
+}
+
 @keyframes slideLeft {
   from {
     left: 0px;
   }
   to{
     left: -310px;
+  }
+}
+
+@-webkit-keyframes slideRight {
+  from {
+    left: -310px;
+  }
+  to {
+    left: 0px;
   }
 }
 
@@ -1428,17 +1528,22 @@
 }
 
 .panel.ng-enter {
-  animation: slideLeft;
-  animation-duration: 1s;
+  -webkit-animation: slideLeft;
+          animation: slideLeft;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
 }
 
 .panel.ng-leave {
-  animation: slideRight;
-  animation-duration: 1s;
+  -webkit-animation: slideRight;
+          animation: slideRight;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
 }
 
 .panel.hidden {
   left: 0;
+  -webkit-transition: 1s;
   transition: 1s;
   opacity: 0;
 }
@@ -1628,6 +1733,7 @@
   border-bottom: 15px solid transparent;
 
   border-left: 15px solid #D6D8D8;
+  -webkit-transition: 1s;
   transition: 1s;
 }
 
@@ -1683,6 +1789,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   background-color: #D6D8D8;
+  -webkit-transition: 1s;
   transition: 1s;
   opacity: .9;
 }
@@ -1723,6 +1830,7 @@ td.details-special-td {
   width: 100%;
   height: 100%;
   position: absolute;
+  background: -webkit-linear-gradient(bottom, gray, black);
   background: linear-gradient(0deg, gray, black);
   opacity: 0.5;
 }
@@ -1807,6 +1915,7 @@ body {
 }
 .onoffswitch-inner {
     display: block; width: 200%; margin-left: -100%;
+    -webkit-transition: margin 0.3s ease-in 0s;
     transition: margin 0.3s ease-in 0s;
 }
 .onoffswitch-inner:before, .onoffswitch-inner:after {
@@ -1831,6 +1940,7 @@ body {
     position: absolute; top: -7px; bottom: 5px;
     right: 72px;
     border: 13px solid #4F9DFF; border-radius: 21px;
+    -webkit-transition: all 0.3s ease-in 0s;
     transition: all 0.3s ease-in 0s;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {

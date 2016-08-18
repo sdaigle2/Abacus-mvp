@@ -1,4 +1,4 @@
-﻿.order {
+.order {
   line-height: normal;
   min-width: 1050px;
   width: 100%;
@@ -147,8 +147,6 @@
 
 #cardType>select{
   height:25px;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
   border-radius: 0px;
 }
 

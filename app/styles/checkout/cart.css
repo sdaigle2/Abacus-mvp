@@ -256,7 +256,6 @@ a:hover{
   padding-left: 410px;
   margin-left: 20px;
   width: 98%;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   float: left;
   clear: left;
@@ -306,8 +305,10 @@ a:hover{
 }
 
 .option-desc.ng-enter{
-  animation-name: expand;
-  animation-duration: 2s;
+  -webkit-animation-name: expand;
+          animation-name: expand;
+  -webkit-animation-duration: 2s;
+          animation-duration: 2s;
 }
 
 .option-desc > p{
