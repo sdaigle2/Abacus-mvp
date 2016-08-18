@@ -409,6 +409,7 @@ angular.module('abacuApp')
       $scope.emptyDiscount = function() {
         $scope.curOrder.emptyDiscount();
         localJSONStorage.remove('promo')
+        return User.updateCart();
       };
 
       $scope.$on('userChange', function () {
