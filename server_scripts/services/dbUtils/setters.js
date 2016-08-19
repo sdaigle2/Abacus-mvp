@@ -49,6 +49,10 @@ function updateOrInsertAllEntries(argsObj, cb) {
 	var idField = argsObj.idField;
 	var entries = argsObj.entries;
 
+	entries = entries.filter(function( element ) {
+	   return element;
+	});
+	
 	async.map(entries, function (entry, cb) {
 		if (_.isObject(entry)) {
 			// We're being given the object as a whole
