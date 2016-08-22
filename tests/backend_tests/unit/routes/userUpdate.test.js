@@ -39,7 +39,7 @@ describe('Test user updates', () => {
       }
     };
     agent
-      .post('/update-current-wheelchair')
+      .post('/users/current/current-wheelchair')
       .send(wheelchair)
       .then(() => {
         getUserPr(user._id).then(function (resp) {
@@ -54,7 +54,7 @@ describe('Test user updates', () => {
 
   it('Should not be able to update wheelchair if user is not logged in', done => {
     request(app)
-      .post('/update-current-wheelchair')
+      .post('/users/current/current-wheelchair')
       .expect(res => {
         res.should.have.property('body');
         res.body.should.have.property('userID');
@@ -71,7 +71,7 @@ describe('Test user updates', () => {
     };
 
     agent
-      .post('/update-saved-designs')
+      .post('/users/current/designs')
       .send(testDesigns)
       .then(() => {
         getUserPr(user._id).then(function (resp) {
@@ -86,7 +86,7 @@ describe('Test user updates', () => {
 
   it('Should not be able to update saved designs if user is not logged in', done => {
     request(app)
-      .post('/update-saved-designs')
+      .post('/users/current/designs')
       .expect(res => {
         res.should.have.property('body');
         res.body.should.have.property('userID');
@@ -138,7 +138,7 @@ describe('Test user updates', () => {
     }
 
     agent
-      .post('/update-cart')
+      .post('/users/current/cart')
       .send(expectedCartObj)
       .then((response) => {
         let cartId = response.body._id;
@@ -159,7 +159,7 @@ describe('Test user updates', () => {
 
   it('Should not be able to update cart if user is not logged in', done => {
     request(app)
-      .post('/update-cart')
+      .post('/users/current/cart')
       .expect(res => {
         res.should.have.property('body');
         res.body.should.have.property('userID');
@@ -171,7 +171,7 @@ describe('Test user updates', () => {
   it('Should update user information', done => {
     user.fName = 'differentName';
     agent
-      .post('/update-user-info')
+      .post('/users/current/info')
       .send(user)
       .then(() => {
         getUserPr(user._id).then(function (resp) {
@@ -186,7 +186,7 @@ describe('Test user updates', () => {
   it('Should validate new password', done => {
     user.newPass1 = '5char';
     agent
-      .post('/update-user-info')
+      .post('/users/current/info')
       .send(user)
       .then((res) => {
         res.body.message.should.equal('New password is not valid');
@@ -200,7 +200,7 @@ describe('Test user updates', () => {
 
   it('Should not be able to update user info if user is not logged in', done => {
     request(app)
-      .post('/update-user-info')
+      .post('/users/current/info')
       .expect(res => {
         res.should.have.property('body');
         res.body.should.have.property('userID');

@@ -4,7 +4,7 @@ angular.module('abacuApp').factory('ForgotAPI', function ($http) {
 
     function sendResetPasswordLink (mail) {
         return $http({
-            url: '/reset-link/' + mail,
+            url: '/users/email/' + mail + '/request-reset-password',
             method: 'POST'
         })
         .then(pushResponse)
@@ -13,7 +13,7 @@ angular.module('abacuApp').factory('ForgotAPI', function ($http) {
 
     function checkResetPasswordCode (resetToken) {
         return $http({
-            url: '/password-reset-key/' + resetToken,
+            url: '/users/reset-password-code/' + resetToken + '/exists',
             method: 'GET'
         })
         .then(pushResponse)
@@ -22,7 +22,7 @@ angular.module('abacuApp').factory('ForgotAPI', function ($http) {
 
     function setPassword (params) {
         return $http({
-            url: '/change-user-password',
+            url: '/users/current/change-password',
             method: 'PUT',
             data: params
         })

@@ -45,7 +45,7 @@ angular.module('abacuApp')
           return deferred.promise
         }
         $http({
-          url: '/register'
+          url: '/users/register'
           , data: $scope.accountModel
           , method: 'POST'
         }).success(function (data) {

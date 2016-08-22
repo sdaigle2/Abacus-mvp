@@ -24,7 +24,7 @@ angular.module('abacuApp')
         };
         if (self.userID !== -1) {
           return $http({
-            url: '/update-current-wheelchair',
+            url: '/users/current/current-wheelchair',
             data: data,
             method: 'POST'
           })

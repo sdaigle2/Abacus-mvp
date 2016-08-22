@@ -53,9 +53,9 @@ describe('Tests main userService functions exposed to controllers', function () 
     };
     User.setUser();
     var currentWheelChair = User.getCurrentWheelchair();
-    httpBackend.expectPOST('/update-current-wheelchair', currentWheelChair)
+    httpBackend.expectPOST('/users/current/current-wheelchair', currentWheelChair)
     .respond(200, expectedWheelchairObj);
-    httpBackend.whenPOST('/session', '').respond(200, '');
+    httpBackend.whenGET('users/current').respond(200, '');
     User.createCurrentDesign(1);
     httpBackend.flush();
     var wheelchairFromRestore = User.getCurrentWheelchair();
@@ -78,9 +78,9 @@ describe('Tests main userService functions exposed to controllers', function () 
     User.setUser();
     User.setCart(mockCart);
     var currentWheelChair = User.getCurrentWheelchair();
-    httpBackend.expectPOST('/update-current-wheelchair', currentWheelChair)
+    httpBackend.expectPOST('/users/current/current-wheelchair', currentWheelChair)
     .respond(200, expectedWheelchairObj);
-    httpBackend.whenPOST('/session', '').respond(200, '');
+    httpBackend.whenGET('users/current').respond(200, '');
     User.setEditWheelchair(0, expectedWheelchairObj)
     httpBackend.flush();
     var wheelchairFromRestore = User.getCurrentWheelchair();
@@ -101,9 +101,9 @@ describe('Tests main userService functions exposed to controllers', function () 
     User.setUser();
     User.setDesign(mockDesigns);
     var currentWheelChair = User.getCurrentWheelchair();
-    httpBackend.expectPOST('/update-current-wheelchair', currentWheelChair)
+    httpBackend.expectPOST('/users/current/current-wheelchair', currentWheelChair)
     .respond(200, expectedWheelchairObj);
-    httpBackend.whenPOST('/session', '').respond(200, '');
+    httpBackend.whenGET('users/current').respond(200, '');
     User.setEditWheelchairFromMyDesign(0)
     httpBackend.flush();
     var wheelchairFromRestore = User.getCurrentWheelchair();
@@ -115,9 +115,9 @@ describe('Tests main userService functions exposed to controllers', function () 
       'savedDesigns': ['testDesign']
     };
     User.setUser();
-    httpBackend.expectPOST('/update-saved-designs', expectedSavedDesignsObj)
+    httpBackend.expectPOST('/users/current/designs', expectedSavedDesignsObj)
     .respond(200, expectedSavedDesignsObj);
-    httpBackend.whenPOST('/session', '').respond(200, '');
+    httpBackend.whenGET('users/current').respond(200, '');
     User.addDesignIDToSavedDesigns(expectedSavedDesignsObj.savedDesigns[0])
     httpBackend.flush();
     var savedDesignsFromRestore = User.getSavedDesigns();
@@ -130,9 +130,9 @@ describe('Tests main userService functions exposed to controllers', function () 
     };
     User.setUser();
     User.setDesign(['testId']);
-    httpBackend.expectPOST('/update-saved-designs', expectedSavedDesignsObj)
+    httpBackend.expectPOST('/users/current/designs', expectedSavedDesignsObj)
     .respond(200, []);
-    httpBackend.whenPOST('/session', '').respond(200, '');
+    httpBackend.whenGET('users/current').respond(200, '');
     User.removeDesignFromSavedDesigns('testId')
     httpBackend.flush();
     var savedDesignsFromRestore = User.getSavedDesigns();
@@ -145,9 +145,9 @@ describe('Tests main userService functions exposed to controllers', function () 
     User.setCurrentWheelchair({
       'design': {}
     })
-    httpBackend.expectPOST('/update-cart', expectedCartObj)
+    httpBackend.expectPOST('/users/current/cart', expectedCartObj)
     .respond(200, expectedCartObj.cart);
-    httpBackend.whenPOST('/session', '').respond(200, '');
+    httpBackend.whenGET('users/current').respond(200, '');
     
     User.pushNewWheelchair('testWheelchair');
     User.setCart(null); // intentionally setting cart to null to check if it updates on response from server
@@ -162,9 +162,9 @@ describe('Tests main userService functions exposed to controllers', function () 
     User.setCurrentWheelchair({
       'design': {}
     })
-    httpBackend.expectPOST('/update-cart', expectedCartObj)
+    httpBackend.expectPOST('/users/current/cart', expectedCartObj)
     .respond(200, expectedCartObj.cart);
-    httpBackend.whenPOST('/session', '').respond(200, '');
+    httpBackend.whenGET('users/current').respond(200, '');
     
     User.deleteWheelchair(0);
     httpBackend.flush();
@@ -191,7 +191,7 @@ describe('Tests main userService functions exposed to controllers', function () 
     User.setUser();
     httpBackend.expectPOST('/update-user-info', userInfo.user)
     .respond(200, userInfo);
-    httpBackend.whenPOST('/session', '').respond(200, '');
+    httpBackend.whenGET('users/current').respond(200, '');
     
     User.updateUserInfo(userInfo.user);
     httpBackend.flush();

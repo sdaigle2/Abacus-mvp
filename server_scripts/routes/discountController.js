@@ -5,7 +5,7 @@
 const router = require('express').Router();
 const dbService = require('../services/db');
 
-router.get('/discount/:id', function (req, res) {
+router.get('/discounts/:id', function (req, res) {
 	var id = req.params.id;
 	//query the database
 	dbService.discounts.get(id,function(err,body){

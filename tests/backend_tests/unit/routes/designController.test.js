@@ -46,7 +46,7 @@ describe('Test CRUD Ops', () => { // no delete functionality right now
 
   it('Should make a design object', done => {
     agent
-      .post('/design')
+      .post('/designs')
       .send(dummyDesign)
       .expect(res => {
         res.should.have.property("body");
@@ -69,7 +69,7 @@ describe('Test CRUD Ops', () => { // no delete functionality right now
 
   it('Should be able to fetch a design given the design ID', done => {
     agent
-      .get(`/design/${dummyDesign._id}`)
+      .get(`/designs/${dummyDesign._id}`)
       .expect(res => {
         res.should.have.property("body");
 
@@ -82,7 +82,7 @@ describe('Test CRUD Ops', () => { // no delete functionality right now
     dummyDesign = _.merge(dummyDesign, {'hi': 5}); // adds a hi attribute to dummyDesign with value 5
 
     agent
-      .put(`/design/${dummyDesign._id}`)
+      .put(`/designs/${dummyDesign._id}`)
       .send(dummyDesign)
       .expect(res => {
         res.should.have.property("body");
@@ -143,7 +143,7 @@ describe('Tests Wheelchair pdf generation', function () {
 
   it('Should create a design object', done => {
     agent
-      .post('/design')
+      .post('/designs')
       .send(sampleDesign)
       .expect(res => {
         res.should.have.property("body");
@@ -161,33 +161,11 @@ describe('Tests Wheelchair pdf generation', function () {
       .expect(200, done);
   });
 
-  it('Should send request to backend to generate the PDF with design specified by ID', function (done) {
-    this.timeout(20e3); // this request doesnt complete until the pdf is generated so it takes a while
-
-    agent
-      .post(`/design/pdf/${sampleDesign._id}`)
-      .expect(res => {
-        res.should.have.property('body');
-
-        res.body.should.have.property('filename');
-        res.body.should.have.property('url');
-
-        pdfDownloadURL_ID = res.body.url; // set the url for the next test that attempts to download the pdf
-      })
-      .expect(200, done);
-  });
-
-  it('Should download PDF from URL from ID specified request', done => {
-    agent
-      .get(pdfDownloadURL_ID)
-      .expect(200, done);
-  });
-
   it('Should send request to backend to generate the PDF with design given in body', function (done) {
     this.timeout(20e3); // this request doesnt complete until the pdf is generated so it takes a while
 
     agent
-      .post('/design/pdf/')
+      .post('/design-drawings')
       .send(sampleDesign)
       .expect(res => {
         res.should.have.property('body');

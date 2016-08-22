@@ -28,7 +28,7 @@ var findUserPr = Promise.promisify(dbService.users.find);
 var insertUserPr = Promise.promisify(dbService.users.insert);
 
 //RESET PASSWOD LINK
-router.post('/reset-link/:email', function (req, res) {
+router.post('/users/email/:email/request-reset-password', function (req, res) {
   var userEmail = req.params.email;
   var query = { selector: { email: userEmail }};
   findUserPr(query)
@@ -61,7 +61,7 @@ router.post('/reset-link/:email', function (req, res) {
 });
 
 //CHECKS IF RESET PASSWORD LINK EXISTS
-router.get('/password-reset-key/:resetPasswordCode', function(req, res) {
+router.get('/users/reset-password-code/:resetPasswordCode/exists', function(req, res) {
   var passwordCode = req.params.resetPasswordCode;
   var query = { selector: { resetLink: passwordCode }};
   findUserPr(query)
@@ -82,7 +82,7 @@ router.get('/password-reset-key/:resetPasswordCode', function(req, res) {
 });
 
 //CHANGES PASSWORD
-router.put('/change-user-password', function(req, res) {
+router.put('/users/current/change-password', function(req, res) {
   var newPassword = req.body.newPassword;
   var userEmail = req.body.email;
   var query = { selector: { email: userEmail }};
@@ -123,16 +123,16 @@ router.put('/change-user-password', function(req, res) {
 
 //TODO: cancel out the console.log( password);
 
-router.post('/login', function (req, res) {
+router.post('/users/email/sign-in/:email', function (req, res) {
   //Retrieve request parameters
-  var email = req.body.email;
+  var email = req.params.email;
   var password = req.body.password;
 
   // Check that the email & password are given and not empty
   if ( !([email, password].every(_.isString)) || [email, password].some(_.isEmpty)) {
     res.status(400);
     res.json({
-      'err': "Bad Login: Must Provice an Email and a Password"
+      'err': "Bad Login: Must Provide an Email and a Password"
     });
     return;
   }
@@ -181,7 +181,7 @@ router.post('/login', function (req, res) {
 // });
 
 //LOGOUT
-router.post('/logout', restrict, function (req, res) {
+router.post('/users/current/logout', restrict, function (req, res) {
   //Destroy session cookie
   req.session.destroy(function () {
     res.send('success');
@@ -189,7 +189,7 @@ router.post('/logout', restrict, function (req, res) {
 });
 
 //Check user session on page reload
-router.post('/session', restrict, function (req, res) {
+router.get('/users/current', restrict, function (req, res) {
   dbUtils.getUserByID(req.session.user, function (err, body) { //Query the database using the session cookie
     if (!err) {
       //clean the trace
@@ -203,7 +203,7 @@ router.post('/session', restrict, function (req, res) {
 });
 
 //REGISTER
-router.post('/register', function (req, res) {
+router.post('/users/register', function (req, res) {
   //Retrieve request parameters that we need, ignoring any others.
   var data = {
     fName: req.body.fName,

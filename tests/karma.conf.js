@@ -26,6 +26,7 @@ module.exports = function(config) {
       'app/bower_components/angular-route/angular-route.js',
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-touch/angular-touch.js',
+      'app/bower_components/angular-bootstrap/ui-bootstrap.js',
       'app/bower_components/ng-dialog/js/ngDialog.js',
       'app/bower_components/ngclipboard/dist/ngclipboard.js',
       'app/bower_components/angular-loading-bar/src/loading-bar.js',

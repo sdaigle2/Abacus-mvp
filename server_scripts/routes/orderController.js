@@ -24,22 +24,8 @@ const MANUFACTURER_EMAIL = ['sales@per4max.com', 'ckommer@per4max.com', 'dfik@pe
 //const MANUFACTURER_EMAIL = ['scott@intelliwheels.net', 'brian@intelliwheels.net'];
 console.log(`NOTE: Invoice Emails will be sent to Manufacturer at this email: ${MANUFACTURER_EMAIL}`);
 
-//Send a pdf of the given wheelchair to the user
-router.post('/save', function (req, res) {
-  //Cross check the wheelchair against the JSON, while calculating the total price
-  const total = priceCalculator.getChairTotal(req.body.wheelchair);
-  //The wheelchair is valid
-  if (_.isNumber(total) && total > 0) {
-    //Generate a pdf and send it as a blob
-    genSave(req.body.wheelchair, res);
-  } else {
-    //There was an invalid value in the wheelchair object
-    res.send('Invalid chair');
-  }
-});
-
 // downloads Invoice PDF for a given order
-router.get('/order/download/:id', (req, res) => {
+router.get('/orders/:id/invoice', (req, res) => {
   var id = req.params.id;
 
   if (!_.isString(id) || (id === '')) {
@@ -65,7 +51,7 @@ router.get('/order/download/:id', (req, res) => {
 });
 
 //Save order to the db, create a stripe payment, and email pdf to the user
-router.post('/order', function (req, res) {
+router.post('/orders', function (req, res) {
   delete req.body.order.orderNum;
 
   //This token was created client side by the Stripe API, so we do not need credit card details as part of the request

@@ -30,7 +30,7 @@ angular.module('abacuApp')
     function updateCart(data) {
       if (self.userID !== -1) {
         return $http({
-          url: '/update-cart',
+          url: '/users/current/cart',
           data: data,
           method: 'POST'
         })

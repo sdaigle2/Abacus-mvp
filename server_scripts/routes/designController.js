@@ -20,7 +20,7 @@ const restrict = require('../policies/restrict');
 const REQUIRED_DESIGN_PROPERTIES = []; // TODO: Fill list with required properties
 
 // fetch design
-router.get('/design/:id',function(req,res){
+router.get('/designs/:id',function(req,res){
   var id = req.params.id;
   //query the database
   dbService.designs.get(id,function(err,body){
@@ -38,7 +38,7 @@ router.get('/design/:id',function(req,res){
 
 
 // post design
-router.post('/design', restrict, function (req, res) {
+router.post('/designs', restrict, function (req, res) {
   var userDesign = req.body;
 
   // Remove an ID or Revision number that may be attached
@@ -76,7 +76,7 @@ router.post('/design', restrict, function (req, res) {
 });
 
 // put to update design
-router.put('/design/:id', restrict, function (req, res) {
+router.put('/designs/:id', restrict, function (req, res) {
   var id = req.params.id;
   var updatedDesign = req.body;
 
@@ -127,7 +127,7 @@ router.put('/design/:id', restrict, function (req, res) {
 
 // The following two routes are for downloading wheelchair PDF files
 
-router.get('/design/pdf/download/:filename', (req, res) => {
+router.get('/design-drawings/:filename', (req, res) => {
   var filename = req.params.filename;
 
   if (!_.isString(filename) || (_.isString() && _.isEmpty(filename)) ) {
@@ -155,20 +155,15 @@ router.get('/design/pdf/download/:filename', (req, res) => {
 
 // Allows a user to download a PDF for a given design
 // Multiple designs can be specified by including them in the request body
-router.post('/design/pdf/:id?', (req, res) => {
+router.post('/design-drawings', (req, res) => {
   var designID = req.params.id;
 
   const getDesignForPDF = cb => {
-    if (!_.isString(designID) || (_.isString() && _.isEmpty(designID)) ) {
-      // check the request body for the design objects
-      if (_.isObject(req.body)) {
-        // design was given through request body
-        process.nextTick(() => cb(null, req.body));
-      } else {
-        process.nextTick(() => cb(new Error('No valid design given')));
-      }
+    if (_.isObject(req.body)) {
+      // design was given through request body
+      process.nextTick(() => cb(null, req.body));
     } else {
-      dbService.designs.get(designID, cb);
+      process.nextTick(() => cb(new Error('No valid design given')));
     }
   };
 
@@ -189,7 +184,7 @@ router.post('/design/pdf/:id?', (req, res) => {
 
       res.json({
         filename: pdfFileInfo.filename,
-        url: `/design/pdf/download/${pdfFileInfo.filename}` // the path that will allow them to immediately download the file
+        url: `/design-drawings/${pdfFileInfo.filename}` // the path that will allow them to immediately download the file
       });
     });
   });

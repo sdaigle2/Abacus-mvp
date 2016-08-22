@@ -377,7 +377,7 @@ angular.module('abacuApp')
         this.sentDate  = new Date(); //Set date to now - doing this marks this Order as "sent"
 
         return $http({
-          url: '/order',
+          url: '/orders',
           data: {order: this.getAll(), token: token, totalPrice: _.round(this.getTotalCost(), 2)},
           method: 'POST'
         })

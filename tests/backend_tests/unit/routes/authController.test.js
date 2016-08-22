@@ -26,7 +26,7 @@ describe('Simulates Registration, Log-in, Log-out', function () {
 
   it('Should register a new user', done => {
     agent
-      .post('/register')
+      .post('/users/register')
       .send(user)
       .expect(res => {
         res.should.have.property('body');
@@ -38,9 +38,8 @@ describe('Simulates Registration, Log-in, Log-out', function () {
 
   it('Should be able to login with registered user', done => {
     agent
-      .post('/login')
+      .post('/users/email/sign-in/' + user.email)
       .send({
-        email: user.email,
         password: user.password
       })
       .expect(res => {
@@ -61,7 +60,7 @@ describe('Simulates Registration, Log-in, Log-out', function () {
 
   it('Should be able to maintain a session after logging in', done => {
     agent
-      .post('/session')
+      .get('/users/current')
       .expect(res => {
         res.should.have.property('body');
 
@@ -73,7 +72,7 @@ describe('Simulates Registration, Log-in, Log-out', function () {
 
   it('Should successfully change password', done => {
     agent
-      .put('/change-user-password')
+      .put('/users/current/change-password')
       .send({
         email: user.email,
         newPassword: 'newPassword'
@@ -87,7 +86,7 @@ describe('Simulates Registration, Log-in, Log-out', function () {
 
   it('Should throw 400 if new password is less than 8 characters', done => {
     agent
-      .put('/change-user-password')
+      .put('/users/current/change-password')
       .send({
         email: user.email,
         newPassword: '5char'
@@ -101,7 +100,7 @@ describe('Simulates Registration, Log-in, Log-out', function () {
 
   it('Should throw 404 if provided email does not correspond to a valid user', done => {
     agent
-      .put('/change-user-password')
+      .put('/users/current/change-password')
       .send({
         email: 'unexisting@mail.com',
         newPassword: 'newPassword'
@@ -115,7 +114,7 @@ describe('Simulates Registration, Log-in, Log-out', function () {
 
   it('Should request a reset link if user with provided email exists', done => {
     agent
-      .post('/reset-link/' + user.email)
+      .post('/users/email/' + user.email + '/request-reset-password')
       .expect(res => {
         res.should.have.property('body');
         res.body.success.should.equal(true);
@@ -127,7 +126,7 @@ describe('Simulates Registration, Log-in, Log-out', function () {
 
   it('Should throw 404 if user with provided email does not exist', done => {
     agent
-      .post('/reset-link/unexisting@mail.com')
+      .post('/users/email/unexisting@mail.com/request-reset-password')
       .expect(res => {
         res.should.have.property('body');
         res.body.msg.should.equal('No user found with email unexisting@mail.com')
@@ -137,7 +136,7 @@ describe('Simulates Registration, Log-in, Log-out', function () {
 
   it('Should throw 404 if reset-link does not exist in the user object', done => {
     agent
-      .get('/password-reset-key/unexisting')
+      .get('/users/reset-password-code/unexisting/exists')
       .expect(res => {
         res.should.have.property('body');
       })
@@ -146,7 +145,7 @@ describe('Simulates Registration, Log-in, Log-out', function () {
 
   it('Should send 200 if reset-link does exist', done => {
     agent
-      .get('/password-reset-key/' + resetLink)
+      .get('/users/reset-password-code/' + resetLink + '/exists')
       .expect(res => {
         res.should.have.property('body');
         res.body.success.should.equal(true);
@@ -164,7 +163,7 @@ describe('Should not have a session before logging in', () => {
 
   it('Should not be able to retrieve session info before logging in', done => {
     request(app)
-      .post('/session')
+      .get('/users/current')
       .expect(res => {
         res.should.have.property('body');
         res.body.should.have.property('userID');

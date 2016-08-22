@@ -47,7 +47,7 @@ angular.module('abacuApp')
 
       Design.prototype.pullUpdatedCopy = function() {
         return $http({
-            url:'/design/' + this._id,
+            url:'/designs/' + this._id,
             data:{designID:id},
             method:'GET'
         })
@@ -61,7 +61,7 @@ angular.module('abacuApp')
       // Send
       Design.prototype.pushCurrentVersion = function() {
         return $http({
-          url:'/design/' + this._id,
+          url:'/designs/' + this._id,
           data: this.allDetails(),
           method: 'PUT'
         })

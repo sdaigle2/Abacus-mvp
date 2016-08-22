@@ -16,7 +16,7 @@ angular.module('abacuApp')
         wheelchairs = _.isArray(wheelchairs) ? wheelchairs : [wheelchairs];
         return $http({
           'method': 'POST',
-          'url': '/design/pdf/',
+          'url': '/design-drawings',
           'data': wheelchairs.map(function (chair) {
             return chair instanceof Design ? chair.allDetails() : chair;
           })

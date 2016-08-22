@@ -68,7 +68,7 @@ angular.module('abacuApp')
       }
 
       return $http({
-        url: '/discount/' + discountID,
+        url: '/discounts/' + discountID,
         method: 'GET'
       })
       .then(function (response) {

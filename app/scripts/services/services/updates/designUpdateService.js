@@ -23,7 +23,7 @@ angular.module('abacuApp')
       };
       if (self.userID !== -1) {
         return $http({
-          url: '/update-saved-designs',
+          url: '/users/current/designs',
           data: data,
           method: 'POST'
         })

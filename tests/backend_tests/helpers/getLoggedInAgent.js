@@ -19,9 +19,8 @@ exports.fromExistingUser = (app, userObj) => {
   // this promise resolves to a logged in supertest agent object
   return new Promise((resolve, reject) => {
     agent
-      .post('/login')
+      .post('/users/email/sign-in/' + userObj.email)
       .send({
-        email: userObj.email,
         password: userObj.password
       })
       .expect(res => {
@@ -50,7 +49,7 @@ exports.fromExistingUser = (app, userObj) => {
 exports.fromUser = (app, userObj) => {
   return new Promise((resolve, reject) => {
     request(app)
-      .post('/register')
+      .post('/users/register')
       .send(userObj)
       .expect(res => {
         res.should.have.property("body");

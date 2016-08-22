@@ -319,8 +319,8 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
   //Make a request to /session. If it succeeds, restore user from response, otherwise, restore from settings
   var updatePromise = $http({
-    url: '/session'
-    , method: 'POST'
+    url: 'users/current'
+    , method: 'GET'
   })
     .then(function (response) {
       if (response.data.userID === -1) {
@@ -350,7 +350,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     /**********design share/coEdit with ID*********/
     fetchDesign: function(id) {
       return $http({
-        url:'/design/' + id,
+        url:'/designs/' + id,
         data:{designID:id},
         method:'GET'
       })
@@ -373,7 +373,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       // $http({ ... }) returns a promise
       var designInstance = design instanceof Design ? design : new Design(design);
       return $http({
-        url:'/design',
+        url:'/designs',
         data: designInstance.clone().allDetails(),
         method: 'POST'
       })
@@ -400,7 +400,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       // $http({ ... }) returns a promise
       var designInstance = design instanceof Design ? design : new Design(design);
       return $http({
-        url:'/design',
+        url:'/designs',
         data: designInstance.clone().allDetails(),
         method: 'POST'
       })
@@ -424,7 +424,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       var designDetails = design.allDetails();
       designDetails.updatedAt = new Date();
       return $http({
-        url: '/design/' + design._id,
+        url: '/designs/' + design._id,
         data: designDetails,
         method: 'PUT'
       })
@@ -446,10 +446,11 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         deferred.reject(new Error('Missing Username or Password'));
         return deferred.promise;
       }
-
+      var email = _.lowerFirst(in_email);
+      console.log(email)
       var httpPromise = $http({
-        url: '/login',
-        data: {email: _.lowerFirst(in_email), password: pass},
+        url: '/users/email/sign-in/' + email,
+        data: {password: pass},
         method: 'POST'
       });
 
@@ -497,7 +498,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       }
 
       $http({
-        url: '/logout',
+        url: '/users/current/logout',
         method: 'POST'
       }).success(function (data) {
           $rootScope.$broadcast('userChange');
@@ -663,14 +664,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     getNumCartWheelchairs: function () {
       return _.isNull(self.cart) ? 0 : self.cart.wheelchairs.length;
     },
-
-    saveComputer: function () {
-      var curThis = this;
-      $http.post('/save', {wheelchair: this.getCurEditWheelchair().getAll()}, {responseType: 'blob'})
-        .success(function (response) {
-          saveAs(response, curThis.getCurEditWheelchair().title+'.pdf');
-        });
-    },
+    
     /******************************MY MEASUREMENTS*******************************/
 
     commonMeasures: {
