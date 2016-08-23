@@ -96,6 +96,8 @@ angular.module('abacuApp')
       //The current measurement system being used
       $scope.curUnitSys = User.getUnitSys();
       $scope.curUnit = null;
+      $scope.userInfoStatus = true;
+      $scope.userInfoStatusVisited = false;
 
 
 
@@ -534,13 +536,17 @@ angular.module('abacuApp')
 
         //Switches pages left/right based on dir
       $scope.pageSwitchStep = function (dir) {
+
         if ($scope.getCurPageType() === $scope.pageType.MEASURE && dir === -1 && $scope.getCurPage().index === 0) {
           $scope.setCurPageType($scope.pageType.CUSTOMIZE);
           //set to customize
+          $scope.userInfoStatus = true;
+          $scope.userInfoStatusVisited = false;
           $scope.getCurPage().visitstatus = visitstatus.VISITED;
           $scope.setCurPage(pages.customizePages.length - 1);
         }
-        else if ($scope.getCurPageType() === $scope.pageType.CUSTOMIZE && dir === 1 && $scope.getCurPage().index === pages.customizePages.length - 1) {
+        
+        else if ($scope.getCurPageType() === $scope.pageType.CUSTOMIZE && dir === 1 && $scope.getCurPage().index === pages.customizePages.length - 1 && $scope.userInfoStatusVisited) {
           $scope.setCurPageType($scope.pageType.MEASURE);
           //set to measure
 
@@ -549,6 +555,11 @@ angular.module('abacuApp')
           else
             $scope.getCurPage().visitstatus = visitstatus.UNVISITED;
           $scope.setCurPage(0);
+        }
+        else if ($scope.getCurPageType() === $scope.pageType.CUSTOMIZE && dir === 1 && $scope.getCurPage().index === pages.customizePages.length - 1 && $scope.userInfoStatus) {
+          $scope.$broadcast("toggleAnimation");
+          $scope.userInfoStatusVisited = true;
+          return $scope.userInfoStatus = false;
         }
         else {
           if($scope.getCurWheelchairMeasure().measureOptionIndex !== -1 || $scope.getCurPageType() === $scope.pageType.CUSTOMIZE)

@@ -1,5 +1,5 @@
 angular.module('abacuApp')
-  .directive('toggleClass', function($document){
+  .directive('toggleClass', function($document, $timeout){
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
@@ -17,6 +17,14 @@ angular.module('abacuApp')
             $document.on('click', handler);
             scope.$on('$destroy', function() {
                 $document.off('click', handler);
+            });
+            scope.$on("toggleAnimation", function (event, args) {
+                element.children().toggleClass('open-handler');
+                if (!element.parent().hasClass('open')) {
+                    $timeout(function(){
+                        element.parent().toggleClass('open');
+                    }, 0);
+                }
             });
         }
     };
