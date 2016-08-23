@@ -158,7 +158,7 @@
                 <td>Frame: {{getChairFrame(item.chair).name}}</td>
               </tr>
               <tr>
-                <td>Total: ${{item.chair.getTotalPrice().toFixed(2)}}</td>
+                <td>Price: ${{item.chair.getTotalPrice().toFixed(2)}}</td>
                 <td>Manufacturer: {{getChairFrame(item.chair).manufacturer}}</td>
               </tr>
               <tr>
@@ -181,7 +181,7 @@
           <!--</div>-->
         </li>
       </ul>
-      <ul ng-show="orderWheelchairs.length" uib-pagination class="custom-pagination" 
+      <ul ng-show="orderWheelchairs.length" uib-pagination class="custom-pagination"
           ng-model="currentPage"
           total-items="orderWheelchairs.length">
         </ul>
