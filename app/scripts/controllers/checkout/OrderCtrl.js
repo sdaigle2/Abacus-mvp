@@ -9,8 +9,8 @@
  * Controller of the abacuApp
  */
 angular.module('abacuApp')
-  .controller('OrderCtrl', ['$scope', '$location', '$http', 'User', 'FrameData', 'Bank', 'Drop', '_',
-    function ($scope, $location, $http, User, FrameData, Bank, Drop, _) {
+  .controller('OrderCtrl', ['$scope', '$location', '$http', 'User', 'FrameData', 'Bank', 'Drop', '_', 'StripeKeys',
+    function ($scope, $location, $http, User, FrameData, Bank, Drop, _, StripeKeys) {
 
       /*************************** CONTROL VARIABLES *************************/
 
@@ -292,7 +292,7 @@ angular.module('abacuApp')
       var token = '';
       function payment(){
         // console.log($scope.card);
-        Stripe.setPublishableKey('pk_live_KwYnVzZylrafo9Y0RTjZmcM1');
+        Stripe.setPublishableKey(StripeKeys.PUBLISHABLE_KEY);
         //stripe api
         Stripe.card.createToken($scope.card, stripeResponseHandler);
       }
