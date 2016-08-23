@@ -305,7 +305,7 @@ function getTaxCost(total) {
 /**
  * Get's total chair price including subtotal, shipping, tax, & discounts
  */
-function getChairPrice(chair, order) {
+function getChairPrice(chair, order) { //this seams to miss the price of taper and other measurements
   var subTotal = calculatePartsSubtotal(chair);
   return subTotal + getChairShippingCost(chair) + getTaxCost.apply(order, [subTotal]) - chair.grantAmount;
 }

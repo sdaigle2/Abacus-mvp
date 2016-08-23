@@ -155,12 +155,12 @@ function verifyChair(wheelchair, isInvoice) {
   var frame = getFrame(wheelchair.frameID);
   if (frame) {                //Is the frame valid
     var partsPrice = verifyParts(frame.parts, wheelchair);
-    var measuresPrice = verifyMeasures(frame.measures, wheelchair, isInvoice);
+    var measuresPrice = verifyMeasures(frame.measures, wheelchair, isInvoice);  //measures price seams to always be 0.  It should be $125 if taper is selected.  $125 should be calculated automatically based on information from frameData.json
     if (partsPrice !== false && measuresPrice !== false) {  //Was parts check and measurement check successful
       //Append more wheelchair info
       wheelchair.manufacturer = frame.manufacturer;
       wheelchair.model = frame.name;
-      wheelchair.price = frame.basePrice + partsPrice + measuresPrice;
+      wheelchair.price = frame.basePrice + partsPrice + measuresPrice;  //this seams to be including the shipping price in it.  //It is also missing the price of taper and the other measurements
       wheelchair.weight += frame.baseWeight;
       wheelchair.wheelIndex = frame.wheelIndex;
       console.log(frame.basePrice);

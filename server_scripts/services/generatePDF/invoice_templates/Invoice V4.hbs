@@ -113,7 +113,7 @@
 				</div>
 				<div id="_idContainer023" class="Basic-Text-Frame">
 					{{#each wheelchairs}}
-					<p class="Numbers" style="height: 9px;">${{getChairPrice this.wheelchair}}</p>
+					<p class="Numbers" style="height: 9px;">${{getChairPrice this.wheelchair}}</p> <!-- this seams to be missing the cost of taper and other measurements. -->
 					{{/each}}
 				</div>
 				<div id="_idContainer024" class="Basic-Text-Frame">
@@ -227,9 +227,9 @@
 							</section>
 
 							<section class="title" style="text-align: left; margin-bottom: 20px">
-								<div><span class="themeBlue">Address:&nbsp;&nbsp;&nbsp;&nbsp;</span> {{this.wheelchair.userInfo.address}} {{this.wheelchair.userInfo.address1}} 
-								{{this.wheelchair.userInfo.city}} 
-								{{this.wheelchair.userInfo.state}} 
+								<div><span class="themeBlue">Address:&nbsp;&nbsp;&nbsp;&nbsp;</span> {{this.wheelchair.userInfo.address}} {{this.wheelchair.userInfo.address1}}
+								{{this.wheelchair.userInfo.city}}
+								{{this.wheelchair.userInfo.state}}
 								{{this.wheelchair.userInfo.zip}}</div>
 							</section>
 

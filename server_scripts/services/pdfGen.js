@@ -133,7 +133,8 @@ function titlePage(doc, wheelchair, order) {
   if (order)
     doc.text(order.fName + ' ' + order.lName, 207, 581);
   doc.text(wheelchair.manufacturer);
-  doc.text('$' + wheelchair.price.toFixed(2));
+  doc.text('$' + wheelchair.price.toFixed(2)); //Note, this number is pulling the wheelchair.price + shipping cost for that chair.  It shouldn't include the shipping cost.
+                                               //wheelchair.price misses the taper price and the measurements price.
   doc.text(wheelchair.model);
   doc.text(wheelchair.weight.toFixed(2) + 'lbs');
   if (order)
