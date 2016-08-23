@@ -557,7 +557,7 @@ angular.module('abacuApp')
           $scope.setCurPage(0);
         }
         else if ($scope.getCurPageType() === $scope.pageType.CUSTOMIZE && dir === 1 && $scope.getCurPage().index === pages.customizePages.length - 1 && $scope.userInfoStatus) {
-          $scope.$broadcast("toggleAnimation");
+          $scope.$broadcast("toggleUserInfo");
           $scope.userInfoStatusVisited = true;
           return $scope.userInfoStatus = false;
         }

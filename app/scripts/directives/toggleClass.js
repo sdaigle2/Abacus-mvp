@@ -18,7 +18,7 @@ angular.module('abacuApp')
             scope.$on('$destroy', function() {
                 $document.off('click', handler);
             });
-            scope.$on("toggleAnimation", function (event, args) {
+            scope.$on("toggleUserInfo", function (event, args) {
                 element.children().toggleClass('open-handler');
                 if (!element.parent().hasClass('open')) {
                     $timeout(function(){
