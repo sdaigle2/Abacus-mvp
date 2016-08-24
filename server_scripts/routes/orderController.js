@@ -8,8 +8,6 @@ const _      = require('lodash');
 const async  = require('async');
 
 // Import services
-const verifyOrder     = require('../services/data').verifyOrder;
-const verifyChair     = require('../services/data').verifyWheelchair;
 const generatePDF     = require('../services/generatePDF');
 const priceCalculator = require('../services/priceCalculator');
 const stripe          = require('../services/payment');
