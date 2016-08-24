@@ -269,22 +269,63 @@ function getChairOptionColorName(chair, optionID) {
   return '--';
 }
 
+function getPart (frame, pID) {
+  for (var i = 0; i < frame.parts.length; i++)
+    if (frame.parts[i].partID === pID)
+      return frame.parts[i];
+  return null;
+}
+
+function getMeasure (frame, mID) {
+  for (var i = 0; i < frame.measures.length; i++)
+    if (frame.measures[i].measureID === mID)
+      return frame.measures[i];
+  return null;
+}
+
+function getMeasurePrice (measure, index) {
+  if (index >= 0 && index < measure.prices.length)
+    return measure.prices[index];
+  return 0;
+}
+
+function getOption (part, opID) {
+  for (var i = 0; i < part.options.length; i++){
+    if (part.options[i].optionID === opID) {
+      return part.options[i];
+      break;
+      }
+    }
+  return null;
+}
+
+function getTotalChairPrice (chair, frame) {
+  var totalPrice = frame.basePrice;
+  for (var i = 0; i < chair.parts.length; i++) {
+    var p = getPart(frame, chair.parts[i].partID);
+    var o = getOption(p, chair.parts[i].optionID);
+
+    if(chair.parts[i].optionID != -1) {
+      totalPrice += o.price;
+    }
+  }
+  for (var j = 0; j < chair.measures.length; j++) {
+    if (chair.measures[j].measureOptionIndex !== -1) {
+      var m = getMeasure(frame, chair.measures[j].measureID);
+      totalPrice += getMeasurePrice(m, chair.measures[j].measureOptionIndex);
+    }
+  }
+
+  return totalPrice;
+}
+
 /**
  * Adds up cost of each part in the wheelchair configuration and returns it
  */
 function calculatePartsSubtotal(chair) {
   var frame = getChairFrame(chair);
-  var optionIDs = _.chain(frame.parts)
-    .map('partID')
-    .map(partID => getChairPartOptions(chair, partID))
-    .flatten()
-    .map('optionID')
-    .value();
 
-  var basePrice = _.isNumber(frame.basePrice) ? frame.basePrice : 0;
-  var partsPrice = _.sumBy(optionIDs, optionID => getChairPartOptionPrice(chair, optionID));
-
-  return basePrice + partsPrice;
+  return getTotalChairPrice(chair, frame)
 }
 
 /**
@@ -305,9 +346,9 @@ function getTaxCost(total) {
 /**
  * Get's total chair price including subtotal, shipping, tax, & discounts
  */
-function getChairPrice(chair, order) { //this seams to miss the price of taper and other measurements
+function getChairPrice(chair, order) {
   var subTotal = calculatePartsSubtotal(chair);
-  return subTotal + getChairShippingCost(chair) + getTaxCost.apply(order, [subTotal]) - chair.grantAmount;
+  return subTotal + getTaxCost.apply(order, [subTotal]) - chair.grantAmount;
 }
 
 /**
