@@ -1,0 +1,15 @@
+<link href="../../styles/modals/pdfBeingGeneratedModal.css" rel="stylesheet" ng-controller="pdfBeingGeneratedModalCtrl"/>
+<div class="modal-page-body">
+  <h2>PDF BEING GENERATED</h2>
+  <div class="section1">
+      <h4>This might take a bit...</h4>
+      <p>Sometimes it takes up to 60 seconds to generate a PDF.  Feel free to close this message and keep using the Per4max configurator during this time.  Just don't close or refresh this tab.</p>
+  </div>
+
+  <div class="section2">
+    <h4>One more thing...</h4>
+    <p>The PDF will be generated in a new tab of your browser.  If this is the first time you've clicked this button, you will probably need to enable pop-ups and then click <b>Download PDF</b> one more time.</p>
+    <p ng-init="showExplanation = false;" ng-show="!showExplanation" ng-click="showExplanation = true;" class="explanation-button">Learn more about pop-ups</p>
+    <p ng-show="showExplanation" class="explanation-text">If your browser blocks a popup, you'll see a small message.  When this happens, please click <b>Always allow pop-ups for per4max.fit</b>.  Then click <b>Download PDF</b> a second time.</p>
+  </div>
+</div>

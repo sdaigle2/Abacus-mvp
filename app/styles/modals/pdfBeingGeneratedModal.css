@@ -1,0 +1,40 @@
+.modal-page-body {
+	/*text-align: center;*/
+	border-radius: 0px;
+}
+
+.section1 {
+    border-bottom: thin dotted #000000;
+}
+
+.section2 {
+
+}
+
+.targetText {
+    display: inline-block;
+    width: 100%;
+    border: thin solid #000000;
+    background-color: #e6e6e6;
+    border-radius: 2px;
+    padding: 2px;
+}
+
+h3 h4{
+  margin-top: 16px;
+}
+
+a{
+  outline:none!important;
+}
+.explanation-text {
+
+}
+
+.explanation-button {
+  text-decoration: underline;
+}
+
+.explanation-button:hover {
+   cursor: pointer;
+}
