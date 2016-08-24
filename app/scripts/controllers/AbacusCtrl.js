@@ -76,7 +76,7 @@ angular.module('abacuApp')
       $scope.right_button = 'arrow_right.png';
         //All the data about the current frame (loaded by init)
       $scope.curFrameData = null;
-      
+
       //Arrays that store information about the pages
       var pages = {
         customizePages: [],
@@ -340,6 +340,9 @@ angular.module('abacuApp')
       };
 
       $scope.getTotalPrice = function () {
+        if(grantAmount == undefined){
+          grantAmount = 0;
+        }
         return $scope.curEditWheelchair.getTotalPriceForAbacusCtrl() - grantAmount;
       };
 
@@ -545,7 +548,7 @@ angular.module('abacuApp')
           $scope.getCurPage().visitstatus = visitstatus.VISITED;
           $scope.setCurPage(pages.customizePages.length - 1);
         }
-        
+
         else if ($scope.getCurPageType() === $scope.pageType.CUSTOMIZE && dir === 1 && $scope.getCurPage().index === pages.customizePages.length - 1 && $scope.userInfoStatusVisited) {
           $scope.setCurPageType($scope.pageType.MEASURE);
           //set to measure
@@ -757,14 +760,14 @@ angular.module('abacuApp')
         var prevSizeOptions = $scope.curOption.sizes;
         var prevSizeIndex = $scope.getCurWheelchairPart().sizeIndex;
         var curFrameID = $scope.curEditWheelchair.frameID;
-          
+
         //Detect no change, and return after doing nothing
         if($scope.curEditWheelchair.getPart(curPartID).optionID == newOptionID){
           return
         }
 
         $scope.curEditWheelchair.setOptionForPart(curPartID, newOptionID);
-          
+
         //color syncing for the thunders
         if (curFrameID < 30 && curFrameID >= 20) {
 
@@ -822,7 +825,7 @@ angular.module('abacuApp')
                 }
             }
         }
-        
+
         /********* Color syncing spinergies ****************/
         if (curFrameID < 20 && curFrameID >= 10) {
             if (newOptionID == 2100){
@@ -831,11 +834,11 @@ angular.module('abacuApp')
                 $scope.curEditWheelchair.setColorForPart(2222, color);
             }
         }
-          
+
         /************** Make Sizes Permanet ***********/
         // if the size options for the new part are identical to the old part, then keep the old option
         if (prevSizeOptions === $scope.curOption.sizes && prevSizeOptions.length > 0){
-            $scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, prevSizeIndex);   
+            $scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, prevSizeIndex);
         }
 
         //$scope.curEditWheelchair.setSizeForPart($scope.getCurWheelchairPart().partID, newSizeIndex);
@@ -869,7 +872,7 @@ angular.module('abacuApp')
           if (($scope.curEditWheelchair.frameID >= 20) && ($scope.curEditWheelchair.frameID < 30))  {
            //update the linking color for the THunders
             if(ID == 1000 && ($scope.curEditWheelchair.getPart(3000).optionID == 3100)){
-              //they just chose the frame color, and the accessories are set to be the same as the frame. 
+              //they just chose the frame color, and the accessories are set to be the same as the frame.
               $scope.curEditWheelchair.setColorForPart(3000, newColorID);
               $scope.curEditWheelchair.setColorForPart(11000, newColorID);
 
@@ -880,7 +883,7 @@ angular.module('abacuApp')
               //they just chose the frame color, so we better update the 5th wheel color too.
               $scope.curEditWheelchair.setColorForPart(4000, newColorID);
             }
-            
+
             if (ID == 1000 && ($scope.curEditWheelchair.getPart(11000).optionID ==11500)){
                 //they just chose a frame color and the welded side guards are there so we have to change those too.
                 $scope.curEditWheelchair.setColorForPart(11000, newColorID);
@@ -949,7 +952,7 @@ angular.module('abacuApp')
           //console.log("set");
       };
       $scope.$watch('curEditWheelchair.userInfo', function(nVal, oVal){
-        $scope.curEditWheelchair.userInfo.wheelchairName = $scope.curEditWheelchair.userInfo.name ? 
+        $scope.curEditWheelchair.userInfo.wheelchairName = $scope.curEditWheelchair.userInfo.name ?
           $scope.curEditWheelchair.name + ' for ' + $scope.curEditWheelchair.userInfo.name : $scope.curEditWheelchair.name;
         if ($scope.curEditWheelchair.userInfo.grantAmount) {
           grantAmount = $scope.curEditWheelchair.userInfo.grantAmount;
