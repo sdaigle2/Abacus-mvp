@@ -73,7 +73,7 @@
         <input class="text-input" type="text" data-ng-model="curOrder.poNumber" />
       </div>
 
-      <div class="order-form payment" ng-if="creditCardRequired()">
+      <div class="order-form" ng-if="creditCardRequired()">
         <div class="order-form-header">Credit Card Information</div>
         <div class="paymentWindow">
           <div>
@@ -84,18 +84,6 @@
                   <span>Card Number<br></span>
                   <input type="text" size="20" data-ng-model="card.number"/>
                 </label>
-
-                <!--<label id="cardType">-->
-                  <!--<span>Card Type</span>-->
-                  <!--<select id="" name="CreditCard_type" type="text"-->
-                          <!--class="form-control medium" data-ng-model="card.type" name="CreditCard_type">-->
-                    <!--<option value="visa">visa</option>-->
-                    <!--<option value="mastercard">mastercard</option>-->
-                    <!--<option value="discover">discover</option>-->
-                    <!--<option value="amex">amex</option>-->
-
-                  <!--</select>-->
-                <!--</label>-->
               </div>
               <div class="form-row">
                 <label>
@@ -106,9 +94,9 @@
               <div class="form-row">
                 <label>
                   <span>Expiration (MM/YY)<br></span>
-                  <input type="text" data-ng-model="card.exp_month"/>
+                  <input type="text" size="2" data-ng-model="card.exp_month"/>
                   <span> / </span>
-                  <input type="text" data-ng-model="card.exp_year"/>
+                  <input type="text" size="2" data-ng-model="card.exp_year"/>
                 </label>
               </div>
             </form>

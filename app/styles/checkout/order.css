@@ -71,11 +71,6 @@
   border: 1px solid #eaeaea;
   padding: 20px 40px;
 }
-
-.payment{
-  height: 330px;
-}
-
 .order-form-header {
   color: #4F9DFF;
   font-size: 20px;
@@ -168,9 +163,19 @@
 .order-right {
   width: 300px;
   /*margin-top: 22px;*/
+  /*background-color: #ac2925;*/
   margin-left: 20px;
-  float: right;
+  margin-bottom: 20px;
   position: relative;
+  clear: left;
+}
+
+@media only screen and (min-width: 950px) {
+  .order-right {
+    /*background-color: lightblue;*/
+    position: fixed;
+    right: calc(25vw - 210px);
+  }
 }
 
 /*@media screen and (max-width: 1300px) {*/
