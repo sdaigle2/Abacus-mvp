@@ -43,7 +43,7 @@
                   <tbody>
                     <tr>
                       <td ng-click="editWheelchair(chairInfo.design._id)"><a>EDIT</a></td>
-                      <td ng-click="addToCart(chairInfo.design._id)"><a>ADD TO CART</a></td>
+                      <td ng-click="addToCart(chairInfo.design._id)"><a>MOVE TO CART</a></td>
                       <td ng-click="dowloadDesignPDF(chairInfo.design._id)" ><a>DOWNLOAD PDF</a></td>
                       <td ng-click="shareDesignId(chairInfo.design._id)"><a>SHARE DESIGN</a></td>
                     </tr>
@@ -105,7 +105,7 @@
             </div>
           </li>
         </ul>
-        <ul ng-show="wheelchairUIOpts.length" uib-pagination class="custom-pagination" 
+        <ul ng-show="wheelchairUIOpts.length" uib-pagination class="custom-pagination"
           ng-model="currentPage"
           total-items="wheelchairUIOpts.length">
         </ul>
