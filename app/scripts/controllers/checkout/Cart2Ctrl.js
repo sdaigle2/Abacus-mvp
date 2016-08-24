@@ -7,7 +7,7 @@
  * @name abacuApp.controller:CartCtrl
  * @description
  * # CartCtrl
- * Controller of the abacuApp  
+ * Controller of the abacuApp
  * make sure to update compare module with every action on the cart
  */
 angular.module('abacuApp')
@@ -40,7 +40,7 @@ angular.module('abacuApp')
       //A reference to User.curEditOrder (set during init())
       $scope.curOrder = null;
       $scope.discount = {code: ""};
-      
+
       //error message for promotion code
       $scope.promoErr = "";
       $scope.totalGrantAmount = 0;
@@ -106,7 +106,7 @@ angular.module('abacuApp')
 
       function getItemIndex(id) {
         return _.findIndex($scope.wheelchairUIOpts, function(o) {
-          return o.design._id == id; 
+          return o.design._id == id;
         });
       }
 
@@ -418,6 +418,10 @@ angular.module('abacuApp')
       });
 
       $scope.downloadDesignPDF = function (design) {
+        ngDialog.open({
+          'template':'views/modals/pdfBeingGeneratedModal.html',
+          'scope': $scope
+        }).closePromise;
         return DownloadPDF.forWheelchairs(design)
         .catch(function (err) {
           alert('Failed to download Wheelchair PDF');

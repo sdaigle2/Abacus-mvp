@@ -114,6 +114,10 @@ angular.module('abacuApp')
       $scope.currChairIsNew = User.isNewWheelchair();
 
       $scope.downloadChairPDF = function () {
+        ngDialog.open({
+          'template':'views/modals/pdfBeingGeneratedModal.html',
+          'scope': $scope
+        }).closePromise;
         var curChair = $scope.curEditWheelchair;
         DownloadPDF.forWheelchairs(new Design({wheelchair: curChair}))
         .catch(function (err) {

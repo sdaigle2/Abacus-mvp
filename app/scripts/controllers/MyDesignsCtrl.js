@@ -10,7 +10,7 @@
 angular.module('abacuApp')
   .controller('MyDesignsCtrl', ['$scope', '$location', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS',
    'WHEELCHAIR_CANVAS_WIDTH', 'FrameData', '$q', 'Design', 'PromiseUtils', 'DownloadPDF', 'ngDialog',
-  	function ($scope, $location, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, WHEELCHAIR_CANVAS_WIDTH, 
+  	function ($scope, $location, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, WHEELCHAIR_CANVAS_WIDTH,
       ameData, $q, Design, PromiseUtils, DownloadPDF, ngDialog) {
   		$scope.MAX_COMPARISON_CHAIRS = MAX_COMPARISON_CHAIRS;
   		$scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
@@ -38,7 +38,7 @@ angular.module('abacuApp')
 
       function getItemIndex(id) {
         return _.findIndex($scope.wheelchairUIOpts, function(o) {
-          return o.design._id == id; 
+          return o.design._id == id;
         });
       }
 
@@ -135,6 +135,10 @@ angular.module('abacuApp')
   		};
 
   		$scope.dowloadDesignPDF = function (id) {
+        ngDialog.open({
+          'template':'views/modals/pdfBeingGeneratedModal.html',
+          'scope': $scope
+        }).closePromise;
         var itemIndex = getItemIndex(id);
   			var design = $scope.wheelchairUIOpts[itemIndex].design;
         DownloadPDF.forWheelchairs(design);
