@@ -22,22 +22,32 @@
 /****************************ALERT DIV*********************************/
 .purchase_pending_fade{
   position:absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height:100%;
-  opacity: 0.5;
-  background-color:black;
-  visibility: hidden;
+  opacity: 0.7;
+  background-color: #CCCCCC;
+  z-index:10;
 }
 .purchase_pending_alertBox{
   position:absolute;
-  top: 35%;
-  left:35%;
+  top: 25%;
+  left: 35%;
   width: 30%;
-  height:25%;
-  opacity: 0.95;
+  min-width: 275px;
+  border-radius: 5px;
+  opacity: 1;
   background-color:white;
   text-align: center;
-  visibility:hidden;
+  padding:10px;
+  z-index: 11;
+}
+
+.purchase_pending_alertBox >img {
+  width: 40%;
+  opacity: 1;
+  z-index: 12;
 }
 
 /****************************BODY****************************************/

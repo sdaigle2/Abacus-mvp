@@ -157,6 +157,8 @@ angular.module('abacuApp')
 
             // disable the complete button
             $scope.completeClicked = true;
+            $scope.orderProcessing = true;
+
             //sending the order
             User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.billingForm, $scope.curOrder.payMethod, token)
               .then(function (response) {
@@ -167,10 +169,12 @@ angular.module('abacuApp')
                   //resume the stage button
                   $scope.completeClicked = false;
                 }
+                $scope.orderProcessing = false;
                 // clean the item in the cart
                 User.clearCart();
               })
               .catch(function () {
+                $scope.orderProcessing = false;
                 alert('Error sending order');
               });
             break;
@@ -296,7 +300,7 @@ angular.module('abacuApp')
         //stripe api
         Stripe.card.createToken($scope.card, stripeResponseHandler);
       }
-      
+
       function stripeResponseHandler(status, response) {
         if (response.error) {
           // Show the errors on the form

@@ -1,18 +1,13 @@
 <link href="../../styles/checkout/order.css" rel="stylesheet" />
 
-
-<div class="purchase_pending_fade">
-  <!-- Google Tag Manager -->
-  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5BJDWF"
-                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-5BJDWF');</script>
-  <!-- End Google Tag Manager -->
+<!-- ORDER PROCESSING NOTICE -->
+<div class="purchase_pending_fade" data-ng-if="orderProcessing"></div>
+<div class = "purchase_pending_alertBox" data-ng-if="orderProcessing">
+  <h1>Submitting Order...</h1>
+  <p>Please don't navigate away from this page while your order is being processed.</p>
+  <img src="images/abacus_page/measure/thunder/gif/seat_width.gif">
 </div>
-<div class="purchase_pending_alertBox">Your order is being processed..</div>
+
 <div class="order text-center">
   <!--HEADER-->
   <div class="order-header">
