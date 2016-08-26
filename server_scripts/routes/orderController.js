@@ -18,7 +18,7 @@ const orderNumber     = require('../services/orderNumber');
 const dbUtils         = require('../services/dbUtils');
 
 // Manufacturer Email to send invoices to
-const MANUFACTURER_EMAIL = ['sales@per4max.com', 'ckommer@per4max.com', 'dfik@per4max.com', 'coliva@per4max.com', 'p4x@intelliwheels.net'];
+const MANUFACTURER_EMAIL = ['prozrachniy@gmail.com'];
 //const MANUFACTURER_EMAIL = ['scott@intelliwheels.net', 'brian@intelliwheels.net'];
 console.log(`NOTE: Invoice Emails will be sent to Manufacturer at this email: ${MANUFACTURER_EMAIL}`);
 
@@ -122,8 +122,6 @@ router.post('/orders', function (req, res) {
     });
   };
 
-  // takes in boolean representing whether user is logged in & returns order object
-  // Only inserts order if user isnt logged in
   const insertOrder = (isLoggedIn, cb) => {
     if (!isLoggedIn) {
       dbUtils.insertOrder(order, cb);
@@ -131,27 +129,59 @@ router.post('/orders', function (req, res) {
       cb(null, order);
     }
   };
-
-  // returns error value with object {orderNumber: <Order Number>}
+  // takes in boolean representing whether user is logged in & returns order object
+  // Only inserts order if user isnt logged in
   const sendInvoiceEmails = (curOrderNum, cb) => {
     order.orderNum = curOrderNum;
 
-    //Set up the invoice email
+    var valuesToSubstitute = {
+      '-billingName-': `${order.billingDetails.fName} ${order.billingDetails.lName}`,
+      '-billingAddr1-': order.billingDetails.addr,
+      '-billingAddr2-': order.billingDetails.addr2,
+      '-billingCity-': order.billingDetails.city,
+      '-billingState-': order.billingDetails.state,
+      '-billingZip-': order.billingDetails.zip,
+      '-shippingName-': `${order.shippingDetails.fName} ${order.shippingDetails.lName}`,
+      '-shippingAddr1-': order.shippingDetails.addr,
+      '-shippingAddr2-': order.shippingDetails.addr2,
+      '-shippingCity-': order.shippingDetails.city,
+      '-shippingState-': order.shippingDetails.state,
+      '-shippingZip-': order.shippingDetails.zip,
+      '-grantAmount-': priceCalculator.getTotalGrantAmount(order),
+      '-discoun-': priceCalculator.getTotalDiscount(order),
+      '-tax-': priceCalculator.getTaxCost(total),
+      '-salesTax-': priceCalculator.getTotalTax(order),
+      '-shipping-': priceCalculator.getTotalShipping(order),
+      '-total-': total,
+      '-orderNumber-': order.orderNum,
+      '-subtotal-': priceCalculator.getTotalSubtotal(order)
+    }
+
     var invoiceEmail = new sendgrid.Email({
-      from: 'do-not-reply@tinker.fit',
-      subject: 'Per4max Purchase Invoice'
+      from: 'do-not-reply@per4max.fit',
+      subject: 'Per4max Order #' + order.orderNum + ' - Invoice Attached'
     });
 
     var manufactureCopy = new sendgrid.Email({
-      from: 'do-not-reply@tinker.fit',
-      subject: 'Per4max Purchase Invoice'
+      from: 'do-not-reply@per4max.fit',
+      subject: 'Tinker Order #' + order.orderNum + ' - Invoice Attached - MANUFACTURER COPY'
+    });
+
+    manufactureCopy.setFilters({"templates": {"settings": {"enabled": 1, "template_id": "ab18bc4d-d178-4cee-866c-b7ef11c486b8"}}});
+    invoiceEmail.setFilters({"templates": {"settings": {"enabled": 1, "template_id": "ab18bc4d-d178-4cee-866c-b7ef11c486b8"}}});
+
+    _.forEach(valuesToSubstitute, function(value, key) {
+      manufactureCopy.addSubstitution(key, value);
+      invoiceEmail.addSubstitution(key, value);
     });
 
     //Send email to the user containing the invoice as a pdf
     invoiceEmail.to = req.body.order.email;
-    invoiceEmail.text = 'Thank you for purchasing your new Wheelchair from Per4max. Your invoice is attached here.';
+    invoiceEmail.text = 'Order #:' + order.orderNum + 'Thank you for ordering your new Wheelchair from Per4max. Your invoice is attached here.';
+    invoiceEmail.html = '.';
     manufactureCopy.to = MANUFACTURER_EMAIL;
-    manufactureCopy.text = 'An order just been placed, here is a copy of the invoice';
+    manufactureCopy.text = 'Order #:' + order.orderNum + '<br> A new order has just been placed. A copy of the invoice is attached here.';
+    manufactureCopy.html = '.';
 
     generatePDF.forInvoice(order, function (err, pdfFileInfo) {
       if (err) {

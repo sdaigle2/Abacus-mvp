@@ -46,9 +46,10 @@ router.post('/users/email/:email/request-reset-password', function (req, res) {
       var newMail = new sendgrid.Email({
         from: 'tinker@intelliwheels.net',
         subject: 'Per4max Password Reset',
-        text: 'To reset your password for per4max.fit, please click the link - http://per4max.fit/#!/change-password/' + data.docs[0].resetLink,
         to: userEmail
       });
+      newMail.setFilters({"templates": {"settings": {"enabled": 1, "template_id": "dfee1b8d-6729-4674-bd82-da988b65e440"}}});
+      newMail.html = 'To reset your password for per4max.fit, please click the link - http://per4max.fit/#!/change-password/' + data.docs[0].resetLink;
       sendgrid.send(newMail, function (resp) {
         res.json({'success': true, 'newRev': nData.rev, 'resetLink': data.docs[0].resetLink});
       });
@@ -249,10 +250,11 @@ router.post('/users/register', function (req, res) {
               return;
             }
             //Send an email to the user using the sendgrid API
+            email.setFilters({"templates": {"settings": {"enabled": 1, "template_id": "db5513e7-1cb0-46f7-95bd-1001fbe8c41e"}}});
             email.to = data.email;
             email.text = 'Thank you for registering with the Per4max Wheelchair Configurator powered by Tinker.  To confirm your account, please go to http://per4max.fit.';
+            email.html = '.';
             sendgrid.send(email, function (err) {
-
               res.json({'success': true});
             });
           });
