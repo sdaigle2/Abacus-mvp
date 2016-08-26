@@ -50,7 +50,6 @@ exports.getTaxCost = total => {
 	return Number(helpers.getTaxCost(total));
 };
 
-
 /**
  * Given an order, returns total grant amount for the order
  */
