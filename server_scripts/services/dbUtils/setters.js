@@ -245,6 +245,19 @@ exports.insertOrder = insertOrder;
 
 // Updates all linked User fields: orders, savedDesigns, & cart
 function updateLinkedUserFields(userObj, cb) {
+	var orderWheelchairs = _.chain(userObj.orders)
+	.map(item => {
+		return item.wheelchairs;
+	})
+	.flatten()
+	.map(item => {
+		return item._id;
+	})
+	.value();
+
+	userObj.savedDesigns = userObj.savedDesigns.filter(function(item) {
+		return orderWheelchairs.indexOf(item._id) === -1
+	});
 	var updateOrders = function (cb) {
 		var orders = userObj.orders || [];
 		updateOrInsertAllEntries({

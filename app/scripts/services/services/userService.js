@@ -591,6 +591,11 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     removeDesignFromSavedDesigns: function (design, andToCart) {
       var designID = _.isString(design) ? design : design._id;
       self.savedDesigns = _.reject(self.savedDesigns, {'_id': designID});
+      if (self.savedDesigns.indexOf(designID) > -1) {
+        _.remove(self.savedDesigns, function(item) {
+          return item === designID;
+        });
+      }
       if (andToCart) {
         CartUpdate.update(getCartItems())
         .then(function(updatedCart) {
