@@ -147,14 +147,14 @@ router.post('/orders', function (req, res) {
       '-shippingCity-': order.shippingDetails.city,
       '-shippingState-': order.shippingDetails.state,
       '-shippingZip-': order.shippingDetails.zip,
-      '-grantAmount-': priceCalculator.getTotalGrantAmount(order),
-      '-discoun-': priceCalculator.getTotalDiscount(order),
-      '-tax-': priceCalculator.getTaxCost(total),
-      '-salesTax-': priceCalculator.getTotalTax(order),
-      '-shipping-': priceCalculator.getTotalShipping(order),
-      '-total-': total,
+      '-grantAmount-': priceCalculator.getTotalGrantAmount(order).toFixed(2),
+      '-discount-': priceCalculator.getTotalDiscount(order).toFixed(2),
+      '-tax-': priceCalculator.getTaxCost(total).toFixed(2),
+      '-salesTax-': priceCalculator.getTotalTax(order).toFixed(2),
+      '-shipping-': priceCalculator.getTotalShipping(order).toFixed(2),
+      '-total-': total.toFixed(2),
       '-orderNumber-': order.orderNum,
-      '-subtotal-': priceCalculator.getTotalSubtotal(order)
+      '-subtotal-': priceCalculator.getTotalSubtotal(order).toFixed(2)
     }
 
     var invoiceEmail = new sendgrid.Email({
