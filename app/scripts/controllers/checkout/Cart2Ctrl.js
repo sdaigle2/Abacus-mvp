@@ -381,7 +381,7 @@ angular.module('abacuApp')
       /*****discount  function*******/
       $scope.applyDiscount = function(){
 
-        Discount.fetchDiscount($scope.discount.code)
+        Discount.fetchDiscount($scope.discount.code.toLowerCase())
           .then(function(newDiscount){
             discount = newDiscount;
             $scope.curOrder.addDiscount(discount);

@@ -231,6 +231,7 @@ router.post('/users/register', function (req, res) {
   }
   else
     //query the database
+    data.email = data.email.toLowerCase();
     dbService.users.get(data.email, function (err, body) { //Query the database for a user with the given email
       if (err) {  //No user exists, we can continue registering
 

@@ -446,7 +446,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         deferred.reject(new Error('Missing Username or Password'));
         return deferred.promise;
       }
-      var email = _.lowerFirst(in_email);
+      var email = in_email.toLowerCase()
       console.log(email)
       var httpPromise = $http({
         url: '/users/email/sign-in/' + email,
