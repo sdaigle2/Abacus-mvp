@@ -130,7 +130,7 @@ describe('Tests main userService functions exposed to controllers', function () 
     };
     User.setUser();
     User.setDesign(['testId']);
-    httpBackend.expectPOST('/users/current/designs', expectedSavedDesignsObj)
+    httpBackend.expectPOST('/users/current/designs', {"savedDesigns":[]})
     .respond(200, []);
     httpBackend.whenGET('users/current').respond(200, '');
     User.removeDesignFromSavedDesigns('testId')

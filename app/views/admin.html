@@ -1,0 +1,34 @@
+<link href="../styles/admin.css" rel="stylesheet"/>
+<div class="admin-wrapper">
+	<div class="admin-container">
+		<p class="header-text">Create a new discount</p>
+		<hr>
+		<p>Discount code</p>
+		<p class="input-group admin-input">
+	      <input type="text" class="form-control" ng-model="discount.id" ng-required="true">
+	    </p>
+	    <p>Percent</p>
+		<p class="input-group admin-input">
+	      <input type="text" class="form-control" ng-model="discount.percent" ng-required="true">
+	    </p>
+	    <p>Start Date</p>
+	    <p class="input-group admin-input">
+	      <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="discount.startDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true"/>
+	      <span class="input-group-btn">
+	        <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+	      </span>
+	    </p>
+
+	    <p>End Date</p>
+	    <p class="input-group admin-input">
+	      <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="discount.endDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true"/>
+	      <span class="input-group-btn">
+	        <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+	      </span>
+	    </p>
+	    <button type="button" class="btn btn-sm btn-danger admin-button" ng-click="clear()">Clear</button>
+	    <button type="button" class="btn btn-sm btn-success admin-button" ng-click="submitDiscount()">Send</button>
+	    <p class="errMsg" ng-show="errorMsg">{{errorMsg}}</p>
+	    <p class="sucMsg" ng-show="successMsg">{{successMsg}}</p>
+	</div>
+</div>

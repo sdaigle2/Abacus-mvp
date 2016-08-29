@@ -137,7 +137,6 @@ router.post('/users/email/sign-in/:email', function (req, res) {
     });
     return;
   }
-
   //Query the database
   dbUtils.getUserByID(email, function (err, body) { //body is the object we retrieve from the successful query
     if (!err) {
@@ -145,7 +144,6 @@ router.post('/users/email/sign-in/:email', function (req, res) {
         if (err)
           res.json({'userID': -1});
         else if (hash === body.password) { //Compare hashed password with stored hash
-
           //Create a session cookie for the logged in user
           req.session.regenerate(function () {
             req.session.user = body.email;

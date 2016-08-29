@@ -30,6 +30,9 @@ angular
     forceSSL();
     // Attach lodash object to $rootScope so it can be used in views
     $rootScope._ = window._;
+    $rootScope.$on('$routeChangeError', function() {
+      $location.path('/');
+    });
   }])
   .config(function ($routeProvider, $sceDelegateProvider, $httpProvider, $locationProvider ,cfpLoadingBarProvider) {
     // Set up routes
@@ -82,6 +85,26 @@ angular
         resolve: {
           UserData: ['$q', 'User', function($q, User) {
             return User.getPromise();
+          }]
+        }
+      })
+      .when('/admin', {
+        templateUrl: 'views/admin.html',
+        controller: 'AdminCtrl',
+        resolve: {
+          UserData: ['$q', 'User', function($q, User) {
+            var deferred = $q.defer()
+            return User.getPromise()
+            .then(function(resp) {
+              var userData = resp.data || resp;
+              if (userData.userType === 'admin') {
+                deferred.resolve();
+              } else {
+                deferred.reject();
+              }
+              
+              return deferred.promise;
+            })
           }]
         }
       })
