@@ -191,6 +191,7 @@ router.post('/orders', function (req, res) {
           invoiceEmail.addFile({
             path: pdfFileInfo.absPath
           });
+
           sendgrid.send(invoiceEmail, function (err, json) {
             if (err) {
               console.log(`Error while sending user invoice email:\n${JSON.stringify(err, null, 2)}`);
@@ -204,6 +205,9 @@ router.post('/orders', function (req, res) {
           manufactureCopy.addFile({
             path: pdfFileInfo.absPath
           });
+          console.log('manufactureCopy object', invoiceEmail); // the object containing manufactureCopy
+          console.log('manufactureCopy substitutions', invoiceEmail.smtpapi.header.sub);// the object containing manufactureCopy variables
+
           sendgrid.send(manufactureCopy, function (err, json) {
             if (err) {
               console.log(`Error while sending manufacturer invoice email:\n${JSON.stringify(err, null, 2)}`);
