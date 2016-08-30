@@ -30,3 +30,11 @@
 .admin-button {
 	margin-top: 20px;
 }
+
+#percentBox {
+  width: 90%;
+}
+
+.note {
+  color: #888888 ;
+}

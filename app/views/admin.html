@@ -1,15 +1,16 @@
 <link href="../styles/admin.css" rel="stylesheet"/>
 <div class="admin-wrapper">
 	<div class="admin-container">
-		<p class="header-text">Create a new discount</p>
+		<h3 class="header-text">Create a New Discount Code</h3>
+    <p class="note"><em>Note: Discount codes are not case sensitive.</em></p>
 		<hr>
-		<p>Discount code</p>
+		<p>Discount Code</p>
 		<p class="input-group admin-input">
-	      <input type="text" class="form-control" ng-model="discount.id" ng-required="true">
+	      <input type="text" class="form-control" placeholder="example: per4max2016" ng-model="discount.id" ng-required="true">
 	    </p>
 	    <p>Percent</p>
 		<p class="input-group admin-input">
-	      <input type="text" class="form-control" ng-model="discount.percent" ng-required="true">
+	      <input type="text" class="form-control" id="percentBox" placeholder="example: 20" ng-model="discount.percent" ng-required="true">%
 	    </p>
 	    <p>Start Date</p>
 	    <p class="input-group admin-input">
@@ -26,8 +27,8 @@
 	        <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
 	      </span>
 	    </p>
-	    <button type="button" class="btn btn-sm btn-danger admin-button" ng-click="clear()">Clear</button>
-	    <button type="button" class="btn btn-sm btn-success admin-button" ng-click="submitDiscount()">Send</button>
+	    <button type="button" class="btn btn-sm btn-danger admin-button" ng-click="clear()">Cancel</button>
+	    <button type="button" class="btn btn-sm btn-success admin-button" ng-click="submitDiscount()">Create</button>
 	    <p class="errMsg" ng-show="errorMsg">{{errorMsg}}</p>
 	    <p class="sucMsg" ng-show="successMsg">{{successMsg}}</p>
 	</div>
