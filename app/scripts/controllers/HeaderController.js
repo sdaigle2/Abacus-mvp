@@ -26,8 +26,7 @@ angular.module('abacuApp')
 
     //Values set by logged-in user
     $scope.user = User;
-    $scope.showAdmin1 = function() {
-
+    $scope.showAdmin = function() {
       return User.getUserType() === 'admin' || User.getUserType() === 'superAdmin'
     }
     //cartIcon image controll
