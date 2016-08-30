@@ -47,7 +47,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     self.zip = '';
     self.unitSys = Units.unitSys.IMPERIAL;   // no longer used
     self.contentSection = 'orders';          // section name under my account
-    self.isAdmin = false;
+    self.userType = '';
     self._rev = null;                        //revision number from cloudant, Important to keep in sync with, otherwise update will fail
     // restoreUserFromCookies();
   }
@@ -103,7 +103,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         return design;
       }),
       'cart': !_.isNull(self.cart) ? self.cart.getAll() : null,
-      'isAdmin': self.isAdmin
+      'userType': self.userType
     };
 
     if (self._rev) { // attach the _rev only if it exists
@@ -308,7 +308,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         wIndex++;
       }
 
-      self.isAdmin = data.isAdmin || false;
+      self.userType = data.userType;
       self._rev = data._rev || null;
       var orderObjs = _.isArray(data.orders) ? data.orders : [];
       self.orders = orderObjs.map(function (orderObj) {
@@ -780,8 +780,8 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       return self.contentSection;
     },
 
-    isAdmin: function () {
-      return self.isAdmin;
+    getUserType: function () {
+      return self.userType;
     },
     setFname: function (newFName) {
       self.fName = newFName;

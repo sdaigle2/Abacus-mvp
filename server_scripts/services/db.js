@@ -44,16 +44,6 @@ async.parallel({
   return
 });
 
-// This will make sure that nobody accidently writes code that inserts discounts into
-// cloudant. If you try calling discounts.insert(...), you will only get an error
-discounts.insert = (entry, id, cb) => {
-	if (_.isFunction(id)) {
-		cb = id;
-	}
-
-	cb(new Error('Cannot Insert Discounts from Backend. Must insert manually from Cloudant Website.'));
-};
-
 const EXPORTED_DBS = {
 	users: users,
 	orders: orders,

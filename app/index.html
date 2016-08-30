@@ -75,6 +75,9 @@
         <li ng-click="jumpAbout()" class="aboutNavButton" ng-class="{ active: isActive('/about')}">
           <a class="medium">HOW TO</a>
         </li>
+        <li ng-show="showAdmin()" class="adminNavButton" ng-class="{ active: isActive('/admin')}">
+          <a ng-href="/#!/admin" class="medium">ADMIN</a>
+        </li>
       </ul>
 
       <ul class="mainNavbar-right">
@@ -250,6 +253,8 @@
 <script src="scripts/controllers/MyDesignsCtrl.js"></script>
 <script src="scripts/controllers/forgotPassword/ForgotCtrl.js"></script>
 <script src="scripts/controllers/forgotPassword/ForgotApi.js"></script>
+<script src="scripts/controllers/admin/AdminCtrl.js"></script>
+<script src="scripts/controllers/admin/AdminApi.js"></script>
 
 <!-- endbuild -->
 

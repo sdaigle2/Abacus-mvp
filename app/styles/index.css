@@ -115,6 +115,15 @@ body {
   /*background-image: url("../images/icons/on_compare.png");*/
 }
 
+.mainNavbar .mainNavbar-left > li.adminNavButton:hover,
+.mainNavbar .mainNavbar-left > li.adminNavButton:focus,
+.mainNavbar .mainNavbar-left > li.adminNavButton.active,
+.mainNavbar .mainNavbar-left > li.adminNavButton.active:hover,
+.mainNavbar .mainNavbar-left > li.adminNavButton.active:focus {
+  color:#4f9dff;
+  /*background-image: url("../images/icons/on_compare.png");*/
+}
+
 .mainNavbar .mainNavbar-left > li > a {
   text-decoration: none;
 }
