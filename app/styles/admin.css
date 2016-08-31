@@ -32,11 +32,22 @@
 }
 
 .admin-wrapper .multi {
-	margin-top: 10px
+	margin-top: 10px;
 }
 
 .admin-wrapper .multi p {
 	display: inline;
+    width: 80%;
+    float: left;
+    text-align: right;
+}
+
+#multiCheckox {
+    margin-top: 25px;
+}
+
+.button-box{
+    clear: both;
 }
 
 #percentBox {
@@ -46,3 +57,4 @@
 .note {
   color: #888888 ;
 }
+

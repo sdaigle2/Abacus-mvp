@@ -28,12 +28,13 @@
 	      </span>
 	    </p>
 	    <div class="multi">
-	    	<p style="display: inline;">Multi discount</p>
-	    	<input type="checkbox" ng-model="discount.isMultiDiscount"/>
+	    	<p style="display: inline;">Allow this discount to be combined with other discounts:</p>
+	    	<input id="multiCheckox" type="checkbox" ng-model="discount.isMultiDiscount"/>
 	    </div>
-	    
-	    <button type="button" class="btn btn-sm btn-danger admin-button" ng-click="clear()">Cancel</button>
-	    <button type="button" class="btn btn-sm btn-success admin-button" ng-click="submitDiscount()">Create</button>
+        <div class="button-box">
+            <button type="button" class="btn btn-sm btn-danger admin-button" ng-click="clear()">Cancel</button>
+            <button type="button" class="btn btn-sm btn-success admin-button" ng-click="submitDiscount()">Create</button>
+        </div>
 	    <p class="errMsg" ng-show="errorMsg">{{errorMsg}}</p>
 	    <p class="sucMsg" ng-show="successMsg">{{successMsg}}</p>
 	</div>

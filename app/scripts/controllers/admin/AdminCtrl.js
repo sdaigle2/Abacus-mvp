@@ -5,8 +5,9 @@ angular.module('abacuApp')
 
   	function validateFields(obj) {
   		if (!obj.startDate || !obj.endDate || !obj.id || !obj.percent) return 'Please fill in all the fields.'
-		if (typeof obj.id !== 'string') return 'Id should be a string.'
+		if (typeof obj.id !== 'string') return 'ID should be letters and numbers.'
 		if (isNaN(obj.percent)) return 'Percent should be a number.'
+        if (obj.percent > 100 || obj.percent <= 0) return 'Percent must be between 0 and 100.'
 		return '';
   	};
 
