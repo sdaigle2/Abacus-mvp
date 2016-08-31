@@ -187,46 +187,28 @@ router.post('/orders', function (req, res) {
       if (err) {
         cb(err);
       } else {
-        const sendInvoiceMail = function (cb) {
-          invoiceEmail.addFile({
-            path: pdfFileInfo.absPath
-          });
-
-          sendgrid.send(invoiceEmail, function (err, json) {
-            if (err) {
-              console.log(`Error while sending user invoice email:\n${JSON.stringify(err, null, 2)}`);
-            }
-
-            cb(err);
-          });
-        };
-
-        const sendManufacturerEmail = function (cb) {
-          manufactureCopy.addFile({
-            path: pdfFileInfo.absPath
-          });
-          console.log('manufactureCopy object', invoiceEmail); // the object containing manufactureCopy
-          console.log('manufactureCopy substitutions', invoiceEmail.smtpapi.header.sub);// the object containing manufactureCopy variables
-
-          sendgrid.send(manufactureCopy, function (err, json) {
-            if (err) {
-              console.log(`Error while sending manufacturer invoice email:\n${JSON.stringify(err, null, 2)}`);
-            }
-
-            cb(err);
-          });
-        };
-
-        // send the emails out in parallel
-        async.parallel([sendInvoiceMail, sendManufacturerEmail], function (err) {
-          if (err) {
-            cb(err);
-          } else {
-            cb(null, curOrderNum);
-          }
+        invoiceEmail.addFile({
+          path: pdfFileInfo.absPath
         });
 
-
+        manufactureCopy.addFile({
+          path: pdfFileInfo.absPath
+        });
+        sendgrid.send(invoiceEmail, function(err, resp) {
+          if (err) {
+            console.log(`Error while sending user invoice email:\n${JSON.stringify(err, null, 2)}`)
+          } else {
+            sendgrid.send(manufactureCopy, function(err, resp) {
+              console.log('manufactureCopy object', manufactureCopy); // the object containing manufactureCopy
+              console.log('manufactureCopy substitutions', manufactureCopy.smtpapi.header.sub);// the object containing manufactureCopy variables
+              if (err) {
+                console.log(`Error while sending user invoice email:\n${JSON.stringify(err, null, 2)}`)
+              } else {
+                console.log('sent successfully')
+              }
+            })
+          }
+        })
       }
     });
   };
