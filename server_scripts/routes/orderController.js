@@ -212,7 +212,7 @@ router.post('/orders', function (req, res) {
             if (err) {
               console.log(`Error while sending manufacturer invoice email:\n${JSON.stringify(err, null, 2)}`);
             }
-            
+            console.log('manufactureCopy substitutions after sending', manufactureCopy.smtpapi.header.sub);// the object containing manufactureCopy variables
             cb(err);
           });
         };
