@@ -23,6 +23,7 @@ angular.module('abacuApp')
 		$scope.popup2.opened = true;
 	};
 	$scope.discount = {};
+	$scope.discount.isMultiDiscount = false;
 
 	$scope.format = 'dd-MMMM-yyyy';
 
@@ -40,12 +41,16 @@ angular.module('abacuApp')
 		$scope.errorMsg = validateFields($scope.discount);
 		if (!$scope.errorMsg)  {
 			$scope.discount.percent = $scope.discount.percent / 100;
+			$scope.discount.id = $scope.discount.id.toLowerCase();
 			$scope.errorMsg = '';
 			
 			AdminAPI.createDiscount($scope.discount)
 			.then(function() {
 				$scope.successMsg = 'Discount successfully created.';
 				$scope.discount = {};
+			})
+			.catch(function(err) {
+				$scope.errorMsg = err.message;
 			});
 		}
 	};

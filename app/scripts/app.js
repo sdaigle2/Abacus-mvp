@@ -97,7 +97,7 @@ angular
             return User.getPromise()
             .then(function(resp) {
               var userData = resp.data || resp;
-              if (userData.userType === 'admin') {
+              if (userData.userType === 'admin' || userData.userType === 'superAdmin') {
                 deferred.resolve();
               } else {
                 deferred.reject();

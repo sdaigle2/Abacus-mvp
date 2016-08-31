@@ -27,6 +27,11 @@
 	        <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
 	      </span>
 	    </p>
+	    <div class="multi">
+	    	<p style="display: inline;">Multi discount</p>
+	    	<input type="checkbox" ng-model="discount.isMultiDiscount"/>
+	    </div>
+	    
 	    <button type="button" class="btn btn-sm btn-danger admin-button" ng-click="clear()">Cancel</button>
 	    <button type="button" class="btn btn-sm btn-success admin-button" ng-click="submitDiscount()">Create</button>
 	    <p class="errMsg" ng-show="errorMsg">{{errorMsg}}</p>
