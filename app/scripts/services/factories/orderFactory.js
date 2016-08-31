@@ -24,6 +24,7 @@ angular.module('abacuApp')
   .factory('Order', ['$q', '$http', 'Wheelchair', 'localJSONStorage', 'Design', 'FRAME_SHIPPING_PRICES', 'FrameData', 'Discount', 'Errors','_', function ($q, $http, Wheelchair, localJSONStorage, Design, FRAME_SHIPPING_PRICES, FrameData, Discount, Errors, _) {
 
     function Order(taxRate, shippingFee, order) {
+      console.log(order)
       this.wheelchairs = [];
       var DEFAULT_DETAILS = {
         'fName': '',
@@ -52,7 +53,7 @@ angular.module('abacuApp')
 
         this.userType = 'User'; // default to the 'User' User Type
 
-        this.payMethod = 'Credit Card';
+        this.payMethod = 'Pay total now';
         this.discounts = [];
       }
       else {
@@ -67,7 +68,7 @@ angular.module('abacuApp')
         this.phone = order.phone;
         this.shippingDetails = _.defaults(order.shippingDetails || {}, DEFAULT_DETAILS);
         this.billingDetails = _.defaults(order.billingDetails || {}, DEFAULT_DETAILS);
-        this.payMethod = order.payMethod || 'Credit Card'; // default to credit card
+        this.payMethod = order.payMethod || 'Pay total now'; // default to credit card
         this.userType = order.userType || 'User'; // default to user
         this.poNumber = order.poNumber || '';
 
@@ -91,7 +92,6 @@ angular.module('abacuApp')
       }
       localJSONStorage.put('cartWheelchairs', tempWheelchairs);
     }
-
 
 
     Order.prototype = {

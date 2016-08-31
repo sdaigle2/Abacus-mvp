@@ -315,6 +315,7 @@
 .dropDown .dropdown-menu a{
   padding: 2px 20px;
   cursor: pointer;
+  white-space: normal;
 }
 
 #orderType .dropDown .caretShape {

@@ -12,7 +12,7 @@
  */
 angular.module('abacuApp')
   .constant('WHEELCHAIR_CANVAS_WIDTH', 187) // width of canvas that renders wheelchair
-  .constant('PAYMENT_METHODS', [{'name': 'Credit Card', 'requiresAccount': false}, {'name': 'Credit Card when Order Ships', 'requiresAccount': true}, {'name': 'Bill me Net 30', 'requiresAccount': true}])
+  .constant('PAYMENT_METHODS', [{'name': 'Pay total now', 'requiresAccount': false}, {'name': 'Pay part now, pay remainder when order ships', 'requiresAccount': false}, {'name': 'Pay Later', 'requiresAccount': false}])
   .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', 'PAYMENT_METHODS',
     '$q', 'Errors', 'ngDialog', 'PromiseUtils', 'Discount', '$http', 'DownloadPDF',
     function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, PAYMENT_METHODS, $q, Errors, ngDialog, PromiseUtils, Discount, $http, DownloadPDF) {
@@ -264,13 +264,15 @@ angular.module('abacuApp')
       };
 
       $scope.choosePayment = function (paymentMethod) {
+        var method = paymentMethod.name.split(' ', 3).join(" ").replace(/,/g, "");
         if (paymentMethod.requiresAccount) {
           $scope.showLoginModal()
           .then(function () {
-            $scope.curOrder.payMethod = paymentMethod.name;
+
+            $scope.curOrder.payMethod = method;
           });
         } else {
-          $scope.curOrder.payMethod = paymentMethod.name;
+          $scope.curOrder.payMethod = method;
         }
       };
 

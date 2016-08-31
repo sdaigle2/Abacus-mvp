@@ -153,10 +153,6 @@
               <span class="pull-right"> -${{((1-curOrder.getDiscountAmount())*(curOrder.getSubtotalNoGrant()-totalGrantAmount) ).toFixed(2)}}</span>
             </div>
             <div>
-              <span class="pull-left">Tax</span>
-              <span class="pull-right">${{curOrder.getTaxCost() >= 0 ? curOrder.getTaxCost().toFixed(2) : '--'}}</span>
-            </div>
-            <div>
               <span class="pull-left">Shipping Est</span>
               <span class="pull-right">${{curOrder.getShippingCost() >= 0 ? curOrder.getShippingCost().toFixed(2) : '--'}}</span>
             </div>
@@ -188,7 +184,7 @@
               </button>
               <ul class="dropdown-menu" role="menu" style="word-wrap: break-word;">
                 <li ng-repeat="paymentMethod in PAYMENT_METHODS" ng-if="!(curOrder.userType == 'User' && (paymentMethod.name == 'Bill me Net 30' || paymentMethod.name == 'Credit Card when Order Ships'))">
-                  <a ng-click="choosePayment(paymentMethod)">{{paymentMethod.name}} {{curOrder.payMethod === paymentMethod.name ? '✓' : ''}}</a>
+                  <a ng-click="choosePayment(paymentMethod)">- {{paymentMethod.name}} {{curOrder.payMethod === paymentMethod.name ? '✓' : ''}}</a>
                 </li>
               </ul>
             </div>
