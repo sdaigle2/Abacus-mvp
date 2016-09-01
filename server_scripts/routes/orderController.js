@@ -153,80 +153,25 @@ router.post('/orders', function (req, res) {
       '-salesTax-': priceCalculator.getTotalTax(order).toFixed(2),
       '-shipping-': priceCalculator.getTotalShipping(order).toFixed(2),
       '-total-': total.toFixed(2),
-      '-orderNumber-': order.orderNum,
+      '-orderNumber-': order.orderNum.toString(),
       '-subtotal-': priceCalculator.getTotalSubtotal(order).toFixed(2)
     }
 
-    var invoiceEmail = new sendgrid.Email({
-      from: 'do-not-reply@per4max.fit',
-      subject: 'Per4max Order #' + order.orderNum + ' - Invoice Attached'
-    });
-
-    var manufactureCopy = new sendgrid.Email({
-      from: 'do-not-reply@per4max.fit',
-      subject: 'Tinker Order #' + order.orderNum + ' - Invoice Attached - MANUFACTURER COPY'
-    });
-
-    manufactureCopy.setFilters({"templates": {"settings": {"enabled": 1, "template_id": "ab18bc4d-d178-4cee-866c-b7ef11c486b8"}}});
-    invoiceEmail.setFilters({"templates": {"settings": {"enabled": 1, "template_id": "ab18bc4d-d178-4cee-866c-b7ef11c486b8"}}});
-
-    _.forEach(valuesToSubstitute, function(value, key) {
-      manufactureCopy.addSubstitution(key, value);
-      invoiceEmail.addSubstitution(key, value);
-    });
-
-    //Send email to the user containing the invoice as a pdf
-    invoiceEmail.to = req.body.order.email;
-    invoiceEmail.text = 'Order #:' + order.orderNum + 'Thank you for ordering your new Wheelchair from Per4max. Your invoice is attached here.';
-    invoiceEmail.html = '.';
-    manufactureCopy.to = MANUFACTURER_EMAIL;
-    manufactureCopy.text = 'Order #:' + order.orderNum + '<br> A new order has just been placed. A copy of the invoice is attached here.';
-    manufactureCopy.html = '.';
 
     generatePDF.forInvoice(order, function (err, pdfFileInfo) {
       if (err) {
         cb(err);
       } else {
-        const sendInvoiceMail = function (cb) {
-          invoiceEmail.addFile({
-            path: pdfFileInfo.absPath
-          });
+        var pdf = {
+          path: pdfFileInfo.absPath,
+          name: 'pdfInvoice.pdf'
+        }
+        sendgrid.sendInvoice('do-not-reply@per4max.fit', MANUFACTURER_EMAIL , 'subject', valuesToSubstitute, pdf, cb);
+        sendgrid.sendInvoice('do-not-reply@per4max.fit', [req.body.order.email] , 'subject', valuesToSubstitute, pdf, cb);
 
-          sendgrid.send(invoiceEmail, function (err, json) {
-            if (err) {
-              console.log(`Error while sending user invoice email:\n${JSON.stringify(err, null, 2)}`);
-            }
-
-            cb(err);
-          });
-        };
-
-        const sendManufacturerEmail = function (cb) {
-          manufactureCopy.addFile({
-            path: pdfFileInfo.absPath
-          });
-          console.log('manufactureCopy object', invoiceEmail); // the object containing manufactureCopy
-          console.log('manufactureCopy substitutions', invoiceEmail.smtpapi.header.sub);// the object containing manufactureCopy variables
-
-          sendgrid.send(manufactureCopy, function (err, json) {
-            if (err) {
-              console.log(`Error while sending manufacturer invoice email:\n${JSON.stringify(err, null, 2)}`);
-            }
-
-            cb(err);
-          });
-        };
-
-        // send the emails out in parallel
-        async.parallel([sendInvoiceMail, sendManufacturerEmail], function (err) {
-          if (err) {
-            cb(err);
-          } else {
-            cb(null, curOrderNum);
-          }
-        });
-
-
+        function cb(err, resp) {
+          if (err) console.log(err);
+        }
       }
     });
   };

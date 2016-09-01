@@ -19,11 +19,12 @@ var check     = require('../services/security').check;
 // Import Policies
 var restrict = require('../policies/restrict');
 
-var email = new sendgrid.Email({
-  from: 'tinker@intelliwheels.net',
-  subject: 'Tinker Registration'
-});
+// Email info
+var authTplId = 'db5513e7-1cb0-46f7-95bd-1001fbe8c41e';
+var resetPasswordTplId = 'dfee1b8d-6729-4674-bd82-da988b65e440';
+var emailFrom = 'tinker@intelliwheels.net';
 
+// Promised db functions
 var findUserPr = Promise.promisify(dbService.users.find);
 var insertUserPr = Promise.promisify(dbService.users.insert);
 
@@ -43,16 +44,15 @@ router.post('/users/email/:email/request-reset-password', function (req, res) {
     data.docs[0].resetLink = crypto.randomBytes(16).toString('hex');
     insertUserPr(data.docs[0], data.docs[0].id)
     .then(function(nData) {
-      var newMail = new sendgrid.Email({
-        from: 'tinker@intelliwheels.net',
-        subject: 'Per4max Password Reset',
-        to: userEmail
-      });
-      newMail.setFilters({"templates": {"settings": {"enabled": 1, "template_id": "dfee1b8d-6729-4674-bd82-da988b65e440"}}});
-      newMail.html = 'To reset your password for per4max.fit, please click the link - http://per4max.fit/#!/change-password/' + data.docs[0].resetLink;
-      sendgrid.send(newMail, function (resp) {
-        res.json({'success': true, 'newRev': nData.rev, 'resetLink': data.docs[0].resetLink});
-      });
+      var content = 'To reset your password for per4max.fit, please click the link - http://per4max.fit/#!/change-password/' + data.docs[0].resetLink;
+      sendgrid.send(emailFrom, userEmail, content, 'Per4max Password Reset', resetPasswordTplId, cb)
+      function cb(err, resp) {
+        if (err) {
+          console.log(err)
+        } else {
+          res.json({'success': true, 'newRev': nData.rev, 'resetLink': data.docs[0].resetLink});
+        }
+      }
     })
     .catch(function(err) {
       res.status(500);
@@ -163,22 +163,6 @@ router.post('/users/email/sign-in/:email', function (req, res) {
   });
 });
 
-// router.get('/loadMyDesign', function(req,res){
-//   var ID = req.body.email;
-//   console.log("user ID is" + ID);
-//   dbService.users.search('view101','search', {q:'creator:' + ID}, function(err,body){
-//     if(!err){
-//       res.json(body);
-//     }
-//     else {
-//       res.status(400);
-//       res.json(err);
-//     }
-//   });
-//
-//
-// });
-
 //LOGOUT
 router.post('/users/current/logout', restrict, function (req, res) {
   //Destroy session cookie
@@ -248,14 +232,14 @@ router.post('/users/register', function (req, res) {
               res.json({err: 'Couldn\'t save user in the Database'});
               return;
             }
-            //Send an email to the user using the sendgrid API
-            email.setFilters({"templates": {"settings": {"enabled": 1, "template_id": "db5513e7-1cb0-46f7-95bd-1001fbe8c41e"}}});
-            email.to = data.email;
-            email.text = 'Thank you for registering with the Per4max Wheelchair Configurator powered by Tinker.  To confirm your account, please go to http://per4max.fit.';
-            email.html = '.';
-            sendgrid.send(email, function (err) {
-              res.json({'success': true});
-            });
+            sendgrid.send(emailFrom, data.email, '.', 'Tinker Registration', authTplId, cb);
+            function cb(err) {
+              if (err) {
+                console.log(err)
+              } else {
+                res.json({'success': true});
+              }
+            }
           });
         });
       }
