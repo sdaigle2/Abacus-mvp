@@ -183,8 +183,8 @@
                 {{curOrder.payMethod}}<span class="pull-right caret caretShape"></span>
               </button>
               <ul class="dropdown-menu" role="menu" style="word-wrap: break-word;">
-                <li ng-repeat="paymentMethod in PAYMENT_METHODS" ng-if="!(curOrder.userType == 'User' && (paymentMethod.name == 'Bill me Net 30' || paymentMethod.name == 'Credit Card when Order Ships'))">
-                  <a ng-click="choosePayment(paymentMethod)">- {{paymentMethod.name}} {{curOrder.payMethod === paymentMethod.name ? '✓' : ''}}</a>
+                <li ng-repeat="paymentMethod in PAYMENT_METHODS">
+                  <a ng-click="choosePayment(paymentMethod)">- {{paymentMethod.name}} {{setChecker(paymentMethod.name) ? '✓' : ''}}</a>
                 </li>
               </ul>
             </div>

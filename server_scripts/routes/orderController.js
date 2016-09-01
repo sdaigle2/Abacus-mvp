@@ -71,7 +71,7 @@ router.post('/orders', function (req, res) {
     if (order.payMethod === 'Credit Card') {
       //Create a new stripe payment
       var stripeCharge = stripe.charges.create({
-        amount: _.round(total * 100),
+        amount: _.round(total * 100), // check this value
         currency: "usd",
         source: stripeToken,
         description: "Tinker order"

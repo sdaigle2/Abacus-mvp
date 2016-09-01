@@ -265,16 +265,22 @@ angular.module('abacuApp')
 
       $scope.choosePayment = function (paymentMethod) {
         var method = paymentMethod.name.split(' ', 3).join(" ").replace(/,/g, "");
+        console.log($scope.curOrder)
         if (paymentMethod.requiresAccount) {
           $scope.showLoginModal()
           .then(function () {
-
             $scope.curOrder.payMethod = method;
           });
         } else {
           $scope.curOrder.payMethod = method;
         }
       };
+
+      $scope.setChecker = function(payMethod) {
+        var payMethodName = payMethod.split(' ', 3).join(" ").replace(/,/g, "");
+        if (payMethodName === $scope.curOrder.payMethod) return true;
+        return false;
+      }
 
         //Validates the user's "cart" and sends the user to Checkout or Order if valid
       $scope.checkOut = function () {
