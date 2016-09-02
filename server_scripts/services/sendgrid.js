@@ -2,7 +2,7 @@
  * Exposes variables to interact with sendgrid API
  */
 "use strict";
-var sg = require('sendgrid')('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');
+var sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
 var helper = require('sendgrid').mail;
 var _ = require('lodash');
 var fs = require('fs');
