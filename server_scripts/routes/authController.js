@@ -22,7 +22,7 @@ var restrict = require('../policies/restrict');
 // Email info
 var authTplId = 'db5513e7-1cb0-46f7-95bd-1001fbe8c41e';
 var resetPasswordTplId = 'dfee1b8d-6729-4674-bd82-da988b65e440';
-var emailFrom = 'tinker@intelliwheels.net';
+var emailFrom = 'do-not-reply@per4max.fit';
 
 // Promised db functions
 var findUserPr = Promise.promisify(dbService.users.find);
