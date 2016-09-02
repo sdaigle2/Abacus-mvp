@@ -78,7 +78,6 @@ function getOrderByID(orderID, cb) {
 			if (err) {
 				return cb(err);
 			}
-
 			order.wheelchairs = results.wheelchairs;
 			order.discounts = results.discounts;
 
