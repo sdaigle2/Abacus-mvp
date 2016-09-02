@@ -19,7 +19,7 @@ const dbUtils         = require('../services/dbUtils');
 
 // Manufacturer Email to send invoices to
 const MANUFACTURER_EMAIL = ['sales@per4max.com', 'ckommer@per4max.com', 'dfik@per4max.com', 'colivas@per4max.com', 'p4x@intelliwheels.net'];
-//const MANUFACTURER_EMAIL = ['scott@intelliwheels.net', 'brian@intelliwheels.net'];
+//const MANUFACTURER_EMAIL = ['scott@intelliwheels.net', 'sdaigle@pdipaxton.com'];
 console.log(`NOTE: Invoice Emails will be sent to Manufacturer at this email: ${MANUFACTURER_EMAIL}`);
 
 // downloads Invoice PDF for a given order
@@ -166,8 +166,8 @@ router.post('/orders', function (req, res) {
           path: pdfFileInfo.absPath,
           name: 'pdfInvoice.pdf'
         }
-        sendgrid.sendInvoice('do-not-reply@per4max.fit', MANUFACTURER_EMAIL , 'subject', valuesToSubstitute, pdf, cb);
-        sendgrid.sendInvoice('do-not-reply@per4max.fit', [req.body.order.email] , 'subject', valuesToSubstitute, pdf, cb);
+        sendgrid.sendInvoice('do-not-reply@per4max.fit', MANUFACTURER_EMAIL , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached - MANUFACTURER COPY', valuesToSubstitute, pdf, cb);
+        sendgrid.sendInvoice('do-not-reply@per4max.fit', [req.body.order.email] , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached', valuesToSubstitute, pdf, cb);
 
         function cb(err, resp) {
           if (err) console.log(err);
