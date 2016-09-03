@@ -55,7 +55,6 @@ body {
   margin: 0 0 0 20px;
   padding: 0;
   list-style: none;
-
 }
 .mainNavbar .mainNavbar-left > li {
   float: left;
@@ -65,10 +64,6 @@ body {
   background: no-repeat 0 0;
   background-size: 20px 20px;
   cursor: pointer;
-
-
-
-
 }
 
 .mainNavbar .mainNavbar-left > li.frameNavButton {
@@ -795,4 +790,80 @@ div{
 
 .button1:focus{
   outline:none;
+}
+
+#hamburgerMenu{
+  display: none;
+}
+
+/*responsive parts*/
+@media (max-width: 900px){
+  .mainNavbar .mainNavbar-left > li {
+    margin-right: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+}
+
+#hamburgerIcon{
+  display: none;
+}
+
+@media (max-width: 750px){
+  .mainNavbar-left{
+    display: none;
+  }
+
+  .mainNavbar-right{
+    display: none;
+  }
+
+  #hamburgerIcon{
+    display: inline;
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    font-size: 30px;
+    text-decoration-color: #000000;
+  }
+
+  #hamburgerIcon:hover{
+    cursor: pointer;
+  }
+
+  #hamburgerMenu{
+    display: table;
+    position: fixed;
+    right: -5px;
+    top: 40px;
+    padding: 5px;
+    width: 280px;
+    height: 100px;
+    background-color: #FFFFFF;
+    border: 1px solid #eaeaea;
+    list-style: none;
+  }
+
+  #hamburgerMenu > ul {
+    position: relative;
+    display: table;
+    list-style: none;
+  }
+
+  #hamburgerMenu > ul > li {
+    padding: 10px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #eaeaea;
+  }
+}
+
+#hamburgerMenu.ng-enter{
+  -webkit-animation: expandLogin 0.5s;
+  animation: expandLogin 0.5s;
+}
+
+#hamburgerMenu.ng-leave{
+  -webkit-animation: leaveLogin 0.5s;
+  animation: leaveLogin 0.5s;
 }

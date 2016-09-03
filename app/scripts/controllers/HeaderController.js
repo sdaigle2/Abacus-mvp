@@ -46,6 +46,16 @@ angular.module('abacuApp')
 
     };
 
+    //Hamburger Menu
+    $scope.menuVisible = false;
+    $scope.toggleHamburgerMenu = function(){
+      if ($scope.menuVisible){
+        $scope.menuVisible = false;
+      }  else {
+        $scope.menuVisible = true;
+      }
+    }
+
     //Sends the user to a password recovery system
     $scope.recoverPassword = function () {
       //TODO: Password recovery system

@@ -62,7 +62,7 @@
 
       <div class="mainNavbar-header">
         <a class="mainNavbar-brand" target="_blank" href="http://www.per4max.com/" >
-          <img alt="Tinker" src="images/P4XWebLogo3.png" width="100"/>
+          <img alt="P4X" src="images/P4XWebLogo3.png" width="100"/>
         </a>
       </div>
       <ul class="mainNavbar-left">
@@ -79,7 +79,6 @@
           <a ng-href="/#!/admin" class="medium">ADMIN</a>
         </li>
       </ul>
-
       <ul class="mainNavbar-right">
         <li class="cartButton" ng-click="jumpCart()"><img src="images/icons/cart-gray.png" width="30" alt="cart"/>
         </li>
@@ -94,7 +93,7 @@
         <li data-ng-click="jumpSearchid()" id="searchID">
           <img src="images/icons/search-gray.png">
         </li>
-	<li class="loginButton" data-ng-if="!user.isLoggedIn()">
+        <li class="loginButton" data-ng-if="!user.isLoggedIn()">
           <div data-ng-click="toggleLoginDropdown()"  class="login">
             <div class="loginText medium" data-ng-bind="loginText"></div>
           </div>
@@ -105,6 +104,25 @@
           </div>
         </li>
       </ul>
+      <div id="hamburgerIcon">
+        <p data-ng-click="toggleHamburgerMenu()">&#9776;</p>
+      </div>
+      <div  id = "hamburgerMenu" data-ng-if="menuVisible">
+        <ul>
+          <li ng-click="jumpFrame(); goToFrames()" class="frameNavButton" ng-class="{ active: isActive('/frames')}" id="wheelchairFrames">
+            <a class="medium">WHEELCHAIRS</a>
+          </li>
+          <li ng-click="jumpWheels(); goToWheels()" class="wheelsNavButton" ng-class="{ active: isActive('/frames')}">
+            <a class="medium">CUSTOM WHEELS</a>
+          </li>
+          <li ng-click="jumpAbout()" class="aboutNavButton" ng-class="{ active: isActive('/about')}">
+            <a class="medium">HOW TO</a>
+          </li>
+          <li ng-show="showAdmin()" class="adminNavButton" ng-class="{ active: isActive('/admin')}">
+            <a ng-href="/#!/admin" class="medium">ADMIN</a>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div data-ng-if="loginDropdown() === true"  class="fixPosition" >
