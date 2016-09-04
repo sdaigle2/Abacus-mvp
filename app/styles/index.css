@@ -584,7 +584,7 @@ div{
   height: 30px;
   line-height: 19px;
   font-size: 12pt;
-  width: 60%;
+  width: 90%;
   margin: auto;
 }
 
@@ -619,7 +619,6 @@ div{
 .fixPosition{
   position: absolute;
   background-color: #FFFFFF;
-  height: 230px;
   width: 100%;
   z-index: 99998;
   top: 40px;
@@ -658,6 +657,7 @@ div{
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   border-collapse: separate;
+  border: 1px solid #ddd;
 }
 
 
@@ -797,6 +797,47 @@ div{
 }
 
 /*responsive parts*/
+  .dropdownMenu{
+    text-align: center;
+    width: 100%;
+    padding-bottom: 20px;
+  }
+
+ .dropdownMenuBorders{
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    margin: 20px 50px 0px 50px;
+ }
+
+ .loginPanel1{
+    display: inline-block;
+    margin: auto 20px auto 20px;
+    vertical-align: middle;
+ }
+    
+ .loginPanel2{
+    display: inline-block;
+    margin: auto 20px auto 20px;
+    vertical-align: middle;
+  }
+    
+  .loginPanel3{
+    display: inline-block;
+    padding-bottom: 20px;
+    width: 150px;
+    margin: auto 20px auto 20px;
+    vertical-align: middle;
+  }
+
+  .settingsPanel{
+    display: inline-block;
+    margin-left: calc(5vw);
+    margin-right: calc(5vw);
+    margin-top: 20px;
+    margin-bottom: 20px;
+    vertical-align: middle;
+  }
+
 @media (max-width: 900px){
   .mainNavbar .mainNavbar-left > li {
     margin-right: 5px;
@@ -834,7 +875,7 @@ div{
   #hamburgerMenu{
     display: table;
     position: absolute;
-    right: -5px;
+    right: 0px;
     top: 0px;
     height: calc(100vh);
     padding: 40 5 0 5px;
@@ -877,6 +918,13 @@ div{
     background: -webkit-linear-gradient(bottom, gray, black);
     background: linear-gradient(0deg, gray, black);
     opacity: 0.8;
+  }
+  /*login menu*/
+  .dropdownMenuBorders{
+    margin: 0px;
+  }
+  .loginPanel1{
+    display:none;
   }
 }
 
