@@ -5,7 +5,6 @@
 
 #background {
   position: absolute;
-  min-width: 980px;
   left: 0px;
   top: 0px;
   height: 50vh;
@@ -24,11 +23,11 @@ button{
   padding: 5px 12px;
 }
 
-.frame-header h2 {
-  position: relative;
-  clear: left;
-  float: left;
-  width: 65%;
+.frame-header {
+  text-align: left;
+  margin-bottom: 20px;
+  margin-top: 30px;
+  margin-left: 10%;
 }
 
 .frameCol .intro{
@@ -52,9 +51,10 @@ button{
 
 /******main display part*****/
 
-.wrapper .mainDisplay{
-  width: 80%;
-  margin: 30px auto 30px;
+.mainDisplay{
+  width: 100%;
+  margin: 30px auto 30px auto;
+  text-align: center;
 }
 
 section{
@@ -71,10 +71,12 @@ section{
 }
 
 .frame-item {
+  position: relative;
   line-height: 1;
   display: inline-block;
-  width: 400px;
-  margin-bottom: 40px;
+  width: 100%;
+  max-width: 750px;
+  margin-bottom: 10px;
   border: solid 1px #eaeaea;
   background-color: #FFFFFF;
 }
@@ -86,15 +88,6 @@ section{
 
 .frame-item.bottom-border {
   /*border-bottom: solid 1px gray;*/
-}
-
-.frame-item.horizontal {
-  margin-bottom: 0;
-  width: 87.5%;
-  min-width: 600px;
-  margin-left: 6.25%;
-  padding-left: 20px;
-  padding-top: 15px;
 }
 
 
@@ -111,24 +104,16 @@ section{
 
 .frame-item-description {
   background-color: #4F9DFF;
-
   font-size: 18px;
   height: 180px;
   line-height: 25px;
   overflow: auto;
   padding: 2% 5% 0;
   text-align: left;
-}
-
-.horizontal .frame-item-description{
   clear: both;
   float: right;
   text-align: left;
   padding-left: 0;
-}
-
-.horizontal .frame-item-desc{
-  height: 136px;
 }
 
 .horizontal .frame-item-desc .frame-item-description{
@@ -157,24 +142,15 @@ background: white;
 
 .frame-item-image {
   position: relative;
-}
-
-.horizontal .frame-item-image {
-  display: inline-block;
   float: left;
+  padding-top: 15px;
 }
 
-
-.frame-item-image .img{
+.frame-item-image > img{
   position: relative;
-  padding-top: 15px;
-  width: 100%;
+  width: 250px;
   z-index: 1;
   overflow:hidden;
-}
-
-.frame-item-image hr{
-  width: 80%;
 }
 
 .frame-item-panel {
@@ -193,76 +169,35 @@ background: white;
   opacity: 0.9;
 }
 
-.img .frame-item-desc-hide{
-  top: -404px;
-}
-
-.img .frame-item-desc-show{
-  top: 0;
-}
-
-.frame-item-image .img .hoverBackground{
-  width: 100%;
-  left: 9px;
-  height: 404px;
-  background-color: #4F9DFF;
-  opacity: 0.9;
-  z-index:2;
-}
-
-.frame-item-button {
-  width: 80%;
-  display: inline-block;
-  color: #4F9DFF;
-  height: 30px;
-  margin-top: 60px;
-  padding-top: 16px;
-  text-align: center;
-  font-size: 24px;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin-left: -2%;
-  border: solid;
-  border-color: #4F9DFF;
-}
-
 .frame-item-button:hover {
   background-color: #4F9DFF;
   color: #ffffff;
   cursor: pointer;
 }
 
-.frame-item-footer {
+.frame-item-right {
   border: solid 1px #eaeaea;
-  padding:20px;
+  padding: 20px;
+  float: right;
+  width: calc(100% - 250px);
+  display: inline-block;
+  border: none;
+  height: 100%;
+  text-align: left;
 }
 
-.frame-item-footer>span {
+.frame-item-right>span {
   font-size: 22px;
   float: left;
-}
-
-.horizontal .frame-item-footer>span {
   padding-top: 10px;
 }
 
-.frame-item-footer-details {
-  margin-top: 37px;
-}
-
-.horizontal .frame-item-footer-details {
+.frame-item-right-details {
   float: right;
   display: inline-block;
   text-align: right;
   margin-left: 0;
   margin-top: 0;
-}
-
-.horizontal .frame-item-footer {
-  display: inline-block;
-  border: none;
-  width: calc(100% - 327px);
-  height: 100%;
 }
 
 p{
@@ -283,20 +218,17 @@ td {
 }
 
 .addButton{
-  width: 100px;
-  padding: 5px 15px;
-  height: 26px;
-  margin: 0;
+  margin-top: 0px;
+  position: relative;
 }
 
-.horizontal .addButton{
+.addButtonHouse{
+  padding: 15px 15px 0px 15px;
   position: relative;
+  width: 100%;
   float: right;
-  width: 150px;
-  height: 33px;
-  font-size: 19px;
-  padding-top: 6px;
-  margin-top: 15px;
+  clear: right;
+  text-align: right;
 }
 
 .horizontal_icon_horizontal{
@@ -314,21 +246,6 @@ td {
   cursor: pointer;
 }
 
-.horizontal_icon_vertical{
-  cursor: pointer;
-}
-
-.horizontal_icon_vertical{
-  position:absolute;
-  top:105px;
-  left: calc(50% + 470px);
-}
-.gallary_icon_vertical{
-  position:absolute;
-  top:105px;
-  left: calc(50% + 440px);
-}
-
 #siteCredit {
   position: fixed;
   bottom: 15px;
@@ -341,18 +258,17 @@ td {
 	background-color: #4F9DFF;
 	opacity: 1;
 	z-index: 9000;
-	position: relative;
-    padding:0px;
-    height: 37px;
-    bottom: 0px;
-    margin-bottom:-20px;
+	position: absolute;
+    padding: 0px;
 }
 
 .bottom-banner-left{
     float:left;
     color: #FFFFFF;
     list-style: none;
-  height:27px;
+    margin-left: 15px;
+    font-size: 0.6em;
+    width: 150px;
 }
 
 .bottom-banner-left > li {
@@ -366,34 +282,94 @@ td {
 }
 .bottom-banner-left .siteLink{
   margin-top: -4px;
-}
-
-.bottom-banner-left > li > a > p {
-  margin-top: 27px;
-  margin-left: 10px;
-  float:left;
-  font-size:0.75em;
   color: #FFFFFF;
 }
 
 .bottom-banner-right{
-    float:right;
+    position: relative;
+    float: right;
+    clear: right;
     color: #FFFFFF;
-    list-style: none;
     margin-top: 4px;
+    width: calc(100% - 170px);
 }
 
-.bottom-banner-right > li {
+.bottom-banner-right > ul{
+    float: right;
+    text-align: right;
+    list-style: none;
+    display: inline-block;
+} 
+
+.bottom-banner-right > ul > li {
   margin-left:20px;
   margin-right:20px;
-  background: no-repeat 0 0;
-  float:right;
+  display: inline-block;
 }
 
-.bottom-banner-right > li > a {
+.bottom-banner-right > ul > li > a {
   color: #FFFFFF;
 }
 
-.bottom-banner-right > li > a:hover {
+.bottom-banner-right > ul > li > a:hover {
   color: #FFFFFF;
+}
+
+/*---------Responsive Index---------*/
+@media (max-width: 980px){
+    #siteCredit{
+        display: none;
+    }
+}
+
+@media (max-width: 750px){
+    .mainDisplay{
+        width: 100%;
+        margin: 0px 0px 0px 0px;
+    }
+    
+    .frame-item{
+        margin-bottom: 0px;
+    }
+    
+    #background {
+        background: #EAEAEA;
+    }
+    
+    .frame-item-image{
+      width: 25%;
+    }
+    .frame-item-image > img{
+      width: 100%;
+    }
+    
+    .frame-item-right{
+      width: calc(75% - 10px);
+      padding: calc(3vw);
+    }
+    
+    .frame-item-right > span {
+      padding: 0px;
+    }
+    .frame-item-right .medium{
+      font-size: calc(5vw);
+    }
+    
+    .frame-item-description{
+      display: none;
+    }
+    
+    .frame-item-desc{
+    }
+    
+    .addButton{
+      width: 100%;
+      height: calc(5vw + 10px);
+      padding: 5px 0px 5px 0px;
+      font-size: calc(3vw);
+    }
+    
+    /*#tmInfo{
+      display: none;
+    }*/
 }
