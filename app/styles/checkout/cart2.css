@@ -69,6 +69,12 @@
   border-color: #4896FF;
   color: #4896FF;
 }
+
+.disabled:hover {
+  background-color: #4896FF;
+  color: #fff;
+}
+
 #mainDisplay{
   width: 700px;
   float: left;
@@ -361,6 +367,25 @@
   border-top: 1px solid black;
   padding-top: 15px;
   margin-top: 40px;;
+}
+
+#summary section .amount-now {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+#summary section .amount-now input {
+  max-width: 75px;
+  text-align: center;
+}
+
+#summary section .message-box {
+  margin-top: 10px;
+  height: 110px;
+}
+
+#summary section .message-box .alert {
+  color: red;
 }
 
 .zipcode-input {

@@ -203,12 +203,24 @@
           </section>
 
           <div class="totalPrice">
-            <span class="pull-left"><strong>Total</strong></span>
+            <span class="pull-left"><strong>Total due</strong></span>
             <span class="pull-right"><strong>${{curOrder.getTotalCost() >= 0 ? curOrder.getTotalCost().toFixed(2) : '--'}}</strong></span>
+          </div>
+          <hr>
+          <div class="amount-now">
+            <span class="pull-left"><strong>Amout to pay now</strong></span>
+            <input type="number" name="" ng-model="curOrder.amountToPayNow">
+          </div>
+          <div>
+            <span class="pull-left"><strong>Total due later</strong></span>
+            <span class="pull-right"><strong>${{dueLater}}</strong></span>
+          </div>
+          <div class="message-box">
+            <p data-ng-bind="messageBox" ng-class="invalidValue ? 'alert' : ''"></p>
           </div>
         </div>
       </section>
-      <button type="button" class=" button oReg checkoutButton" ng-click="checkOut()">CHECKOUT</button>
+      <button type="button" class=" button oReg checkoutButton" ng-class="invalidValue ? 'disabled' : ''" ng-disabled="invalidValue" ng-click="checkOut()">CHECKOUT</button>
     </div>
   </div>
 </div>
