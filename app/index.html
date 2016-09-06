@@ -1,6 +1,8 @@
 <!doctype html>
 <html class="no-js">
 <head>
+  <!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
+  <!-------Uncomment the line above when you are ready to enable responiveness----->
   <meta charset="utf-8">
   <title>PER4MAX by Tinker</title>
   <meta name="description" content="Build and customize your wheelchair">
@@ -62,7 +64,7 @@
 
       <div class="mainNavbar-header">
         <a class="mainNavbar-brand" target="_blank" href="http://www.per4max.com/" >
-          <img alt="Tinker" src="images/P4XWebLogo3.png" width="100"/>
+          <img alt="P4X" src="images/P4XWebLogo3.png" width="100"/>
         </a>
       </div>
       <ul class="mainNavbar-left">
@@ -79,7 +81,6 @@
           <a ng-href="/#!/admin" class="medium">ADMIN</a>
         </li>
       </ul>
-
       <ul class="mainNavbar-right">
         <li class="cartButton" ng-click="jumpCart()"><img src="images/icons/cart-gray.png" width="30" alt="cart"/>
         </li>
@@ -94,7 +95,7 @@
         <li data-ng-click="jumpSearchid()" id="searchID">
           <img src="images/icons/search-gray.png">
         </li>
-	<li class="loginButton" data-ng-if="!user.isLoggedIn()">
+        <li class="loginButton" data-ng-if="!user.isLoggedIn()">
           <div data-ng-click="toggleLoginDropdown()"  class="login">
             <div class="loginText medium" data-ng-bind="loginText"></div>
           </div>
@@ -105,64 +106,96 @@
           </div>
         </li>
       </ul>
+      <div id = "hamburgerMenuGrayBack" data-ng-click = "closeHamburgerMenu()" data-ng-if="menuVisible"></div>
+      <div id = "hamburgerMenu" data-ng-if="menuVisible">
+        <ul>
+          <li ng-click="jumpFrame(); goToFrames()" class="frameNavButton" ng-class="{ active: isActive('/frames')}" id="wheelchairFrames">
+            <a class="medium">WHEELCHAIRS</a>
+          </li>
+          <li ng-click="jumpWheels(); goToWheels()" class="wheelsNavButton" ng-class="{ active: isActive('/frames')}">
+            <a class="medium">CUSTOM WHEELS</a>
+          </li>
+          <li ng-click="jumpAbout()" class="aboutNavButton" ng-class="{ active: isActive('/about')}">
+            <a class="medium">HOW TO</a>
+          </li>
+          <li ng-show="showAdmin()" class="adminNavButton" ng-class="{ active: isActive('/admin')}">
+            <a ng-href="/#!/admin" class="medium">ADMIN</a>
+          </li>
+          <li class="cartButton" ng-click="jumpCart()">
+            <a class="medium">MY CART</a>
+          </li>
+          <li data-ng-click="jumpSearchid()" id="searchID">
+            <a class="medium">SHARE DESIGNS</a>
+          </li>
+          <li data-ng-if = "!user.isLoggedIn()" data-ng-click = "toggleLoginDropdown()">
+            <a class="loginText medium" data-ng-bind="loginText"></a>
+          </li>
+          <li data-ng-if="user.isLoggedIn()" data-ng-click = "toggleSettingsDropdown()">
+            <a class="userName medium" data-ng-bind = "user.getFname()"></a>
+          </li>
+        </ul>
+      </div>
+      <div id="hamburgerIcon">
+        <p data-ng-click="toggleHamburgerMenu()">&#9776;</p>
+      </div>
     </div>
 
     <div data-ng-if="loginDropdown() === true"  class="fixPosition" >
-      <table class="dropdownTable">
-        <tr>
-          <td class="panelIcon1">
-            <p class="book">Tinker</p>
-            <p class="book">Login</p>
-          </td>
-          <td>
-            <p class="book paddingtop-fontsize">Email Address</p>
-            <input type="text" data-ng-model="loginModel.email" ng-keypress="enterLogin($event)"/>
+        <div class="dropdownMenu">
+          <div class="dropdownMenuBorders">
+              <div class="loginPanel1">
+                <p class="book">Per4max</p>
+                <p class="book">Login</p>
+              </div>
+              <div class="loginPanel2">
+                <p class="book paddingtop-fontsize">Email Address</p>
+                <input type="text" data-ng-model="loginModel.email" ng-keypress="enterLogin($event)"/>
 
-            <p class="book paddingtop-fontsize">Password</p>
-            <input type="password" data-ng-model="loginModel.password" ng-keypress="enterLogin($event)"/>
-            <a href="" style="display:block;" data-ng-click="forgot()">I forgot my password</a>
+                <p class="book paddingtop-fontsize">Password</p>
+                <input type="password" data-ng-model="loginModel.password" ng-keypress="enterLogin($event)"/>
+                <a href="" style="display:block;" data-ng-click="forgot()">I forgot my password</a>
 
-            <p class="book error-mesg" data-ng-bind="error"></p>
-          </td>
-          <td class="panelIcon3">
-            <div class="login-button button1" data-ng-click="login()" >
-              <p class="medium">Login</p>
-            </div>
-            <div class="login-button button1" data-ng-click="register()">
-              <p class="medium">Register</p>
-            </div>
-          </td>
-        </tr>
-      </table>
+                <p class="book error-mesg" data-ng-bind="error"></p>
+              </div>
+              <div class="loginPanel3">
+                <div class="login-button button1" data-ng-click="login()" >
+                  <p class="medium">Login</p>
+                </div>
+                <div class="login-button button1" data-ng-click="register()">
+                  <p class="medium">Register</p>
+                </div>
+              </div>
+          </div>
+        </div>
     </div>
     <div data-ng-if="settingsDropdown() === true"  class="fixPosition" >
-      <table class="dropdownTable">
-        <tr>
-          <td class="panelIcon1">
+      <div class="dropdownMenu">
+        <div class="dropdownMenuBorders">
+          <div class="settingsPanel">
             <div data-ng-click="loginSection('account')" data-ng-mouseenter="accountURL = 'on_my_account_big'" data-ng-mouseleave="accountURL = 'my_account_big'">
               <img data-ng-src="images/icons/{{accountURL}}.png" alt="account">
               <div class="medium">My Account</div>
             </div>
-          </td>
-          <td>
+          </div>
+          <div class="settingsPanel">
             <div data-ng-click="loginSection('orders')" data-ng-mouseenter="orderURL = 'on_my_orders'" data-ng-mouseleave="orderURL = 'my_orders'">
               <img data-ng-src="images/icons/{{orderURL}}.png" alt="order">
               <div class="medium">My Orders</div>
             </div>
-          </td>
-          <td class="panelIcon3">
+          </div>
+          <div class="settingsPanel">
             <div data-ng-click="loginSection('myDesigns')" data-ng-mouseenter="measureURL = 'on_my_measurement'" data-ng-mouseleave="measureURL = 'my_measurement'">
               <img data-ng-src="images/icons/{{measureURL}}.png">
               <div class="medium">My Designs</div>
             </div>
-          </td>
-          <td>
+          </div>
+          <div class="settingsPanel">
             <div class="button1" data-ng-click="logout()">
               <p class="medium">Logout</p>
             </div>
-          </td>
-        </tr>
-      </table>
+          </div>
+        </div>
+      </div>
     </div>
     <div id="foreground" data-ng-if="loginDropdown() === true || settingsDropdown() === true"
          data-ng-click="closeDropdown()"
@@ -221,8 +254,7 @@
 <script src="bower_components/clipboard/dist/clipboard.js"></script>
 <script src="bower_components/ngclipboard/dist/ngclipboard.js"></script>
 <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 

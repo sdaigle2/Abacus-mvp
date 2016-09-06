@@ -1,4 +1,4 @@
-﻿// jshint unused:false
+// jshint unused:false
 
 // This controller checks for a change in the active controller for the
 // app and updates the navbar to highlight the current page
@@ -45,6 +45,19 @@ angular.module('abacuApp')
       }
 
     };
+
+    //Hamburger Menu
+    $scope.menuVisible = false;
+    $scope.toggleHamburgerMenu = function(){
+      if ($scope.menuVisible){
+        $scope.menuVisible = false;
+      }  else {
+        $scope.menuVisible = true;
+      }
+    }
+    $scope.closeHamburgerMenu = function(){
+        $scope.menuVisible = false;
+    }
 
     //Sends the user to a password recovery system
     $scope.recoverPassword = function () {
@@ -112,12 +125,14 @@ angular.module('abacuApp')
     };
 
     $scope.toggleLoginDropdown = function () {
+      $scope.menuVisible = false;   
       if($scope.loginText === 'Log In') {
         Drop.toggleLogin();
       }
     };
 
     $scope.toggleSettingsDropdown = function () {
+        $scope.menuVisible = false;
         Drop.toggleSettings();
     };
 
@@ -134,23 +149,29 @@ angular.module('abacuApp')
         $location.path('/');
     };
     $scope.jumpP4X = function(){
+        $scope.menuVisible = false;
         $location.path('http://www.per4max.com');
     };
     $scope.jumpFrame = function(){
-      $location.path('/frames');
+        $scope.menuVisible = false;
+        $location.path('/frames');
     };
     $scope.jumpWheels = function(){
-      $location.path('/frames');
+        $scope.menuVisible = false;
+        $location.path('/frames');
     };
     $scope.jumpAbout = function(){
-      $location.path('/about');
+        $scope.menuVisible = false;
+        $location.path('/about');
     };
     $scope.jumpCart = function(){
-      $location.path('/cart');
+        $scope.menuVisible = false;
+        $location.path('/cart');
     };
 
     $scope.jumpSearchid = function(){
-      $location.path('/searchid');
+        $scope.menuVisible = false;
+        $location.path('/searchid');
     };
 
     $scope.$on('$viewContentLoaded', function(event) {

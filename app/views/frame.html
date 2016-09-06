@@ -1,7 +1,8 @@
 <link href="../styles/frame.css" rel="stylesheet"/>
 
 <head>
-
+    <!--<meta name="viewport" content="width=device-width,initial-scale=1">-->
+    <!-------Uncomment the line above when you are ready to enable responiveness----->
 </head>
 <div id="background"></div>
 <div class="wrapper">
@@ -16,99 +17,22 @@
   })(window,document,'script','dataLayer','GTM-5BJDWF');</script>
   <!-- End Google Tag Manager -->
 
-  <div class="frame-header medium">
-    <h2 class="pageTitle" >Frames</h2>
-  </div>
-
-  <!-- Commmented out the horizontal/vertical layout buttons-->
-  <!--
-  <div class="horizontal-layout-icons" data-ng-if="getOrientation() === 'horizontal'">
-      <img src="images/frame_page_img/box_style.png"
-           ng-click="setOrientation('vertical')"
-           width="25"
-           class="gallary_icon_horizontal"
-           alt="Vertical Display"
-      >
-      <img src="images/frame_page_img/list_style_hover.png"
-           width="25"
-           class="horizontal_icon_horizontal"
-           ng-click="setOrientation('horizontal')"
-           alt="Horizontal Display"
-        >
-  </div>
-  -->
-
-  <div class="horizontal-layout-icons" data-ng-if="getOrientation() === 'vertical'">
-  <img src="images/frame_page_img/box_style_hover.png"
-       ng-click="setOrientation('vertical')"
-       width="25"
-       class="gallary_icon_vertical"
-       alt="Vertical Display"
-
-    >
-  <img src="images/frame_page_img/list_style.png"
-       width="25"
-       class="horizontal_icon_vertical"
-       ng-click="setOrientation('horizontal')"
-       alt="Horizontal Display"
-    >
-  </div>
-
-  <div class="mainDisplay" data-ng-init="hoverItem = -1">
-
-    <section>
-        <div class="frame-item text-center"
-           data-ng-repeat="f in frames"
-           data-ng-class="{'right-border': ($even && ($index !== frames.length-1)), 'bottom-border': ($index < frames.length-2)}"
-           data-ng-if="orientation === 'vertical'">
-        <div class="frame-item-image">
-          <div class="img"
-               data-ng-mouseenter="hoverItem = f.getFrameID()"
-               data-ng-mouseleave="hoverItem = -1">
-            <img data-ng-src="{{f.getImageURL()}}" width="400" alt="{{f.manufacturer}} {{f.name}}"/>
-
-            <div class="frame-item-desc"
-                 data-ng-class="{ 'frame-item-desc-show' : panelSelected(hoverItem,f.getFrameID()) , 'frame-item-desc-hide' : !panelSelected(hoverItem,f.getFrameID())}">
-              <p class="frame-item-description book" data-ng-bind="f.getDesc()"></p>
-            </div>
-          </div>
-        </div>
-        <div class="frame-item-footer">
-          <span class="medium" data-ng-bind="f.name"></span>
-          <div class="button addButton" data-ng-click="selectFrame(f.frameID)">Customize</div>
-          <div class="frame-item-footer-details">
-            <table class="frame-info-table">
-              <tr>
-                <td class="blue-line">
-                  <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="frame-item text-center horizontal"
-         data-ng-repeat="f in frames"
-         data-ng-class="{'right-border': ($even && ($index !== frames.length-1)), 'bottom-border': ($index < frames.length-2)}"
-         data-ng-if="orientation === 'horizontal' && f.frameID !=25" >
+  <div class="mainDisplay">
+    <div class="frame-header medium">
+        <h2 class="pageTitle" >Frames</h2>
+    </div>
+    <div class = "frame-item text-center horizontal" data-ng-repeat = "f in frames" data-ng-if = "f.frameID !=25" >
       <div class="frame-item-image">
-        <div class="img" data-ng-mouseenter="hoverItem = f.getFrameID()"
-             data-ng-mouseleave="hoverItem = -1">
-          <img data-ng-src="{{f.getImageURL()}}" width="250" alt="{{f.manufacturer}} {{f.name}}"/>
-        </div>
+          <img data-ng-src="{{f.getImageURL()}}" width="100%" alt="{{f.manufacturer}} {{f.name}}"/>
       </div>
-      <div class="frame-item-footer">
-        <span class="medium" data-ng-bind="f.name"></span>
-
-        <div class="frame-item-footer-details">
-            <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
-        </div>
+      <div class="frame-item-right">
+        <span class="medium" data-ng-bind="f.name + ' - $' + f.getBasePrice().toFixed(2)"></span>
         <div class="frame-item-desc">
           <p class="frame-item-description book" data-ng-bind="f.getDesc()"></p>
         </div>
-        <div class="button addButton" data-ng-click="selectFrame(f.frameID)">Customize</div>
+        <div class="addButtonHouse">
+            <div class="button addButton" data-ng-click="selectFrame(f.frameID)">Customize</div>
+        </div>
       </div>
     </div>
 
@@ -117,50 +41,40 @@
     </div>
 
     <div class="frame-item text-center horizontal"
-         data-ng-repeat="f in wheels"
-         data-ng-class="{'right-border': ($even && ($index !== frames.length-1)), 'bottom-border': ($index < frames.length-2)}"
-         data-ng-if="orientation === 'horizontal'" >
+         data-ng-repeat="f in wheels">
       <div class="frame-item-image">
-        <div class="img" data-ng-mouseenter="hoverItem = f.getFrameID()"
-             data-ng-mouseleave="hoverItem = -1">
-          <img data-ng-src="{{f.getImageURL()}}" width="250" alt="{{f.manufacturer}} {{f.name}}"/>
-        </div>
+          <img data-ng-src="{{f.getImageURL()}}" width="100%" alt="{{f.manufacturer}} {{f.name}}"/>
       </div>
-      <div class="frame-item-footer">
-        <span class="medium" data-ng-bind="f.name"></span>
+      <div class="frame-item-right">
+        <span class="medium" data-ng-bind="f.name + ' - $' + f.getBasePrice().toFixed(2)"></span>
 
-        <div class="frame-item-footer-details">
-          <p class="frame-item-price medium">$<span data-ng-bind="f.getBasePrice().toFixed(2)"></span></p>
-        </div>
         <div class="frame-item-desc">
           <p class="frame-item-description book" data-ng-bind="f.getDesc()"></p>
         </div>
-        <div class="button addButton" data-ng-click="selectFrame(f.frameID)">Customize</div>
+        <div class="addButtonHouse">
+          <div class="button addButton" data-ng-click="selectFrame(f.frameID)">Customize</div>
+        </div>
       </div>
     </div>
   </div>
   <div id="siteCredit">
-      <!--<a ng-href="#/about"><img ng-src="images/tinker_logo_small.png"></a>-->
       <a href="http://www.intelliwheels.net/tinker" target="_blank"><img ng-src="images/Powered-by-Tinker-Logo-Gray.png" alt="Powered by Tinker">
       </a>
  </div>
 </div>
 <footer class="bottom-banner">
     <div class="bottom-banner-left">
-      <ul class="bottom-banner-left">
-        <li><a href="http://www.intelliwheels.net/tinker" target="_blank"><img ng-src="images/Powered-by-Tinker-Logo-White.png" alt="Powered by Tinker"></a></li>
-        <li class="siteLink" ><a href="http://www.intelliwheels.net/tinker" target="_blank"><p>TM, &copy; IntelliWheels, Inc. 2016</p></a></li>
-      </ul>
+        <a href="http://www.intelliwheels.net/tinker" target="_blank"><img ng-src="images/Powered-by-Tinker-Logo-White.png" alt="Powered by Tinker"></a>
+        <a class="siteLink" href="http://www.intelliwheels.net/tinker" target="_blank"><p id="tmInfo">TM, &copy; IntelliWheels, Inc. 2016</p></a>
     </div>
     <div class="bottom-banner-right">
-      <ul class="bottom-banner-right">
+      <ul>
         <li><a href="http://per4max.com/about/" target="_blank">ABOUT PER4MAX</a></li>
         <li><a href="http://per4max.com/athletes/" target="_blank">FEATURED ATHELETES</a></li>
         <li><a href="http://per4max.com/contact/" target="_blank">CONTACT US</a></li>
       </ul>
     </div>
 </footer>
-
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
