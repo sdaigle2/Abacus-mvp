@@ -1,0 +1,158 @@
+@media (max-width: 1200px) {
+    body {
+      font-size:90%;
+    }
+    h1 {
+      font-size:4.3em;
+    }
+    p {
+      font-size:1.3em;
+    }
+    header {
+      height:80px;
+    }
+    header .logo {
+      margin-top:12px;
+      width:200px;
+    }
+    header nav {
+      margin-top:11px;
+    }
+    header nav ul li {
+      margin-right:12px;
+    }
+    header nav ul li a {
+      border-radius:23px;
+      font-size: 1.3em;
+      padding:10px 12px;
+    }
+    .wrap {
+      padding:0 30px;
+    }
+    .paddRow .close {
+      right:30px;
+    }
+}
+@media (max-width: 900px) {
+    .contactForm {
+      width:100%;
+    }
+}
+@media (max-width: 768px) {
+    body {
+      font-size:80%;
+      margin:0;
+    }
+    h1 {
+      font-size:4em;
+    }
+    header {
+      height:70px;
+    }
+    header .logo {
+      margin-top:20px;
+      width:70px;
+    }
+    header nav {
+      margin-top:8px;
+    }
+    header nav ul li {
+      margin-right:5px;
+    }
+    header nav ul li a {
+      border-radius:20px;
+      font-size:1.1em;
+      padding:8px;
+    }
+    .wrap {
+      padding:0 15px;
+    }
+    .projectObj .name {
+      font-size:3em;
+    }
+    .paddRow {
+      padding-bottom:30px;
+    }
+    .paddRow .head {
+      font-size:3em;
+      margin:30px 0;
+    }
+    .paddRow .close {
+      right:20px;
+      top:60px;
+      width:30px;
+    }
+    .projectHead .picture {
+      width:67%;
+    }
+    .projectHead .picture.right {
+      margin-right:16.5%;
+    }
+    .projectHead .text {
+      position:static;
+      width:100%;
+    }
+    .projectHead .centerText {
+      width:70%;
+    }
+    .view-enter,.view-leave {
+      -webkit-transform:translate3d(0,0,0);
+      transform:translate3d(0,0,0);
+    }
+}
+@media (max-width: 480px) {
+    body {
+      font-size:70%;
+      margin:0;
+    }
+    header {
+      height:50px;
+    }
+    header .logo {
+      display:none;
+    }
+    header nav {
+      margin-top:3px;
+    }
+    header nav ul li {
+      margin-right:3px;
+    }
+    header nav ul li a {
+      border-radius:20px;
+      font-size:1.3em;
+      padding:5px 14px;
+    }
+    #contactBtn {
+      display:none;
+    }
+    .wrap {
+      padding:0 10px;
+    }
+    .paddRow {
+      padding-bottom:20px;
+    }
+    .paddRow .head {
+      margin:20px 0;
+    }
+    .paddRow .close {
+      right:10px;
+      top:45px;
+      width:20px;
+    }
+    .about .image {
+      margin:10% auto;
+      width:60%;
+    }
+    .about .abIcon {
+      display:inline;
+    }
+    .projectHead .centerText {
+      width:90%;
+    }
+    .about .txt,.input {
+      width:100%;
+    }
+    .about .flLeft,.about .flRight,.input.email {
+      float:none;
+    }
+}

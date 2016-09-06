@@ -24,7 +24,7 @@
     "pdfkit": "^0.7.1",
     "prerender-node": "^2.1.0",
     "sanitize-html": "^1.7.0",
-    "sendgrid": "^1.8.0",
+    "sendgrid": "^4.0.1",
     "shortid": "^2.2.4",
     "stripe": "^3.5.0",
     "wkhtmltopdf": "^0.1.5"
