@@ -36,6 +36,7 @@ button{
   padding-top: 20px;
 }
 
+
 .detailCol section{
   margin-top: 10px;
 }
@@ -299,6 +300,7 @@ td {
     text-align: right;
     list-style: none;
     display: inline-block;
+    min-width: 250px;
 } 
 
 .bottom-banner-right > ul > li {
@@ -329,7 +331,7 @@ td {
     }
     
     .frame-item{
-        margin-bottom: 0px;
+        margin-bottom: -7px;
     }
     
     #background {
@@ -367,6 +369,10 @@ td {
       height: calc(5vw + 10px);
       padding: 5px 0px 5px 0px;
       font-size: calc(3vw);
+    }
+    
+    .bottom-banner-left{
+        margin-top: 5%;
     }
     
     /*#tmInfo{
