@@ -6,7 +6,7 @@
 const router = require('express').Router();
 const _      = require('lodash');
 const async  = require('async');
-
+const Promise = require('bluebird');
 // Import services
 const generatePDF     = require('../services/generatePDF');
 const priceCalculator = require('../services/priceCalculator');
@@ -17,9 +17,11 @@ const dbService       = require('../services/db');
 const orderNumber     = require('../services/orderNumber');
 const dbUtils         = require('../services/dbUtils');
 
+var getUserPr = Promise.promisify(dbService.users.get);
+var insertUserPr = Promise.promisify(dbService.users.insert);
 // Manufacturer Email to send invoices to
 const MANUFACTURER_EMAIL = ['sales@per4max.com', 'ckommer@per4max.com', 'dfik@per4max.com', 'colivas@per4max.com', 'p4x@intelliwheels.net'];
-//const MANUFACTURER_EMAIL = ['scott@intelliwheels.net', 'brian@intelliwheels.net'];
+//const MANUFACTURER_EMAIL = ['scott@intelliwheels.net', 'sdaigle@pdipaxton.com'];
 console.log(`NOTE: Invoice Emails will be sent to Manufacturer at this email: ${MANUFACTURER_EMAIL}`);
 
 // downloads Invoice PDF for a given order
@@ -55,7 +57,6 @@ router.post('/orders', function (req, res) {
   //This token was created client side by the Stripe API, so we do not need credit card details as part of the request
   var stripeToken = req.body.token;
   var order = req.body.order;
-
   //Cross check all wheelchairs in the order against the JSON, while calculating the total price
   const total = req.body.totalPrice;
   console.log('order\'s total amount is ' + total );
@@ -88,7 +89,6 @@ router.post('/orders', function (req, res) {
 
   // returns error value with user object (empty user object if user wasnt logged in)
   const updateUserOrderHistory = cb => {
-    console.log('user data' + req.session.user);
     if (!_.get(req, 'session.user')) {
       return process.nextTick(() => cb(null, {}));
     }
@@ -107,6 +107,7 @@ router.post('/orders', function (req, res) {
              const userID = user._id || user.id;
              user.orders.push(order);
              user.cart = null;
+
              dbUtils.insertUser(user, userID, function (err, minUser) {
               if (err) {
                 return cb({status: 500, err: err});
@@ -120,14 +121,6 @@ router.post('/orders', function (req, res) {
         cb(null, {});
       }
     });
-  };
-
-  const insertOrder = (isLoggedIn, cb) => {
-    if (!isLoggedIn) {
-      dbUtils.insertOrder(order, cb);
-    } else {
-      cb(null, order);
-    }
   };
   // takes in boolean representing whether user is logged in & returns order object
   // Only inserts order if user isnt logged in
@@ -153,80 +146,25 @@ router.post('/orders', function (req, res) {
       '-salesTax-': priceCalculator.getTotalTax(order).toFixed(2),
       '-shipping-': priceCalculator.getTotalShipping(order).toFixed(2),
       '-total-': total.toFixed(2),
-      '-orderNumber-': order.orderNum,
+      '-orderNumber-': order.orderNum.toString(),
       '-subtotal-': priceCalculator.getTotalSubtotal(order).toFixed(2)
     }
 
-    var invoiceEmail = new sendgrid.Email({
-      from: 'do-not-reply@per4max.fit',
-      subject: 'Per4max Order #' + order.orderNum + ' - Invoice Attached'
-    });
-
-    var manufactureCopy = new sendgrid.Email({
-      from: 'do-not-reply@per4max.fit',
-      subject: 'Tinker Order #' + order.orderNum + ' - Invoice Attached - MANUFACTURER COPY'
-    });
-
-    manufactureCopy.setFilters({"templates": {"settings": {"enabled": 1, "template_id": "ab18bc4d-d178-4cee-866c-b7ef11c486b8"}}});
-    invoiceEmail.setFilters({"templates": {"settings": {"enabled": 1, "template_id": "ab18bc4d-d178-4cee-866c-b7ef11c486b8"}}});
-
-    _.forEach(valuesToSubstitute, function(value, key) {
-      manufactureCopy.addSubstitution(key, value);
-      invoiceEmail.addSubstitution(key, value);
-    });
-
-    //Send email to the user containing the invoice as a pdf
-    invoiceEmail.to = req.body.order.email;
-    invoiceEmail.text = 'Order #:' + order.orderNum + 'Thank you for ordering your new Wheelchair from Per4max. Your invoice is attached here.';
-    invoiceEmail.html = '.';
-    manufactureCopy.to = MANUFACTURER_EMAIL;
-    manufactureCopy.text = 'Order #:' + order.orderNum + '<br> A new order has just been placed. A copy of the invoice is attached here.';
-    manufactureCopy.html = '.';
 
     generatePDF.forInvoice(order, function (err, pdfFileInfo) {
       if (err) {
         cb(err);
       } else {
-        const sendInvoiceMail = function (cb) {
-          invoiceEmail.addFile({
-            path: pdfFileInfo.absPath
-          });
+        var pdf = {
+          path: pdfFileInfo.absPath,
+          name: 'pdfInvoice.pdf'
+        }
+        sendgrid.sendInvoice('do-not-reply@per4max.fit', MANUFACTURER_EMAIL , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached - MANUFACTURER COPY', valuesToSubstitute, pdf, cb);
+        sendgrid.sendInvoice('do-not-reply@per4max.fit', [req.body.order.email] , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached', valuesToSubstitute, pdf, cb);
 
-          sendgrid.send(invoiceEmail, function (err, json) {
-            if (err) {
-              console.log(`Error while sending user invoice email:\n${JSON.stringify(err, null, 2)}`);
-            }
-
-            cb(err);
-          });
-        };
-
-        const sendManufacturerEmail = function (cb) {
-          manufactureCopy.addFile({
-            path: pdfFileInfo.absPath
-          });
-          console.log('manufactureCopy object', manufactureCopy); // the object containing manufactureCopy
-          console.log('manufactureCopy substitutions', manufactureCopy.smtpapi.header.sub);// the object containing manufactureCopy variables
-
-          sendgrid.send(manufactureCopy, function (err, json) {
-            if (err) {
-              console.log(`Error while sending manufacturer invoice email:\n${JSON.stringify(err, null, 2)}`);
-            }
-            
-            cb(err);
-          });
-        };
-
-        // send the emails out in parallel
-        async.series([sendInvoiceMail, sendManufacturerEmail], function (err) {
-          if (err) {
-            cb(err);
-          } else {
-            cb(null, curOrderNum);
-          }
-        });
-
-
+        function cb(err, resp) {
+          if (err) console.log(err);
+        }
       }
     });
   };
@@ -245,52 +183,54 @@ router.post('/orders', function (req, res) {
 
     createStripeCharge((err, stripeCharge) => {
       if (err) {
-        console.log(err);
         res.status(400);
         res.json({err: 'Error while processing credit card payment'});
         return;
       }
-
-      updateUserOrderHistory((err, user) => {
+      dbUtils.insertOrder(order, function(err, resp) {
         if (err) {
-          res.status(400);
-          res.json({err: err});
-          return;
-        }
-
-        const userIsLoggedIn = _.isObject(user) && !_.isEmpty(user);
-        insertOrder(userIsLoggedIn, (err, order) => {
-          if (err) {
-            res.status(500);
-            res.json({err: err});
+            res.status(400);
+            res.json({err: 'Error while inserting order'});
             return;
           }
+        getUserPr(req.session.user)
+        .then(function(user) {
+          user.orders.push(order._id);
+          user.cart = null;
+          // updatee userObject
+          insertUserPr(user)
+          .then((resp) => {
+            user._rev = resp.rev;
+            user._id = resp.id;
+            user.rev = resp.rev;
+            user.id = resp.id;
 
-          orderNumber.increment()
-          .then(curOrderNum => {
-            // Respond with 200 status and user & order number in the response body
-            updateOrdersOrderNumber(curOrderNum, function (err) {
-              if (err) {
-                res.status(400);
-                return res.json(err);
-              }
-
-              res.json({user: user, orderNum: curOrderNum});
-
-              sendInvoiceEmails(curOrderNum, (err, orderNum) => {
+            orderNumber.increment()
+            .then(curOrderNum => {
+              // Respond with 200 status and user & order number in the response body
+              updateOrdersOrderNumber(curOrderNum, function (err) {
                 if (err) {
-                  console.log(`ERROR WHILE SENDING INVOICE EMAIL: ${JSON.stringify(err, null, 2)}`);
+                  res.status(400);
+                  return res.json(err);
                 }
-              });
 
+                res.json({user: user, orderNum: curOrderNum});
+
+                sendInvoiceEmails(curOrderNum, (err, orderNum) => {
+                  if (err) {
+                    console.log(`ERROR WHILE SENDING INVOICE EMAIL: ${JSON.stringify(err, null, 2)}`);
+                  }
+                });
+
+              });
+            })
+            .catch(err => {
+              res.status(400);
+              res.json({err: err});
             });
-          })
-          .catch(err => {
-            res.status(400);
-            res.json({err: err});
           });
         });
-      });
+      }); 
     });
   });
 });

@@ -317,25 +317,28 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     }
   }
 
-  //Make a request to /session. If it succeeds, restore user from response, otherwise, restore from settings
-  var updatePromise = $http({
-    url: 'users/current'
-    , method: 'GET'
-  })
-    .then(function (response) {
-      if (response.data.userID === -1) {
-        // this means user is not logged in
-        restoreUserFromCookies();
-      } else {
-        restoreUserFromBackend(response.data);
-      }
-
-      return response.data;
+  function getCurrentUser() {
+    return $http({
+      url: 'users/current'
+      , method: 'GET'
     })
-    .catch(function (err) {
-      restoreUserFromCookies();
-    });
+      .then(function (response) {
+        if (response.data.userID === -1) {
+          // this means user is not logged in
+          restoreUserFromCookies();
+        } else {
+          restoreUserFromBackend(response.data);
+        }
 
+        return response.data;
+      })
+      .catch(function (err) {
+        restoreUserFromCookies();
+      });
+  }
+
+  //Make a request to /session. If it succeeds, restore user from response, otherwise, restore from settings
+  var updatePromise = getCurrentUser();
 
 //*********functions************//
 
@@ -725,7 +728,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       } else {
         return editOrder.send(self.userID, userData, shippingData, billingData, payMethod, token)
           .then(function (response) {
-            restoreUserFromBackend(response.user);
+            getCurrentUser();
             return response;
           });
       }

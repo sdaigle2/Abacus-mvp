@@ -12,46 +12,44 @@
 
 #wrapper{
   position: absolute;
-  margin: 25px;
+  margin: calc(2vw);
   text-align: center;
-  height: calc( 100vh - 50px);
-  min-height: 400px;
-  width: calc( 100vw - 50px);
-  min-width: 700px;
+  height: calc( 100vh - 4vw);
+  width: calc( 100vw - 4vw);
   border: solid 1px white;
   border-radius: 2px;
 }
 
 #mainLogo{
-  width: 700px;
-  margin-top: 97px;
+  max-width: 700px;
+  width: 80%;
+  margin-top: calc(30vh - 10vw);
   position: relative;
 }
 
 #tinkerLogo{
     position: absolute;
-    bottom: 25px;
-    right: 25px;
+    bottom: calc(2vw);
+    right: calc(2vw);
+    width: calc(10vw);
 }
 
 .text3{
-  margin-top: 16px;
+  margin: 16px 10px 0px 10px;
   font-size: 1.5em;
   font-style: 'Gotham';
   color: white;
+  
 }
 
 #wrapper div button{
   font-size: 1.2em;
   background-color: transparent;
   padding: 10px 20px 10px 20px;
+  margin-right: 10px;
+  margin-left: 10px;
   color: white;
   border-color: white;
-}
-
-#startButton{
-  margin: 50px 50px 50px 50px;
-
 }
 
 #wrapper div button:hover{

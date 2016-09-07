@@ -46,13 +46,11 @@ This directory contains all middleware policies. These are small checks that hap
 ### server_scripts/services
 Services are fairly generic. Anytime you want to define a function or expose a variable that needs to be referenced in multiple places, expose it in a file under `server_scripts/services` and then import it with `require` wherever you need it.
 
-## Writing CSS
+### Writing CSS
 
 After writing or altering CSS, make sure to run `npm run autoprefixer` in order to have style prefixes required for different browsers.
 
-## Testing
-
-
+### Testing
 To run the tests for this project, just run `npm test`
 
 To run just tests for the backend, run `npm run test_backend`
@@ -60,3 +58,7 @@ To run just tests for the frontend, run `npm run test_frontend`
 
 Backend tests are written with the [Mocha](https://mochajs.org/) test runner.
 In addition to this, the tests also use [supertest](https://github.com/visionmedia/supertest) for interacting with the backend, and [Should](http://shouldjs.github.io) for assertions.
+
+### SSL Certificates
+Guide to install ssl certificates is at: http://www.joshwright.com/tips/setup-a-godaddy-ssl-certificate-on-heroku
+Godaddy provides a standard SSL certificate, and we have our files stored in Abacus-mvp/certs

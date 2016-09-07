@@ -19,7 +19,7 @@ angular.module('abacuApp').factory('AdminAPI', function ($http) {
         if (err instanceof Error) {
             throw err;
         } else {
-            throw new Error(err.data.msg);
+            throw new Error(err.data.msg || err.msg);
         } 
     };
 

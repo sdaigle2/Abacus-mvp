@@ -17,6 +17,18 @@ before(done => {
 });
 
 describe('Test user updates', () => {
+  before(function (done) {
+
+    getLoggedInAgent.newUser(app)
+      .then(result => {
+        agent = result.agent;
+        user = result.user;
+        user.cart = {};
+        done();
+      })
+      .catch(done);
+  });
+
   var discount = {
     id: 'testDiscount',
     percent: 0.01,
@@ -27,7 +39,7 @@ describe('Test user updates', () => {
 
 
   it('Should not be able to update user info if user is not logged in', done => {
-    request(app)
+    agent
       .post('/discounts')
       .send(discount)
       .expect(res => {
@@ -41,6 +53,10 @@ describe('Test user updates', () => {
       dbService.discounts.deleteDoc(discount.id, discountRev, cb);
     };
 
-    async.parallel([cleanupDiscount], done);
+    var cleanupUser = cb => {
+      dbService.users.deleteDoc(user._id, user._rev, cb);
+    };
+
+    async.parallel([cleanupDiscount, cleanupUser], done);
   });
 });

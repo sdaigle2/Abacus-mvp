@@ -1,6 +1,6 @@
 .admin-wrapper {
 	max-width: 400px;
-	min-height: 500px;
+	min-height: 575px;
 	margin: 50px auto 0;
 	padding: 25px;
 	border: 1px solid;
@@ -31,6 +31,25 @@
 	margin-top: 20px;
 }
 
+.admin-wrapper .multi {
+	margin-top: 10px;
+}
+
+.admin-wrapper .multi p {
+	display: inline;
+    width: 80%;
+    float: left;
+    text-align: right;
+}
+
+#multiCheckox {
+    margin-top: 25px;
+}
+
+.button-box{
+    clear: both;
+}
+
 #percentBox {
   width: 90%;
 }
@@ -38,3 +57,4 @@
 .note {
   color: #888888 ;
 }
+

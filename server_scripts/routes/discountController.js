@@ -5,6 +5,7 @@
 const router = require('express').Router();
 const dbService = require('../services/db');
 const _ = require('lodash');
+const restrict = require('../policies/restrict');
 
 router.get('/discounts/:id', function (req, res) {
 	var id = req.params.id;
@@ -22,17 +23,27 @@ router.get('/discounts/:id', function (req, res) {
 	});
 });
 
-router.post('/discounts', function (req, res) {
+router.post('/discounts', restrict, function (req, res) {
 	var discount = req.body;
+	discount.createdBy = req.session.user;
+	
+	dbService.discounts.get(discount.id, function(err) {
+		if (err) {
+			dbService.discounts.insert(discount, discount.id, function (err, body, header) {
+		        if (err) {
+		          res.status(400);
+		          res.json({err: 'Couldn\'t save design data into databse'});
+		        } else {
+		          res.json(body);
+		        }
+	      	});
+		} else {
+			res.status(400);
+			res.json({msg: `Discount code "${discount.id}" already exists`});
+		}
+	});
 
-	dbService.discounts.insert(discount, discount.id, function (err, body, header) {
-        if (err) {
-          res.status(400);
-          res.json({err: 'Couldn\'t save design data into databse'});
-        } else {
-          res.json(body);
-        }
-      });
+	
 });
 
 module.exports = router;
