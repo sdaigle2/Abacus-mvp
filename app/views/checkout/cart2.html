@@ -26,9 +26,11 @@
              ng-click="openGuide()"></div>
       </div>
       <div id="mainContent">
-        <div id="emptyCart" data-ng-if="wheelchairUIOpts.length === 0">
-          <span class="medium">Your currently do not have any designs saved to your cart</span>
-          <p ng-click="jumpFrame()"> START A NEW DESIGN</p>
+        <div id="emptyCartHouse">
+            <div id="emptyCart" data-ng-if="wheelchairUIOpts.length === 0">
+              <span class="medium">Your currently do not have any designs saved to your cart</span>
+              <p ng-click="jumpFrame()"> START A NEW DESIGN</p>
+            </div>
         </div>
         <ul class="chairBlock" ng-if="wheelchairUIOpts.length">
           <li ng-repeat="chairOpts in filteredWheelchairUIOpts" class="cart-item {{chairOpts.checked ? 'checked-item' : ''}}">

@@ -48,7 +48,7 @@
 
 #contentWrapper{
   max-width: 1100px;
-  height: 100vh;
+  height: calc(100vh - 40px);
   margin: auto;
 
 }
@@ -70,22 +70,29 @@
   color: #4896FF;
 }
 #mainDisplay{
-  width: 700px;
+  width: 100%;
+  max-width: 700px;
   float: left;
   margin-top: 30px;
 }
 
 #emptyCart{
+  display: inline-block;
+  margin: 0px 10px 0px 10px;
+  width: calc(100% - 20px);
+  max-width: 300px;
+}
+
+#emptyCartHouse{
   position: relative;
   top: 80px;
-  margin: auto;
-  width: 300px;
+  text-align: center;
+  width: 100%;
 }
 
 #emptyCart>p{
   position: relative;
   top: 25px;
-  left: 23px;
   font-size: 1.4em;
   color: #4f9dff;
   letter-spacing: -1px;
