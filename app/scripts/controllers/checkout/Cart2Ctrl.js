@@ -330,7 +330,6 @@ angular.module('abacuApp')
         } else {
           $scope.curOrder.payMethod = method;
           $scope.curOrder.amountToPayNow = calculateAmountToPay($scope.curOrder.getTotalCost());
-          console.log($scope.curOrder.payMethod, method)
         }
       };
 
@@ -348,6 +347,7 @@ angular.module('abacuApp')
           return;
         }
 
+        User.setAmountToPayNow($scope.curOrder.amountToPayNow);
         if (User.isLoggedIn())
           $location.path('/order'); //Send to Order if logged in
         else

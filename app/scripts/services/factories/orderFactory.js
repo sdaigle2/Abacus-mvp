@@ -24,7 +24,6 @@ angular.module('abacuApp')
   .factory('Order', ['$q', '$http', 'Wheelchair', 'localJSONStorage', 'Design', 'FRAME_SHIPPING_PRICES', 'FrameData', 'Discount', 'Errors','_', function ($q, $http, Wheelchair, localJSONStorage, Design, FRAME_SHIPPING_PRICES, FrameData, Discount, Errors, _) {
 
     function Order(taxRate, shippingFee, order) {
-      console.log(order)
       this.wheelchairs = [];
       var DEFAULT_DETAILS = {
         'fName': '',
@@ -76,10 +75,11 @@ angular.module('abacuApp')
         this.discounts = order.discounts.map(function (discountObj) {
           return new Discount(discountObj);
         });
-
         this.wheelchairs = order.wheelchairs.map(function (wheelchairDesign) {
           return new Design(wheelchairDesign);
         });
+
+        this.totalDueNow = null;
       }
     }
 
@@ -340,6 +340,14 @@ angular.module('abacuApp')
       getTotalCost: function () {
         return (this.getShippingCost() + this.getTaxCost() + (this.getSubtotal() * (this.getDiscountAmount())));
       },
+      
+      getTotalDueNow: function() {
+        return this.totalDueNow;
+      },
+
+      setTotalDueNow: function(totalNow) {
+        this.totalDueNow = totalNow;
+      },
 
 
 
@@ -378,7 +386,7 @@ angular.module('abacuApp')
 
         return $http({
           url: '/orders',
-          data: {order: this.getAll(), token: token, totalPrice: _.round(this.getTotalCost(), 2)},
+          data: {order: this.getAll(), token: token, totalPrice: _.round(this.getTotalDueNow(), 2)},
           method: 'POST'
         })
         .then(function(res) {
