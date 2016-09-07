@@ -15,7 +15,7 @@
 
 .oReg{
   font-family: 'oswald-regular';
-  font-size: 1em;
+  font-size: 12px;
 }
 
 .gBook{
@@ -152,7 +152,7 @@
 }
 
 .media-object{
-  width: 30%;
+  width: 200px;
   position: relative;
   display:inline-block;
 }
@@ -162,33 +162,60 @@
 }
 
 .media-body {
+  position: relative;
   overflow: visible;
   display: inline-block;
-  width: 65%;
+  width: calc(100% - 220px);
   vertical-align: top;
 }
+
+@media  (max-width: 532px) {
+    .media-body {
+        width: 95%;
+        margin-left: 2%;
+    }
+}
 .media-body .firstLine{
-  margin: 10px 0 58px;
+  display: inline-block;
+  height: auto;
+  position: relative;
+  margin: 10px 0 4px;
+  width: 95%;
 }
 
 .media-body a{
+  vertical-align: text-top;
   color: #4f9dff;
+  margin-top: auto;
+  margin-bottom: auto;
 }
-.media-body .actions table{
+.media-body .actions{
+  display: inline-block;
+  position: relative;
+  float: left;
+  clear: both;
   margin-bottom: 20px;
-}
-.media-body .actions td{
-  padding: 0 15px;
-  border-right: 2px solid black;
+  height: auto;
+  width: 100%;
 }
 
-.media-body .actions td:last-of-type{
+.action{
+  position: relative;
+  padding: 10px 5px 10px 5px;
+  border-right: 2px solid black;
+  display: inline-block;
+  height: 100%;
+  width: 23%;
+  text-align: center;
+}
+
+.action:last-of-type{
   border-right: none;
 }
 
 
 
-.media-body .actions td:hover{
+.media-body .actions a:hover{
   cursor: pointer;
 }
 
@@ -196,13 +223,14 @@
   padding-left: 0;
 }
 
-.media-body .moreInfoTitle{
-  margin-top: 27px;
+.moreInfoTitle{
+  display:inline-block;
+  position: relative;
   color: #4f9dff;
-
+  width: 100%;
 }
 
-.media-body .moreInfoTitle:hover{
+.moreInfoTitle:hover{
   cursor: pointer;
 }
 
@@ -229,10 +257,11 @@
 
 /********Summary*******/
 #summary{
-  width: 300px;
+  width: calc(100vw - 30px);
+  max-width: 300px;
   position: relative;
   top: 71px;
-  margin:0 29px;
+  margin:0 15px 20px 15px;
   float: right;
   overflow: visible;
 }
@@ -266,6 +295,19 @@
     margin-top: 0;
   }
 }
+
+@media  (max-width: 750px) {
+    .action{
+        width: 95%;
+        border-right: none;
+        text-align: left;
+        margin-bottom: 5px;
+        height: auto;
+        padding: 0px 5px 0px 5px;
+    }
+}
+
+
 
 #summary>section:first-of-type{
   overflow: auto;

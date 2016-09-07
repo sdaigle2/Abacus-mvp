@@ -50,28 +50,28 @@
                         alt="wheelchairImage">
                 </canvas>
               </div>
-              <section class="media-body">
+              <div class="media-body">
                 <div class="firstLine medium">
-                  <span class="pull-left" ng-show="chairOpts.design._id">Design ID: {{chairOpts.design._id}}</span>
-                  <span class="pull-right bold">${{chairOpts.design.wheelchair.getTotalPrice().toFixed(2)}}</span>
+                  <p>
+                    <span class="pull-left" ng-show="chairOpts.design._id">Design ID: {{chairOpts.design._id}}</span>
+                    <span class="pull-right bold">${{chairOpts.design.wheelchair.getTotalPrice().toFixed(2)}}</span>
+                  </p>
                 </div>
-                <table class="actions oReg">
-                  <tbody>
-                    <tr>
-                      <td ng-click="editWheelchair(chairOpts.design._id)"><a>EDIT</a></td>
-                      <td ng-click="moveToWishlist(chairOpts.design._id)" ng-if="isLoggedIn()"><a>MOVE TO MY DESIGNS</a></td>
-                      <td ng-click="downloadDesignPDF(chairOpts.design)"><a>DOWNLOAD PDF</a></td>
-                      <td ng-click="shareDesignID(chairOpts.design._id)"><a>SHARE DESIGN</a></td>
-                    </tr>
-                  </tbody>
-                </table>
-                <section class="moreInfoTitle oBold">
+                <div class="actions oReg">
+                  <div class = "action" ng-click="editWheelchair(chairOpts.design._id)">
+                      <a>EDIT THIS DESIGN</a>
+                  </div>
+                  <div class = "action" ng-click="moveToWishlist(chairOpts.design._id)" ng-if="isLoggedIn()"><a>MOVE TO MY DESIGNS</a></div>
+                  <div class = "action" ng-click="downloadDesignPDF(chairOpts.design)"><a>DOWNLOAD PDF</a></div>
+                  <div class = "action" ng-click="shareDesignID(chairOpts.design._id)"><a>SHARE DESIGN</a></div>
+                </div>
+                <div class="moreInfoTitle oBold">
                   <p class="clickable-text {{chairOpts.showInfo ? 'dropup' : ''}}" ng-click="chairOpts.showInfo = !chairOpts.showInfo">{{chairOpts.showInfo ? 'LESS' : 'MORE'}} INFO <span class="caret"></span></p>
                   <a class="pull-right">
                     <img data-ng-src="images/my_design_page/delete.png"
                        width="20"
                        ng-click="deleteWheelchair(chairOpts.design._id)"></a>
-                </section>
+                </div>
                 <div class="moreInfo" style="padding:{{WHEELCHAIR_CANVAS_WIDTH}};">
                   <!-- UserInformation Table...only shown if toggled -->
                   <h3 ng-if="chairOpts.showInfo && chairOpts.design.wheelchair.userInfo">User Information</h3>
@@ -130,7 +130,7 @@
                     </tr>
                   </table>
                 </div>
-              </section>
+              </div>
             </div>
           </li>
         </ul>
