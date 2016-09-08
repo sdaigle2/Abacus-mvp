@@ -89,7 +89,6 @@ angular.module('abacuApp')
           return parseInt(o.wheelchair.grantAmount);
         });
         
-        $scope.messageBox = '';
         $scope.curOrder.amountToPayNow = calculateAmountToPay($scope.curOrder.getTotalCost());
         $scope.invalidValue = false;
 
@@ -98,22 +97,22 @@ angular.module('abacuApp')
           if (n > $scope.curOrder.getTotalCost() || n < 0) {
             $scope.invalidValue = true;
             $scope.dueLater = 0;
-            $scope.messageBox = `Please enter a number between 0 and ${$scope.curOrder.getTotalCost()}`;
+            $scope.curOrder.messageBox = `Please enter a number between 0 and ${$scope.curOrder.getTotalCost()}`;
           } else if (n < $scope.curOrder.getTotalCost() / 2 && n !== 0) {
             $scope.invalidValue = false;
-            $scope.messageBox = PAYMENT_METHODS[1].message;
+            $scope.curOrder.messageBox = PAYMENT_METHODS[1].message;
             $scope.curOrder.payMethod = 'Pay part now';
-          } else if (n > $scope.curOrder.getTotalCost() / 2 && n < $scope.curOrder.getTotalCost()) {
+          } else if (n >= $scope.curOrder.getTotalCost() / 2 && n < $scope.curOrder.getTotalCost()) {
             $scope.invalidValue = false;
             $scope.curOrder.payMethod = 'Pay part now';
-            $scope.messageBox = PAYMENT_METHODS[2].message;
+            $scope.curOrder.messageBox = PAYMENT_METHODS[2].message;
           } else if (n === $scope.curOrder.getTotalCost()) {
             $scope.invalidValue = false;
             $scope.curOrder.payMethod = 'Pay total now';
-            $scope.messageBox = '';
+            $scope.curOrder.messageBox = '';
           } else if (n === 0) {
             $scope.invalidValue = false;
-            $scope.messageBox = PAYMENT_METHODS[1].message;
+            $scope.curOrder.messageBox = PAYMENT_METHODS[1].message;
             $scope.curOrder.payMethod = 'Pay later';
           }
         })

@@ -383,6 +383,21 @@ function getTotalSubtotal() {
 }
 
 /**
+ * Returns total due now
+ */
+function getTotalDueNow() {
+  return this.totalDueNow;
+}
+
+/**
+ * Returns total due now
+ */
+function getTotalDueLater() {
+  console.log(this)
+  return this.totalDueLater;
+}
+
+/**
  * Get the total discount amount for the current order
  * Based on Discounts in the order.discounts array
  */
@@ -423,19 +438,11 @@ function getTotalPrice() {
 }
 
 function getPayments(){
-  if(this.payMethod == 'Credit Card'){
-    return (getTotalSubtotal.apply(this) - getTotalDiscount.apply(this) + getTotalShipping.apply(this) + getTotalTax.apply(this));
-  } else {
-    return 0;
-  }
+  return getTotalDueNow.apply(this)
 }
 
 function getBalanceDue(){
-  if(this.payMethod == 'Credit Card'){
-    return 0;
-  } else {
-    return (getTotalSubtotal.apply(this) - getTotalDiscount.apply(this) + getTotalShipping.apply(this) + getTotalTax.apply(this));
-  }
+  return getTotalDueLater.apply(this)
 }
 
 /**

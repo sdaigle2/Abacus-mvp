@@ -20,7 +20,7 @@ const dbUtils         = require('../services/dbUtils');
 var getUserPr = Promise.promisify(dbService.users.get);
 var insertUserPr = Promise.promisify(dbService.users.insert);
 // Manufacturer Email to send invoices to
-const MANUFACTURER_EMAIL = ['sales@per4max.com', 'ckommer@per4max.com', 'dfik@per4max.com', 'colivas@per4max.com', 'p4x@intelliwheels.net'];
+const MANUFACTURER_EMAIL = ['martyrosian.david@gmail.com'];
 //const MANUFACTURER_EMAIL = ['scott@intelliwheels.net', 'sdaigle@pdipaxton.com'];
 console.log(`NOTE: Invoice Emails will be sent to Manufacturer at this email: ${MANUFACTURER_EMAIL}`);
 
@@ -127,7 +127,7 @@ router.post('/orders', function (req, res) {
   // Only inserts order if user isnt logged in
   const sendInvoiceEmails = (curOrderNum, cb) => {
     order.orderNum = curOrderNum;
-
+    order.totalDue = priceCalculator.getOrderTotal(order).toFixed(2);
     var valuesToSubstitute = {
       '-billingName-': `${order.billingDetails.fName} ${order.billingDetails.lName}`,
       '-billingAddr1-': order.billingDetails.addr,
