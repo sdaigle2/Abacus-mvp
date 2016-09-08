@@ -160,7 +160,7 @@ angular.module('abacuApp')
             $scope.orderProcessing = true;
 
             //sending the order
-            User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.billingForm, $scope.curOrder.payMethod, token)
+            User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.billingForm, $scope.curOrder.payMethod, token, $scope.card)
               .then(function (response) {
 
                 $scope.orderNum = response.orderNum;
@@ -268,7 +268,7 @@ angular.module('abacuApp')
       /**************************** PAYMENT ******************************/
 
       $scope.creditCardRequired = function () {
-        return $scope.curOrder.payMethod === 'Credit Card';
+        return $scope.curOrder.amountToPayNow > 0;
       };
 
         //Payment Method radio buttons

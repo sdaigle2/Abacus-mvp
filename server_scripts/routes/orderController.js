@@ -57,6 +57,7 @@ router.post('/orders', function (req, res) {
   //This token was created client side by the Stripe API, so we do not need credit card details as part of the request
   var stripeToken = req.body.token;
   var order = req.body.order;
+  var creditCard = req.body.cc;
   //Cross check all wheelchairs in the order against the JSON, while calculating the total price
   const total = req.body.totalPrice;
   console.log('order\'s total amount is ' + total );
@@ -69,7 +70,7 @@ router.post('/orders', function (req, res) {
 
   // returns error value with a charge object ... if payMethod isnt 'Credit Card', just returns {} for charges object
   const createStripeCharge = cb => {
-    if (order.payMethod === 'Credit Card') {
+    if (total) {
       //Create a new stripe payment
       var stripeCharge = stripe.charges.create({
         amount: _.round(total * 100), // check this value
@@ -187,6 +188,16 @@ router.post('/orders', function (req, res) {
         res.json({err: 'Error while processing credit card payment'});
         return;
       }
+      order.payments = _.isArray(order.payments) ? order.payments : [];
+      order.payments.push({
+        "date": new Date(),
+        "method": "Credit Card",
+        "amount": total,
+        "checkNumber": "",
+        "ccNum": creditCard.number,
+        "stripeId": stripeToken,
+        "memo": "initial payment"
+      });
       dbUtils.insertOrder(order, function(err, resp) {
         if (err) {
             res.status(400);

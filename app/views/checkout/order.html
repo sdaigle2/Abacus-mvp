@@ -226,10 +226,20 @@
               <td style="text-align:right;"><strong>$<span data-ng-bind="curOrder.getTaxCost().toFixed(2)"></span></strong></td>
             </tr>
 
-            <tr style="border-top:solid 1px #DDDDDD;">
-              <td><strong>Total</strong></td>
+            <tr>
+              <td><strong>Total due</strong></td>
               <td></td>
               <td style="text-align:right;"><strong>$<span data-ng-bind="curOrder.getTotalCost().toFixed(2)"></span></strong></td>
+            </tr>
+            <tr style="margin-top: 20px; border-top:solid 1px #DDDDDD;">
+              <td style="padding-top: 20px;"><strong>Amount you are paing now</strong></td>
+              <td style="padding-top: 20px;"></td>
+              <td style="text-align:right; padding-top: 10px;"><strong>$<span data-ng-bind="curOrder.getTotalDueNow().toFixed(2)"></span></strong></td>
+            </tr>
+            <tr>
+              <td><strong>Total due later</strong></td>
+              <td></td>
+              <td style="text-align:right;"><strong>$<span data-ng-bind="curOrder.getTotalCost().toFixed(2) - curOrder.getTotalDueNow().toFixed(2)"></span></strong></td>
             </tr>
           </tfoot>
         </table>
