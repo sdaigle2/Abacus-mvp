@@ -11,7 +11,7 @@
 angular.module('abacuApp')
   .controller('OrderCtrl', ['$scope', '$location', '$http', 'User', 'FrameData', 'Bank', 'Drop', '_', 'StripeKeys',
     function ($scope, $location, $http, User, FrameData, Bank, Drop, _, StripeKeys) {
-
+      console.log(User.getCurEditOrder())
       /*************************** CONTROL VARIABLES *************************/
 
       Drop.setFalse();
@@ -268,7 +268,7 @@ angular.module('abacuApp')
       /**************************** PAYMENT ******************************/
 
       $scope.creditCardRequired = function () {
-        return $scope.curOrder.amountToPayNow > 0;
+        return $scope.curOrder.totalDueNow > 0;
       };
 
         //Payment Method radio buttons

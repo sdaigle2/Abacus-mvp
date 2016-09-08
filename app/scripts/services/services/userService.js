@@ -734,13 +734,6 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       }
     },
 
-    setAmountToPayNow: function(amountToPay) {
-      var editOrder = this.getCurEditOrder();
-      editOrder.setTotalDueNow(amountToPay);
-    },
-
-
-
     //***********get/sets
     getID: function () {
       return self.userID;

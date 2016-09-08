@@ -14,25 +14,36 @@ angular.module('abacuApp')
   .constant('WHEELCHAIR_CANVAS_WIDTH', 187) // width of canvas that renders wheelchair
   .constant('PAYMENT_METHODS', [
     {
-      'name': 'Pay total now', 
-      'requiresAccount': false
+      'name': 'Pay total now'
     }, 
     {
       'name': 'Pay part now, pay remainder when order ships',
-      'requiresAccount': false,
       'message': 'WARNING: you can pay any amount that you want now, but we won’t start building your chair until we have at least a 50% down payment.'
     }, 
     {
-      'name': 'Pay later', 
-      'requiresAccount': false,
+      'name': 'Pay later',
       'message': 'Thank you for making a down payment of at least 50%. We’ll get to work building your chair, but we won’t ship it until we receive the full payment.'
    }])
-  .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', 'PAYMENT_METHODS',
+  .constant('PAYMENT_TYPES', [
+    {
+      'name': 'Credit card', 
+      'requiresAccount': false
+    }, 
+    {
+      'name': 'Cash',
+      'requiresAccount': true
+    }, 
+    {
+      'name': 'Check', 
+      'requiresAccount': true
+   }])
+  .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', 'PAYMENT_METHODS', 'PAYMENT_TYPES',
     '$q', 'Errors', 'ngDialog', 'PromiseUtils', 'Discount', '$http', 'DownloadPDF',
-    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, PAYMENT_METHODS, $q, Errors, ngDialog, PromiseUtils, Discount, $http, DownloadPDF) {
+    function ($scope, $location, localJSONStorage, User, _, ComparedDesigns, MAX_COMPARISON_CHAIRS, FrameData, Units, Wheelchair, Drop, WHEELCHAIR_CANVAS_WIDTH, Design, USER_TYPES, PAYMENT_METHODS, PAYMENT_TYPES, $q, Errors, ngDialog, PromiseUtils, Discount, $http, DownloadPDF) {
       $scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
       $scope.USER_TYPES = USER_TYPES;
       $scope.PAYMENT_METHODS = PAYMENT_METHODS;
+      $scope.PAYMENT_TYPES = PAYMENT_TYPES;
 
       //user login dropdown
       Drop.setFalse();
@@ -89,11 +100,11 @@ angular.module('abacuApp')
           return parseInt(o.wheelchair.grantAmount);
         });
         
-        $scope.curOrder.amountToPayNow = calculateAmountToPay($scope.curOrder.getTotalCost());
+        $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost());
         $scope.invalidValue = false;
 
-        $scope.$watch('curOrder.amountToPayNow', function(n, o){
-          $scope.dueLater = ($scope.curOrder.getTotalCost() - $scope.curOrder.amountToPayNow).toFixed(2);
+        $scope.$watch('curOrder.totalDueNow', function(n, o){
+          $scope.dueLater = ($scope.curOrder.getTotalCost() - $scope.curOrder.totalDueNow).toFixed(2);
           if (n > $scope.curOrder.getTotalCost() || n < 0) {
             $scope.invalidValue = true;
             $scope.dueLater = 0;
@@ -319,23 +330,25 @@ angular.module('abacuApp')
 
       $scope.choosePayment = function (paymentMethod) {
         var method = paymentMethod.name.split(' ', 3).join(" ").replace(/,/g, "");
+        $scope.curOrder.payMethod = method;
+        $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost());
+      };
 
-        if (paymentMethod.requiresAccount) {
+      $scope.choosePaymentType = function (paymentType) {
+        if (paymentType.requiresAccount) {
           $scope.showLoginModal()
           .then(function () {
-            $scope.curOrder.payMethod = method;
-            $scope.curOrder.amountToPayNow = calculateAmountToPay($scope.curOrder.getTotalCost());
+            $scope.curOrder.payType = paymentType;
           });
         } else {
-          $scope.curOrder.payMethod = method;
-          $scope.curOrder.amountToPayNow = calculateAmountToPay($scope.curOrder.getTotalCost());
+          $scope.curOrder.payType = paymentType;
         }
       };
 
-      $scope.setChecker = function(payMethod) {
+      $scope.setChecker = function(payMethod, type) {
         var payMethodName = payMethod.split(' ', 3).join(" ").replace(/,/g, "");
 
-        if (payMethodName === $scope.curOrder.payMethod) return true;
+        if (payMethodName === $scope.curOrder[type]) return true;
         return false;
       }
 
@@ -346,7 +359,6 @@ angular.module('abacuApp')
           return;
         }
 
-        User.setAmountToPayNow($scope.curOrder.amountToPayNow);
         if (User.isLoggedIn())
           $location.path('/order'); //Send to Order if logged in
         else
@@ -453,7 +465,7 @@ angular.module('abacuApp')
             $scope.curOrder.addDiscount(discount);
             $scope.curOrder.getTotalCost();
             $scope.promoErr = '';
-            $scope.curOrder.amountToPayNow = calculateAmountToPay($scope.curOrder.getTotalCost());
+            $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost());
             return User.updateCart();
           })
           .catch(function(err) {
@@ -476,7 +488,7 @@ angular.module('abacuApp')
       $scope.emptyDiscount = function() {
         $scope.curOrder.emptyDiscount();
         localJSONStorage.remove('promo')
-        $scope.curOrder.amountToPayNow = calculateAmountToPay($scope.curOrder.getTotalCost());
+        $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost());
         return User.updateCart();
       };
 

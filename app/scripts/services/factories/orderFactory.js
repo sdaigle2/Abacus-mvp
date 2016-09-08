@@ -53,6 +53,7 @@ angular.module('abacuApp')
         this.userType = 'User'; // default to the 'User' User Type
 
         this.payMethod = 'Pay part now';
+        this.payType = 'Credit card';
         this.discounts = [];
 
         // values that get filled on 'send'
@@ -74,7 +75,8 @@ angular.module('abacuApp')
         this.phone = order.phone;
         this.shippingDetails = _.defaults(order.shippingDetails || {}, DEFAULT_DETAILS);
         this.billingDetails = _.defaults(order.billingDetails || {}, DEFAULT_DETAILS);
-        this.payMethod = order.payMethod || 'Pay part now'; // default to credit card
+        this.payMethod = order.payMethod || 'Pay part now'; // default to pay part now
+        this.payType = order.payType || 'Credit card';
         this.userType = order.userType || 'User'; // default to user
         this.poNumber = order.poNumber || '';
 
@@ -179,6 +181,7 @@ angular.module('abacuApp')
           shippingDetails: this.shippingDetails,
           billingDetails: this.billingDetails,
           payMethod: this.payMethod,
+          payType: this.payType,
           userType: this.userType,
           poNumber: this.poNumber,
           wheelchairs: this.wheelchairs.map(function (design) {
@@ -218,7 +221,8 @@ angular.module('abacuApp')
           city: this.city,
           state: this.state,
           zip: this.zip,
-          paymethod: this.paymethod,
+          payMethod: this.payMethod,
+          payType: this.payType,
           wheelchairs: this.wheelchairs.map(function (w) {
             return w.allDetails();
           }),
@@ -246,6 +250,9 @@ angular.module('abacuApp')
 
       getPayMethod: function () {
         return this.payMethod;
+      },
+      getPayType: function () {
+        return this.payType;
       },
       getTaxRate: function () {
         return this.taxRate;
