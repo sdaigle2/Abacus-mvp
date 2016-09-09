@@ -146,39 +146,29 @@
     <div class="settingsContent" id="settingsOrdersContent"
          ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ORDERS}">
       <ul id="settingsOrdersContentItems">
-        <li class="settingsOrdersContentItem" ng-repeat="item in filteredOrderWheelchairs">
-          <p><h4><strong data-ng-bind="item.chair.userInfo.wheelchairName || item.chair.getTitle()"></strong></h4></p>
-          <canvas my-canvas img_arr={{item.chair.getPreviewImages(3)}} width="200"></canvas>
-          <section>
-            <p>Order number: {{item.order.orderNum}}</p>
-            <table class="orderTable book">
-              <tbody>
-              <tr>
-                <td>Order Date: <span data-ng-bind="item.order.sentDate.toLocaleDateString()"></span></td>
-                <td>Frame: {{getChairFrame(item.chair).name}}</td>
-              </tr>
-              <tr>
-                <td>Price: ${{item.chair.getTotalPrice().toFixed(2)}}</td>
-                <td>Manufacturer: {{getChairFrame(item.chair).manufacturer}}</td>
-              </tr>
-              <tr>
-                <td>Ship to: {{item.order.shippingDetails.fName}} {{item.order.shippingDetails.lName}}</td>
-              </tr>
-              </tbody>
-            </table>
-          </section>
-          <section id="contactInfo">
-            <a href="/orders/{{item.order._id}}/invoice" target="_blank">View Invoice</a>
-          </section>
-          <section id="contactInfo">
-            <a  href="http://per4max.com/contact/" target="_blank">Contact Manufacturer</a>
-          </section>
-
-          <!--<div class="settingsOrdersContentItemMid">-->
-            <!--<div class="settingsOrdersContentItem-date book">Order Placed: <span data-ng-bind="o.sentDate.toLocaleDateString()"></span></div>-->
-            <!--<button class="settingsOrdersContentItem-detailsButton book"-->
-                    <!--data-ng-click="openOrderDetails($index)">View Order Details <i class="fa fa-arrow-circle-down"></i></button>-->
-          <!--</div>-->
+        <li class="settingsOrdersContentItem" ng-repeat="order in ordersArray">
+          <div class="order-header">
+            <h3>Order: {{order.orderNum}}</h3>
+            <a href="/orders/{{order._id}}/invoice" target="_blank">View Invoice</a>
+          </div>
+            
+          <p><b>Payment status: </b>{{order.paymentStatus}}</p>
+          <p><b>Order status: </b>{{order.orderStatus}}</p>
+          <p><b>Order date: </b>{{order.sentDate | date:'medium'}}</p>
+          <p><b>Order total: </b>${{order.totalDue}}</p>
+          <p><b>Amount paid: </b>${{order.totalDue - order.totalDueLater}}</p>
+          <p><b>Amount owed: </b>${{order.totalDueLater}}</p>
+          
+          <ul class="order-item">
+            <li ng-repeat="chair in order.wheelchairs">
+              <canvas style="float: none;" my-canvas img_arr={{chair.wheelchair.getPreviewImages(3)}} width="200"></canvas>
+              <section>
+                <p>Frame: {{chair.wheelchair.userInfo.wheelchairName || chair.wheelchair.getTitle()}}</p>
+                <p>Price: ${{chair.wheelchair.getTotalPrice().toFixed(2)}}</p>
+                <p>Manufacturer: {{getChairFrame(chair.wheelchair).manufacturer}}</p>
+              </section>
+            </li>
+          </ul>
         </li>
       </ul>
       <ul ng-show="orderWheelchairs.length" uib-pagination class="custom-pagination"
@@ -187,7 +177,7 @@
         </ul>
     </div>
 
-    <!-- MY DESIGN -->
+    <!-- MY DESIGN
 
     <div class="settingsContent" id="settingsMeasurementsContent"
          ng-class="{'showSettingsContent' : getContentSection() === ContentSection.MEASUREMENTS}">

@@ -241,6 +241,34 @@
   list-style: none;
 }
 
+#settingsOrdersContent .order-item {
+  list-style-type: none;
+}
+
+#settingsOrdersContent .order-header {
+  margin: 10px 0;
+}
+
+#settingsOrdersContent .order-header h3 {
+  display: inline;
+}
+
+#settingsOrdersContent .order-header a{
+  float: right;
+  padding: 10px;
+  border: 1px solid;
+}
+
+#settingsOrdersContent .order-item {
+  margin: 20px 0 0;
+}
+    
+#settingsOrdersContent .order-item li{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
 #settingsOrdersContent .settingsOrdersContentItem {
   clear: left;
   float: left;

@@ -23,7 +23,7 @@ function sendInvoice(from, toArray, subject, subs, pdfFile, cb) {
 			mail.personalizations[0].addTo(new helper.Email(value));
 		}
 	});
-	mail.setTemplateId('ab18bc4d-d178-4cee-866c-b7ef11c486b8');
+	mail.setTemplateId('c88c5fe3-df82-4343-93b2-13b73ae681f7');
 
 	var pdf = fs.readFileSync(pdfFile.path);
 

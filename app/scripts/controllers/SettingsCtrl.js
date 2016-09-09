@@ -135,8 +135,9 @@ angular.module('abacuApp')
 
         //Array of orders
         //TODO: needs to be integrated with the Order factory
-      var orders = User.getSentOrders();
-
+      $scope.ordersArray = User.getSentOrders();
+      console.log($scope.ordersArray)
+      
       $scope.orderWheelchairs = _.chain(User.getSentOrders())
       .map(function (order) {
         var chairs = _.map(order.wheelchairs, 'wheelchair');
@@ -151,7 +152,7 @@ angular.module('abacuApp')
       })
       .flatten()
       .value();
-      console.log($scope.orderWheelchairs)
+      // console.log($scope.orderWheelchairs)
       $scope.orderWheelchairs = _.orderBy($scope.orderWheelchairs, 'order.sentDate', 'desc');
 
       $scope.currentPage = 1;

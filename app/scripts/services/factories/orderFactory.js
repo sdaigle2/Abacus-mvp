@@ -58,6 +58,7 @@ angular.module('abacuApp')
 
         // values that get filled on 'send'
         this.payments = [];
+        this.totalDue = null;
         this.totalDueNow = null;
         this.totalDueLater = null;
         this.orderStatus = null;
@@ -90,6 +91,7 @@ angular.module('abacuApp')
 
 
         this.payments = order.payments || [];
+        this.totalDue= order.totalDue || null;
         this.totalDueNow = order.totalDueNow || null;
         this.totalDueLater = order.totalDueLater || null;
         this.orderStatus = order.orderStatus || null;
@@ -188,6 +190,7 @@ angular.module('abacuApp')
             return design.allDetails();
           }),
           discounts: this.discounts,
+          totalDue: this.totalDue,
           totalDueNow: this.totalDueNow,
           totalDueLater: this.totalDueLater,
           orderStatus: this.orderStatus,
@@ -229,6 +232,7 @@ angular.module('abacuApp')
           poNumber: this.poNumber,
           discounts: this.discounts,
           payments: this.payments || [],
+          totalDue: this.totalDue,
           totalDueNow: this.totalDueNow,
           totalDueLater: this.totalDueLater,
           orderStatus: this.orderStatus,

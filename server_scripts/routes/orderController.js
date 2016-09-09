@@ -131,8 +131,10 @@ router.post('/orders', function (req, res) {
   // Only inserts order if user isnt logged in
   const sendInvoiceEmails = (curOrderNum, cb) => {
     order.orderNum = curOrderNum;
-    order.totalDue = priceCalculator.getOrderTotal(order).toFixed(2);
-    var valuesToSubstitute = {
+    
+    const amt = total - priceCalculator.getOrderTotal(order)
+
+    const valuesToSubstitute = {
       '-billingName-': `${order.billingDetails.fName} ${order.billingDetails.lName}`,
       '-billingAddr1-': order.billingDetails.addr,
       '-billingAddr2-': order.billingDetails.addr2,
@@ -150,9 +152,11 @@ router.post('/orders', function (req, res) {
       '-tax-': priceCalculator.getTaxCost(total).toFixed(2),
       '-salesTax-': priceCalculator.getTotalTax(order).toFixed(2),
       '-shipping-': priceCalculator.getTotalShipping(order).toFixed(2),
-      '-total-': total.toFixed(2),
+      '-total-': priceCalculator.getOrderTotal(order).toFixed(2),
       '-orderNumber-': order.orderNum.toString(),
-      '-subtotal-': priceCalculator.getTotalSubtotal(order).toFixed(2)
+      '-subtotal-': priceCalculator.getTotalSubtotal(order).toFixed(2),
+      '-amtPaid-': total.toString(),
+      '-balanceDue-': amt.toString()
     }
 
 
@@ -192,6 +196,7 @@ router.post('/orders', function (req, res) {
         res.json({err: 'Error while processing credit card payment'});
         return;
       }
+      order.totalDue = parseInt(priceCalculator.getOrderTotal(order));
       order.payments = _.isArray(order.payments) ? order.payments : [];
       order.payments.push({
         "date": new Date(),
@@ -202,6 +207,8 @@ router.post('/orders', function (req, res) {
         "stripeId": stripeToken,
         "memo": "initial payment"
       });
+      delete order.totalDueNow;
+      console.log(order)
       dbUtils.insertOrder(order, function(err, resp) {
         if (err) {
             res.status(400);
