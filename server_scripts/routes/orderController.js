@@ -53,13 +53,17 @@ router.get('/orders/:id/invoice', (req, res) => {
 //Save order to the db, create a stripe payment, and email pdf to the user
 router.post('/orders', function (req, res) {
   delete req.body.order.orderNum;
-
   //This token was created client side by the Stripe API, so we do not need credit card details as part of the request
-  var stripeToken = req.body.token;
-  var order = req.body.order;
-  var creditCard = req.body.cc;
+  const stripeToken = req.body.token;
+  const order = req.body.order;
+  const creditCard = req.body.cc;
+  const checkNumber = req.body.checkNum || '';
+
   //Cross check all wheelchairs in the order against the JSON, while calculating the total price
   const total = req.body.totalPrice;
+
+  
+
   console.log('order\'s total amount is ' + total );
   // Check the total value to make sure its valid...send 400 error if its not
   if (!_.isNumber(total) || (_.isNumber(total) && total <= 0)) {
@@ -70,7 +74,7 @@ router.post('/orders', function (req, res) {
 
   // returns error value with a charge object ... if payMethod isnt 'Credit Card', just returns {} for charges object
   const createStripeCharge = cb => {
-    if (total) {
+    if (total && order.payType === 'Credit Card') {
       //Create a new stripe payment
       var stripeCharge = stripe.charges.create({
         amount: _.round(total * 100), // check this value
@@ -191,9 +195,9 @@ router.post('/orders', function (req, res) {
       order.payments = _.isArray(order.payments) ? order.payments : [];
       order.payments.push({
         "date": new Date(),
-        "method": "Credit Card",
+        "method": order.payType,
         "amount": total,
-        "checkNumber": "",
+        "checkNumber": checkNumber,
         "ccNum": creditCard.number,
         "stripeId": stripeToken,
         "memo": "initial payment"

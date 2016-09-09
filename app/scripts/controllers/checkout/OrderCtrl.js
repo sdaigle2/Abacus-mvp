@@ -11,7 +11,6 @@
 angular.module('abacuApp')
   .controller('OrderCtrl', ['$scope', '$location', '$http', 'User', 'FrameData', 'Bank', 'Drop', '_', 'StripeKeys',
     function ($scope, $location, $http, User, FrameData, Bank, Drop, _, StripeKeys) {
-      console.log(User.getCurEditOrder())
       /*************************** CONTROL VARIABLES *************************/
 
       Drop.setFalse();
@@ -131,6 +130,11 @@ angular.module('abacuApp')
               alert('You must fill in all billing information');
               return;
             }
+
+            if ($scope.curOrder.payType === 'Check' && !$scope.curOrder.checkNumber) {
+              alert('Please fill in a check number');
+              return;
+            }
             //check if credit card info is required and check the info
             if ($scope.creditCardRequired() && !allFormFieldsComplete($scope.card)) {
               alert('Incomplete Credit Card Information');
@@ -160,7 +164,7 @@ angular.module('abacuApp')
             $scope.orderProcessing = true;
 
             //sending the order
-            User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.billingForm, $scope.curOrder.payMethod, token, $scope.card)
+            User.sendCurEditOrder($scope.contactForm, $scope.shippingForm, $scope.billingForm, token, $scope.card, $scope.curOrder.checkNumber)
               .then(function (response) {
 
                 $scope.orderNum = response.orderNum;
@@ -268,7 +272,7 @@ angular.module('abacuApp')
       /**************************** PAYMENT ******************************/
 
       $scope.creditCardRequired = function () {
-        return $scope.curOrder.totalDueNow > 0;
+        return $scope.curOrder.totalDueNow > 0 && $scope.curOrder.payType === 'Credit card';
       };
 
         //Payment Method radio buttons

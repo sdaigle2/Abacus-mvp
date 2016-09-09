@@ -196,7 +196,7 @@
                 {{curOrder.payType}}<span class="pull-right caret caretShape"></span>
               </button>
               <ul class="dropdown-menu" role="menu" style="word-wrap: break-word;">
-                <li ng-repeat="paymentType in PAYMENT_TYPES">
+                <li ng-repeat="paymentType in PAYMENT_TYPES | filter: adminFiler">
                   <a ng-click="choosePaymentType(paymentType.name)">- {{paymentType.name}} {{setChecker(paymentType.name, 'payType') ? '✓' : ''}}</a>
                 </li>
               </ul>

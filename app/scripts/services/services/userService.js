@@ -721,12 +721,12 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     },
 
     //Sends the curEditOrder to the distributor
-    sendCurEditOrder: function (userData, shippingData, billingData, payMethod, token, cc) {
+    sendCurEditOrder: function (userData, shippingData, billingData, token, cc, checkNum) {
       var editOrder = this.getCurEditOrder();
       if (editOrder === null) {
         return PromiseUtils.rejected(new Error('CurEditOrder does not exist'));
       } else {
-        return editOrder.send(self.userID, userData, shippingData, billingData, payMethod, token, cc)
+        return editOrder.send(self.userID, userData, shippingData, billingData, token, cc, checkNum)
           .then(function (response) {
             getCurrentUser();
             return response;

@@ -31,11 +31,11 @@ angular.module('abacuApp')
     }, 
     {
       'name': 'Cash',
-      'requiresAccount': true
+      'requiresAdmin': true
     }, 
     {
       'name': 'Check', 
-      'requiresAccount': true
+      'requiresAdmin': true
    }])
   .controller('Cart2Ctrl', ['$scope', '$location', 'localJSONStorage', 'User', '_', 'ComparedDesigns', 'MAX_COMPARISON_CHAIRS', 'FrameData', 'Units', 'Wheelchair', 'Drop', 'WHEELCHAIR_CANVAS_WIDTH', 'Design', 'USER_TYPES', 'PAYMENT_METHODS', 'PAYMENT_TYPES',
     '$q', 'Errors', 'ngDialog', 'PromiseUtils', 'Discount', '$http', 'DownloadPDF',
@@ -315,6 +315,14 @@ angular.module('abacuApp')
             }
           });
         }
+      };
+
+      $scope.adminFiler = function(item) {
+        if (item.requiresAdmin) {
+          return User.getUserType() === 'admin' || User.getUserType() === 'superAdmin';
+        }
+
+        return true;
       };
 
       $scope.chooseUserType = function (userType) {

@@ -103,6 +103,11 @@
           </div>
         </div>
       </div>
+      <div class="order-form" ng-if="curOrder.payType === 'Check'">
+        <div class="order-form-header">Check information</div>
+        <div class="order-form-label"><strong>Check number</strong></div>
+        <input class="text-input" type="text" data-ng-model="curOrder.checkNumber" />
+      </div>
     </div>
 
     <!--MAIN-CONFIRM-->
