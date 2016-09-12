@@ -50,6 +50,11 @@ router.get('/orders/:id/invoice', (req, res) => {
   });
 });
 
+router.post('/orders/create-payment', (req, res) => {
+  console.log(req.body)
+  res.sendStatus(200)
+});
+
 //Save order to the db, create a stripe payment, and email pdf to the user
 router.post('/orders', function (req, res) {
   delete req.body.order.orderNum;

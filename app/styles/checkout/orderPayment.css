@@ -1,0 +1,29 @@
+.payment-page {
+	margin: 40px auto 0;
+	max-width: 470px;
+	min-height: 670px;
+	padding: 25px;
+	border: 1px solid;
+	display: flex;
+	justify-content: space-between;
+    flex-direction: column;
+}
+
+.payment-page h3 {
+	margin: 5px 0 20px;
+	color: #4F9DFF;
+}
+
+.payment-page .payment-card p{
+	margin: 10px 0 0;
+}
+
+.payment-page .error-message {
+	min-height: 20px;
+	color: red;
+}
+
+.payment-page .success-message {
+	min-height: 20px;
+	color: green;
+}

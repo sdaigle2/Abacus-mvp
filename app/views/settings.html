@@ -146,18 +146,22 @@
     <div class="settingsContent" id="settingsOrdersContent"
          ng-class="{'showSettingsContent' : getContentSection() === ContentSection.ORDERS}">
       <ul id="settingsOrdersContentItems">
-        <li class="settingsOrdersContentItem" ng-repeat="order in ordersArray">
+        <li class="settingsOrdersContentItem" ng-repeat="order in filteredOrdersArray">
           <div class="order-header">
             <h3>Order: {{order.orderNum}}</h3>
-            <a href="/orders/{{order._id}}/invoice" target="_blank">View Invoice</a>
+            <div class="order-links">
+              <a href="/orders/{{order._id}}/invoice" target="_blank">View invoice</a>
+              <a ng-if="order.paymentStatus !== 'Paid in full'" ng-click="makePayment(order)" target="_blank">Make a payment</a>
+            </div>
           </div>
+
             
           <p><b>Payment status: </b>{{order.paymentStatus}}</p>
           <p><b>Order status: </b>{{order.orderStatus}}</p>
           <p><b>Order date: </b>{{order.sentDate | date:'medium'}}</p>
           <p><b>Order total: </b>${{order.totalDue}}</p>
           <p><b>Amount paid: </b>${{order.totalDue - order.totalDueLater}}</p>
-          <p><b>Amount owed: </b>${{order.totalDueLater}}</p>
+          <p ng-if="order.totalDueLater"><b>Amount owed: </b>${{order.totalDueLater}}</p>
           
           <ul class="order-item">
             <li ng-repeat="chair in order.wheelchairs">
@@ -171,9 +175,9 @@
           </ul>
         </li>
       </ul>
-      <ul ng-show="orderWheelchairs.length" uib-pagination class="custom-pagination"
+      <ul ng-show="ordersArray.length" uib-pagination class="custom-pagination"
           ng-model="currentPage"
-          total-items="orderWheelchairs.length">
+          total-items="ordersArray.length">
         </ul>
     </div>
 

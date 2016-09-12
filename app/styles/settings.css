@@ -249,6 +249,18 @@
   margin: 10px 0;
 }
 
+#settingsOrdersContent .order-links a:first-child {
+  margin-left: 10px;
+}
+
+#settingsOrdersContent .order-links {
+  display: inline;
+}
+
+#settingsOrdersContent .order-links::after {
+  clear: both;
+}
+
 #settingsOrdersContent .order-header h3 {
   display: inline;
 }
@@ -262,11 +274,17 @@
 #settingsOrdersContent .order-item {
   margin: 20px 0 0;
 }
+
+#settingsOrdersContent .order-item {
+  padding: 0;
+}
     
 #settingsOrdersContent .order-item li{
  display: flex;
  justify-content: space-between;
  align-items: center;
+ border-left: 2px solid #4f9dff;
+ margin-bottom: 10px;
 }
 
 #settingsOrdersContent .settingsOrdersContentItem {
