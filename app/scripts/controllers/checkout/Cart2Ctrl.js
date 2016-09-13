@@ -242,7 +242,9 @@ angular.module('abacuApp')
         _.reverse($scope.filteredWheelchairUIOpts);
 
           ////Remove wheelchair from cart
-        return User.deleteWheelchair(index);
+        return User.deleteWheelchair(index).then(function() {
+          $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost());
+        });
       };
 
       //share function

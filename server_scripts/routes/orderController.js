@@ -84,6 +84,7 @@ router.post('/orders/create-payment', (req, res) => {
   const memo = req.body.memo || '';
 
   dbUtils.getOrderByID(order._id, (err, order) => {
+    let previousPayments = order.totalDue - order.totalDueLater;
     createStripeCharge(total, stripeToken, payType, (err, stripeCharge) => {
       if (err) {
         res.status(400);
@@ -96,7 +97,7 @@ router.post('/orders/create-payment', (req, res) => {
         "method": payType,
         "amount": total,
         "checkNumber": checkNumber,
-        "ccNum": creditCard ? creditCard.number : '',
+        "ccNum": creditCard ? creditCard.number.substr(creditCard.number.length - 4) : '',
         "stripeId": stripeToken,
         "memo": memo
       });
@@ -108,7 +109,23 @@ router.post('/orders/create-payment', (req, res) => {
       order.paymentStatus = status.paymentStatus;
       insertOrderPr(order)
       .then(resp => {
+        let valuesToSubstitute = {
+          '-paymentStatus-': order.paymentStatus,
+          '-orderStatus-': order.orderStatus,
+          '-totalDue-': order.totalDue.toString(),
+          '-previousPayments-': previousPayments.toString(),
+          '-amountPaid-': total.toString(),
+          '-balanceDue-':order.totalDueLater.toString(),
+          '-orderNumber-': order.orderNum.toString(),
+        };
+        console.log(valuesToSubstitute)
+        sendgrid.sendReceipt('do-not-reply@per4max.fit', MANUFACTURER_EMAIL , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached - MANUFACTURER COPY', valuesToSubstitute, cb);
+        sendgrid.sendReceipt('do-not-reply@per4max.fit', [req.body.order.email] , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached', valuesToSubstitute, cb);
         res.sendStatus(200);
+
+        function cb(err, resp) {
+          if (err) console.log(err);
+        }
       })
       .catch(err => {
         res.status(400);
@@ -257,7 +274,7 @@ router.post('/orders', function (req, res) {
           "method": order.payType,
           "amount": total,
           "checkNumber": checkNumber,
-          "ccNum": creditCard ? creditCard.number : '',
+          "ccNum": creditCard ? creditCard.number.substr(creditCard.number.length - 4) : '',
           "stripeId": stripeToken,
           "memo": "initial payment"
         });
