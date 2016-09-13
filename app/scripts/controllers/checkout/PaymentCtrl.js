@@ -11,11 +11,11 @@ angular.module('abacuApp')
     orders.forEach(function(order) {
       if (order.orderNum === parseInt(payment.orderNum)) return payment.paymentOrder = order;
     })
-
+    payment.paymentOrder.totalDueNow = payment.paymentOrder.totalDueLater;
     payment.PAYMENT_TYPES = PAYMENT_TYPES;
 
     payment.makePayment = function() {
-      if (payment.paymentOrder.payType === 'Credit card') {
+      if (payment.paymentOrder.payType === 'Credit Card') {
         stripePayment();
       } else {
         createPayment();

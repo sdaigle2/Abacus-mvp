@@ -150,7 +150,8 @@ angular.module('abacuApp')
       });
 
       $scope.makePayment = function(orderId) {
-        console.log(orderId);
+        console.log('/order/' + orderId + '/payment')
+        $location.path('/order/' + orderId + '/payment');
       }
 
       $scope.getChairFrame = function (chair) {

@@ -151,7 +151,7 @@
             <h3>Order: {{order.orderNum}}</h3>
             <div class="order-links">
               <a href="/orders/{{order._id}}/invoice" target="_blank">View invoice</a>
-              <a ng-if="order.paymentStatus !== 'Paid in full'" ng-click="makePayment(order)" target="_blank">Make a payment</a>
+              <a ng-if="order.paymentStatus !== 'Paid in full'" ng-click="makePayment(order.orderNum)" target="_blank">Make a payment</a>
             </div>
           </div>
 

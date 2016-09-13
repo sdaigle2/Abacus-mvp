@@ -17,13 +17,37 @@ const dbService       = require('../services/db');
 const orderNumber     = require('../services/orderNumber');
 const dbUtils         = require('../services/dbUtils');
 
-var getUserPr = Promise.promisify(dbService.users.get);
-var insertUserPr = Promise.promisify(dbService.users.insert);
+const getUserPr = Promise.promisify(dbService.users.get);
+const insertUserPr = Promise.promisify(dbService.users.insert);
+const insertOrderPr = Promise.promisify(dbService.orders.insert);
 // Manufacturer Email to send invoices to
 const MANUFACTURER_EMAIL = ['martyrosian.david@gmail.com'];
 //const MANUFACTURER_EMAIL = ['scott@intelliwheels.net', 'sdaigle@pdipaxton.com'];
 console.log(`NOTE: Invoice Emails will be sent to Manufacturer at this email: ${MANUFACTURER_EMAIL}`);
 
+// returns error value with a charge object ... if payMethod isnt 'Credit Card', just returns {} for charges object
+const createStripeCharge = function(total, stripeToken, order, cb) {
+  let payType = order.payType || order;
+
+  if (total && payType === 'Credit Card') {
+    //Create a new stripe payment
+    var stripeCharge = stripe.charges.create({
+      amount: _.round(total * 100), // check this value
+      currency: "usd",
+      source: stripeToken,
+      description: "Tinker order"
+    }, cb );
+  } else {
+    cb(null, {});
+  }
+};
+
+function createStatus(total, now) {
+  if (now === 0) return {'orderStatus': 'waiting for 50% payment before starting to build your chair', 'paymentStatus': 'incomplete'};
+  if (now > 0 && now < total / 2) return {'orderStatus': 'waiting for 50% payment before starting to build your chair', 'paymentStatus': 'incomplete'};
+  if (now !== total && now >= total / 2) return {'orderStatus': 'Thankyou for the downpayment, we’ll start building your wheelchair now. Please note that you will need to pay the remainder before the order ships.', 'paymentStatus': 'At least 50% paid'};
+  if (now === total) return {'orderStatus': 'Full payment has been received. Chair will ship once it is complete.', 'paymentStatus': 'Paid in full'};
+}
 // downloads Invoice PDF for a given order
 router.get('/orders/:id/invoice', (req, res) => {
   var id = req.params.id;
@@ -51,8 +75,47 @@ router.get('/orders/:id/invoice', (req, res) => {
 });
 
 router.post('/orders/create-payment', (req, res) => {
-  console.log(req.body)
-  res.sendStatus(200)
+  const total = req.body.paymentAmount;
+  const payType = req.body.payType;
+  const order = req.body.order;
+  const stripeToken = req.body.token || '';
+  const creditCard = req.body.creditCard;
+  const checkNumber = req.body.checkNum || '';
+  const memo = req.body.memo || '';
+
+  dbUtils.getOrderByID(order._id, (err, order) => {
+    createStripeCharge(total, stripeToken, payType, (err, stripeCharge) => {
+      if (err) {
+        res.status(400);
+        res.json({err: 'Error while processing credit card payment'});
+        return;
+      }
+
+      order.payments.push({
+        "date": new Date(),
+        "method": payType,
+        "amount": total,
+        "checkNumber": checkNumber,
+        "ccNum": creditCard ? creditCard.number : '',
+        "stripeId": stripeToken,
+        "memo": memo
+      });
+
+      delete order.totalDueNow;
+      order.totalDueLater = order.totalDueLater - total;
+      let status = createStatus(order.totalDue, order.totalDue - order.totalDueLater);
+      order.orderStatus = status.orderStatus;
+      order.paymentStatus = status.paymentStatus;
+      insertOrderPr(order)
+      .then(resp => {
+        res.sendStatus(200);
+      })
+      .catch(err => {
+        res.status(400);
+        res.json({err: err});
+      });
+    });
+  });
 });
 
 //Save order to the db, create a stripe payment, and email pdf to the user
@@ -76,21 +139,6 @@ router.post('/orders', function (req, res) {
     res.send({err: 'Invalid order'});
     return;
   }
-
-  // returns error value with a charge object ... if payMethod isnt 'Credit Card', just returns {} for charges object
-  const createStripeCharge = cb => {
-    if (total && order.payType === 'Credit Card') {
-      //Create a new stripe payment
-      var stripeCharge = stripe.charges.create({
-        amount: _.round(total * 100), // check this value
-        currency: "usd",
-        source: stripeToken,
-        description: "Tinker order"
-      }, cb );
-    } else {
-      cb(null, {});
-    }
-  };
 
   // returns true/false depending on whether the discounts were valid
   const validateOrderDiscounts = cb => {
@@ -137,7 +185,7 @@ router.post('/orders', function (req, res) {
   const sendInvoiceEmails = (curOrderNum, cb) => {
     order.orderNum = curOrderNum;
     
-    const amt = total - priceCalculator.getOrderTotal(order)
+    const amt = total - priceCalculator.getOrderTotal(order);
 
     const valuesToSubstitute = {
       '-billingName-': `${order.billingDetails.fName} ${order.billingDetails.lName}`,
@@ -162,7 +210,7 @@ router.post('/orders', function (req, res) {
       '-subtotal-': priceCalculator.getTotalSubtotal(order).toFixed(2),
       '-amtPaid-': total.toString(),
       '-balanceDue-': amt.toString()
-    }
+    };
 
 
     generatePDF.forInvoice(order, function (err, pdfFileInfo) {
@@ -195,7 +243,7 @@ router.post('/orders', function (req, res) {
       return;
     }
 
-    createStripeCharge((err, stripeCharge) => {
+    createStripeCharge(total, stripeToken, order, (err, stripeCharge) => {
       if (err) {
         res.status(400);
         res.json({err: 'Error while processing credit card payment'});
@@ -203,17 +251,20 @@ router.post('/orders', function (req, res) {
       }
       order.totalDue = parseInt(priceCalculator.getOrderTotal(order));
       order.payments = _.isArray(order.payments) ? order.payments : [];
-      order.payments.push({
-        "date": new Date(),
-        "method": order.payType,
-        "amount": total,
-        "checkNumber": checkNumber,
-        "ccNum": creditCard.number,
-        "stripeId": stripeToken,
-        "memo": "initial payment"
-      });
+      if (total > 0) {
+        order.payments.push({
+          "date": new Date(),
+          "method": order.payType,
+          "amount": total,
+          "checkNumber": checkNumber,
+          "ccNum": creditCard ? creditCard.number : '',
+          "stripeId": stripeToken,
+          "memo": "initial payment"
+        });
+      }
+      
       delete order.totalDueNow;
-      console.log(order)
+
       dbUtils.insertOrder(order, function(err, resp) {
         if (err) {
             res.status(400);
@@ -248,7 +299,6 @@ router.post('/orders', function (req, res) {
                     console.log(`ERROR WHILE SENDING INVOICE EMAIL: ${JSON.stringify(err, null, 2)}`);
                   }
                 });
-
               });
             })
             .catch(err => {

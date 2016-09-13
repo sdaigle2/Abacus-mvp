@@ -272,7 +272,7 @@ angular.module('abacuApp')
       /**************************** PAYMENT ******************************/
 
       $scope.creditCardRequired = function () {
-        return $scope.curOrder.totalDueNow > 0 && $scope.curOrder.payType === 'Credit card';
+        return $scope.curOrder.totalDueNow > 0 && $scope.curOrder.payType === 'Credit Card';
       };
 
         //Payment Method radio buttons

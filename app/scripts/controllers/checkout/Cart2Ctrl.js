@@ -26,7 +26,7 @@ angular.module('abacuApp')
    }])
   .constant('PAYMENT_TYPES', [
     {
-      'name': 'Credit card', 
+      'name': 'Credit Card', 
       'requiresAccount': false
     }, 
     {

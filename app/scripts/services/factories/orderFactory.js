@@ -53,7 +53,7 @@ angular.module('abacuApp')
         this.userType = 'User'; // default to the 'User' User Type
 
         this.payMethod = 'Pay part now';
-        this.payType = 'Credit card';
+        this.payType = 'Credit Card';
         this.discounts = [];
 
         // values that get filled on 'send'
@@ -77,7 +77,7 @@ angular.module('abacuApp')
         this.shippingDetails = _.defaults(order.shippingDetails || {}, DEFAULT_DETAILS);
         this.billingDetails = _.defaults(order.billingDetails || {}, DEFAULT_DETAILS);
         this.payMethod = order.payMethod || 'Pay part now'; // default to pay part now
-        this.payType = order.payType || 'Credit card';
+        this.payType = order.payType || 'Credit Card';
         this.userType = order.userType || 'User'; // default to user
         this.poNumber = order.poNumber || '';
 

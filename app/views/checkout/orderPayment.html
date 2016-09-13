@@ -7,7 +7,7 @@
 
 	<div>
 		<h4>How much would you like to pay today ?</h4>
-		<input type="number" data-ng-value="payment.paymentOrder.totalDueLater" data-ng-model="payment.paymentOrder.totalDueNow"/>
+		<input type="number" data-ng-model="payment.paymentOrder.totalDueNow"/>
 	</div>
 
 	<!-- Payment types -->
@@ -27,7 +27,7 @@
 		<input type="text" name="check-number" data-ng-model="payment.checkNum">
 	</div>
 	<!-- Cedit card info -->
-	<div class="order-form-header payment-card" ng-if="payment.paymentOrder.payType === 'Credit card'">
+	<div class="order-form-header payment-card" ng-if="payment.paymentOrder.payType === 'Credit Card'">
 		<h4>Credit Card Information:</h4>
 		<div class="paymentWindow">
 		  <div>
