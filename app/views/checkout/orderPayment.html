@@ -1,4 +1,5 @@
 <link href="../../styles/checkout/orderPayment.css" rel="stylesheet" />
+<link href="../../styles/tinker/abacus.css" rel="stylesheet"/>
 <div class="payment-page">
 	<h3>Make a payment for order # {{payment.orderNum}}</h3>
 	<p>Total: ${{payment.paymentOrder.totalDue}}</p>
@@ -60,4 +61,16 @@
 	<button ng-disabled="payment.invalidInputs" class="btn btn-md btn-success payment-button" ng-click="payment.makePayment()">
 		Sumbit payment
 	</button>
+</div>
+<div class="payment-cover" ng-if="payment.dropdownOpen">
+	<div class="action-panel">
+		<article>
+			<h3>Complete!</h3>
+		</article>
+
+		<section>
+			<button ng-click="payment.goToOrders()">GO TO MY ORDERS</button>
+		</section>
+		<div class="close-tab" ng-click="payment.closeDropDown()"><span class="glyphicon glyphicon-remove"></span></div>
+	</div>
 </div>

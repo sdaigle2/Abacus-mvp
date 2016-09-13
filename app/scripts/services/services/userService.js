@@ -343,6 +343,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 //*********functions************//
 
   return {
+    getCurrentUser: getCurrentUser,
 
     getPromise: function () {
       return updatePromise;

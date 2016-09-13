@@ -6,7 +6,7 @@
 	border: 1px solid;
 	display: flex;
 	justify-content: space-between;
-    flex-direction: column;
+	flex-direction: column;
 }
 
 .payment-page h3 {
@@ -26,4 +26,44 @@
 .payment-page .success-message {
 	min-height: 20px;
 	color: green;
+}
+
+.payment-cover {
+	position: absolute;
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.75);
+	z-index: 53;
+	text-align: center;
+	font-family: 'Gotham A', 'Gotham B';
+    font-weight: 500;
+    font-style: normal;
+}
+.action-panel {
+	margin: auto;
+	position: absolute;
+	top: calc(50vh - 150px);
+	left: calc(50vw - 350px);
+	width: 700px;
+	background-color: white;
+	z-index: 3;
+	height: 168px;
+}
+.action-panel button {
+	background-color: #4f9dff;
+	color: white;
+	border: 0;
+	font-size: 0.9em;
+	height: 30px;
+	padding: 5px 12px;
+	margin-top: 20px;
+}
+
+.close-tab {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 2;
+	cursor: pointer;
 }
