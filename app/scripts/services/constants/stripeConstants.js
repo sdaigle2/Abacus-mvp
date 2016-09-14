@@ -2,6 +2,6 @@
 
 angular.module('abacuApp')
   .constant('StripeKeys', {
-      PUBLISHABLE_KEY: 'pk_test_7ape2quK8HrcafwfsYjWDrBh'
+      PUBLISHABLE_KEY: 'pk_live_KwYnVzZylrafo9Y0RTjZmcM1'
   });
 

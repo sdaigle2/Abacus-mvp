@@ -437,11 +437,11 @@ function getTotalPrice() {
 }
 
 function getPayments(){
-  return getTotalDueNow.apply(this)
+  return getTotalDueNow.apply(this);
 }
 
 function getBalanceDue(){
-  return getTotalDueLater.apply(this)
+  return getTotalDueLater.apply(this);
 }
 
 /**
