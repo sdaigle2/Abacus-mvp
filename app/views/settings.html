@@ -151,17 +151,17 @@
             <h3>Order: {{order.orderNum}}</h3>
             <div class="order-links">
               <a href="/orders/{{order._id}}/invoice" target="_blank">View invoice</a>
-              <a ng-if="order.paymentStatus !== 'Paid in full'" ng-click="makePayment(order.orderNum)" target="_blank">Make a payment</a>
+              <a ng-if="order.paymentStatus !== 'Paid in full' && isNewOrder(order)" ng-click="makePayment(order.orderNum)" target="_blank">Make a payment</a>
             </div>
           </div>
 
             
-          <p><b>Payment status: </b>{{order.paymentStatus}}</p>
-          <p><b>Order status: </b>{{order.orderStatus}}</p>
-          <p><b>Order date: </b>{{order.sentDate | date:'medium'}}</p>
-          <p><b>Order total: </b>${{order.totalDue}}</p>
-          <p><b>Amount paid: </b>${{order.totalDue - order.totalDueLater}}</p>
-          <p ng-if="order.totalDueLater"><b>Amount owed: </b>${{order.totalDueLater}}</p>
+          <p ng-if="isNewOrder(order)"><b>Payment status: </b>{{order.paymentStatus}}</p>
+          <p ng-if="isNewOrder(order)"><b>Order status: </b>{{order.orderStatus}}</p>
+          <p ng-if="isNewOrder(order)"><b>Order date: </b>{{order.sentDate | date:'medium'}}</p>
+          <p ng-if="isNewOrder(order)"><b>Order total: </b>${{order.totalDue}}</p>
+          <p ng-if="isNewOrder(order)"><b>Amount paid: </b>${{order.totalDue - order.totalDueLater}}</p>
+          <p ng-if="order.totalDueLater && isNewOrder(order)"><b>Amount owed: </b>${{order.totalDueLater}}</p>
           
           <ul class="order-item">
             <li ng-repeat="chair in order.wheelchairs">

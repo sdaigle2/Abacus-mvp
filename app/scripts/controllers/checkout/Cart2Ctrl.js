@@ -74,7 +74,8 @@ angular.module('abacuApp')
 
       //Initialize Cart page
       function init() {
-        $scope.curOrder = User.getCurEditOrder();   //return order instance
+        $scope.curOrder = User.getCurEditOrder();
+        $scope.curOrder.payMethod = 'Pay part now';
         if (!$scope.curOrder) {
           User.createNewOrder();
           $scope.curOrder = User.getCurEditOrder();

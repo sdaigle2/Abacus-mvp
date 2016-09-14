@@ -136,23 +136,23 @@ angular.module('abacuApp')
         //Array of orders
         //TODO: needs to be integrated with the Order factory
       $scope.ordersArray = User.getSentOrders();
-
-      console.log($scope.ordersArray)
+      
       $scope.currentPage = 1;
       $scope.numPerPage = 10;
       $scope.maxSize = 5;
       $scope.$watch('currentPage + numPerPage', function() {
-        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
-        , end = begin + $scope.numPerPage;
-        
-        $scope.filteredOrdersArray = $scope.ordersArray.slice(begin, end);
+        $scope.filteredOrdersArray = _.cloneDeep($scope.ordersArray);
         _.reverse($scope.filteredOrdersArray);
+        $scope.filteredOrdersArray = $scope.filteredOrdersArray.slice(getPagination().begin, getPagination().end);
       });
 
+      $scope.isNewOrder = function(order) {
+        return order.totalDue ? true : false; 
+      };
+
       $scope.makePayment = function(orderId) {
-        console.log('/order/' + orderId + '/payment')
         $location.path('/order/' + orderId + '/payment');
-      }
+      };
 
       $scope.getChairFrame = function (chair) {
         var frameID = chair.frameID;
@@ -209,6 +209,13 @@ angular.module('abacuApp')
         return false;
       }
 
+      function getPagination() {
+        var begin = ($scope.currentPage - 1) * $scope.numPerPage
+        return {
+          'begin': begin,
+          'end': begin + $scope.numPerPage
+        }
+      }
 
       /*************Item buttons*********/
 

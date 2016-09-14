@@ -6,6 +6,7 @@ angular.module('abacuApp')
     var payment = this;
     var orders = User.getSentOrders()
 
+    
     payment.orderNum = $routeParams.orderNum;
     payment.invalidInputs = false;
     orders.forEach(function(order) {
@@ -60,7 +61,7 @@ angular.module('abacuApp')
       return payment.errorMsg = '';
     });
 
-    function stripePayment(){
+    function stripePayment() {
       Stripe.setPublishableKey(StripeKeys.PUBLISHABLE_KEY);
       Stripe.card.createToken(payment.userCard, stripeResponseHandler);
     }

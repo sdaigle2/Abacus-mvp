@@ -393,7 +393,6 @@ function getTotalDueNow() {
  * Returns total due now
  */
 function getTotalDueLater() {
-  console.log(this)
   return this.totalDueLater;
 }
 

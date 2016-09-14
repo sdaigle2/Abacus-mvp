@@ -3,7 +3,7 @@
  */
 "use strict";
 
-const router = require('express').Router();
+let router = require('express').Router();
 const _      = require('lodash');
 const async  = require('async');
 const Promise = require('bluebird');
@@ -12,7 +12,7 @@ const generatePDF     = require('../services/generatePDF');
 const priceCalculator = require('../services/priceCalculator');
 const stripe          = require('../services/payment');
 const paypal          = require('../services/paypal');
-const sendgrid        = require('../services/sendgrid');
+let sendgrid        = require('../services/sendgrid');
 const dbService       = require('../services/db');
 const orderNumber     = require('../services/orderNumber');
 const dbUtils         = require('../services/dbUtils');
@@ -75,7 +75,7 @@ router.get('/orders/:id/invoice', (req, res) => {
 });
 
 router.post('/orders/create-payment', (req, res) => {
-  const total = req.body.paymentAmount;
+  const total = req.body.paymentAmount.toFixed(2);
   const payType = req.body.payType;
   const order = req.body.order;
   const stripeToken = req.body.token || '';
@@ -118,10 +118,10 @@ router.post('/orders/create-payment', (req, res) => {
           '-balanceDue-':order.totalDueLater.toString(),
           '-orderNumber-': order.orderNum.toString(),
         };
-        console.log(valuesToSubstitute)
+
         sendgrid.sendReceipt('do-not-reply@per4max.fit', MANUFACTURER_EMAIL , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached - MANUFACTURER COPY', valuesToSubstitute, cb);
         sendgrid.sendReceipt('do-not-reply@per4max.fit', [req.body.order.email] , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached', valuesToSubstitute, cb);
-        res.sendStatus(200);
+        res.json(resp)
 
         function cb(err, resp) {
           if (err) console.log(err);
@@ -137,6 +137,7 @@ router.post('/orders/create-payment', (req, res) => {
 
 //Save order to the db, create a stripe payment, and email pdf to the user
 router.post('/orders', function (req, res) {
+
   delete req.body.order.orderNum;
   //This token was created client side by the Stripe API, so we do not need credit card details as part of the request
   const stripeToken = req.body.token;
@@ -145,13 +146,11 @@ router.post('/orders', function (req, res) {
   const checkNumber = req.body.checkNum || '';
 
   //Cross check all wheelchairs in the order against the JSON, while calculating the total price
-  const total = req.body.totalPrice;
-
-  
+  const total = req.body.totalPrice; 
 
   console.log('order\'s total amount is ' + total );
   // Check the total value to make sure its valid...send 400 error if its not
-  if (!_.isNumber(total) || (_.isNumber(total) && total <= 0)) {
+  if (!_.isNumber(total) || (_.isNumber(total) && total < 0)) {
     res.status(400);
     res.send({err: 'Invalid order'});
     return;
@@ -202,7 +201,7 @@ router.post('/orders', function (req, res) {
   const sendInvoiceEmails = (curOrderNum, cb) => {
     order.orderNum = curOrderNum;
     
-    const amt = total - priceCalculator.getOrderTotal(order);
+    const amt = priceCalculator.getOrderTotal(order) - total;
 
     const valuesToSubstitute = {
       '-billingName-': `${order.billingDetails.fName} ${order.billingDetails.lName}`,
@@ -266,6 +265,8 @@ router.post('/orders', function (req, res) {
         res.json({err: 'Error while processing credit card payment'});
         return;
       }
+      order.totalDueLater = parseInt(order.totalDueLater);
+
       order.totalDue = parseInt(priceCalculator.getOrderTotal(order));
       order.payments = _.isArray(order.payments) ? order.payments : [];
       if (total > 0) {
@@ -329,4 +330,10 @@ router.post('/orders', function (req, res) {
   });
 });
 
+router.mockSendgrid = function(mock) {
+  console.log('mock worked');
+  sendgrid = mock;
+}
+
 module.exports = router; // expose the router
+

@@ -178,6 +178,7 @@ angular.module('abacuApp')
                 User.clearCart();
               })
               .catch(function () {
+                console.log('this works')
                 $scope.orderProcessing = false;
                 alert('Error sending order');
               });

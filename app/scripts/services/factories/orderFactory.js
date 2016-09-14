@@ -436,6 +436,7 @@ angular.module('abacuApp')
         this.orderStatus = status.orderStatus;
         this.paymentStatus = status.paymentStatus;
 
+
         return $http({
           url: '/orders',
           data: {order: this.getAll(), token: token, totalPrice: _.round(this.getTotalDueNow(), 2), cc: cc, checkNum: checkNum},
