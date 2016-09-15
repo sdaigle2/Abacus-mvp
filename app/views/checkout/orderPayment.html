@@ -2,9 +2,9 @@
 <link href="../../styles/tinker/abacus.css" rel="stylesheet"/>
 <div class="payment-page">
 	<h3>Make a payment for order # {{payment.orderNum}}</h3>
-	<p>Total: ${{payment.paymentOrder.totalDue}}</p>
-	<p>Amount paid previously: ${{payment.paymentOrder.totalDue - payment.paymentOrder.totalDueLater}}</p>
-	<p>Amount owed: ${{payment.paymentOrder.totalDueLater}}</p>
+	<p>Total: ${{payment.paymentOrder.totalDue.toFixed(2)}}</p>
+	<p>Amount paid previously: ${{(payment.paymentOrder.totalDue - payment.paymentOrder.totalDueLater).toFixed(2)}}</p>
+	<p>Amount owed: ${{payment.paymentOrder.totalDueLater.toFixed(2)}}</p>
 
 	<div>
 		<h4>How much would you like to pay today ?</h4>
@@ -59,7 +59,7 @@
 	<p data-ng-bind="payment.errorMsg" class="error-message"></p>
 	<p data-ng-bind="payment.successMsg" class="success-message"></p>
 	<button ng-disabled="payment.invalidInputs" class="btn btn-md btn-success payment-button" ng-click="payment.makePayment()">
-		Sumbit payment
+		Submit Payment
 	</button>
 </div>
 <div class="payment-cover" ng-if="payment.dropdownOpen">

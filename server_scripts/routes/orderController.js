@@ -112,15 +112,15 @@ router.post('/orders/create-payment', (req, res) => {
         let valuesToSubstitute = {
           '-paymentStatus-': order.paymentStatus,
           '-orderStatus-': order.orderStatus,
-          '-totalDue-': order.totalDue.toString(),
-          '-previousPayments-': previousPayments.toString(),
+          '-totalDue-': order.totalDue.toFixed(2),
+          '-previousPayments-': previousPayments.toFixed(2),//this one seams to be broken
           '-amountPaid-': total.toString(),
-          '-balanceDue-':order.totalDueLater.toString(),
+          '-balanceDue-':order.totalDueLater.toFixed(2),
           '-orderNumber-': order.orderNum.toString(),
         };
 
-        sendgrid.sendReceipt('do-not-reply@per4max.fit', MANUFACTURER_EMAIL , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached - MANUFACTURER COPY', valuesToSubstitute, cb);
-        sendgrid.sendReceipt('do-not-reply@per4max.fit', [req.body.order.email] , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached', valuesToSubstitute, cb);
+        sendgrid.sendReceipt('do-not-reply@per4max.fit', MANUFACTURER_EMAIL , 'Per4max.fit Payment Receipt for Order #' + order.orderNum + ' - MANUFACTURER COPY', valuesToSubstitute, cb);
+        sendgrid.sendReceipt('do-not-reply@per4max.fit', [req.body.order.email] , 'Per4max.fit Payment Receipt for Order #' + order.orderNum, valuesToSubstitute, cb);
         res.json(resp)
 
         function cb(err, resp) {
@@ -146,7 +146,7 @@ router.post('/orders', function (req, res) {
   const checkNumber = req.body.checkNum || '';
 
   //Cross check all wheelchairs in the order against the JSON, while calculating the total price
-  const total = req.body.totalPrice; 
+  const total = req.body.totalPrice;
 
   console.log('order\'s total amount is ' + total );
   // Check the total value to make sure its valid...send 400 error if its not
@@ -200,7 +200,7 @@ router.post('/orders', function (req, res) {
   // Only inserts order if user isnt logged in
   const sendInvoiceEmails = (curOrderNum, cb) => {
     order.orderNum = curOrderNum;
-    
+
     const amt = priceCalculator.getOrderTotal(order) - total;
 
     const valuesToSubstitute = {
@@ -224,8 +224,8 @@ router.post('/orders', function (req, res) {
       '-total-': priceCalculator.getOrderTotal(order).toFixed(2),
       '-orderNumber-': order.orderNum.toString(),
       '-subtotal-': priceCalculator.getTotalSubtotal(order).toFixed(2),
-      '-amtPaid-': total.toString(),
-      '-balanceDue-': amt.toString()
+      '-amtPaid-': total.toFixed(2),
+      '-balanceDue-': amt.toFixed(2)
     };
 
 
@@ -280,7 +280,7 @@ router.post('/orders', function (req, res) {
           "memo": "initial payment"
         });
       }
-      
+
       delete order.totalDueNow;
 
       dbUtils.insertOrder(order, function(err, resp) {
@@ -325,7 +325,7 @@ router.post('/orders', function (req, res) {
             });
           });
         });
-      }); 
+      });
     });
   });
 });

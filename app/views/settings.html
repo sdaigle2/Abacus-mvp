@@ -155,22 +155,22 @@
             </div>
           </div>
 
-            
+
           <p ng-if="isNewOrder(order)"><b>Payment status: </b>{{order.paymentStatus}}</p>
           <p ng-if="isNewOrder(order)"><b>Order status: </b>{{order.orderStatus}}</p>
           <p ng-if="isNewOrder(order)"><b>Order date: </b>{{order.sentDate | date:'medium'}}</p>
-          <p ng-if="isNewOrder(order)"><b>Order total: </b>${{order.totalDue}}</p>
-          <p ng-if="isNewOrder(order)"><b>Amount paid: </b>${{order.totalDue - order.totalDueLater}}</p>
-          <p ng-if="order.totalDueLater && isNewOrder(order)"><b>Amount owed: </b>${{order.totalDueLater}}</p>
-          
+          <p ng-if="isNewOrder(order)"><b>Order total: </b>${{order.totalDue.toFixed(2)}}</p>
+          <p ng-if="isNewOrder(order)"><b>Amount paid: </b>${{(order.totalDue - order.totalDueLater).toFixed(2)}}</p>
+          <p ng-if="order.totalDueLater && isNewOrder(order)"><b>Amount owed: </b>${{order.totalDueLater.toFixed(2)}}</p>
+
           <ul class="order-item">
             <li ng-repeat="chair in order.wheelchairs">
               <canvas style="float: none;" my-canvas img_arr={{chair.wheelchair.getPreviewImages(3)}} width="200"></canvas>
-              <section>
+              <div id="chairDetails">
                 <p>Frame: {{chair.wheelchair.userInfo.wheelchairName || chair.wheelchair.getTitle()}}</p>
                 <p>Price: ${{chair.wheelchair.getTotalPrice().toFixed(2)}}</p>
                 <p>Manufacturer: {{getChairFrame(chair.wheelchair).manufacturer}}</p>
-              </section>
+              </div>
             </li>
           </ul>
         </li>
