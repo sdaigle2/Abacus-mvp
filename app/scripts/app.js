@@ -143,6 +143,14 @@ angular
         templateUrl: 'views/checkout/order.html',
         controller: 'OrderCtrl'
       })
+      .when('/order/:orderNum/payment', {
+        templateUrl: 'views/checkout/orderPayment.html',
+        controller: 'PaymentCtrl',
+        controllerAs: 'payment',
+        resolve: {UserData: ['$q', 'User', function($q, User){
+          return User.getPromise();
+        }]}
+      })
       .when('/settings', {
         templateUrl: 'views/settings.html',
         controller: 'SettingsCtrl',

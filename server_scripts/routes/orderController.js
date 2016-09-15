@@ -3,7 +3,7 @@
  */
 "use strict";
 
-const router = require('express').Router();
+let router = require('express').Router();
 const _      = require('lodash');
 const async  = require('async');
 const Promise = require('bluebird');
@@ -12,18 +12,42 @@ const generatePDF     = require('../services/generatePDF');
 const priceCalculator = require('../services/priceCalculator');
 const stripe          = require('../services/payment');
 const paypal          = require('../services/paypal');
-const sendgrid        = require('../services/sendgrid');
+let sendgrid        = require('../services/sendgrid');
 const dbService       = require('../services/db');
 const orderNumber     = require('../services/orderNumber');
 const dbUtils         = require('../services/dbUtils');
 
-var getUserPr = Promise.promisify(dbService.users.get);
-var insertUserPr = Promise.promisify(dbService.users.insert);
+const getUserPr = Promise.promisify(dbService.users.get);
+const insertUserPr = Promise.promisify(dbService.users.insert);
+const insertOrderPr = Promise.promisify(dbService.orders.insert);
 // Manufacturer Email to send invoices to
 const MANUFACTURER_EMAIL = ['sales@per4max.com', 'ckommer@per4max.com', 'dfik@per4max.com', 'colivas@per4max.com', 'p4x@intelliwheels.net'];
 //const MANUFACTURER_EMAIL = ['scott@intelliwheels.net', 'sdaigle@pdipaxton.com'];
 console.log(`NOTE: Invoice Emails will be sent to Manufacturer at this email: ${MANUFACTURER_EMAIL}`);
 
+// returns error value with a charge object ... if payMethod isnt 'Credit Card', just returns {} for charges object
+const createStripeCharge = function(total, stripeToken, order, cb) {
+  let payType = order.payType || order;
+
+  if (total && payType === 'Credit Card') {
+    //Create a new stripe payment
+    var stripeCharge = stripe.charges.create({
+      amount: _.round(total * 100), // check this value
+      currency: "usd",
+      source: stripeToken,
+      description: "Tinker order"
+    }, cb );
+  } else {
+    cb(null, {});
+  }
+};
+
+function createStatus(total, now) {
+  if (now === 0) return {'orderStatus': 'waiting for 50% payment before starting to build your chair', 'paymentStatus': 'incomplete'};
+  if (now > 0 && now < total / 2) return {'orderStatus': 'waiting for 50% payment before starting to build your chair', 'paymentStatus': 'incomplete'};
+  if (now !== total && now >= total / 2) return {'orderStatus': 'Thankyou for the downpayment, we’ll start building your wheelchair now. Please note that you will need to pay the remainder before the order ships.', 'paymentStatus': 'At least 50% paid'};
+  if (now === total) return {'orderStatus': 'Full payment has been received. Chair will ship once it is complete.', 'paymentStatus': 'Paid in full'};
+}
 // downloads Invoice PDF for a given order
 router.get('/orders/:id/invoice', (req, res) => {
   var id = req.params.id;
@@ -50,37 +74,87 @@ router.get('/orders/:id/invoice', (req, res) => {
   });
 });
 
+router.post('/orders/create-payment', (req, res) => {
+  const total = req.body.paymentAmount.toFixed(2);
+  const payType = req.body.payType;
+  const order = req.body.order;
+  const stripeToken = req.body.token || '';
+  const creditCard = req.body.creditCard;
+  const checkNumber = req.body.checkNum || '';
+  const memo = req.body.memo || '';
+
+  dbUtils.getOrderByID(order._id, (err, order) => {
+    let previousPayments = order.totalDue - order.totalDueLater;
+    createStripeCharge(total, stripeToken, payType, (err, stripeCharge) => {
+      if (err) {
+        res.status(400);
+        res.json({err: 'Error while processing credit card payment'});
+        return;
+      }
+
+      order.payments.push({
+        "date": new Date(),
+        "method": payType,
+        "amount": total,
+        "checkNumber": checkNumber,
+        "ccNum": creditCard ? creditCard.number.substr(creditCard.number.length - 4) : '',
+        "stripeId": stripeToken,
+        "memo": memo
+      });
+
+      delete order.totalDueNow;
+      order.totalDueLater = order.totalDueLater - total;
+      let status = createStatus(order.totalDue, order.totalDue - order.totalDueLater);
+      order.orderStatus = status.orderStatus;
+      order.paymentStatus = status.paymentStatus;
+      insertOrderPr(order)
+      .then(resp => {
+        let valuesToSubstitute = {
+          '-paymentStatus-': order.paymentStatus,
+          '-orderStatus-': order.orderStatus,
+          '-totalDue-': order.totalDue.toString(),
+          '-previousPayments-': previousPayments.toString(),
+          '-amountPaid-': total.toString(),
+          '-balanceDue-':order.totalDueLater.toString(),
+          '-orderNumber-': order.orderNum.toString(),
+        };
+
+        sendgrid.sendReceipt('do-not-reply@per4max.fit', MANUFACTURER_EMAIL , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached - MANUFACTURER COPY', valuesToSubstitute, cb);
+        sendgrid.sendReceipt('do-not-reply@per4max.fit', [req.body.order.email] , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached', valuesToSubstitute, cb);
+        res.json(resp)
+
+        function cb(err, resp) {
+          if (err) console.log(err);
+        }
+      })
+      .catch(err => {
+        res.status(400);
+        res.json({err: err});
+      });
+    });
+  });
+});
+
 //Save order to the db, create a stripe payment, and email pdf to the user
 router.post('/orders', function (req, res) {
-  delete req.body.order.orderNum;
 
+  delete req.body.order.orderNum;
   //This token was created client side by the Stripe API, so we do not need credit card details as part of the request
-  var stripeToken = req.body.token;
-  var order = req.body.order;
+  const stripeToken = req.body.token;
+  const order = req.body.order;
+  const creditCard = req.body.cc;
+  const checkNumber = req.body.checkNum || '';
+
   //Cross check all wheelchairs in the order against the JSON, while calculating the total price
-  const total = req.body.totalPrice;
+  const total = req.body.totalPrice; 
+
   console.log('order\'s total amount is ' + total );
   // Check the total value to make sure its valid...send 400 error if its not
-  if (!_.isNumber(total) || (_.isNumber(total) && total <= 0)) {
+  if (!_.isNumber(total) || (_.isNumber(total) && total < 0)) {
     res.status(400);
     res.send({err: 'Invalid order'});
     return;
   }
-
-  // returns error value with a charge object ... if payMethod isnt 'Credit Card', just returns {} for charges object
-  const createStripeCharge = cb => {
-    if (order.payMethod === 'Credit Card') {
-      //Create a new stripe payment
-      var stripeCharge = stripe.charges.create({
-        amount: _.round(total * 100),
-        currency: "usd",
-        source: stripeToken,
-        description: "Tinker order"
-      }, cb );
-    } else {
-      cb(null, {});
-    }
-  };
 
   // returns true/false depending on whether the discounts were valid
   const validateOrderDiscounts = cb => {
@@ -126,8 +200,10 @@ router.post('/orders', function (req, res) {
   // Only inserts order if user isnt logged in
   const sendInvoiceEmails = (curOrderNum, cb) => {
     order.orderNum = curOrderNum;
+    
+    const amt = priceCalculator.getOrderTotal(order) - total;
 
-    var valuesToSubstitute = {
+    const valuesToSubstitute = {
       '-billingName-': `${order.billingDetails.fName} ${order.billingDetails.lName}`,
       '-billingAddr1-': order.billingDetails.addr,
       '-billingAddr2-': order.billingDetails.addr2,
@@ -145,10 +221,12 @@ router.post('/orders', function (req, res) {
       '-tax-': priceCalculator.getTaxCost(total).toFixed(2),
       '-salesTax-': priceCalculator.getTotalTax(order).toFixed(2),
       '-shipping-': priceCalculator.getTotalShipping(order).toFixed(2),
-      '-total-': total.toFixed(2),
+      '-total-': priceCalculator.getOrderTotal(order).toFixed(2),
       '-orderNumber-': order.orderNum.toString(),
-      '-subtotal-': priceCalculator.getTotalSubtotal(order).toFixed(2)
-    }
+      '-subtotal-': priceCalculator.getTotalSubtotal(order).toFixed(2),
+      '-amtPaid-': total.toString(),
+      '-balanceDue-': amt.toString()
+    };
 
 
     generatePDF.forInvoice(order, function (err, pdfFileInfo) {
@@ -181,12 +259,30 @@ router.post('/orders', function (req, res) {
       return;
     }
 
-    createStripeCharge((err, stripeCharge) => {
+    createStripeCharge(total, stripeToken, order, (err, stripeCharge) => {
       if (err) {
         res.status(400);
         res.json({err: 'Error while processing credit card payment'});
         return;
       }
+      order.totalDueLater = parseInt(order.totalDueLater);
+
+      order.totalDue = parseInt(priceCalculator.getOrderTotal(order));
+      order.payments = _.isArray(order.payments) ? order.payments : [];
+      if (total > 0) {
+        order.payments.push({
+          "date": new Date(),
+          "method": order.payType,
+          "amount": total,
+          "checkNumber": checkNumber,
+          "ccNum": creditCard ? creditCard.number.substr(creditCard.number.length - 4) : '',
+          "stripeId": stripeToken,
+          "memo": "initial payment"
+        });
+      }
+      
+      delete order.totalDueNow;
+
       dbUtils.insertOrder(order, function(err, resp) {
         if (err) {
             res.status(400);
@@ -221,7 +317,6 @@ router.post('/orders', function (req, res) {
                     console.log(`ERROR WHILE SENDING INVOICE EMAIL: ${JSON.stringify(err, null, 2)}`);
                   }
                 });
-
               });
             })
             .catch(err => {
@@ -235,4 +330,9 @@ router.post('/orders', function (req, res) {
   });
 });
 
+router.mockSendgrid = function(mock) {
+  sendgrid = mock;
+}
+
 module.exports = router; // expose the router
+

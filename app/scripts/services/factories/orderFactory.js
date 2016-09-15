@@ -52,8 +52,17 @@ angular.module('abacuApp')
 
         this.userType = 'User'; // default to the 'User' User Type
 
-        this.payMethod = 'Credit Card';
+        this.payMethod = 'Pay part now';
+        this.payType = 'Credit Card';
         this.discounts = [];
+
+        // values that get filled on 'send'
+        this.payments = [];
+        this.totalDue = null;
+        this.totalDueNow = null;
+        this.totalDueLater = null;
+        this.orderStatus = null;
+        this.paymentStatus = null;
       }
       else {
         this._id = order._id || order.id  || -1;
@@ -67,7 +76,8 @@ angular.module('abacuApp')
         this.phone = order.phone;
         this.shippingDetails = _.defaults(order.shippingDetails || {}, DEFAULT_DETAILS);
         this.billingDetails = _.defaults(order.billingDetails || {}, DEFAULT_DETAILS);
-        this.payMethod = order.payMethod || 'Credit Card'; // default to credit card
+        this.payMethod = order.payMethod || 'Pay part now'; // default to pay part now
+        this.payType = order.payType || 'Credit Card';
         this.userType = order.userType || 'User'; // default to user
         this.poNumber = order.poNumber || '';
 
@@ -75,10 +85,17 @@ angular.module('abacuApp')
         this.discounts = order.discounts.map(function (discountObj) {
           return new Discount(discountObj);
         });
-
         this.wheelchairs = order.wheelchairs.map(function (wheelchairDesign) {
           return new Design(wheelchairDesign);
         });
+
+
+        this.payments = order.payments || [];
+        this.totalDue= order.totalDue || null;
+        this.totalDueNow = order.totalDueNow || null;
+        this.totalDueLater = order.totalDueLater || null;
+        this.orderStatus = order.orderStatus || null;
+        this.paymentStatus = order.paymentStatus || null;
       }
     }
 
@@ -91,7 +108,6 @@ angular.module('abacuApp')
       }
       localJSONStorage.put('cartWheelchairs', tempWheelchairs);
     }
-
 
 
     Order.prototype = {
@@ -167,12 +183,18 @@ angular.module('abacuApp')
           shippingDetails: this.shippingDetails,
           billingDetails: this.billingDetails,
           payMethod: this.payMethod,
+          payType: this.payType,
           userType: this.userType,
           poNumber: this.poNumber,
           wheelchairs: this.wheelchairs.map(function (design) {
             return design.allDetails();
           }),
-          discounts: this.discounts
+          discounts: this.discounts,
+          totalDue: this.totalDue,
+          totalDueNow: this.totalDueNow,
+          totalDueLater: this.totalDueLater,
+          orderStatus: this.orderStatus,
+          paymentStatus: this.paymentStatus
         };
 
         if (this._id && this._id !== -1) {
@@ -202,12 +224,19 @@ angular.module('abacuApp')
           city: this.city,
           state: this.state,
           zip: this.zip,
-          paymethod: this.paymethod,
+          payMethod: this.payMethod,
+          payType: this.payType,
           wheelchairs: this.wheelchairs.map(function (w) {
             return w.allDetails();
           }),
           poNumber: this.poNumber,
-          discounts: this.discounts
+          discounts: this.discounts,
+          payments: this.payments || [],
+          totalDue: this.totalDue,
+          totalDueNow: this.totalDueNow,
+          totalDueLater: this.totalDueLater,
+          orderStatus: this.orderStatus,
+          paymentStatus: this.paymentStatus
         };
       },
 
@@ -225,6 +254,9 @@ angular.module('abacuApp')
 
       getPayMethod: function () {
         return this.payMethod;
+      },
+      getPayType: function () {
+        return this.payType;
       },
       getTaxRate: function () {
         return this.taxRate;
@@ -285,8 +317,20 @@ angular.module('abacuApp')
       },
 
       getAllWheelchair: function () {
-      return this.wheelchairs;
-    },
+        return this.wheelchairs;
+      },
+
+      getPayments: function() {
+        return this.payments;
+      },
+
+      getOrderStatus: function() {
+        return this.orderStatus;
+      },
+
+      getPaymentStatus: function() {
+        return this.paymentStatus;
+      },
 
       /*****************Cost Calculators (Aggregate Functions)****************/
 
@@ -341,6 +385,18 @@ angular.module('abacuApp')
         return (this.getShippingCost() + this.getTaxCost() + (this.getSubtotal() * (this.getDiscountAmount())));
       },
 
+      getTotalDueLater: function() {
+        return this.totalDueLater;
+      },
+
+      getTotalDueNow: function() {
+        return this.totalDueNow;
+      },
+
+      setTotalDueNow: function(totalNow) {
+        this.totalDueNow = totalNow;
+      },
+
 
 
       /********************Saving to DB***********************/
@@ -348,9 +404,11 @@ angular.module('abacuApp')
       //This asyncronous funtion takes in various user information
       //and sends the Order to the distibutor with it.
       //This method also saves the Order to the database and marks it as "sent"
-      send: function (userID, userData, shippingData, billingData, payMethod, token) {
+      send: function (userID, userData, shippingData, billingData, token, cc, checkNum) {
         //Need a reference to the current scope when inside the callback function
         var curThis = this;
+
+        var status = createStatus(this.getTotalCost(), this.getTotalDueNow());
 
         //Save userData, shippingData, and payMethod into Order
         this.userID = userID;
@@ -373,12 +431,15 @@ angular.module('abacuApp')
         this.billingDetails.state = billingData.state;
         this.billingDetails.zip   = billingData.zip;
 
-        this.payMethod = payMethod;
         this.sentDate  = new Date(); //Set date to now - doing this marks this Order as "sent"
+        this.totalDueLater = this.getTotalCost() - this.getTotalDueNow();
+        this.orderStatus = status.orderStatus;
+        this.paymentStatus = status.paymentStatus;
+
 
         return $http({
           url: '/orders',
-          data: {order: this.getAll(), token: token, totalPrice: _.round(this.getTotalCost(), 2)},
+          data: {order: this.getAll(), token: token, totalPrice: _.round(this.getTotalDueNow(), 2), cc: cc, checkNum: checkNum},
           method: 'POST'
         })
         .then(function(res) {
@@ -389,6 +450,14 @@ angular.module('abacuApp')
 
           return res.data;
         });
+
+
+        function createStatus(total, now) {
+          if (now === 0) return {'orderStatus': 'waiting for 50% payment before starting to build your chair', 'paymentStatus': 'incomplete'};
+          if (now > 0 && now < total / 2) return {'orderStatus': 'waiting for 50% payment before starting to build your chair', 'paymentStatus': 'incomplete'};
+          if (now !== total && now >= total / 2) return {'orderStatus': 'Thankyou for the downpayment, we’ll start building your wheelchair now. Please note that you will need to pay the remainder before the order ships.', 'paymentStatus': 'At least 50% paid'};
+          if (now === total) return {'orderStatus': 'Full payment has been received. Chair will ship once it is complete.', 'paymentStatus': 'Paid in full'};
+        }
       }
     };
 
