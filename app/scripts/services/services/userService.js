@@ -343,6 +343,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 //*********functions************//
 
   return {
+    getCurrentUser: getCurrentUser,
 
     getPromise: function () {
       return updatePromise;
@@ -556,6 +557,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     //Create a new wheelchair object of given frame type and set edit pointer to it
     pushNewWheelchair: function (wheelchair) {
       if (_.isNull(self.cart)) {
+        console.log('cart is null')
         self.cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
       }
       self.currentWheelchair.design.wheelchair = wheelchair;
@@ -720,20 +722,18 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     },
 
     //Sends the curEditOrder to the distributor
-    sendCurEditOrder: function (userData, shippingData, billingData, payMethod, token) {
+    sendCurEditOrder: function (userData, shippingData, billingData, token, cc, checkNum) {
       var editOrder = this.getCurEditOrder();
       if (editOrder === null) {
         return PromiseUtils.rejected(new Error('CurEditOrder does not exist'));
       } else {
-        return editOrder.send(self.userID, userData, shippingData, billingData, payMethod, token)
+        return editOrder.send(self.userID, userData, shippingData, billingData, token, cc, checkNum)
           .then(function (response) {
             getCurrentUser();
             return response;
           });
       }
     },
-
-
 
     //***********get/sets
     getID: function () {
