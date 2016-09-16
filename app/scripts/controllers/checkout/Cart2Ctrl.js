@@ -101,7 +101,7 @@ angular.module('abacuApp')
           return parseInt(o.wheelchair.grantAmount);
         });
         
-        $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2);
+        $scope.curOrder.totalDueNow = Number(calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2));
         $scope.invalidValue = false;
 
         $scope.$watch('curOrder.totalDueNow', function(n, o){
@@ -244,7 +244,7 @@ angular.module('abacuApp')
 
           ////Remove wheelchair from cart
         return User.deleteWheelchair(index).then(function() {
-          $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost());
+          $scope.curOrder.totalDueNow = Number(calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2));;
         });
       };
 
@@ -342,7 +342,7 @@ angular.module('abacuApp')
       $scope.choosePayment = function (paymentMethod) {
         var method = paymentMethod.name.split(' ', 3).join(" ").replace(/,/g, "");
         $scope.curOrder.payMethod = method;
-        $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost());
+        $scope.curOrder.totalDueNow = Number(calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2));;
       };
 
       $scope.choosePaymentType = function (paymentType) {
@@ -476,7 +476,8 @@ angular.module('abacuApp')
             $scope.curOrder.addDiscount(discount);
             $scope.curOrder.getTotalCost();
             $scope.promoErr = '';
-            $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2);
+            $scope.curOrder.totalDueNow = Number(calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2));
+
             return User.updateCart();
           })
           .catch(function(err) {
@@ -499,7 +500,7 @@ angular.module('abacuApp')
       $scope.emptyDiscount = function() {
         $scope.curOrder.emptyDiscount();
         localJSONStorage.remove('promo')
-        $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2);
+        $scope.curOrder.totalDueNow = Number(calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2));
         return User.updateCart();
       };
 
