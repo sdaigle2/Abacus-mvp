@@ -113,7 +113,7 @@ router.post('/orders/create-payment', (req, res) => {
           '-paymentStatus-': order.paymentStatus,
           '-orderStatus-': order.orderStatus,
           '-totalDue-': order.totalDue.toFixed(2),
-          '-previousPayments-': previousPayments.toFixed(2),//this one seams to be broken
+          '-previousPayments-': previousPayments.toFixed(2),
           '-amountPaid-': total.toFixed(2),
           '-balanceDue-':order.totalDueLater.toFixed(2),
           '-orderNumber-': order.orderNum.toString(),
