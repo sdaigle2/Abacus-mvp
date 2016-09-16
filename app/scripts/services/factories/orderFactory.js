@@ -390,7 +390,7 @@ angular.module('abacuApp')
       },
 
       getTotalDueNow: function() {
-        return this.totalDueNow;
+        return Number(this.totalDueNow);
       },
 
       setTotalDueNow: function(totalNow) {

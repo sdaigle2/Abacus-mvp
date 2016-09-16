@@ -17,12 +17,16 @@
       orders.forEach(function(order) {
         if (order.orderNum === parseInt(payment.orderNum)) return payment.paymentOrder = order;
       });
-      payment.paymentOrder.totalDueNow = payment.paymentOrder.totalDueLater;
+      payment.paymentOrder.totalDueNow = Number(payment.paymentOrder.totalDueLater.toFixed(2));
+
       payment.PAYMENT_TYPES = PAYMENT_TYPES;
       payment.dropdownOpen = false;
 
       payment.makePayment = function() {
         if (payment.paymentOrder.payType === 'Credit Card') {
+          if (payment.userCard.number.length !== 16) {
+            return payment.errorMsg = 'Your card number is incorrect.'
+          }
           stripePayment();
         } else {
           createPayment();
@@ -58,7 +62,7 @@
       };
 
       $scope.$watch('payment.paymentOrder.totalDueNow', function(n, o) {
-        if (n > payment.paymentOrder.totalDueLater || n < 0) {
+        if (n > Number(payment.paymentOrder.totalDueLater.toFixed(2)) || n < 0) {
           payment.invalidInputs = true;
           return payment.errorMsg = 'Please enter a value between 0 and ' + payment.paymentOrder.totalDueLater;
         }

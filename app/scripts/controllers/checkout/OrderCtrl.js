@@ -53,7 +53,6 @@ angular.module('abacuApp')
       /*************************** LOADING CUREDITORDER ****************************/
 
       $scope.curOrder = User.getCurEditOrder();
-
       $scope.totalGrantAmount = _.sumBy($scope.curOrder.wheelchairs, function(o) {
         return parseInt(o.wheelchair.grantAmount);
       });

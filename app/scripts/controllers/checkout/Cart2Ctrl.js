@@ -101,7 +101,7 @@ angular.module('abacuApp')
           return parseInt(o.wheelchair.grantAmount);
         });
         
-        $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost());
+        $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2);
         $scope.invalidValue = false;
 
         $scope.$watch('curOrder.totalDueNow', function(n, o){
@@ -476,7 +476,7 @@ angular.module('abacuApp')
             $scope.curOrder.addDiscount(discount);
             $scope.curOrder.getTotalCost();
             $scope.promoErr = '';
-            $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost());
+            $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2);
             return User.updateCart();
           })
           .catch(function(err) {
@@ -499,7 +499,7 @@ angular.module('abacuApp')
       $scope.emptyDiscount = function() {
         $scope.curOrder.emptyDiscount();
         localJSONStorage.remove('promo')
-        $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost());
+        $scope.curOrder.totalDueNow = calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2);
         return User.updateCart();
       };
 

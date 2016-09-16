@@ -75,7 +75,7 @@ router.get('/orders/:id/invoice', (req, res) => {
 });
 
 router.post('/orders/create-payment', (req, res) => {
-  const total = req.body.paymentAmount.toFixed(2);
+  const total = Number(req.body.paymentAmount.toFixed(2));
   const payType = req.body.payType;
   const order = req.body.order;
   const stripeToken = req.body.token || '';
@@ -228,7 +228,7 @@ router.post('/orders', function (req, res) {
       '-balanceDue-': amt.toFixed(2)
     };
 
-
+    order.totalDueNow = total.toFixed(2);
     generatePDF.forInvoice(order, function (err, pdfFileInfo) {
       if (err) {
         cb(err);
@@ -265,9 +265,9 @@ router.post('/orders', function (req, res) {
         res.json({err: 'Error while processing credit card payment'});
         return;
       }
-      order.totalDueLater = parseInt(order.totalDueLater);
+      order.totalDueLater = Number(order.totalDueLater);
 
-      order.totalDue = parseInt(priceCalculator.getOrderTotal(order));
+      order.totalDue = Number(priceCalculator.getOrderTotal(order));
       order.payments = _.isArray(order.payments) ? order.payments : [];
       if (total > 0) {
         order.payments.push({
