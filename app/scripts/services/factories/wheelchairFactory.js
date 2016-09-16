@@ -169,6 +169,12 @@ angular.module('abacuApp')
             return this.parts[i];
         return null;
       },
+      getMultiPart: function (pID, oId) {
+        for (var i = 0; i < this.parts.length; i++)
+          if (this.parts[i].partID === pID && this.parts[i].optionID === oId)
+            return this.parts[i];
+        return null;
+      },
 
       getPartByIndex: function (index) {
         if (index >= 0 && index <= this.parts.length)

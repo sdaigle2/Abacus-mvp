@@ -23,7 +23,7 @@ function htmlToPDF(args, cb) {
 			engine: 'handlebars',
 			recipe: 'phantom-pdf',
 			'phantom': {
-				format: 'A4',
+				format: 'Letter',
 				margin: '0px',
 				printDelay: timeout
 			}
