@@ -244,7 +244,7 @@ angular.module('abacuApp')
 
           ////Remove wheelchair from cart
         return User.deleteWheelchair(index).then(function() {
-          $scope.curOrder.totalDueNow = Number(calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2));;
+          $scope.curOrder.totalDueNow = Number(calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2));
         });
       };
 
@@ -342,7 +342,7 @@ angular.module('abacuApp')
       $scope.choosePayment = function (paymentMethod) {
         var method = paymentMethod.name.split(' ', 3).join(" ").replace(/,/g, "");
         $scope.curOrder.payMethod = method;
-        $scope.curOrder.totalDueNow = Number(calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2));;
+        $scope.curOrder.totalDueNow = Number(calculateAmountToPay($scope.curOrder.getTotalCost()).toFixed(2));
       };
 
       $scope.choosePaymentType = function (paymentType) {
