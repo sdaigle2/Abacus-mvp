@@ -30,11 +30,6 @@
   border: none;
 }
 
-
-#wrapper{
-  overflow: auto;
-}
-
 #background {
   position: absolute;
   left: 0px;
@@ -69,6 +64,12 @@
   border-color: #4896FF;
   color: #4896FF;
 }
+
+.disabled:hover {
+  background-color: #4896FF;
+  color: #fff;
+}
+
 #mainDisplay{
   width: 700px;
   float: left;
@@ -221,7 +222,7 @@
 
 
 /********Summary*******/
-#summary{
+.summery{
   width: 300px;
   position: relative;
   top: 71px;
@@ -231,7 +232,7 @@
 }
 
 @media  (max-width: 1060px) {
-  #summary{
+  .summery{
     float: left;
     clear: left;
     margin-left: 15px;
@@ -239,7 +240,7 @@
   }
 }
 
-#summary table{
+.summery table{
   background-color: white;
   width: 100%;
   padding: 10px;
@@ -247,7 +248,7 @@
 
 
 
-#summary>section{
+.summery>section{
   background-color: white;
   margin-top: 20px;
   padding: 15px;
@@ -255,21 +256,21 @@
 }
 
 @media  (max-width: 1060px) {
-  #summary>section{
+  .summery>section{
     margin-top: 0;
   }
 }
 
-#summary>section:first-of-type{
+.summery>section:first-of-type{
   overflow: auto;
 }
 
-#summary section {
+.summery section {
   color: black;
 }
 
 
-#summary section div {
+.summery section div {
   overflow: auto;
 }
 
@@ -294,20 +295,20 @@
   cursor: pointer;
 }
 
-#summary #userType {
+.summery #userType {
   margin: 20px 0 10px;
   color: #4f9dff;
   font-size: 13px;
   overflow: visible;
 }
 
-#orderType .dropDown{
+.order-pay .dropDown{
   width: 95%;
   border-radius: 0;
   overflow: visible;
 }
 
-#orderType .dropDown button {
+.order-pay .dropDown button {
   width: 100%;
   text-align: left;
 }
@@ -315,20 +316,21 @@
 .dropDown .dropdown-menu a{
   padding: 2px 20px;
   cursor: pointer;
+  white-space: normal;
 }
 
-#orderType .dropDown .caretShape {
+.order-pay .dropDown .caretShape {
   position: relative;
   top: 9px;
   color: green;
 }
 
-#orderType>p:hover{
+.order-pay>p:hover{
   cursor: pointer;
 }
 
 
-#summary #orderType {
+.summery .order-pay {
   margin: 0px 0 10px;
   color: #4f9dff;
   font-size: 13px;
@@ -344,7 +346,7 @@
 }
 
 
-#summary #shippingPanel{
+.summery #shippingPanel{
   margin-bottom: 25px;
   color: #4f9dff;
   font-size: 13px;
@@ -356,10 +358,29 @@
   cursor: pointer;
 }
 
-#summary section .totalPrice {
+.summery section .totalPrice {
   border-top: 1px solid black;
   padding-top: 15px;
   margin-top: 40px;;
+}
+
+.summery section .amount-now {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+.summery section .amount-now input {
+  max-width: 75px;
+  text-align: center;
+}
+
+.summery section .message-box {
+  margin-top: 10px;
+  height: 110px;
+}
+
+.summery section .message-box .alert {
+  color: red;
 }
 
 .zipcode-input {
