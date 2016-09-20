@@ -16,8 +16,7 @@ function htmlToPDF(args, cb) {
 	var rawHTML = args.rawHTML;
 	var timeout = _.isNumber(args.timeout) ? args.timeout : DEFAULT_TIMEOUT;
 	cb = _.once(cb); // ensure the callback is only called once
-	
-	console.log(rawHTML)
+
 	jsreport.render({
 		template: {
 			content: rawHTML,
