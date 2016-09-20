@@ -1,0 +1,76 @@
+<link href="../../styles/checkout/orderPayment.css" rel="stylesheet" />
+<link href="../../styles/tinker/abacus.css" rel="stylesheet"/>
+<div class="payment-page">
+	<h3>Make a payment for order # {{payment.orderNum}}</h3>
+	<p>Total: ${{payment.paymentOrder.totalDue.toFixed(2)}}</p>
+	<p>Amount paid previously: ${{(payment.paymentOrder.totalDue - payment.paymentOrder.totalDueLater).toFixed(2)}}</p>
+	<p>Amount owed: ${{payment.paymentOrder.totalDueLater.toFixed(2)}}</p>
+
+	<div>
+		<h4>How much would you like to pay today ?</h4>
+		<input type="number" data-ng-model="payment.paymentOrder.totalDueNow"/>
+	</div>
+
+	<!-- Payment types -->
+	<div class="btn-group dropDown">
+		<h4>Payment type:</h4>
+		<button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown" style="word-wrap: break-word;" data-toggle="dropdown">{{payment.paymentOrder.payType}}
+			<span class="caret caretShape"></span>
+		</button>
+		<ul class="dropdown-menu" role="menu" style="word-wrap: break-word;">
+			<li ng-repeat="paymentType in payment.PAYMENT_TYPES | filter: payment.adminFiler">
+				<a ng-click="payment.choosePaymentType(paymentType.name)">- {{paymentType.name}} {{payment.setChecker(paymentType.name, 'payType') ? '✓' : ''}}</a>
+			</li>
+		</ul>
+	</div>
+	<div class="order-form-header" ng-if="payment.paymentOrder.payType === 'Check'">
+		<h4>Enter check number</h4>
+		<input type="text" name="check-number" data-ng-model="payment.checkNum">
+	</div>
+	<!-- Cedit card info -->
+	<div class="order-form-header payment-card" ng-if="payment.paymentOrder.payType === 'Credit Card'">
+		<h4>Credit Card Information:</h4>
+		<div class="paymentWindow">
+		  <div>
+			<form>
+				<div class="form-row">
+					<p>Card number</p>
+					<input type="text" size="20" data-ng-model="payment.userCard.number"/>
+				</div>
+				<div class="form-row">
+					<p>CVC</p>
+					<input type="text" size="4" data-ng-model="payment.userCard.cvc"/>
+				</div>
+				<div class="form-row">
+					<p>Expiration (MM/YY)</p>
+					<input type="text" size="2" data-ng-model="payment.userCard.exp_month"/>
+					<span> / </span>
+					<input type="text" size="2" data-ng-model="payment.userCard.exp_year"/>
+				</div>
+			</form>
+		  </div>
+		</div>
+	</div>
+	<!-- Memo -->
+	<div>
+		<h4>Memo</h4>
+		<textarea type="text" data-ng-model="payment.memo"></textarea>
+	</div>
+	<p data-ng-bind="payment.errorMsg" class="error-message"></p>
+	<p data-ng-bind="payment.successMsg" class="success-message"></p>
+	<button ng-disabled="payment.invalidInputs" class="btn btn-md btn-success payment-button" ng-click="payment.makePayment()">
+		Submit Payment
+	</button>
+</div>
+<div class="payment-cover" ng-if="payment.dropdownOpen">
+	<div class="action-panel">
+		<article>
+			<h3>Complete!</h3>
+		</article>
+
+		<section>
+			<button ng-click="payment.goToOrders()">GO TO MY ORDERS</button>
+		</section>
+		<div class="close-tab" ng-click="payment.closeDropDown()"><span class="glyphicon glyphicon-remove"></span></div>
+	</div>
+</div>
