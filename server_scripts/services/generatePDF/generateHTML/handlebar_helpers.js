@@ -521,9 +521,9 @@ function toUpperCase(str) {
  * Following constants are to aid in invoice parts/measurement page pagination
  */
 
-const LINES_PER_PAGE = 28;
+const LINES_PER_PAGE = 50;
 const LINES_PER_PART = 3; // doesnt include comment line, that is taken into account seperately
-const LINES_PER_MEASURE = 2; // doesnt include comment line, that is taken into account seperately
+const LINES_PER_MEASURE = 3; // doesnt include comment line, that is taken into account seperately
 // number of characters that a comment can have to be considered taking up a full line
 const COMMENT_LINE_LENGTH = 55;
 
@@ -544,9 +544,8 @@ function getPaginatedParts(chair) {
       });
   }));
 
-
   const estimatePageLines = parts => {
-    var partComments = parts.map(part => _.isString(part.option.comments) ? part.option.comments : '');
+    var partComments = parts.map(part => getChairOptionComment(chair, part.option.optionID));
 
     var partLines = parts.length * LINES_PER_PART;
     var commentLines = _.sumBy(partComments, comment => (comment.length / COMMENT_LINE_LENGTH) + 1);
@@ -578,7 +577,10 @@ function getPaginatedMeasures(chair) {
   var chairMeasures = chair.measures;
 
   const estimatePageLines = measures => {
-    var measureComments = measures.map(measure => _.isString(measure.comments) ? measure.comments : '');
+    var measureComments = measures.map(function(measure) {
+      var measureObj = getChairMeasureOption(chair, measure.measureID);
+      return measureObj.comments ? measureObj.comments : 'No comments';
+    });
 
     var measureLines = measures.length * LINES_PER_MEASURE;
     var commentLines = _.sumBy(measureComments, comment => (comment.length / COMMENT_LINE_LENGTH) + 1);

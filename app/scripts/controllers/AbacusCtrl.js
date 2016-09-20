@@ -964,11 +964,11 @@ angular.module('abacuApp')
       }, true);
 
       $scope.$watch('curOption.comments', function(nVal, oVal){
-        // console.log(nVal);
         $scope.designIsSaved = oVal === nVal;
         var partID = $scope.getCurPage().partID;
-        if($scope.curOption.optionID == $scope.curEditWheelchair.getPart(partID).optionID){
-          $scope.curEditWheelchair.getPart(partID).comments = nVal;
+        var curEditPart = $scope.curEditWheelchair.getMultiPart(partID, $scope.curOption.optionID);
+        if(curEditPart && $scope.curOption.optionID == curEditPart.optionID){
+          curEditPart.comments = nVal;
         }
       });
 
