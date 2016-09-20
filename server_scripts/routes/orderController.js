@@ -16,8 +16,10 @@ let sendgrid        = require('../services/sendgrid');
 const dbService       = require('../services/db');
 const orderNumber     = require('../services/orderNumber');
 const dbUtils         = require('../services/dbUtils');
+const restrict = require('../policies/restrict');
 
 const getUserPr = Promise.promisify(dbService.users.get);
+const getOrderPr = Promise.promisify(dbService.orders.get);
 const insertUserPr = Promise.promisify(dbService.users.insert);
 const insertOrderPr = Promise.promisify(dbService.orders.insert);
 // Manufacturer Email to send invoices to
@@ -48,6 +50,51 @@ function createStatus(total, now) {
   if (now !== total && now >= total / 2) return {'orderStatus': 'Thankyou for the downpayment, we’ll start building your wheelchair now. Please note that you will need to pay the remainder before the order ships.', 'paymentStatus': 'At least 50% paid'};
   if (now === total) return {'orderStatus': 'Full payment has been received. Chair will ship once it is complete.', 'paymentStatus': 'Paid in full'};
 }
+
+router.get('/orders/:id', restrict, function(req, res) {
+  getUserPr(req.session.user)
+  .then(function(user) {
+    const userType = user.userType;
+    if (userType !== 'admin' && userType !== 'superAdmin') {
+      res.status(401);
+      res.json({msg: 'Not authorized to perform operation.'});
+      return;
+    }
+    return getOrderPr(req.params.id)
+  })
+  .then(function(order) {
+      res.json(order)
+    })
+  .catch(err => {
+    res.status(400);
+    res.json({err: err});
+  });
+});
+
+router.get('/orders', restrict, function(req, res) {
+  getUserPr(req.session.user)
+  .then(function(user) {
+    const userType = user.userType;
+    if (userType !== 'admin' && userType !== 'superAdmin') {
+      res.status(401);
+      res.json({msg: 'Not authorized to perform operation.'});
+      return;
+    }
+    dbService.orders.list({include_docs: true}, function(err, body){
+      if (err) {
+        res.status(400);
+        res.json({err: 'Error while getting users'});
+        return;
+      }
+      res.json(body);
+    });
+  })
+  .catch(err => {
+    res.status(400);
+    res.json({err: err});
+  });
+});
+
 // downloads Invoice PDF for a given order
 router.get('/orders/:id/invoice', (req, res) => {
   var id = req.params.id;
@@ -71,6 +118,26 @@ router.get('/orders/:id/invoice', (req, res) => {
       stream.pipe(res)
       .on('error', err => console.log(err)); // log any errors that occurr during pipe
     });
+  });
+});
+
+router.post('/orders/:id/edit', restrict, function(req, res) {
+  getUserPr(req.session.user)
+  .then(function(user) {
+    const userType = user.userType;
+    if (userType !== 'admin' && userType !== 'superAdmin') {
+      res.status(401);
+      res.json({msg: 'Not authorized to perform operation.'});
+      return;
+    }
+    return insertOrderPr(req.body)
+  })
+  .then(resp => {
+      res.json(resp);
+    })
+  .catch(err => {
+    res.status(400);
+    res.json({err: err});
   });
 });
 

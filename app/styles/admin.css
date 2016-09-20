@@ -1,60 +1,664 @@
-.admin-wrapper {
-	max-width: 400px;
-	min-height: 575px;
-	margin: 50px auto 0;
-	padding: 25px;
-	border: 1px solid;
-	text-align: center;
-}
-.admin-wrapper .header-text {
-	color: #4F9DFF;
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.admin-wrapper p {
-	margin-top: 10px
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-.admin-wrapper .errMsg {
-	color: red;
+@-webkit-keyframes fadeInShift {
+  from { opacity: 0; right: -50px; }
+  to { opacity: 1; right: 0}
 }
 
-.admin-wrapper .sucMsg {
-	color: green;
+@keyframes fadeInShift {
+  from { opacity: 0; right: -50px;}
+  to { opacity: 1; right: 0;}
 }
 
-.admin-input {
-	width: 300px;
-	margin: 0 auto;
+@-webkit-keyframes fadeInShiftPlus {
+  from { opacity: 0; right: -50px; }
+  to { opacity: 1; right: 0px}
 }
 
-.admin-button {
-	margin-top: 20px;
+@keyframes fadeInShiftPlus {
+  from { opacity: 0; right: -50px;}
+  to { opacity: 1; right: 0px;}
 }
 
-.admin-wrapper .multi {
-	margin-top: 10px;
+@-webkit-keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
-.admin-wrapper .multi p {
-	display: inline;
-    width: 80%;
-    float: left;
-    text-align: right;
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+/*************************
+********* HEADER *********
+**************************/
+
+.adminHeader {
+  position: relative;
+  clear: left;
+  float: left;
+  height: 40px;
+  width: 100%;
+  margin-top: 40px;
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 2px solid #686968;
 }
 
-#multiCheckox {
-    margin-top: 25px;
+.appBody {
+  width: 80%;
 }
 
-.button-box{
-    clear: both;
+
+/*************************
+********* SIDEBAR ********
+**************************/
+
+.adminSidebar {
+  clear: left;
+  float: left;
+  width: 20%;
 }
 
-#percentBox {
-  width: 90%;
+.adminSidebar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.note {
-  color: #888888 ;
+.adminSidebarOptions {
+  clear: left;
+  float: left;
+  width: 100%;
+
 }
+
+.adminSidebarOptionDivider {
+  clear: left;
+  float: left;
+  width: 100%;
+  height: 0px;
+  border-bottom: 2px solid #686968;
+}
+
+.adminSidebarOption {
+  clear: left;
+  float: left;
+  width: 100%;
+  height: 60px;
+  padding-top: 20px;
+  text-align: center;
+  border-left: 2px solid #686968;
+  border-right: 2px solid #686968;
+  cursor: pointer;
+}
+.adminSidebarOption.active {
+  border-right: 8px solid rgba(79, 157, 255, 1);
+  -webkit-transition: .5s;
+  transition: .5s;
+  font-weight: 500;
+
+}
+
+
+.adminSidebarButtons {
+  clear: left;
+  float: left;
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  color: #fff;
+  display: none;
+}
+.adminSidebarButtons.showadminSidebarButtons {
+  display: initial;
+  -webkit-animation: fadeIn 0.3s;
+          animation: fadeIn 0.3s;
+}
+.adminSidebarButtons.hideadminSidebarButtons {
+  display: none;
+  -webkit-animation: fadeOut 0.3s;
+          animation: fadeOut 0.3s;
+}
+
+.adminSidebarButton {
+ float: left;
+  width: 100%;
+  height: 40px;
+  background-color: #FFF;
+  border: solid 2px #4F9DFF;
+  color: #4F9DFF;
+}
+
+.adminSidebarButton.active, .adminSidebarButton:hover {
+  background-color: rgba(79, 157, 255, 1);
+  color: white;
+}
+.adminSidebarButton:last-child {
+  margin-right: 0;
+}
+
+
+
+
+/*************************
+**** CONTENT SECTIONS ****
+**************************/
+
+.adminContentWrapper {
+  position: relative;
+  clear: right;
+  float: right;
+  width: 70%;
+  margin-right: 5%;
+}
+
+.adminContent {
+  position: absolute;
+  top: 0;
+  right: -50px;
+  width: 100%;
+  line-height: 1;
+  display: none;
+  z-index: 0;
+}
+
+.showadminContent {
+  display: block;
+  display: initial;
+  top: 0;
+  right: 0;
+  z-index: 500;
+  -webkit-animation: fadeInShift 0.5s;
+          animation: fadeInShift 0.5s;
+}
+
+
+
+
+/*************************
+***** Users SECTION ****
+**************************/
+
+#adminUsersContent .adminContentInputSection {
+  margin: 20px 0 20px 0;
+}
+
+#adminUsersContent .adminContentSectionTitle {
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: rgba(138, 139, 138, 1);
+  border-bottom: 2px solid rgba(138, 139, 138, 1);
+}
+
+#adminUsersContent .adminContentSectionTitle span {
+  font-size: 15px;
+  color: red;
+}
+
+#adminUsersContent .adminContentInputSection ul {
+  margin: 0 0 0 30px;
+  padding: 0;
+  list-style: none;
+}
+
+#adminUsersContent .adminContentInputSection label {
+  color: rgba(26, 25, 25, 1);
+  font-weight: normal;
+  display: block;
+}
+
+#adminUsersContent .adminContentInputSection input {
+  width: 200px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(182, 184, 182, 1);
+}
+
+
+
+
+
+/*************************
+***** ORDERS SECTION *****
+**************************/
+
+#adminOrdersContent #adminOrdersContentItems {
+  clear: left;
+  float: left;
+  width: 100%;
+  margin: 20px 0 20px 0;
+  padding: 0;
+  list-style: none;
+}
+
+#adminOrdersContent .order-item {
+  list-style-type: none;
+}
+
+#adminOrdersContent .order-header {
+  margin: 10px 0;
+}
+
+#adminOrdersContent .order-links a:hover {
+  cursor: pointer;
+}
+
+#adminOrdersContent .order-links a:first-child {
+  margin-left: 10px;
+}
+
+#adminOrdersContent .order-links {
+  display: inline;
+}
+
+#adminOrdersContent .order-links::after {
+  clear: both;
+}
+
+#adminOrdersContent .order-header h3 {
+  display: inline;
+}
+
+#adminOrdersContent .order-header a{
+  float: right;
+  padding: 10px;
+  border: 1px solid;
+}
+
+#adminOrdersContent .order-item {
+  margin: 20px 0 0;
+}
+
+#adminOrdersContent .order-item {
+  padding: 0;
+}
+
+#adminOrdersContent .order-item li{
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ border-left: 2px solid #4f9dff;
+ margin-bottom: 10px;
+}
+
+#chairDetails {
+  float: left;
+  width: 100%;
+}
+
+#adminOrdersContent .adminOrdersContentItem {
+  clear: left;
+  float: left;
+  height: auto;
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(182, 184, 182, 1);
+  width: 92%;
+  padding-bottom: 21px;
+}
+
+#adminOrdersContent .adminOrdersContentItem-image {
+  clear: left;
+  float: left;
+  width: 25%;
+  vertical-align: middle;
+}
+
+#adminOrdersContent canvas{
+  clear: left;
+  float: left;
+  width: 25%;
+  vertical-align: middle;
+  margin-bottom: 7px;
+}
+
+
+
+.adminOrdersContentItem td, p{
+  padding: 5px 50px 5px 0;
+  font-size: 1.1em;
+  margin-bottom: 0;
+}
+
+.adminOrdersContentItem thead{
+  padding: 5px 15px 5px 0;
+  font-size: 1.1em;
+}
+
+.adminOrdersContentItem button{
+  border-radius: 0;
+  padding: 10px;
+  color: #4F9DFF;
+  font-size: 1.2em;
+  background-color: white;
+  margin-top:10px;
+  border: 1px solid #939597;
+  vertical-align: top;
+}
+
+.adminOrdersContentItem button:hover{
+  color: white;
+  background-color: #4F9DFF;
+}
+
+
+
+
+
+#contactInfo{
+  position: relative;
+  display: inline-block;
+  margin-left: 30px;
+  border-radius: 0;
+  padding: 10px;
+  color: #4F9DFF;
+  font-size: 1.2em;
+  background-color: white;
+  margin-top: 10px;
+  border: 1px solid #939597;
+  vertical-align: top;
+  height:38px;
+}
+
+
+
+
+
+/***************************
+*** MEASUREMENTS SECTION ***
+****************************/
+
+/*******font******/
+.oBold{
+  font-family: 'oswald-bold';
+  font-size: 1em;
+}
+.oReg{
+  font-family: 'oswald-regular';
+  font-size: 1em;
+}
+
+.gBook{
+  font-family: 'gotham-book';
+  font-size: 1em;
+}
+
+
+
+
+.button{
+  margin-top: 0;
+  height: 35px;
+  background-color: #4896FF;
+  color: #FFFFFF;
+  border-color: #4896FF;
+  border-radius: 0px;
+  padding: 0 10px;
+
+}
+
+.button:hover {
+  background-color: white;
+  border-color: #4896FF;
+  color: #4896FF;
+}
+#mainDisplay{
+  width: 700px;
+  float: left;
+  margin-top: 30px;
+}
+
+
+
+#header{
+  position: relative;
+  margin: 0 15px 0;
+}
+
+#header p{
+  font-size: 1.7em;
+
+}
+.compareButton{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+
+/********* wheelchair content display***/
+#mainContent{
+  width: 100%;
+  display: inline-block;
+}
+
+.chairBlock{
+  width: 100%;
+  list-style-type: none;
+  padding: 10px 15px;
+  margin-right: 20px;
+}
+
+.chairBlock .chairTitle{
+  width: 100%;
+  background-color: darkgrey;
+  font-size: 1.1em;
+  padding:0 20px;
+}
+
+.chairBlock .selectedChair {
+  background-color:#4f9dff;
+}
+
+
+
+.cart-item{
+  background-color: white;
+  margin-bottom: 20px;
+}
+
+.media-object{
+  width: 30%;
+  position: relative;
+  display:inline-block;
+}
+
+.checkbox-button {
+
+}
+
+.media-body {
+  overflow: visible;
+  display: inline-block;
+  width: 65%;
+  vertical-align: top;
+}
+.media-body .firstLine{
+  margin: 10px 0 58px;
+}
+
+.media-body a{
+  color: #4f9dff;
+}
+.media-body .actions table{
+  margin-bottom: 20px;
+}
+.media-body .actions td{
+  padding: 0 15px;
+  border-right: 2px solid black;
+}
+
+.media-body .actions td:first-of-type{
+  padding-left: 0;
+}
+
+.media-body .moreInfoTitle{
+  margin-top: 27px;
+  color: #4f9dff;
+
+}
+.moreInfoTitle .clickable-text{
+  display: inline-block;
+  border-radius: 0px;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.moreInfo table{
+  width: 100%;
+}
+
+.moreInfo .title-column{
+  color: #939597;
+}
+
+.discounts-list {
+  padding: 0;
+  list-style-type: none;
+  margin-top: 30px;
+}
+
+.discounts-list li {
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.discount-options {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.discount-options button {
+  margin: 0 auto;
+  width: 40px;
+}
+
+.discount-name {
+  font-size: 22px;
+}
+
+.discount-info {
+  border-left: 1px solid #4F9DFF;
+  display: flex;
+  justify-content: space-between;
+}
+
+.discount-percent {
+  width: 25%;
+  position: relative;
+}
+
+.discount-percent p {
+  font-size: 35px;
+  color: #4F9DFF;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}
+
+.discount-info-lines {
+  width: 50%;
+}
+
+.discount-info-lines p {
+  font-size: 14px;
+  padding: 1px 0;
+}
+
+.discount-search input {
+  border: 2px solid #686968;
+  width: 100%;
+  margin-bottom: 15px;
+  height: 40px;
+  color: #000;
+  text-align: center;
+  border-style:solid;
+}
+.discount-search input:focus { 
+    outline: none;
+}
+
+.discount-search input::-webkit-input-placeholder {
+  color: #000;
+}
+
+.discount-search input::-moz-placeholder {
+  color: #000;
+}
+.discount-search input:-ms-input-placeholder {
+  color: #000;
+}
+.discount-search input:-moz-placeholder {
+  color: #000;
+}
+
+.users-list {
+  list-style-type: none;
+}
+
+.users-list li {
+  margin: 10px 0;
+}
+
+.user-admin {
+  color: #428bca;
+}
+
+.user-profile-link:hover {
+  background-color: #e8e8e8;
+  cursor: pointer;
+}
+
+.profile-section {
+  margin-top: 40px;
+}
+
+.profile-section button {
+  margin: 10px 10px 10px 0;
+}
+
+.user-type-button p {
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.user-type-button button {
+  padding: 2px 5px;
+  display: inline-block;
+}
+
+.admin-users-id {
+  font-size: 21px;
+}
+
+.adminContent .successMsg {
+  color: #5cb85c;
+}
+
+.adminContent .errorMsg {
+  color: #d9534f;
+}
+
+.order-link td:first-child {
+  color: #4F9DFF;
+}
+
+.order-link a {
+  padding: 8px 8px 8px 0;
+}
+
 

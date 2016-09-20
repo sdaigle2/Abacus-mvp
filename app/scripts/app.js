@@ -91,9 +91,52 @@ angular
       .when('/admin', {
         templateUrl: 'views/admin.html',
         controller: 'AdminCtrl',
+        controllerAs: 'admin',
         resolve: {
           UserData: ['$q', 'User', function($q, User) {
-            var deferred = $q.defer()
+            var deferred = $q.defer();
+            return User.getPromise()
+            .then(function(resp) {
+              var userData = resp.data || resp;
+              if (userData.userType === 'admin' || userData.userType === 'superAdmin') {
+                deferred.resolve();
+              } else {
+                deferred.reject();
+              }
+              
+              return deferred.promise;
+            })
+          }]
+        }
+      })
+      .when('/discounts', {
+        templateUrl: 'views/discounts.html',
+        controller: 'DiscountsCtrl',
+        controllerAs: 'discount',
+        resolve: {
+          UserData: ['$q', 'User', function($q, User) {
+            var deferred = $q.defer();
+            return User.getPromise()
+            .then(function(resp) {
+              var userData = resp.data || resp;
+              if (userData.userType === 'admin' || userData.userType === 'superAdmin') {
+                deferred.resolve();
+              } else {
+                deferred.reject();
+              }
+              
+              return deferred.promise;
+            })
+          }]
+        }
+      })
+      .when('/order/:orderId', {
+        templateUrl: 'views/adminOrder.html',
+        controller: 'OrdersCtrl',
+        controllerAs: 'order',
+        resolve: {
+          UserData: ['$q', 'User', function($q, User) {
+            var deferred = $q.defer();
             return User.getPromise()
             .then(function(resp) {
               var userData = resp.data || resp;

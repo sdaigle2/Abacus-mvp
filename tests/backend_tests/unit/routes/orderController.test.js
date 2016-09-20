@@ -7,6 +7,7 @@ const dbService = require('../../../../server_scripts/services/db');
 const promise = require('bluebird');
 const getUserPr = promise.promisify(dbService.users.get);
 const getOrdersPr = promise.promisify(dbService.orders.get);
+const insertUserPr = promise.promisify(dbService.users.insert);
 const chance = new Chance();
 const orderController = require('../../../../server_scripts/routes/orderController');
 
@@ -63,6 +64,16 @@ let newOrder = {
 let orderId, orderRev;
 describe('Test order payments', () => {
   before(done => {
+    getLoggedInAgent.newUser(app)
+      .then(result => {
+        agent = result.agent;
+        user = result.user;
+        user.cart = {};
+        done();
+      })
+      .catch(done);
+  });
+  before(done => {
     dbService.orders.insert(newOrder, (err, resp) => {
       orderId = resp.id;
       orderRev = resp.rev;
@@ -88,7 +99,7 @@ describe('Test order payments', () => {
         getOrdersPr(newOrder._id).then(function (resp) {
           resp.payments.length.should.equal(2);
           resp.payMethod.should.equal('Pay part now');
-          resp.payments[1].amount.should.equal('100.00');
+          resp.payments[1].amount.should.equal(100);
           resp.payments[1].method.should.equal('Cash');
           resp.payments[1].method.should.equal('Cash');
           done();
@@ -112,6 +123,7 @@ describe('Test order payments', () => {
       .then((resp) => {
         orderRev = resp.body.rev;
         getOrdersPr(newOrder._id).then(function (resp) {
+
           resp.paymentStatus.should.equal('At least 50% paid');
           done();
         });
@@ -135,12 +147,12 @@ describe('Test order payments', () => {
         orderRev = resp.body.rev;
         let expectedSubs = {
           '-amountPaid-': '100.00',
-          '-balanceDue-': '1400',
+          '-balanceDue-': '1400.00',
           '-orderNumber-': '9999',
           '-orderStatus-': 'Thankyou for the downpayment, we’ll start building your wheelchair now. Please note that you will need to pay the remainder before the order ships.',
           '-paymentStatus-': 'At least 50% paid',
-          '-previousPayments-': '1500',
-          '-totalDue-': '3000'
+          '-previousPayments-': '1500.00',
+          '-totalDue-': '3000.00'
         };
         getOrdersPr(newOrder._id).then(function (resp) {
           spy.args[0][0].should.equal('do-not-reply@per4max.fit');
@@ -173,7 +185,41 @@ describe('Test order payments', () => {
       })
       .expect(200);
   });
-  
+
+  it('Should fail to edit order if user is not admin', done => {
+    newOrder.orderStatus = 'new test status';
+    agent
+      .post(`/orders/${orderId}/edit`)
+      .send(newOrder)
+      .expect(res => {
+        res.body.msg.should.equal('Not authorized to perform operation.')
+      })
+      .expect(401, done);
+  });
+
+  it('Should edit order if user is admin', done => {
+    getUserPr(user._id)
+    .then(userFromDb => {
+      userFromDb.userType = 'admin';
+      insertUserPr(userFromDb)
+      .then(function(resp) {
+        newOrder.orderStatus = 'new test status';
+        newOrder._rev = orderRev;
+        agent
+          .post(`/orders/${orderId}/edit`)
+          .send(newOrder)
+          .then(res => {
+            orderRev = res.body.rev;
+            getOrdersPr(newOrder._id).then(function (resp) {
+              resp.orderStatus.should.equal('new test status');
+              done();
+            });
+          })
+          .expect(200);
+      })
+    })
+  });
+
   after(done => {
     var cleanupOrders = cb => {
       dbService.orders.deleteDoc(orderId, orderRev, cb);

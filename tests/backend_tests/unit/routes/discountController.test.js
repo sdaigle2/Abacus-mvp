@@ -5,7 +5,9 @@ const getLoggedInAgent = require('../../helpers/getLoggedInAgent');
 const dbService = require('../../../../server_scripts/services/db');
 const promise = require('bluebird');
 const getUserPr = promise.promisify(dbService.users.get);
-const getOrdersPr = promise.promisify(dbService.orders.get);
+const getDiscountPr = promise.promisify(dbService.discounts.get);
+const insertUserPr = promise.promisify(dbService.users.insert);
+
 const chance = new Chance();
 
 before(done => {
@@ -16,7 +18,7 @@ before(done => {
   }
 });
 
-describe('Test user updates', () => {
+describe('Test discounts', () => {
   before(function (done) {
 
     getLoggedInAgent.newUser(app)
@@ -30,22 +32,112 @@ describe('Test user updates', () => {
   });
 
   var discount = {
-    id: 'testDiscount',
-    percent: 0.01,
+    id: 'testdiscount',
+    _id: 'testdiscount',
+    percent: 11,
     startDate: '2016-06-31T21:00:00.000Z',
-    endDate: '2016-12-31T21:00:00.000Z'
+    endDate: '2017-12-31T21:00:00.000Z'
   };
   var discountRev = null;
 
 
-  it('Should not be able to update user info if user is not logged in', done => {
+  it('Should throw an error on attempt to create a discount if user is not admin', done => {
     agent
       .post('/discounts')
       .send(discount)
       .expect(res => {
-        discountRev = res.body.rev
+        res.body.msg.should.equal('Not authorized to perform operation.')
+      })
+      .expect(401, done);
+  });
+
+  it('Should throw an error on attempt to get discounts if user is not admin', done => {
+    agent
+      .get('/discounts')
+      .expect(res => {
+        res.body.msg.should.equal('Not authorized to perform operation.')
+      })
+      .expect(401, done);
+  });
+
+  it('Should throw an error on attempt to edit a discount if user is not admin', done => {
+    agent
+      .post('/discounts/test')
+      .expect(res => {
+        res.body.msg.should.equal('Not authorized to perform operation.')
+      })
+      .expect(401, done);
+  });
+
+  it('Should throw an error on attempt to delete a discount if user is not admin', done => {
+    agent
+      .post('/discounts/expire')
+      .expect(res => {
+        res.body.msg.should.equal('Not authorized to perform operation.')
+      })
+      .expect(401, done);
+  });
+
+  it('Should store a new discount if user is admin', done => {
+    getUserPr(user._id)
+    .then(userFromDb => {
+      userFromDb.userType = 'admin';
+      insertUserPr(userFromDb)
+      .then(function(resp) {
+        user._rev = resp.rev;
+        agent
+          .post('/discounts')
+          .send(discount)
+          .expect(res => {
+            discount._rev = res.body.rev;
+            res.body.id.should.equal('testdiscount');
+          })
+          .expect(200, done);
+      })
+    })
+  });
+
+  it('Should get discounts if user is admin', done => {
+    agent
+      .get('/discounts')
+      .expect(res => {
+        res.body.should.have.property('total_rows');
       })
       .expect(200, done);
+  });
+
+  it('Should be able to edit a discount', done => {
+    discount.percent = '12';
+    agent
+      .post(`/discounts/${discount.id}`)
+      .send(discount)
+      .then((res) => {
+        discount._rev = res.body.rev;
+        discountRev = res.body.rev;
+        getDiscountPr(discount.id)
+        .then(resp => {
+          resp.percent.should.equal(0.12);
+          done();
+        }) 
+      })
+      .expect(200);
+  });
+
+  it('Should be able to delete a discount', done => {
+    agent
+      .post(`/discounts/expire`)
+      .send({discountId: discount._id})
+      .then(res => {
+        discountRev = res.body.rev;
+        getDiscountPr(discount.id)
+        .then(discount => {
+          let date = new Date();
+          let dateDiff = date > new Date(discount.endDate);
+          dateDiff.should.equal(true);
+          done();
+        })
+      })
+      .expect(200);
   });
 
   after(done => {

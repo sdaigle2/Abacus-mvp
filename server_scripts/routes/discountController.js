@@ -1,16 +1,76 @@
 /*
- * This controller allows you to retrieve discounts from the DB given a discount ID
+ * This controller allows you to retrieve, edit, delete discounts from the DB
  */
 
 const router = require('express').Router();
 const dbService = require('../services/db');
 const _ = require('lodash');
+const Promise = require('bluebird');
 const restrict = require('../policies/restrict');
+const getUserPr = Promise.promisify(dbService.users.get);
 
-router.get('/discounts/:id', function (req, res) {
-	var id = req.params.id;
-	//query the database
-	dbService.discounts.get(id,function(err,body){
+router.get('/discounts', restrict, function (req, res) {
+	getUserPr(req.session.user)
+	.then(function(user) {
+		const userType = user.userType;
+		if (userType !== 'admin' && userType !== 'superAdmin') {
+			res.status(401);
+			res.json({msg: 'Not authorized to perform operation.'});
+			return;
+		}
+		dbService.discounts.list({include_docs: true}, function(err, body){
+			if (err) {
+				res.status(400);
+				res.json({err: 'Error while getting discounts'});
+				return;
+			}
+			res.json(body);
+		});
+	})
+	.catch(err => {
+		res.status(400);
+		res.json({err: err});
+	});
+});
+
+router.post('/discounts/expire', restrict, function (req, res) {
+	const discountId = req.body.discountId;
+	getUserPr(req.session.user)
+	.then(function(user) {
+		const userType = user.userType;
+		if (userType !== 'admin' && userType !== 'superAdmin') {
+			res.status(401);
+			res.json({msg: 'Not authorized to perform operation.'});
+			return;
+		}
+		dbService.discounts.get(discountId, function(err, body) {
+			if (!err) {
+				let discount = body;
+				let date = new Date();
+				date.setDate(date.getDate() - 1); // set yesterday in order for the discount to be expired
+				discount.endDate = date;
+				dbService.discounts.insert(discount, discountId, function (err, body, header) {
+					if (err) {
+						res.status(400);
+						res.json({err: 'Couldn\'t save discount into database'});
+					} else {
+						res.json(body);
+					}
+				});
+			} else {
+				res.status(400);
+				res.json({msg: `Discount code "${discountId}" does not exist`});
+			}
+		});
+	})
+	.catch(err => {
+		res.status(400);
+		res.json({err: err});
+	});
+});
+
+router.get('/discounts/:id', restrict, function (req, res) {
+	dbService.discounts.get(id, function(err, body){
 		if (err) {
 			res.status(404);
 			res.json({
@@ -18,32 +78,81 @@ router.get('/discounts/:id', function (req, res) {
 				err: err
 			});
 		} else {
-			res.json(body); //load the design if id is correct
+			res.json(body);
 		}
+	});
+});
+
+router.post('/discounts/:id', restrict, function (req, res) {
+	const discount = req.body;
+	const discountId = discount._id;
+	getUserPr(req.session.user)
+	.then(function(user) {
+		const userType = user.userType;
+		if (userType !== 'admin' && userType !== 'superAdmin') {
+			res.status(401);
+			res.json({msg: 'Not authorized to perform operation.'});
+			return;
+		}
+		dbService.discounts.get(discountId, function(err) {
+			if (!err) {
+				delete discount.editDiscountPage;
+
+				discount.percent = discount.percent / 100;
+
+				dbService.discounts.insert(discount, discountId, function (err, body, header) {
+					if (err) {
+					  res.status(400);
+					  res.json({err: 'Couldn\'t save discount into database'});
+					} else {
+					  res.json(body);
+					}
+				});
+			} else {
+				res.status(400);
+				res.json({msg: `Discount code "${discountId}" does not exist`});
+			}
+		});
+	})
+	.catch(err => {
+		res.status(400);
+		res.json({err: err});
 	});
 });
 
 router.post('/discounts', restrict, function (req, res) {
 	var discount = req.body;
 	discount.createdBy = req.session.user;
-	
-	dbService.discounts.get(discount.id, function(err) {
-		if (err) {
-			dbService.discounts.insert(discount, discount.id, function (err, body, header) {
-		        if (err) {
-		          res.status(400);
-		          res.json({err: 'Couldn\'t save design data into databse'});
-		        } else {
-		          res.json(body);
-		        }
-	      	});
-		} else {
-			res.status(400);
-			res.json({msg: `Discount code "${discount.id}" already exists`});
+	getUserPr(discount.createdBy)
+	.then(function(user) {
+		const userType = user.userType;
+		if (userType !== 'admin' && userType !== 'superAdmin') {
+			res.status(401);
+			res.json({msg: 'Not authorized to perform operation.'});
+			return;
 		}
+		dbService.discounts.get(discount.id, function(err) {
+			if (err) {
+				discount.createdAt = new Date();
+				discount.percent = discount.percent / 100;
+				dbService.discounts.insert(discount, discount.id, function (err, body, header) {
+					if (err) {
+					  res.status(400);
+					  res.json({err: 'Couldn\'t save discount into database'});
+					} else {
+					  res.json(body);
+					}
+				});
+			} else {
+				res.status(400);
+				res.json({msg: `Discount code "${discount.id}" already exists`});
+			}
+		});
+	})
+	.catch(err => {
+		res.status(400);
+		res.json({err: err});
 	});
-
-	
 });
 
 module.exports = router;

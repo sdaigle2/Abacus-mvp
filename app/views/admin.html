@@ -1,41 +1,177 @@
 <link href="../styles/admin.css" rel="stylesheet"/>
-<div class="admin-wrapper">
-	<div class="admin-container">
-		<h3 class="header-text">Create a New Discount Code</h3>
-    <p class="note"><em>Note: Discount codes are not case sensitive.</em></p>
-		<hr>
-		<p>Discount Code</p>
-		<p class="input-group admin-input">
-	      <input type="text" class="form-control" placeholder="example: per4max2016" ng-model="discount.id" ng-required="true">
-	    </p>
-	    <p>Percent</p>
-		<p class="input-group admin-input">
-	      <input type="text" class="form-control" id="percentBox" placeholder="example: 20" ng-model="discount.percent" ng-required="true">%
-	    </p>
-	    <p>Start Date</p>
-	    <p class="input-group admin-input">
-	      <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="discount.startDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true"/>
-	      <span class="input-group-btn">
-	        <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-	      </span>
-	    </p>
 
-	    <p>End Date</p>
-	    <p class="input-group admin-input">
-	      <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="discount.endDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true"/>
-	      <span class="input-group-btn">
-	        <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
-	      </span>
-	    </p>
-	    <div class="multi">
-	    	<p style="display: inline;">Allow this discount to be combined with other discounts:</p>
-	    	<input id="multiCheckox" type="checkbox" ng-model="discount.isMultiDiscount"/>
-	    </div>
-        <div class="button-box">
-            <button type="button" class="btn btn-sm btn-danger admin-button" ng-click="clear()">Cancel</button>
-            <button type="button" class="btn btn-sm btn-success admin-button" ng-click="submitDiscount()">Create</button>
+<div class="appBody">
+
+  <div class="adminHeader">
+    <div class="adminHeaderTitle medium">Admin <i class="fa fa-unlock-alt"></i></div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="adminSidebar">
+    <ul class="adminSidebarOptions">
+
+      <li class="adminSidebarOption book" id="adminSidebarOrdersOption"
+          ng-click="admin.setContentSection(admin.contentSection.users)"
+          ng-class="{ 'active' : admin.getContentSection() === admin.contentSection.users} ">
+        Users
+      </li>
+      <li class="adminSidebarOptionDivider"></li>
+
+      <li class="adminSidebarOption book" id="adminSidebarAccountOption"
+          ng-click="admin.setContentSection(admin.contentSection.orders)"
+          ng-class="{ 'active' : admin.getContentSection() === admin.contentSection.orders}">
+        Orders
+      </li>
+      <li class="adminSidebarOptionDivider"></li>
+
+      <li class="adminSidebarOption book" id="adminSidebarMyDesignsOption"
+          ng-click="admin.setContentSection(admin.contentSection.discounts)"
+          ng-class="{ 'active' : admin.getContentSection() === admin.contentSection.discounts}">
+        Discounts
+      </li>
+      <li class="adminSidebarOptionDivider"></li>
+
+    </ul>
+    <div class="adminSidebarButtons"
+         ng-class="{'showadminSidebarButtons' : admin.getContentSection() === admin.contentSection.discounts, 'hideadminSidebarButtons' : admin.getContentSection() !== admin.contentSection.discounts}">
+      <div class="discount-search">
+        <input type="text" ng-model="search.doc._id" placeholder="Search">
+      </div>
+      
+      <button class="adminSidebarButton medium"
+        id="adminSidebarSaveButton"
+        data-ng-click="admin.toDiscounts()"> Create a new discount</button>
+    </div>
+
+    <div class="adminSidebarButtons"
+         ng-class="{'showadminSidebarButtons' : admin.getContentSection() === admin.contentSection.users, 'hideadminSidebarButtons' : admin.getContentSection() !== admin.contentSection.users}">
+      <div class="discount-search">
+        <input type="text" ng-model="admin.searchUser.id" placeholder="Search">
+      </div>
+    </div>
+
+    <div class="adminSidebarButtons"
+         ng-class="{'showadminSidebarButtons' : admin.getContentSection() === admin.contentSection.orders, 'hideadminSidebarButtons' : admin.getContentSection() !== admin.contentSection.orders}">
+      <div class="discount-search" ng-if="admin.getContentSection() === admin.contentSection.orders">
+        <input type="text" ng-model="admin.searchOrder" placeholder="Search">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="adminContentWrapper">
+    <!-- ORDERS-->
+    <div class="adminContent" id="adminOrdersContent" ng-class="{'showadminContent' : admin.getContentSection() === admin.contentSection.orders}">
+      <div ng-if="admin.ordersArray.length">
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Order number</th>
+                <th>Date</th>
+                <th>User</th>
+                <th>Status</th>
+                <th>Invoice</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="order in admin.filteredOrders | filter:admin.searchOrder" class="user-profile-link order-link" ng-click="admin.viewOrder(order)" >
+                <td>{{order.doc.orderNum}}</td>
+                <td >{{order.doc.date}}</td>
+                <td >{{order.doc.userID}}</td>
+                <td >{{order.doc.paymentStatus}}</td>
+                <td ng-click="admin.viewInvoice($event)"><a  ng-href="orders/{{order.doc._id}}/invoice">View invoice</a></td>
+              </tr>
+            </tbody>
+          </table>
+        <ul ng-show="admin.totalOrderItems >= 25" uib-pagination class="custom-pagination"
+          ng-model="admin.currentPage"
+          total-items="admin.totalOrderItems" items-per-page="25" max-size="15">
+        </ul>
+      </div>
+    </div>
+    <!-- DISCOUNTS -->
+    <div class="adminContent" id="adminDiscountsContent" ng-class="{'showadminContent' : admin.getContentSection() === admin.contentSection.discounts}">
+    	<ul class="discounts-list">
+        <li ng-repeat="discount in admin.discountsArray | filter:search">
+          <div class="discount-info">
+            <div class="discount-percent">
+              <p ng-bind="admin.getPercents(discount.doc.percent)"></p>
+            </div>
+            <div class="discount-info-lines">
+              <p><b>Id: </b>{{discount.doc._id}}</p>
+              <p><b>Start date: </b>{{discount.doc.startDate | date:'medium'}}</p>
+              <p><b>End date: </b>{{discount.doc.endDate | date:'medium'}}</p>
+              <p><b>Is multy: </b>{{discount.doc.isMultiDiscount}}</p>
+              <p><b>Created by: </b>{{discount.doc.createdBy}}</p>
+            </div>
+            <div class="discount-options">
+              <button type="button" ng-click="admin.editDiscount(discount)" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+              </button>
+              <button type="button" ng-click="admin.deleteDiscount(discount)" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span>
+              </button>
+            </div>
+          </div>
+        </li> 
+      </ul>
+    </div>
+    <!-- USERS -->
+    <div class="adminContent" id="adminUsersContent" ng-class="{'showadminContent' : admin.getContentSection() === admin.contentSection.users}">
+      <div ng-if="admin.profile.open" class="profile-section">
+        <div class="profile-info">
+          <p class="admin-users-id"><b>{{admin.profile.id}}</b></p>
+          <hr>
+          <p><b>Email: </b>{{admin.profile.email}}</p>
+          <p><b>First name: </b>{{admin.profile.fName}}</p>
+          <p><b>Last name: </b>{{admin.profile.lName}}</p>
+          <p><b>City: </b>{{admin.profile.city}}</p>
+          <p><b>Phone: </b>{{admin.profile.phone}}</p>
+          <p><b>Number of orders: </b>{{admin.profile.ordersNum}}</p>
+          <div class="dropdown user-type-button">
+            <p><b>User type: </b> <span ng-if="admin.userType !== 'superAdmin'"> {{admin.getUserType()}}</span></p>
+            <button ng-if="admin.userType === 'superAdmin'" class="btn dropdown-toggle " type="button" data-toggle="dropdown">{{admin.getUserType()}}
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+              <li ng-click="admin.profile.userType = 'admin'"  class="dropdown-item"><a href="">Admin</a></li>
+              <li ng-click="admin.profile.userType = 'superAdmin'" class="dropdown-item"><a href="">Super admin</a></li>
+              <li ng-click="admin.profile.userType = 'basic'" class="dropdown-item"><a href="">Basic</a></li>
+            </ul>
+          </div>
+          <div class="dropdown user-type-button">
+            
+            <button ng-disabled="admin.resetSuccessMsg" class="btn dropdown-toggle" ng-click="admin.resetPassword(admin.profile.email)" type="button" data-toggle="dropdown">Reset Password</button>
+            <p class="errorMsg"><b>{{admin.resetErrorMsg}}</b></p>
+            <p class="successMsg"><b>{{admin.resetSuccessMsg}}</b></p>
+          </div>
         </div>
-	    <p class="errMsg" ng-show="errorMsg">{{errorMsg}}</p>
-	    <p class="sucMsg" ng-show="successMsg">{{successMsg}}</p>
-	</div>
+        <hr>
+        <button class="btn btn-danger" ng-click="admin.closeProfile()">Back</button>
+        <button class="btn btn-success" ng-disabled="admin.userTypeSuccessMsg" ng-if="admin.showSaveProfile" ng-click="admin.setUserType()">Save</button>
+        <p class="errorMsg"><b>{{admin.userTypeErrorMsg}}</b></p>
+        <p class="successMsg"><b>{{admin.userTypeSuccessMsg}}</b></p>
+      </div>
+      <div ng-if="!admin.profile.open && admin.usersArray.length">
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>User type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="user in admin.filteredUsers | filter:admin.searchUser" class="user-profile-link" ng-click="admin.openProfile(user)" >
+                <td>{{user.id}}</td>
+                <td ><span ng-class="user.doc.userType === 'admin' || user.doc.userType === 'superAdmin' ? 'user-admin' : ''"> {{admin.getUserType(user.doc.userType) || 'Basic'}}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        <ul ng-show="admin.totalItems >= 25" uib-pagination class="custom-pagination"
+          ng-model="admin.currentPage"
+          total-items="admin.totalItems" items-per-page="25" max-size="15">
+        </ul>
+      </div>
+    </div>
+  </div>
+
 </div>

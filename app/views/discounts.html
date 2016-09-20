@@ -1,0 +1,55 @@
+<link href="../styles/discounts.css" rel="stylesheet"/>
+<div class="discount-wrapper">
+	<div class="discount-container">
+		<h3 class="header-text" ng-if="!discount.discountObj.editDiscountPage">Create a New Discount Code</h3>
+		<h3 class="header-text" ng-if="discount.discountObj.editDiscountPage">Edit discount {{discount.discountObj._id}}</h3>
+    <p class="note" ng-if="!discount.discountObj.editDiscountPage"><em>Note: Discount codes are not case sensitive.</em></p>
+		<hr>
+		<p ng-if="!discount.discountObj.editDiscountPage">Discount Code</p>
+		<p class="input-group discount-input" ng-if="!discount.discountObj.editDiscountPage">
+	      <input type="text" class="form-control" placeholder="example: per4max2016" ng-model="discount.discountObj.id" ng-required="true">
+	    </p>
+	    <p>Percent</p>
+		<p class="input-group discount-input">
+	      <input type="text" class="form-control" id="percentBox" placeholder="example: 20" ng-model="discount.discountObj.percent" ng-required="true">%
+	    </p>
+	    <p>Start Date</p>
+	    <p class="input-group discount-input">
+	      <input type="text" class="form-control" uib-datepicker-popup="{{discount.format}}" ng-model="discount.discountObj.startDate" is-open="discount.popup1.opened" datepicker-options="dateOptions" ng-required="true"/>
+	      <span class="input-group-btn">
+	        <button type="button" class="btn btn-default" ng-click="discount.open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+	      </span>
+	    </p>
+
+	    <p>End Date</p>
+	    <p class="input-group discount-input">
+	      <input type="text" class="form-control" uib-datepicker-popup="{{discount.format}}" ng-model="discount.discountObj.endDate" is-open="discount.popup2.opened" datepicker-options="dateOptions" ng-required="true"/>
+	      <span class="input-group-btn">
+	        <button type="button" class="btn btn-default" ng-click="discount.open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+	      </span>
+	    </p>
+	    <div class="multi">
+	    	<p style="display: inline;">Allow this discount to be combined with other discounts:</p>
+	    	<input id="multiCheckox" type="checkbox" ng-model="discount.discountObj.isMultiDiscount"/>
+	    </div>
+        <div class="button-box">
+            <button type="button" class="btn btn-sm btn-danger discount-button" ng-click="discount.toAdmin()">Go back</button>
+            <button type="button" class="btn btn-sm btn-success discount-button" ng-if="discount.discountObj.editDiscountPage" ng-click="discount.saveEditDiscount()">Save</button>
+            <button type="button" class="btn btn-sm btn-success discount-button" ng-if="!discount.discountObj.editDiscountPage" ng-click="discount.submitDiscount()">Create</button>
+        </div>
+	    <p class="errMsg" ng-show="discount.errorMsg">{{discount.errorMsg}}</p>
+	    <p class="sucMsg" ng-show="discount.successMsg">{{discount.successMsg}}</p>
+	</div>
+</div>
+<div class="discount-cover" ng-if="discount.dropdownOpen">
+	<div class="action-panel">
+		<article>
+			<h3>Discount updated successfully!</h3>
+		</article>
+
+		<section>
+			<button ng-click="discount.toAdmin()">GO TO DISCOUNTS</button>
+		</section>
+		<div class="close-tab" ng-click="discount.closeDropDown()"><span class="glyphicon glyphicon-remove"></span></div>
+	</div>
+</div>

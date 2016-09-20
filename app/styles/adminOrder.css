@@ -1,0 +1,139 @@
+hr {
+	margin-top: 0
+}
+.admin-order-wrapper {
+	width: 1090px;
+	margin: 10px auto;
+	display: flex;
+	justify-content: space-between;
+}
+.admin-order-wrapper hr {
+	border-color: #999;
+	margin-top: 0;
+}
+.admin-order-info {
+	display: inline-block;
+	width: 38%;
+	min-height: 570px;
+	background-color: #fff;
+	border: 1px solid #999;
+}
+
+.admin-order-info .text {
+	padding: 0 10px;
+	margin-bottom: 5px;
+}
+
+.admin-order-payment {
+	display: inline-block;
+	width: 25%;
+	background-color: #fff;
+	border: 1px solid #999;
+	min-height: 570px;
+}
+
+.order-payment {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	padding: 0 10px;
+}
+
+.admin-order-status {
+	display: inline-block;
+	width: 32%;
+	height: 150px;
+	background-color: #fff;
+	border-top: 1px solid #999;
+}
+.admin-order-status textarea {
+	width: 100%;
+	height: 100%;
+}
+
+.admin-order-status p {
+	border-right: 1px solid #999;
+	border-left: 1px solid #999;
+}
+
+.admin-order-status hr {
+	margin: 0;
+}
+
+.admin-order-wrapper .admin-header {
+	padding: 3px;
+	margin: 0;
+	text-align: center;
+	color: #4F9DFF;
+}
+
+.order-payment-type {
+	margin-bottom: 15px;
+}
+
+.order-payment-item {
+	margin: 10px 0;
+}
+
+.admin-stretch {
+	width: 100%;
+}
+
+.admin-order-payment textarea {
+	width: 100%;
+	height: 80px;
+}
+
+.option-buttons button {
+	background-color: #fff;
+	margin-top: 0;
+}
+.error-message {
+	padding: 0 10px;
+	color: red;
+}
+
+.success-message {
+	padding: 0 10px;
+	color: green;
+}
+
+.order-cover {
+	position: absolute;
+	height: 100vh;
+	width: 100vw;
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.75);
+	z-index: 53;
+	text-align: center;
+	font-family: 'Gotham A', 'Gotham B';
+    font-weight: 500;
+    font-style: normal;
+}
+.action-panel {
+	margin: auto;
+	position: absolute;
+	top: calc(50vh - 150px);
+	left: calc(50vw - 350px);
+	width: 700px;
+	background-color: white;
+	z-index: 3;
+	height: 168px;
+}
+.action-panel button {
+	background-color: #4f9dff;
+	color: white;
+	border: 0;
+	font-size: 0.9em;
+	height: 30px;
+	padding: 5px 12px;
+	margin-top: 20px;
+}
+
+.close-tab {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 2;
+	cursor: pointer;
+}
