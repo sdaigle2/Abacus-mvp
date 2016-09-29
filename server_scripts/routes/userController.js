@@ -28,7 +28,7 @@ router.get('/users', restrict, function(req, res) {
     const userType = user.userType;
     if (userType !== 'admin' && userType !== 'superAdmin') {
       res.status(401);
-      res.json({msg: 'Not authorized to perform operation.'});
+      res.json({msg: 'Only admin users are authorized to perform this operation.'});
       return;
     }
     dbService.users.list({include_docs: true}, function(err, body){
@@ -46,30 +46,22 @@ router.get('/users', restrict, function(req, res) {
   });
 });
 
-router.post('/users/change-user-type', restrict, function(req, res) {
+router.put('/users/:userId', restrict, function(req, res) {
   getUserPr(req.session.user)
   .then(function(user) {
     const userType = user.userType;
     if (userType !== 'superAdmin') {
       res.status(401);
-      res.json({msg: 'Not authorized to perform operation.'});
+      res.json({msg: 'Only admin users are authorized to perform this operation.'});
       return;
     }
-    getUserPr(req.body.id)
-    .then(function(user) {
-      user.userType = req.body.userType;
-      return insertUserPr(user) 
-    })
-    .then(function(resp) {
-      res.json(resp);
-    })
-    .catch(err => {
-      res.status(400);
-      res.json({err: err});
-    });
+    return insertUserPr(req.body.userObj, req.body.userObj._id) 
+  })
+  .then(function(resp) {
+    res.json(resp);
   })
   .catch(err => {
-    res.status(400);
+    res.status(404);
     res.json({err: err});
   });
 });

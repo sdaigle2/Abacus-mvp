@@ -15,12 +15,12 @@ router.get('/discounts', restrict, function (req, res) {
 		const userType = user.userType;
 		if (userType !== 'admin' && userType !== 'superAdmin') {
 			res.status(401);
-			res.json({msg: 'Not authorized to perform operation.'});
+			res.json({msg: 'Only admin users are authorized to perform this operation.'});
 			return;
 		}
 		dbService.discounts.list({include_docs: true}, function(err, body){
 			if (err) {
-				res.status(400);
+				res.status(500);
 				res.json({err: 'Error while getting discounts'});
 				return;
 			}
@@ -28,19 +28,19 @@ router.get('/discounts', restrict, function (req, res) {
 		});
 	})
 	.catch(err => {
-		res.status(400);
+		res.status(404);
 		res.json({err: err});
 	});
 });
 
-router.post('/discounts/expire', restrict, function (req, res) {
-	const discountId = req.body.discountId;
+router.put('/discounts/:discountId/expire', restrict, function (req, res) {
+	const discountId = req.params.discountId;
 	getUserPr(req.session.user)
 	.then(function(user) {
 		const userType = user.userType;
 		if (userType !== 'admin' && userType !== 'superAdmin') {
 			res.status(401);
-			res.json({msg: 'Not authorized to perform operation.'});
+			res.json({msg: 'Only admin users are authorized to perform this operation.'});
 			return;
 		}
 		dbService.discounts.get(discountId, function(err, body) {
@@ -51,20 +51,20 @@ router.post('/discounts/expire', restrict, function (req, res) {
 				discount.endDate = date;
 				dbService.discounts.insert(discount, discountId, function (err, body, header) {
 					if (err) {
-						res.status(400);
+						res.status(500);
 						res.json({err: 'Couldn\'t save discount into database'});
 					} else {
 						res.json(body);
 					}
 				});
 			} else {
-				res.status(400);
+				res.status(404);
 				res.json({msg: `Discount code "${discountId}" does not exist`});
 			}
 		});
 	})
 	.catch(err => {
-		res.status(400);
+		res.status(404);
 		res.json({err: err});
 	});
 });
@@ -91,7 +91,7 @@ router.post('/discounts/:id', restrict, function (req, res) {
 		const userType = user.userType;
 		if (userType !== 'admin' && userType !== 'superAdmin') {
 			res.status(401);
-			res.json({msg: 'Not authorized to perform operation.'});
+			res.json({msg: 'Only admin users are authorized to perform this operation.'});
 			return;
 		}
 		dbService.discounts.get(discountId, function(err) {
@@ -102,20 +102,20 @@ router.post('/discounts/:id', restrict, function (req, res) {
 
 				dbService.discounts.insert(discount, discountId, function (err, body, header) {
 					if (err) {
-					  res.status(400);
+					  res.status(500);
 					  res.json({err: 'Couldn\'t save discount into database'});
 					} else {
 					  res.json(body);
 					}
 				});
 			} else {
-				res.status(400);
+				res.status(404);
 				res.json({msg: `Discount code "${discountId}" does not exist`});
 			}
 		});
 	})
 	.catch(err => {
-		res.status(400);
+		res.status(404);
 		res.json({err: err});
 	});
 });
@@ -128,7 +128,7 @@ router.post('/discounts', restrict, function (req, res) {
 		const userType = user.userType;
 		if (userType !== 'admin' && userType !== 'superAdmin') {
 			res.status(401);
-			res.json({msg: 'Not authorized to perform operation.'});
+			res.json({msg: 'Only admin users are authorized to perform this operation.'});
 			return;
 		}
 		dbService.discounts.get(discount.id, function(err) {
@@ -137,20 +137,20 @@ router.post('/discounts', restrict, function (req, res) {
 				discount.percent = discount.percent / 100;
 				dbService.discounts.insert(discount, discount.id, function (err, body, header) {
 					if (err) {
-					  res.status(400);
+					  res.status(500);
 					  res.json({err: 'Couldn\'t save discount into database'});
 					} else {
 					  res.json(body);
 					}
 				});
 			} else {
-				res.status(400);
+				res.status(404);
 				res.json({msg: `Discount code "${discount.id}" already exists`});
 			}
 		});
 	})
 	.catch(err => {
-		res.status(400);
+		res.status(404);
 		res.json({err: err});
 	});
 });

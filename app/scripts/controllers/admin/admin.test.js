@@ -1,7 +1,7 @@
 describe('AdminController', function() {
   beforeEach(module('abacuApp'));
 
-  var $controller, DiscountsAPI;
+  var $controller, discountsService;
 
   beforeEach(function () {
     function getUserType() {
@@ -12,10 +12,10 @@ describe('AdminController', function() {
     });
   });
 
-  beforeEach(inject(function(_$controller_, $httpBackend, _DiscountsAPI_){
+  beforeEach(inject(function(_$controller_, $httpBackend, _discountsService_){
     $controller = _$controller_;
     httpBackend = $httpBackend;
-    DiscountsAPI = _DiscountsAPI_;
+    discountsService = _discountsService_;
     httpBackend.expectGET('orders').respond(200);
   }));
 
@@ -68,9 +68,9 @@ describe('AdminController', function() {
     it('should sort out the expired discount', function() {
       var $scope = {};
       
-      var controller = $controller('AdminCtrl', { $scope: $scope});
+      var controller = $controller('AdminController', { $scope: $scope});
       controller.getContentSection = function() {return 'Discounts'};
-      controller.init();
+      controller.activate();
       httpBackend.expectGET('discounts')
       .respond(200, discountsArr);
       httpBackend.flush();
@@ -80,9 +80,9 @@ describe('AdminController', function() {
     it('should arrange the order of discounts by creation time', function() {
       var $scope = {};
       
-      var controller = $controller('AdminCtrl', { $scope: $scope});
+      var controller = $controller('AdminController', { $scope: $scope});
       controller.getContentSection = function() {return 'Discounts'};
-      controller.init();
+      controller.activate();
       httpBackend.expectGET('discounts')
       .respond(200, discountsArr);
       httpBackend.flush();
@@ -92,12 +92,12 @@ describe('AdminController', function() {
     it('should delete "testdiscount" and keep "latestCreated"', function() {
       var $scope = {};
       
-      var controller = $controller('AdminCtrl', { $scope: $scope});
+      var controller = $controller('AdminController', { $scope: $scope});
       controller.getContentSection = function() {return 'Discounts'};
-      controller.init();
+      controller.activate();
       httpBackend.expectGET('discounts')
       .respond(200, discountsArr);
-      httpBackend.expectPOST('discounts/expire')
+      httpBackend.expectPUT('discounts/testdiscount/expire')
       .respond(200, {});
       controller.deleteDiscount(discountsArr.rows[0]);
       httpBackend.flush();
@@ -107,9 +107,9 @@ describe('AdminController', function() {
     it('should set a discount to edit', function() {
       var $scope = {};
       
-      var controller = $controller('AdminCtrl', { $scope: $scope});
+      var controller = $controller('AdminController', { $scope: $scope});
       controller.getContentSection = function() {return 'Discounts'};
-      controller.init();
+      controller.activate();
       httpBackend.expectGET('discounts')
       .respond(200, discountsArr);
       httpBackend.flush();
@@ -128,7 +128,7 @@ describe('AdminController', function() {
         "id": "testdiscount",
         "key": "testdiscount"
       });
-      var discountToEdit = DiscountsAPI.getEditDiscount();
+      var discountToEdit = discountsService.getEditDiscount();
       expect(discountToEdit.id).toEqual('testdiscount');
     });
   })
@@ -184,9 +184,9 @@ describe('AdminController', function() {
     it('should list users and sort out design functions', function() {
       var $scope = scope;
       
-      var controller = $controller('AdminCtrl', { $scope: $scope});
+      var controller = $controller('AdminController', { $scope: $scope});
       controller.getContentSection = function() {return 'Users'};
-      controller.init();
+      controller.activate();
       httpBackend.expectGET('users')
       .respond(200, usersArr);
       httpBackend.flush();
@@ -196,7 +196,7 @@ describe('AdminController', function() {
     it('should send a request to reset password if provided email is valid', function() {
       var $scope = scope;
       
-      var controller = $controller('AdminCtrl', { $scope: $scope});
+      var controller = $controller('AdminController', { $scope: $scope});
       controller.getContentSection = function() {return 'Users'};
       controller.resetPassword('testEmail@mail.com');
       httpBackend.expectPOST('users/email/testEmail@mail.com/request-reset-password')
@@ -208,7 +208,7 @@ describe('AdminController', function() {
     it('should error out on attempt to reset password with no email', function() {
       var $scope = scope;
       
-      var controller = $controller('AdminCtrl', { $scope: $scope});
+      var controller = $controller('AdminController', { $scope: $scope});
       controller.getContentSection = function() {return 'Users'};
       controller.resetPassword();
       
@@ -218,13 +218,13 @@ describe('AdminController', function() {
     it('should successfully change usertype', function() {
       var $scope = scope;
       
-      var controller = $controller('AdminCtrl', { $scope: $scope});
+      var controller = $controller('AdminController', { $scope: $scope});
       controller.getContentSection = function() {return 'Users'};
       controller.openProfile(usersArr.rows[0]);
       controller.profile.userType = 'basic';
       controller.filteredUsers = usersArr.rows;
       controller.setUserType();
-      httpBackend.expectPOST('users/change-user-type')
+      httpBackend.expectPUT('users/testUserId-1')
       .respond(200);
       httpBackend.flush();
       expect(controller.filteredUsers[0].doc.userType).toEqual('basic');
@@ -259,9 +259,9 @@ describe('AdminController', function() {
     it('should list orders by date', function() {
       var $scope = scope;
       
-      var controller = $controller('AdminCtrl', { $scope: $scope});
+      var controller = $controller('AdminController', { $scope: $scope});
       controller.getContentSection = function() {return 'Orders'};
-      controller.init();
+      controller.activate();
       httpBackend.expectGET('orders')
       .respond(200, ordersArr);
       httpBackend.flush();
@@ -273,9 +273,9 @@ describe('AdminController', function() {
     it('should add a formated date to each order', function() {
       var $scope = scope;
       
-      var controller = $controller('AdminCtrl', { $scope: $scope});
+      var controller = $controller('AdminController', { $scope: $scope});
       controller.getContentSection = function() {return 'Orders'};
-      controller.init();
+      controller.activate();
       httpBackend.expectGET('orders')
       .respond(200, ordersArr);
       httpBackend.flush();

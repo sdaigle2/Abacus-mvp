@@ -3,11 +3,11 @@
 
   angular
     .module('abacuApp')
-    .factory('UsersAPI', users);
+    .factory('usersService', usersService);
 
-  users.$inject = ['$http'];
+  usersService.$inject = ['$http'];
 
-  function users($http) {
+  function usersService($http) {
     var service = {
       getUsers: getUsers,
       resetPassword: resetPassword,
@@ -33,11 +33,11 @@
       .catch(handleError);
     };
 
-    function setUserType(id, userType) {
+    function setUserType(id, userObj) {
       return $http({
-        url: 'users/change-user-type',
-        method: 'POST',
-        data: {id: id, userType: userType}
+        url: 'users/' + userObj._id,
+        method: 'PUT',
+        data: {userObj: userObj}
       })
       .then(pushResponse)
       .catch(handleError);

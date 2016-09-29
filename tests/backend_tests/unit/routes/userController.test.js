@@ -5,7 +5,6 @@ const getLoggedInAgent = require('../../helpers/getLoggedInAgent');
 const dbService = require('../../../../server_scripts/services/db');
 const promise = require('bluebird');
 const getUserPr = promise.promisify(dbService.users.get);
-// const getDiscountPr = promise.promisify(dbService.discounts.get);
 const insertUserPr = promise.promisify(dbService.users.insert);
 
 const chance = new Chance();
@@ -32,20 +31,20 @@ describe('Test userController', () => {
       .catch(done);
   });
 
-  it('Should throw an error on attempt to create a discount if user is not admin', done => {
+  it('Should throw an error on attempt to get users list if user is not admin', done => {
     agent
       .get('/users')
       .expect(res => {
-        res.body.msg.should.equal('Not authorized to perform operation.')
+        res.body.msg.should.equal('Only admin users are authorized to perform this operation.')
       })
       .expect(401, done);
   });
 
   it('Should throw an error on attempt to change userType if user is not superAdmin', done => {
     agent
-      .post('/users/change-user-type')
+      .put('/users/test')
       .expect(res => {
-        res.body.msg.should.equal('Not authorized to perform operation.')
+        res.body.msg.should.equal('Only admin users are authorized to perform this operation.')
       })
       .expect(401, done);
   });
@@ -69,8 +68,8 @@ describe('Test userController', () => {
 
   it('Should change userType if user is superAdmin', done => {
     agent
-      .post('/users/change-user-type')
-      .send({'userType': 'admin', 'id': user._id})
+      .put(`/users/${user._id}`)
+      .send({'userObj': user})
       .expect(res => {
         res.body.ok.should.equal(true);
       })

@@ -57,7 +57,7 @@ router.get('/orders/:id', restrict, function(req, res) {
     const userType = user.userType;
     if (userType !== 'admin' && userType !== 'superAdmin') {
       res.status(401);
-      res.json({msg: 'Not authorized to perform operation.'});
+      res.json({msg: 'Only admin users are authorized to perform this operation.'});
       return;
     }
     return getOrderPr(req.params.id)
@@ -77,7 +77,7 @@ router.get('/orders', restrict, function(req, res) {
     const userType = user.userType;
     if (userType !== 'admin' && userType !== 'superAdmin') {
       res.status(401);
-      res.json({msg: 'Not authorized to perform operation.'});
+      res.json({msg: 'Only admin users are authorized to perform this operation.'});
       return;
     }
     dbService.orders.list({include_docs: true}, function(err, body){
@@ -121,13 +121,13 @@ router.get('/orders/:id/invoice', (req, res) => {
   });
 });
 
-router.post('/orders/:id/edit', restrict, function(req, res) {
+router.put('/orders/:id', restrict, function(req, res) {
   getUserPr(req.session.user)
   .then(function(user) {
     const userType = user.userType;
     if (userType !== 'admin' && userType !== 'superAdmin') {
       res.status(401);
-      res.json({msg: 'Not authorized to perform operation.'});
+      res.json({msg: 'Only admin users are authorized to perform this operation.'});
       return;
     }
     return insertOrderPr(req.body)

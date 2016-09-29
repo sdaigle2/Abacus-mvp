@@ -90,7 +90,7 @@ angular
       })
       .when('/admin', {
         templateUrl: 'views/admin.html',
-        controller: 'AdminCtrl',
+        controller: 'AdminController',
         controllerAs: 'admin',
         resolve: {
           UserData: ['$q', 'User', function($q, User) {
@@ -101,7 +101,7 @@ angular
               if (userData.userType === 'admin' || userData.userType === 'superAdmin') {
                 deferred.resolve();
               } else {
-                deferred.reject();
+                deferred.reject('Only admins are allowed to view this page.');
               }
               
               return deferred.promise;
@@ -111,7 +111,7 @@ angular
       })
       .when('/discounts', {
         templateUrl: 'views/discounts.html',
-        controller: 'DiscountsCtrl',
+        controller: 'DiscountsController',
         controllerAs: 'discount',
         resolve: {
           UserData: ['$q', 'User', function($q, User) {
@@ -122,7 +122,7 @@ angular
               if (userData.userType === 'admin' || userData.userType === 'superAdmin') {
                 deferred.resolve();
               } else {
-                deferred.reject();
+                deferred.reject('Only admins are allowed to view this page.');
               }
               
               return deferred.promise;
@@ -132,7 +132,7 @@ angular
       })
       .when('/order/:orderId', {
         templateUrl: 'views/adminOrder.html',
-        controller: 'OrdersCtrl',
+        controller: 'OrdersController',
         controllerAs: 'order',
         resolve: {
           UserData: ['$q', 'User', function($q, User) {
@@ -143,7 +143,7 @@ angular
               if (userData.userType === 'admin' || userData.userType === 'superAdmin') {
                 deferred.resolve();
               } else {
-                deferred.reject();
+                deferred.reject('Only admins are allowed to view this page.');
               }
               
               return deferred.promise;

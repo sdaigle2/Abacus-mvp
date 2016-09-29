@@ -3,11 +3,11 @@
 
   angular
     .module('abacuApp')
-    .factory('DiscountsAPI', discounts);
+    .factory('discountsService', discountsService);
 
-  discounts.$inject = ['$http'];
+  discountsService.$inject = ['$http'];
 
-  function discounts($http) {
+  function discountsService($http) {
     var savedDiscount = {}
     var service = {
       createDiscount: createDiscount,
@@ -41,9 +41,8 @@
 
     function deleteDiscount(discountId) {
       return $http({
-        url: 'discounts/expire',
-        method: 'POST',
-        data: {discountId: discountId}
+        url: 'discounts/' + discountId + '/expire',
+        method: 'PUT'
       })
       .then(pushResponse)
       .catch(handleError);

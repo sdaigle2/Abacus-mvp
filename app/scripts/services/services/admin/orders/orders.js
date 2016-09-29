@@ -3,14 +3,14 @@
 
   angular
     .module('abacuApp')
-    .controller('OrdersCtrl', ordersFn);
+    .controller('OrdersController', OrdersController);
     
-    ordersFn.$inject = ['$scope', '$location', 'User', '_', 'OrdersAPI', '$routeParams', 'PAYMENT_TYPES'];
+    OrdersController.$inject = ['$scope', '$location', 'User', '_', 'ordersService', '$routeParams', 'PAYMENT_TYPES'];
 
-    function ordersFn($scope, $location, User, _, OrdersAPI, $routeParams, PAYMENT_TYPES) {
+    function OrdersController($scope, $location, User, _, ordersService, $routeParams, PAYMENT_TYPES) {
       var order = this;
 
-      init();
+      activate();
 
       order.choosePaymentType = function(payType) {
         order.payment.payType = payType;
@@ -25,7 +25,7 @@
             if (changedStatus) {
               order.orderToEdit.orderStatus = changedStatus;
             }
-            return OrdersAPI.saveEditOrder(order.orderToEdit)
+            return ordersService.saveEditOrder(order.orderToEdit)
             .then(cb);
           } else {
             return;
@@ -33,7 +33,7 @@
         }
         order.orderToEdit.orderStatus = changedStatus;
 
-        OrdersAPI.saveEditOrder(order.orderToEdit)
+        ordersService.saveEditOrder(order.orderToEdit)
         .then(cb);
 
         function cb(resp) {
@@ -42,7 +42,7 @@
       };
 
       order.closeDropDown = function() {
-        init();
+        activate();
         order.dropdownOpen = false;
       };
 
@@ -59,17 +59,17 @@
         }
       });
 
-      function init() {
+      function activate() {
         order.payment = {};
         order.saveButton = false;
         order.dropdownOpen = false;
         order.PAYMENT_TYPES = PAYMENT_TYPES;
-        order.orderToEdit = OrdersAPI.getOrderToEdit();
+        order.orderToEdit = ordersService.getOrderToEdit();
         order.payment.payType = order.orderToEdit.payType;
         order.newOrderStatus = order.orderToEdit.orderStatus;
 
         if (_.isEmpty(order.orderToEdit)) {
-          OrdersAPI.getOrder($routeParams.orderId)
+          ordersService.getOrder($routeParams.orderId)
           .then(function(resp) {
             order.orderToEdit = resp;
             order.payment.payType = order.orderToEdit.payType;

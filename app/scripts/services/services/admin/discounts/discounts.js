@@ -3,13 +3,13 @@
 
   angular
     .module('abacuApp')
-    .controller('DiscountsCtrl', discountsFn);
+    .controller('DiscountsController', DiscountsController);
     
-    discountsFn.$inject = ['$scope', '$location', 'User', '_', 'DiscountsAPI'];
+    DiscountsController.$inject = ['$scope', '$location', 'User', '_', 'discountsService'];
 
-    function discountsFn($scope, $location, User, _, DiscountsAPI) {
+    function DiscountsController($scope, $location, User, _, discountsService) {
       var discount = this,
-      discountToEdit = DiscountsAPI.getEditDiscount(),
+      discountToEdit = discountsService.getEditDiscount(),
       discountLimitMessage = 'As an admin, you may only create discount codes no greater than 25%. Please contact Chris, Danny, or Cesar for approval to create a larger discount.';
 
       function validateFields(obj) {
@@ -62,7 +62,7 @@
             discount.discountObj = {};
             return discount.errorMsg = discountLimitMessage;
           }
-          DiscountsAPI.editDiscount(discount.discountObj)
+          discountsService.editDiscount(discount.discountObj)
           .then(function() {
             discount.dropdownOpen = true;
           })
@@ -85,7 +85,7 @@
               return discount.errorMsg = discountLimitMessage;
           }
 
-          DiscountsAPI.createDiscount(discount.discountObj)
+          discountsService.createDiscount(discount.discountObj)
           .then(function() {
               discount.successMsg = 'Discount successfully created.';
               discount.discountObj = {};

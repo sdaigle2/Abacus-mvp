@@ -189,10 +189,10 @@ describe('Test order payments', () => {
   it('Should fail to edit order if user is not admin', done => {
     newOrder.orderStatus = 'new test status';
     agent
-      .post(`/orders/${orderId}/edit`)
+      .put(`/orders/${orderId}`)
       .send(newOrder)
       .expect(res => {
-        res.body.msg.should.equal('Not authorized to perform operation.')
+        res.body.msg.should.equal('Only admin users are authorized to perform this operation.')
       })
       .expect(401, done);
   });
@@ -206,7 +206,7 @@ describe('Test order payments', () => {
         newOrder.orderStatus = 'new test status';
         newOrder._rev = orderRev;
         agent
-          .post(`/orders/${orderId}/edit`)
+          .put(`/orders/${orderId}`)
           .send(newOrder)
           .then(res => {
             orderRev = res.body.rev;

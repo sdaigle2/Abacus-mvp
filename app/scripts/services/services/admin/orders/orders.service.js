@@ -3,11 +3,11 @@
 
   angular
     .module('abacuApp')
-    .factory('OrdersAPI', orders);
+    .factory('ordersService', ordersService);
 
-  orders.$inject = ['$http'];
+  ordersService.$inject = ['$http'];
 
-  function orders($http) {
+  function ordersService($http) {
     var savedOrder = {};
 
     var service = {
@@ -39,8 +39,8 @@
 
     function saveEditOrder(order, payment, status) {
       return $http({
-        url: 'orders/' + order._id + '/edit',
-        method: 'POST',
+        url: 'orders/' + order._id,
+        method: 'PUT',
         data: order
       })
       .then(pushResponse)

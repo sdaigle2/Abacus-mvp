@@ -23,7 +23,7 @@ describe('OrdersController', function() {
       '$watch': function() {return;}
     };
     
-    var controller = $controller('OrdersCtrl', { $scope: $scope, $routeParams: {orderId: 'testId'}});
+    var controller = $controller('OrdersController', { $scope: $scope, $routeParams: {orderId: 'testId'}});
     httpBackend.expectGET('orders/testId')
     .respond(200, {_id: "6cfe700e391f3eeaa367a22a66369b7b", _rev: "14-d07e0eae1a518c9a97c208db3eb23e77", taxRate: 0, shippingFee: 15, sentDate: "2016-09-25T21:00:00.000Z"});
   });
@@ -33,7 +33,7 @@ describe('OrdersController', function() {
       '$watch': function() {return;}
     };
     
-    var controller = $controller('OrdersCtrl', { $scope: $scope, $routeParams: {orderId: 'testId'}});
+    var controller = $controller('OrdersController', { $scope: $scope, $routeParams: {orderId: 'testId'}});
     httpBackend.expectGET('orders/testId')
     .respond(200, {_id: "6cfe700e391f3eeaa367a22a66369b7b", _rev: "14-d07e0eae1a518c9a97c208db3eb23e77", taxRate: 0, shippingFee: 15, sentDate: "2016-09-25T21:00:00.000Z"});
     controller.newOrderStatus = 'New status for testing';
@@ -46,7 +46,7 @@ describe('OrdersController', function() {
       '$watch': function() {return;}
     };
     
-    var controller = $controller('OrdersCtrl', { $scope: $scope, $routeParams: {orderId: 'testId'}});
+    var controller = $controller('OrdersController', { $scope: $scope, $routeParams: {orderId: 'testId'}});
     httpBackend.expectGET('orders/testId')
     .respond(200, {_id: "6cfe700e391f3eeaa367a22a66369b7b", _rev: "14-d07e0eae1a518c9a97c208db3eb23e77", taxRate: 0, shippingFee: 15, sentDate: "2016-09-25T21:00:00.000Z"});
     controller.payment.amountPaid = -500;
@@ -64,7 +64,7 @@ describe('OrdersController', function() {
       '$watch': function() {return;}
     };
     
-    var controller = $controller('OrdersCtrl', { $scope: $scope, $routeParams: {orderId: 'testId'}});
+    var controller = $controller('OrdersController', { $scope: $scope, $routeParams: {orderId: 'testId'}});
     httpBackend.expectGET('orders/testId')
     .respond(200, {_id: "6cfe700e391f3eeaa367a22a66369b7b", _rev: "14-d07e0eae1a518c9a97c208db3eb23e77", taxRate: 0, shippingFee: 15, sentDate: "2016-09-25T21:00:00.000Z"});
     controller.payment.amountPaid = 200;
@@ -83,7 +83,7 @@ describe('OrdersController', function() {
       '$watch': function() {return;}
     };
     
-    var controller = $controller('OrdersCtrl', { $scope: $scope, $routeParams: {orderId: 'testId'}});
+    var controller = $controller('OrdersController', { $scope: $scope, $routeParams: {orderId: 'testId'}});
     httpBackend.expectGET('orders/testId')
     .respond(200, {_id: "6cfe700e391f3eeaa367a22a66369b7b", _rev: "14-d07e0eae1a518c9a97c208db3eb23e77", taxRate: 0, shippingFee: 15, sentDate: "2016-09-25T21:00:00.000Z"});
     controller.payment.amountPaid = 200;

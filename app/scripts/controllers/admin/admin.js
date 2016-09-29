@@ -12,11 +12,11 @@
         return [];
       };
     })
-    .controller('AdminCtrl', adminFn);
+    .controller('AdminController', AdminController);
     
-    adminFn.$inject = ['$scope', '$location', 'User', '_', 'DiscountsAPI', 'UsersAPI', 'OrdersAPI', 'filterFilter', '$filter'];
+    AdminController.$inject = ['$scope', '$location', 'User', '_', 'discountsService', 'usersService', 'ordersService', 'filterFilter', '$filter'];
 
-    function adminFn($scope, $location, User, _, DiscountsAPI, UsersAPI, OrdersAPI, filterFilter, $filter) {
+    function AdminController($scope, $location, User, _, discountsService, usersService, ordersService, filterFilter, $filter) {
       var admin = this;
 
       admin.contentSection = {
@@ -41,7 +41,7 @@
         return $location.search().section || admin.contentSection.orders;
       };
 
-      admin.init = function() {
+      admin.activate = function() {
         switch(admin.getContentSection()) {
           case 'Discounts':
             fillInDiscounts();
@@ -57,7 +57,7 @@
         admin.userType = User.getUserType();
       };
 
-      admin.init();
+      admin.activate();
 
       // DISCOUNTS
       var numberOfDiscounts;
@@ -67,12 +67,12 @@
         discountObj.startDate = new Date(discount.doc.startDate);
         discountObj.endDate = new Date(discount.doc.endDate);
         discountObj.editDiscountPage = true;
-        DiscountsAPI.setEditDiscount(discountObj);
+        discountsService.setEditDiscount(discountObj);
         $location.path('/discounts');
       };
 
       admin.deleteDiscount = function(discount) {
-        DiscountsAPI.deleteDiscount(discount.doc._id)
+        discountsService.deleteDiscount(discount.doc._id)
         .then(function(resp) {
           admin.discountsArray = _.reject(admin.discountsArray, function(item) {
              return item.doc._id === discount.doc._id;
@@ -81,7 +81,7 @@
       };
 
       admin.toDiscounts = function() {
-        DiscountsAPI.setEditDiscount({});
+        discountsService.setEditDiscount({});
         $location.path('/discounts');
       };
 
@@ -90,7 +90,7 @@
       };
 
       function fillInDiscounts() {
-        DiscountsAPI.getDiscounts()
+        discountsService.getDiscounts()
           .then(handleDiscounts);
       };
 
@@ -152,7 +152,7 @@
         var errorMsg = 'Error while resetting password';
         var email = email || admin.profile.id || '';
         if (email) {
-          UsersAPI.resetPassword(email)
+          usersService.resetPassword(email)
           .then(function() {
             admin.resetErrorMsg = '';
             admin.resetSuccessMsg = 'Reset link successfully sent';
@@ -166,7 +166,8 @@
       };
 
       admin.setUserType = function() {
-        UsersAPI.setUserType(admin.profile.id, admin.profile.userType)
+        admin.userProfile.doc.userType = admin.profile.userType; 
+        usersService.setUserType(admin.profile.id, admin.userProfile.doc)
         .then(function() {
           admin.profile.initialUserType = admin.profile.userType;
           admin.userTypeSuccessMsg = 'User type successfully changed';
@@ -180,7 +181,7 @@
       };
 
       function fillInUsers() {
-        UsersAPI.getUsers()
+        usersService.getUsers()
           .then(handleUsers);
       };
 
@@ -229,12 +230,12 @@
       };
 
       admin.viewOrder = function(order) {
-        OrdersAPI.setOrderToEdit(order.doc);
+        ordersService.setOrderToEdit(order.doc);
         $location.path('/order/' + order.doc._id);
       };
 
       function fillInOrders() {
-        OrdersAPI.getOrders()
+        ordersService.getOrders()
           .then(handleOrders);
       }
 

@@ -46,7 +46,7 @@ describe('Test discounts', () => {
       .post('/discounts')
       .send(discount)
       .expect(res => {
-        res.body.msg.should.equal('Not authorized to perform operation.')
+        res.body.msg.should.equal('Only admin users are authorized to perform this operation.')
       })
       .expect(401, done);
   });
@@ -55,7 +55,7 @@ describe('Test discounts', () => {
     agent
       .get('/discounts')
       .expect(res => {
-        res.body.msg.should.equal('Not authorized to perform operation.')
+        res.body.msg.should.equal('Only admin users are authorized to perform this operation.')
       })
       .expect(401, done);
   });
@@ -64,16 +64,16 @@ describe('Test discounts', () => {
     agent
       .post('/discounts/test')
       .expect(res => {
-        res.body.msg.should.equal('Not authorized to perform operation.')
+        res.body.msg.should.equal('Only admin users are authorized to perform this operation.')
       })
       .expect(401, done);
   });
 
   it('Should throw an error on attempt to delete a discount if user is not admin', done => {
     agent
-      .post('/discounts/expire')
+      .put('/discounts/test/expire')
       .expect(res => {
-        res.body.msg.should.equal('Not authorized to perform operation.')
+        res.body.msg.should.equal('Only admin users are authorized to perform this operation.')
       })
       .expect(401, done);
   });
@@ -125,8 +125,7 @@ describe('Test discounts', () => {
 
   it('Should be able to delete a discount', done => {
     agent
-      .post(`/discounts/expire`)
-      .send({discountId: discount._id})
+      .put(`/discounts/${discount._id}/expire`)
       .then(res => {
         discountRev = res.body.rev;
         getDiscountPr(discount.id)

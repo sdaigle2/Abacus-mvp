@@ -22,7 +22,7 @@ describe('DiscountsController', function() {
   it('should validate percent', function() {
     var $scope = {};
     
-    var controller = $controller('DiscountsCtrl', { $scope: $scope});
+    var controller = $controller('DiscountsController', { $scope: $scope});
     controller.discountObj = {
       id: 'test',
       percent: 'invalid',
@@ -36,7 +36,7 @@ describe('DiscountsController', function() {
   it('should validate id', function() {
     var $scope = {};
     
-    var controller = $controller('DiscountsCtrl', { $scope: $scope });
+    var controller = $controller('DiscountsController', { $scope: $scope });
     controller.discountObj = {
       id: null,
       percent: 12,
@@ -49,7 +49,7 @@ describe('DiscountsController', function() {
 
   it('should throw an error if user type is not superAdmin and percent is > 25%', function() {
     var $scope = {};
-    var controller = $controller('DiscountsCtrl', { $scope: $scope, httpBackend: httpBackend});
+    var controller = $controller('DiscountsController', { $scope: $scope, httpBackend: httpBackend});
     controller.discountObj = {
       id: 'valid',
       percent: '26',
@@ -63,7 +63,7 @@ describe('DiscountsController', function() {
 
   it('should successfully create a discount if data is correct', function() {
     var $scope = {};
-    var controller = $controller('DiscountsCtrl', { $scope: $scope, httpBackend: httpBackend});
+    var controller = $controller('DiscountsController', { $scope: $scope, httpBackend: httpBackend});
     controller.discountObj = {
       id: 'valid',
       percent: '0.12',
@@ -80,7 +80,7 @@ describe('DiscountsController', function() {
 
   it('should successfully edit a discount if data is correct', function() {
     var $scope = {};
-    var controller = $controller('DiscountsCtrl', { $scope: $scope, httpBackend: httpBackend});
+    var controller = $controller('DiscountsController', { $scope: $scope, httpBackend: httpBackend});
     controller.discountObj = {
       id: 'valid',
       percent: '0.12',
