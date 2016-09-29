@@ -87,7 +87,7 @@ describe('DiscountsController', function() {
       startDate: '2016-06-31T21:00:00.000Z',
       endDate: '2016-09-31T21:00:00.000Z'
     };
-    httpBackend.expectPOST('discounts/valid', {"id":"valid","percent":"0.12","startDate":"2016-06-31T21:00:00.000Z","endDate":"2016-09-31T21:00:00.000Z"})
+    httpBackend.expectPUT('discounts/valid', {"id":"valid","percent":"0.12","startDate":"2016-06-31T21:00:00.000Z","endDate":"2016-09-31T21:00:00.000Z"})
     .respond(200, {});
     controller.saveEditDiscount();
     httpBackend.flush();

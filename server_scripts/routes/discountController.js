@@ -33,7 +33,7 @@ router.get('/discounts', restrict, function (req, res) {
 	});
 });
 
-router.put('/discounts/:discountId/expire', restrict, function (req, res) {
+router.post('/discounts/:discountId/expire', restrict, function (req, res) {
 	const discountId = req.params.discountId;
 	getUserPr(req.session.user)
 	.then(function(user) {
@@ -83,7 +83,7 @@ router.get('/discounts/:id', restrict, function (req, res) {
 	});
 });
 
-router.post('/discounts/:id', restrict, function (req, res) {
+router.put('/discounts/:id', restrict, function (req, res) {
 	const discount = req.body;
 	const discountId = discount._id;
 	getUserPr(req.session.user)

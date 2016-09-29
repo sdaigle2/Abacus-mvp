@@ -62,7 +62,7 @@ describe('Test discounts', () => {
 
   it('Should throw an error on attempt to edit a discount if user is not admin', done => {
     agent
-      .post('/discounts/test')
+      .put('/discounts/test')
       .expect(res => {
         res.body.msg.should.equal('Only admin users are authorized to perform this operation.')
       })
@@ -71,7 +71,7 @@ describe('Test discounts', () => {
 
   it('Should throw an error on attempt to delete a discount if user is not admin', done => {
     agent
-      .put('/discounts/test/expire')
+      .post('/discounts/test/expire')
       .expect(res => {
         res.body.msg.should.equal('Only admin users are authorized to perform this operation.')
       })
@@ -109,7 +109,7 @@ describe('Test discounts', () => {
   it('Should be able to edit a discount', done => {
     discount.percent = '12';
     agent
-      .post(`/discounts/${discount.id}`)
+      .put(`/discounts/${discount.id}`)
       .send(discount)
       .then((res) => {
         discount._rev = res.body.rev;
@@ -125,7 +125,7 @@ describe('Test discounts', () => {
 
   it('Should be able to delete a discount', done => {
     agent
-      .put(`/discounts/${discount._id}/expire`)
+      .post(`/discounts/${discount._id}/expire`)
       .then(res => {
         discountRev = res.body.rev;
         getDiscountPr(discount.id)

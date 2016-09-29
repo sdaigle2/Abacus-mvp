@@ -76,6 +76,6 @@
     "clean": "rm ~/temp_chair_pics/* && rm ~/generated_pdfs/*",
     "autoprefixer": "postcss -u autoprefixer -r app/styles/**/*.css",
     "test_frontend": "grunt test",
-    "test_backend": "mocha tests/backend_tests/bootstrap.test.js tests/backend_tests/unit/routes/userController.test.js --timeout 5000"
+    "test_backend": "mocha tests/backend_tests/bootstrap.test.js tests/backend_tests/unit/**/*.test.js --timeout 5000"
   }
 }

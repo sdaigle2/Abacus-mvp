@@ -32,7 +32,7 @@
     function editDiscount(discount) {
       return $http({
         url: 'discounts/' + discount.id,
-        method: 'POST',
+        method: 'PUT',
         data: discount
       })
       .then(pushResponse)
@@ -42,7 +42,7 @@
     function deleteDiscount(discountId) {
       return $http({
         url: 'discounts/' + discountId + '/expire',
-        method: 'PUT'
+        method: 'POST'
       })
       .then(pushResponse)
       .catch(handleError);

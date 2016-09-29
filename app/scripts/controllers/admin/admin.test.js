@@ -97,7 +97,7 @@ describe('AdminController', function() {
       controller.activate();
       httpBackend.expectGET('discounts')
       .respond(200, discountsArr);
-      httpBackend.expectPUT('discounts/testdiscount/expire')
+      httpBackend.expectPOST('discounts/testdiscount/expire')
       .respond(200, {});
       controller.deleteDiscount(discountsArr.rows[0]);
       httpBackend.flush();
