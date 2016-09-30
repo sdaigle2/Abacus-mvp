@@ -228,10 +228,15 @@ function getChairPartOptionPrice(chair, optionID) {
   var chairOption = _.find(framePart.options, {'optionID': optionID});
   var defaultOption = _.find(framePart.options, {'optionID': defaultOptionID});
 
+
+  if (chairPart.priceByUser) {
+    return chairPart.priceByUser;
+  }
+  
   if (optionID === defaultOptionID) {
     return defaultOption.price; // return the base price
   } else {
-    return defaultOption.price + chairOption.price; // price is base price plus option price difference
+    return defaultOption.price + chairOption.price;
   }
 }
 
@@ -306,7 +311,11 @@ function getTotalChairPrice (chair, frame) {
     var o = getOption(p, chair.parts[i].optionID);
 
     if(chair.parts[i].optionID != -1) {
-      totalPrice += o.price;
+      if (chair.parts[i].priceByUser) {
+        totalPrice += chair.parts[i].priceByUser
+      } else {
+        totalPrice += o.price;
+      }    
     }
   }
   for (var j = 0; j < chair.measures.length; j++) {
@@ -437,7 +446,7 @@ function getTotalPrice() {
 }
 
 function getPayments(){
-  return getTotalDueNow.apply(this);
+  return (getTotalSubtotal.apply(this) - getTotalDiscount.apply(this) + getTotalShipping.apply(this) + getTotalTax.apply(this) - getTotalDueLater.apply(this)) ;
 }
 
 function getBalanceDue(){

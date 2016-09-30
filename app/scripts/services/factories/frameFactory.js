@@ -27,8 +27,10 @@ angular.module('abacuApp')
       this.measures = [];
 
 
-      for (var i = 0; i < frameData.parts.length; i++)
+      for (var i = 0; i < frameData.parts.length; i++) {
         this.parts.push(new Part(frameData.parts[i]));
+      }
+        
 
       for (var i = 0; i < frameData.measures.length; i++)
         this.measures.push(new Measure(frameData.measures[i]));
