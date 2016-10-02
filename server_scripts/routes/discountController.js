@@ -1,6 +1,7 @@
 /*
  * This controller allows you to retrieve, edit, delete discounts from the DB
  */
+"use strict";
 
 const router = require('express').Router();
 const dbService = require('../services/db');
