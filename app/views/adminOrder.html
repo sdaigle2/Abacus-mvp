@@ -11,11 +11,12 @@
 </div>
 <div class="admin-order-wrapper" ng-if="order.orderToEdit.orderNum">
 	<div class="admin-order-info">
-		<p class="admin-header medium">Order info</p>
+		<p class="admin-header medium">Order Info</p>
 		<hr>
 		<p class="text"><b>Id: </b>{{order.orderToEdit.id || order.orderToEdit._id}}</p>
-		<p class="text"><b>Total due: </b>{{order.orderToEdit.totalDue || 'No data'}}</p>
-		<p class="text"><b>Total due later: </b>{{order.orderToEdit.totalDueLater || 'No data'}}</p>
+		<p class="text"><b>Order Total: $</b>{{order.orderToEdit.totalDue.toFixed(2) || 'No data'}}</p>
+		<p class="text"><b>Amount Paid: $</b>{{(order.orderToEdit.totalDue- order.orderToEdit.totalDueLater).toFixed(2) || 'No data'}}</p>
+		<p class="text"><b>Amount Owed: $</b>{{order.orderToEdit.totalDueLater.toFixed(2) || 'No data'}}</p>
 		<p class="text"><b>Order status: </b>{{order.orderToEdit.orderStatus || 'No status'}}</p>
 		<p class="text"><b>Payment status: </b>{{order.orderToEdit.paymentStatus || 'No status'}}</p>
 		<p class="text"><b>Email: </b>{{order.orderToEdit.email}}</p>
@@ -24,6 +25,8 @@
 		<p class="text"><b>Shipping fee: </b>{{order.orderToEdit.shippingFee}}</p>
 		<p class="text"><b>User type: </b>{{order.orderToEdit.userType}}</p>
 		<p class="text"><b>Discounts: </b>{{order.orderToEdit.discounts.length}}</p>
+		<hr>
+		<p class="admin-header medium">Shipping Information</p>
 		<hr>
 		<p class="text"><b>Address: </b>{{order.orderToEdit.shippingDetails.addr}}</p>
 		<p class="text" ng-if="order.orderToEdit.shippingDetails.addr2"><b>Address-2: </b>{{order.orderToEdit.shippingDetails.addr2}}</p>
@@ -88,7 +91,7 @@
 		<p data-ng-bind="order.errorMsg" class="error-message"> </p>
 	</div>
 	<div class="admin-order-status">
-		<p class="admin-header medium">Change status</p>
+		<p class="admin-header medium">Order Status (Editable)</p>
 		<textarea ng-model="order.newOrderStatus"></textarea>
 	</div>
 </div>
