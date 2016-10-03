@@ -3,25 +3,70 @@
  */
 'use strict';
 
-var router = require('express').Router();
-var _ = require('lodash');
-var promise = require('bluebird');
+const router = require('express').Router();
+const _ = require('lodash');
+const promise = require('bluebird');
 
 // Import services
-var update = require('../services/user').update;
-var fixObject = require('../services/user').fixObject;
-var dbUtils   = require('../services/dbUtils');
-var dbService = require('../services/db');
-var updateOrInsertAllEntriesPr = promise.promisify(dbUtils.updateOrInsertAllEntries);
-var getUserPr = promise.promisify(dbService.users.get);
-var hash      = require('../services/security').hash;
+const update = require('../services/user').update;
+const fixObject = require('../services/user').fixObject;
+const dbUtils   = require('../services/dbUtils');
+const dbService = require('../services/db');
+const updateOrInsertAllEntriesPr = promise.promisify(dbUtils.updateOrInsertAllEntries);
+const getUserPr = promise.promisify(dbService.users.get);
+const insertUserPr = promise.promisify(dbService.users.insert);
+const hash      = require('../services/security').hash;
 
 // Import policies
-var restrict = require('../policies/restrict');
+const restrict = require('../policies/restrict');
 
-var _designFunctionId = '90e3fa2f51a7470a708c7aede3121ccf';
+const _designFunctionId = '90e3fa2f51a7470a708c7aede3121ccf';
 
-router.post('/users/current/current-wheelchair', restrict, function (req, res) {
+router.get('/users', restrict, function(req, res) {
+  getUserPr(req.session.user)
+  .then(function(user) {
+    const userType = user.userType;
+    if (userType !== 'admin' && userType !== 'superAdmin') {
+      res.status(401);
+      res.json({msg: 'Only admin users are authorized to perform this operation.'});
+      return;
+    }
+    dbService.users.list({include_docs: true}, function(err, body){
+      if (err) {
+        res.status(400);
+        res.json({err: 'Error while getting users'});
+        return;
+      }
+      res.json(body);
+    });
+  })
+  .catch(err => {
+    res.status(400);
+    res.json({err: err});
+  });
+});
+
+router.put('/users/:userId', restrict, function(req, res) {
+  getUserPr(req.session.user)
+  .then(function(user) {
+    const userType = user.userType;
+    if (userType !== 'superAdmin') {
+      res.status(401);
+      res.json({msg: 'Only admin users are authorized to perform this operation.'});
+      return;
+    }
+    return insertUserPr(req.body.userObj, req.body.userObj._id) 
+  })
+  .then(function(resp) {
+    res.json(resp);
+  })
+  .catch(err => {
+    res.status(404);
+    res.json({err: err});
+  });
+});
+
+router.post('/users/current/current-wheelchair', restrict, function(req, res) {
   var updateData = {
     'currentWheelchair': req.body.currentWheelchair
   }

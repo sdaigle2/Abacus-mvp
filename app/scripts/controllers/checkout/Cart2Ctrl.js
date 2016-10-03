@@ -28,7 +28,12 @@ angular.module('abacuApp')
     {
       'name': 'Credit Card', 
       'requiresAccount': false
-    }, 
+    },
+    {
+      'name': 'Credit',
+      'adminRequired': true,
+      'adminPage': true
+    },
     {
       'name': 'Cash',
       'requiresAdmin': true
@@ -43,7 +48,7 @@ angular.module('abacuApp')
       $scope.WHEELCHAIR_CANVAS_WIDTH = WHEELCHAIR_CANVAS_WIDTH;
       $scope.USER_TYPES = USER_TYPES;
       $scope.PAYMENT_METHODS = PAYMENT_METHODS;
-      $scope.PAYMENT_TYPES = PAYMENT_TYPES;
+      $scope.PAYMENT_TYPES = PAYMENT_TYPES.filter(function(payment) { return !payment.adminRequired});
 
       //user login dropdown
       Drop.setFalse();

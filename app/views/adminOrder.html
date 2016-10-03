@@ -1,0 +1,110 @@
+<link href="../styles/adminOrder.css" rel="stylesheet"/>
+<hr>
+<div class="admin-order-wrapper">
+	<div>
+		<h4>Order number: {{order.orderToEdit.orderNum}}</h4>
+	</div>
+	<div class="option-buttons">
+		<button ng-if="order.saveButton" ng-click="order.saveOrder()" class="button">SAVE</button>
+		<button class="button" ng-click="order.goToOrders()">GO BACK</button>
+	</div>
+</div>
+<div class="admin-order-wrapper" ng-if="order.orderToEdit.orderNum">
+	<div class="admin-order-info">
+		<p class="admin-header medium">Order Info</p>
+		<hr>
+		<p class="text"><b>Id: </b>{{order.orderToEdit.id || order.orderToEdit._id}}</p>
+		<p class="text"><b>Order Total: $</b>{{order.orderToEdit.totalDue.toFixed(2) || 'No data'}}</p>
+		<p class="text"><b>Amount Paid: $</b>{{(order.orderToEdit.totalDue- order.orderToEdit.totalDueLater).toFixed(2) || 'No data'}}</p>
+		<p class="text"><b>Amount Owed: $</b>{{order.orderToEdit.totalDueLater.toFixed(2) || 'No data'}}</p>
+		<p class="text"><b>Order status: </b>{{order.orderToEdit.orderStatus || 'No status'}}</p>
+		<p class="text"><b>Payment status: </b>{{order.orderToEdit.paymentStatus || 'No status'}}</p>
+		<p class="text"><b>Email: </b>{{order.orderToEdit.email}}</p>
+		<p class="text"><b>Phone: </b>{{order.orderToEdit.phone}}</p>
+		<p class="text"><b>Sent date: </b>{{order.orderToEdit.date || order.orderToEdit.sentDate  | date: 'mediumDate'}}</p>
+		<p class="text"><b>Shipping fee: </b>{{order.orderToEdit.shippingFee}}</p>
+		<p class="text"><b>User type: </b>{{order.orderToEdit.userType}}</p>
+		<p class="text"><b>Discounts: </b>{{order.orderToEdit.discounts.length}}</p>
+		<hr>
+		<p class="admin-header medium">Shipping Information</p>
+		<hr>
+		<p class="text"><b>Address: </b>{{order.orderToEdit.shippingDetails.addr}}</p>
+		<p class="text" ng-if="order.orderToEdit.shippingDetails.addr2"><b>Address-2: </b>{{order.orderToEdit.shippingDetails.addr2}}</p>
+		<p class="text"><b>City: </b>{{order.orderToEdit.shippingDetails.city}}</p>
+		<p class="text"><b>First name: </b>{{order.orderToEdit.shippingDetails.fName}}</p>
+		<p class="text"><b>Last name: </b>{{order.orderToEdit.shippingDetails.lName}}</p>
+		<p class="text"><b>State: </b>{{order.orderToEdit.shippingDetails.state}}</p>
+		<p class="text"><b>Zip: </b>{{order.orderToEdit.shippingDetails.zip}}</p>
+	</div>
+	<div class="admin-order-payment" ng-if="order.orderToEdit.totalDueLater">
+		<p class="admin-header medium">Make a payment</p>
+		<hr>
+		<div class="order-payment">
+			<div>
+				<p>Amount paid</p>
+				<input type="number" class="admin-stretch" data-ng-model="order.payment.amountPaid"/>
+			</div>
+			<div class="btn-group dropDown order-payment-item">
+				<p>Payment type:</p>
+				<button type="button" class="btn btn-default dropdown-toggle cartpage-dropdown order-payment-type" style="word-wrap: break-word;" data-toggle="dropdown">{{order.payment.payType}}
+					<span class="caret caretShape"></span>
+				</button>
+				<ul class="dropdown-menu" role="menu" style="word-wrap: break-word;">
+					<li ng-repeat="paymentType in order.PAYMENT_TYPES">
+						<a ng-click="order.choosePaymentType(paymentType.name)">- {{paymentType.name}}</a>
+					</li>
+				</ul>
+			</div>
+			<div ng-if="order.payment.payType === 'Check'">
+				<p>Enter check number</p>
+				<input type="text" class="admin-stretch" name="check-number" data-ng-model="order.payment.checkNum">
+			</div>
+			<!-- Cedit card info -->
+			<div ng-if="order.payment.payType === 'Credit Card'" class="order-payment-item">
+				<div class="paymentWindow">
+				  <div>
+					<form>
+						<div class="form-row">
+							<p>Card number</p>
+							<input type="text" size="20" class="admin-stretch" data-ng-model="order.payment.card.number"/>
+						</div>
+						<div class="form-row">
+							<p>CVC</p>
+							<input type="text" size="4" data-ng-model="order.payment.card.cvc"/>
+						</div>
+						<div class="form-row">
+							<p>Expiration (MM/YY)</p>
+							<input type="text" size="2" data-ng-model="order.payment.card.exp_month"/>
+							<span> / </span>
+							<input type="text" size="2" data-ng-model="order.payment.card.exp_year"/>
+						</div>
+					</form>
+				  </div>
+				</div>
+			</div>
+			<!-- Memo -->
+			<div class="order-payment-item">
+				<p>Memo</p>
+				<textarea class="admin-stretch" type="text" data-ng-model="order.payment.memo"></textarea>
+			</div>
+		</div>
+		<p data-ng-bind="order.errorMsg" class="error-message"> </p>
+	</div>
+	<div class="admin-order-status">
+		<p class="admin-header medium">Order Status (Editable)</p>
+		<textarea ng-model="order.newOrderStatus"></textarea>
+	</div>
+</div>
+
+<div class="order-cover" ng-if="order.dropdownOpen">
+	<div class="action-panel">
+		<article>
+			<h3>Complete!</h3>
+		</article>
+
+		<section>
+			<button ng-click="order.goToOrders()">GO TO MY ORDERS</button>
+		</section>
+		<div class="close-tab" ng-click="order.closeDropDown()"><span class="glyphicon glyphicon-remove"></span></div>
+	</div>
+</div>
