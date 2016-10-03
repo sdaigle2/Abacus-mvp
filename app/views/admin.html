@@ -35,7 +35,7 @@
     <div class="adminSidebarButtons"
          ng-class="{'showadminSidebarButtons' : admin.getContentSection() === admin.contentSection.discounts, 'hideadminSidebarButtons' : admin.getContentSection() !== admin.contentSection.discounts}">
       <div class="discount-search">
-        <input type="text" ng-model="search.doc._id" placeholder="Search">
+        <input type="text" ng-model="search.doc._id" placeholder="Search (not available)">
       </div>
       
       <button class="adminSidebarButton medium"
@@ -46,14 +46,14 @@
     <div class="adminSidebarButtons"
          ng-class="{'showadminSidebarButtons' : admin.getContentSection() === admin.contentSection.users, 'hideadminSidebarButtons' : admin.getContentSection() !== admin.contentSection.users}">
       <div class="discount-search">
-        <input type="text" ng-model="admin.searchUser.id" placeholder="Search">
+        <input type="text" ng-model="admin.searchUser.id" placeholder="Search (not available)">
       </div>
     </div>
 
     <div class="adminSidebarButtons"
          ng-class="{'showadminSidebarButtons' : admin.getContentSection() === admin.contentSection.orders, 'hideadminSidebarButtons' : admin.getContentSection() !== admin.contentSection.orders}">
       <div class="discount-search" ng-if="admin.getContentSection() === admin.contentSection.orders">
-        <input type="text" ng-model="admin.searchOrder" placeholder="Search">
+        <input type="text" ng-model="admin.searchOrder" placeholder="Search (not available">
       </div>
     </div>
 
@@ -66,10 +66,11 @@
         <table class="table">
             <thead>
               <tr>
-                <th>Order number</th>
-                <th>Date</th>
-                <th>User</th>
-                <th>Status</th>
+                <th>Order #</th>
+                <th>Order Date</th>
+                <th>User Email</th>
+                <th>Payment Status</th>
+                <th>Order Status</th>
                 <th>Invoice</th>
               </tr>
             </thead>
@@ -79,6 +80,7 @@
                 <td >{{order.doc.date}}</td>
                 <td >{{order.doc.userID}}</td>
                 <td >{{order.doc.paymentStatus}}</td>
+                <td >{{order.doc.orderStatus.substring(0,20)}}...</td>
                 <td ng-click="admin.viewInvoice($event)"><a  ng-href="orders/{{order.doc._id}}/invoice">View invoice</a></td>
               </tr>
             </tbody>
@@ -98,10 +100,10 @@
               <p ng-bind="admin.getPercents(discount.doc.percent)"></p>
             </div>
             <div class="discount-info-lines">
-              <p><b>Id: </b>{{discount.doc._id}}</p>
+              <p><b>Discount Code: </b>{{discount.doc._id}}</p>
               <p><b>Start date: </b>{{discount.doc.startDate | date:'medium'}}</p>
               <p><b>End date: </b>{{discount.doc.endDate | date:'medium'}}</p>
-              <p><b>Is multy: </b>{{discount.doc.isMultiDiscount}}</p>
+              <p><b>Allow Multiple Discounts: </b>{{discount.doc.isMultiDiscount}}</p>
               <p><b>Created by: </b>{{discount.doc.createdBy}}</p>
             </div>
             <div class="discount-options">
@@ -155,7 +157,7 @@
         <table class="table">
             <thead>
               <tr>
-                <th>Id</th>
+                <th>Email Address</th>
                 <th>User type</th>
               </tr>
             </thead>
