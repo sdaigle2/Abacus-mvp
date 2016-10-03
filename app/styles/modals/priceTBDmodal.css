@@ -7,6 +7,20 @@
 	margin-bottom: 20px;
 }
 
+.hint-text{
+  color: #444444;
+}
+
+.top-section{
+  padding-bottom: 10px;
+}
+
+.bottom-section{
+  padding-top: 10px;
+  padding-bottom: 30px;
+  border-top: 1px solid #b3b3b3;
+}
+
 .enter-button {
 	background-color: #4896FF;
 	color: white;
@@ -28,3 +42,4 @@
     display: block;
     clear: both;
 }
+
