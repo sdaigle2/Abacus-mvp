@@ -770,9 +770,10 @@ angular.module('abacuApp')
         var o = p.getOption(newOptionID);
 
         if (o.getPriceTBD()) {
-          $scope.priceToPay;
-          $scope.setTBD = function(price) {
-            o.setPrice(price)
+          $scope.priceToPay, $scope.newComment;
+          $scope.setTBD = function(price, comments) {
+            o.setPrice(price);
+            if (comments) o.setComments(comments);
             $scope.curEditWheelchair.setPriceByUser($scope.getCurPartData().partID, price);
             ngDialog.close()
           };
@@ -885,7 +886,8 @@ angular.module('abacuApp')
 
         if (o.getPriceTBD()) {
           $scope.priceToPay;
-          $scope.setTBD = function(price) {
+          $scope.setTBD = function(price, comments) {
+            if (comments) o.setComments(comments);
             $scope.curEditWheelchair.setMultiOptionForPart($scope.getCurPartData().partID, newOptionID, price);
             ngDialog.close()
           };
@@ -1009,6 +1011,7 @@ angular.module('abacuApp')
         $scope.designIsSaved = oVal === nVal;
         var partID = $scope.getCurPage().partID;
         var curEditPart = $scope.curEditWheelchair.getMultiPart(partID, $scope.curOption.optionID);
+
         if(curEditPart && $scope.curOption.optionID == curEditPart.optionID){
           curEditPart.comments = nVal;
         }
