@@ -1,0 +1,13 @@
+<link href="../../styles/modals/priceTBDModal.css" rel="stylesheet">
+<h2 class="tbd-header">Special Option</h2>
+<div class="top-section">
+  <h4 class="tbd-text"></h4>
+  <h4>Please describe this special item:</h4>
+  <textarea ng-model="newComment" placeholder="(i.e. Roho cushion model #...)" rows="2" cols="40"></textarea>
+</div>
+<div class="bottom-section">
+  <h4>How much does this item cost?</h4>
+  $<input type="number" ng-model="priceToPay" min="0">
+  <p class="hint-text"><em>If you don't know how much the item costs, please call us at 866-648-6891.  Otherwise, enter $0 and we'll calculate it later.</em></p>
+  <button ng-click="setTBD(priceToPay, newComment)" class="enter-button" >ENTER</button>
+</div>

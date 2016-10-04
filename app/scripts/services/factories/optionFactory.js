@@ -15,6 +15,7 @@ angular.module('abacuApp')
 
       this.optionID = optionData.optionID;
       this.price = optionData.price;
+      this.priceTBD = optionData.priceTBD;
 
       this.name = optionData.name;
       this.thumbnailURL = optionData.thumbnailURL;
@@ -24,7 +25,7 @@ angular.module('abacuApp')
       this.sizes = optionData.sizes;
       this.defaultSizeIndex = optionData.defaultSizeIndex;
       this.comments = optionData.comments;
-
+      this.priceByUser = optionData.priceByUser;
 
       this.colors = [];
 
@@ -45,6 +46,8 @@ angular.module('abacuApp')
       getID: function () { return this.optionID; },
       getName: function () { return this.name; },
       getPrice: function () { return this.price; },
+      getPriceTBD: function () { return this.priceTBD; },
+      getPriceByUser: function () { return this.priceByUser; },
       getWeight: function () { return this.weight; },
       getDesc: function () { return this.desc; },
       getThumbnailURL: function () { return this.thumbnailURL; },
@@ -89,6 +92,10 @@ angular.module('abacuApp')
       },
       setComments: function(word){
         this.comments = word;
+      },
+      setPrice: function(price) {
+        this.price = price;
+        this.priceByUser = price;
       }
 
     };

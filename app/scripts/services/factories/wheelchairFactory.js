@@ -97,7 +97,8 @@ angular.module('abacuApp')
             colorID: p.colorID,
             sizeIndex: p.sizeIndex,
             comments: p.comments,
-            colorIn: p.colorIn
+            colorIn: p.colorIn,
+            priceByUser: p.priceByUser
           };
           this.parts.push(copyPart);
         }
@@ -340,18 +341,21 @@ angular.module('abacuApp')
           p.colorID = o.getDefaultColorID();
           p.sizeIndex = o.getDefaultSizeIndex();
           p.comments = o.getComments();
+          p.priceByUser = o.getPriceByUser();
           this.previewImageGenerator.setOptionForPart(pID, oID);
         }
       },
 
-      setMultiOptionForPart: function (pID, oID) {
+      setMultiOptionForPart: function (pID, oID, priceByUser) {
           var o = FrameData.getFrame(this.frameID).getPartOption(pID, oID);
+
           this.parts.push({
             partID: pID,
             optionID: oID,
             colorID: o.getDefaultColorID(),
             sizeIndex: o.getDefaultSizeIndex(),
-            comments: o.getComments()
+            comments: o.getComments(),
+            priceByUser: priceByUser || ''
           });
       },
 
@@ -360,6 +364,13 @@ angular.module('abacuApp')
         if (p !== null) {
           p.colorID = cID;
           this.previewImageGenerator.setColorForPart(pID, cID);
+        }
+      },
+
+      setPriceByUser: function(pID, price) {
+        var p = this.getPart(pID);
+        if (p !== null) {
+          p.priceByUser = price;
         }
       },
 
@@ -453,7 +464,11 @@ angular.module('abacuApp')
           var p = frame.getPart(this.parts[i].partID);
           var o = p.getOption(this.parts[i].optionID);
           if(this.parts[i].optionID != -1) {
-            totalPrice += o.getPrice();
+            if (this.parts[i].priceByUser) {
+              totalPrice += this.parts[i].priceByUser 
+            } else {
+              totalPrice += o.getPrice();
+            }
           }
         }
         for (var j = 0; j < this.measures.length; j++) {
@@ -474,7 +489,12 @@ angular.module('abacuApp')
           var p = frame.getPart(this.parts[i].partID);
           var o = p.getOption(this.parts[i].optionID);
           if(this.parts[i].optionID != -1) {
-            totalPrice += o.getPrice();
+            if (this.parts[i].priceByUser) {
+              totalPrice += this.parts[i].priceByUser 
+            } else {
+              totalPrice += o.getPrice();
+            }
+            
           }
         }
         for (var j = 0; j < this.measures.length; j++) {

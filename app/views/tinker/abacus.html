@@ -359,7 +359,7 @@
                   <h4 class="sideBar-custom-item-name" title="{{titleForEllipsis(option.name, 45)}}"
                       data-ng-bind="ellipsisFormat(option.name, 45)"></h4>
                   <h4 class="sideBar-custom-item-details">
-                    <strong>$<span data-ng-bind="option.price.toFixed(2)"></span> <!--| <span
+                    <strong>$<span data-ng-bind="getOptionPrice(option).toFixed(2)"></span> <!--| <span
                       data-ng-bind="(option.weight * getCurUnitSysWeightFactor()).toFixed(2)"></span>
                       <span data-ng-bind="getCurUnitSysWeightName()"></span>--></strong>
                   </h4>
