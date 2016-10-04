@@ -37,7 +37,7 @@ describe('OrdersController', function() {
     httpBackend.expectGET('orders/testId')
     .respond(200, {_id: "6cfe700e391f3eeaa367a22a66369b7b", _rev: "14-d07e0eae1a518c9a97c208db3eb23e77", taxRate: 0, shippingFee: 15, sentDate: "2016-09-25T21:00:00.000Z"});
     controller.newOrderStatus = 'New status for testing';
-    controller.saveOrder();
+    controller.saveStatus();
     expect(controller.orderToEdit.orderStatus).toEqual('New status for testing');
   });
 
@@ -54,7 +54,7 @@ describe('OrdersController', function() {
     controller.payment.card = {
       'number': 4242424242424242
     };
-    controller.saveOrder();
+    controller.savePayment();
     expect(controller.errorMsg).toEqual('Please enter a value between 0 and undefined');
   });
 
@@ -72,7 +72,7 @@ describe('OrdersController', function() {
     controller.payment.card = {
       'number': 'invalid'
     };
-    controller.saveOrder();
+    controller.savePayment();
 
     expect(controller.errorMsg).toEqual('Credit card number is not correct');
   });
@@ -94,7 +94,7 @@ describe('OrdersController', function() {
     controller.payment.card = {
       'number': '4242424242424242'
     };
-    controller.saveOrder();
+    controller.savePayment();
     expect(controller.errorMsg).toEqual(undefined);
     expect(controller.orderToEdit.payments[0].amount).toEqual(200);
     expect(controller.orderToEdit.payments[0].method).toEqual('Credit Card');

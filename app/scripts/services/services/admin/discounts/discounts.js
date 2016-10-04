@@ -10,7 +10,7 @@
     function DiscountsController($scope, $location, User, _, discountsService) {
       var discount = this,
       discountToEdit = discountsService.getEditDiscount(),
-      discountLimitMessage = 'As an admin, you may only create discount codes no greater than 25%. Please contact Chris, Danny, or Cesar for approval to create a larger discount.';
+      discountLimitMessage = 'As an admin, you may only set discount codes no greater than 25%. Please contact Chris, Danny, or Cesar for approval to create a larger discount.';
 
       function validateFields(obj) {
         if (!obj.startDate || !obj.endDate || !obj.id || !obj.percent) return 'Please fill in all the fields.';
@@ -59,7 +59,6 @@
           discount.errorMsg = '';
           
           if (User.getUserType() !== 'superAdmin' && discount.discountObj.percent > 25) {
-            discount.discountObj = {};
             return discount.errorMsg = discountLimitMessage;
           }
           discountsService.editDiscount(discount.discountObj)

@@ -58,7 +58,7 @@ describe('DiscountsController', function() {
     };
 
     controller.submitDiscount();
-    expect(controller.errorMsg).toEqual('As an admin, you may only create discount codes no greater than 25%. Please contact Chris, Danny, or Cesar for approval to create a larger discount.');
+    expect(controller.errorMsg).toEqual('As an admin, you may only set discount codes no greater than 25%. Please contact Chris, Danny, or Cesar for approval to create a larger discount.');
   });
 
   it('should successfully create a discount if data is correct', function() {

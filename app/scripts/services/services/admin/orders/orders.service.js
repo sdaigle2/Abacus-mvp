@@ -37,7 +37,7 @@
       .catch(handleError);
     }
 
-    function saveEditOrder(order, payment, status) {
+    function saveEditOrder(order) {
       return $http({
         url: 'orders/' + order._id,
         method: 'PUT',

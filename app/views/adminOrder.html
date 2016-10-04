@@ -5,7 +5,7 @@
 		<h4>Order number: {{order.orderToEdit.orderNum}}</h4>
 	</div>
 	<div class="option-buttons">
-		<button ng-if="order.saveButton" ng-click="order.saveOrder()" class="button">SAVE</button>
+		<button ng-if="order.saveButton" ng-click="order.saveStatus()" class="button">SAVE</button>
 		<button class="button" ng-click="order.goToOrders()">GO BACK</button>
 	</div>
 </div>
@@ -87,6 +87,7 @@
 				<p>Memo</p>
 				<textarea class="admin-stretch" type="text" data-ng-model="order.payment.memo"></textarea>
 			</div>
+			<button class="button payment-button" ng-click="order.savePayment()">Submit</button>
 		</div>
 		<p data-ng-bind="order.errorMsg" class="error-message"> </p>
 	</div>

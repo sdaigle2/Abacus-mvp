@@ -14,7 +14,7 @@ hr {
 .admin-order-info {
 	display: inline-block;
 	width: 38%;
-	min-height: 570px;
+	min-height: 610px;
 	background-color: #fff;
 	border: 1px solid #999;
 }
@@ -25,11 +25,34 @@ hr {
 }
 
 .admin-order-payment {
+	position: relative;
 	display: inline-block;
 	width: 25%;
 	background-color: #fff;
 	border: 1px solid #999;
 	min-height: 570px;
+}
+
+.admin-order-payment .payment-button {
+	position: absolute;
+	bottom: 10px;
+	height: 30px;
+	width: calc(100% - 20px);
+	left: 10px;
+	padding: 0;
+	background-color: #fff;
+}
+
+.admin-order-payment .form-row {
+	margin-bottom: 5px;
+}
+
+.admin-order-payment .form-row p {
+	margin: 0;
+}
+
+.admin-order-payment .payment-button:hover {
+	background-color: #4F9DFF;
 }
 
 .order-payment {

@@ -13,32 +13,29 @@
       activate();
 
       order.choosePaymentType = function(payType) {
+        order.errorMsg = '';
         order.payment.payType = payType;
       };
 
-      order.saveOrder = function() {
+      order.savePayment = function() {
         delete order.orderToEdit.date;
-        var changedStatus = order.newOrderStatus !== order.orderToEdit.orderStatus ? order.newOrderStatus : null;
-        if (order.payment.amountPaid) {
-          if (validFields()) {
-            addPayment();
-            if (changedStatus) {
-              order.orderToEdit.orderStatus = changedStatus;
-            }
-            return ordersService.saveEditOrder(order.orderToEdit)
-            .then(cb);
-          } else {
-            return;
-          }
+        if (validFields()) {
+          addPayment();
+          return ordersService.saveEditOrder(order.orderToEdit)
+          .then(function(){
+            order.dropdownOpen = true;
+          });
         }
-        order.orderToEdit.orderStatus = changedStatus;
+      }
+
+      order.saveStatus = function() {
+        delete order.orderToEdit.date;
+        order.orderToEdit.orderStatus = order.newOrderStatus;
 
         ordersService.saveEditOrder(order.orderToEdit)
-        .then(cb);
-
-        function cb(resp) {
+        .then(function(){
           order.dropdownOpen = true;
-        }
+        });
       };
 
       order.closeDropDown = function() {
@@ -50,9 +47,9 @@
         $location.path('/admin');
       };
 
-      $scope.$watch('[order.payment.amountPaid,  order.newOrderStatus]', function(nVal, oVal) {
+      $scope.$watch('order.newOrderStatus', function(nVal, oVal) {
         order.errorMsg = '';
-        if (nVal[0] || nVal[1] !== order.orderToEdit.orderStatus) {
+        if (nVal !== order.orderToEdit.orderStatus) {
           order.saveButton = true;
         } else {
           order.saveButton = false;
@@ -103,7 +100,10 @@
       }
 
       function validFields() {
-        if (order.payment.amountPaid < 0 || order.payment.amountPaid > order.orderToEdit.totalDueLater) {
+        if (!order.payment.amountPaid) {
+          order.errorMsg = 'Please enter amount you want to be paid';
+          return false;
+        } else if (order.payment.amountPaid < 0 || order.payment.amountPaid > order.orderToEdit.totalDueLater) {
           order.errorMsg = 'Please enter a value between 0 and ' + order.orderToEdit.totalDueLater;
           return false;
         } else if (order.payment.payType === 'Credit Card' && !order.payment.card)  {
