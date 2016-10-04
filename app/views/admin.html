@@ -34,27 +34,24 @@
     </ul>
     <div class="adminSidebarButtons"
          ng-class="{'showadminSidebarButtons' : admin.getContentSection() === admin.contentSection.discounts, 'hideadminSidebarButtons' : admin.getContentSection() !== admin.contentSection.discounts}">
-      <div class="discount-search">
-        <input type="text" ng-model="search.doc._id" placeholder="Search (not available)">
+      <div class="input-group adminSearchBox">
+        <p>Search Discount Codes:</p>
+        <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="search.doc._id" placeholder="example: discountCode20">
       </div>
-      
+
       <button class="adminSidebarButton medium"
         id="adminSidebarSaveButton"
         data-ng-click="admin.toDiscounts()"> Create a new discount</button>
     </div>
 
-    <div class="adminSidebarButtons"
-         ng-class="{'showadminSidebarButtons' : admin.getContentSection() === admin.contentSection.users, 'hideadminSidebarButtons' : admin.getContentSection() !== admin.contentSection.users}">
-      <div class="discount-search">
-        <input type="text" ng-model="admin.searchUser.id" placeholder="Search (not available)">
-      </div>
+    <div class="input-group adminSearchBox" ng-if="admin.getContentSection() === admin.contentSection.users">
+      <p>Search Users:</p>
+      <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="admin.searchUser.id" placeholder="example@website.com">
     </div>
 
-    <div class="adminSidebarButtons"
-         ng-class="{'showadminSidebarButtons' : admin.getContentSection() === admin.contentSection.orders, 'hideadminSidebarButtons' : admin.getContentSection() !== admin.contentSection.orders}">
-      <div class="discount-search" ng-if="admin.getContentSection() === admin.contentSection.orders">
-        <input type="text" ng-model="admin.searchOrder" placeholder="Search (not available)">
-      </div>
+    <div class="input-group adminSearchBox" ng-if="admin.getContentSection() === admin.contentSection.orders">
+      <p>Search Orders</p>
+      <input type="text" class="form-control" aria-describedby="basic-addon1" ng-model="admin.searchOrder" placeholder="order# or example@website.com">
     </div>
 
   </div>
@@ -115,7 +112,7 @@
               </button>
             </div>
           </div>
-        </li> 
+        </li>
       </ul>
     </div>
     <!-- USERS -->
@@ -141,7 +138,7 @@
             </ul>
           </div>
           <div class="dropdown user-type-button">
-            
+
             <button ng-disabled="admin.resetSuccessMsg" class="btn dropdown-toggle" ng-click="admin.resetPassword(admin.profile.email)" type="button" data-toggle="dropdown">Reset Password</button>
             <p class="errorMsg"><b>{{admin.resetErrorMsg}}</b></p>
             <p class="successMsg"><b>{{admin.resetSuccessMsg}}</b></p>
