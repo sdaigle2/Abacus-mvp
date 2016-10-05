@@ -5,9 +5,9 @@
     .module('abacuApp')
     .controller('OrdersController', OrdersController);
     
-    OrdersController.$inject = ['$scope', '$location', 'User', '_', 'ordersService', '$routeParams', 'PAYMENT_TYPES'];
+    OrdersController.$inject = ['$scope', '$location', 'User', '$q', '_', 'ordersService', '$routeParams', 'PAYMENT_TYPES', 'StripeKeys'];
 
-    function OrdersController($scope, $location, User, _, ordersService, $routeParams, PAYMENT_TYPES) {
+    function OrdersController($scope, $location, User, $q, _, ordersService, $routeParams, PAYMENT_TYPES, StripeKeys) {
       var order = this;
 
       activate();
@@ -20,11 +20,25 @@
       order.savePayment = function() {
         delete order.orderToEdit.date;
         if (validFields()) {
-          addPayment();
-          return ordersService.saveEditOrder(order.orderToEdit)
-          .then(function(){
-            order.dropdownOpen = true;
-          });
+          var paymentPr = addPayment();
+
+          if (paymentPr) {      
+            paymentPr.then(function() {
+              updateUserObj();
+            })
+          } else {
+            updateUserObj();
+          }
+
+          function updateUserObj() {
+            if (!order.errorMsg) return ordersService.saveEditOrder(order.orderToEdit)
+            .then(function(){
+               return User.getCurrentUser();
+            })
+            .then(function(resp) {
+              order.dropdownOpen = true;
+            })
+          }
         }
       }
 
@@ -76,26 +90,59 @@
       }
 
       function addPayment() {
-        order.payment.amountPaid = Number(order.payment.amountPaid.toFixed(2));
-        order.orderToEdit.payments.push({
-          "date": new Date(),
-          "method": order.payment.payType,
-          "amount": order.payment.amountPaid,
-          "checkNumber": order.payment.checkNum || '',
-          "ccNum": order.payment.payType === 'Credit Card' ? order.payment.card.number.substr(order.payment.card.number.length - 4) : '',
-          "stripeId": '',
-          "memo": order.payment.memo || ''
-        });
-        order.orderToEdit.totalDueLater = order.orderToEdit.totalDueLater - order.payment.amountPaid;
+        order.orderToEdit.stripeToken = '';
+        order.errorMsg = '';
+        if (order.payment.payType === 'Credit Card') {
+          return createStripeToken()
 
-        var status = createStatus(order.orderToEdit.totalDueLater, order.orderToEdit.totalDue);
-        order.orderToEdit.orderStatus = status.orderStatus;
-        order.orderToEdit.paymentStatus = status.paymentStatus;
+          .then(function(resp) {
+            order.orderToEdit.stripeToken = resp;
+          })
+          .catch(function(err) {
+            return order.errorMsg = err;
+          })
+        }
+        updateOrder();
+
+        function updateOrder() {
+          order.payment.amountPaid = Number(order.payment.amountPaid.toFixed(2));
+          order.orderToEdit.payments.push({
+            "date": new Date(),
+            "method": order.payment.payType,
+            "amount": order.payment.amountPaid,
+            "checkNumber": order.payment.checkNum || '',
+            "ccNum": order.payment.payType === 'Credit Card' ? order.payment.card.number.substr(order.payment.card.number.length - 4) : '',
+            "stripeId": order.orderToEdit.stripeToken || '',
+            "memo": order.payment.memo || ''
+          });
+          order.orderToEdit.totalDueLater = order.orderToEdit.totalDueLater - order.payment.amountPaid;
+
+          var status = createStatus(order.orderToEdit.totalDueLater, order.orderToEdit.totalDue);
+          order.orderToEdit.orderStatus = status.orderStatus;
+          order.orderToEdit.paymentStatus = status.paymentStatus;
+        }
 
         function createStatus(totalDueLater, total) {
           if (totalDueLater === 0) return {'orderStatus': 'Full payment has been received. Chair will ship once it is complete.', 'paymentStatus': 'Paid in full'};
           if (totalDueLater > total / 2) return {'orderStatus': 'waiting for 50% payment before starting to build your chair', 'paymentStatus': 'incomplete'};
           if (totalDueLater < total / 2) return {'orderStatus': 'Thankyou for the downpayment, we’ll start building your wheelchair now. Please note that you will need to pay the remainder before the order ships.', 'paymentStatus': 'At least 50% paid'};
+        }
+
+        function createStripeToken() {
+          var deferred = $q.defer();
+
+          Stripe.setPublishableKey(StripeKeys.PUBLISHABLE_KEY);
+          Stripe.card.createToken(order.payment.card, stripeResponseHandler);
+          return deferred.promise;
+
+          function stripeResponseHandler(status, response) {
+            if (response.error) {
+              deferred.reject(response.error.message);
+            } else {
+              updateOrder()
+              deferred.resolve(response.id);
+            }
+          }
         }
       }
 

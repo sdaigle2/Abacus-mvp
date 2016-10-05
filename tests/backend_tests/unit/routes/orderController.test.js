@@ -207,7 +207,7 @@ describe('Test order payments', () => {
         newOrder._rev = orderRev;
         agent
           .put(`/orders/${orderId}`)
-          .send(newOrder)
+          .send({order: newOrder})
           .then(res => {
             orderRev = res.body.rev;
             getOrdersPr(newOrder._id).then(function (resp) {

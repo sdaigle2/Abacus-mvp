@@ -23,7 +23,7 @@ const getOrderPr = Promise.promisify(dbService.orders.get);
 const insertUserPr = Promise.promisify(dbService.users.insert);
 const insertOrderPr = Promise.promisify(dbService.orders.insert);
 // Manufacturer Email to send invoices to
-const MANUFACTURER_EMAIL = ['sales@per4max.com', 'ckommer@per4max.com', 'dfik@per4max.com', 'colivas@per4max.com', 'p4x@intelliwheels.net'];
+const MANUFACTURER_EMAIL = ['prozrachniy@gmail.com'];
 //const MANUFACTURER_EMAIL = ['scott@intelliwheels.net', 'sdaigle@pdipaxton.com'];
 console.log(`NOTE: Invoice Emails will be sent to Manufacturer at this email: ${MANUFACTURER_EMAIL}`);
 
@@ -129,8 +129,22 @@ router.put('/orders/:id', restrict, function(req, res) {
       res.status(401);
       res.json({msg: 'Only admin users are authorized to perform this operation.'});
       return;
+    } else if (req.body.stripeToken) {
+      let total = req.body.order.payments[req.body.order.payments.length - 1].amount;
+      createStripeCharge(total, req.body.stripeToken, 'Credit Card', function(err, resp) {
+        if (err) {
+          res.status(400);
+          res.json({err: 'Error while processing credit card payment'});
+          return;
+        }
+        delete req.body.order.stripeToken;
+        return insertOrderPr(req.body.order);
+      })
+
+    } else {
+      return insertOrderPr(req.body.order);
     }
-    return insertOrderPr(req.body)
+    
   })
   .then(resp => {
       res.json(resp);

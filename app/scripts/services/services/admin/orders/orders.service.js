@@ -38,10 +38,11 @@
     }
 
     function saveEditOrder(order) {
+      var stripeToken = order.stripeToken;
       return $http({
         url: 'orders/' + order._id,
         method: 'PUT',
-        data: order
+        data: {order: order, stripeToken: stripeToken}
       })
       .then(pushResponse)
       .catch(handleError);

@@ -1,5 +1,5 @@
 'use strict';
-var Stripe = {
+Stripe = {
   setPublishableKey : function() {
     return;
   },
