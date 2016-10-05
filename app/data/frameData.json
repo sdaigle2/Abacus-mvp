@@ -2251,6 +2251,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/roho-cushion.jpg",
 					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.  We offer a Roho Cushion or Stimulite for $475.",
 					"price": 475,
+          "priceTBD": 1,
 					"defaultColorID": 0
 				}
 			]
@@ -5017,6 +5018,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/roho-cushion.jpg",
 					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.  We offer a Roho Cushion or Stimulite for $475.",
 					"price": 475,
+          "priceTBD": 1,
 					"defaultColorID": 0
 				}
 			]
@@ -7268,6 +7270,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/roho-cushion.jpg",
 					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.  We offer a Roho Cushion or Stimulite for $475.",
 					"price": 475,
+          "priceTBD": 1,
 					"defaultColorID": 0
 				}
 			]
@@ -9489,6 +9492,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/roho-cushion.jpg",
 					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.  We offer a Roho Cushion or Stimulite for $475.",
 					"price": 475,
+          "priceTBD": 1,
 					"defaultColorID": 0
 				}
 			]
@@ -12242,6 +12246,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/roho-cushion.jpg",
 					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.  We offer a Roho Cushion or Stimulite for $475.",
 					"price": 427.5,
+          "priceTBD": 1,
 					"defaultColorID": 0
 				}
 			]
