@@ -2006,7 +2006,6 @@
             "desc": "Supply your own hand rims.",
             "weight": -0.05,
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
@@ -2156,7 +2155,6 @@
             "desc": "Supply your own tires.",
             "weight": -0.05,
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
@@ -2239,7 +2237,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/hard-cushion.jpg",
 					"desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height. This is often chosen in conjunction with the plastic seat plate (found in the misc. section).",
 					"price": 120,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -2301,7 +2298,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/click-strap.jpg",
 					"desc": "Our click straps are the sale ratchet design on snowboard bindings.",
 					"price": 75,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -2315,7 +2311,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 65,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -2356,7 +2351,6 @@
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
                     "desc": "No Strap Selected",
                     "price": 0,
-                    "priceTBD": 1,
                     "defaultColorID": 0
                 }
 			]
@@ -2471,7 +2465,6 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "No miscellaneous options.",
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
@@ -4773,7 +4766,6 @@
             "desc": "Supply your own hand rims.",
             "weight": -0.05,
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
@@ -4923,7 +4915,6 @@
             "desc": "Supply your own tires.",
             "weight": -0.05,
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
@@ -5006,7 +4997,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/hard-cushion.jpg",
 					"desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height. This is often chosen in conjunction with the plastic seat plate (found in the misc. section).",
 					"price": 120,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -5068,7 +5058,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/click-strap.jpg",
 					"desc": "Our click straps are the sale ratchet design on snowboard bindings.",
 					"price": 75,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -5082,7 +5071,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 65,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -5123,7 +5111,6 @@
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
                     "desc": "No Strap Selected",
                     "price": 0,
-                    "priceTBD": 1,
                     "defaultColorID": 0
                 }
 			]
@@ -5238,7 +5225,6 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "No miscellaneous options.",
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
@@ -7025,7 +7011,6 @@
             "desc": "Supply your own hand rims.",
             "weight": -0.05,
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
@@ -7175,7 +7160,6 @@
             "desc": "Supply your own tires.",
             "weight": -0.05,
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
@@ -7258,7 +7242,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/hard-cushion.jpg",
 					"desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height. This is often chosen in conjunction with the plastic seat plate (found in the misc. section).",
 					"price": 120,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -7320,7 +7303,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/click-strap.jpg",
 					"desc": "Our click straps are the sale ratchet design on snowboard bindings.",
 					"price": 75,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -7334,7 +7316,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 65,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -7375,7 +7356,6 @@
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
                     "desc": "No Strap Selected",
                     "price": 0,
-                    "priceTBD": 1,
                     "defaultColorID": 0
                 }
 			]
@@ -7478,7 +7458,6 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "No miscellaneous options.",
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
@@ -9247,7 +9226,6 @@
             "desc": "Supply your own hand rims.",
             "weight": -0.05,
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
@@ -9397,7 +9375,6 @@
             "desc": "Supply your own tires.",
             "weight": -0.05,
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
@@ -9480,7 +9457,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/hard-cushion.jpg",
 					"desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height. This is often chosen in conjunction with the plastic seat plate (found in the misc. section).",
 					"price": 120,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -9542,7 +9518,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/click-strap.jpg",
 					"desc": "Our click straps are the sale ratchet design on snowboard bindings.",
 					"price": 75,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -9556,7 +9531,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 65,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -9597,7 +9571,6 @@
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
                     "desc": "No Strap Selected",
                     "price": 0,
-                    "priceTBD": 1,
                     "defaultColorID": 0
                 }
 			]
@@ -9700,7 +9673,6 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "No miscellaneous options.",
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
@@ -12001,7 +11973,6 @@
             "desc": "Supply your own hand rims.",
             "weight": -0.05,
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
@@ -12151,7 +12122,6 @@
             "desc": "Supply your own tires.",
             "weight": -0.05,
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
@@ -12234,7 +12204,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/hard-cushion.jpg",
 					"desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height. This is often chosen in conjunction with the plastic seat plate (found in the misc. section).",
 					"price": 108,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -12296,7 +12265,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/click-strap.jpg",
 					"desc": "Our click straps are the sale ratchet design on snowboard bindings.",
 					"price": 67.5,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -12310,7 +12278,6 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 58.5,
-					"priceTBD": 1,
 					"defaultColorID": 0
 				},
 				{
@@ -12351,7 +12318,6 @@
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
                     "desc": "No Strap Selected",
                     "price": 0,
-                    "priceTBD": 1,
                     "defaultColorID": 0
                 }
 			]
@@ -12466,7 +12432,6 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
             "desc": "No miscellaneous options.",
             "price": 0,
-            "priceTBD": 1,
             "defaultColorID": 0
           }
         ]
