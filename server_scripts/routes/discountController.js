@@ -71,7 +71,7 @@ router.post('/discounts/:discountId/expire', restrict, function (req, res) {
 });
 
 router.get('/discounts/:id', restrict, function (req, res) {
-	dbService.discounts.get(id, function(err, body){
+	dbService.discounts.get(req.params.id, function(err, body){
 		if (err) {
 			res.status(404);
 			res.json({
