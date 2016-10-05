@@ -129,8 +129,22 @@ router.put('/orders/:id', restrict, function(req, res) {
       res.status(401);
       res.json({msg: 'Only admin users are authorized to perform this operation.'});
       return;
+    } else if (req.body.stripeToken) {
+      let total = req.body.order.payments[req.body.order.payments.length - 1].amount;
+      createStripeCharge(total, req.body.stripeToken, 'Credit Card', function(err, resp) {
+        if (err) {
+          res.status(400);
+          res.json({err: 'Error while processing credit card payment'});
+          return;
+        }
+        delete req.body.order.stripeToken;
+        return insertOrderPr(req.body.order);
+      })
+
+    } else {
+      return insertOrderPr(req.body.order);
     }
-    return insertOrderPr(req.body)
+    
   })
   .then(resp => {
       res.json(resp);
