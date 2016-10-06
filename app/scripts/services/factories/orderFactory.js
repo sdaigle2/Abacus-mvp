@@ -435,6 +435,7 @@ angular.module('abacuApp')
         this.totalDueLater = this.getTotalCost() - this.getTotalDueNow();
         this.orderStatus = status.orderStatus;
         this.paymentStatus = status.paymentStatus;
+        this.shippingFee = this.getShippingCost();
 
 
         return $http({
