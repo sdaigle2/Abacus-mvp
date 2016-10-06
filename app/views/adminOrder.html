@@ -13,17 +13,17 @@
 	<div class="admin-order-info">
 		<p class="admin-header medium">Order Info</p>
 		<hr>
-		<p class="text"><b>Id: </b>{{order.orderToEdit.id || order.orderToEdit._id}}</p>
+		<p class="text"><b>ID: </b>{{order.orderToEdit.id || order.orderToEdit._id}}</p>
 		<p class="text"><b>Order Total: $</b>{{order.orderToEdit.totalDue.toFixed(2) || 'No data'}}</p>
 		<p class="text"><b>Amount Paid: $</b>{{(order.orderToEdit.totalDue- order.orderToEdit.totalDueLater).toFixed(2) || 'No data'}}</p>
 		<p class="text"><b>Amount Owed: $</b>{{order.orderToEdit.totalDueLater.toFixed(2) || 'No data'}}</p>
-		<p class="text"><b>Order status: </b>{{order.orderToEdit.orderStatus || 'No status'}}</p>
-		<p class="text"><b>Payment status: </b>{{order.orderToEdit.paymentStatus || 'No status'}}</p>
+		<p class="text"><b>Order Status: </b>{{order.orderToEdit.orderStatus || 'No status'}}</p>
+		<p class="text"><b>Payment Status: </b>{{order.orderToEdit.paymentStatus || 'No status'}}</p>
 		<p class="text"><b>Email: </b>{{order.orderToEdit.email}}</p>
 		<p class="text"><b>Phone: </b>{{order.orderToEdit.phone}}</p>
-		<p class="text"><b>Sent date: </b>{{order.orderToEdit.date || order.orderToEdit.sentDate  | date: 'mediumDate'}}</p>
-		<p class="text"><b>Shipping fee: </b>{{order.orderToEdit.shippingFee}}</p>
-		<p class="text"><b>User type: </b>{{order.orderToEdit.userType}}</p>
+		<p class="text"><b>Sent Date: </b>{{order.orderToEdit.date || order.orderToEdit.sentDate  | date: 'mediumDate'}}</p>
+		<p class="text"><b>Shipping Fee: $</b>{{order.orderToEdit.shippingFee.toFixed(2)}}</p>
+		<p class="text"><b>User Type: </b>{{order.orderToEdit.userType}}</p>
 		<p class="text"><b>Discounts: </b>{{order.orderToEdit.discounts.length}}</p>
 		<hr>
 		<p class="admin-header medium">Shipping Information</p>
