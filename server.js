@@ -14,6 +14,8 @@ var _ = require('lodash');
 var orderNumber = require('./server_scripts/services/orderNumber');
 var fs = require('fs');
 var https = require('https');
+var schedule = require('node-schedule');
+var backupService = require('./database_backup_util/backup');
 var options = {
   key: fs.readFileSync('key.pem'),
   cert: fs.readFileSync('cert.pem')
@@ -83,3 +85,7 @@ if (!module.parent) {
   // Wrap function with once so that it can only be called once. Subsequent calls get the same return value as the first call
   module.exports = _.once(startServer);
 }
+
+var backupJob = schedule.scheduleJob('0 2 * * *', function() {
+  backupService.backup();
+});
