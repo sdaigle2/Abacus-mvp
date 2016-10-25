@@ -116,7 +116,7 @@ while getopts ":h?H:d:f:u:p:P:l:t:a:V?b?B?r?R?" opt; do
         l) lines="${OPTARG}" ;;
         t) threads="${OPTARG}" ;;
         a) attempts="${OPTARG}";;
-        V) scriptversion;;
+        V) scriptversion;;        
         :) echo "... ERROR: Option \"-${OPTARG}\" requires an argument"; usage ;;
         *|\?) echo "... ERROR: Unknown Option \"-${OPTARG}\""; usage;;
     esac
@@ -203,7 +203,7 @@ fi
 if [ ! "`echo $url | egrep -c ":[0-9]*$"`" = "1" ]; then
     # add it.
     url="$url:$port"
-fi
+fi	
 
 ## Manage the addition of user+pass if needed:
 # Ensure, if one is set, both are set.
@@ -401,7 +401,7 @@ elif [ $restore = true ]&&[ $backup = false ]; then
 
     #### VALIDATION END
 
-    ## Stop bash mangling wildcard...
+    ## Stop bash mangling wildcard... 
     set -o noglob
     # Manage Design Documents as a priority, and remove them from the main import job
     echo "... INFO: Checking for Design documents"
@@ -412,7 +412,7 @@ elif [ $restore = true ]&&[ $backup = false ]; then
     # Count the design file (if it even exists)
     DESIGNS="`wc -l ${design_file_name} 2>/dev/null | awk '{print$1}'`"
     # If there's no design docs for import...
-    if [ "x$DESIGNS" = "x" ]||[ "$DESIGNS" = "0" ]; then
+    if [ "x$DESIGNS" = "x" ]||[ "$DESIGNS" = "0" ]; then 
         # Cleanup any null files
         rm -f ${design_file_name} 2>/dev/null
         echo "... INFO: No Design Documents found for import."
@@ -510,8 +510,7 @@ elif [ $restore = true ]&&[ $backup = false ]; then
         attemptcount=0
         until [ $A = 1 ]; do
             (( attemptcount++ ))
-            curl -T $file_name -X POST "$url/$db_name/_bulk_docs" -H 'Content-Type: application/json'
-            echo "TEST HERE"
+            curl -T $file_name -X POST "$url/$db_name/_bulk_docs" -H 'Content-Type: application/json' -o tmp.out
             if [ "$?" = "0" ]; then
                 echo "... INFO: Imported ${file_name_orig} Successfully."
                 rm -f tmp.out
@@ -583,9 +582,7 @@ elif [ $restore = true ]&&[ $backup = false ]; then
                 attemptcount=0
                 until [ $B = 1 ]; do
                     (( attemptcount++ ))
-                    echo "$url/$db_name/_bulk_docs"
                     curl -T ${PADNAME} -X POST "$url/$db_name/_bulk_docs" -H 'Content-Type: application/json' -o tmp.out
-                    echo "TEST HERE"
                     if [ ! $? = 0 ]; then
                         if [ $attemptcount = $attempts ]; then
                             echo "... ERROR: Curl failed trying to restore ${PADNAME} - Stopping"
@@ -603,7 +600,6 @@ elif [ $restore = true ]&&[ $backup = false ]; then
                             sleep 1
                         fi
                     else
-                      cat tmp.out
                         B=1
                         rm -f ${PADNAME}
                         rm -f tmp.out
