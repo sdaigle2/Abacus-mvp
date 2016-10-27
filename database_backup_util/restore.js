@@ -73,6 +73,8 @@ var restoreToDB = function(database) {
     childProcess.exec('bash couchdb-backup.sh  -r -H ' + DB_LOGIN + '.cloudant.com -d ' + database + ' -f backups/' + restoreFileDate + '-' + database + '-backup.json -u ' + DB_LOGIN + ' -p ' + DB_PASSWORD,
     function (err, stdout, stderr) {
       if (err) {
+        console.log(stdout);
+        console.log(stderr);
         logger.error('Error occuried while reading data from file ' + database + ': ' + err);
         reject(err);
       }

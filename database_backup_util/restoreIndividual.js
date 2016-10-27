@@ -201,6 +201,23 @@ getFilesFromS3()
     return writeToDB(userToRestore, userOrders);
   })
   .then(() => {
+    return new Promise((resolve, reject) => {
+      fs.unlink('backups/' + restoreFileDate + '-users-backup.json', function(err) {
+        if (err) {
+          logger.error('Error while deleting backups/' + restoreFileDate + '-users-backup.json : ' + err);
+          reject(err);
+        }
+        fs.unlink('backups/' + restoreFileDate + '-orders-backup.json', function(err) {
+          if (err) {
+            logger.error('Error while deleting backups/' + restoreFileDate + '-orders-backup.json : ' + err);
+            reject(err);
+          }
+          resolve();
+        });
+      });
+    });
+  })
+  .then(() => {
     logger.info('User id ' + userId + ' updated successfully');
   })
   .catch((err) => {
