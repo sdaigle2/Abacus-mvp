@@ -4,7 +4,7 @@
   angular
     .module('abacuApp')
     .controller('DiscountsController', DiscountsController);
-    
+
     DiscountsController.$inject = ['$scope', '$location', 'User', '_', 'discountsService'];
 
     function DiscountsController($scope, $location, User, _, discountsService) {
@@ -57,7 +57,7 @@
         if (!discount.errorMsg)  {
           discount.discountObj.id = discount.discountObj.id.toLowerCase();
           discount.errorMsg = '';
-          
+
           if (User.getUserType() !== 'superAdmin' && discount.discountObj.percent > 25) {
             return discount.errorMsg = discountLimitMessage;
           }
@@ -78,8 +78,7 @@
         if (!discount.errorMsg)  {
           discount.discountObj.id = discount.discountObj.id.toLowerCase();
           discount.errorMsg = '';
-          
-          if (User.getUserType() !== 'superdiscount' && discount.discountObj.percent > 25) {
+          if (!(User.getUserType() === 'superdiscount' || User.getUserType() === 'superAdmin') && discount.discountObj.percent > 25) {
               discount.discountObj = {};
               return discount.errorMsg = discountLimitMessage;
           }
