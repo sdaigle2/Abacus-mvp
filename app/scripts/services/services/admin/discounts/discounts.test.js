@@ -12,16 +12,13 @@ describe('DiscountsController', function() {
     });
   });
 
-  beforeEach(inject(function(_$controller_, $q, $httpBackend){
-    $controller = _$controller_;
-    httpBackend = $httpBackend;
-  }));
-
-  
-
   it('should validate percent', function() {
+    inject(function(_$controller_, $q, $httpBackend){
+      $controller = _$controller_;
+      httpBackend = $httpBackend;
+    })
     var $scope = {};
-    
+
     var controller = $controller('DiscountsController', { $scope: $scope});
     controller.discountObj = {
       id: 'test',
@@ -34,8 +31,12 @@ describe('DiscountsController', function() {
   });
 
   it('should validate id', function() {
+    inject(function(_$controller_, $q, $httpBackend){
+      $controller = _$controller_;
+      httpBackend = $httpBackend;
+    })
     var $scope = {};
-    
+
     var controller = $controller('DiscountsController', { $scope: $scope });
     controller.discountObj = {
       id: null,
@@ -48,6 +49,10 @@ describe('DiscountsController', function() {
   });
 
   it('should throw an error if user type is not superAdmin and percent is > 25%', function() {
+    inject(function(_$controller_, $q, $httpBackend){
+      $controller = _$controller_;
+      httpBackend = $httpBackend;
+    })
     var $scope = {};
     var controller = $controller('DiscountsController', { $scope: $scope, httpBackend: httpBackend});
     controller.discountObj = {
@@ -61,7 +66,35 @@ describe('DiscountsController', function() {
     expect(controller.errorMsg).toEqual('As an admin, you may only set discount codes no greater than 25%. Please contact Chris, Danny, or Cesar for approval to create a larger discount.');
   });
 
+  it('should not throw an error if user type is superAdmin and percent is > 25%', function() {
+    function getUserType() {
+        return 'superAdmin';
+    }
+    module(function ($provide) {
+      $provide.value('User', {getUserType: getUserType});
+    });
+    inject(function(_$controller_, $q, $httpBackend){
+      $controller = _$controller_;
+      httpBackend = $httpBackend;
+    })
+    var $scope = {};
+    var controller = $controller('DiscountsController', { $scope: $scope, httpBackend: httpBackend});
+    controller.discountObj = {
+      id: 'valid',
+      percent: '26',
+      startDate: '2016-06-31T21:00:00.000Z',
+      endDate: '2016-09-31T21:00:00.000Z'
+    };
+
+    controller.submitDiscount();
+    expect(controller.errorMsg).toEqual('');
+  });
+
   it('should successfully create a discount if data is correct', function() {
+    inject(function(_$controller_, $q, $httpBackend){
+      $controller = _$controller_;
+      httpBackend = $httpBackend;
+    })
     var $scope = {};
     var controller = $controller('DiscountsController', { $scope: $scope, httpBackend: httpBackend});
     controller.discountObj = {
@@ -79,6 +112,10 @@ describe('DiscountsController', function() {
   });
 
   it('should successfully edit a discount if data is correct', function() {
+    inject(function(_$controller_, $q, $httpBackend){
+      $controller = _$controller_;
+      httpBackend = $httpBackend;
+    })
     var $scope = {};
     var controller = $controller('DiscountsController', { $scope: $scope, httpBackend: httpBackend});
     controller.discountObj = {
