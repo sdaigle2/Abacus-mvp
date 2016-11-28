@@ -6,7 +6,6 @@ var aws = require('aws-sdk'),
     childProcess = require('child_process'),
     log4js = require('log4js'),
     logger = log4js.getLogger('Tinker DB backup'),
-    JSONValidation = require('json-validation'),
     helper = require('sendgrid').mail;
 
 var BUCKET, DB_LOGIN, DB_PASSWORD, ALEMAIL, SGAPIKEY;
@@ -18,7 +17,7 @@ var dbnames = ['design', 'users', 'orders', 'order_number', 'discounts'],
 //calling backup bash scripts
 var readDB = function (database) {
   logger.info('Backing up ' + database + ' database to local file');
-  var path = 'backups/' + today + '-' + database + '-backup.json';
+  var path = 'database_backup_util/backups/' + today + '-' + database + '-backup.json';
   //delete file if exists
   try {
     fs.accessSync(path, fs.F_OK);
@@ -37,7 +36,7 @@ var readDB = function (database) {
       return readDB(database);
     });
   } catch (e) {
-    return new Promise((resolve, reject) => {childProcess.exec('bash couchdb-backup.sh  -b -H ' + DB_LOGIN + '.cloudant.com -d ' + database + ' -f ' + path + ' -u ' + DB_LOGIN + ' -p ' + DB_PASSWORD,
+    return new Promise((resolve, reject) => {childProcess.exec('bash database_backup_util/couchdb-backup.sh  -b -H ' + DB_LOGIN + '.cloudant.com -d ' + database + ' -f ' + path + ' -u ' + DB_LOGIN + ' -p ' + DB_PASSWORD,
       function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
@@ -106,7 +105,7 @@ var writeBackupToS3 = function (database) {
   //writing backup file to S3
   logger.info('Writing backup of ' + database + ' to S3');
   var filename = today + '-' + database + '-backup.json';
-  var path = 'backups/' + filename;
+  var path = 'database_backup_util/backups/' + filename;
 
   var body = fs.createReadStream(path).pipe(zlib.createGzip());
   return new Promise((resolve, reject) => {new aws.S3({params: {Bucket: BUCKET, Key: filename}}).upload({Body: body}).
