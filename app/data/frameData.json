@@ -9952,7 +9952,7 @@
     "manufacturer": "Per4max",
     "name": "Thunder - CAF Grant",
     "desc": "Per4max is proud to offer special pricing to CAF grant recipients.  For a flat $1,919, we will build you a chair with side guards, standard wheels, and basic cushion, and ship it to you for free.  To top it off, each additional option you choose has a 10% discount.",
-    "basePrice": 1919,
+    "basePrice": 2163.40,
     "shippingInfo": {
     	"cost": 0,
     	"weight": 0
