@@ -74,7 +74,7 @@ function passwordCheck(password, confirm, res){
 exports.hash = function (pwd, salt, fn) {
   console.log(pwd);
   if (3 == arguments.length) {//salt provided
-    crypto.pbkdf2(pwd, salt, iterations, len, function(err, hash){//hash password with given salt
+    crypto.pbkdf2(pwd, salt, iterations, len, 'sha1', function(err, hash){//hash password with given salt
       fn(err, hash.toString('base64'));
     });
   } else {
@@ -82,7 +82,7 @@ exports.hash = function (pwd, salt, fn) {
     crypto.randomBytes(len, function(err, salt){
       if (err) return fn(err);
       salt = salt.toString('base64');//generate random salt
-      crypto.pbkdf2(pwd, salt, iterations, len, function(err, hash){
+      crypto.pbkdf2(pwd, salt, iterations, len, 'sha1', function(err, hash){
         if (err) return fn(err);
         fn(null, salt, hash.toString('base64'));
       });
