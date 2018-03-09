@@ -8,7 +8,7 @@
 var _  = require('lodash');
 var async = require('async');
 //Cloudant Database API
-var cloudant = require('cloudant')({account: process.env.CLOUDANT_USERNAME, password: process.env.CLOUDANT_PASSWORD});
+var cloudant = require('cloudant')({account: process.env.CLOUDANT_USERNAME, password: process.env.CLOUDANT_PASSWORD, plugin:'retry'});
 
 var users     = cloudant.use('users');
 var orders    = cloudant.use('orders');
