@@ -19,6 +19,19 @@ in the project directory:
 ## Notes on Cloudant Database
 We have two databases.  The real database is called intelliwheels.  The database for testing is called intelliwheels-testing.  line 22 of userController.js has the _designFunctionID for the real database.  The testing database has a special handler that redirects it when you use it.
 
+##Notes on backup scripts
+Backup script should automatically run daily at night. restore scripts need to be run manually like this:
+  a) node restore.js 2016-10-27 - to restore all databases to October, 27, 2016
+  b) node restoreIndividual.js 2016-10-27 di@intelliwheels_development.com - to restore di@intelliwheels_development.com user and orders data to October, 27, 2016
+In order for backup and restore scripts to work, next environment variables need to be configured:
+  a) AWS_ACCESS_KEY_ID
+  b) AWS_SECRET_ACCESS_KEY
+  c) BACKUP_BUCKET - S3 bucket to store backups
+  d) BACKUP_DB_LOGIN - Cloudant DB login
+  e) BACKUP_DB_PASSWORD - Cloudant DB password
+  f) BACKUP_ALARM_EMAIL - e-mail to receive notification on errors, such as starting server with lack of parameters or when receiving invalid JSON on database backup
+  g) SENDGRID_API_KEY
+
 ## Notes on general library used
 loadash (with the symbol _.) is used for array, and object manipulation. details see:https://lodash.com/
 
