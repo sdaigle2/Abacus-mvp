@@ -31,7 +31,7 @@ const _    = require('lodash');
 
 const s3 = require('./s3');
 
-const CHAIR_PICS_S3_BUCKET = 'p4x-intelliwheels';
+const CHAIR_PICS_S3_BUCKET = 'wrong-bucket-name';
 const CHAIR_PICS_DIR = path.join(os.homedir(), '/temp_chair_pics');
 
 const STANDARD_IMAGE_SIZE_KB = 300; // estimate of how big each image should be...300 KB is a large estimation but playing it safe
