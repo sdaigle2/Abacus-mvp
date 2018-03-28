@@ -12,15 +12,12 @@
  * More info on LRU cache systems: http://mcicpc.cs.atu.edu/archives/2012/mcpc2012/lru/lru.html
  *
  * All of this logic is abstracted by the single get(...) function that is exposed by this module
- * The get(...) function takes in one param and returns a promise of the result:
- *  imageKey - unique name of the chairPic you are trying to retrieve
- *  return value - Promise that resolves to readstream for the image
+ * The get(...) function takes in one param and returns a promise of the name of file of image
  * When get(...) is given a imageKey for a chairPic that is currently contained in the LRU cache,
- * it simply provides a readstream to the callback from the localDisk copy of the image.
+ * it simply provides a promise with name of local file of image to the callback from the localDisk copy of the image.
  * When the image for the given imageKey isnt in the LRU cache, it retrieves a readstream for it from S3.
  * This S3 readstream is piped into a writestream that will save the file locally, and the
- * promise that is returned resolves to the S3 readstream.
- *
+ * promise that is returned resolves to the S3 link.
  */
 
 const fs   = require('fs');
@@ -84,22 +81,17 @@ exports.get = (imageKey) => {
 	if (imageCache.has(imageKey)) {
 		// returns a promise
 		console.log(`pulling locally: ${imageKey}`);
-		return imageCache.get(imageKey)
-		.then(imagePath => {
-			const localImageStream = fs.createReadStream(imagePath);
-			localImageStream.on('error', () => imageCache.del(imageKey));
-			return localImageStream;// resolve to a readstream for the image to be consistent
-		});
+		return Promise.resolve(imageCache.get(imageKey));
 	} else {
 		console.log(`pulling from s3: ${imageKey}`);
 		const s3ImageStream = getS3ImageStream(imageKey);
 
-		var localImagePathPromise = new Promise((resolve, reject) => {
+		return new Promise((resolve, reject) => {
 			reject = _.once(reject);
 
 			s3ImageStream.on('error', (err) => {
 				// if the readstream has an error, delete it's cache entry and reject this promise
-				console.log(`s3 error for ${imageKey}: ${JSON.stringify(err)}`);
+				console.log(`s3 error for ${imageKey}:`, err);
 				reject(err);
 				imageCache.del(imageKey);
 			});
@@ -108,17 +100,18 @@ exports.get = (imageKey) => {
 			// save the image locally
 			s3ImageStream.pipe(fs.createWriteStream(localImagePath))
 			.on('error', err => {
-				console.log(`error for ${imageKey}: ${JSON.stringify(err)}`);
+				console.log(`error for ${imageKey}:`, err);
 				reject(err);
 				imageCache.del(imageKey);
 			})
-			.on('finish', () => resolve(localImagePath));
-		});
-
-		// set the imageKey to be the promise that is resolved once the iamge has been stored localy
-		imageCache.set(imageKey, localImagePathPromise);
-
-		// return a promise that is already resolved to s3ImageStream so that caller can start reading immediately
-		return new Promise(resolve => resolve(s3ImageStream));
+			.on('finish', () => {
+				console.log('saved file from S3 ', localImagePath);
+				imageCache.set(imageKey, localImagePath);
+				resolve(localImagePath);
+			});
+		})
+			.catch(err => {
+				return path.resolve('./app/images/chairPic/emptyImage.png');
+			});
 	}
 };
