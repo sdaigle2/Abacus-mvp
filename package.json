@@ -34,6 +34,7 @@
   "devDependencies": {
     "autoprefixer": "^6.4.0",
     "chance": "^1.0.2",
+    "each-async": "^1.1.1",
     "grunt": "^1.1.0",
     "grunt-autoprefixer": "^0.7.3",
     "grunt-concurrent": "^0.5.0",
@@ -48,7 +49,7 @@
     "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-filerev": "^0.2.1",
-    "grunt-google-cdn": "^0.4.3",
+    "grunt-google-cdn2": "^0.6.0",
     "grunt-karma": "^0.10.1",
     "grunt-newer": "^0.7.0",
     "grunt-ng-annotate": "^0.3.0",
