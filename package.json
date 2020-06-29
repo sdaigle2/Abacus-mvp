@@ -17,6 +17,7 @@
     "handlebars": "^4.0.5",
     "html-pdf": "^2.2.0",
     "jsreport": "^2.8.0",
+    "jsreport-phantom-pdf": "^2.5.1",
     "lodash": "^4.2.1",
     "log4js": "^0.6.38",
     "lru-cache": "^4.0.1",
