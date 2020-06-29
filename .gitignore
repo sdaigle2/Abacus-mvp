@@ -6,4 +6,4 @@ bower_components
 .DS_Store
 .idea/
 .env
-/app/images/chairPic/
+/app/images/chairPic/*/
