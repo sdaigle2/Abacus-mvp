@@ -19,8 +19,11 @@ const service = new CloudantV1({
   authenticator: authenticator
 });
   
-service.setServiceUrl(process.env.CLOUDANT_URL);
-
+try{
+  service.setServiceUrl(process.env.CLOUDANT_URL)
+} catch(err){
+  console.log("Database COnnection Error",err)
+}
 
 /**
  * VERY IMPORTANT
