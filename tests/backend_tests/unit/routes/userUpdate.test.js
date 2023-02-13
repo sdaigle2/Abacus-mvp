@@ -4,8 +4,8 @@ const Chance = require('chance');
 const getLoggedInAgent = require('../../helpers/getLoggedInAgent');
 const dbService = require('../../../../server_scripts/services/db');
 const promise = require('bluebird');
-const getUserPr = promise.promisify(dbService.users.get);
-const getOrdersPr = promise.promisify(dbService.orders.get);
+const getUserPr = promise.promisify(dbService.findDB);
+const getOrdersPr = promise.promisify(dbService.findDB);
 const chance = new Chance();
 
 before(done => {
@@ -42,7 +42,7 @@ describe('Test user updates', () => {
       .post('/users/current/current-wheelchair')
       .send(wheelchair)
       .then(() => {
-        getUserPr(user._id).then(function (resp) {
+        getUserPr('users',user._id).then(function (resp) {
           user._rev = resp._rev;
           resp.should.have.property('currentWheelchair');
           _.isEqual(resp.currentWheelchair, wheelchair.currentWheelchair).should.equal(true);
@@ -74,7 +74,7 @@ describe('Test user updates', () => {
       .post('/users/current/designs')
       .send(testDesigns)
       .then(() => {
-        getUserPr(user._id).then(function (resp) {
+        getUserPr('users',user._id).then(function (resp) {
           user._rev = resp._rev;
           resp.should.have.property('savedDesigns');
           _.isEqual(resp.savedDesigns, testDesigns.savedDesigns).should.equal(true);
@@ -142,13 +142,13 @@ describe('Test user updates', () => {
       .send(expectedCartObj)
       .then((response) => {
         let cartId = response.body._id;
-        getUserPr(user._id).then(function (resp) {
+        getUserPr('users',user._id).then(function (resp) {
           user._rev = resp._rev;
           user.cart._rev = response.body.rev;
           user.cart._id = cartId
           resp.should.have.property('cart');
           resp.cart.should.equal(cartId);
-          getOrdersPr(cartId).then(function(resp) {
+          getOrdersPr('orders',cartId).then(function(resp) {
             resp.userID.should.equal('testUserId');
             done();
           });
@@ -174,7 +174,7 @@ describe('Test user updates', () => {
       .post('/users/current/info')
       .send(user)
       .then(() => {
-        getUserPr(user._id).then(function (resp) {
+        getUserPr('users',user._id).then(function (resp) {
           user._rev = resp._rev;
           resp.fName.should.equal('differentName');
           done();
@@ -190,7 +190,7 @@ describe('Test user updates', () => {
       .send(user)
       .then((res) => {
         res.body.message.should.equal('New password is not valid');
-        getUserPr(user._id).then(function (resp) {
+        getUserPr('users',user._id).then(function (resp) {
           user._rev = resp._rev;
           done();
         })

@@ -13,8 +13,8 @@ const fixObject = require('../services/user').fixObject;
 const dbUtils   = require('../services/dbUtils');
 const dbService = require('../services/db');
 const updateOrInsertAllEntriesPr = promise.promisify(dbUtils.updateOrInsertAllEntries);
-const getUserPr = promise.promisify(dbService.users.get);
-const insertUserPr = promise.promisify(dbService.users.insert);
+const getUserPr = promise.promisify(dbService.findDB);
+const insertUserPr = promise.promisify(dbService.insertDB);
 const hash      = require('../services/security').hash;
 
 // Import policies
@@ -23,7 +23,7 @@ const restrict = require('../policies/restrict');
 const _designFunctionId = '90e3fa2f51a7470a708c7aede3121ccf';
 
 router.get('/users', restrict, function(req, res) {
-  getUserPr(req.session.user)
+  getUserPr('users',req.session.user)
   .then(function(user) {
     const userType = user.userType;
     if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -31,7 +31,7 @@ router.get('/users', restrict, function(req, res) {
       res.json({msg: 'Only admin users are authorized to perform this operation.'});
       return;
     }
-    dbService.users.list({include_docs: true}, function(err, body){
+    dbService.listAllfunction('users', function(err, body){
       if (err) {
         res.status(400);
         res.json({err: 'Error while getting users'});
@@ -47,7 +47,7 @@ router.get('/users', restrict, function(req, res) {
 });
 
 router.put('/users/:userId', restrict, function(req, res) {
-  getUserPr(req.session.user)
+  getUserPr('users',req.session.user)
   .then(function(user) {
     const userType = user.userType;
     if (userType !== 'superAdmin') {
@@ -55,7 +55,7 @@ router.put('/users/:userId', restrict, function(req, res) {
       res.json({msg: 'Only admin users are authorized to perform this operation.'});
       return;
     }
-    return insertUserPr(req.body.userObj, req.body.userObj._id) 
+    return insertUserPr('users',req.body.userObj) 
   })
   .then(function(resp) {
     res.json(resp);
@@ -97,7 +97,7 @@ router.post('/users/current/info', restrict, function (req, res) {
     newPass2: req.body.newPass2
   };
   var userID = req.session.user;
-  getUserPr(req.session.user)
+  getUserPr('users',req.session.user)
   .then(function (existing) {
     //Sanitize the obj to be inserted
     fixObject(obj, existing);

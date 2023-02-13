@@ -25,32 +25,32 @@ var resetPasswordTplId = 'dfee1b8d-6729-4674-bd82-da988b65e440';
 var emailFrom = 'do-not-reply@per4max.fit';
 
 // Promised db functions
-var findUserPr = Promise.promisify(dbService.users.find);
-var insertUserPr = Promise.promisify(dbService.users.insert);
+var findUserPr = Promise.promisify(dbService.findDB);
+var findResentLinkPr = Promise.promisify(dbService.findResetLinkinDB);
+var insertUserPr = Promise.promisify(dbService.insertDB);
 
 //RESET PASSWOD LINK
 router.post('/users/email/:email/request-reset-password', function (req, res) {
   var userEmail = req.params.email;
-  var query = { selector: { email: userEmail }};
-  findUserPr(query)
+  findUserPr('users',userEmail)
   .then(function(data) {
-    if (data.docs.length === 0) {
+    if (data === null) {
       res.status(404);
       res.json({
         msg: 'No user found with email ' + userEmail
       });
       return;
     }
-    data.docs[0].resetLink = crypto.randomBytes(16).toString('hex');
-    insertUserPr(data.docs[0], data.docs[0].id)
+    data.resetLink = crypto.randomBytes(16).toString('hex');
+    insertUserPr('users', data)
     .then(function(nData) {
-      var content = 'To reset your password for per4max.fit, please click the link - http://per4max.fit/#!/change-password/' + data.docs[0].resetLink;
+      var content = 'To reset your password for per4max.fit, please click the link - http://per4max.fit/#!/change-password/' + data.resetLink;
       sendgrid.send(emailFrom, userEmail, content, 'Per4max Password Reset', resetPasswordTplId, cb)
       function cb(err, resp) {
         if (err) {
           console.log(err)
         } else {
-          res.json({'success': true, 'newRev': nData.rev, 'resetLink': data.docs[0].resetLink});
+          res.json({'success': true, 'newRev': nData.rev, 'resetLink': data.resetLink});
         }
       }
     })
@@ -64,13 +64,12 @@ router.post('/users/email/:email/request-reset-password', function (req, res) {
 //CHECKS IF RESET PASSWORD LINK EXISTS
 router.get('/users/reset-password-code/:resetPasswordCode/exists', function(req, res) {
   var passwordCode = req.params.resetPasswordCode;
-  var query = { selector: { resetLink: passwordCode }};
-  findUserPr(query)
+  findResentLinkPr('users',passwordCode)
   .then(function(data) {
-    if (data.docs.length === 0) {
+    if (data === null) {
       res.status(404);
       res.json({
-        msg: 'No user found with resetLink ' + passwordCode
+        msg: 'No user found with email ' + userEmail
       });
       return;
     }
@@ -86,16 +85,15 @@ router.get('/users/reset-password-code/:resetPasswordCode/exists', function(req,
 router.put('/users/current/change-password', function(req, res) {
   var newPassword = req.body.newPassword;
   var userEmail = req.body.email;
-  var query = { selector: { email: userEmail }};
   if (!newPassword || newPassword.length < 8) {
     res.status(400);
     res.json({
       msg: 'New password should be at least 8 characters long'
     });
   } else {
-    findUserPr(query)
+    findUserPr('users',userEmail)
     .then(function(data) {
-      if (data.docs.length === 0) {
+      if (data === null) {
         res.status(404);
         res.json({
           msg: 'No user found with email ' + userEmail
@@ -104,9 +102,9 @@ router.put('/users/current/change-password', function(req, res) {
       } else {
         hash(newPassword, function (err, salt, hash) {
           if (err) throw err;
-          data.docs[0].password = hash;
-          data.docs[0].salt = salt;
-          insertUserPr(data.docs[0], data.docs[0].id)
+          data.password = hash;
+          data.salt = salt;
+          insertUserPr('users', data)
           .then(function() {
             res.json({'success': true});
           })
@@ -189,6 +187,7 @@ router.get('/users/current', restrict, function (req, res) {
 router.post('/users/register', function (req, res) {
   //Retrieve request parameters that we need, ignoring any others.
   var data = {
+    _id: req.body.email,
     fName: req.body.fName,
     lName: req.body.lName,
     email: req.body.email,
@@ -214,7 +213,8 @@ router.post('/users/register', function (req, res) {
   else
     //query the database
     data.email = data.email.toLowerCase();
-    dbService.users.get(data.email, function (err, body) { //Query the database for a user with the given email
+    
+    dbService.findDBfunction("users",data.email, function (err, body) { //Query the database for a user with the given email
       if (err) {  //No user exists, we can continue registering
 
         //Hash the given password. hash() defined in security.js
@@ -226,7 +226,7 @@ router.post('/users/register', function (req, res) {
           delete data.confirm; //Do not want copy of password
 
           //Insert new user into database
-          dbService.users.insert(data, data.email, function (err, body) {
+          dbService.insertDBfunction("users",data, function (err, body) {
             if (err) {
               res.status(500);
               res.json({err: 'Couldn\'t save user in the Database'});

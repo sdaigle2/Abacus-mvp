@@ -18,10 +18,10 @@ const orderNumber     = require('../services/orderNumber');
 const dbUtils         = require('../services/dbUtils');
 const restrict = require('../policies/restrict');
 
-const getUserPr = Promise.promisify(dbService.users.get);
-const getOrderPr = Promise.promisify(dbService.orders.get);
-const insertUserPr = Promise.promisify(dbService.users.insert);
-const insertOrderPr = Promise.promisify(dbService.orders.insert);
+const getUserPr = Promise.promisify(dbService.findDB);
+const getOrderPr = Promise.promisify(dbService.findDB);
+const insertUserPr = Promise.promisify(dbService.insertDB);
+const insertOrderPr = Promise.promisify(dbService.insertDB);
 // Manufacturer Email to send invoices to
 const MANUFACTURER_EMAIL = ['sales@per4max.com', 'ckommer@per4max.com', 'dfik@per4max.com', 'colivas@per4max.com', 'p4x@intelliwheels.net'];
 //const MANUFACTURER_EMAIL = ['scott@intelliwheels.net', 'sdaigle@pdipaxton.com'];
@@ -52,7 +52,7 @@ function createStatus(total, now) {
 }
 
 router.get('/orders/:id', restrict, function(req, res) {
-  getUserPr(req.session.user)
+  getUserPr('users',req.session.user)
   .then(function(user) {
     const userType = user.userType;
     if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -60,7 +60,7 @@ router.get('/orders/:id', restrict, function(req, res) {
       res.json({msg: 'Only admin users are authorized to perform this operation.'});
       return;
     }
-    return getOrderPr(req.params.id)
+    return getOrderPr('orders',req.params.id)
   })
   .then(function(order) {
       res.json(order)
@@ -72,7 +72,7 @@ router.get('/orders/:id', restrict, function(req, res) {
 });
 
 router.get('/orders', restrict, function(req, res) {
-  getUserPr(req.session.user)
+  getUserPr('users',req.session.user)
   .then(function(user) {
     const userType = user.userType;
     if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -80,7 +80,7 @@ router.get('/orders', restrict, function(req, res) {
       res.json({msg: 'Only admin users are authorized to perform this operation.'});
       return;
     }
-    dbService.orders.list({include_docs: true}, function(err, body){
+    dbService.listAllfunction('orders', function(err, body){
       if (err) {
         res.status(400);
         res.json({err: 'Error while getting users'});
@@ -122,7 +122,7 @@ router.get('/orders/:id/invoice', (req, res) => {
 });
 
 router.put('/orders/:id', restrict, function(req, res) {
-  getUserPr(req.session.user)
+  getUserPr('users',req.session.user)
   .then(function(user) {
     const userType = user.userType;
     if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -138,11 +138,11 @@ router.put('/orders/:id', restrict, function(req, res) {
           return;
         }
         delete req.body.order.stripeToken;
-        return insertOrderPr(req.body.order);
+        return insertOrderPr('orders',req.body.order);
       })
 
     } else {
-      return insertOrderPr(req.body.order);
+      return insertOrderPr('orders',req.body.order);
     }
     
   })
@@ -188,7 +188,7 @@ router.post('/orders/create-payment', (req, res) => {
       let status = createStatus(order.totalDue, order.totalDue - order.totalDueLater);
       order.orderStatus = status.orderStatus;
       order.paymentStatus = status.paymentStatus;
-      insertOrderPr(order)
+      insertOrderPr('orders',order)
       .then(resp => {
         let valuesToSubstitute = {
           '-paymentStatus-': order.paymentStatus,
@@ -330,7 +330,7 @@ router.post('/orders', function (req, res) {
 
   const updateOrdersOrderNumber = (orderNumber, cb) => {
     order.orderNum = orderNumber;
-    dbService.orders.insert(order, order._id, cb);
+    dbService.insertDBfunction('orders',order, cb);
   };
 
   validateOrderDiscounts(valid => {
@@ -370,12 +370,12 @@ router.post('/orders', function (req, res) {
             res.json({err: 'Error while inserting order'});
             return;
           }
-        getUserPr(req.session.user)
+        getUserPr('users',req.session.user)
         .then(function(user) {
           user.orders.push(order._id);
           user.cart = null;
           // updatee userObject
-          insertUserPr(user)
+          insertUserPr('users',user)
           .then((resp) => {
             user._rev = resp.rev;
             user._id = resp.id;

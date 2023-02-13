@@ -5,9 +5,9 @@ const sinon = require('sinon');
 const getLoggedInAgent = require('../../helpers/getLoggedInAgent');
 const dbService = require('../../../../server_scripts/services/db');
 const promise = require('bluebird');
-const getUserPr = promise.promisify(dbService.users.get);
-const getOrdersPr = promise.promisify(dbService.orders.get);
-const insertUserPr = promise.promisify(dbService.users.insert);
+const getUserPr = promise.promisify(dbService.findDB);
+const getOrdersPr = promise.promisify(dbService.findDB);
+const insertUserPr = promise.promisify(dbService.insertDB);
 const chance = new Chance();
 const orderController = require('../../../../server_scripts/routes/orderController');
 
@@ -74,7 +74,7 @@ describe('Test order payments', () => {
       .catch(done);
   });
   before(done => {
-    dbService.orders.insert(newOrder, (err, resp) => {
+    dbService.insertDBfunction('orders',newOrder, (err, resp) => {
       orderId = resp.id;
       orderRev = resp.rev;
       newOrder._id = orderId;
@@ -96,7 +96,7 @@ describe('Test order payments', () => {
       })
       .then((resp) => {
         orderRev = resp.body.rev;
-        getOrdersPr(newOrder._id).then(function (resp) {
+        getOrdersPr('orders',newOrder._id).then(function (resp) {
           resp.payments.length.should.equal(2);
           resp.payMethod.should.equal('Pay part now');
           resp.payments[1].amount.should.equal(100);
@@ -122,7 +122,7 @@ describe('Test order payments', () => {
       })
       .then((resp) => {
         orderRev = resp.body.rev;
-        getOrdersPr(newOrder._id).then(function (resp) {
+        getOrdersPr('orders',newOrder._id).then(function (resp) {
 
           resp.paymentStatus.should.equal('At least 50% paid');
           done();
@@ -154,7 +154,7 @@ describe('Test order payments', () => {
           '-previousPayments-': '1500.00',
           '-totalDue-': '3000.00'
         };
-        getOrdersPr(newOrder._id).then(function (resp) {
+        getOrdersPr('orders',newOrder._id).then(function (resp) {
           spy.args[0][0].should.equal('do-not-reply@per4max.fit');
 
           _.isEqual(spy.args[0][3], expectedSubs).should.equal(true);
@@ -178,7 +178,7 @@ describe('Test order payments', () => {
       })
       .then((resp) => {
         orderRev = resp.body.rev;
-        getOrdersPr(newOrder._id).then(function (resp) {
+        getOrdersPr('orders',newOrder._id).then(function (resp) {
           resp.paymentStatus.should.equal('Paid in full');
           done();
         });
@@ -198,10 +198,10 @@ describe('Test order payments', () => {
   });
 
   it('Should edit order if user is admin', done => {
-    getUserPr(user._id)
+    getUserPr('users',user._id)
     .then(userFromDb => {
       userFromDb.userType = 'admin';
-      insertUserPr(userFromDb)
+      insertUserPr('users',userFromDb)
       .then(function(resp) {
         newOrder.orderStatus = 'new test status';
         newOrder._rev = orderRev;
@@ -210,7 +210,7 @@ describe('Test order payments', () => {
           .send({order: newOrder})
           .then(res => {
             orderRev = res.body.rev;
-            getOrdersPr(newOrder._id).then(function (resp) {
+            getOrdersPr('orders',newOrder._id).then(function (resp) {
               resp.orderStatus.should.equal('new test status');
               done();
             });

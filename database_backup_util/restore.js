@@ -5,7 +5,7 @@ var aws = require('aws-sdk'),
     zlib = require('zlib'),
     childProcess = require('child_process'),
     log4js = require('log4js'),
-    cloudant = require('cloudant'),
+    cloudant = require('@cloudant/cloudant'),
     logger = log4js.getLogger('Tinker DB restore');
 
 var BUCKET = process.env.BACKUP_BUCKET,

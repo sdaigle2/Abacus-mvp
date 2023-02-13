@@ -8,10 +8,10 @@ const dbService = require('../services/db');
 const _ = require('lodash');
 const Promise = require('bluebird');
 const restrict = require('../policies/restrict');
-const getUserPr = Promise.promisify(dbService.users.get);
+const getUserPr = Promise.promisify(dbService.findDB);
 
 router.get('/discounts', restrict, function (req, res) {
-	getUserPr(req.session.user)
+	getUserPr('users',req.session.user)
 	.then(function(user) {
 		const userType = user.userType;
 		if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -19,7 +19,7 @@ router.get('/discounts', restrict, function (req, res) {
 			res.json({msg: 'Only admin users are authorized to perform this operation.'});
 			return;
 		}
-		dbService.discounts.list({include_docs: true}, function(err, body){
+		dbService.listAllfunction('discounts', function(err, body){
 			if (err) {
 				res.status(500);
 				res.json({err: 'Error while getting discounts'});
@@ -36,7 +36,7 @@ router.get('/discounts', restrict, function (req, res) {
 
 router.post('/discounts/:discountId/expire', restrict, function (req, res) {
 	const discountId = req.params.discountId;
-	getUserPr(req.session.user)
+	getUserPr('users',req.session.user)
 	.then(function(user) {
 		const userType = user.userType;
 		if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -44,13 +44,13 @@ router.post('/discounts/:discountId/expire', restrict, function (req, res) {
 			res.json({msg: 'Only admin users are authorized to perform this operation.'});
 			return;
 		}
-		dbService.discounts.get(discountId, function(err, body) {
+		dbService.findDBfunction('discounts',discountId, function(err, body) {
 			if (!err) {
 				let discount = body;
 				let date = new Date();
 				date.setDate(date.getDate() - 1); // set yesterday in order for the discount to be expired
 				discount.endDate = date;
-				dbService.discounts.insert(discount, discountId, function (err, body, header) {
+				dbService.insertDBfunction("discounts",discount, function (err, body, header) {
 					if (err) {
 						res.status(500);
 						res.json({err: 'Couldn\'t save discount into database'});
@@ -71,7 +71,7 @@ router.post('/discounts/:discountId/expire', restrict, function (req, res) {
 });
 
 router.get('/discounts/:id', restrict, function (req, res) {
-	dbService.discounts.get(req.params.id, function(err, body){
+	dbService.findDBfunction('discounts',req.params.id, function(err, body){
 		if (err) {
 			res.status(404);
 			res.json({
@@ -87,7 +87,7 @@ router.get('/discounts/:id', restrict, function (req, res) {
 router.put('/discounts/:id', restrict, function (req, res) {
 	const discount = req.body;
 	const discountId = discount._id;
-	getUserPr(req.session.user)
+	getUserPr('users',req.session.user)
 	.then(function(user) {
 		const userType = user.userType;
 		if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -95,13 +95,13 @@ router.put('/discounts/:id', restrict, function (req, res) {
 			res.json({msg: 'Only admin users are authorized to perform this operation.'});
 			return;
 		}
-		dbService.discounts.get(discountId, function(err) {
+		dbService.findDBfunction('discounts',discountId, function(err) {
 			if (!err) {
 				delete discount.editDiscountPage;
 
 				discount.percent = discount.percent / 100;
 
-				dbService.discounts.insert(discount, discountId, function (err, body, header) {
+				dbService.insertDBfunction('discounts',discount, function (err, body, header) {
 					if (err) {
 					  res.status(500);
 					  res.json({err: 'Couldn\'t save discount into database'});
@@ -124,7 +124,7 @@ router.put('/discounts/:id', restrict, function (req, res) {
 router.post('/discounts', restrict, function (req, res) {
 	var discount = req.body;
 	discount.createdBy = req.session.user;
-	getUserPr(discount.createdBy)
+	getUserPr('users',discount.createdBy)
 	.then(function(user) {
 		const userType = user.userType;
 		if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -132,11 +132,11 @@ router.post('/discounts', restrict, function (req, res) {
 			res.json({msg: 'Only admin users are authorized to perform this operation.'});
 			return;
 		}
-		dbService.discounts.get(discount.id, function(err) {
+		dbService.findDBfunction('discounts',discount.id, function(err) {
 			if (err) {
 				discount.createdAt = new Date();
 				discount.percent = discount.percent / 100;
-				dbService.discounts.insert(discount, discount.id, function (err, body, header) {
+				dbService.insertDBfunction('discounts',discount, function (err, body, header) {
 					if (err) {
 					  res.status(500);
 					  res.json({err: 'Couldn\'t save discount into database'});

@@ -23,7 +23,7 @@ const REQUIRED_DESIGN_PROPERTIES = []; // TODO: Fill list with required properti
 router.get('/designs/:id',function(req,res){
   var id = req.params.id;
   //query the database
-  dbService.designs.get(id,function(err,body){
+  dbService.findDBfunction('design',id,function(err,body){
     if (err) {
       res.status(404);
       res.json({
@@ -53,7 +53,8 @@ router.post('/designs', restrict, function (req, res) {
   if (hasRequiredProps) {
     // Save the design in cloudant
     generateUniqueID(dbService.designs, function (err, uniqueID) {
-      dbService.designs.insert(userDesign, uniqueID, function (err, body, header) {
+      userDesign._id= uniqueID
+      dbService.insertDBfunction('design',userDesign, function (err, body, header) {
         if (err) {
           console.log(err);
           res.status(400);
@@ -81,7 +82,7 @@ router.put('/designs/:id', restrict, function (req, res) {
   var updatedDesign = req.body;
 
   // First need to get the user so we can check the design update is for one of the users design (special case for Admin users)
-  dbService.users.get(req.session.user, function (err, currentUser) {
+  dbService.findDBfunction('users',req.session.user, function (err, currentUser) {
     if (err) {
       res.status(404);
       res.json({
@@ -89,7 +90,7 @@ router.put('/designs/:id', restrict, function (req, res) {
         err: err
       });
     } else {
-      dbService.designs.get(id, function(err,currentDesign){
+      dbService.findDBfunction('design',id, function(err,currentDesign){
         if (err) {
           res.status(404);
           res.json({
@@ -107,7 +108,7 @@ router.put('/designs/:id', restrict, function (req, res) {
           // Replace missing fields in the new object with the corresponding value in the old object
           // For conflicts, keep the new value
           updatedDesign = _.defaultsDeep(updatedDesign, currentDesign);
-          dbService.designs.insert(updatedDesign, id, function (err, body, header) {
+          dbService.insertDBfunction('design',updatedDesign, function (err, body, header) {
             if (err) {
               res.status(404);
               res.json({
