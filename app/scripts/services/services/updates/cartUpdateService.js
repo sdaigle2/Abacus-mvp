@@ -38,6 +38,7 @@ angular.module('abacuApp')
             return restoreCart(response.data);
           })
           .catch(function(err) {
+            console.log(err)
             throw new Error(err);
           });
       } else {

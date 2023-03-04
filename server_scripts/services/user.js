@@ -24,6 +24,7 @@ function fixObject(obj, existing) {
 exports.fixObject = fixObject;
 // Updates the given user object
 exports.update = function (obj, key, callback) {
+  console.log('update')
   //Query the database for the existing user
   dbService.findDBfunction('users',key, function (error, existing) {
     //Sanitize the obj to be inserted

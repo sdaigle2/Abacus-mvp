@@ -261,9 +261,9 @@ const findDesignwithfunction = async (database,query) => {
 }
 
 
-const insertDesignDB = (database,uniqueID,designDocument) => {
+const insertDesignDB = async (database,uniqueID,designDocument) => {
   try{
-    service.putDesignDocument({
+    await service.putDesignDocument({
       db: database,
       designDocument: designDocument,
       ddoc: uniqueID  
@@ -282,9 +282,9 @@ async function insertDesignDBfunction(database,designDocument,uniqueID, f){
   f(res.error, res.body)
 }
 
-const deleteInDB = (database,id) =>{
+const deleteInDB = async (database,id) =>{
   try{
-    service.deleteDocument({
+    await service.deleteDocument({
       db: database,
       docId: id,
     }).then(response => {
@@ -300,10 +300,10 @@ const deleteInDB = (database,id) =>{
   }
 }
 
-const deleteFromDB = (database,id, rev) =>{
+const deleteFromDB = async (database,id, rev) =>{
   var body, error;
   try{
-    service.deleteDocument({
+    await service.deleteDocument({
       db: database,
       docId: id,
       rev: rev
@@ -332,10 +332,10 @@ async function deleteFromDBfunction(database,designDocument,uniqueID, f){
 
 
 // update document in the datbase 
-const inplaceAtomic = (database,id, document) =>{
+const inplaceAtomic = async (database,id, document) =>{
   var body, error;
   try{
-    service.putDocument({
+    await service.putDocument({
       db: database,
       docId: id,
       document: document
@@ -359,21 +359,20 @@ const inplaceAtomic = (database,id, document) =>{
 
 
 async function inplaceAtomicFunction(database,uniqueID, document, f){
-  res = await inplaceAtomic(database,uniqueID,document)
+  var  res = await inplaceAtomic(database,uniqueID,document)
   f(res.error, res.body)
 }
 
 
 
 
-const bulkFetch = (database,ids) =>{
+const bulkFetch = async (database,ids) =>{
   var body, error;
   try{
-    service.postBulkGet({
+   await  service.postBulkGet({
       db: database,
       docs: ids
     }).then(response => {
-      console.log(response.result)
       body = response.result;
       error = null;
     }).catch(err=>{
@@ -392,4 +391,12 @@ const bulkFetch = (database,ids) =>{
     body: body}
 }
 
-module.exports = { findDB, findDesignfunction, deleteInDB, bulkFetch, deleteFromDBfunction, inplaceAtomicFunction, findDesignDB, findResetLinkinDB, insertDB, listAllfunction, findDBfunction,insertDBfunction,listallDocsDB, insertDesignDBfunction }
+
+async function bulkFetchFunction(database, documentIDs, f){
+  var res = await bulkFetch(database,documentIDs)
+  f(res.error, res.body)
+}
+
+
+
+module.exports = { service, findDB, findDesignfunction, deleteInDB, bulkFetchFunction, deleteFromDBfunction, inplaceAtomicFunction, findDesignDB, findResetLinkinDB, insertDB, listAllfunction, findDBfunction,insertDBfunction,listallDocsDB, insertDesignDBfunction }

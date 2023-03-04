@@ -27,9 +27,7 @@ exports.getObjectID = getObjectID;
 // Eventually, use this for bulk read: https://docs.cloudant.com/database.html#get-documents
 function getAllByID(db, ids, cb) {
   // Does a bulk get request...one request gets all of the documents given by their ids
-  console.log("getAllByID")
-  dbService.bulkFetch(db,ids, (err, body) => {
-	console.log('fetched results')
+  dbService.bulkFetchFunction(db,ids, (err, body) => {
     if (err) {
 		console.log(err)
       cb(err);
@@ -54,7 +52,7 @@ function getOrderByID(orderID, cb) {
 		var getOrderChairs = function (cb) {
 			var wheelchairs = order.wheelchairs || [];
 			var wheelchairIDs = wheelchairs.map(chair => getObjectID(chair, '_id'));
-			getAllByID('designs', wheelchairIDs, function (err, designs) {
+			getAllByID('design', wheelchairIDs, function (err, designs) {
 				if (err) {
 					return cb(err);
 				}	
@@ -93,9 +91,7 @@ exports.getOrderByID = getOrderByID;
 
 // Gets a user object with all linked fields populated: 'cart', 'savedDesigns', 'orders'
 function getUserByID(userID, cb) {
-	console.log("got to the getter page")
 	dbService.findDBfunction('users', userID, function (err, user) {
-		console.log("in db function")
 	// dbService.users.get(userID, function (err, user) {
 		if (err) {
 			console.log(err)
@@ -104,7 +100,6 @@ function getUserByID(userID, cb) {
 
 		// Get the cart for the current user
 		var getUserCart = function (cb) {
-			console.log('getUserCart')
 			if (user.cart) {
 				try {
 					var cartID = getObjectID(user.cart, '_id');
@@ -121,21 +116,16 @@ function getUserByID(userID, cb) {
 
 		// Get the savedDesigns for the current user
 		var getUserSavedDesigns = function (cb) {
-			console.log('getUserSavedDesigns')
 			var savedDesigns = user.savedDesigns || [];
-			console.log("starting loop")
 			var savedDesignIDs = savedDesigns.map(function (design) {
-				console.log('loop')
 				if (design) return getObjectID(design, '_id');
 			});
-			console.log('ending loop')
-			getAllByID('designs', savedDesignIDs, cb);
+			getAllByID('design', savedDesignIDs, cb);
 		};
 
 
 		// Get the order history of the current user
 		var getUserOrders = function (cb) {
-			console.log('getUserOrders')
 			var userOrders = user.orders || [];
 			var orderIDS = userOrders.map(function (order) {
 				if (order) return getObjectID(order, '_id');
@@ -146,13 +136,11 @@ function getUserByID(userID, cb) {
 
 
 		// Execute all these requests in parallel
-		console.log('Execute all these requests in parallel')
 		async.parallel({
 			'cart': getUserCart,
 			'savedDesigns': getUserSavedDesigns,
 			'orders': getUserOrders
 		}, function (err, results) {
-			console.log('done')
 			if (err) {
 				return cb(err);
 			}
@@ -160,7 +148,6 @@ function getUserByID(userID, cb) {
 			user.cart         = results.cart;
 			user.savedDesigns = results.savedDesigns;
 			user.orders       = results.orders;
-			console.log(user)
 			cb(null, user);
 		});
 	});

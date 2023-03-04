@@ -12,7 +12,7 @@ const update = require('../services/user').update;
 const fixObject = require('../services/user').fixObject;
 const dbUtils   = require('../services/dbUtils');
 const dbService = require('../services/db');
-const updateOrInsertAllEntriesPr = promise.promisify(dbUtils.updateOrInsertAllEntries);
+// const updateOrInsertAllEntriesPr = promise.promisify(dbUtils.updateOrInsertAllEntries);
 const getUserPr = promise.promisify(dbService.findDB);
 const insertUserPr = promise.promisify(dbService.insertDB);
 const hash      = require('../services/security').hash;
@@ -81,6 +81,7 @@ router.post('/users/current/designs', restrict, function (req, res) {
 });
 
 router.post('/users/current/info', restrict, function (req, res) {
+  console.log('/users/current/info')
   var errNo = null;
   var obj = {
     fName: req.body.fName,
@@ -180,14 +181,19 @@ router.post('/users/current/info', restrict, function (req, res) {
 });
 
 router.post('/users/current/cart', restrict, function (req, res) {
+  console.log('/users/current/cart')
   var cart = req.body.cart;
-  updateOrInsertAllEntriesPr({
-    // to do
-      db: dbService.orders,
-      dbInsert: dbUtils.insertOrder,
-      idField: '_id',
-      entries: [cart]
-    }).then(function (cartArr) {
+  dbService.service.postBulkDocs({
+    db: 'orders',
+    bulkDocs: {  'docs': [cart]}
+  })
+  // updateOrInsertAllEntriesPr({
+      // db: dbService.orders,
+      // dbInsert: dbUtils.insertOrder,
+      // idField: '_id',
+      // entries: [cart]
+      .then(function (cartArr) {
+        cartArr=cartArr.result
       var cart = _.first(cartArr);
       var updateData = {
         'cart': cart.id
@@ -197,6 +203,7 @@ router.post('/users/current/cart', restrict, function (req, res) {
       // dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
       function cb(error, response) {
         if (error) {
+          console.log(err)
           res.json({
             'err': error
           });
@@ -211,6 +218,7 @@ router.post('/users/current/cart', restrict, function (req, res) {
       }
     })
     .catch(function(err) {
+      console.log(err)
       res.json({
         'err': err
       });
@@ -218,6 +226,7 @@ router.post('/users/current/cart', restrict, function (req, res) {
 });
 
 function updateUserObj(updateData, req, res) {
+  console.log('updateUserObj')
   var userID = req.session.user;
   dbService.inplaceAtomicFunction('users',userID,updateData,cb)
   // dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);

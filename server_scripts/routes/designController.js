@@ -52,7 +52,7 @@ router.post('/designs', restrict, function (req, res) {
 
   if (hasRequiredProps) {
     // Save the design in cloudant
-    generateUniqueID(dbService.designs, function (err, uniqueID) {
+    generateUniqueID('design', function (err, uniqueID) {
       userDesign._id= uniqueID
       dbService.insertDBfunction('design',userDesign, function (err, body, header) {
         if (err) {

@@ -126,10 +126,9 @@ router.post('/users/email/sign-in/:email', function (req, res) {
   //Retrieve request parameters
   var email = req.params.email;
   var password = req.body.password;
-  console.log("atleast it gets here")
   // Check that the email & password are given and not empty
   if ( !([email, password].every(_.isString)) || [email, password].some(_.isEmpty)) {
-    console.log("couldn't register")
+    // console.log("couldn't register")
     res.status(400);
     res.json({
       'err': "Bad Login: Must Provide an Email and a Password"
@@ -137,16 +136,13 @@ router.post('/users/email/sign-in/:email', function (req, res) {
     return;
   }
   //Query the database
-  console.log("Starting quering the database")
   dbUtils.getUserByID(email, function (err, body) { //body is the object we retrieve from the successful query
-    console.log("got response")
     if (!err) {
       hash(password, body.salt, function (err, hash) { //hash the password using the stored salt
         if (err)
           res.json({'userID': -1});
         else if (hash === body.password) { //Compare hashed password with stored hash
           //Create a session cookie for the logged in user
-          console.log("creatign session")
           req.session.regenerate(function () {
             req.session.user = body.email;
             delete body.salt;
@@ -155,7 +151,6 @@ router.post('/users/email/sign-in/:email', function (req, res) {
           });
         }
         else{
-          console.log('somthging happended don"t know what')
           res.json({'userID': -1});
         }
           
