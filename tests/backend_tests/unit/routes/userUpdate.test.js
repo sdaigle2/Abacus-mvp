@@ -211,11 +211,13 @@ describe('Test user updates', () => {
 
   after(done => {
     var cleanupUser = cb => {
-      dbService.users.deleteDoc(user._id, user._rev, cb);
+      dbService.deleteFromDBfunction('users', user._id, user._rev, cb)
+      // dbService.users.deleteDoc(user._id, user._rev, cb);
     };
 
     var cleanupOrders = cb => {
-      dbService.orders.deleteDoc(user.cart._id, user.cart._rev, cb);
+      dbService.deleteFromDBfunction('orders', user.cart._id, user.cart._rev, cb)
+      // dbService.orders.deleteDoc(user.cart._id, user.cart._rev, cb);
     };
 
     async.parallel([cleanupOrders, cleanupUser], done);

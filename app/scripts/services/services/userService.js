@@ -121,11 +121,15 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       url: '/update-user-info'
       , data: userInfo
       , method: 'POST'
-    }).success(function(data) {
+    }).then(function(data) {
       restoreUserInfo(data);
       return data.message;
+    }, function(err) {
+      console.log(err)
+      throw new Error("function:", err);
     })
     .catch(function(err) {
+      console.log("catch", err)
       throw new Error(err);
     });
   }
@@ -451,7 +455,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         return deferred.promise;
       }
       var email = in_email.toLowerCase()
-      console.log(email)
+      console.log('userService Page',email)
       var httpPromise = $http({
         url: '/users/email/sign-in/' + email,
         data: {password: pass},

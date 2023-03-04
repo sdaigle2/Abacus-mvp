@@ -222,7 +222,8 @@ describe('Test order payments', () => {
 
   after(done => {
     var cleanupOrders = cb => {
-      dbService.orders.deleteDoc(orderId, orderRev, cb);
+      dbService.deleteFromDBfunction('orders', orderId, orderRev, cb);
+      // dbService.orders.deleteDoc(orderId, orderRev, cb);
     };
 
     async.parallel([cleanupOrders], done);

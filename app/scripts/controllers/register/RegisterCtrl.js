@@ -48,9 +48,11 @@ angular.module('abacuApp')
           url: '/users/register'
           , data: $scope.accountModel
           , method: 'POST'
-        }).success(function (data) {
+        }).then(function (response) {
+          var data = response.data
           console.log(data);
           if(data.err) {
+            console.log("data.err")
             $scope.error = data.err;
             if(data.field === 'password'){
               $scope.accountModel.password = '';
@@ -65,11 +67,10 @@ angular.module('abacuApp')
             User.login($scope.accountModel.email, $scope.accountModel.password);
             $location.path('/welcome');
           }
+        }, function (data) {
+          console.log('Request Failed: ' + data);
+          deferred.reject('Error loading user data');
         })
-          .error(function (data) {
-            console.log('Request Failed: ' + data);
-            deferred.reject('Error loading user data');
-          });
       };
 
       $scope.registerAction = function(){

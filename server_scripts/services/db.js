@@ -9,11 +9,10 @@ var _  = require('lodash');
 var async = require('async');
 //Cloudant Database API
 const { CloudantV1 } = require('@ibm-cloud/cloudant');
-const { BasicAuthenticator } = require('ibm-cloud-sdk-core');
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
 
-const authenticator = new BasicAuthenticator({
-  username: process.env.CLOUDANT_USERNAME,
-  password: process.env.CLOUDANT_PASSWORD
+const authenticator = new IamAuthenticator({
+  apikey: process.env.CLOUDANT_APIKEY
 });
 const service = new CloudantV1({
   authenticator: authenticator
@@ -22,7 +21,7 @@ const service = new CloudantV1({
 try{
   service.setServiceUrl(process.env.CLOUDANT_URL)
 } catch(err){
-  console.log("Database COnnection Error",err)
+  console.log("Database Connection Error",err)
 }
 
 /**
@@ -278,6 +277,10 @@ const insertDesignDB = (database,uniqueID,designDocument) => {
         return null
     }  
 }
+async function insertDesignDBfunction(database,designDocument,uniqueID, f){
+  res = await insertDesignDB(database,uniqueID,designDocument)
+  f(res.error, res.body)
+}
 
 const deleteInDB = (database,id) =>{
   try{
@@ -297,6 +300,96 @@ const deleteInDB = (database,id) =>{
   }
 }
 
+const deleteFromDB = (database,id, rev) =>{
+  var body, error;
+  try{
+    service.deleteDocument({
+      db: database,
+      docId: id,
+      rev: rev
+    }).then(response => {
+      body = response.result;
+      error = null;
+    }).catch(err=>{
+      body = null;
+      error = err;
+    })
+  }
+    catch (err){
+      body = null;
+      error = err;
+      console.log(err)
+  } 
+  return {
+    error: error, 
+    body: body}
+}
+
+async function deleteFromDBfunction(database,designDocument,uniqueID, f){
+  res = await deleteFromDB(database,uniqueID,designDocument)
+  f(res.error, res.body)
+}
 
 
-module.exports = { findDB,findDesignfunction,deleteInDB, findDesignDB, findResetLinkinDB, insertDB,listAllfunction, findDBfunction,insertDBfunction,listallDocsDB }
+// update document in the datbase 
+const inplaceAtomic = (database,id, document) =>{
+  var body, error;
+  try{
+    service.putDocument({
+      db: database,
+      docId: id,
+      document: document
+    }).then(response => {
+      body = response.result;
+      error = null;
+    }).catch(err=>{
+      body = null;
+      error = err;
+    })
+  }
+    catch (err){
+      body = null;
+      error = err;
+      console.log(err)
+  } 
+  return {
+    error: error, 
+    body: body}
+}
+
+
+async function inplaceAtomicFunction(database,uniqueID, document, f){
+  res = await inplaceAtomic(database,uniqueID,document)
+  f(res.error, res.body)
+}
+
+
+
+
+const bulkFetch = (database,ids) =>{
+  var body, error;
+  try{
+    service.postBulkGet({
+      db: database,
+      docs: ids
+    }).then(response => {
+      console.log(response.result)
+      body = response.result;
+      error = null;
+    }).catch(err=>{
+      console.log(err)
+      body = null;
+      error = err;
+    })
+  }
+    catch (err){
+      body = null;
+      error = err;
+      console.log(err)
+  } 
+  return {
+    error: error, 
+    body: body}
+}
+
+module.exports = { findDB, findDesignfunction, deleteInDB, bulkFetch, deleteFromDBfunction, inplaceAtomicFunction, findDesignDB, findResetLinkinDB, insertDB, listAllfunction, findDBfunction,insertDBfunction,listallDocsDB, insertDesignDBfunction }

@@ -117,7 +117,8 @@ function insertDesign(designValue, id, cb) {
 			if (err) {
 				cb(err);
 			} else {
-				dbService.designs.insert(designValue, generatedID, (err, res) => {
+				dbService.insertDesignDBfunction('designs',designValue,generatedID, (err, res) => {
+				// dbService.designs.insert(designValue, generatedID, (err, res) => {
 					if (err) {
 						cb(err);
 					} else {
@@ -133,7 +134,8 @@ function insertDesign(designValue, id, cb) {
 		});
 	} else {
 		// An ID is specified, so update the design with that given ID
-		dbService.designs.insert(designValue, id, (err, res) => {
+		dbService.insertDesignDBfunction('designs',designValue,id, (err, res) => {
+		// dbService.designs.insert(designValue, id, (err, res) => {
 			if (err) {
 				cb(err);
 			} else {
@@ -205,7 +207,8 @@ function insertOrder(order, id, cb) {
 				cb(err);
 			} else {
 				const minOrder = getMinimizedOrderEntry(updatedOrder);
-				dbService.orders.insert(minOrder, (err, res) => { // insert the minorder, not the full order
+				dbService.insertDBfunction('orders',minOrder, (err, res) => { 
+				// dbService.orders.insert(minOrder, (err, res) => { // insert the minorder, not the full order
 					if (err) {
 						cb(err);
 					} else {
@@ -227,7 +230,8 @@ function insertOrder(order, id, cb) {
 			} else {
 				const minOrder = getMinimizedOrderEntry(updatedOrder);
 				// update the order with the given id, but use the minOrder as the DB entry
-				dbService.orders.insert(minOrder, id, (err, res) => { // insert the minorder, not the full order
+				dbService.insertDBfunction('orders',minOrder, (err, res) => { 
+				// dbService.orders.insert(minOrder, id, (err, res) => { // insert the minorder, not the full order
 					if (err) {
 						cb(err);
 					} else {
@@ -362,8 +366,9 @@ function insertUser(user, id, cb) {
 			} else {
 				// only store IDs of linked fields in the user entry
 				const minUser = getMinimizedUserEntry(updatedUser);
-				// create the new user entry
-				dbService.users.insert(minUser, (err, res) => {
+				// create the new user 
+				dbService.insertDBfunction('users',minUser, (err, res) => { 
+				// dbService.users.insert(minUser, (err, res) => {
 					if (err) {
 						cb(err);
 					} else {
@@ -386,7 +391,8 @@ function insertUser(user, id, cb) {
 				// only store IDs of linked fields in the user entry
 				const minUser = getMinimizedUserEntry(updatedUser);
 				// update the order with the given id
-				dbService.users.insert(minUser, id, (err, res) => {
+				dbService.insertDBfunction('users',minUser, (err, res) => { 
+				// dbService.users.insert(minUser, id, (err, res) => {
 					if (err) {
 						cb(err);
 					} else {

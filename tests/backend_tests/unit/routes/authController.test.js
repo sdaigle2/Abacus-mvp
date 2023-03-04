@@ -154,7 +154,8 @@ describe('Simulates Registration, Log-in, Log-out', function () {
   });
 
   after(done => {
-    dbService.users.deleteDoc(user._id, latestUserRev, done);
+    dbService.deleteFromDBfunction('users', user._id, latestUserRev, done)
+    // dbService.users.deleteDoc(user._id, latestUserRev, done);
   });
 
 });

@@ -77,7 +77,8 @@ describe('Test userController', () => {
   });
 
   after(done => {
-    dbService.users.deleteDoc(user._id, user._rev, cb)
+    dbService.deleteFromDBfunction('users', user._id, user._rev, cb)
+    // dbService.users.deleteDoc(user._id, user._rev, cb)
 
     function cb() {
       done();

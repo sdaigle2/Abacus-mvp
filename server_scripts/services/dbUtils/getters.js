@@ -27,8 +27,11 @@ exports.getObjectID = getObjectID;
 // Eventually, use this for bulk read: https://docs.cloudant.com/database.html#get-documents
 function getAllByID(db, ids, cb) {
   // Does a bulk get request...one request gets all of the documents given by their ids
-  db.fetch({keys: ids}, (err, body) => {
+  console.log("getAllByID")
+  dbService.bulkFetch(db,ids, (err, body) => {
+	console.log('fetched results')
     if (err) {
+		console.log(err)
       cb(err);
     } else {
       var documents = _.map(body.rows, 'doc');
@@ -42,7 +45,7 @@ exports.getAllByID = getAllByID;
 
 // given an order id, returns the order with the wheelchair fields populated
 function getOrderByID(orderID, cb) {
-	dbService.orders.get(orderID, function (err, order) {
+	dbService.findDBfunction('orders',orderID, function (err, order) {
 		if (err) {
 			return cb(err);
 		}
@@ -51,10 +54,10 @@ function getOrderByID(orderID, cb) {
 		var getOrderChairs = function (cb) {
 			var wheelchairs = order.wheelchairs || [];
 			var wheelchairIDs = wheelchairs.map(chair => getObjectID(chair, '_id'));
-			getAllByID(dbService.designs, wheelchairIDs, function (err, designs) {
+			getAllByID('designs', wheelchairIDs, function (err, designs) {
 				if (err) {
 					return cb(err);
-				}
+				}	
 				cb(null, designs); // return the designs
 			});
 		};
@@ -62,7 +65,7 @@ function getOrderByID(orderID, cb) {
 		var getOrderDiscounts = function (cb) {
 			var discounts = order.discounts || [];
 			var discountIDs = discounts.map(discount => getObjectID(discount, '_id'));
-			getAllByID(dbService.discounts, discountIDs, function (err, discounts) {
+			getAllByID('discounts', discountIDs, function (err, discounts) {
 				if (err) {
 					return cb(err);
 				}
@@ -90,13 +93,18 @@ exports.getOrderByID = getOrderByID;
 
 // Gets a user object with all linked fields populated: 'cart', 'savedDesigns', 'orders'
 function getUserByID(userID, cb) {
-	dbService.users.get(userID, function (err, user) {
+	console.log("got to the getter page")
+	dbService.findDBfunction('users', userID, function (err, user) {
+		console.log("in db function")
+	// dbService.users.get(userID, function (err, user) {
 		if (err) {
+			console.log(err)
 			return cb(err);
 		}
 
 		// Get the cart for the current user
 		var getUserCart = function (cb) {
+			console.log('getUserCart')
 			if (user.cart) {
 				try {
 					var cartID = getObjectID(user.cart, '_id');
@@ -110,17 +118,24 @@ function getUserByID(userID, cb) {
 			}
 		};
 
+
 		// Get the savedDesigns for the current user
 		var getUserSavedDesigns = function (cb) {
+			console.log('getUserSavedDesigns')
 			var savedDesigns = user.savedDesigns || [];
+			console.log("starting loop")
 			var savedDesignIDs = savedDesigns.map(function (design) {
+				console.log('loop')
 				if (design) return getObjectID(design, '_id');
 			});
-			getAllByID(dbService.designs, savedDesignIDs, cb);
+			console.log('ending loop')
+			getAllByID('designs', savedDesignIDs, cb);
 		};
+
 
 		// Get the order history of the current user
 		var getUserOrders = function (cb) {
+			console.log('getUserOrders')
 			var userOrders = user.orders || [];
 			var orderIDS = userOrders.map(function (order) {
 				if (order) return getObjectID(order, '_id');
@@ -129,12 +144,15 @@ function getUserByID(userID, cb) {
 			async.map(orderIDS, getOrderByID, cb);
 		};
 
+
 		// Execute all these requests in parallel
+		console.log('Execute all these requests in parallel')
 		async.parallel({
 			'cart': getUserCart,
 			'savedDesigns': getUserSavedDesigns,
 			'orders': getUserOrders
 		}, function (err, results) {
+			console.log('done')
 			if (err) {
 				return cb(err);
 			}
@@ -142,7 +160,7 @@ function getUserByID(userID, cb) {
 			user.cart         = results.cart;
 			user.savedDesigns = results.savedDesigns;
 			user.orders       = results.orders;
-
+			console.log(user)
 			cb(null, user);
 		});
 	});
@@ -169,7 +187,7 @@ function areValidOrderDiscounts(discounts, cb) {
 		return;
 	}
 
-	getAllByID(dbService.discounts, discountIDs, function (err, discounts) {
+	getAllByID('discounts', discountIDs, function (err, discounts) {
 		if (err) {
 			return cb(false);
 		}

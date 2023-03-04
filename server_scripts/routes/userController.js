@@ -97,7 +97,8 @@ router.post('/users/current/info', restrict, function (req, res) {
     newPass2: req.body.newPass2
   };
   var userID = req.session.user;
-  getUserPr('users',req.session.user)
+  // finding the object in database
+  getUserPr('users',req.session.user) 
   .then(function (existing) {
     //Sanitize the obj to be inserted
     fixObject(obj, existing);
@@ -114,7 +115,8 @@ router.post('/users/current/info', restrict, function (req, res) {
       delete obj.newPass1;
       delete obj.newPass2;
 
-      dbService.users.atomic(_designFunctionId, 'inplace', req.session.user, obj, cb);
+      dbService.inplaceAtomicFunction('users',req.session.user,obj,cb)
+      // dbService.users.atomic(_designFunctionId, 'inplace', req.session.user, obj, cb);
     } else {
       hash(obj.oldPass, existing.salt, function (err, oldHash) {
         if (oldHash !== existing.password) {
@@ -122,7 +124,8 @@ router.post('/users/current/info', restrict, function (req, res) {
           delete obj.newPass1;
           delete obj.newPass2;
           errNo = 2;
-          dbService.users.atomic(_designFunctionId, 'inplace', req.session.user, obj, cb);
+          dbService.inplaceAtomicFunction('users',req.session.user,obj,cb)
+          // dbService.users.atomic(_designFunctionId, 'inplace', req.session.user, obj, cb);
         } else {
           hash(obj.newPass1, function (err, salt, hash) {
             if (err) throw err;
@@ -132,7 +135,8 @@ router.post('/users/current/info', restrict, function (req, res) {
             delete obj.newPass1;
             delete obj.newPass2;
             errNo = 3;
-            dbService.users.atomic(_designFunctionId, 'inplace', req.session.user, obj, cb);
+            dbService.inplaceAtomicFunction('users',req.session.user,obj,cb)
+            // dbService.users.atomic(_designFunctionId, 'inplace', req.session.user, obj, cb);
           });
         }
       });
@@ -178,6 +182,7 @@ router.post('/users/current/info', restrict, function (req, res) {
 router.post('/users/current/cart', restrict, function (req, res) {
   var cart = req.body.cart;
   updateOrInsertAllEntriesPr({
+    // to do
       db: dbService.orders,
       dbInsert: dbUtils.insertOrder,
       idField: '_id',
@@ -188,7 +193,8 @@ router.post('/users/current/cart', restrict, function (req, res) {
         'cart': cart.id
       };
       var userID = req.session.user;
-      dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
+      dbService.inplaceAtomicFunction('users',userID,updateData,cb)
+      // dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
       function cb(error, response) {
         if (error) {
           res.json({
@@ -213,7 +219,8 @@ router.post('/users/current/cart', restrict, function (req, res) {
 
 function updateUserObj(updateData, req, res) {
   var userID = req.session.user;
-  dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
+  dbService.inplaceAtomicFunction('users',userID,updateData,cb)
+  // dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
   function cb(error, response) {
     if (error) {
       res.json({

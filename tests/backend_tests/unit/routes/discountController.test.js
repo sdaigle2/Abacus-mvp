@@ -141,11 +141,13 @@ describe('Test discounts', () => {
 
   after(done => {
     var cleanupDiscount = cb => {
-      dbService.discounts.deleteDoc(discount.id, discountRev, cb);
+      dbService.deleteFromDBfunction('discounts', discount.id, discountRev, cb)
+      // dbService.discounts.deleteDoc(discount.id, discountRev, cb);
     };
 
     var cleanupUser = cb => {
-      dbService.users.deleteDoc(user._id, user._rev, cb);
+      dbService.deleteFromDBfunction('users', user._id, user._rev, cb);
+      // dbService.users.deleteDoc(user._id, user._rev, cb);
     };
 
     async.parallel([cleanupDiscount, cleanupUser], done);
