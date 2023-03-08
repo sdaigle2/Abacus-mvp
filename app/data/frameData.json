@@ -2332,7 +2332,6 @@
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -5081,7 +5080,6 @@
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -5521,7 +5519,6 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
@@ -6003,7 +6000,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -6138,7 +6134,6 @@
 				{
 					"name": "Single 5th Wheel",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -6268,7 +6263,6 @@
                 {
 					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -6398,7 +6392,6 @@
 				{
 					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -7324,7 +7317,6 @@
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -7734,7 +7726,6 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
@@ -7962,7 +7953,6 @@
 				{
 					"name": "Black (Glossy or Matte)",
 					"optionID": 3150,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -8107,7 +8097,6 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -8218,7 +8207,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -8353,7 +8341,6 @@
 				{
 					"name": "Single 5th Wheel",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -8483,7 +8470,6 @@
                 {
 					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -8613,7 +8599,6 @@
 				{
 					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -9539,7 +9524,6 @@
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -9949,7 +9933,6 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
@@ -10020,7 +10003,6 @@
                 {
 					"name": "Premium Colors",
 					"optionID": 2300,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
@@ -10193,7 +10175,6 @@
 				{
 					"name": "Black (Glossy or Matte)",
 					"optionID": 3150,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -10352,7 +10333,6 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -10463,7 +10443,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -10588,7 +10567,6 @@
                 {
 					"name": "Welded Side Guards",
 					"optionID": 11500,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg", "Custom"],
 					"comments": "",
@@ -10709,7 +10687,6 @@
 				{
 					"name": "5th Wheel & Rigid Backrest",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -10839,7 +10816,6 @@
 				{
 					"name": "5th Wheel & Continuous Backrest",
 					"optionID": 4300,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -10969,7 +10945,6 @@
                 {
 					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -11099,7 +11074,6 @@
 				{
 					"name": "Dual 5th Wheel & Continuous Backrest",
 					"optionID": 4400,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -11229,7 +11203,6 @@
 				{
 					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -11359,7 +11332,6 @@
 				{
 					"name": "Removable 5th Wheel & Continuous Backrest",
 					"optionID": 4600,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -11741,7 +11713,6 @@
             "sizes": ["24\"", "25\"", "26\"", "27\""],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/XSLX.jpg",
             "desc": "The latest design evolution from Spinergy that takes wheel performance to the next level. The Sport Lite Extreme SLX X-Laced with patented 4mm PBO FIBER spokes provides added torsional stiffness and a quicker push response. Developed for athletes wanting to turn up the dial a little more in wheelchair performance.",
-            "price": 585,
             "price": 585,
             "defaultColorID": 6401,
             "colors": [
@@ -12286,7 +12257,6 @@
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -12776,7 +12746,6 @@
 				{
 					"name": "Same as Main Spoke Color",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -12817,7 +12786,6 @@
 				{
 					"name": "Different from Main Spoke Color",
 					"optionID": 2200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -12901,7 +12869,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 3200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -12970,7 +12937,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -13482,7 +13448,6 @@
 				{
 					"name": "Same as Main Spoke Color",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -13538,7 +13503,6 @@
 				{
 					"name": "Different from Main Spoke Color",
 					"optionID": 2200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -13632,7 +13596,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 3200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -13701,7 +13664,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -14246,7 +14208,6 @@
 				{
 					"name": "Same as Main Spoke Color",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -14381,7 +14342,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 3200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -14455,7 +14415,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
