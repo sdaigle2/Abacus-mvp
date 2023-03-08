@@ -23,16 +23,15 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
-          "comments":"",
+          			"comments":"",
 					"displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
 					"desc": "Our standard colors are applied with a high quality powder coating process.  Glossy and matte options are available.  Hover over each color to see its full name.  NOTE: Polish (Brushed) option has a $100 surcharge.",
 					"weight": 0,
 					"price": 0,
-          "defaultColorID": 1101,
+          			"defaultColorID": 1101,
 					"colors": [
 						{
 							"name": "Sky White",
@@ -147,7 +146,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your backrest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -256,7 +255,7 @@
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -409,7 +408,6 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -520,7 +518,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -645,7 +642,6 @@
                 {
 					"name": "Welded Side Guards",
 					"optionID": 11500,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg", "Custom"],
 					"comments": "",
@@ -766,7 +762,6 @@
 				{
 					"name": "5th Wheel & Rigid Backrest",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -896,7 +891,6 @@
 				{
 					"name": "5th Wheel & Continuous Backrest",
 					"optionID": 4300,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -1026,14 +1020,13 @@
                 {
 					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/dual-5th-wheel-rigid.jpg",
 					"desc": "A rigid backrest allows for the center of gravity to be adjusted after the chair has been built. The dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Dual 5th wheels are recommended by Team PER4MAX for athletes at every level. The addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",
 					"weight": 350,
-					"price": 0,
+					"price": 250,
                     "comments":"",
                     "defaultColorID": 1101,
 					"colors": [
@@ -1156,7 +1149,6 @@
 				{
 					"name": "Dual 5th Wheel & Continuous Backrest",
 					"optionID": 4400,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -1286,7 +1278,6 @@
 				{
 					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -1416,7 +1407,6 @@
 				{
 					"name": "Removable 5th Wheel & Continuous Backrest",
 					"optionID": 4600,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -1546,7 +1536,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "Footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -1562,7 +1552,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -2686,7 +2676,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -2782,7 +2772,6 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
@@ -2906,7 +2895,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your backrest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -3010,13 +2999,12 @@
 				{
 					"name": "Black (Glossy or Matte)",
 					"optionID": 3150,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -3169,7 +3157,6 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -3280,7 +3267,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -3405,7 +3391,6 @@
                 {
 					"name": "Welded Side Guards",
 					"optionID": 11500,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg", "Custom"],
 					"comments": "",
@@ -3526,7 +3511,6 @@
 				{
 					"name": "5th Wheel & Rigid Backrest",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -3656,7 +3640,6 @@
 				{
 					"name": "5th Wheel & Continuous Backrest",
 					"optionID": 4300,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -3786,14 +3769,13 @@
                 {
 					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/dual-5th-wheel-rigid.jpg",
 					"desc": "A rigid backrest allows for the center of gravity to be adjusted after the chair has been built. The dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Dual 5th wheels are recommended by Team PER4MAX for athletes at every level. The addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",
 					"weight": 350,
-					"price": 0,
+					"price": 250,
                     "comments":"",
                     "defaultColorID": 1101,
 					"colors": [
@@ -3916,7 +3898,6 @@
 				{
 					"name": "Dual 5th Wheel & Continuous Backrest",
 					"optionID": 4400,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -4046,7 +4027,6 @@
 				{
 					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -4176,7 +4156,6 @@
 				{
 					"name": "Removable 5th Wheel & Continuous Backrest",
 					"optionID": 4600,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -4306,7 +4285,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "Footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -4322,7 +4301,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -5446,7 +5425,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -5666,7 +5645,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your backrest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -5770,13 +5749,12 @@
 				{
 					"name": "Black (Glossy or Matte)",
 					"optionID": 3150,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -5915,7 +5893,6 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -6298,7 +6275,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/dual-5th-wheel-rigid.jpg",
 					"desc": "The dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Dual 5th wheels are recommended by Team PER4MAX for athletes at every level. The addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",
 					"weight": 350,
-					"price": 0,
+					"price": 250,
                     "comments":"",
                     "defaultColorID": 1101,
 					"colors": [
@@ -6551,7 +6528,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -6567,7 +6544,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -7661,7 +7638,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -7881,7 +7858,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your backrest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -7991,7 +7968,7 @@
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -8513,7 +8490,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/dual-5th-wheel-rigid.jpg",
 					"desc": "The dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Dual 5th wheels are recommended by Team PER4MAX for athletes at every level. The addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",
 					"weight": 350,
-					"price": 0,
+					"price": 250,
                     "comments":"",
                     "defaultColorID": 1101,
 					"colors": [
@@ -8766,7 +8743,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "Footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -8782,7 +8759,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -9876,7 +9853,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -10112,7 +10089,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your backrest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -10222,7 +10199,7 @@
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -11512,7 +11489,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "Footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -11528,7 +11505,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -12653,7 +12630,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -14325,7 +14302,6 @@
 				{
 					"name": "Different from Main Spoke Color",
 					"optionID": 2200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
