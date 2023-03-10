@@ -203,7 +203,7 @@ router.post('/users/current/cart', restrict, function (req, res) {
       // dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
       function cb(error, response) {
         if (error) {
-          console.log(err)
+          console.log(error)
           res.json({
             'err': error
           });
@@ -226,7 +226,6 @@ router.post('/users/current/cart', restrict, function (req, res) {
 });
 
 function updateUserObj(updateData, req, res) {
-  console.log('updateUserObj')
   var userID = req.session.user;
   dbService.inplaceAtomicFunction('users',userID,updateData,cb)
   // dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);

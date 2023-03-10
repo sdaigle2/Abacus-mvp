@@ -47,11 +47,18 @@ function getOrderByID(orderID, cb) {
 		if (err) {
 			return cb(err);
 		}
-
+		// console.log(order)
 		// get the 'wheelchairs' field
 		var getOrderChairs = function (cb) {
 			var wheelchairs = order.wheelchairs || [];
-			var wheelchairIDs = wheelchairs.map(chair => getObjectID(chair, '_id'));
+			var wheelchairIDs = wheelchairs.map(chair => {
+				try{
+				getObjectID(chair, '_id')
+				}
+				catch{
+					console.log('skip')
+				}
+			});
 			getAllByID('design', wheelchairIDs, function (err, designs) {
 				if (err) {
 					return cb(err);

@@ -111,8 +111,10 @@ router.get('/orders/:id/invoice', (req, res) => {
     }
     generatePDF.forInvoice(order, true, (err, stream) => {
       if (err) {
+        // console.log(err.response)
         res.status(400);
-        return res.json(err);
+        return;
+        // return res.json(err);
       }
 
       stream.pipe(res)

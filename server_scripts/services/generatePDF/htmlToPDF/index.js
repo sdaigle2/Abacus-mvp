@@ -1,6 +1,6 @@
 const _          = require('lodash');
 const fs         = require('fs');
-const jsreport   = require('jsreport');
+const jsreport   = require('@jsreport/nodejs-client')('http://localhost:8080');
 
 const DEFAULT_TIMEOUT = 7e3; // default resource timeout is 5 seconds
 
@@ -14,20 +14,27 @@ const DEFAULT_TIMEOUT = 7e3; // default resource timeout is 5 seconds
 function htmlToPDF(args, cb) {
 	var pdfFilePath = args.pdfFilePath;
 	var rawHTML = args.rawHTML;
+
 	var timeout = _.isNumber(args.timeout) ? args.timeout : DEFAULT_TIMEOUT;
 	cb = _.once(cb); // ensure the callback is only called once
 
 	jsreport.render({
 		template: {
-			content: rawHTML,
-			engine: 'handlebars',
-			recipe: 'phantom-pdf',
-			'phantom': {
-				format: 'Letter',
-				margin: '0px',
-				printDelay: timeout
-			}
-		}
+			content: 'hello {{someText}}',
+			recipe: 'html',
+			engine: 'handlebars'
+		  },
+		  data: { someText: 'world!!' }
+		// template: {
+		// 	content: rawHTML,
+		// 	engine: 'handlebars',
+		// 	recipe: 'phantom-pdf',
+		// 	'phantom': {
+		// 		format: 'Letter',
+		// 		margin: '0px',
+		// 		printDelay: timeout
+		// 	}
+		// }
 	})
 	.then(out => {
 		if (!pdfFilePath) {
@@ -41,6 +48,7 @@ function htmlToPDF(args, cb) {
 		stream.on('error', err => cb(err));
 	})
 	.catch(err => {
+		console.log(err.response)
 		cb(err);
 	});
 }
