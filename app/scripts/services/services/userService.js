@@ -508,10 +508,10 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       $http({
         url: '/users/current/logout',
         method: 'POST'
-      }).success(function (data) {
+      }).then(function (data) {
           $rootScope.$broadcast('userChange');
         })
-        .error(function (data) {
+        .catch(function (data) {
           console.log('Request Failed');
         });
     },

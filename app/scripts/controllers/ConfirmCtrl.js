@@ -12,12 +12,12 @@ angular.module('abacuApp')
       url: '/confirm'
       , data: {id: id}
       , method: 'POST'
-    }).success(function (data) {
+    }).then(function (data) {
       console.log(data);
       alert('Account created');
       $location.path('/frames');
     })
-      .error(function (data) {
+      .catch(function (data) {
         console.log('Request Failed: ' + data);
       });
   }]);

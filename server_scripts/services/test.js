@@ -75,7 +75,7 @@ const findDB = async (database,query) => {
         console.log(err)
     } 
 }
-// findDB('users','ejvo@intelliwheels_development.com')
+findDB('users','sdaigle2@gmail.com')
 // findDB('users','ddoc:abcd')
 
 
@@ -86,16 +86,14 @@ const listallDocsDB = (database) => {
       includeDocs: true
     }).then(response => {
       var data = response.result.rows
-      data.map(dat=>{
-        console.log(dat.doc.wheelchairs)
-      })
+      console.log(data)
 
     }).catch(err=>console.log(err))
   } catch (err){
       console.log(err)
   } 
 }
-listallDocsDB('orders')
+// listallDocsDB('design')
 
 async function getPassCode(){
   var passwordCode ='0648f6135a2888eea1a6178a79bd86d7';

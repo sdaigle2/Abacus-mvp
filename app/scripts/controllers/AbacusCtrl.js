@@ -295,7 +295,7 @@ angular.module('abacuApp')
           url: '/register'
           , data: $scope.accountModel
           , method: 'POST'
-        }).success(function (data) {
+        }).then(function (data) {
           console.log(data);
           if(data.err) {
             $scope.error = data.err;
@@ -312,7 +312,7 @@ angular.module('abacuApp')
             User.login($scope.accountModel.email, $scope.accountModel.password);
           }
         })
-          .error(function (data) {
+          .catch(function (data) {
             console.log('Request Failed: ' + data);
             deferred.reject('Error loading user data');
           });

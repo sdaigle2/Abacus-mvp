@@ -86,7 +86,7 @@ angular.module('abacuApp')
           url: '/register'
           , data: $scope.accountModel
           , method: 'POST'
-        }).success(function (data) {
+        }).then(function (data) {
           console.log(data);
           if(data.err) {
             $scope.error = data.err;
@@ -105,7 +105,7 @@ angular.module('abacuApp')
             $scope.$parent.loginPanel = 'saved';
           }
         })
-          .error(function (data) {
+          .catch(function (data) {
             console.log('Request Failed: ' + data);
             deferred.reject('Error loading user data');
           });

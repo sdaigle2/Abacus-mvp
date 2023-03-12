@@ -335,9 +335,9 @@ async function deleteFromDBfunction(database,designDocument,uniqueID, f){
 const inplaceAtomic = async (database,id, document) =>{
   var body, error;
   try{
-    await service.putDocument({
+    await service.postDocument({
       db: database,
-      docId: id,
+      // docId: id,
       document: document
     }).then(response => {
       body = response.result;
@@ -358,7 +358,7 @@ const inplaceAtomic = async (database,id, document) =>{
 }
 
 
-async function inplaceAtomicFunction(database,uniqueID, document, f){
+async function inplaceAtomicFunction(database, uniqueID,document, f){
   var  res = await inplaceAtomic(database,uniqueID,document)
   f(res.error, res.body)
 }

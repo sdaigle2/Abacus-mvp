@@ -1,0 +1,117 @@
+2023-03-12T01:20:58.368Z - info: Initializing jsreport (version: 3.10.0, configuration file: none, nodejs: 18.14.1)
+2023-03-12T01:20:58.373Z - info: Searching for available extensions in E:\hamza\Hira\
+2023-03-12T01:20:58.380Z - info: Extensions location cache not found, crawling directories
+2023-03-12T01:21:03.212Z - info: Found 36 extension(s)
+2023-03-12T01:21:03.852Z - debug: Writing extension locations cache to C:\Users\Duck\AppData\Local\Temp\jsreport\core\locations.json
+2023-03-12T01:21:03.855Z - debug: Discovered 36 extensions
+2023-03-12T01:21:03.991Z - info: Using extension authentication@3.4.0
+2023-03-12T01:21:06.522Z - debug: Extension authentication@3.4.0 was disabled
+2023-03-12T01:21:06.523Z - info: Using extension base@3.0.1
+2023-03-12T01:21:06.536Z - info: Using extension child-templates@3.1.0
+2023-03-12T01:21:06.547Z - info: Using extension cli@3.2.3
+2023-03-12T01:21:06.586Z - info: Using extension components@3.3.0
+2023-03-12T01:21:06.600Z - info: Using extension data@3.1.0
+2023-03-12T01:21:06.614Z - info: Using extension express@3.6.0
+2023-03-12T01:21:08.774Z - info: Using extension freeze@3.0.1
+2023-03-12T01:21:08.788Z - info: Using extension fs-store@3.2.4
+2023-03-12T01:21:09.945Z - debug: Extension fs-store@3.2.4 was disabled
+2023-03-12T01:21:09.946Z - info: Using extension handlebars@3.2.1
+2023-03-12T01:21:09.973Z - info: Using extension import-export@3.2.0
+2023-03-12T01:21:10.148Z - info: Using extension jsrender@3.0.0
+2023-03-12T01:21:10.160Z - info: Using extension licensing@3.0.2
+2023-03-12T01:21:10.549Z - info: Using extension localization@3.2.1
+2023-03-12T01:21:10.563Z - info: Using extension npm@3.1.2
+2023-03-12T01:21:10.589Z - info: Using extension pdf-utils@3.7.0
+2023-03-12T01:21:10.633Z - info: Using extension reports@3.1.1
+2023-03-12T01:21:10.662Z - info: Using extension tags@3.1.1
+2023-03-12T01:21:10.706Z - info: Using extension text@3.0.0
+2023-03-12T01:21:10.722Z - info: Using extension version-control@3.1.2
+2023-03-12T01:21:10.936Z - error: Error occurred during reporter init: Error: Error when loading extension phantom-pdf@2.6.1
+Error: Extension "phantom-pdf" is not compatible with "core" extension. Missing ".requires" information in "phantom-pdf" definition
+    at validateMinimalVersion (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\validateMinimalVersion.js:24:11)
+    at Object._useOne (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:158:9)
+    at Object._useMany (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:99:38)
+    at async MainReporter.init (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\reporter.js:216:7)
+    at async htmlToPDF (E:\hamza\Hira\server_scripts\services\generatePDF\htmlToPDF\index.js:19:3)
+    at Object._useOne (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:248:15)
+    at Object._useMany (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:99:38)
+    at async MainReporter.init (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\reporter.js:216:7)
+    at async htmlToPDF (E:\hamza\Hira\server_scripts\services\generatePDF\htmlToPDF\index.js:19:3)
+2023-03-12T01:23:08.816Z - info: Initializing jsreport (version: 3.10.0, configuration file: none, nodejs: 18.14.1)
+2023-03-12T01:23:08.821Z - info: Searching for available extensions in E:\hamza\Hira\
+2023-03-12T01:23:08.834Z - info: Extensions location cache contains up to date information, skipping crawling in E:\hamza\Hira\
+2023-03-12T01:23:08.964Z - info: Found 36 extension(s)
+2023-03-12T01:23:09.034Z - debug: Writing extension locations cache to C:\Users\Duck\AppData\Local\Temp\jsreport\core\locations.json
+2023-03-12T01:23:09.037Z - debug: Discovered 36 extensions
+2023-03-12T01:23:09.129Z - info: Using extension authentication@3.4.0
+2023-03-12T01:23:09.479Z - debug: Extension authentication@3.4.0 was disabled
+2023-03-12T01:23:09.481Z - info: Using extension base@3.0.1
+2023-03-12T01:23:09.504Z - info: Using extension child-templates@3.1.0
+2023-03-12T01:23:09.509Z - info: Using extension cli@3.2.3
+2023-03-12T01:23:09.514Z - info: Using extension components@3.3.0
+2023-03-12T01:23:09.524Z - info: Using extension data@3.1.0
+2023-03-12T01:23:09.528Z - info: Using extension express@3.6.0
+2023-03-12T01:23:10.572Z - info: Using extension freeze@3.0.1
+2023-03-12T01:23:10.610Z - info: Using extension fs-store@3.2.4
+2023-03-12T01:23:10.829Z - debug: Extension fs-store@3.2.4 was disabled
+2023-03-12T01:23:10.830Z - info: Using extension handlebars@3.2.1
+2023-03-12T01:23:10.833Z - info: Using extension import-export@3.2.0
+2023-03-12T01:23:10.881Z - info: Using extension jsrender@3.0.0
+2023-03-12T01:23:10.883Z - info: Using extension licensing@3.0.2
+2023-03-12T01:23:10.932Z - info: Using extension localization@3.2.1
+2023-03-12T01:23:10.934Z - info: Using extension npm@3.1.2
+2023-03-12T01:23:10.944Z - info: Using extension pdf-utils@3.7.0
+2023-03-12T01:23:10.947Z - info: Using extension reports@3.1.1
+2023-03-12T01:23:10.951Z - info: Using extension tags@3.1.1
+2023-03-12T01:23:10.961Z - info: Using extension text@3.0.0
+2023-03-12T01:23:10.963Z - info: Using extension version-control@3.1.2
+2023-03-12T01:23:10.998Z - error: Error occurred during reporter init: Error: Error when loading extension phantom-pdf@2.6.1
+Error: Extension "phantom-pdf" is not compatible with "core" extension. Missing ".requires" information in "phantom-pdf" definition
+    at validateMinimalVersion (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\validateMinimalVersion.js:24:11)
+    at Object._useOne (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:158:9)
+    at Object._useMany (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:99:38)
+    at async MainReporter.init (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\reporter.js:216:7)
+    at async htmlToPDF (E:\hamza\Hira\server_scripts\services\generatePDF\htmlToPDF\index.js:19:3)
+    at Object._useOne (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:248:15)
+    at Object._useMany (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:99:38)
+    at async MainReporter.init (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\reporter.js:216:7)
+    at async htmlToPDF (E:\hamza\Hira\server_scripts\services\generatePDF\htmlToPDF\index.js:19:3)
+2023-03-12T01:28:15.784Z - info: Initializing jsreport (version: 3.10.0, configuration file: none, nodejs: 18.14.1)
+2023-03-12T01:28:15.789Z - info: Searching for available extensions in E:\hamza\Hira\
+2023-03-12T01:28:15.798Z - info: Extensions location cache C:\Users\Duck\AppData\Local\Temp\jsreport\core\locations.json contains older information, crawling
+2023-03-12T01:28:21.907Z - info: Found 36 extension(s)
+2023-03-12T01:28:21.974Z - debug: Writing extension locations cache to C:\Users\Duck\AppData\Local\Temp\jsreport\core\locations.json
+2023-03-12T01:28:21.978Z - debug: Discovered 36 extensions
+2023-03-12T01:28:22.071Z - info: Using extension authentication@3.4.0
+2023-03-12T01:28:22.446Z - debug: Extension authentication@3.4.0 was disabled
+2023-03-12T01:28:22.448Z - info: Using extension base@3.0.1
+2023-03-12T01:28:22.455Z - info: Using extension child-templates@3.1.0
+2023-03-12T01:28:22.459Z - info: Using extension cli@3.2.3
+2023-03-12T01:28:22.465Z - info: Using extension components@3.3.0
+2023-03-12T01:28:22.469Z - info: Using extension data@3.1.0
+2023-03-12T01:28:22.472Z - info: Using extension express@3.6.0
+2023-03-12T01:28:22.804Z - info: Using extension freeze@3.0.1
+2023-03-12T01:28:22.808Z - info: Using extension fs-store@3.2.4
+2023-03-12T01:28:22.982Z - debug: Extension fs-store@3.2.4 was disabled
+2023-03-12T01:28:22.985Z - info: Using extension handlebars@3.2.1
+2023-03-12T01:28:22.989Z - info: Using extension import-export@3.2.0
+2023-03-12T01:28:23.029Z - info: Using extension jsrender@3.0.0
+2023-03-12T01:28:23.031Z - info: Using extension licensing@3.0.2
+2023-03-12T01:28:23.072Z - info: Using extension localization@3.2.1
+2023-03-12T01:28:23.090Z - info: Using extension npm@3.1.2
+2023-03-12T01:28:23.139Z - info: Using extension pdf-utils@3.7.0
+2023-03-12T01:28:23.144Z - info: Using extension reports@3.1.1
+2023-03-12T01:28:23.149Z - info: Using extension tags@3.1.1
+2023-03-12T01:28:23.154Z - info: Using extension text@3.0.0
+2023-03-12T01:28:23.157Z - info: Using extension version-control@3.1.2
+2023-03-12T01:28:23.179Z - error: Error occurred during reporter init: Error: Error when loading extension phantom-pdf@2.6.1
+Error: Extension "phantom-pdf" is not compatible with "core" extension. Missing ".requires" information in "phantom-pdf" definition
+    at validateMinimalVersion (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\validateMinimalVersion.js:24:11)
+    at Object._useOne (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:158:9)
+    at Object._useMany (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:99:38)
+    at async MainReporter.init (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\reporter.js:216:7)
+    at async htmlToPDF (E:\hamza\Hira\server_scripts\services\generatePDF\htmlToPDF\index.js:19:3)
+    at Object._useOne (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:248:15)
+    at Object._useMany (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:99:38)
+    at async MainReporter.init (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\reporter.js:216:7)
+    at async htmlToPDF (E:\hamza\Hira\server_scripts\services\generatePDF\htmlToPDF\index.js:19:3)

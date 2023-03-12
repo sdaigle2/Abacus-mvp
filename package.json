@@ -47,7 +47,6 @@
     "html-pdf": "^3.0.1",
     "html-webpack-plugin": "^5.5.0",
     "ibm-cloud-sdk-core": "^4.0.3",
-    "jsreport-phantom-pdf": "^2.5.1",
     "lodash": "^4.2.1",
     "log4js": "^6.7.1",
     "lru-cache": "^7.14.1",
