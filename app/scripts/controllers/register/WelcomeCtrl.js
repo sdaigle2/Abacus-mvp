@@ -14,7 +14,7 @@ angular.module('abacuApp')
     }
     $scope.getName = function(){
       // console.log(User)
-      console.log(User.getFname() + User.getLname());
+      // console.log(User.getFname() + User.getLname());
       return (User.getFullName());
     };
 

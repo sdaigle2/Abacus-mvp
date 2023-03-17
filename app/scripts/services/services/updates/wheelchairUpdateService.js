@@ -11,18 +11,18 @@ angular.module('abacuApp')
           wIndex++;
         }
         
-        console.log("From  self:",self.currentWheelchair)
-        console.log("From  data:",data.currentWheelchair)
+        // console.log("From  self:",self.currentWheelchair)
+        // console.log("From  data:",data.currentWheelchair)
 
         self.currentWheelchair = data.currentWheelchair || self.currentWheelchair;
-        console.log(self.currentWheelchair)
+        // console.log(self.currentWheelchair)
         self.currentWheelchair.design = self.currentWheelchair.design ? new Design(self.currentWheelchair.design) : null;
         return self.currentWheelchair;
       }
     }
 
     function updateCurrentWheelchair(currentWheelchair) {
-      console.log(currentWheelchair)
+      // console.log("UpdateCurrentWheelChair: ",currentWheelchair)
         var data = {
           'currentWheelchair': currentWheelchair
         };
@@ -33,7 +33,8 @@ angular.module('abacuApp')
             method: 'POST'
           })
             .then(function (response) {
-              console.log(response.data)
+              // console.log("/users/current/current-wheelchair response")
+              // console.log(response.data)
               return restoreCurrentWheelchair(response.data);
             })
             .catch(function(err) {

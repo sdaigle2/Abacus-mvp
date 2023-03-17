@@ -75,9 +75,9 @@ const findDB = async (database,query) => {
         console.log(err)
     } 
 }
-findDB('users','sdaigle2@gmail.com')
-// findDB('users','ddoc:abcd')
-
+findDB('users','abc@gmail.com')
+// findDB('design','yqf6uL4_m')
+// findDB('orders','b5292e26da3aa218334ea8c6946c50ca')
 
 const listallDocsDB = (database) => {
   try{
@@ -86,14 +86,17 @@ const listallDocsDB = (database) => {
       includeDocs: true
     }).then(response => {
       var data = response.result.rows
-      console.log(data)
+      for(var i=1;i<2;i++){
+        console.log(data[i].doc.wheelchairs)
+      }
 
     }).catch(err=>console.log(err))
   } catch (err){
       console.log(err)
   } 
 }
-// listallDocsDB('design')
+// listallDocsDB('orders')
+
 
 async function getPassCode(){
   var passwordCode ='0648f6135a2888eea1a6178a79bd86d7';
@@ -127,8 +130,10 @@ const bulkFetch = (database,ids) =>{
       db: database,
       docs: ids
     }).then(response => {
-      console.log(response.result)
-      body = response.result;
+      var body =response.result.results
+      console.log(JSON.stringify(body))
+      console.log(body)
+      body = response.result.results;
       error = null;
     }).catch(err=>{
       console.log(err)
@@ -153,7 +158,10 @@ async function bulkFetchFunction(database, documentIDs, f){
 }
 
 
-// bulkFetchFunction('users',['dtintinapon@hotmail.com','drjremax@verizon.net','dpfitnsports@gmail.com','donsantoso@gmail.com'], ()=>{})
+// bulkFetchFunction('design',[
+//   {id: 'cec3e35328bdb5c62246cf6d635b8e48'},
+//   {id: '9596dca06281eedca096531767cddb9d'}
+// ], ()=>{})
 // bulkFetchFunction('design',[], ()=>{})
 
 
@@ -232,7 +240,19 @@ const findDesignDB = (database) => {
 }
 // findDesignDB()
 
-// findDB('users','hira141998@gmail.com')
+// findDB('users','abc@gmail.com')
 // deleteFromDB('users','barbie000172@gmail.com','1-cb62a4207bdd4443b39f5e751ef0ef6f')
-// deleteFromDB('users','hira141998@gmail.com','1-3f6f801b14ed3d5ef3fbcca965cea70f')
+// deleteFromDB('desgin','cec3e35328bdb5c62246cf6d635b8e48@gmail.com','1-3f6f801b14ed3d5ef3fbcca965cea70f')
 // deleteFromDB('users','asd@mail.com','1-3f6f801b14ed3d5ef3fbcca965cea70f')
+// findDB('design','cec3e35328bdb5c62246cf6d635b8e48')
+
+
+// service.getDocument({
+//   db: 'users',
+//   docId: 'abc@gmail.com'
+// }).then(response => {
+//   document = response.result
+//   console.log(document)
+// }).catch(err=>{
+//   console.log(err.status)
+// })

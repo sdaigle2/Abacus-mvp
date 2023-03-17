@@ -39,6 +39,7 @@ router.get('/designs/:id',function(req,res){
 
 // post design
 router.post('/designs', restrict, function (req, res) {
+  console.log('designs in designController.js')
   var userDesign = req.body;
 
   // Remove an ID or Revision number that may be attached
@@ -53,6 +54,7 @@ router.post('/designs', restrict, function (req, res) {
   if (hasRequiredProps) {
     // Save the design in cloudant
     generateUniqueID('design', function (err, uniqueID) {
+      console.log('generateUniqueID')
       userDesign._id= uniqueID
       dbService.insertDBfunction('design',userDesign, function (err, body, header) {
         if (err) {

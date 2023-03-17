@@ -12,7 +12,7 @@ const update = require('../services/user').update;
 const fixObject = require('../services/user').fixObject;
 const dbUtils   = require('../services/dbUtils');
 const dbService = require('../services/db');
-// const updateOrInsertAllEntriesPr = promise.promisify(dbUtils.updateOrInsertAllEntries);
+const updateOrInsertAllEntriesPr = promise.promisify(dbUtils.updateOrInsertAllEntries);
 const getUserPr = promise.promisify(dbService.findDB);
 const insertUserPr = promise.promisify(dbService.insertDB);
 const hash      = require('../services/security').hash;
@@ -70,18 +70,19 @@ router.post('/users/current/current-wheelchair', restrict, function(req, res) {
   var updateData = {
     'currentWheelchair': req.body.currentWheelchair
   }
-  updateUserObj(updateData, req, res);
+  updateUserObj(req.body.currentWheelchair, 'currentWheelchair', req, res);
 });
 
 router.post('/users/current/designs', restrict, function (req, res) {
+  // console.log("/users/current/designs")
   var updateData = {
     'savedDesigns': req.body.savedDesigns
   }
-  updateUserObj(updateData, req, res);
+  updateUserObj(req.body.savedDesigns,'savedDesigns' , req, res);
 });
 
 router.post('/users/current/info', restrict, function (req, res) {
-  console.log('/users/current/info')
+  // console.log('/users/current/info')
   var errNo = null;
   var obj = {
     fName: req.body.fName,
@@ -183,23 +184,28 @@ router.post('/users/current/info', restrict, function (req, res) {
 router.post('/users/current/cart', restrict, function (req, res) {
   console.log('/users/current/cart')
   var cart = req.body.cart;
-  dbService.service.postBulkDocs({
-    db: 'orders',
-    bulkDocs: {  'docs': [cart]}
-  })
-  // updateOrInsertAllEntriesPr({
-      // db: dbService.orders,
-      // dbInsert: dbUtils.insertOrder,
-      // idField: '_id',
-      // entries: [cart]
-      .then(function (cartArr) {
-        cartArr=cartArr.result
+  // dbService.service.postBulkDocs({
+  //   db: 'orders',
+  //   bulkDocs: {  'docs': [cart]}
+  // })
+  updateOrInsertAllEntriesPr({
+      db: 'orders',
+      dbInsert: dbUtils.insertOrder,
+      idField: '_id',
+      entries: [cart]
+    }
+      // .then(function (cartArr) {
+        ,function (err, cartArr) {
+          console.log('call back of updateOrInsertAllEntriesPr from userController')
+      // cartArr=cartArr.result
       var cart = _.first(cartArr);
+      console.log(cart)
       var updateData = {
-        'cart': cart.id
+        'cart': cart._id
       };
       var userID = req.session.user;
-      dbService.inplaceAtomicFunction('users',userID,updateData,cb)
+      console.log("try updating the user: ", cart._id)
+      dbService.inplaceAtomicFunction('users',userID,cart._id,'cart' ,cb)
       // dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
       function cb(error, response) {
         if (error) {
@@ -208,10 +214,12 @@ router.post('/users/current/cart', restrict, function (req, res) {
             'err': error
           });
         } else {
-          req.session.regenerate(function () {
+          req.session.regenerate(async function () {
             req.session.user = userID;
             updateData._rev = response;
             updateData.userID = userID;
+            // console.log(cart.id)
+            // var data = await dbService.findDB('orders',cart.id) 
             res.send(cart);
           });
         }
@@ -225,9 +233,10 @@ router.post('/users/current/cart', restrict, function (req, res) {
     })
 });
 
-function updateUserObj(updateData, req, res) {
+function updateUserObj(updateData, updateField, req, res) {
+  console.log("update user object")
   var userID = req.session.user;
-  dbService.inplaceAtomicFunction('users',userID,updateData,cb)
+  dbService.inplaceAtomicFunction('users',userID,updateData,updateField,cb)
   // dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
   function cb(error, response) {
     if (error) {
@@ -235,11 +244,14 @@ function updateUserObj(updateData, req, res) {
         'err': error
       });
     } else {
+      // console.log(response)
       req.session.regenerate(function () {
         req.session.user = userID;
-        updateData._rev = response;
-        updateData.userID = userID;
-        res.send(updateData);
+        var newData={}
+        newData[updateField] = updateData
+        newData._rev = response;
+        newData.userID = userID;
+        res.send(newData);
       });
     }
   }

@@ -97,6 +97,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         return order.getAll();
       }),
       'savedDesigns': self.savedDesigns.map(function (design) {
+        // console.log("setting saved design in all details ")
         if (design instanceof Design) {
           return design.allDetails();
         }
@@ -261,6 +262,8 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
   } 
 
   function restoreUserFromBackend(data) {
+    console.log("restoreUserFromBackend userService.js")
+    console.log(data)
     if (_.isEmpty(data) || !_.isObject(data)) {
       return;
     }
@@ -322,6 +325,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
   }
 
   function getCurrentUser() {
+    // console.log("get current user in userSErvice.js")
     return $http({
       url: 'users/current'
       , method: 'GET'
@@ -369,6 +373,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     },
 
     saveDesign: function(design) {
+      // console.log('savedDesign in userService.js')
       var deferred = $q.defer();
       var secDeferred = $q.defer();
       var instance = this;
@@ -380,12 +385,14 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       }
       // $http({ ... }) returns a promise
       var designInstance = design instanceof Design ? design : new Design(design);
+      // console.log("calling /designs")
       return $http({
         url:'/designs',
         data: designInstance.clone().allDetails(),
         method: 'POST'
       })
         .then(function (response) {
+          // console.log('back from /designs ')
           var newDesign = new Design(response.data);
           instance.addDesignIDToSavedDesigns(newDesign._id);
           return secDeferred.resolve;
@@ -455,7 +462,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
         return deferred.promise;
       }
       var email = in_email.toLowerCase()
-      console.log('userService Page',email)
+      // console.log('userService Page',email)
       var httpPromise = $http({
         url: '/users/email/sign-in/' + email,
         data: {password: pass},
@@ -467,6 +474,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
       return httpPromise
         .then(function (response) {
+          // console.log("from signin")
           var data = response.data;
           self.userID = data.userID;
           if (self.userID !== -1) {
@@ -475,6 +483,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
               _.forEach(self.cart.wheelchairs, function(item){
                 if (!item._id) {
                   $rootScope.$broadcast('userChange'); // let the user see the cart without waiting for the db to update
+                  // add to cart from sign in
                   CartUpdate.update(getCartItems())
                   .then(function(updatedCart) {
                     self.cart = updatedCart;
@@ -560,6 +569,8 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
     //Create a new wheelchair object of given frame type and set edit pointer to it
     pushNewWheelchair: function (wheelchair) {
+      // no id here
+      console.log('push new wheel chair in userServer.js: ',wheelchair)
       if (_.isNull(self.cart)) {
         console.log('cart is null')
         self.cart = new Order(Costs.TAX_RATE, Costs.SHIPPING_FEE, null);
@@ -588,8 +599,10 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
     // Saves the currentWheelchair into the saved wheelchairs list and resets the currentWheelchair
     addDesignIDToSavedDesigns: function (designID) {
+      // console.log("addDesignIDToSavedDesigns")
       self.savedDesigns = _.reject(self.savedDesigns, {'_id': designID});
       self.savedDesigns.push(designID);
+      // console.log(self.savedDesigns)
       return DesignUpdate.update(self.savedDesigns)
       .then(function(updatedDesigns) {
         self.savedDesigns = updatedDesigns;

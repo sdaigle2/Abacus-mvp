@@ -1085,7 +1085,9 @@ angular.module('abacuApp')
 
         //Saves the current design to cart and updates the database if the user is logged in
       $scope.saveDesign = function () {
+        console.log('saved Design in abacusCtrl.js')
         $scope.curEditWheelchair.grantAmount = grantAmount
+        // console.log(User.pushNewWheelchair)
         User.pushNewWheelchair($scope.curEditWheelchair)
         .then(function (user) {
           $scope.designIsSaved = true;
@@ -1152,11 +1154,13 @@ angular.module('abacuApp')
 
       // save the current wheelchair to the wishlist and make sure its not the currently editing wheelchair anymore
       $scope.saveForLater = function () {
+        console.log('save for later')
         //check if user has login
         if (!User.isLoggedIn()) {
           $scope.loginPanel = loginPanelStatus.LOGIN;
         }
         else {
+          // console.log("in else")
           var design = User.getCurEditWheelchairDesign();
 
           if (_.isNull(design)) {
@@ -1181,6 +1185,7 @@ angular.module('abacuApp')
               // can either choose to create a copy, or overwrite the existing design in the DB
               switch (saveMethod.value) {
                 case 'copy': {
+                  // console.log("copy")
                   delete design._id; // remove the id
                   design.creator = User.getID();
                   $scope.designIsSaved = true;
@@ -1189,6 +1194,7 @@ angular.module('abacuApp')
                 }
                 // overwrite the existing design
                 case 'overwrite': {
+                  // console.log('overwrite')
                   if (User.getID() === design.creator || User.isAdmin()) {
                     return User.updateDesign(design)
                       .then(function (updatedDesign) {
@@ -1216,11 +1222,13 @@ angular.module('abacuApp')
               }
             });
           } else {
+            // console.log('new design')
             // just go ahead and save the design to the DB, its new anyways
             designPromise = User.saveDesign(design);
               designPromise
 
                 .then(function (updatedUserData) {
+                  // console.log(updatedUserData)
                   if (1) { // only show Saved dialog if a user update was made
                     $scope.designIsSaved = true;
                     $scope.loginPanel = loginPanelStatus.SAVED;
@@ -1259,7 +1267,7 @@ angular.module('abacuApp')
             });
           }
         }
-      };
+      }; // end of saved design
 
       /*****************General Use Functions*********************/
 

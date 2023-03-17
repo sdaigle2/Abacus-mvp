@@ -59,10 +59,11 @@ try{
 //find in database
 const findDB = async (database,query) => {
     try{
-        await service.getDocument({
+        return await service.getDocument({
             db: database,
             docId: query
           }).then(response => {
+            console.log(response)
             return response.result
           }).catch(err=>{
             console.log(err.status)
@@ -252,7 +253,7 @@ const findDesignwithfunction = async (database,query) => {
           })
     } catch (err){
         body = null;
-        error = err;
+        error = err.body;
         console.log(err)
     } 
     return {
@@ -263,22 +264,29 @@ const findDesignwithfunction = async (database,query) => {
 
 const insertDesignDB = async (database,uniqueID,designDocument) => {
   try{
+    var body, error;
     await service.putDesignDocument({
       db: database,
       designDocument: designDocument,
       ddoc: uniqueID  
     }).then(response => {
-      return response.result
+      error = null;
+      body = response.result
     }).catch(err=>{
-      console.log(err.status)
-      return null})
+      body = null;
+      error = err.body;
+    })
     } catch (err){
         console.log(err)
-        return null
+        body = null;
+        error = err;
     }  
+    return {
+      error: error, 
+      body: body}
 }
 async function insertDesignDBfunction(database,designDocument,uniqueID, f){
-  res = await insertDesignDB(database,uniqueID,designDocument)
+  var res = await insertDesignDB(database,uniqueID,designDocument)
   f(res.error, res.body)
 }
 
@@ -331,21 +339,34 @@ async function deleteFromDBfunction(database,designDocument,uniqueID, f){
 }
 
 
+
 // update document in the datbase 
-const inplaceAtomic = async (database,id, document) =>{
+const inplaceAtomic = async (database,id,updateData,updateField) =>{
   var body, error;
   try{
-    await service.postDocument({
+    await service.getDocument({
       db: database,
-      // docId: id,
-      document: document
-    }).then(response => {
-      body = response.result;
-      error = null;
+      docId: id
+    }).then(async response => {
+      var document = response.result
+      document[updateField] = updateData
+      await service.postDocument({
+        db: database,
+        document: document
+      }).then(response => {
+        body = response.result.rev;
+        error = null;
+      }).catch(err=>{
+        console.log(err)
+        body = null;
+        error = err;
+      })
     }).catch(err=>{
       body = null;
       error = err;
+      console.log(err)
     })
+      
   }
     catch (err){
       body = null;
@@ -358,8 +379,8 @@ const inplaceAtomic = async (database,id, document) =>{
 }
 
 
-async function inplaceAtomicFunction(database, uniqueID,document, f){
-  var  res = await inplaceAtomic(database,uniqueID,document)
+async function inplaceAtomicFunction(database, uniqueID,updateData,updateField, f){
+  var  res = await inplaceAtomic(database,uniqueID,updateData,updateField)
   f(res.error, res.body)
 }
 
@@ -369,11 +390,14 @@ async function inplaceAtomicFunction(database, uniqueID,document, f){
 const bulkFetch = async (database,ids) =>{
   var body, error;
   try{
+    var ids_ = []
+    for(let i = 0;i<ids.length;i++)
+        ids_.push({id: ids[i]})
    await  service.postBulkGet({
       db: database,
-      docs: ids
+      docs: ids_
     }).then(response => {
-      body = response.result;
+      body = response.result.results;
       error = null;
     }).catch(err=>{
       console.log(err)

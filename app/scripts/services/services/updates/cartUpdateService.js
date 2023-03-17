@@ -28,6 +28,8 @@ angular.module('abacuApp')
     }
 
     function updateCart(data) {
+      console.log(data)
+      console.log('update cart in cartUpdateService.js')
       if (self.userID !== -1) {
         return $http({
           url: '/users/current/cart',
@@ -35,6 +37,7 @@ angular.module('abacuApp')
           method: 'POST'
         })
           .then(function (response) {
+            console.log(response.data)
             return restoreCart(response.data);
           })
           .catch(function(err) {

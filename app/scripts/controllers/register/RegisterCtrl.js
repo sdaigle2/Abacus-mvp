@@ -50,9 +50,9 @@ angular.module('abacuApp')
           , method: 'POST'
         }).then(function (response) {
           var data = response.data
-          console.log(data);
+          // console.log(data);
           if(data.err) {
-            console.log("data.err")
+            // console.log("data.err")
             $scope.error = data.err;
             if(data.field === 'password'){
               $scope.accountModel.password = '';
@@ -87,7 +87,7 @@ angular.module('abacuApp')
           , data: $scope.accountModel
           , method: 'POST'
         }).then(function (data) {
-          console.log(data);
+          // console.log(data);
           if(data.err) {
             $scope.error = data.err;
             if(data.field === 'password'){

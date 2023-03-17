@@ -123,6 +123,7 @@ router.put('/users/current/change-password', function(req, res) {
 //TODO: cancel out the console.log( password);
 
 router.post('/users/email/sign-in/:email', function (req, res) {
+  console.log('/users/email/sign-in/:email')
   //Retrieve request parameters
   var email = req.params.email;
   var password = req.body.password;
@@ -137,6 +138,7 @@ router.post('/users/email/sign-in/:email', function (req, res) {
   }
   //Query the database
   dbUtils.getUserByID(email, function (err, body) { //body is the object we retrieve from the successful query
+    // console.log('getUserByID in authController')
     if (!err) {
       hash(password, body.salt, function (err, hash) { //hash the password using the stored salt
         if (err)
@@ -178,6 +180,7 @@ router.get('/users/current', restrict, function (req, res) {
       //clean the trace
       delete body.salt;
       delete body.password;
+      console.log(body)
       res.json(body); //Respond with details from database AFTER removing stored hash and salt
     }
     else
