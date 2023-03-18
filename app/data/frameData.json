@@ -1405,6 +1405,7 @@
 					]
 				},
 				{
+					"hidden": true,
 					"name": "Removable 5th Wheel & Continuous Backrest",
 					"optionID": 4600,
 					"defaultSizeIndex": -1,
@@ -1780,7 +1781,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX",
+            "hidden": true,
+			"name": "Spinergy XSLX",
             "optionID": 6600,
             "comments":"",
             "displayColor": 1,
@@ -1842,7 +1844,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX-R10",
+            "hidden": true,
+			"name": "Spinergy XSLX-R10",
             "optionID": 6700,
             "comments":"",
             "displayColor": 1,
@@ -1942,7 +1945,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Titanium",
+            "hidden": true,
+			"name": "Titanium",
             "optionID": 7250,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -1956,7 +1960,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Vinyl Coated",
+            "hidden": true,
+			"name": "Vinyl Coated",
             "optionID": 7300,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -2036,7 +2041,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Schwalbe Right Run Tires",
+            "hidden": true,
+			"name": "Schwalbe Right Run Tires",
             "optionID": 8600,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
             "desc": "High quality Schwalbe tires with colorful options! Not available for 27\" wheels.",
@@ -2069,7 +2075,8 @@
             ]
           },
           {
-            "name": "Kenda Tires",
+            "hidden": true,
+			"name": "Kenda Tires",
             "optionID": 8700,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
             "desc": "Kenda makes an incredibly high quality tire that is great for the court and everyday life. Available for all size wheels.",
@@ -2172,6 +2179,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Leather Trim",
 					"optionID": 5200,
 					"colors": [],
@@ -4153,6 +4161,7 @@
 					]
 				},
 				{
+					"hidden": true,
 					"name": "Removable 5th Wheel & Continuous Backrest",
 					"optionID": 4600,
 					"defaultSizeIndex": -1,
@@ -4528,7 +4537,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX",
+            "hidden": true,
+			"name": "Spinergy XSLX",
             "optionID": 6600,
             "comments":"",
             "displayColor": 1,
@@ -4590,7 +4600,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX-R10",
+            "hidden": true,
+			"name": "Spinergy XSLX-R10",
             "optionID": 6700,
             "comments":"",
             "displayColor": 1,
@@ -4690,7 +4701,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Titanium",
+            "hidden": true,
+			"name": "Titanium",
             "optionID": 7250,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -4704,7 +4716,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Vinyl Coated",
+            "hidden": true,
+			"name": "Vinyl Coated",
             "optionID": 7300,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -4784,7 +4797,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Schwalbe Right Run Tires",
+            "hidden": true,
+			"name": "Schwalbe Right Run Tires",
             "optionID": 8600,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
             "desc": "High quality Schwalbe tires with colorful options! Not available for 27\" wheels.",
@@ -4817,7 +4831,8 @@
             ]
           },
           {
-            "name": "Kenda Tires",
+            "hidden": true,
+			"name": "Kenda Tires",
             "optionID": 8700,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
             "desc": "Kenda makes an incredibly high quality tire that is great for the court and everyday life. Available for all size wheels.",
@@ -4920,6 +4935,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Leather Trim",
 					"optionID": 5200,
 					"colors": [],
@@ -6765,7 +6781,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX",
+            "hidden": true,
+			"name": "Spinergy XSLX",
             "optionID": 6600,
             "comments":"",
             "displayColor": 1,
@@ -6827,7 +6844,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX-R10",
+            "hidden": true,
+			"name": "Spinergy XSLX-R10",
             "optionID": 6700,
             "comments":"",
             "displayColor": 1,
@@ -6927,7 +6945,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Titanium",
+            "hidden": true,
+			"name": "Titanium",
             "optionID": 7250,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -6941,7 +6960,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Vinyl Coated",
+            "hidden": true,
+			"name": "Vinyl Coated",
             "optionID": 7300,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -7021,7 +7041,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Schwalbe Right Run Tires",
+            "hidden": true,
+			"name": "Schwalbe Right Run Tires",
             "optionID": 8600,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
             "desc": "High quality Schwalbe tires with colorful options! Not available for 27\" wheels.",
@@ -7054,7 +7075,8 @@
             ]
           },
           {
-            "name": "Kenda Tires",
+            "hidden": true,
+			"name": "Kenda Tires",
             "optionID": 8700,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
             "desc": "Kenda makes an incredibly high quality tire that is great for the court and everyday life. Available for all size wheels.",
@@ -7157,6 +7179,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Leather Trim",
 					"optionID": 5200,
 					"colors": [],
@@ -8972,7 +8995,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX",
+            "hidden": true,
+			"name": "Spinergy XSLX",
             "optionID": 6600,
             "comments":"",
             "displayColor": 1,
@@ -9034,7 +9058,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX-R10",
+            "hidden": true,
+			"name": "Spinergy XSLX-R10",
             "optionID": 6700,
             "comments":"",
             "displayColor": 1,
@@ -9134,7 +9159,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Titanium",
+            "hidden": true,
+			"name": "Titanium",
             "optionID": 7250,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -9148,7 +9174,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Vinyl Coated",
+            "hidden": true,
+			"name": "Vinyl Coated",
             "optionID": 7300,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -9228,7 +9255,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Schwalbe Right Run Tires",
+            "hidden": true,
+			"name": "Schwalbe Right Run Tires",
             "optionID": 8600,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
             "desc": "High quality Schwalbe tires with colorful options! Not available for 27\" wheels.",
@@ -9261,7 +9289,8 @@
             ]
           },
           {
-            "name": "Kenda Tires",
+            "hidden": true,
+			"name": "Kenda Tires",
             "optionID": 8700,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
             "desc": "Kenda makes an incredibly high quality tire that is great for the court and everyday life. Available for all size wheels.",
@@ -9364,6 +9393,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Leather Trim",
 					"optionID": 5200,
 					"colors": [],
@@ -11330,6 +11360,7 @@
 					]
 				},
 				{
+					"hidden": true,
 					"name": "Removable 5th Wheel & Continuous Backrest",
 					"optionID": 4600,
 					"defaultSizeIndex": -1,
@@ -11705,7 +11736,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX",
+            "hidden": true,
+			"name": "Spinergy XSLX",
             "optionID": 6600,
             "comments":"",
             "displayColor": 1,
@@ -11767,7 +11799,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX-R10",
+            "hidden": true,
+			"name": "Spinergy XSLX-R10",
             "optionID": 6700,
             "comments":"",
             "displayColor": 1,
@@ -11867,7 +11900,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Titanium",
+            "hidden": true,
+			"name": "Titanium",
             "optionID": 7250,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -11881,7 +11915,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Vinyl Coated",
+            "hidden": true,
+			"name": "Vinyl Coated",
             "optionID": 7300,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -11961,7 +11996,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Schwalbe Right Run Tires",
+            "hidden": true,
+			"name": "Schwalbe Right Run Tires",
             "optionID": 8600,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
             "desc": "High quality Schwalbe tires with colorful options! Not available for 27\" wheels.",
@@ -11994,7 +12030,8 @@
             ]
           },
           {
-            "name": "Kenda Tires",
+            "hidden": true,
+			"name": "Kenda Tires",
             "optionID": 8700,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
             "desc": "Kenda makes an incredibly high quality tire that is great for the court and everyday life. Available for all size wheels.",
@@ -12097,6 +12134,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Leather Trim",
 					"optionID": 5200,
 					"colors": [],
@@ -13003,7 +13041,8 @@
 					"defaultColorID": 0
 				},
                 {
-                    "name": "Titanium",
+                    "hidden": true,
+					"name": "Titanium",
                     "optionID": 7250,
                     "colors": [],
                     "defaultSizeIndex": 1,
@@ -13017,6 +13056,7 @@
                     "defaultColorID": 0
                 },
 				{
+					"hidden": true,
 					"name": "Vinyl Coated",
 					"optionID": 7200,
 					"colors": [],
@@ -13158,6 +13198,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Schwalbe Right Run Tires",
 					"optionID": 8600,
                     "defaultSizeIndex": -1,
@@ -13191,7 +13232,8 @@
 					]
 				},
                 {
-                    "name": "Kenda Tires",
+                    "hidden": true,
+					"name": "Kenda Tires",
                     "optionID": 8700,
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -13744,7 +13786,8 @@
                     "defaultColorID": 0
                 },
                 {
-                    "name": "Titanium",
+                    "hidden": true,
+					"name": "Titanium",
                     "optionID": 7250,
                     "colors": [],
                     "defaultSizeIndex": 1,
@@ -13758,6 +13801,7 @@
                     "defaultColorID": 0
                 },
 				{
+					"hidden": true,
 					"name": "Vinyl Coated",
 					"optionID": 7400,
 					"colors": [],
@@ -13911,6 +13955,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Schwalbe Right Run Tires",
 					"optionID": 8600,
                     "defaultSizeIndex": -1,
@@ -13944,7 +13989,8 @@
 					]
 				},
                 {
-                    "name": "Kenda Tires",
+                    "hidden": true,
+					"name": "Kenda Tires",
                     "optionID": 8700,
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -14495,7 +14541,8 @@
                     "defaultColorID": 0
                 },
                 {
-                    "name": "Titanium",
+                    "hidden": true,
+					"name": "Titanium",
                     "optionID": 7250,
                     "colors": [],
                     "defaultSizeIndex": 1,
@@ -14509,6 +14556,7 @@
                     "defaultColorID": 0
                 },
 				{
+					"hidden": true,
 					"name": "Vinyl Coated",
 					"optionID": 7400,
 					"colors": [],
@@ -14662,6 +14710,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Schwalbe Right Run Tires",
 					"optionID": 8600,
                     "defaultSizeIndex": -1,
@@ -14695,7 +14744,8 @@
 					]
 				},
                 {
-                    "name": "Kenda Tires",
+                    "hidden": true,
+					"name": "Kenda Tires",
                     "optionID": 8700,
                     "defaultSizeIndex": -1,
                     "sizes": [],
