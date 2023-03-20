@@ -165,6 +165,7 @@ angular.module('abacuApp')
         if(partID) {
           var part = $scope.curFrameData.getPart(partID);
           var id = $scope.curEditWheelchair.getOptionIDForPart(partID)
+          console.log("getting options")
           $scope.curOption = part.getOption(id);
           curColorPanel = id;
         }
@@ -969,6 +970,7 @@ angular.module('abacuApp')
       };
 
       $scope.setCurOptionSize = function (newSizeIndex) {
+        console.log("setCurOptionSize")
         $scope.designIsSaved = false;
         if ($scope.getCurColorPanelID() !== $scope.getCurWheelchairPart().optionID) {
             $scope.setCurOption($scope.getCurPanelID());

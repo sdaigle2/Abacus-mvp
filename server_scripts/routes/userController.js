@@ -196,16 +196,26 @@ router.post('/users/current/cart', restrict, function (req, res) {
     }
       // .then(function (cartArr) {
         ,function (err, cartArr) {
+          if (err) {
+            console.log(err)
+            res.json({
+              'err': err
+            });
+          } 
+          else{
           console.log('call back of updateOrInsertAllEntriesPr from userController')
       // cartArr=cartArr.result
       var cart = _.first(cartArr);
-      console.log(cart)
+      // console.log(cart)
+      var cart_id= cart.id
+      if(cart.id === undefined)
+          cart_id = cart._id
       var updateData = {
-        'cart': cart._id
+        'cart': cart_id
       };
       var userID = req.session.user;
-      console.log("try updating the user: ", cart._id)
-      dbService.inplaceAtomicFunction('users',userID,cart._id,'cart' ,cb)
+      console.log("try updating the user: ", cart_id)
+      dbService.inplaceAtomicFunction('users', userID, cart_id, 'cart' ,cb)
       // dbService.users.atomic(_designFunctionId, 'inplace', userID, updateData, cb);
       function cb(error, response) {
         if (error) {
@@ -224,6 +234,7 @@ router.post('/users/current/cart', restrict, function (req, res) {
           });
         }
       }
+    }
     })
     .catch(function(err) {
       console.log(err)

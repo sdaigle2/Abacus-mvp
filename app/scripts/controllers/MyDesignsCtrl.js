@@ -129,8 +129,9 @@ angular.module('abacuApp')
   		};
 
   		$scope.addToCart = function (id) {
-        console.log("addtocart")
+        console.log("addtocart: ", id)
         var itemIndex = getItemIndex(id);
+        console.log(itemIndex)
   			var design = $scope.wheelchairUIOpts[itemIndex].design;
   			User.getCart().addWheelchair(design);
         return $scope.deleteWheelchair(itemIndex, true);

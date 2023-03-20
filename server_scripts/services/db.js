@@ -340,6 +340,29 @@ async function deleteFromDBfunction(database,designDocument,uniqueID, f){
 
 
 
+function mergeObjects(left, right) {
+  const result = {};
+  
+  // add all properties from the right object to the result
+  for (let prop in right) {
+    if (right.hasOwnProperty(prop)) {
+      result[prop] = right[prop];
+    }
+  }
+  
+  // add unique properties from the left object to the result
+  for (let prop in left) {
+    if (left.hasOwnProperty(prop) && !result.hasOwnProperty(prop)) {
+      result[prop] = left[prop];
+    }
+  }
+  
+  return result;
+}
+
+
+
+
 // update document in the datbase 
 const inplaceAtomic = async (database,id,updateData,updateField) =>{
   var body, error;
@@ -349,7 +372,10 @@ const inplaceAtomic = async (database,id,updateData,updateField) =>{
       docId: id
     }).then(async response => {
       var document = response.result
-      document[updateField] = updateData
+      if(updateField === null)
+        document = mergeObjects(document, updateData)
+      else
+        document[updateField] = updateData
       await service.postDocument({
         db: database,
         document: document
@@ -357,7 +383,7 @@ const inplaceAtomic = async (database,id,updateData,updateField) =>{
         body = response.result.rev;
         error = null;
       }).catch(err=>{
-        console.log(err)
+        console.log(err. code, error.result)
         body = null;
         error = err;
       })
@@ -383,6 +409,7 @@ async function inplaceAtomicFunction(database, uniqueID,updateData,updateField, 
   var  res = await inplaceAtomic(database,uniqueID,updateData,updateField)
   f(res.error, res.body)
 }
+
 
 
 

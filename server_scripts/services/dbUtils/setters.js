@@ -60,8 +60,7 @@ function updateOrInsertAllEntries(argsObj, cb) {
 			// We're being given the object as a whole
 			// Check if it has the id field...if it doesn't then create an entry for it
 			if (entry[idField] && isValidID(entry[idField])) {
-				console.log('update:')
-				console.log(db)
+				console.log('update: ', db)
 				var entryID = entry[idField];
 				console.log(entryID)
 				// update the entry to check
@@ -70,10 +69,10 @@ function updateOrInsertAllEntries(argsObj, cb) {
 					console.log('return from dbInsert: ', db)
 				// dbInsert(entry, entryID, function (err, res) {
 					if (err) {
-						console.log(err)
+						console.log("return from dbInsert:", err)
 						cb(err);
 					} else {
-						console.log("Should be retuned: ", entry)
+						console.log("Should be retuned: ")
 						entry._rev = res.rev; // update the revision number
 						cb(null, entry); // updated the entry succesfully...return the entry value
 					}
@@ -128,7 +127,6 @@ function insertDesign(db, designValue, id, cb) {
 		// No ID given, so must create a new entry for the given design
 		cb = id;
 		id = null;
-		console.log("calling generateUniqueID")
 		// generateUniqueID('design', function (err, generatedID) {
 		// 	console.log('back from generateUniqueID: ', generatedID)
 		// 	if (err) {
@@ -139,6 +137,7 @@ function insertDesign(db, designValue, id, cb) {
 				// dbService.designs.insert(designValue, generatedID, (err, res) => {
 					console.log("return from insert design")
 					if (err) {
+						console.log("in insertdesign", err)
 						cb(err);
 					} else {
 						console.log("generated id: ", res.id)
@@ -154,11 +153,12 @@ function insertDesign(db, designValue, id, cb) {
 		// });
 	} else {
 		console.log("else")
+		console.log(id)
 		// An ID is specified, so update the design with that given ID
-		dbService.insertDesignDBfunction('design',designValue,id, (err, res) => {
+		dbService.inplaceAtomicFunction('design',id, designValue, null, (err, res) => {
 		// dbService.designs.insert(designValue, id, (err, res) => {
 			if (err) {
-				cb(err);
+				cb("error in insertDesign:", err);
 			} else {
 				// attach revision stamp
 				designValue._rev = res.rev;
@@ -183,7 +183,7 @@ function updateLinkedOrderFields(orderObj, cb) {
 	}, function (err, wheelchairs) {
 		console.log('return to updateLinkedOrderFields')
 		if (err) {
-			cb(err);
+			cb("error in updateLinkedOrderFields: ", err);
 		} else {
 			orderObj.wheelchairs = wheelchairs; // set the wheelchairs field appropriately
 
@@ -222,6 +222,7 @@ exports.getMinimizedOrderEntry = getMinimizedOrderEntry;
 function insertOrder(db, order, id, cb) {
 	console.log('insert Order function')
 	if (_.isFunction(id)) {
+		console.log("if")
 		// No ID is given, must create a new order entry
 		cb = id;
 		id = null;
@@ -229,6 +230,7 @@ function insertOrder(db, order, id, cb) {
 		updateLinkedOrderFields(order, function (err, updatedOrder) {
 			console.log("return from updateLinkedOrderFields")
 			if (err) {
+				console.log("error in insertOrdere: ", err)
 				cb(err);
 			} else {
 				// console.log(updatedOrder)
@@ -238,7 +240,7 @@ function insertOrder(db, order, id, cb) {
 				dbService.insertDBfunction('orders',updatedOrder, (err, res) => { 
 				// dbService.orders.insert(minOrder, (err, res) => { // insert the minorder, not the full order
 					if (err) {
-						cb(err);
+						cb("error in insertOrder: ",err);
 					} else {
 						// attach the revision stamp and the id
 						updatedOrder._rev = res.rev;
@@ -251,6 +253,7 @@ function insertOrder(db, order, id, cb) {
 			}
 		});
 	} else {
+		console.log("else")
 		// ID was given, update corresponding record after updating linked records
 		updateLinkedOrderFields(order, function (err, updatedOrder) {
 			if (err) {
@@ -258,7 +261,7 @@ function insertOrder(db, order, id, cb) {
 			} else {
 				const minOrder = getMinimizedOrderEntry(updatedOrder);
 				// update the order with the given id, but use the minOrder as the DB entry
-				dbService.insertDBfunction('orders',minOrder, (err, res) => { 
+				dbService.inplaceAtomicFunction('orders',id,minOrder,null, (err, res) => { 
 				// dbService.orders.insert(minOrder, id, (err, res) => { // insert the minorder, not the full order
 					if (err) {
 						cb(err);
