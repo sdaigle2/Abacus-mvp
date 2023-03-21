@@ -13,11 +13,14 @@ angular.module('abacuApp')
         self.savedDesigns = !_.isArray(data.savedDesigns) ? [] : data.savedDesigns.map(function (designObj) {
           return _.isObject(designObj) ? new Design(designObj) : designObj; // might just be a design ID string
         });
+        // console.log("new saved designs")
+        // console.log(self.savedDesigns)
         return self.savedDesigns;
       }
     }
 
     function updateSavedDesigns(designs) {
+      // console.log("updateSavedDesigns in dessignUpdateService.js")
       var data = {
         'savedDesigns': designs
       };
@@ -28,6 +31,7 @@ angular.module('abacuApp')
           method: 'POST'
         })
           .then(function (response) {
+            // to check
             return restoreSavedDesigns(response.data);
           })
           .catch(function(err) {

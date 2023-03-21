@@ -109,11 +109,13 @@ describe('Test CRUD Ops', () => { // no delete functionality right now
 
   after(done => {
     var cleanupUser = cb => {
-      dbService.users.deleteDoc(user._id, user._rev, cb);
+      dbService.deleteFromDBfunction('users', user._id, user._rev, cb)
+      // dbService.users.deleteDoc(user._id, user._rev, cb);
     };
 
     var cleanupDesign = cb => {
-      dbService.designs.deleteDoc(dummyDesign._id, dummyDesign._rev, cb);
+      dbService.deleteFromDBfunction('designs', dummyDesign._id, dummyDesign._rev, cb)
+      // dbService.designs.deleteDoc(dummyDesign._id, dummyDesign._rev, cb);
     };
 
     async.parallel([cleanupDesign, cleanupUser], done);
@@ -185,7 +187,8 @@ describe('Tests Wheelchair pdf generation', function () {
   });
 
   after(done => {
-    dbService.designs.deleteDoc(sampleDesign._id, sampleDesign._rev, done);
+    dbService.deleteFromDBfunction('designs', sampleDesign._id, sampleDesign._rev, done)
+    // dbService.designs.deleteDoc(sampleDesign._id, sampleDesign._rev, done);
   });
 
 

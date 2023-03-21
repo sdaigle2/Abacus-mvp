@@ -4,8 +4,8 @@ const Chance = require('chance');
 const getLoggedInAgent = require('../../helpers/getLoggedInAgent');
 const dbService = require('../../../../server_scripts/services/db');
 const promise = require('bluebird');
-const getUserPr = promise.promisify(dbService.users.get);
-const insertUserPr = promise.promisify(dbService.users.insert);
+const getUserPr = promise.promisify(dbService.findDB);
+const insertUserPr = promise.promisify(dbService.insertDB);
 
 const chance = new Chance();
 let user;
@@ -50,10 +50,10 @@ describe('Test userController', () => {
   });
 
   it('Should get users list if user is admin', done => {
-    getUserPr(user._id)
+    getUserPr('users',user._id)
     .then(userFromDb => {
       userFromDb.userType = 'superAdmin';
-      insertUserPr(userFromDb)
+      insertUserPr('users',userFromDb)
       .then(function(resp) {
         user._rev = resp.rev;
         agent
@@ -77,7 +77,8 @@ describe('Test userController', () => {
   });
 
   after(done => {
-    dbService.users.deleteDoc(user._id, user._rev, cb)
+    dbService.deleteFromDBfunction('users', user._id, user._rev, cb)
+    // dbService.users.deleteDoc(user._id, user._rev, cb)
 
     function cb() {
       done();

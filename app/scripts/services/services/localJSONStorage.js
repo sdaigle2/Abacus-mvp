@@ -15,9 +15,9 @@
  * info on localStorage: https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
  */
 angular.module('abacuApp')
-  .service('localJSONStorage', ['$cookieStore', '_', function ($cookieStore, _) {
+  .service('localJSONStorage', ['$cookies', '_', function ($cookies, _) {
     if (!_.has(window, 'localStorage')) {
-      return $cookieStore; // fallback to $cookieStore...has same get,put,remove methods as localJSONStorage
+      return $cookies; // fallback to $cookieStore...has same get,put,remove methods as localJSONStorage
     }
 
   	var localJSONStorage = function () {

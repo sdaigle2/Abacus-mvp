@@ -55,6 +55,7 @@ angular.module('abacuApp')
       getComments: function(){return this.comments},
 
       getOption: function (unitSys, index) {
+        console.log("get option function")
         if (index >= 0 && index < this.measureOptions[unitSys].length) {
           return this.measureOptions[unitSys][index];
         }

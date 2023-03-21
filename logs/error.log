@@ -1,0 +1,33 @@
+2023-03-12T01:21:10.936Z - error: Error occurred during reporter init: Error: Error when loading extension phantom-pdf@2.6.1
+Error: Extension "phantom-pdf" is not compatible with "core" extension. Missing ".requires" information in "phantom-pdf" definition
+    at validateMinimalVersion (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\validateMinimalVersion.js:24:11)
+    at Object._useOne (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:158:9)
+    at Object._useMany (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:99:38)
+    at async MainReporter.init (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\reporter.js:216:7)
+    at async htmlToPDF (E:\hamza\Hira\server_scripts\services\generatePDF\htmlToPDF\index.js:19:3)
+    at Object._useOne (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:248:15)
+    at Object._useMany (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:99:38)
+    at async MainReporter.init (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\reporter.js:216:7)
+    at async htmlToPDF (E:\hamza\Hira\server_scripts\services\generatePDF\htmlToPDF\index.js:19:3)
+2023-03-12T01:23:10.998Z - error: Error occurred during reporter init: Error: Error when loading extension phantom-pdf@2.6.1
+Error: Extension "phantom-pdf" is not compatible with "core" extension. Missing ".requires" information in "phantom-pdf" definition
+    at validateMinimalVersion (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\validateMinimalVersion.js:24:11)
+    at Object._useOne (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:158:9)
+    at Object._useMany (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:99:38)
+    at async MainReporter.init (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\reporter.js:216:7)
+    at async htmlToPDF (E:\hamza\Hira\server_scripts\services\generatePDF\htmlToPDF\index.js:19:3)
+    at Object._useOne (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:248:15)
+    at Object._useMany (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:99:38)
+    at async MainReporter.init (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\reporter.js:216:7)
+    at async htmlToPDF (E:\hamza\Hira\server_scripts\services\generatePDF\htmlToPDF\index.js:19:3)
+2023-03-12T01:28:23.179Z - error: Error occurred during reporter init: Error: Error when loading extension phantom-pdf@2.6.1
+Error: Extension "phantom-pdf" is not compatible with "core" extension. Missing ".requires" information in "phantom-pdf" definition
+    at validateMinimalVersion (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\validateMinimalVersion.js:24:11)
+    at Object._useOne (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:158:9)
+    at Object._useMany (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:99:38)
+    at async MainReporter.init (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\reporter.js:216:7)
+    at async htmlToPDF (E:\hamza\Hira\server_scripts\services\generatePDF\htmlToPDF\index.js:19:3)
+    at Object._useOne (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:248:15)
+    at Object._useMany (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\extensions\extensionsManager.js:99:38)
+    at async MainReporter.init (E:\hamza\Hira\node_modules\@jsreport\jsreport-core\lib\main\reporter.js:216:7)
+    at async htmlToPDF (E:\hamza\Hira\server_scripts\services\generatePDF\htmlToPDF\index.js:19:3)

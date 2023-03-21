@@ -8,50 +8,21 @@
 var _  = require('lodash');
 var async = require('async');
 //Cloudant Database API
-var cloudant = require('cloudant')({account: process.env.CLOUDANT_USERNAME, password: process.env.CLOUDANT_PASSWORD,
-  plugin:'retry', retryAttempts: 5});
+const { CloudantV1 } = require('@ibm-cloud/cloudant');
+const { IamAuthenticator } = require('ibm-cloud-sdk-core');
 
-var users     = cloudant.use('users');
-var orders    = cloudant.use('orders');
-var design    = cloudant.use('design');
-var discounts = cloudant.use('discounts');
-var orderNumber = cloudant.use('order_number');
-
-// add indexes for users
-
-var email = {name:'email', type:'json', index:{fields:['email']}}
-var resetLink = {name:'resetLink', type:'json', index:{fields:['resetLink']}}
-
-
-function addIndex(index) {
-  users.index(index, function(er, response) {
-    if (er) {
-      throw er;
-    } else if (response.result === 'exists') {
-      return true
-    } else {
-      console.log('Created an index for ' + index.name);
-    }
-  });
-}
-
-async.parallel({
-  'email': addIndex.bind(this, email),
-  'reset': addIndex.bind(this, resetLink)
-}, function (err, results) {
-  if (err) {
-    throw er;
-  }
-  return
+const authenticator = new IamAuthenticator({
+  apikey: process.env.CLOUDANT_APIKEY
 });
-
-const EXPORTED_DBS = {
-	users: users,
-	orders: orders,
-	designs: design,
-	discounts: discounts,
-	orderNumber: orderNumber
-};
+const service = new CloudantV1({
+  authenticator: authenticator
+});
+  
+try{
+  service.setServiceUrl(process.env.CLOUDANT_URL)
+} catch(err){
+  console.log("Database Connection Error",err)
+}
 
 /**
  * VERY IMPORTANT
@@ -69,21 +40,414 @@ const EXPORTED_DBS = {
  *
  * Destroy Docs: https://github.com/apache/couchdb-nano#dbdestroydocname-rev-callback
  */
-_.forEach(EXPORTED_DBS, db => {
-  db.deleteDoc = function (docID, docRev, cb) {
-    var givenDocID = _.isString(docID) || _.isNumber(docID);
-    var givenDocRev = _.isString(docRev);
-    var givenCallback = _.isFunction(cb);
+// _.forEach(EXPORTED_DBS, db => {
+//   db.deleteDoc = function (docID, docRev, cb) {
+//     var givenDocID = _.isString(docID) || _.isNumber(docID);
+//     var givenDocRev = _.isString(docRev);
+//     var givenCallback = _.isFunction(cb);
 
-    if (givenDocID && givenDocRev && givenCallback) {
-      db.destroy(docID, docRev, cb);
-    } else if (givenCallback) {
-      process.nextTick(() => cb(new Error('Invalid Arguments given to deleteDoc')));
-    } else {
-      throw new Error('Invalid Arguments given to deleteDoc');
+//     if (givenDocID && givenDocRev && givenCallback) {
+//       db.destroy(docID, docRev, cb);
+//     } else if (givenCallback) {
+//       process.nextTick(() => cb(new Error('Invalid Arguments given to deleteDoc')));
+//     } else {
+//       throw new Error('Invalid Arguments given to deleteDoc');
+//     }
+//   }
+// });
+
+//find in database
+const findDB = async (database,query) => {
+    try{
+        return await service.getDocument({
+            db: database,
+            docId: query
+          }).then(response => {
+            console.log(response)
+            return response.result
+          }).catch(err=>{
+            console.log(err.status)
+            return null
+          })
+    } catch (err){
+        console.log(err)
+        return null
+    } 
+}
+
+//find resetLink in database using
+const findResetLinkinDB = async (database,query) => {
+  try{
+      service.postAllDocs({
+        db: database
+      }).then(response => {
+          return response.result.rows.find(x=> x.resetLink === query)
+        }).catch(err=>{
+          console.log(err.status)
+          return null
+        })
+  } catch (err){
+      console.log(err)
+      return null
+  } 
+}
+
+const findwithfunction = async (database,query) => {
+  var body, error;
+    try{
+        await service.getDocument({
+            db: database,
+            docId: query
+          }).then(response => {
+            error = null;
+            body = response.result
+          }).catch(err=>{
+           body = null;
+           error = err;
+          })
+    } catch (err){
+        body = null;
+        error = err;
+        console.log(err)
+    } 
+    return {
+      error: error, 
+      body: body}
+}
+
+const insertwithfunction = async (database,document) => {
+  var body, error;
+    try{
+        await service.postDocument({
+          db: database,
+          document: document
+        }).then(response => {
+          error = null;
+          body = response.result
+        }).catch(err=>{
+          body = null;
+          error = err;
+        })
+        
+    } catch (err){
+        body = null;
+        error = err;
+        console.log(err)
+    } 
+    return {
+      error: error, 
+      body: body}
+}
+
+async function findDBfunction(database,userId, f){
+  let res = await findwithfunction(database,userId)
+  f(res.error, res.body)
+}
+async function insertDBfunction(database,document, f){
+  let res = await insertwithfunction(database,document)
+  f(res.error, res.body)
+}
+
+
+
+
+
+
+// Inserting documet in a database
+const insertDB = (database,document) => {
+  try{
+    service.postDocument({
+        db: database,
+        document: document
+      }).then(response => {
+        return response.result
+      }).catch(err=>{
+        console.log(err.status)
+        return null})
+  } catch (err){
+      console.log(err)
+      return null
+  } 
+}
+
+const listallDocsDB = (database) => {
+  try{
+    service.postAllDocs({
+      db: database,
+      includeDocs: true
+    }).then(response => {
+      return response.result
+    }).catch(err=>{
+      console.log(err.status)
+      return null})
+  } catch (err){
+      console.log(err)
+      return null
+  } 
+}
+
+const listAllFunctionDB = async (database) => {
+  var body, error;
+    try{
+        await  service.postAllDocs({
+          db: database,
+          includeDocs: true
+        }).then(response => {
+            error = null;
+            body = response.result
+          }).catch(err=>{
+           body = null;
+           error = err;
+          })
+    } catch (err){
+        body = null;
+        error = err;
+        console.log(err)
+    } 
+    return {
+      error: error, 
+      body: body}
+}
+
+async function listAllfunction(database, f){
+  res = await listAllFunctionDB(database)
+  f(res.error, res.body)
+}
+
+
+
+const findDesignDB = (database,query) => {
+  try{
+    service.getDesignDocument({
+      db: database,
+      ddoc: query,
+      }).then(response => {
+      return response.result
+    }).catch(err=>{
+      console.log(err.status)
+      return null})
+  } catch (err){
+      console.log(err)
+      return null
+  } 
+}
+
+async function findDesignfunction(database,design, f){
+  res = await findDesignwithfunction(database,design)
+  f(res.error, res.body)
+}
+
+
+const findDesignwithfunction = async (database,query) => {
+  var body, error;
+    try{
+        await  service.getDesignDocument({
+            db: database,
+            ddoc: query,
+          }).then(response => {
+            error = null;
+            body = response.result
+          }).catch(err=>{
+           body = null;
+           error = err;
+          })
+    } catch (err){
+        body = null;
+        error = err.body;
+        console.log(err)
+    } 
+    return {
+      error: error, 
+      body: body}
+}
+
+
+const insertDesignDB = async (database,uniqueID,designDocument) => {
+  try{
+    var body, error;
+    await service.putDesignDocument({
+      db: database,
+      designDocument: designDocument,
+      ddoc: uniqueID  
+    }).then(response => {
+      error = null;
+      body = response.result
+    }).catch(err=>{
+      body = null;
+      error = err.body;
+    })
+    } catch (err){
+        console.log(err)
+        body = null;
+        error = err;
+    }  
+    return {
+      error: error, 
+      body: body}
+}
+async function insertDesignDBfunction(database,designDocument,uniqueID, f){
+  var res = await insertDesignDB(database,uniqueID,designDocument)
+  f(res.error, res.body)
+}
+
+const deleteInDB = async (database,id) =>{
+  try{
+    await service.deleteDocument({
+      db: database,
+      docId: id,
+    }).then(response => {
+      return response.result
+    }).catch(err=>{
+      console.log(err.status)
+      return null
+    })
+
+  } catch (err){
+    console.log(err)
+    return null
+  }
+}
+
+const deleteFromDB = async (database,id, rev) =>{
+  var body, error;
+  try{
+    await service.deleteDocument({
+      db: database,
+      docId: id,
+      rev: rev
+    }).then(response => {
+      body = response.result;
+      error = null;
+    }).catch(err=>{
+      body = null;
+      error = err;
+    })
+  }
+    catch (err){
+      body = null;
+      error = err;
+      console.log(err)
+  } 
+  return {
+    error: error, 
+    body: body}
+}
+
+async function deleteFromDBfunction(database,designDocument,uniqueID, f){
+  res = await deleteFromDB(database,uniqueID,designDocument)
+  f(res.error, res.body)
+}
+
+
+
+function mergeObjects(left, right) {
+  const result = {};
+  
+  // add all properties from the right object to the result
+  for (let prop in right) {
+    if (right.hasOwnProperty(prop)) {
+      result[prop] = right[prop];
     }
   }
-});
+  
+  // add unique properties from the left object to the result
+  for (let prop in left) {
+    if (left.hasOwnProperty(prop) && !result.hasOwnProperty(prop)) {
+      result[prop] = left[prop];
+    }
+  }
+  
+  return result;
+}
 
-// Export all db instances along with cloudant instance
-module.exports = _.merge(EXPORTED_DBS, {cloudant: cloudant});
+
+
+
+// update document in the datbase 
+const inplaceAtomic = async (database,id,updateData,updateField) =>{
+  var body, error;
+  try{
+    await service.getDocument({
+      db: database,
+      docId: id
+    }).then(async response => {
+      var document = response.result
+      if(updateField === null)
+        document = mergeObjects(document, updateData)
+      else
+        document[updateField] = updateData
+      await service.postDocument({
+        db: database,
+        document: document
+      }).then(response => {
+        body = response.result.rev;
+        error = null;
+      }).catch(err=>{
+        console.log(err. code, error.result)
+        body = null;
+        error = err;
+      })
+    }).catch(err=>{
+      body = null;
+      error = err;
+      console.log(err)
+    })
+      
+  }
+    catch (err){
+      body = null;
+      error = err;
+      console.log(err)
+  } 
+  return {
+    error: error, 
+    body: body}
+}
+
+
+async function inplaceAtomicFunction(database, uniqueID,updateData,updateField, f){
+  var  res = await inplaceAtomic(database,uniqueID,updateData,updateField)
+  f(res.error, res.body)
+}
+
+
+
+
+
+const bulkFetch = async (database,ids) =>{
+  var body, error;
+  try{
+    var ids_ = []
+    for(let i = 0;i<ids.length;i++)
+        ids_.push({id: ids[i]})
+   await  service.postBulkGet({
+      db: database,
+      docs: ids_
+    }).then(response => {
+      body = response.result.results;
+      error = null;
+    }).catch(err=>{
+      console.log(err)
+      body = null;
+      error = err;
+    })
+  }
+    catch (err){
+      body = null;
+      error = err;
+      console.log(err)
+  } 
+  return {
+    error: error, 
+    body: body}
+}
+
+
+async function bulkFetchFunction(database, documentIDs, f){
+  var res = await bulkFetch(database,documentIDs)
+  f(res.error, res.body)
+}
+
+
+
+module.exports = { service, findDB, findDesignfunction, deleteInDB, bulkFetchFunction, deleteFromDBfunction, inplaceAtomicFunction, findDesignDB, findResetLinkinDB, insertDB, listAllfunction, findDBfunction,insertDBfunction,listallDocsDB, insertDesignDBfunction }

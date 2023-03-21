@@ -35,6 +35,11 @@ angular
     });
   }])
   .config(function ($routeProvider, $sceDelegateProvider, $httpProvider, $locationProvider ,cfpLoadingBarProvider) {
+
+    
+    $locationProvider.hashPrefix('!');
+    // $locationProvider.html5Mode(true);
+
     // Set up routes
     $routeProvider
       .when('/', {
@@ -231,8 +236,6 @@ angular
     ]);
     $httpProvider.defaults.useXDomain = true;
 
-    $locationProvider.hashPrefix('!');
-    //$locationProvider.html5Mode(true);
 
     cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
 

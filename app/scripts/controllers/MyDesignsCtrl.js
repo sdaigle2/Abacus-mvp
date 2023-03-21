@@ -62,6 +62,7 @@ angular.module('abacuApp')
       });
 
   		function init() {
+        // console.log("Trying to load the data I think")
         // Load all the designs asynchronously and then set wheelchairUIOpts once they're loaded
         var wheelchairUIOptsUserPromises = User.getSavedDesigns()
           .map(getDesignById)
@@ -128,7 +129,9 @@ angular.module('abacuApp')
   		};
 
   		$scope.addToCart = function (id) {
+        console.log("addtocart: ", id)
         var itemIndex = getItemIndex(id);
+        console.log(itemIndex)
   			var design = $scope.wheelchairUIOpts[itemIndex].design;
   			User.getCart().addWheelchair(design);
         return $scope.deleteWheelchair(itemIndex, true);

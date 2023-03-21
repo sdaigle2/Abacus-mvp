@@ -3,7 +3,7 @@
     "manufacturer": "Per4max",
     "name": "Thunder -Basketball",
     "desc": "The PER4MAX Thunder is an elite performance sports wheelchair built by the best for the best!  Offered in different configurations depending on sport, the Thunder has propelled elite athletes for decades in an array of sports! Crush the courts in our feather light tennis model with it’s eliminated front bumper and extended 5th wheel!  Ball with the best of them in a sturdy custom fit tapered lightweight basketball chair. Take on the softball field, rugby courts, lacrosse field, or running trail with The PER4MAX Thunder!!  The Thunder is hand built in the USA with aircraft quality aluminum and custom P4X machined parts highly scrutinized to produce a precise end product!",
-    "basePrice": 2849,
+    "basePrice": 3495,
     "shippingInfo": {
     	"cost": 140,
     	"weight": 0
@@ -23,16 +23,15 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
-          "comments":"",
+          			"comments":"",
 					"displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
-					"desc": "Our standard colors are applied with a high quality powder coating process.  Glossy and matte options are available.  Hover over each color to see its full name.",
+					"desc": "Our standard colors are applied with a high quality powder coating process.  Glossy and matte options are available.  Hover over each color to see its full name.  NOTE: Polish (Brushed) option has a $100 surcharge.",
 					"weight": 0,
 					"price": 0,
-          "defaultColorID": 1101,
+          			"defaultColorID": 1101,
 					"colors": [
 						{
 							"name": "Sky White",
@@ -147,7 +146,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your back rest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -256,7 +255,7 @@
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your back rest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -409,15 +408,14 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
 					"displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-black.jpg",
-					"desc": "The standard aluminum side guards match the color of your back rest and foot rest.  Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
+					"desc": "The standard aluminum side guards match the color of your backrest and foot rest.  Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
 					"weight": 350,
-					"price": 140,
+					"price": 150,
 					"defaultColorID": 1101,
 					"colors": [
 						{
@@ -520,7 +518,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -528,7 +525,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-red.jpg",
 					"desc": "Customize your rig with your team colors! Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
 					"weight": 350,
-					"price": 250,
+					"price": 500,
 					"defaultColorID": 1101,
 					"colors": [
 						{
@@ -639,20 +636,19 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-carbon.jpg",
 					"desc": "Carbon fiber is light, strong, and beautiful. Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
 					"weight": 0,
-					"price": 420,
+					"price": 600,
                     "defaultColorID" : 0
 				},
                 {
 					"name": "Welded Side Guards",
 					"optionID": 11500,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg", "Custom"],
 					"comments": "",
 					"displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-welded.jpg",
 					"desc": "For extra rigidity and durability, serious players who know their equipment have their side guards welded to the frame.  If you would like custom size side guards, enter the height and width in the comments box.",
-                    "price": 500,
+                    "price": 0,
 					"weight": 350,
 					"defaultColorID": 1101,
 					"colors": [
@@ -764,9 +760,8 @@
 			"defaultOptionID": 4100,
 			"options": [
 				{
-					"name": "5th Wheel & Rigid Back Rest",
+					"name": "5th Wheel & Rigid Backrest",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -894,16 +889,15 @@
 					]
 				},
 				{
-					"name": "5th Wheel & Continuous Back Rest",
+					"name": "5th Wheel & Continuous Backrest",
 					"optionID": 4300,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/5th-wheel-continuous.jpg",
 					"desc": "A continuous backrest is stronger than a rigid backrest, but it's not adjustable. A single fifth wheel support in back provides stability while allowing increased center of gravity to increase performance and agility. The fifth wheel comes Standard on all Thunder Models.",
 					"weight": 0,
-					"price": 280,
+					"price": 600,
                     "comments":"",
                     "defaultColorID": 1101,
 					"colors": [
@@ -1024,9 +1018,8 @@
 					]
 				},
                 {
-					"name": "Dual 5th Wheel & Rigid Back Rest",
+					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -1154,16 +1147,15 @@
 					]
 				},
 				{
-					"name": "Dual 5th Wheel & Continuous Back Rest",
+					"name": "Dual 5th Wheel & Continuous Backrest",
 					"optionID": 4400,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/dual-5th-wheel-continuous.jpg",
 					"desc": "A continuous backrest is stronger than a rigid backrest, but it's not adjustable.  The Dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Dual 5th wheels are recommended by Team PER4MAX for athletes at every level. The addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",
 					"weight": 350,
-					"price": 530,
+					"price": 850,
                     "comments":"",
                     "defaultColorID": 1101,
 					"colors": [
@@ -1286,7 +1278,6 @@
 				{
 					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -1294,7 +1285,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/5th-wheel-removeable-rigid.jpg",
 					"desc": "Experience the added benefits of a 5th wheel with the convenience of removing it seconds.  The removable 5th wheel is great for individuals with smaller cars with limited space!  When you are ready to compete, simply install the 5th wheel, clamp it down, and off you go!",
 					"weight": 350,
-					"price": 250,
+					"price": 350,
 					"defaultColorID": 1101,
 					"colors": [
 						{
@@ -1416,7 +1407,6 @@
 				{
 					"name": "Removable 5th Wheel & Continuous Backrest",
 					"optionID": 4600,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -1546,7 +1536,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "Footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -1562,7 +1552,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -1578,7 +1568,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-plastic.jpg",
 					"desc": "A black plastic plate on your foot rest is a high quality and economical option.",
 					"weight": 350,
-					"price": 80,
+					"price": 100,
 					"defaultColorID": 0
 				},
 				{
@@ -1592,7 +1582,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-carbon.jpg",
 					"desc": "Select carbon fiber for the ultimate quality and performance.",
 					"weight": 350,
-					"price": 175,
+					"price": 250,
 					"defaultColorID": 0
 				}
 			]
@@ -1643,7 +1633,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SPOX-sport.jpg",
             "desc": "An excellent value minded wheel in a tried and true design from Spinergy. The SPOX Sport is an excellent all-purpose wheel built-to-last without sacrificing style and performance. Ideal for minimal or no contact sports such as tennis, junior basketball, and so on... Features 24, patented 3mm PBO FIBER spokes. This is a quick accelerating lightweight wheel, that is a \"must upgrade\" from a standard steel spoke wheel.",
             "weight": 0,
-            "price": 695,
+            "price": 745,
             "defaultColorID": 6302,
             "colors": [
               {
@@ -1683,7 +1673,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX.jpg",
             "desc": "Get even more durability with 24 of Spinergy's 4mm patented PBO FIBER spokes in a wheel designed to perform in the most demanding contact sports. This wheel is responsive, offers extreme durability and is ideal for contact sport players. If you demand a lightweight quick accelerating and maneuverable wheel, the Sport Lite Extreme could be your answer. This wheel looks awesome, is stylish and allows you to focus on the game, not equipment failures.",
             "defaultColorID": 6401,
-            "price": 895,
+            "price": 945,
             "colors": [
               {
                 "name": "Black",
@@ -1736,7 +1726,7 @@
             "sizes": ["24\"", "25\"", "26\"", "27\""],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX-R10.jpg",
             "desc": "The SLX R-10 is a tried and true design from Spinergy with a strong and durable, stylish radial laced spoke pattern. Take the benefits of the SLX 24 spoke wheel and add the durability of a 5/8\" axle. Mostly used in contact sports where the 1/2\" axles tend to bend the most. These wheels deliver confidence and performance on the courts.",
-            "price": 950,
+            "price": 995,
             "defaultColorID": 6401,
             "colors": [
               {
@@ -1948,7 +1938,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/12-tab.jpg",
             "desc": "For extra rigidity, choose the 12 tab mounted hand rim.   Remember to choose close or far mounting.",
             "weight": 0.1,
-            "price": 95,
+            "price": 175,
             "defaultColorID": 0
           },
           {
@@ -2203,7 +2193,7 @@
 					"comments": "",
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/tension-adj.png",
 					"desc": "With the tension adjustable upholstery, you can fine tune your lumbar support.  The buckles hide underneath a flap to give you a clean and finished look.  This upholstery option comes with leather trim for extra durability.",
-					"price": 175,
+					"price": 300,
 					"defaultColorID": 0
 				}
 			]
@@ -2236,7 +2226,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/hard-cushion.jpg",
 					"desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height. This is often chosen in conjunction with the plastic seat plate (found in the misc. section).",
-					"price": 120,
+					"price": 150,
 					"defaultColorID": 0
 				},
 				{
@@ -2246,8 +2236,8 @@
 					"sizes": ["Roho", "Stimulite", "Other"],
 					"comments": "",
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/roho-cushion.jpg",
-					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.  We offer a Roho Cushion or Stimulite for $475.",
-					"price": 475,
+					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will contact you after you place your order to quote.",
+					"price": 0,
           "priceTBD": 1,
 					"defaultColorID": 0
 				}
@@ -2314,7 +2304,7 @@
 					"defaultColorID": 0
 				},
 				{
-					"name": "Foot Click Stap",
+					"name": "Foot Click Strap",
 					"optionID": 14500,
 					"defaultSizeIndex": -1,
 					"colors": [],
@@ -2342,7 +2332,6 @@
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -2373,7 +2362,7 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/7000-series.jpg",
             "desc": "To up your game, we'll build your chair out of 7000 series aluminum which reduces weight and increases rigidity.",
-            "price": 400,
+            "price": 500,
             "defaultColorID": 0
           },
           {
@@ -2384,7 +2373,7 @@
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/plastic-seat-plate.jpg",
             "desc": "An ABS plastic plate is attached to welded supports under the seat frame to allow user achieve max seat height or to eliminate seat upholstery sag. Typically used in combination with a sold 2\" foam cushion.  Not available on the Thunder Adjustable.",
-            "price": 125,
+            "price": 200,
             "comments":"",
             "defaultColorID": 0
           },
@@ -2411,11 +2400,11 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/leather-impact.jpg",
             "desc": "Protect your chair from dings and dents with foam or leather impact guards.",
-            "price": 75,
+            "price": 125,
             "defaultColorID": 0
           },
           {
-            "name": "Height Adjustable Back Rest",
+            "name": "Height Adjustable Backrest",
             "optionID": 10700,
             "comments":"",
             "colors": [],
@@ -2423,8 +2412,8 @@
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
-            "desc": "Selecting this option will allow your back rest to be adjusted 2\" higher or 2\" lower.",
-            "price": 80,
+            "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
+            "price": 350,
             "defaultColorID": 0
           },
           {
@@ -2437,7 +2426,7 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-black.jpg",
             "desc": "Per4max can make any size side guards you want.  For example, some users like the side guards to be even with the top of the wheels.  Others want higher side guards for more support.  If you would like custom sized side guards, enter your selection in the comments box of this option.",
-            "price": 220,
+            "price": 350,
             "defaultColorID": 0
           },
           {
@@ -2686,7 +2675,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -2762,7 +2751,7 @@
     "manufacturer": "Per4max",
     "name": "Thunder -Tennis",
     "desc": "The PER4MAX Thunder is an elite performance sports wheelchair built by the best for the best!  Offered in different configurations depending on sport, the Thunder has propelled elite athletes for decades in an array of sports! Crush the courts in our feather light tennis model with it’s eliminated front bumper and extended 5th wheel!  Ball with the best of them in a sturdy custom fit tapered lightweight basketball chair. Take on the softball field, rugby courts, lacrosse field, or running trail with The PER4MAX Thunder!!  The Thunder is hand built in the USA with aircraft quality aluminum and custom P4X machined parts highly scrutinized to produce a precise end product!",
-    "basePrice": 2849,
+    "basePrice": 3495,
     "shippingInfo": {
     	"cost": 140,
     	"weight": 0
@@ -2782,13 +2771,12 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
 					"displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
-					"desc": "Our standard colors are applied with a high quality powder coating process.  Glossy and matte options are available.  Hover over each color to see its full name.",
+					"desc": "Our standard colors are applied with a high quality powder coating process.  Glossy and matte options are available.  Hover over each color to see its full name.  NOTE: Polish (Brushed) option has a $100 surcharge.",
 					"weight": 0,
 					"price": 0,
                     "defaultColorID": 1101,
@@ -2906,7 +2894,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your back rest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -3010,13 +2998,12 @@
 				{
 					"name": "Black (Glossy or Matte)",
 					"optionID": 3150,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your back rest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -3169,15 +3156,14 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
 					"displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-black.jpg",
-					"desc": "The standard aluminum side guards match the color of your back rest and foot rest.  Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
+					"desc": "The standard aluminum side guards match the color of your backrest and foot rest.  Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
 					"weight": 350,
-					"price": 140,
+					"price": 150,
 					"defaultColorID": 1101,
 					"colors": [
 						{
@@ -3280,7 +3266,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -3288,7 +3273,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-red.jpg",
 					"desc": "Customize your rig with your team colors! Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
 					"weight": 350,
-					"price": 250,
+					"price": 500,
 					"defaultColorID": 1101,
 					"colors": [
 						{
@@ -3399,20 +3384,19 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-carbon.jpg",
 					"desc": "Carbon fiber is light, strong, and beautiful. Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
 					"weight": 0,
-					"price": 420,
+					"price": 600,
                     "defaultColorID" : 0
 				},
                 {
 					"name": "Welded Side Guards",
 					"optionID": 11500,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg", "Custom"],
 					"comments": "",
 					"displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-welded.jpg",
 					"desc": "For extra rigidity and durability, serious players who know their equipment have their side guards welded to the frame.  If you would like custom size side guards, enter the height and width in the comments box.",
-                    "price": 500,
+                    "price": 0,
 					"weight": 350,
 					"defaultColorID": 1101,
 					"colors": [
@@ -3524,9 +3508,8 @@
 			"defaultOptionID": 4100,
 			"options": [
 				{
-					"name": "5th Wheel & Rigid Back Rest",
+					"name": "5th Wheel & Rigid Backrest",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -3654,16 +3637,15 @@
 					]
 				},
 				{
-					"name": "5th Wheel & Continuous Back Rest",
+					"name": "5th Wheel & Continuous Backrest",
 					"optionID": 4300,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/5th-wheel-continuous.jpg",
 					"desc": "A continuous backrest is stronger than a rigid backrest, but it's not adjustable. A single fifth wheel support in back provides stability while allowing increased center of gravity to increase performance and agility. The fifth wheel comes Standard on all Thunder Models.",
 					"weight": 0,
-					"price": 280,
+					"price": 600,
                     "comments":"",
                     "defaultColorID": 1101,
 					"colors": [
@@ -3784,9 +3766,8 @@
 					]
 				},
                 {
-					"name": "Dual 5th Wheel & Rigid Back Rest",
+					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -3914,16 +3895,15 @@
 					]
 				},
 				{
-					"name": "Dual 5th Wheel & Continuous Back Rest",
+					"name": "Dual 5th Wheel & Continuous Backrest",
 					"optionID": 4400,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/dual-5th-wheel-continuous.jpg",
 					"desc": "A continuous backrest is stronger than a rigid backrest, but it's not adjustable.  The Dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Dual 5th wheels are recommended by Team PER4MAX for athletes at every level. The addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",
 					"weight": 350,
-					"price": 530,
+					"price": 850,
                     "comments":"",
                     "defaultColorID": 1101,
 					"colors": [
@@ -4046,7 +4026,6 @@
 				{
 					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -4054,7 +4033,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/5th-wheel-removeable-rigid.jpg",
 					"desc": "Experience the added benefits of a 5th wheel with the convenience of removing it seconds.  The removable 5th wheel is great for individuals with smaller cars with limited space!  When you are ready to compete, simply install the 5th wheel, clamp it down, and off you go!",
 					"weight": 350,
-					"price": 250,
+					"price": 350,
 					"defaultColorID": 1101,
 					"colors": [
 						{
@@ -4176,7 +4155,6 @@
 				{
 					"name": "Removable 5th Wheel & Continuous Backrest",
 					"optionID": 4600,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -4306,7 +4284,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "Footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -4322,7 +4300,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -4338,7 +4316,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-plastic.jpg",
 					"desc": "A black plastic plate on your foot rest is a high quality and economical option.",
 					"weight": 350,
-					"price": 80,
+					"price": 100,
 					"defaultColorID": 0
 				},
 				{
@@ -4352,7 +4330,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-carbon.jpg",
 					"desc": "Select carbon fiber for the ultimate quality and performance.",
 					"weight": 350,
-					"price": 175,
+					"price": 250,
 					"defaultColorID": 0
 				}
 			]
@@ -4403,7 +4381,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SPOX-sport.jpg",
             "desc": "An excellent value minded wheel in a tried and true design from Spinergy. The SPOX Sport is an excellent all-purpose wheel built-to-last without sacrificing style and performance. Ideal for minimal or no contact sports such as tennis, junior basketball, and so on... Features 24, patented 3mm PBO FIBER spokes. This is a quick accelerating lightweight wheel, that is a \"must upgrade\" from a standard steel spoke wheel.",
             "weight": 0,
-            "price": 695,
+            "price": 745,
             "defaultColorID": 6302,
             "colors": [
               {
@@ -4443,7 +4421,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX.jpg",
             "desc": "Get even more durability with 24 of Spinergy's 4mm patented PBO FIBER spokes in a wheel designed to perform in the most demanding contact sports. This wheel is responsive, offers extreme durability and is ideal for contact sport players. If you demand a lightweight quick accelerating and maneuverable wheel, the Sport Lite Extreme could be your answer. This wheel looks awesome, is stylish and allows you to focus on the game, not equipment failures.",
             "defaultColorID": 6401,
-            "price": 895,
+            "price": 945,
             "colors": [
               {
                 "name": "Black",
@@ -4496,7 +4474,7 @@
             "sizes": ["24\"", "25\"", "26\"", "27\""],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX-R10.jpg",
             "desc": "The SLX R-10 is a tried and true design from Spinergy with a strong and durable, stylish radial laced spoke pattern. Take the benefits of the SLX 24 spoke wheel and add the durability of a 5/8\" axle. Mostly used in contact sports where the 1/2\" axles tend to bend the most. These wheels deliver confidence and performance on the courts.",
-            "price": 950,
+            "price": 995,
             "defaultColorID": 6401,
             "colors": [
               {
@@ -4708,7 +4686,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/12-tab.jpg",
             "desc": "For extra rigidity, choose the 12 tab mounted hand rim.   Remember to choose close or far mounting.",
             "weight": 0.1,
-            "price": 95,
+            "price": 175,
             "defaultColorID": 0
           },
           {
@@ -4963,7 +4941,7 @@
 					"comments": "",
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/tension-adj.png",
 					"desc": "With the tension adjustable upholstery, you can fine tune your lumbar support.  The buckles hide underneath a flap to give you a clean and finished look.  This upholstery option comes with leather trim for extra durability.",
-					"price": 175,
+					"price": 300,
 					"defaultColorID": 0
 				}
 			]
@@ -4996,7 +4974,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/hard-cushion.jpg",
 					"desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height. This is often chosen in conjunction with the plastic seat plate (found in the misc. section).",
-					"price": 120,
+					"price": 150,
 					"defaultColorID": 0
 				},
 				{
@@ -5006,8 +4984,8 @@
 					"sizes": ["Roho", "Stimulite", "Other"],
 					"comments": "",
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/roho-cushion.jpg",
-					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.  We offer a Roho Cushion or Stimulite for $475.",
-					"price": 475,
+					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will contact you after you place your order to quote.",
+					"price": 0,
           "priceTBD": 1,
 					"defaultColorID": 0
 				}
@@ -5074,7 +5052,7 @@
 					"defaultColorID": 0
 				},
 				{
-					"name": "Foot Click Stap",
+					"name": "Foot Click Strap",
 					"optionID": 14500,
 					"defaultSizeIndex": -1,
 					"colors": [],
@@ -5102,7 +5080,6 @@
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -5133,7 +5110,7 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/7000-series.jpg",
             "desc": "To up your game, we'll build your chair out of 7000 series aluminum which reduces weight and increases rigidity.",
-            "price": 400,
+            "price": 500,
             "defaultColorID": 0
           },
           {
@@ -5144,7 +5121,7 @@
             "sizes": [],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/plastic-seat-plate.jpg",
             "desc": "An ABS plastic plate is attached to welded supports under the seat frame to allow user achieve max seat height or to eliminate seat upholstery sag. Typically used in combination with a sold 2\" foam cushion.  Not available on the Thunder Adjustable.",
-            "price": 125,
+            "price": 200,
             "comments":"",
             "defaultColorID": 0
           },
@@ -5171,11 +5148,11 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/leather-impact.jpg",
             "desc": "Protect your chair from dings and dents with foam or leather impact guards.",
-            "price": 75,
+            "price": 125,
             "defaultColorID": 0
           },
           {
-            "name": "Height Adjustable Back Rest",
+            "name": "Height Adjustable Backrest",
             "optionID": 10700,
             "comments":"",
             "colors": [],
@@ -5183,8 +5160,8 @@
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
-            "desc": "Selecting this option will allow your back rest to be adjusted 2\" higher or 2\" lower.",
-            "price": 80,
+            "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
+            "price": 350,
             "defaultColorID": 0
           },
           {
@@ -5197,7 +5174,7 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-black.jpg",
             "desc": "Per4max can make any size side guards you want.  For example, some users like the side guards to be even with the top of the wheels.  Others want higher side guards for more support.  If you would like custom sized side guards, enter your selection in the comments box of this option.",
-            "price": 220,
+            "price": 350,
             "defaultColorID": 0
           },
           {
@@ -5446,7 +5423,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -5522,7 +5499,7 @@
     "manufacturer": "Per4max",
     "name": "Thunder Adjustable -Basketball",
     "desc": "The Thunder Adjustable is the most versatile performance sports chair on the market today! It is made of optional 6061 T6 or optional 7000 series aluminum.  With the front seat height fixed, the rear seat height is easily adjusted in seconds utilizing P4X custom machined parts and clamps used on bicycle seats.  Simply slide the seat to the desired height and lock into that position!  Backrest angle and option height adjust post allow you to adjust this chair to vertually any user.  Also comes with center of gravity adjustment and lower leg length adjustability to find the perfect fit!  Great for new wheelchair athletes and programs searching for chairs that fit everybody.  Also great for the universal athlete looking for a great all around chair that can be adjusted to your sport of choice.  Contact your local Representative or us for more information on the Thunder Adjustable Sport Wheelchair!",
-    "basePrice": 3149,
+    "basePrice": 4325,
     "shippingInfo": {
     	"cost": 140,
     	"weight": 0
@@ -5542,13 +5519,12 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
 					"displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
-					"desc": "Our standard colors are applied with a high quality powder coating process.  Glossy and matte options are available.  Hover over each color to see its full name.",
+					"desc": "Our standard colors are applied with a high quality powder coating process.  Glossy and matte options are available.  Hover over each color to see its full name.  NOTE: Polish (Brushed) option has a $100 surcharge.",
 					"weight": 0,
 					"price": 0,
                     "defaultColorID": 1101,
@@ -5666,7 +5642,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your back rest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -5770,13 +5746,12 @@
 				{
 					"name": "Black (Glossy or Matte)",
 					"optionID": 3150,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your back rest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -5915,13 +5890,12 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
 					"displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-black.jpg",
-					"desc": "The standard aluminum side guards match the color of your back rest and foot rest.  Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
+					"desc": "The standard aluminum side guards match the color of your backrest and foot rest.  Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
 					"weight": 350,
 					"price": 0,
 					"defaultColorID": 1101,
@@ -6026,7 +6000,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -6034,7 +6007,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-red.jpg",
 					"desc": "Customize your rig with your team colors! Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
 					"weight": 350,
-					"price": 250,
+					"price": 500,
 					"defaultColorID": 1101,
 					"colors": [
 						{
@@ -6145,7 +6118,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-carbon.jpg",
 					"desc": "Carbon fiber is light, strong, and beautiful. Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
 					"weight": 0,
-					"price": 420,
+					"price": 600,
                     "defaultColorID" : 0
 				}
 			]
@@ -6161,7 +6134,6 @@
 				{
 					"name": "Single 5th Wheel",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -6289,9 +6261,8 @@
 					]
 				},
                 {
-					"name": "Dual 5th Wheel",
+					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -6419,9 +6390,8 @@
 					]
 				},
 				{
-					"name": "Removable 5th Wheel",
+					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -6429,7 +6399,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/5th-wheel-removeable-rigid.jpg",
 					"desc": "Experience the added benefits of a 5th wheel with the convenience of removing it seconds.  The removable 5th wheel is great for individuals with smaller cars with limited space!  When you are ready to compete, simply install the 5th wheel, clamp it down, and off you go!",
 					"weight": 350,
-					"price": 250,
+					"price": 350,
 					"defaultColorID": 1101,
 					"colors": [
 						{
@@ -6551,7 +6521,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -6567,7 +6537,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -6583,7 +6553,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-plastic.jpg",
 					"desc": "A black plastic plate on your foot rest is a high quality and economical option.",
 					"weight": 350,
-					"price": 80,
+					"price": 100,
 					"defaultColorID": 0
 				},
 				{
@@ -6597,7 +6567,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-carbon.jpg",
 					"desc": "Select carbon fiber for the ultimate quality and performance.",
 					"weight": 350,
-					"price": 175,
+					"price": 250,
 					"defaultColorID": 0
 				}
 			]
@@ -6648,7 +6618,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SPOX-sport.jpg",
             "desc": "An excellent value minded wheel in a tried and true design from Spinergy. The SPOX Sport is an excellent all-purpose wheel built-to-last without sacrificing style and performance. Ideal for minimal or no contact sports such as tennis, junior basketball, and so on... Features 24, patented 3mm PBO FIBER spokes. This is a quick accelerating lightweight wheel, that is a \"must upgrade\" from a standard steel spoke wheel.",
             "weight": 0,
-            "price": 695,
+            "price": 745,
             "defaultColorID": 6302,
             "colors": [
               {
@@ -6688,7 +6658,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX.jpg",
             "desc": "Get even more durability with 24 of Spinergy's 4mm patented PBO FIBER spokes in a wheel designed to perform in the most demanding contact sports. This wheel is responsive, offers extreme durability and is ideal for contact sport players. If you demand a lightweight quick accelerating and maneuverable wheel, the Sport Lite Extreme could be your answer. This wheel looks awesome, is stylish and allows you to focus on the game, not equipment failures.",
             "defaultColorID": 6401,
-            "price": 895,
+            "price": 945,
             "colors": [
               {
                 "name": "Black",
@@ -6741,7 +6711,7 @@
             "sizes": ["24\"", "25\"", "26\"", "27\""],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX-R10.jpg",
             "desc": "The SLX R-10 is a tried and true design from Spinergy with a strong and durable, stylish radial laced spoke pattern. Take the benefits of the SLX 24 spoke wheel and add the durability of a 5/8\" axle. Mostly used in contact sports where the 1/2\" axles tend to bend the most. These wheels deliver confidence and performance on the courts.",
-            "price": 950,
+            "price": 995,
             "defaultColorID": 6401,
             "colors": [
               {
@@ -6953,7 +6923,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/12-tab.jpg",
             "desc": "For extra rigidity, choose the 12 tab mounted hand rim.   Remember to choose close or far mounting.",
             "weight": 0.1,
-            "price": 95,
+            "price": 175,
             "defaultColorID": 0
           },
           {
@@ -7208,7 +7178,7 @@
 					"comments": "",
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/tension-adj.png",
 					"desc": "With the tension adjustable upholstery, you can fine tune your lumbar support.  The buckles hide underneath a flap to give you a clean and finished look.  This upholstery option comes with leather trim for extra durability.",
-					"price": 175,
+					"price": 300,
 					"defaultColorID": 0
 				}
 			]
@@ -7241,7 +7211,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/hard-cushion.jpg",
 					"desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height. This is often chosen in conjunction with the plastic seat plate (found in the misc. section).",
-					"price": 120,
+					"price": 150,
 					"defaultColorID": 0
 				},
 				{
@@ -7251,8 +7221,8 @@
 					"sizes": ["Roho", "Stimulite", "Other"],
 					"comments": "",
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/roho-cushion.jpg",
-					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.  We offer a Roho Cushion or Stimulite for $475.",
-					"price": 475,
+					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will contact you after you place your order to quote.",
+					"price": 0,
           "priceTBD": 1,
 					"defaultColorID": 0
 				}
@@ -7319,7 +7289,7 @@
 					"defaultColorID": 0
 				},
 				{
-					"name": "Foot Click Stap",
+					"name": "Foot Click Strap",
 					"optionID": 14500,
 					"defaultSizeIndex": -1,
 					"colors": [],
@@ -7347,7 +7317,6 @@
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -7378,7 +7347,7 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/7000-series.jpg",
             "desc": "To up your game, we'll build your chair out of 7000 series aluminum which reduces weight and increases rigidity.",
-            "price": 400,
+            "price": 500,
             "defaultColorID": 0
           },
           {
@@ -7404,11 +7373,11 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/leather-impact.jpg",
             "desc": "Protect your chair from dings and dents with foam or leather impact guards.",
-            "price": 75,
+            "price": 125,
             "defaultColorID": 0
           },
           {
-            "name": "Height Adjustable Back Rest",
+            "name": "Height Adjustable Backrest",
             "optionID": 10700,
             "comments":"",
             "colors": [],
@@ -7416,8 +7385,8 @@
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
-            "desc": "Selecting this option will allow your back rest to be adjusted 2\" higher or 2\" lower.",
-            "price": 80,
+            "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
+            "price": 350,
             "defaultColorID": 0
           },
           {
@@ -7430,7 +7399,7 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-black.jpg",
             "desc": "Per4max can make any size side guards you want.  For example, some users like the side guards to be even with the top of the wheels.  Others want higher side guards for more support.  If you would like custom sized side guards, enter your selection in the comments box of this option.",
-            "price": 220,
+            "price": 350,
             "defaultColorID": 0
           },
           {
@@ -7661,7 +7630,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -7737,7 +7706,7 @@
     "manufacturer": "Per4max",
     "name": "Thunder Adjustable -Tennis",
     "desc": "The Thunder Adjustable is the most versatile performance sports chair on the market today! It is made of optional 6061 T6 or optional 7000 series aluminum.  With the front seat height fixed, the rear seat height is easily adjusted in seconds utilizing P4X custom machined parts and clamps used on bicycle seats.  Simply slide the seat to the desired height and lock into that position!  Backrest angle and option height adjust post allow you to adjust this chair to vertually any user.  Also comes with center of gravity adjustment and lower leg length adjustability to find the perfect fit!  Great for new wheelchair athletes and programs searching for chairs that fit everybody.  Also great for the universal athlete looking for a great all around chair that can be adjusted to your sport of choice.  Contact your local Representative or us for more information on the Thunder Adjustable Sport Wheelchair!",
-    "basePrice": 3149,
+    "basePrice": 4325,
     "shippingInfo": {
     	"cost": 140,
     	"weight": 0
@@ -7757,13 +7726,12 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
 					"displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
-					"desc": "Our standard colors are applied with a high quality powder coating process.  Glossy and matte options are available.  Hover over each color to see its full name.",
+					"desc": "Our standard colors are applied with a high quality powder coating process.  Glossy and matte options are available.  Hover over each color to see its full name.  NOTE: Polish (Brushed) option has a $100 surcharge.",
 					"weight": 0,
 					"price": 0,
                     "defaultColorID": 1101,
@@ -7881,7 +7849,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your back rest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -7985,13 +7953,12 @@
 				{
 					"name": "Black (Glossy or Matte)",
 					"optionID": 3150,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your back rest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -8130,13 +8097,12 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
 					"displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-black.jpg",
-					"desc": "The standard aluminum side guards match the color of your back rest and foot rest.  Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
+					"desc": "The standard aluminum side guards match the color of your backrest and foot rest.  Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
 					"weight": 350,
 					"price": 0,
 					"defaultColorID": 1101,
@@ -8241,7 +8207,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -8249,7 +8214,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-red.jpg",
 					"desc": "Customize your rig with your team colors! Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
 					"weight": 350,
-					"price": 250,
+					"price": 500,
 					"defaultColorID": 1101,
 					"colors": [
 						{
@@ -8360,7 +8325,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-carbon.jpg",
 					"desc": "Carbon fiber is light, strong, and beautiful. Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
 					"weight": 0,
-					"price": 420,
+					"price": 600,
                     "defaultColorID" : 0
 				}
 			]
@@ -8376,7 +8341,6 @@
 				{
 					"name": "Single 5th Wheel",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -8504,9 +8468,8 @@
 					]
 				},
                 {
-					"name": "Dual 5th Wheel",
+					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -8634,9 +8597,8 @@
 					]
 				},
 				{
-					"name": "Removable 5th Wheel",
+					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -8644,7 +8606,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/5th-wheel-removeable-rigid.jpg",
 					"desc": "Experience the added benefits of a 5th wheel with the convenience of removing it seconds.  The removable 5th wheel is great for individuals with smaller cars with limited space!  When you are ready to compete, simply install the 5th wheel, clamp it down, and off you go!",
 					"weight": 350,
-					"price": 250,
+					"price": 350,
 					"defaultColorID": 1101,
 					"colors": [
 						{
@@ -8766,7 +8728,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "Footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -8782,7 +8744,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -8798,7 +8760,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-plastic.jpg",
 					"desc": "A black plastic plate on your foot rest is a high quality and economical option.",
 					"weight": 350,
-					"price": 80,
+					"price": 100,
 					"defaultColorID": 0
 				},
 				{
@@ -8812,7 +8774,7 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-carbon.jpg",
 					"desc": "Select carbon fiber for the ultimate quality and performance.",
 					"weight": 350,
-					"price": 175,
+					"price": 250,
 					"defaultColorID": 0
 				}
 			]
@@ -8863,7 +8825,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SPOX-sport.jpg",
             "desc": "An excellent value minded wheel in a tried and true design from Spinergy. The SPOX Sport is an excellent all-purpose wheel built-to-last without sacrificing style and performance. Ideal for minimal or no contact sports such as tennis, junior basketball, and so on... Features 24, patented 3mm PBO FIBER spokes. This is a quick accelerating lightweight wheel, that is a \"must upgrade\" from a standard steel spoke wheel.",
             "weight": 0,
-            "price": 695,
+            "price": 745,
             "defaultColorID": 6302,
             "colors": [
               {
@@ -8903,7 +8865,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX.jpg",
             "desc": "Get even more durability with 24 of Spinergy's 4mm patented PBO FIBER spokes in a wheel designed to perform in the most demanding contact sports. This wheel is responsive, offers extreme durability and is ideal for contact sport players. If you demand a lightweight quick accelerating and maneuverable wheel, the Sport Lite Extreme could be your answer. This wheel looks awesome, is stylish and allows you to focus on the game, not equipment failures.",
             "defaultColorID": 6401,
-            "price": 895,
+            "price": 945,
             "colors": [
               {
                 "name": "Black",
@@ -8956,7 +8918,7 @@
             "sizes": ["24\"", "25\"", "26\"", "27\""],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/SLX-R10.jpg",
             "desc": "The SLX R-10 is a tried and true design from Spinergy with a strong and durable, stylish radial laced spoke pattern. Take the benefits of the SLX 24 spoke wheel and add the durability of a 5/8\" axle. Mostly used in contact sports where the 1/2\" axles tend to bend the most. These wheels deliver confidence and performance on the courts.",
-            "price": 950,
+            "price": 995,
             "defaultColorID": 6401,
             "colors": [
               {
@@ -9168,7 +9130,7 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/12-tab.jpg",
             "desc": "For extra rigidity, choose the 12 tab mounted hand rim.   Remember to choose close or far mounting.",
             "weight": 0.1,
-            "price": 95,
+            "price": 175,
             "defaultColorID": 0
           },
           {
@@ -9423,7 +9385,7 @@
 					"comments": "",
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/tension-adj.png",
 					"desc": "With the tension adjustable upholstery, you can fine tune your lumbar support.  The buckles hide underneath a flap to give you a clean and finished look.  This upholstery option comes with leather trim for extra durability.",
-					"price": 175,
+					"price": 300,
 					"defaultColorID": 0
 				}
 			]
@@ -9456,7 +9418,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/hard-cushion.jpg",
 					"desc": "Many players like a firm surface for competitive play.  Specify a hard cushion for added height. This is often chosen in conjunction with the plastic seat plate (found in the misc. section).",
-					"price": 120,
+					"price": 150,
 					"defaultColorID": 0
 				},
 				{
@@ -9466,8 +9428,8 @@
 					"sizes": ["Roho", "Stimulite", "Other"],
 					"comments": "",
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/roho-cushion.jpg",
-					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.  We offer a Roho Cushion or Stimulite for $475.",
-					"price": 475,
+					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will contact you after you place your order to quote.",
+					"price": 0,
           "priceTBD": 1,
 					"defaultColorID": 0
 				}
@@ -9534,7 +9496,7 @@
 					"defaultColorID": 0
 				},
 				{
-					"name": "Foot Click Stap",
+					"name": "Foot Click Strap",
 					"optionID": 14500,
 					"defaultSizeIndex": -1,
 					"colors": [],
@@ -9562,7 +9524,6 @@
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -9593,7 +9554,7 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/7000-series.jpg",
             "desc": "To up your game, we'll build your chair out of 7000 series aluminum which reduces weight and increases rigidity.",
-            "price": 400,
+            "price": 500,
             "defaultColorID": 0
           },
           {
@@ -9619,11 +9580,11 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/leather-impact.jpg",
             "desc": "Protect your chair from dings and dents with foam or leather impact guards.",
-            "price": 75,
+            "price": 125,
             "defaultColorID": 0
           },
           {
-            "name": "Height Adjustable Back Rest",
+            "name": "Height Adjustable Backrest",
             "optionID": 10700,
             "comments":"",
             "colors": [],
@@ -9631,8 +9592,8 @@
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
-            "desc": "Selecting this option will allow your back rest to be adjusted 2\" higher or 2\" lower.",
-            "price": 80,
+            "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
+            "price": 350,
             "defaultColorID": 0
           },
           {
@@ -9645,7 +9606,7 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-black.jpg",
             "desc": "Per4max can make any size side guards you want.  For example, some users like the side guards to be even with the top of the wheels.  Others want higher side guards for more support.  If you would like custom sized side guards, enter your selection in the comments box of this option.",
-            "price": 220,
+            "price": 350,
             "defaultColorID": 0
           },
           {
@@ -9876,7 +9837,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -9972,7 +9933,6 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
@@ -10043,7 +10003,6 @@
                 {
 					"name": "Premium Colors",
 					"optionID": 2300,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
@@ -10112,7 +10071,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your back rest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -10216,13 +10175,12 @@
 				{
 					"name": "Black (Glossy or Matte)",
 					"optionID": 3150,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your back rest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -10375,13 +10333,12 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
 					"displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/side-guard/side-guard-black.jpg",
-					"desc": "The standard aluminum side guards match the color of your back rest and foot rest.  Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
+					"desc": "The standard aluminum side guards match the color of your backrest and foot rest.  Remember to choose a size: Small (8x12\"), Medium (8.5x13.5\"), or Large (9x15.5\")",
 					"weight": 350,
 					"price": 0,
 					"defaultColorID": 1101,
@@ -10486,7 +10443,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -10611,7 +10567,6 @@
                 {
 					"name": "Welded Side Guards",
 					"optionID": 11500,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg", "Custom"],
 					"comments": "",
@@ -10730,9 +10685,8 @@
 			"defaultOptionID": 4100,
 			"options": [
 				{
-					"name": "5th Wheel & Rigid Back Rest",
+					"name": "5th Wheel & Rigid Backrest",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -10860,9 +10814,8 @@
 					]
 				},
 				{
-					"name": "5th Wheel & Continuous Back Rest",
+					"name": "5th Wheel & Continuous Backrest",
 					"optionID": 4300,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -10990,9 +10943,8 @@
 					]
 				},
                 {
-					"name": "Dual 5th Wheel & Rigid Back Rest",
+					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -11120,9 +11072,8 @@
 					]
 				},
 				{
-					"name": "Dual 5th Wheel & Continuous Back Rest",
+					"name": "Dual 5th Wheel & Continuous Backrest",
 					"optionID": 4400,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -11252,7 +11203,6 @@
 				{
 					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -11382,7 +11332,6 @@
 				{
 					"name": "Removable 5th Wheel & Continuous Backrest",
 					"optionID": 4600,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -11512,7 +11461,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "Footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -11528,7 +11477,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -11764,7 +11713,6 @@
             "sizes": ["24\"", "25\"", "26\"", "27\""],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/XSLX.jpg",
             "desc": "The latest design evolution from Spinergy that takes wheel performance to the next level. The Sport Lite Extreme SLX X-Laced with patented 4mm PBO FIBER spokes provides added torsional stiffness and a quicker push response. Developed for athletes wanting to turn up the dial a little more in wheelchair performance.",
-            "price": 585,
             "price": 585,
             "defaultColorID": 6401,
             "colors": [
@@ -12213,8 +12161,8 @@
 					"sizes": ["Roho", "Stimulite", "Other"],
 					"comments": "",
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/cushion/roho-cushion.jpg",
-					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will email you after you place your order to confirm.  We offer a Roho Cushion or Stimulite for $475.",
-					"price": 427.5,
+					"desc": "Have a special cushion that you like?  Write it in here and a customer server rep will contact you after you place your order to quote.",
+					"price": 0,
           "priceTBD": 1,
 					"defaultColorID": 0
 				}
@@ -12281,7 +12229,7 @@
 					"defaultColorID": 0
 				},
 				{
-					"name": "Foot Click Stap",
+					"name": "Foot Click Strap",
 					"optionID": 14500,
 					"defaultSizeIndex": -1,
 					"colors": [],
@@ -12309,7 +12257,6 @@
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -12382,7 +12329,7 @@
             "defaultColorID": 0
           },
           {
-            "name": "Height Adjustable Back Rest",
+            "name": "Height Adjustable Backrest",
             "optionID": 10700,
             "comments":"",
             "colors": [],
@@ -12390,7 +12337,7 @@
             "sizes": [],
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
-            "desc": "Selecting this option will allow your back rest to be adjusted 2\" higher or 2\" lower.",
+            "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
             "price": 72,
             "defaultColorID": 0
           },
@@ -12653,7 +12600,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -12729,7 +12676,7 @@
     "manufacturer": "Spinergy",
     "name": "Spinergy SPOX Wheels (Set of two)",
     "desc": "PRICE INCLUDES A SET OF TWO WHEELS.  Spinergy built its reputation as a market leader with the SPOX Everyday wheelchair wheel. They have been our best seller for 15 years and are built to last. Wheels are the most rewarding upgrade you can make on a wheelchair and the SPOX Everyday wheels are our entry wheel with a budget in mind.",
-    "basePrice": 695,
+    "basePrice": 745,
     "shippingInfo": {
     	"cost": 38.45,
     	"weight": 0
@@ -12799,7 +12746,6 @@
 				{
 					"name": "Same as Main Spoke Color",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -12840,7 +12786,6 @@
 				{
 					"name": "Different from Main Spoke Color",
 					"optionID": 2200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -12924,7 +12869,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 3200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -12993,7 +12937,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -13420,7 +13363,7 @@
     "manufacturer": "Spinergy",
     "name": "Spinergy SLX Wheels (Set of two)",
     "desc": "Get even more durability with 24 of Spinergy's 4mm patented PBO FIBER spokes in a wheel designed to perform in the most demanding contact sports. This wheel is responsive, offers extreme durability and is ideal for contact sport players. If you demand a lightweight quick accelerating and maneuverable wheel, the Sport Lite Extreme could be your answer. This wheel looks awesome, is stylish and allows you to focus on the game, not equipment failures.",
-    "basePrice": 895,
+    "basePrice": 945,
     "shippingInfo": {
     	"cost": 38.45,
     	"weight": 0
@@ -13505,7 +13448,6 @@
 				{
 					"name": "Same as Main Spoke Color",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -13561,7 +13503,6 @@
 				{
 					"name": "Different from Main Spoke Color",
 					"optionID": 2200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -13655,7 +13596,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 3200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -13724,7 +13664,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -13798,7 +13737,7 @@
                     "sizes": ["Close Mounted", "Far Mounted"],
                     "comments": "",
 					"displayColor": 0,
-                    "price": 95,
+                    "price": 175,
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/12-tab.jpg",
                     "desc": "For extra rigidity, choose the 12 tab mounted hand rim. Remember to choose close or far mounting.",
                     "weight": 0,
@@ -14184,7 +14123,7 @@
     "manufacturer": "Spinergy",
     "name": "Spinergy SLX R-10 Wheels (Set of two)",
     "desc": "The SLX R-10 is a tried and true design from Spinergy with a strong and durable, stylish radial laced spoke pattern. Take the benefits of the SLX 24 spoke wheel and add the durability of a 5/8\" axle. Mostly used in contact sports where the 1/2\" axles tend to bend the most. These wheels deliver confidence and performance on the courts.",
-    "basePrice": 950,
+    "basePrice": 995,
     "shippingInfo": {
     	"cost": 38.45,
     	"weight": 0
@@ -14269,7 +14208,6 @@
 				{
 					"name": "Same as Main Spoke Color",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -14325,7 +14263,6 @@
 				{
 					"name": "Different from Main Spoke Color",
 					"optionID": 2200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -14405,7 +14342,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 3200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -14479,7 +14415,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -14553,7 +14488,7 @@
                     "sizes": ["Close Mounted", "Far Mounted"],
                     "comments": "",
 					"displayColor": 0,
-                    "price": 95,
+                    "price": 175,
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/handrim/12-tab.jpg",
                     "desc": "For extra rigidity, choose the 12 tab mounted hand rim. Remember to choose close or far mounting.",
                     "weight": 0,

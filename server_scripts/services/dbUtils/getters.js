@@ -10,13 +10,16 @@ var dbService = require('../db');
 var generateUniqueID = require('../generateUniqueID');
 
 function getObjectID(object, idField) {
+	console.log("in get object id")
+	console.log(object, " : ", _.isString(object))
 	if (_.isString(object)) {
 		// Probably given the Object ID itself here, just return the object
 		return object;
 	} else if (_.isObject(object) && _.has(object, idField)) {
 		return _.get(object, idField);
 	} else {
-		throw new Error('Invalid Arguments to getObjectID()');
+		return null;
+		// throw new Error('Invalid Arguments to getObjectID()');
 	}
 }
 
@@ -27,11 +30,17 @@ exports.getObjectID = getObjectID;
 // Eventually, use this for bulk read: https://docs.cloudant.com/database.html#get-documents
 function getAllByID(db, ids, cb) {
   // Does a bulk get request...one request gets all of the documents given by their ids
-  db.fetch({keys: ids}, (err, body) => {
+  dbService.bulkFetchFunction(db,ids, (err, body) => {
     if (err) {
+		console.log(err)
       cb(err);
     } else {
-      var documents = _.map(body.rows, 'doc');
+		console.log(db,' bulkFetchFunction results ', ids)
+		console.log(body)
+		var documents = body.flatMap(item => item.docs);
+		documents = documents.map(item => item.ok);
+    //   var documents = _.map(body, 'doc');
+	  
       cb(null, documents);
     }
   });
@@ -42,19 +51,30 @@ exports.getAllByID = getAllByID;
 
 // given an order id, returns the order with the wheelchair fields populated
 function getOrderByID(orderID, cb) {
-	dbService.orders.get(orderID, function (err, order) {
+	dbService.findDBfunction('orders',orderID, function (err, order) {
 		if (err) {
 			return cb(err);
 		}
-
+		order = order
+		console.log('getOrderByID')
+		console.log(order)
 		// get the 'wheelchairs' field
 		var getOrderChairs = function (cb) {
+			console.log('getOrderChairs')
 			var wheelchairs = order.wheelchairs || [];
-			var wheelchairIDs = wheelchairs.map(chair => getObjectID(chair, '_id'));
-			getAllByID(dbService.designs, wheelchairIDs, function (err, designs) {
+			console.log(wheelchairs)
+			var wheelchairIDs = wheelchairs.map(chair => {
+				try{
+					return getObjectID(chair, '_id')
+				}
+				catch{
+					console.log('skip')
+				}
+			});
+			getAllByID('design', wheelchairIDs, function (err, designs) {
 				if (err) {
 					return cb(err);
-				}
+				}	
 				cb(null, designs); // return the designs
 			});
 		};
@@ -62,7 +82,7 @@ function getOrderByID(orderID, cb) {
 		var getOrderDiscounts = function (cb) {
 			var discounts = order.discounts || [];
 			var discountIDs = discounts.map(discount => getObjectID(discount, '_id'));
-			getAllByID(dbService.discounts, discountIDs, function (err, discounts) {
+			getAllByID('discounts', discountIDs, function (err, discounts) {
 				if (err) {
 					return cb(err);
 				}
@@ -90,16 +110,22 @@ exports.getOrderByID = getOrderByID;
 
 // Gets a user object with all linked fields populated: 'cart', 'savedDesigns', 'orders'
 function getUserByID(userID, cb) {
-	dbService.users.get(userID, function (err, user) {
+	// console.log('getUserByID in getters')
+	dbService.findDBfunction('users', userID, function (err, user) {
+	// dbService.users.get(userID, function (err, user) {
 		if (err) {
+			console.log(err)
 			return cb(err);
 		}
 
 		// Get the cart for the current user
 		var getUserCart = function (cb) {
+			console.log('getUsserCart')
+			console.log(user.cart)
 			if (user.cart) {
 				try {
 					var cartID = getObjectID(user.cart, '_id');
+					console.log("here: ", cartID)
 					getOrderByID(cartID, cb); // get the cart along with all linked fields populated
 				} catch (badCartValueErr) {
 					// The given cart didn't have an ID field...this means the cart value is invalid and can be treated as null
@@ -110,24 +136,29 @@ function getUserByID(userID, cb) {
 			}
 		};
 
+
 		// Get the savedDesigns for the current user
 		var getUserSavedDesigns = function (cb) {
 			var savedDesigns = user.savedDesigns || [];
 			var savedDesignIDs = savedDesigns.map(function (design) {
 				if (design) return getObjectID(design, '_id');
 			});
-			getAllByID(dbService.designs, savedDesignIDs, cb);
+			// console.log('saved design')
+			getAllByID('design', savedDesignIDs, cb);
 		};
+
 
 		// Get the order history of the current user
 		var getUserOrders = function (cb) {
 			var userOrders = user.orders || [];
+			// console.log('userOrders: ',userOrders)
 			var orderIDS = userOrders.map(function (order) {
 				if (order) return getObjectID(order, '_id');
 			});
 			// Gets all the orders with their linked fields populated. (Only linked field in Orders is 'wheelchairs' which are designs)
 			async.map(orderIDS, getOrderByID, cb);
 		};
+
 
 		// Execute all these requests in parallel
 		async.parallel({
@@ -142,7 +173,6 @@ function getUserByID(userID, cb) {
 			user.cart         = results.cart;
 			user.savedDesigns = results.savedDesigns;
 			user.orders       = results.orders;
-
 			cb(null, user);
 		});
 	});
@@ -168,8 +198,7 @@ function areValidOrderDiscounts(discounts, cb) {
 		process.nextTick(() => cb(false));
 		return;
 	}
-
-	getAllByID(dbService.discounts, discountIDs, function (err, discounts) {
+	getAllByID('discounts', discountIDs, function (err, discounts) {
 		if (err) {
 			return cb(false);
 		}

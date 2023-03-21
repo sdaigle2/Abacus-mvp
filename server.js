@@ -1,6 +1,8 @@
 /**
  * Created by Dhruv on 6/10/2015.
  */
+// Dotenv
+require('dotenv').config()
 
 // Main API library for all server requests
 

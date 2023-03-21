@@ -1,6 +1,6 @@
 const _          = require('lodash');
 const fs         = require('fs');
-const jsreport   = require('jsreport');
+const jsreport   = require('@jsreport/nodejs-client');
 
 const DEFAULT_TIMEOUT = 7e3; // default resource timeout is 5 seconds
 
@@ -11,9 +11,11 @@ const DEFAULT_TIMEOUT = 7e3; // default resource timeout is 5 seconds
  *
  * More info on jsreport module used: http://www.janblaha.net/blog/converting-html-to-pdf-in-nodejs
  */
-function htmlToPDF(args, cb) {
+async function htmlToPDF(args, cb) {
+
 	var pdfFilePath = args.pdfFilePath;
 	var rawHTML = args.rawHTML;
+
 	var timeout = _.isNumber(args.timeout) ? args.timeout : DEFAULT_TIMEOUT;
 	cb = _.once(cb); // ensure the callback is only called once
 
@@ -41,6 +43,7 @@ function htmlToPDF(args, cb) {
 		stream.on('error', err => cb(err));
 	})
 	.catch(err => {
+		console.log(err.response)
 		cb(err);
 	});
 }

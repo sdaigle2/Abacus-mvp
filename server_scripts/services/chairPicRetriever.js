@@ -72,9 +72,12 @@ function getS3ImageStream(imageKey) {
  */
 const imageCache = new LRU({
 	max: MAX_CACHE_SIZE_KB,
-	length: _.constant(STANDARD_IMAGE_SIZE_KB),
+	// length: _.constant(STANDARD_IMAGE_SIZE_KB),
 	dispose: deleteLocalFile,
-	maxAge: CACHE_EXPIRATION_MS
+	// maxAge: CACHE_EXPIRATION_MS,
+	allowStale: true,
+	maxSize: 50000,
+	sizeCalculation: (n) => n.length
 });
 
 exports.get = (imageKey) => {

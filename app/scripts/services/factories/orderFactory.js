@@ -154,6 +154,7 @@ angular.module('abacuApp')
 
       //add a design instance to an order
       addWheelchair: function (newDesign) {
+        console.log("addWheelchair")
         if (newDesign instanceof Design) {
           this.wheelchairs.push(newDesign);
         } else {

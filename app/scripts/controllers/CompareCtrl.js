@@ -11,6 +11,7 @@ angular.module('abacuApp')
 
 
     $scope.addWheelchair = function () {
+      console.log("addWheelchair in compareCtrl")
       // Go to the page referenced by COMPARE_PAGE_PREV_PAGE_KEY
       var referencedPage = $location.search().from || 'cart'; // default to cart
       if (referencedPage === 'cart') {

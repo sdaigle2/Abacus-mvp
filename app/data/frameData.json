@@ -23,16 +23,15 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
-          "comments":"",
+          			"comments":"",
 					"displayColor": 1,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/std-color-swatch.jpg",
 					"desc": "Our standard colors are applied with a high quality powder coating process.  Glossy and matte options are available.  Hover over each color to see its full name.  NOTE: Polish (Brushed) option has a $100 surcharge.",
 					"weight": 0,
 					"price": 0,
-          "defaultColorID": 1101,
+          			"defaultColorID": 1101,
 					"colors": [
 						{
 							"name": "Sky White",
@@ -147,7 +146,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your backrest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -256,7 +255,7 @@
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -409,7 +408,6 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -520,7 +518,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -645,7 +642,6 @@
                 {
 					"name": "Welded Side Guards",
 					"optionID": 11500,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg", "Custom"],
 					"comments": "",
@@ -766,7 +762,6 @@
 				{
 					"name": "5th Wheel & Rigid Backrest",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -896,7 +891,6 @@
 				{
 					"name": "5th Wheel & Continuous Backrest",
 					"optionID": 4300,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -1026,14 +1020,13 @@
                 {
 					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/dual-5th-wheel-rigid.jpg",
 					"desc": "A rigid backrest allows for the center of gravity to be adjusted after the chair has been built. The dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Dual 5th wheels are recommended by Team PER4MAX for athletes at every level. The addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",
 					"weight": 350,
-					"price": 0,
+					"price": 250,
                     "comments":"",
                     "defaultColorID": 1101,
 					"colors": [
@@ -1156,7 +1149,6 @@
 				{
 					"name": "Dual 5th Wheel & Continuous Backrest",
 					"optionID": 4400,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -1286,7 +1278,6 @@
 				{
 					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -1414,9 +1405,9 @@
 					]
 				},
 				{
+					"hidden": true,
 					"name": "Removable 5th Wheel & Continuous Backrest",
 					"optionID": 4600,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -1546,7 +1537,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "Footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -1562,7 +1553,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -1790,7 +1781,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX",
+            "hidden": true,
+			"name": "Spinergy XSLX",
             "optionID": 6600,
             "comments":"",
             "displayColor": 1,
@@ -1852,7 +1844,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX-R10",
+            "hidden": true,
+			"name": "Spinergy XSLX-R10",
             "optionID": 6700,
             "comments":"",
             "displayColor": 1,
@@ -1952,7 +1945,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Titanium",
+            "hidden": true,
+			"name": "Titanium",
             "optionID": 7250,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -1966,7 +1960,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Vinyl Coated",
+            "hidden": true,
+			"name": "Vinyl Coated",
             "optionID": 7300,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -2046,7 +2041,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Schwalbe Right Run Tires",
+            "hidden": true,
+			"name": "Schwalbe Right Run Tires",
             "optionID": 8600,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
             "desc": "High quality Schwalbe tires with colorful options! Not available for 27\" wheels.",
@@ -2079,7 +2075,8 @@
             ]
           },
           {
-            "name": "Kenda Tires",
+            "hidden": true,
+			"name": "Kenda Tires",
             "optionID": 8700,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
             "desc": "Kenda makes an incredibly high quality tire that is great for the court and everyday life. Available for all size wheels.",
@@ -2182,16 +2179,16 @@
 					"defaultColorID": 0
 				},
 				{
-					"name": "Leather Trim",
+					"name": "Air Mesh",
 					"optionID": 5200,
 					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/black-leather.jpg",
-					"desc": "Leather trimmed upholstery to adds extra strength and style to your backrest and seat.",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/air-mesh.jpg",
+					"desc": "Air mesh upholstery is the perfect choice for light weight breathability.",
 					"weight": -0.1,
-					"price": 80,
+					"price": 300,
 					"defaultColorID": 0
 				},
 				{
@@ -2275,6 +2272,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Waist Nylon/Velcro Strap",
 					"optionID": 14200,
 					"defaultSizeIndex": -1,
@@ -2301,6 +2299,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Lap Nylon/Velcro Strap",
 					"optionID": 14400,
 					"defaultSizeIndex": -1,
@@ -2327,6 +2326,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Foot Nylon/Velcro Stap",
 					"optionID": 14600,
 					"defaultSizeIndex": -1,
@@ -2339,10 +2339,35 @@
 					"price": 65,
 					"defaultColorID": 0
 				},
+				{
+					"name": "Pelvi Lock",
+					"optionID": 14995,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/pelvi-lock.jpg",
+					"desc": "The Pelvi Lock provides the best support possible.",
+					"price": 300,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Velcro Strap Size",
+					"optionID": 14996,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
+					"desc": "",
+					"price": 100,
+					"defaultColorID": 0
+				},
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -2424,6 +2449,19 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
             "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
+            "price": 350,
+            "defaultColorID": 0
+          },
+		  {
+            "name": "Custom Footrest",
+            "optionID": 10750,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "Describe your custom foot rest, and let us fabricate the perfect solution.",
             "price": 350,
             "defaultColorID": 0
           },
@@ -2686,7 +2724,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -2782,7 +2820,6 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
@@ -2906,7 +2943,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your backrest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -3010,13 +3047,12 @@
 				{
 					"name": "Black (Glossy or Matte)",
 					"optionID": 3150,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -3169,7 +3205,6 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -3280,7 +3315,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -3405,7 +3439,6 @@
                 {
 					"name": "Welded Side Guards",
 					"optionID": 11500,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg", "Custom"],
 					"comments": "",
@@ -3526,7 +3559,6 @@
 				{
 					"name": "5th Wheel & Rigid Backrest",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -3656,7 +3688,6 @@
 				{
 					"name": "5th Wheel & Continuous Backrest",
 					"optionID": 4300,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -3786,14 +3817,13 @@
                 {
 					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/dual-5th-wheel-rigid.jpg",
 					"desc": "A rigid backrest allows for the center of gravity to be adjusted after the chair has been built. The dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Dual 5th wheels are recommended by Team PER4MAX for athletes at every level. The addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",
 					"weight": 350,
-					"price": 0,
+					"price": 250,
                     "comments":"",
                     "defaultColorID": 1101,
 					"colors": [
@@ -3916,7 +3946,6 @@
 				{
 					"name": "Dual 5th Wheel & Continuous Backrest",
 					"optionID": 4400,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -4046,7 +4075,6 @@
 				{
 					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -4174,9 +4202,9 @@
 					]
 				},
 				{
+					"hidden": true,
 					"name": "Removable 5th Wheel & Continuous Backrest",
 					"optionID": 4600,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -4306,7 +4334,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "Footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -4322,7 +4350,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -4550,7 +4578,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX",
+            "hidden": true,
+			"name": "Spinergy XSLX",
             "optionID": 6600,
             "comments":"",
             "displayColor": 1,
@@ -4612,7 +4641,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX-R10",
+            "hidden": true,
+			"name": "Spinergy XSLX-R10",
             "optionID": 6700,
             "comments":"",
             "displayColor": 1,
@@ -4712,7 +4742,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Titanium",
+            "hidden": true,
+			"name": "Titanium",
             "optionID": 7250,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -4726,7 +4757,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Vinyl Coated",
+            "hidden": true,
+			"name": "Vinyl Coated",
             "optionID": 7300,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -4806,7 +4838,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Schwalbe Right Run Tires",
+            "hidden": true,
+			"name": "Schwalbe Right Run Tires",
             "optionID": 8600,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
             "desc": "High quality Schwalbe tires with colorful options! Not available for 27\" wheels.",
@@ -4839,7 +4872,8 @@
             ]
           },
           {
-            "name": "Kenda Tires",
+            "hidden": true,
+			"name": "Kenda Tires",
             "optionID": 8700,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
             "desc": "Kenda makes an incredibly high quality tire that is great for the court and everyday life. Available for all size wheels.",
@@ -4942,16 +4976,16 @@
 					"defaultColorID": 0
 				},
 				{
-					"name": "Leather Trim",
+					"name": "Air Mesh",
 					"optionID": 5200,
 					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/black-leather.jpg",
-					"desc": "Leather trimmed upholstery to adds extra strength and style to your backrest and seat.",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/air-mesh.jpg",
+					"desc": "Air mesh upholstery is the perfect choice for light weight breathability.",
 					"weight": -0.1,
-					"price": 80,
+					"price": 300,
 					"defaultColorID": 0
 				},
 				{
@@ -5035,6 +5069,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Waist Nylon/Velcro Strap",
 					"optionID": 14200,
 					"defaultSizeIndex": -1,
@@ -5061,6 +5096,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Lap Nylon/Velcro Strap",
 					"optionID": 14400,
 					"defaultSizeIndex": -1,
@@ -5087,6 +5123,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Foot Nylon/Velcro Stap",
 					"optionID": 14600,
 					"defaultSizeIndex": -1,
@@ -5099,10 +5136,35 @@
 					"price": 65,
 					"defaultColorID": 0
 				},
+				{
+					"name": "Pelvi Lock",
+					"optionID": 14995,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/pelvi-lock.jpg",
+					"desc": "The Pelvi Lock provides the best support possible.",
+					"price": 300,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Velcro Strap Size",
+					"optionID": 14996,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
+					"desc": "",
+					"price": 100,
+					"defaultColorID": 0
+				},
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -5184,6 +5246,19 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
             "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
+            "price": 350,
+            "defaultColorID": 0
+          },
+		  {
+            "name": "Custom Footrest",
+            "optionID": 10750,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "Describe your custom foot rest, and let us fabricate the perfect solution.",
             "price": 350,
             "defaultColorID": 0
           },
@@ -5446,7 +5521,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -5542,7 +5617,6 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
@@ -5666,7 +5740,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your backrest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -5770,13 +5844,12 @@
 				{
 					"name": "Black (Glossy or Matte)",
 					"optionID": 3150,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -5915,7 +5988,6 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -6026,7 +6098,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -6161,7 +6232,6 @@
 				{
 					"name": "Single 5th Wheel",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -6291,14 +6361,13 @@
                 {
 					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/dual-5th-wheel-rigid.jpg",
 					"desc": "The dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Dual 5th wheels are recommended by Team PER4MAX for athletes at every level. The addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",
 					"weight": 350,
-					"price": 0,
+					"price": 250,
                     "comments":"",
                     "defaultColorID": 1101,
 					"colors": [
@@ -6421,7 +6490,6 @@
 				{
 					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -6551,7 +6619,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -6567,7 +6635,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -6795,7 +6863,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX",
+            "hidden": true,
+			"name": "Spinergy XSLX",
             "optionID": 6600,
             "comments":"",
             "displayColor": 1,
@@ -6857,7 +6926,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX-R10",
+            "hidden": true,
+			"name": "Spinergy XSLX-R10",
             "optionID": 6700,
             "comments":"",
             "displayColor": 1,
@@ -6957,7 +7027,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Titanium",
+            "hidden": true,
+			"name": "Titanium",
             "optionID": 7250,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -6971,7 +7042,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Vinyl Coated",
+            "hidden": true,
+			"name": "Vinyl Coated",
             "optionID": 7300,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -7051,7 +7123,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Schwalbe Right Run Tires",
+            "hidden": true,
+			"name": "Schwalbe Right Run Tires",
             "optionID": 8600,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
             "desc": "High quality Schwalbe tires with colorful options! Not available for 27\" wheels.",
@@ -7084,7 +7157,8 @@
             ]
           },
           {
-            "name": "Kenda Tires",
+            "hidden": true,
+			"name": "Kenda Tires",
             "optionID": 8700,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
             "desc": "Kenda makes an incredibly high quality tire that is great for the court and everyday life. Available for all size wheels.",
@@ -7187,16 +7261,16 @@
 					"defaultColorID": 0
 				},
 				{
-					"name": "Leather Trim",
+					"name": "Air Mesh",
 					"optionID": 5200,
 					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/black-leather.jpg",
-					"desc": "Leather trimmed upholstery to adds extra strength and style to your backrest and seat.",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/air-mesh.jpg",
+					"desc": "Air mesh upholstery is the perfect choice for light weight breathability.",
 					"weight": -0.1,
-					"price": 80,
+					"price": 300,
 					"defaultColorID": 0
 				},
 				{
@@ -7280,6 +7354,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Waist Nylon/Velcro Strap",
 					"optionID": 14200,
 					"defaultSizeIndex": -1,
@@ -7306,6 +7381,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Lap Nylon/Velcro Strap",
 					"optionID": 14400,
 					"defaultSizeIndex": -1,
@@ -7332,6 +7408,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Foot Nylon/Velcro Stap",
 					"optionID": 14600,
 					"defaultSizeIndex": -1,
@@ -7344,10 +7421,35 @@
 					"price": 65,
 					"defaultColorID": 0
 				},
+				{
+					"name": "Pelvi Lock",
+					"optionID": 14995,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/pelvi-lock.jpg",
+					"desc": "The Pelvi Lock provides the best support possible.",
+					"price": 300,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Velcro Strap Size",
+					"optionID": 14996,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
+					"desc": "",
+					"price": 100,
+					"defaultColorID": 0
+				},
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -7417,6 +7519,19 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
             "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
+            "price": 350,
+            "defaultColorID": 0
+          },
+		  {
+            "name": "Custom Footrest",
+            "optionID": 10750,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "Describe your custom foot rest, and let us fabricate the perfect solution.",
             "price": 350,
             "defaultColorID": 0
           },
@@ -7661,7 +7776,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -7757,7 +7872,6 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
@@ -7881,7 +7995,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your backrest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -7985,13 +8099,12 @@
 				{
 					"name": "Black (Glossy or Matte)",
 					"optionID": 3150,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -8130,7 +8243,6 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -8241,7 +8353,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -8376,7 +8487,6 @@
 				{
 					"name": "Single 5th Wheel",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -8506,14 +8616,13 @@
                 {
 					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/fifth-wheel/dual-5th-wheel-rigid.jpg",
 					"desc": "The dual rear wheel option is recommended for advanced athletes looking to accelerate their game by allowing a more aggressive center of gravity setting while providing stability when cornering at high speeds.  Dual 5th wheels are recommended by Team PER4MAX for athletes at every level. The addition of the second rear wheel is a much more stable and predictable option for The PER4MAX Thunder.",
 					"weight": 350,
-					"price": 0,
+					"price": 250,
                     "comments":"",
                     "defaultColorID": 1101,
 					"colors": [
@@ -8636,7 +8745,6 @@
 				{
 					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -8766,7 +8874,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "Footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -8782,7 +8890,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -9010,7 +9118,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX",
+            "hidden": true,
+			"name": "Spinergy XSLX",
             "optionID": 6600,
             "comments":"",
             "displayColor": 1,
@@ -9072,7 +9181,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX-R10",
+            "hidden": true,
+			"name": "Spinergy XSLX-R10",
             "optionID": 6700,
             "comments":"",
             "displayColor": 1,
@@ -9172,7 +9282,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Titanium",
+            "hidden": true,
+			"name": "Titanium",
             "optionID": 7250,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -9186,7 +9297,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Vinyl Coated",
+            "hidden": true,
+			"name": "Vinyl Coated",
             "optionID": 7300,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -9266,7 +9378,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Schwalbe Right Run Tires",
+            "hidden": true,
+			"name": "Schwalbe Right Run Tires",
             "optionID": 8600,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
             "desc": "High quality Schwalbe tires with colorful options! Not available for 27\" wheels.",
@@ -9299,7 +9412,8 @@
             ]
           },
           {
-            "name": "Kenda Tires",
+            "hidden": true,
+			"name": "Kenda Tires",
             "optionID": 8700,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
             "desc": "Kenda makes an incredibly high quality tire that is great for the court and everyday life. Available for all size wheels.",
@@ -9402,16 +9516,16 @@
 					"defaultColorID": 0
 				},
 				{
-					"name": "Leather Trim",
+					"name": "Air Mesh",
 					"optionID": 5200,
 					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/black-leather.jpg",
-					"desc": "Leather trimmed upholstery to adds extra strength and style to your backrest and seat.",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/air-mesh.jpg",
+					"desc": "Air mesh upholstery is the perfect choice for light weight breathability.",
 					"weight": -0.1,
-					"price": 80,
+					"price": 300,
 					"defaultColorID": 0
 				},
 				{
@@ -9495,6 +9609,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Waist Nylon/Velcro Strap",
 					"optionID": 14200,
 					"defaultSizeIndex": -1,
@@ -9521,6 +9636,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Lap Nylon/Velcro Strap",
 					"optionID": 14400,
 					"defaultSizeIndex": -1,
@@ -9547,6 +9663,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Foot Nylon/Velcro Stap",
 					"optionID": 14600,
 					"defaultSizeIndex": -1,
@@ -9559,10 +9676,35 @@
 					"price": 65,
 					"defaultColorID": 0
 				},
+				{
+					"name": "Pelvi Lock",
+					"optionID": 14995,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/pelvi-lock.jpg",
+					"desc": "The Pelvi Lock provides the best support possible.",
+					"price": 300,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Velcro Strap Size",
+					"optionID": 14996,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
+					"desc": "",
+					"price": 100,
+					"defaultColorID": 0
+				},
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -9632,6 +9774,19 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
             "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
+            "price": 350,
+            "defaultColorID": 0
+          },
+		  {
+            "name": "Custom Footrest",
+            "optionID": 10750,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "Describe your custom foot rest, and let us fabricate the perfect solution.",
             "price": 350,
             "defaultColorID": 0
           },
@@ -9876,7 +10031,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -9972,7 +10127,6 @@
 				{
 					"name": "Standard Colors",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
@@ -10043,7 +10197,6 @@
                 {
 					"name": "Premium Colors",
 					"optionID": 2300,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
                     "comments":"",
@@ -10112,7 +10265,7 @@
                     "defaultSizeIndex": -1,
 					"sizes": [],
                     "price": 0,
-					"desc": "Match your backrest and foot plate to the color of the frame.",
+					"desc": "Match your backrest and footplate to the color of the frame.",
                     "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
 					"defaultColorID": 1101,
 					"colors": [
@@ -10216,13 +10369,12 @@
 				{
 					"name": "Black (Glossy or Matte)",
 					"optionID": 3150,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/frames/black-swatch.jpg",
-					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and foot plate.",
+					"desc": "Glossy or matte black provides a sleek and classic look for your backrest and footplate.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 1103,
@@ -10375,7 +10527,6 @@
 				{
 					"name": "Alum. Side Guards (Painted)",
 					"optionID": 11200,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -10486,7 +10637,6 @@
 				{
 					"name": "Alum. Side Guards (Custom Color)",
 					"optionID": 11300,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg"],
 					"comments": "",
@@ -10611,7 +10761,6 @@
                 {
 					"name": "Welded Side Guards",
 					"optionID": 11500,
-					"colors": [],
 					"defaultSizeIndex": 1,
 					"sizes": ["Sml", "Med", "Lrg", "Custom"],
 					"comments": "",
@@ -10732,7 +10881,6 @@
 				{
 					"name": "5th Wheel & Rigid Backrest",
 					"optionID": 4100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -10862,7 +11010,6 @@
 				{
 					"name": "5th Wheel & Continuous Backrest",
 					"optionID": 4300,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -10992,7 +11139,6 @@
                 {
 					"name": "Dual 5th Wheel & Rigid Backrest",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -11122,7 +11268,6 @@
 				{
 					"name": "Dual 5th Wheel & Continuous Backrest",
 					"optionID": 4400,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"displayColor": 0,
@@ -11252,7 +11397,6 @@
 				{
 					"name": "Removable 5th Wheel & Rigid Backrest",
 					"optionID": 4500,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -11380,9 +11524,9 @@
 					]
 				},
 				{
+					"hidden": true,
 					"name": "Removable 5th Wheel & Continuous Backrest",
 					"optionID": 4600,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": 0,
@@ -11512,7 +11656,7 @@
 			]
 		},
         {
-			"name": "Foot Plate",
+			"name": "Footplate",
 			"partID": 12000,
 			"numSubImages": 1,
 			"zRank": [[11,8,7,8,11]],
@@ -11528,7 +11672,7 @@
 					"comments": "",
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/foot-plate/foot-plate-none.jpg",
-					"desc": "If you leave out the foot plate, you still get a foot rest, but it's left as an empty frame.",
+					"desc": "If you leave out the footplate, you still get a foot rest, but it's left as an empty frame.",
 					"weight": 0,
 					"price": 0,
 					"defaultColorID": 0
@@ -11756,7 +11900,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX",
+            "hidden": true,
+			"name": "Spinergy XSLX",
             "optionID": 6600,
             "comments":"",
             "displayColor": 1,
@@ -11764,7 +11909,6 @@
             "sizes": ["24\"", "25\"", "26\"", "27\""],
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/wheel/XSLX.jpg",
             "desc": "The latest design evolution from Spinergy that takes wheel performance to the next level. The Sport Lite Extreme SLX X-Laced with patented 4mm PBO FIBER spokes provides added torsional stiffness and a quicker push response. Developed for athletes wanting to turn up the dial a little more in wheelchair performance.",
-            "price": 585,
             "price": 585,
             "defaultColorID": 6401,
             "colors": [
@@ -11819,7 +11963,8 @@
             ]
           },
           {
-            "name": "Spinergy XSLX-R10",
+            "hidden": true,
+			"name": "Spinergy XSLX-R10",
             "optionID": 6700,
             "comments":"",
             "displayColor": 1,
@@ -11919,7 +12064,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Titanium",
+            "hidden": true,
+			"name": "Titanium",
             "optionID": 7250,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -11933,7 +12079,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Vinyl Coated",
+            "hidden": true,
+			"name": "Vinyl Coated",
             "optionID": 7300,
             "colors": [],
             "defaultSizeIndex": 1,
@@ -12013,7 +12160,8 @@
             "defaultColorID": 0
           },
           {
-            "name": "Schwalbe Right Run Tires",
+            "hidden": true,
+			"name": "Schwalbe Right Run Tires",
             "optionID": 8600,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/schwalbe-rightrun.jpg",
             "desc": "High quality Schwalbe tires with colorful options! Not available for 27\" wheels.",
@@ -12046,7 +12194,8 @@
             ]
           },
           {
-            "name": "Kenda Tires",
+            "hidden": true,
+			"name": "Kenda Tires",
             "optionID": 8700,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/tire/kenda-court.jpg",
             "desc": "Kenda makes an incredibly high quality tire that is great for the court and everyday life. Available for all size wheels.",
@@ -12149,16 +12298,16 @@
 					"defaultColorID": 0
 				},
 				{
-					"name": "Leather Trim",
+					"name": "Air Mesh",
 					"optionID": 5200,
 					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/black-leather.jpg",
-					"desc": "Leather trimmed upholstery to adds extra strength and style to your backrest and seat.",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/air-mesh.jpg",
+					"desc": "Air mesh upholstery is the perfect choice for light weight breathability.",
 					"weight": -0.1,
-					"price": 72,
+					"price": 300,
 					"defaultColorID": 0
 				},
 				{
@@ -12238,10 +12387,11 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/click-strap.jpg",
 					"desc": "Our click straps are the sale ratchet design on snowboard bindings.",
-					"price": 0,
+					"price": 100,
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Waist Nylon/Velcro Strap",
 					"optionID": 14200,
 					"defaultSizeIndex": -1,
@@ -12251,7 +12401,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
-					"price": -35,
+					"price": 65,
 					"defaultColorID": 0
 				},
 				{
@@ -12264,10 +12414,11 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/click-strap.jpg",
 					"desc": "Our click straps are the sale ratchet design on snowboard bindings.",
-					"price": 67.5,
+					"price": 75,
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Lap Nylon/Velcro Strap",
 					"optionID": 14400,
 					"defaultSizeIndex": -1,
@@ -12277,7 +12428,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
-					"price": 58.5,
+					"price": 65,
 					"defaultColorID": 0
 				},
 				{
@@ -12290,10 +12441,11 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/click-strap.jpg",
 					"desc": "Our click straps are the sale ratchet design on snowboard bindings",
-					"price": 67.5,
+					"price": 75,
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Foot Nylon/Velcro Stap",
 					"optionID": 14600,
 					"defaultSizeIndex": -1,
@@ -12303,13 +12455,38 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
-					"price": 58.5,
+					"price": 65,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Pelvi Lock",
+					"optionID": 14995,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/pelvi-lock.jpg",
+					"desc": "The Pelvi Lock provides the best support possible.",
+					"price": 300,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Velcro Strap Size",
+					"optionID": 14996,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
+					"desc": "",
+					"price": 100,
 					"defaultColorID": 0
 				},
                 {
                     "name": "None",
                     "optionID": 14998,
-                    "comments":"",
                     "colors": [],
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -12392,6 +12569,19 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
             "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
             "price": 72,
+            "defaultColorID": 0
+          },
+		  {
+            "name": "Custom Footrest",
+            "optionID": 10750,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "Describe your custom foot rest, and let us fabricate the perfect solution.",
+            "price": 350,
             "defaultColorID": 0
           },
           {
@@ -12653,7 +12843,7 @@
         "prices": [0, 0, 0, 0, 0, 0, 0]
       },
       {
-        "name": "Caster Housing To Front Foot Plate",
+        "name": "Caster Housing To Front Footplate",
         "measureID": 15013,
         "desc": "The distance between the front of the footplate and the center of the caster housing.",
         "details": "It's a good idea to have your feet and legs tucked away safely under your body.  It keeps your mass closer to the center of gravity making it easier to pivot and turn. 6\" is standard, but we also offer between 5\" and 7\"",
@@ -12799,7 +12989,6 @@
 				{
 					"name": "Same as Main Spoke Color",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -12840,7 +13029,6 @@
 				{
 					"name": "Different from Main Spoke Color",
 					"optionID": 2200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -12924,7 +13112,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 3200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -12993,7 +13180,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -13060,7 +13246,8 @@
 					"defaultColorID": 0
 				},
                 {
-                    "name": "Titanium",
+                    "hidden": true,
+					"name": "Titanium",
                     "optionID": 7250,
                     "colors": [],
                     "defaultSizeIndex": 1,
@@ -13074,6 +13261,7 @@
                     "defaultColorID": 0
                 },
 				{
+					"hidden": true,
 					"name": "Vinyl Coated",
 					"optionID": 7200,
 					"colors": [],
@@ -13215,6 +13403,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Schwalbe Right Run Tires",
 					"optionID": 8600,
                     "defaultSizeIndex": -1,
@@ -13248,7 +13437,8 @@
 					]
 				},
                 {
-                    "name": "Kenda Tires",
+                    "hidden": true,
+					"name": "Kenda Tires",
                     "optionID": 8700,
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -13505,7 +13695,6 @@
 				{
 					"name": "Same as Main Spoke Color",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -13561,7 +13750,6 @@
 				{
 					"name": "Different from Main Spoke Color",
 					"optionID": 2200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -13655,7 +13843,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 3200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -13724,7 +13911,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -13805,7 +13991,8 @@
                     "defaultColorID": 0
                 },
                 {
-                    "name": "Titanium",
+                    "hidden": true,
+					"name": "Titanium",
                     "optionID": 7250,
                     "colors": [],
                     "defaultSizeIndex": 1,
@@ -13819,6 +14006,7 @@
                     "defaultColorID": 0
                 },
 				{
+					"hidden": true,
 					"name": "Vinyl Coated",
 					"optionID": 7400,
 					"colors": [],
@@ -13972,6 +14160,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Schwalbe Right Run Tires",
 					"optionID": 8600,
                     "defaultSizeIndex": -1,
@@ -14005,7 +14194,8 @@
 					]
 				},
                 {
-                    "name": "Kenda Tires",
+                    "hidden": true,
+					"name": "Kenda Tires",
                     "optionID": 8700,
                     "defaultSizeIndex": -1,
                     "sizes": [],
@@ -14269,7 +14459,6 @@
 				{
 					"name": "Same as Main Spoke Color",
 					"optionID": 2100,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -14325,7 +14514,6 @@
 				{
 					"name": "Different from Main Spoke Color",
 					"optionID": 2200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -14405,7 +14593,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 3200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -14479,7 +14666,6 @@
 				{
 					"name": "Custom Anodized",
 					"optionID": 4200,
-					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
@@ -14560,7 +14746,8 @@
                     "defaultColorID": 0
                 },
                 {
-                    "name": "Titanium",
+                    "hidden": true,
+					"name": "Titanium",
                     "optionID": 7250,
                     "colors": [],
                     "defaultSizeIndex": 1,
@@ -14574,6 +14761,7 @@
                     "defaultColorID": 0
                 },
 				{
+					"hidden": true,
 					"name": "Vinyl Coated",
 					"optionID": 7400,
 					"colors": [],
@@ -14727,6 +14915,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Schwalbe Right Run Tires",
 					"optionID": 8600,
                     "defaultSizeIndex": -1,
@@ -14760,7 +14949,8 @@
 					]
 				},
                 {
-                    "name": "Kenda Tires",
+                    "hidden": true,
+					"name": "Kenda Tires",
                     "optionID": 8700,
                     "defaultSizeIndex": -1,
                     "sizes": [],

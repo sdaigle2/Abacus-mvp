@@ -25,8 +25,12 @@ angular.module('abacuApp')
       if(!this.zRank){
         this.zRank = [];
       }
-      for (var i = 0; i < partData.options.length; i++)
-        this.options.push(new Option(partData.options[i]));
+      console.log("Part constructor")
+      for (var i = 0; i < partData.options.length; i++){
+        if(partData.options[i].hidden === undefined && partData.options[i].hidden !== false)
+          this.options.push(new Option(partData.options[i]));
+      }
+        
     }
 
 
@@ -40,16 +44,25 @@ angular.module('abacuApp')
       getNumSubImages: function () { return this.numSubImages; },
       getZRanks: function () { return this.zRank; },
       getDefaultOptionID: function () { return this.defaultOptionID; },
-      getOptions: function () { return this.options; },
+      getOptions: function () {
+        console.log("get options")
+         return this.options; 
+        },
       getNumOptions: function () { return this.options.length; },
 
       getOption: function (opID) {
+        console.log("get option function")
         for (var i = 0; i < this.options.length; i++){
-          if (this.options[i].getID() === opID) {
-            return this.options[i];
-            break;
+          // console.log(this.options[i])
+          // console.log(this.options[i].name, this.options[i].hidden)
+          if(this.options[i].hidden === undefined && this.options[i].hidden !== false){
+            if (this.options[i].getID() === opID) {
+              return this.options[i];
+              break;
+              }
             }
           }
+          
         return null;
       },
 

@@ -30,9 +30,11 @@ const LOCAL_MAIN_DOC = { // default values
 
 // Gets the MAIN doc from cloudant, assigns it to the LOCAL_MAIN_DOC variable here
 function synchronizeLocalMainDoc(cb) {
-	dbService.orderNumber.get(ORDER_NUMBER_DOC_ID, (err, body) => {
+	
+	dbService.findDBfunction('order_number',ORDER_NUMBER_DOC_ID, (err, body) => {
 		if (err) {
 			cb(err);
+			console.log(err)
 		} else {
 			if (_.isNumber(_.get(body, 'number'))) {
 				_.assign(LOCAL_MAIN_DOC, body);
@@ -67,7 +69,7 @@ exports.initPromise = orderNumInitPromise;
 function incrementOrderNumber(numberHolder, cb) {
 	numberHolder = numberHolder || {};
 	LOCAL_MAIN_DOC.number++;
-	dbService.orderNumber.insert(LOCAL_MAIN_DOC, ORDER_NUMBER_DOC_ID, function (err, res) {
+	dbService.insertDBfunction('order_number',LOCAL_MAIN_DOC, function (err, res) {
 		if (err) {
 			cb(err);
 		} else {

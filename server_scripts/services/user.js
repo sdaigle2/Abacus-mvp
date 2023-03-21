@@ -24,8 +24,9 @@ function fixObject(obj, existing) {
 exports.fixObject = fixObject;
 // Updates the given user object
 exports.update = function (obj, key, callback) {
+  console.log('update')
   //Query the database for the existing user
-  dbService.users.get(key, function (error, existing) {
+  dbService.findDBfunction('users',key, function (error, existing) {
     //Sanitize the obj to be inserted
     fixObject(obj, existing);
     obj._rev = existing._rev; //Copying the revision number is necessary for an update
@@ -49,7 +50,7 @@ exports.update = function (obj, key, callback) {
             delete obj.oldPass;
             delete obj.newPass1;
             delete obj.newPass2;
-            dbService.users.insert(obj, key, function(err, res){
+            dbService.insertDBfunction('users',obj, function(err, res){
               updatedUserFull._rev = res.rev;
               callback(err, res, 1, updatedUserFull);
             });
@@ -62,7 +63,7 @@ exports.update = function (obj, key, callback) {
                 delete obj.oldPass;
                 delete obj.newPass1;
                 delete obj.newPass2;
-                dbService.users.insert(obj, key, function(err, res){
+                dbService.insertDBfunction('users', obj, function(err, res){
                   updatedUserFull._rev = res.rev;
                   callback(err, res, 2, updatedUserFull);
                 });
@@ -77,7 +78,7 @@ exports.update = function (obj, key, callback) {
                   delete obj.oldPass;
                   delete obj.newPass1;
                   delete obj.newPass2;
-                  dbService.users.insert(obj, key, function(err, res){
+                  dbService.insertDBfunction('users',obj, function(err, res){
                     updatedUserFull._rev = res.rev;
                     callback(err, res, 3, updatedUserFull);
                   });

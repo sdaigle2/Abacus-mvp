@@ -15,12 +15,13 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  var serveStatic = require('serve-static');
   // Configurable paths for the application
   var appConfig = {
-    app: require('./bower.json').appPath || 'app',
+    app: require('./package.json').appPath || 'app',
     dist: 'dist'
   };
-
+console.log("GruNT")
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -30,7 +31,7 @@ module.exports = function (grunt) {
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       bower: {
-        files: ['bower.json'],
+        files: ['package.json'],
         tasks: ['wiredep']
       },
       js: {
@@ -76,12 +77,15 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect.static(appConfig.app)
+              serveStatic('.tmp'),
+              connect().use('../node_modules/@bower_components', serveStatic('../node_modules/@bower_components')),
+              // connect.static('.tmp'),
+              
+              // connect().use(
+              //   '../node_modules/@bower_components',
+              //   connect.static('../node_modules/@bower_components')
+              // ),
+              serveStatic(appConfig.app)
             ];
           }
         }
@@ -91,13 +95,17 @@ module.exports = function (grunt) {
           port: 9001,
           middleware: function (connect) {
             return [
-              connect.static('.tmp'),
-              connect.static('test'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect.static(appConfig.app)
+              serveStatic('.tmp'),
+              serveStatic('test'),
+              connect().use('../node_modules/@bower_components', serveStatic('../node_modules/@bower_components')),
+              
+              // connect.static('.tmp'),
+              // connect.static('test'),
+              // connect().use(
+              //   '../node_modules/@bower_components',
+              //   connect.static('../node_modules/@bower_components/')
+              // ),
+              serveStatic(appConfig.app)
             ];
           }
         }
