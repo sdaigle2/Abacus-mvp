@@ -2179,17 +2179,16 @@
 					"defaultColorID": 0
 				},
 				{
-					"hidden": true,
-					"name": "Leather Trim",
+					"name": "Air Mesh",
 					"optionID": 5200,
 					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/black-leather.jpg",
-					"desc": "Leather trimmed upholstery to adds extra strength and style to your backrest and seat.",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/air-mesh.jpg",
+					"desc": "Air mesh upholstery is the perfect choice for light weight breathability.",
 					"weight": -0.1,
-					"price": 80,
+					"price": 300,
 					"defaultColorID": 0
 				},
 				{
@@ -2273,6 +2272,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Waist Nylon/Velcro Strap",
 					"optionID": 14200,
 					"defaultSizeIndex": -1,
@@ -2299,6 +2299,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Lap Nylon/Velcro Strap",
 					"optionID": 14400,
 					"defaultSizeIndex": -1,
@@ -2325,6 +2326,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Foot Nylon/Velcro Stap",
 					"optionID": 14600,
 					"defaultSizeIndex": -1,
@@ -2335,6 +2337,32 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 65,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Pelvi Lock",
+					"optionID": 14995,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/pelvi-lock.jpg",
+					"desc": "The Pelvi Lock provides the best support possible.",
+					"price": 300,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Velcro Strap Size",
+					"optionID": 14996,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
+					"desc": "",
+					"price": 100,
 					"defaultColorID": 0
 				},
                 {
@@ -2421,6 +2449,19 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
             "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
+            "price": 350,
+            "defaultColorID": 0
+          },
+		  {
+            "name": "Custom Footrest",
+            "optionID": 10750,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "Describe your custom foot rest, and let us fabricate the perfect solution.",
             "price": 350,
             "defaultColorID": 0
           },
@@ -4935,17 +4976,16 @@
 					"defaultColorID": 0
 				},
 				{
-					"hidden": true,
-					"name": "Leather Trim",
+					"name": "Air Mesh",
 					"optionID": 5200,
 					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/black-leather.jpg",
-					"desc": "Leather trimmed upholstery to adds extra strength and style to your backrest and seat.",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/air-mesh.jpg",
+					"desc": "Air mesh upholstery is the perfect choice for light weight breathability.",
 					"weight": -0.1,
-					"price": 80,
+					"price": 300,
 					"defaultColorID": 0
 				},
 				{
@@ -5029,6 +5069,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Waist Nylon/Velcro Strap",
 					"optionID": 14200,
 					"defaultSizeIndex": -1,
@@ -5055,6 +5096,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Lap Nylon/Velcro Strap",
 					"optionID": 14400,
 					"defaultSizeIndex": -1,
@@ -5081,6 +5123,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Foot Nylon/Velcro Stap",
 					"optionID": 14600,
 					"defaultSizeIndex": -1,
@@ -5091,6 +5134,32 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 65,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Pelvi Lock",
+					"optionID": 14995,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/pelvi-lock.jpg",
+					"desc": "The Pelvi Lock provides the best support possible.",
+					"price": 300,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Velcro Strap Size",
+					"optionID": 14996,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
+					"desc": "",
+					"price": 100,
 					"defaultColorID": 0
 				},
                 {
@@ -5177,6 +5246,19 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
             "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
+            "price": 350,
+            "defaultColorID": 0
+          },
+		  {
+            "name": "Custom Footrest",
+            "optionID": 10750,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "Describe your custom foot rest, and let us fabricate the perfect solution.",
             "price": 350,
             "defaultColorID": 0
           },
@@ -7179,17 +7261,16 @@
 					"defaultColorID": 0
 				},
 				{
-					"hidden": true,
-					"name": "Leather Trim",
+					"name": "Air Mesh",
 					"optionID": 5200,
 					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/black-leather.jpg",
-					"desc": "Leather trimmed upholstery to adds extra strength and style to your backrest and seat.",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/air-mesh.jpg",
+					"desc": "Air mesh upholstery is the perfect choice for light weight breathability.",
 					"weight": -0.1,
-					"price": 80,
+					"price": 300,
 					"defaultColorID": 0
 				},
 				{
@@ -7273,6 +7354,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Waist Nylon/Velcro Strap",
 					"optionID": 14200,
 					"defaultSizeIndex": -1,
@@ -7299,6 +7381,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Lap Nylon/Velcro Strap",
 					"optionID": 14400,
 					"defaultSizeIndex": -1,
@@ -7325,6 +7408,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Foot Nylon/Velcro Stap",
 					"optionID": 14600,
 					"defaultSizeIndex": -1,
@@ -7335,6 +7419,32 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 65,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Pelvi Lock",
+					"optionID": 14995,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/pelvi-lock.jpg",
+					"desc": "The Pelvi Lock provides the best support possible.",
+					"price": 300,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Velcro Strap Size",
+					"optionID": 14996,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
+					"desc": "",
+					"price": 100,
 					"defaultColorID": 0
 				},
                 {
@@ -7409,6 +7519,19 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
             "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
+            "price": 350,
+            "defaultColorID": 0
+          },
+		  {
+            "name": "Custom Footrest",
+            "optionID": 10750,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "Describe your custom foot rest, and let us fabricate the perfect solution.",
             "price": 350,
             "defaultColorID": 0
           },
@@ -9393,17 +9516,16 @@
 					"defaultColorID": 0
 				},
 				{
-					"hidden": true,
-					"name": "Leather Trim",
+					"name": "Air Mesh",
 					"optionID": 5200,
 					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/black-leather.jpg",
-					"desc": "Leather trimmed upholstery to adds extra strength and style to your backrest and seat.",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/air-mesh.jpg",
+					"desc": "Air mesh upholstery is the perfect choice for light weight breathability.",
 					"weight": -0.1,
-					"price": 80,
+					"price": 300,
 					"defaultColorID": 0
 				},
 				{
@@ -9487,6 +9609,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Waist Nylon/Velcro Strap",
 					"optionID": 14200,
 					"defaultSizeIndex": -1,
@@ -9513,6 +9636,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Lap Nylon/Velcro Strap",
 					"optionID": 14400,
 					"defaultSizeIndex": -1,
@@ -9539,6 +9663,7 @@
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Foot Nylon/Velcro Stap",
 					"optionID": 14600,
 					"defaultSizeIndex": -1,
@@ -9549,6 +9674,32 @@
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
 					"price": 65,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Pelvi Lock",
+					"optionID": 14995,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/pelvi-lock.jpg",
+					"desc": "The Pelvi Lock provides the best support possible.",
+					"price": 300,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Velcro Strap Size",
+					"optionID": 14996,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
+					"desc": "",
+					"price": 100,
 					"defaultColorID": 0
 				},
                 {
@@ -9623,6 +9774,19 @@
             "displayColor": 0,
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
             "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
+            "price": 350,
+            "defaultColorID": 0
+          },
+		  {
+            "name": "Custom Footrest",
+            "optionID": 10750,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "Describe your custom foot rest, and let us fabricate the perfect solution.",
             "price": 350,
             "defaultColorID": 0
           },
@@ -12134,17 +12298,16 @@
 					"defaultColorID": 0
 				},
 				{
-					"hidden": true,
-					"name": "Leather Trim",
+					"name": "Air Mesh",
 					"optionID": 5200,
 					"colors": [],
 					"defaultSizeIndex": -1,
 					"sizes": [],
 					"comments": "",
-					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/black-leather.jpg",
-					"desc": "Leather trimmed upholstery to adds extra strength and style to your backrest and seat.",
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/upholstery/air-mesh.jpg",
+					"desc": "Air mesh upholstery is the perfect choice for light weight breathability.",
 					"weight": -0.1,
-					"price": 72,
+					"price": 300,
 					"defaultColorID": 0
 				},
 				{
@@ -12224,10 +12387,11 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/click-strap.jpg",
 					"desc": "Our click straps are the sale ratchet design on snowboard bindings.",
-					"price": 0,
+					"price": 100,
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Waist Nylon/Velcro Strap",
 					"optionID": 14200,
 					"defaultSizeIndex": -1,
@@ -12237,7 +12401,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
-					"price": -35,
+					"price": 65,
 					"defaultColorID": 0
 				},
 				{
@@ -12250,10 +12414,11 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/click-strap.jpg",
 					"desc": "Our click straps are the sale ratchet design on snowboard bindings.",
-					"price": 67.5,
+					"price": 75,
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Lap Nylon/Velcro Strap",
 					"optionID": 14400,
 					"defaultSizeIndex": -1,
@@ -12263,7 +12428,7 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
-					"price": 58.5,
+					"price": 65,
 					"defaultColorID": 0
 				},
 				{
@@ -12276,10 +12441,11 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/click-strap.jpg",
 					"desc": "Our click straps are the sale ratchet design on snowboard bindings",
-					"price": 67.5,
+					"price": 75,
 					"defaultColorID": 0
 				},
 				{
+					"hidden": true,
 					"name": "Foot Nylon/Velcro Stap",
 					"optionID": 14600,
 					"defaultSizeIndex": -1,
@@ -12289,7 +12455,33 @@
 					"displayColor": 0,
 					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
 					"desc": "Cost saving nylon straps with velcro.",
-					"price": 58.5,
+					"price": 65,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Pelvi Lock",
+					"optionID": 14995,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/pelvi-lock.jpg",
+					"desc": "The Pelvi Lock provides the best support possible.",
+					"price": 300,
+					"defaultColorID": 0
+				},
+				{
+					"name": "Velcro Strap Size",
+					"optionID": 14996,
+					"defaultSizeIndex": -1,
+					"colors": [],
+                    "sizes": [],
+					"comments": "",
+					"displayColor": 0,
+					"thumbnailURL": "images/abacus_page/customize/thumbnail_images/straps/velcro-strap.jpg",
+					"desc": "",
+					"price": 100,
 					"defaultColorID": 0
 				},
                 {
@@ -12377,6 +12569,19 @@
             "thumbnailURL": "images/abacus_page/customize/thumbnail_images/misc/height-adj.jpg",
             "desc": "Selecting this option will allow your backrest to be adjusted 2\" higher or 2\" lower.",
             "price": 72,
+            "defaultColorID": 0
+          },
+		  {
+            "name": "Custom Footrest",
+            "optionID": 10750,
+            "comments":"",
+            "colors": [],
+            "defaultSizeIndex": -1,
+            "sizes": [],
+            "displayColor": 0,
+            "thumbnailURL": "images/abacus_page/customize/thumbnail_images/p4x.png",
+            "desc": "Describe your custom foot rest, and let us fabricate the perfect solution.",
+            "price": 350,
             "defaultColorID": 0
           },
           {
