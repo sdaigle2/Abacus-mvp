@@ -467,7 +467,8 @@ angular.module('abacuApp')
             if (this.parts[i].priceByUser) {
               totalPrice += this.parts[i].priceByUser 
             } else {
-              totalPrice += o.getPrice();
+              if(o !== undefined && o!== null)
+                totalPrice += o.getPrice();
             }
           }
         }
@@ -492,7 +493,8 @@ angular.module('abacuApp')
             if (this.parts[i].priceByUser) {
               totalPrice += this.parts[i].priceByUser 
             } else {
-              totalPrice += o.getPrice();
+              if(o!==null)
+                totalPrice += o.getPrice();
             }
             
           }
