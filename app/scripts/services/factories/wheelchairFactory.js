@@ -251,7 +251,8 @@ angular.module('abacuApp')
 
         var part = FrameData.getFramePart(this.frameID, pID);
         var option = part.getOption(oID);
-        if(oID != -1) {
+        console.log(option)
+        if(oID != -1 && option !== null) {
           var color = option.getColor(cID);
           var size = option.getSize(sizeIndex);
 
