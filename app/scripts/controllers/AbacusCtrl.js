@@ -788,10 +788,11 @@ angular.module('abacuApp')
         thenFN()
         function thenFN() {
           var curPartID = $scope.getCurPartData().partID;
-          var prevSizeOptions = $scope.curOption.sizes;
-          var prevSizeIndex = $scope.getCurWheelchairPart().sizeIndex;
-          var curFrameID = $scope.curEditWheelchair.frameID;
-
+          if($scope.curOption !== null){
+            var prevSizeOptions = $scope.curOption.sizes;
+            var prevSizeIndex = $scope.getCurWheelchairPart().sizeIndex;
+            var curFrameID = $scope.curEditWheelchair.frameID;
+          }
           //Detect no change, and return after doing nothing
           if($scope.curEditWheelchair.getPart(curPartID).optionID == newOptionID){
             return
@@ -1012,11 +1013,14 @@ angular.module('abacuApp')
       $scope.$watch('curOption.comments', function(nVal, oVal){
         $scope.designIsSaved = oVal === nVal;
         var partID = $scope.getCurPage().partID;
-        var curEditPart = $scope.curEditWheelchair.getMultiPart(partID, $scope.curOption.optionID);
+        if($scope.curOption !== null){
+          var curEditPart = $scope.curEditWheelchair.getMultiPart(partID, $scope.curOption.optionID);
 
-        if(curEditPart && $scope.curOption.optionID == curEditPart.optionID){
-          curEditPart.comments = nVal;
+          if(curEditPart && $scope.curOption.optionID == curEditPart.optionID){
+            curEditPart.comments = nVal;
+          }
         }
+        
       });
 
       //Closes any open panel
