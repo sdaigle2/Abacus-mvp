@@ -105,9 +105,8 @@
     "time-grunt": "^2.0.0"
   },
   "engines": {
-    "node": "18.x",
-    "npm": "7.x",
-    "yarn": "1.x"
+    "node": ">=4.4.1",
+    "yarn": ">= 1.0.0"
   },
   "scripts": {
     "start": "node server.js",

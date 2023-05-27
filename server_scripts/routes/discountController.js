@@ -11,7 +11,7 @@ const restrict = require('../policies/restrict');
 const getUserPr = Promise.promisify(dbService.findDB);
 
 router.get('/discounts', restrict, function (req, res) {
-	getUserPr('users',req.session.user)
+	dbService.findDB('users',req.session.user)
 	.then(function(user) {
 		const userType = user.userType;
 		if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -36,7 +36,7 @@ router.get('/discounts', restrict, function (req, res) {
 
 router.post('/discounts/:discountId/expire', restrict, function (req, res) {
 	const discountId = req.params.discountId;
-	getUserPr('users',req.session.user)
+	dbService.findDB('users',req.session.user)
 	.then(function(user) {
 		const userType = user.userType;
 		if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -87,7 +87,7 @@ router.get('/discounts/:id', restrict, function (req, res) {
 router.put('/discounts/:id', restrict, function (req, res) {
 	const discount = req.body;
 	const discountId = discount._id;
-	getUserPr('users',req.session.user)
+	dbService.findDB('users',req.session.user)
 	.then(function(user) {
 		const userType = user.userType;
 		if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -124,7 +124,7 @@ router.put('/discounts/:id', restrict, function (req, res) {
 router.post('/discounts', restrict, function (req, res) {
 	var discount = req.body;
 	discount.createdBy = req.session.user;
-	getUserPr('users',discount.createdBy)
+	dbService.findDB('users',discount.createdBy)
 	.then(function(user) {
 		const userType = user.userType;
 		if (userType !== 'admin' && userType !== 'superAdmin') {

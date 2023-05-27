@@ -23,7 +23,7 @@ const restrict = require('../policies/restrict');
 const _designFunctionId = '90e3fa2f51a7470a708c7aede3121ccf';
 
 router.get('/users', restrict, function(req, res) {
-  getUserPr('users',req.session.user)
+  dbService.findDB('users',req.session.user)
   .then(function(user) {
     const userType = user.userType;
     if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -47,7 +47,7 @@ router.get('/users', restrict, function(req, res) {
 });
 
 router.put('/users/:userId', restrict, function(req, res) {
-  getUserPr('users',req.session.user)
+  dbService.findDB('users',req.session.user)
   .then(function(user) {
     const userType = user.userType;
     if (userType !== 'superAdmin') {
@@ -55,7 +55,7 @@ router.put('/users/:userId', restrict, function(req, res) {
       res.json({msg: 'Only admin users are authorized to perform this operation.'});
       return;
     }
-    return insertUserPr('users',req.body.userObj) 
+    return dbService.insertDB('users',req.body.userObj) 
   })
   .then(function(resp) {
     res.json(resp);
@@ -100,7 +100,7 @@ router.post('/users/current/info', restrict, function (req, res) {
   };
   var userID = req.session.user;
   // finding the object in database
-  getUserPr('users',req.session.user) 
+  dbService.findDB('users',req.session.user) 
   .then(function (existing) {
     //Sanitize the obj to be inserted
     fixObject(obj, existing);
