@@ -32,13 +32,12 @@ function sendInvoice(from, toArray, subject, subs, pdfFile, cb) {
 
 	mail.addAttachment({'content': base64encoded, 'filename': pdfFile.name});
 
-
+	
 	var request = sg.emptyRequest({
 	  method: 'POST',
 	  path: '/v3/mail/send',
 	  body: mail.toJSON(),
 	});
-
 	sg.API(request, function(error, response) {
 	  cb(error, response)
 	});
@@ -73,6 +72,7 @@ function sendReceipt(from, toArray, subject, subs, cb) {
 };
 
 function send(from, to, resetInfo, subject, templateId, cb) {
+	console.log("sending message")
 	var from_email = new helper.Email(from);
 	var to_email = new helper.Email(to);
 	var subject = subject;
@@ -84,7 +84,6 @@ function send(from, to, resetInfo, subject, templateId, cb) {
 	  path: '/v3/mail/send',
 	  body: mail.toJSON(),
 	});
-
 	sg.API(request, function(error, response) {
 	  cb(error, response)
 	});

@@ -170,6 +170,11 @@ const insertDB = (database,document) => {
   } 
 }
 
+// async function insertDBfunction(database,document, f){
+//   var res = await insertDB(database,document)
+//   f(res.error, res.body)
+// }
+
 const listallDocsDB = (database) => {
   try{
     service.postAllDocs({
@@ -210,7 +215,7 @@ const listAllFunctionDB = async (database) => {
 }
 
 async function listAllfunction(database, f){
-  res = await listAllFunctionDB(database)
+  var res = await listAllFunctionDB(database)
   f(res.error, res.body)
 }
 

@@ -31,8 +31,9 @@ var insertUserPr = Promise.promisify(dbService.insertDB);
 
 //RESET PASSWOD LINK
 router.post('/users/email/:email/request-reset-password', function (req, res) {
+  console.log("resetLink authCOntroller ")
   var userEmail = req.params.email;
-  findUserPr('users',userEmail)
+  dbService.findDB('users',userEmail)
   .then(function(data) {
     if (data === null) {
       res.status(404);
@@ -42,14 +43,14 @@ router.post('/users/email/:email/request-reset-password', function (req, res) {
       return;
     }
     data.resetLink = crypto.randomBytes(16).toString('hex');
-    insertUserPr('users', data)
-    .then(function(nData) {
+    dbService.insertDBfunction('users', data, function(nData) {
       var content = 'To reset your password for per4max.fit, please click the link - http://per4max.fit/#!/change-password/' + data.resetLink;
       sendgrid.send(emailFrom, userEmail, content, 'Per4max Password Reset', resetPasswordTplId, cb)
       function cb(err, resp) {
         if (err) {
           console.log(err)
         } else {
+          console.log(resp)
           res.json({'success': true, 'newRev': nData.rev, 'resetLink': data.resetLink});
         }
       }
@@ -64,7 +65,7 @@ router.post('/users/email/:email/request-reset-password', function (req, res) {
 //CHECKS IF RESET PASSWORD LINK EXISTS
 router.get('/users/reset-password-code/:resetPasswordCode/exists', function(req, res) {
   var passwordCode = req.params.resetPasswordCode;
-  findResentLinkPr('users',passwordCode)
+  dbService.findResetLinkinDB('users',passwordCode)
   .then(function(data) {
     if (data === null) {
       res.status(404);
@@ -91,7 +92,7 @@ router.put('/users/current/change-password', function(req, res) {
       msg: 'New password should be at least 8 characters long'
     });
   } else {
-    findUserPr('users',userEmail)
+    dbService.findDB('users',userEmail)
     .then(function(data) {
       if (data === null) {
         res.status(404);
@@ -104,8 +105,7 @@ router.put('/users/current/change-password', function(req, res) {
           if (err) throw err;
           data.password = hash;
           data.salt = salt;
-          insertUserPr('users', data)
-          .then(function() {
+          dbService.insertDBfunction('users', data, function() {
             res.json({'success': true});
           })
           .catch(function(err) {
@@ -237,6 +237,7 @@ router.post('/users/register', function (req, res) {
               res.json({err: 'Couldn\'t save user in the Database'});
               return;
             }
+            console.log(emailFrom)
             sendgrid.send(emailFrom, data.email, '.', 'Tinker Registration', authTplId, cb);
             function cb(err) {
               if (err) {

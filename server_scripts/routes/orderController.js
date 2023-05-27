@@ -52,7 +52,7 @@ function createStatus(total, now) {
 }
 
 router.get('/orders/:id', restrict, function(req, res) {
-  getUserPr('users',req.session.user)
+  dbService.findDB('users',req.session.user)
   .then(function(user) {
     const userType = user.userType;
     if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -60,7 +60,7 @@ router.get('/orders/:id', restrict, function(req, res) {
       res.json({msg: 'Only admin users are authorized to perform this operation.'});
       return;
     }
-    return getOrderPr('orders',req.params.id)
+    return dbService.findDB('orders',req.params.id)
   })
   .then(function(order) {
       res.json(order)
@@ -72,7 +72,7 @@ router.get('/orders/:id', restrict, function(req, res) {
 });
 
 router.get('/orders', restrict, function(req, res) {
-  getUserPr('users',req.session.user)
+  dbService.findDB('users',req.session.user)
   .then(function(user) {
     const userType = user.userType;
     if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -124,7 +124,7 @@ router.get('/orders/:id/invoice', (req, res) => {
 });
 
 router.put('/orders/:id', restrict, function(req, res) {
-  getUserPr('users',req.session.user)
+  dbService.findDB('users',req.session.user)
   .then(function(user) {
     const userType = user.userType;
     if (userType !== 'admin' && userType !== 'superAdmin') {
@@ -140,11 +140,11 @@ router.put('/orders/:id', restrict, function(req, res) {
           return;
         }
         delete req.body.order.stripeToken;
-        return insertOrderPr('orders',req.body.order);
+        return dbService.insertDB('orders',req.body.order);
       })
 
     } else {
-      return insertOrderPr('orders',req.body.order);
+      return dbService.insertDB('orders',req.body.order);
     }
     
   })
@@ -190,7 +190,7 @@ router.post('/orders/create-payment', (req, res) => {
       let status = createStatus(order.totalDue, order.totalDue - order.totalDueLater);
       order.orderStatus = status.orderStatus;
       order.paymentStatus = status.paymentStatus;
-      insertOrderPr('orders',order)
+      dbService.insertDB('orders',order)
       .then(resp => {
         let valuesToSubstitute = {
           '-paymentStatus-': order.paymentStatus,
@@ -372,12 +372,12 @@ router.post('/orders', function (req, res) {
             res.json({err: 'Error while inserting order'});
             return;
           }
-        getUserPr('users',req.session.user)
+          dbService.findDB('users',req.session.user)
         .then(function(user) {
           user.orders.push(order._id);
           user.cart = null;
           // updatee userObject
-          insertUserPr('users',user)
+          dbService.insertDB('users',user)
           .then((resp) => {
             user._rev = resp.rev;
             user._id = resp.id;
