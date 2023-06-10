@@ -155,7 +155,7 @@ describe('Test order payments', () => {
           '-totalDue-': '3000.00'
         };
         getOrdersPr('orders',newOrder._id).then(function (resp) {
-          spy.args[0][0].should.equal('do-not-reply@per4max.fit');
+          spy.args[0][0].should.equal('do-not-reply@per4max.com');
 
           _.isEqual(spy.args[0][3], expectedSubs).should.equal(true);
           done();

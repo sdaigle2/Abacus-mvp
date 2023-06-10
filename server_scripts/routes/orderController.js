@@ -202,8 +202,8 @@ router.post('/orders/create-payment', (req, res) => {
           '-orderNumber-': order.orderNum.toString(),
         };
 
-        sendgrid.sendReceipt('do-not-reply@per4max.fit', MANUFACTURER_EMAIL , 'Per4max.fit Payment Receipt for Order #' + order.orderNum + ' - MANUFACTURER COPY', valuesToSubstitute, cb);
-        sendgrid.sendReceipt('do-not-reply@per4max.fit', [req.body.order.email] , 'Per4max.fit Payment Receipt for Order #' + order.orderNum, valuesToSubstitute, cb);
+        sendgrid.sendReceipt('do-not-reply@per4max.com', MANUFACTURER_EMAIL , 'Per4max.fit Payment Receipt for Order #' + order.orderNum + ' - MANUFACTURER COPY', valuesToSubstitute, cb);
+        sendgrid.sendReceipt('do-not-reply@per4max.com', [req.body.order.email] , 'Per4max.fit Payment Receipt for Order #' + order.orderNum, valuesToSubstitute, cb);
         res.json(resp)
 
         function cb(err, resp) {
@@ -320,8 +320,8 @@ router.post('/orders', function (req, res) {
           path: pdfFileInfo.absPath,
           name: 'pdfInvoice.pdf'
         }
-        sendgrid.sendInvoice('do-not-reply@per4max.fit', MANUFACTURER_EMAIL , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached - MANUFACTURER COPY', valuesToSubstitute, pdf, cb);
-        sendgrid.sendInvoice('do-not-reply@per4max.fit', [req.body.order.email] , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached', valuesToSubstitute, pdf, cb);
+        sendgrid.sendInvoice('do-not-reply@per4max.com', MANUFACTURER_EMAIL , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached - MANUFACTURER COPY', valuesToSubstitute, pdf, cb);
+        sendgrid.sendInvoice('do-not-reply@per4max.com', [req.body.order.email] , 'Per4max.fit Order #' + order.orderNum + ' - Invoice Attached', valuesToSubstitute, pdf, cb);
 
         function cb(err, resp) {
           if (err) console.log(err);
