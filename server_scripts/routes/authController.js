@@ -22,7 +22,7 @@ var restrict = require('../policies/restrict');
 // Email info
 var authTplId = 'db5513e7-1cb0-46f7-95bd-1001fbe8c41e';
 var resetPasswordTplId = 'dfee1b8d-6729-4674-bd82-da988b65e440';
-var emailFrom = 'do-not-reply@per4max.fit';
+var emailFrom = 'do-not-reply@per4max.com';
 
 // Promised db functions
 var findUserPr = Promise.promisify(dbService.findDB);
@@ -43,7 +43,7 @@ router.post('/users/email/:email/request-reset-password', function (req, res) {
       return;
     }
     data.resetLink = crypto.randomBytes(16).toString('hex');
-    dbService.insertDBfunction('users', data, function(nData) {
+    dbService.insertDBfunction('users', data, function(error,nData) {
       var content = 'To reset your password for per4max.fit, please click the link - http://per4max.fit/#!/change-password/' + data.resetLink;
       sendgrid.send(emailFrom, userEmail, content, 'Per4max Password Reset', resetPasswordTplId, cb)
       function cb(err, resp) {

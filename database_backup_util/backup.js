@@ -72,7 +72,7 @@ var readDB = function (database) {
                     ' <b>failed</b> due incorrect JSON document exported from <b>' + database + '</b> database.\n' +
                     '<i>' + err.message + '</i><br>' +
                     '<i>' + errExample + '</i>',
-                  from_email = new helper.Email('do-not-reply@per4max.fit'),
+                  from_email = new helper.Email('do-not-reply@per4max.com'),
                   to_email = new helper.Email(ALEMAIL),
                   subject = database.charAt(0).toUpperCase() + database.slice(1) + ' JSON parsing failed',
                   content = new helper.Content('text/html', failureMailHTML),
@@ -136,7 +136,7 @@ var reportMissingEV = function (name) {
         ' <b>failed</b> due to missing <b>' + name + '</b> environment variable.\n' +
         'DB backup will fail until all required environment variables will be configured' +
         '<br><br>&nbsp;&nbsp;You can set this environment variables now for successfull next backup',
-      from_email = new helper.Email('do-not-reply@per4max.fit'),
+      from_email = new helper.Email('do-not-reply@per4max.com'),
       to_email = new helper.Email(ALEMAIL),
       subject = name + ' environment variable missing',
       content = new helper.Content('text/html', failureMailHTML),
