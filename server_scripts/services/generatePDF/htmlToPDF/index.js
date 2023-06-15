@@ -1,51 +1,42 @@
-const _          = require('lodash');
-const fs         = require('fs');
-const jsreport   = require('@jsreport/nodejs-client');
-
-const DEFAULT_TIMEOUT = 7e3; // default resource timeout is 5 seconds
+const _ = require('lodash');
+const puppeteer = require('puppeteer');
 
 /**
- * This function will spawn a new process which is responsible for creating a single PDF
- * Given: filepath where the output pdf should be saved + a String with raw html
- * Output: Gives path to the PDF file that has been rendered from the input HTML
- *
- * More info on jsreport module used: http://www.janblaha.net/blog/converting-html-to-pdf-in-nodejs
+ * This function is shifted to Puppeteer on 6/15/2023 previously used Phantom and jsreport 
  */
+
+
 async function htmlToPDF(args, cb) {
+	const pdfFilePath = args.pdfFilePath;
+	const rawHTML = args.rawHTML;
 
-	var pdfFilePath = args.pdfFilePath;
-	var rawHTML = args.rawHTML;
+	try {
+		const browser = await puppeteer.launch({
+			headless: 'new'
+		});
+		const page = await browser.newPage();
+		await page.setContent(rawHTML);
 
-	var timeout = _.isNumber(args.timeout) ? args.timeout : DEFAULT_TIMEOUT;
-	cb = _.once(cb); // ensure the callback is only called once
+		const pdfOptions = {
+			path: pdfFilePath,
+			format: 'Letter',
+			margin: {
+				top: '0px',
+				right: '0px',
+				bottom: '0px',
+				left: '0px'
+			},
+			printBackground: true
+		};
 
-	jsreport.render({
-		template: {
-			content: rawHTML,
-			engine: 'handlebars',
-			recipe: 'phantom-pdf',
-			'phantom': {
-				format: 'Letter',
-				margin: '0px',
-				printDelay: timeout
-			}
-		}
-	})
-	.then(out => {
-		if (!pdfFilePath) {
-			// if no file path to save the pdf was given, return the raw stream for the pdf
-			return cb(null, out.result);
-		}
+		await page.pdf(pdfOptions);
+		await browser.close();
 
-		var stream = out.result.pipe(fs.createWriteStream(pdfFilePath));
-
-		stream.on('finish', () => cb(null, pdfFilePath));
-		stream.on('error', err => cb(err));
-	})
-	.catch(err => {
-		console.log(err.response)
+		cb(null, pdfFilePath);
+	} catch (err) {
+		console.log('PDF function error:', err);
 		cb(err);
-	});
+	}
 }
 
 module.exports = htmlToPDF;

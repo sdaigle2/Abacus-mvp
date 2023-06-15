@@ -172,17 +172,17 @@ router.post('/design-drawings', (req, res) => {
 
   getDesignForPDF((err, designs) => {
     if (err) {
-      console.log(JSON.stringify(err, null, 2));
+      console.log(err);
       res.status(400);
-      return res.json(err);
+      return res.json({ error: 'No valid design given' });
     }
 
     designs = _.isArray(designs) ? designs : [designs];
     generatePDF.forWheelchairs(designs, (err, pdfFileInfo) => {
       if (err) {
-        console.log(JSON.stringify(err, null, 2));
+        console.log(err);
         res.status(400);
-        return res.json(err);
+        return res.json({ error: 'PDF generation failed' });
       }
 
       res.json({
