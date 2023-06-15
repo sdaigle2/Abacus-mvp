@@ -50,6 +50,7 @@ router.post('/users/email/:email/request-reset-password', function (req, res) {
         if (err) {
           console.log(err)
         } else {
+          console.log(resp)
           res.json({'success': true, 'newRev': nData.rev, 'resetLink': data.resetLink});
         }
       }
