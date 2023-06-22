@@ -1,25 +1,33 @@
+const PCR = require('puppeteer-chromium-resolver');
 const fs = require('fs');
-const phantom = require('phantom-html-to-pdf')();
 
 async function htmlToPDF(args, cb) {
   const pdfFilePath = args.pdfFilePath;
   const rawHTML = args.rawHTML;
 
   try {
-    phantom({ html: rawHTML }, (err, pdf) => {
+    const options = {timeout: 60000,};
+    const stats = await PCR(options);
+    const browser = await stats.puppeteer.launch({
+      // headless: false,
+      executablePath: stats.executablePath, // Adjust the executable path according to your environment
+      args: ['--no-sandbox', '--disable-dev-shm-usage'],
+    });
+
+    const page = await browser.newPage();
+    await page.setContent(rawHTML);
+
+    const pdfBuffer = await page.pdf({ format: 'A4' });
+
+    await browser.close();
+
+    fs.writeFile(pdfFilePath, pdfBuffer, (err) => {
       if (err) {
-        console.error('HTML to PDF conversion error:', err);
+        console.error('PDF write file error:', err);
         cb(err);
       } else {
-        const output = fs.createWriteStream(pdfFilePath);
-        pdf.stream.pipe(output);
-        output.on('finish', () => {
-          cb(null, pdfFilePath);
-        });
-        output.on('error', (error) => {
-          console.error('PDF write stream error:', error);
-          cb(error);
-        });
+        console.log('PDF file created:', pdfFilePath);
+        cb(null, pdfFilePath);
       }
     });
   } catch (err) {
