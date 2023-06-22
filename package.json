@@ -54,7 +54,6 @@
     "nodemailer": "^6.9.0",
     "path": "^0.12.7",
     "paypal-rest-sdk": "^1.6.8",
-    "pdfkit": "^0.13.0",
     "phantom-html-to-pdf": "^0.7.0",
     "prerender-node": "^3.5.0",
     "sanitize-html": "^2.8.1",
