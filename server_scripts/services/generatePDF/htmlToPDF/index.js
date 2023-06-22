@@ -1,25 +1,21 @@
 const fs = require('fs');
-const phantom = require('phantom-html-to-pdf')();
+const htmlToPdf = require('html-pdf-node');
 
 async function htmlToPDF(args, cb) {
   const pdfFilePath = args.pdfFilePath;
   const rawHTML = args.rawHTML;
 
   try {
-    phantom({ html: rawHTML }, (err, pdf) => {
+    const file = { content: rawHTML };
+    const options = { format: 'A4' };
+
+    const pdfBuffer = await htmlToPdf.generatePdf(file, options);
+    fs.writeFile(pdfFilePath, pdfBuffer, (err) => {
       if (err) {
-        console.error('HTML to PDF conversion error:', err);
+        console.error('PDF write file error:', err);
         cb(err);
       } else {
-        const output = fs.createWriteStream(pdfFilePath);
-        pdf.stream.pipe(output);
-        output.on('finish', () => {
-          cb(null, pdfFilePath);
-        });
-        output.on('error', (error) => {
-          console.error('PDF write stream error:', error);
-          cb(error);
-        });
+        cb(null, pdfFilePath);
       }
     });
   } catch (err) {
