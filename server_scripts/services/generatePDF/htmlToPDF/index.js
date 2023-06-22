@@ -9,7 +9,7 @@ async function htmlToPDF(args, cb) {
     const options = {};
     const stats = await PCR(options);
     const browser = await stats.puppeteer.launch({
-      headless: false,
+      // headless: false,
       executablePath: stats.executablePath, // Adjust the executable path according to your environment
       args: ['--no-sandbox', '--disable-dev-shm-usage'],
     });
