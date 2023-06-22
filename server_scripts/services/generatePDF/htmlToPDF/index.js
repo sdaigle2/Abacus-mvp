@@ -1,43 +1,31 @@
-const _ = require('lodash');
-const puppeteer = require('puppeteer');
-
-/**
- * This function is shifted to Puppeteer on 6/15/2023 previously used Phantom and jsreport 
- */
-
+const fs = require('fs');
+const phantom = require('phantom-html-to-pdf')();
 
 async function htmlToPDF(args, cb) {
-	const pdfFilePath = args.pdfFilePath;
-	const rawHTML = args.rawHTML;
+  const pdfFilePath = args.pdfFilePath;
+  const rawHTML = args.rawHTML;
 
-	try {
-		const browser = await puppeteer.launch({
-			headless: 'new',
-			args: ['--no-sandbox','--disable-setuid-sandbox']
-		  });
-		const page = await browser.newPage();
-		await page.setContent(rawHTML);
-
-		const pdfOptions = {
-			path: pdfFilePath,
-			format: 'Letter',
-			margin: {
-				top: '0px',
-				right: '0px',
-				bottom: '0px',
-				left: '0px'
-			},
-			printBackground: true
-		};
-
-		await page.pdf(pdfOptions);
-		await browser.close();
-
-		cb(null, pdfFilePath);
-	} catch (err) {
-		console.log('PDF function error:', err);
-		cb(err);
-	}
+  try {
+    phantom({ html: rawHTML }, (err, pdf) => {
+      if (err) {
+        console.error('HTML to PDF conversion error:', err);
+        cb(err);
+      } else {
+        const output = fs.createWriteStream(pdfFilePath);
+        pdf.stream.pipe(output);
+        output.on('finish', () => {
+          cb(null, pdfFilePath);
+        });
+        output.on('error', (error) => {
+          console.error('PDF write stream error:', error);
+          cb(error);
+        });
+      }
+    });
+  } catch (err) {
+    console.error('HTML to PDF conversion error:', err);
+    cb(err);
+  }
 }
 
 module.exports = htmlToPDF;
