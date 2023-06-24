@@ -8,7 +8,7 @@ async function htmlToPDF(args, cb) {
   const rawHTML = args.rawHTML;
 
   try { 
-    const options = { timeout: 60000 };
+    const options = { timeout: 90000 };
     const stats = await PCR(options);
     const browser = await stats.puppeteer.launch({
       // headless: false,
