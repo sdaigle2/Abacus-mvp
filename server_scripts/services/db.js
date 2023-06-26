@@ -369,7 +369,8 @@ function mergeObjects(left, right) {
 
 
 // update document in the datbase 
-const inplaceAtomic = async (database,id,updateData,updateField) =>{
+const inplaceAtomic = async (database,id,updateData,updateField
+  ) =>{
   var body, error;
   try{
     await service.getDocument({
@@ -385,6 +386,7 @@ const inplaceAtomic = async (database,id,updateData,updateField) =>{
         db: database,
         document: document
       }).then(response => {
+        // console.log(response)
         body = response.result.rev;
         error = null;
       }).catch(err=>{
@@ -455,4 +457,4 @@ async function bulkFetchFunction(database, documentIDs, f){
 
 
 
-module.exports = { service, findDB, findDesignfunction, deleteInDB, bulkFetchFunction, deleteFromDBfunction, inplaceAtomicFunction, findDesignDB, findResetLinkinDB, insertDB, listAllfunction, findDBfunction,insertDBfunction,listallDocsDB, insertDesignDBfunction }
+module.exports = { service,inplaceAtomic, findDB, findDesignfunction, deleteInDB, bulkFetchFunction, deleteFromDBfunction, inplaceAtomicFunction, findDesignDB, findResetLinkinDB, insertDB, listAllfunction, findDBfunction,insertDBfunction,listallDocsDB, insertDesignDBfunction }
