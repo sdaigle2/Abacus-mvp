@@ -73,6 +73,30 @@ router.post('/users/current/current-wheelchair', restrict, function(req, res) {
   updateUserObj(req.body.currentWheelchair, 'currentWheelchair', req, res);
 });
 
+router.post('/update-user-info', restrict, async function(req, res) {
+  console.log("trying to update")
+  var updateData = req.body;
+  console.log
+  var userID = req.session.user;
+  var response = await dbService.inplaceAtomic('users',userID,updateData, null);
+  console.log(response)
+    if (response.error) {
+   
+      res.json({
+        'err': response.error
+      });
+    } else {
+      
+      req.session.regenerate(async function () {
+        req.session.user = userID;
+        updateData._rev = response.body;
+        updateData.userID = userID;
+        res.send(updateData);
+      });
+    }
+  
+});
+
 router.post('/users/current/designs', restrict, function (req, res) {
   // console.log("/users/current/designs")
   var updateData = {

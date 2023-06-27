@@ -188,6 +188,21 @@ router.get('/users/current', restrict, function (req, res) {
   });
 });
 
+//Check user session on page reload
+router.get('/users/update-user-info', restrict, function (req, res) {
+  dbUtils.getUserByID(req.session.user, function (err, body) { //Query the database using the session cookie
+    if (!err) {
+      //clean the trace
+      delete body.salt;
+      delete body.password;
+      console.log(body)
+      res.json(body); //Respond with details from database AFTER removing stored hash and salt
+    }
+    else
+      res.json({'userID': -1});
+  });
+});
+
 //REGISTER
 router.post('/users/register', function (req, res) {
   //Retrieve request parameters that we need, ignoring any others.
