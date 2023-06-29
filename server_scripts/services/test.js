@@ -75,7 +75,7 @@ const findDB = async (database,query) => {
         console.log(err)
     } 
 }
-findDB('users','abc@gmail.com')
+findDB('users','dfik@per4max.com')
 // findDB('design','yqf6uL4_m')
 // findDB('orders','b5292e26da3aa218334ea8c6946c50ca')
 

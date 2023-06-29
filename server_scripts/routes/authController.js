@@ -105,7 +105,7 @@ router.put('/users/current/change-password', function(req, res) {
           if (err) throw err;
           data.password = hash;
           data.salt = salt;
-          dbService.insertDBfunction('users', data, function() {
+          dbService.inplaceAtomicFunction('users', userEmail, data, null, function() {
             res.json({'success': true});
           })
           .catch(function(err) {

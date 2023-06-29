@@ -71,7 +71,8 @@ angular.module('abacuApp')
               $scope.accountModel.newPass1 = '';
               $scope.accountModel.newPass2 = '';
               $scope.saveMessage = 'SAVED';
-              $scope.errMessage = resp.data.message;
+              console.log(resp)
+              $scope.errMessage = resp.statusText;
 
               setTimeout(function(){$scope.saveMessage = 'SAVE >>'; 
                 $scope.$apply($scope.errMessage = '')},3000);

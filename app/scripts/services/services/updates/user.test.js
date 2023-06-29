@@ -192,7 +192,6 @@ describe('Tests main userService functions exposed to controllers', function () 
     httpBackend.expectPOST('/update-user-info', userInfo.user)
     .respond(200, userInfo);
     httpBackend.whenGET('users/current').respond(200, '');
-    
     User.updateUserInfo(userInfo.user);
     httpBackend.flush();
     expect(User.getFname()).toBe('TestName');
