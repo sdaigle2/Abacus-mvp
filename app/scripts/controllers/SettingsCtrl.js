@@ -65,18 +65,39 @@ angular.module('abacuApp')
       $scope.save = function () {
         switch ($scope.getContentSection()) {
           case $scope.ContentSection.ACCOUNT:
-            $scope.saveMessage = 'SAVING ...';
-            User.updateUserInfo($scope.accountModel).then(function(resp) {
-              $scope.accountModel.oldPass = '';
-              $scope.accountModel.newPass1 = '';
-              $scope.accountModel.newPass2 = '';
-              $scope.saveMessage = 'SAVED';
-              console.log(resp)
-              $scope.errMessage = resp.statusText;
+            $scope.errMessage =""
+            var flag = false;
+            
+            if($scope.accountModel.oldPass !== "" || $scope.accountModel.newPass1 !== "" || $scope.accountModel.newPass2 !== "") {
+              if($scope.accountModel.newPass1<8 || $scope.accountModel.newPass2<8){
+                $scope.errMessage = "New password should be at least 8 characters long";
+              }
+              if($scope.accountModel.newPass1 != $scope.accountModel.newPass2){
+                $scope.errMessage = "Passwords don't match";
+              }
+              else if($scope.accountModel.oldPass === "" || $scope.accountModel.newPass1 === "" || $scope.accountModel.newPass2 === "")
+                $scope.errMessage = "Enter Current Password";
+              else
+                flag = true
+            }
+            else
+              flag = true
 
-              setTimeout(function(){$scope.saveMessage = 'SAVE >>'; 
-                $scope.$apply($scope.errMessage = '')},3000);
-            })
+
+            if(flag){
+              $scope.saveMessage = 'SAVING ...';
+              User.updateUserInfo($scope.accountModel).then(function(resp) {
+                $scope.accountModel.oldPass = '';
+                $scope.accountModel.newPass1 = '';
+                $scope.accountModel.newPass2 = '';
+                $scope.saveMessage = 'SAVED';
+                console.log(resp)
+                $scope.errMessage = resp.statusText;
+  
+                setTimeout(function(){$scope.saveMessage = 'SAVE >>'; 
+                  $scope.$apply($scope.errMessage = '')},3000);
+              })
+            }
             break;
           case $scope.ContentSection.ORDERS:
             break;

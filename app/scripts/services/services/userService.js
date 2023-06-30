@@ -117,61 +117,72 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
   //universal DB update. It fetched all the user details and upload to DB, it also update the local file when the data receive from DB
   //TODO: build different section update function to replace the universal update method
 
+  function saveData(userInfo){
+    return $http({
+      url: '/update-user-info'
+      , data: userInfo
+      , method: 'POST'
+    }).then(function(data) {
+      console.log(data)
+      restoreUserInfo(data);
+      return data;
+    }, function(err) {
+      console.log(err)
+      throw new Error("function:", err);
+    })
+    .catch(function(err) {
+      console.log("catch", err)
+      throw new Error(err);
+    });
+  }
+
+  function changePassword(userInfo){
+    // check if old password is correct
+    return $http({
+      url: '/users/email/sign-in/' + userInfo.email,
+      data: {password: userInfo.oldPass},
+      method: 'POST'
+    }).then(function (data){
+      if(data.data.userID===-1){
+        return {
+          statusText:"Password Incorrect!"
+        }
+      }else{
+        // update password 
+        return $http({
+            url: '/users/current/change-password',
+            method: 'PUT',
+            data: {newPassword:userInfo.newPass1, email:userInfo.email}
+          })
+          .then(data=>{
+            console.log(data)
+            return data
+          })
+          .catch(function(err) {
+            console.log(err)
+            return {
+              statusText: err.data.msg
+            }
+          });
+      }
+    })
+    .catch(function(err) {
+      console.log("catch", err)
+      throw new Error(err);
+    });
+  }
+
   function updateUserInfo(userInfo) {
     console.log("userInfo ",userInfo)
     if(userInfo.oldPass===""){
+      console.log("not changing the password")
       // if there is no change in password
-      return $http({
-        url: '/update-user-info'
-        , data: userInfo
-        , method: 'POST'
-      }).then(function(data) {
-        console.log(data)
-        restoreUserInfo(data);
-        return data;
-      }, function(err) {
-        console.log(err)
-        throw new Error("function:", err);
-      })
-      .catch(function(err) {
-        console.log("catch", err)
-        throw new Error(err);
-      });
+      return saveData(userInfo);
     }
     else{
-      // check if old password is correct
-      return $http({
-        url: '/users/email/sign-in/' + userInfo.email,
-        data: {password: userInfo.oldPass},
-        method: 'POST'
-      }).then(function (data){
-        if(data.data.userID===-1){
-          return {
-            statusText:"Password Incorrect"
-          }
-        }else{
-          // update password 
-          return $http({
-              url: '/users/current/change-password',
-              method: 'PUT',
-              data: {newPassword:userInfo.newPass1, email:userInfo.email}
-            })
-            .then(data=>{
-              console.log(data)
-              return data
-            })
-            .catch(function(err) {
-              console.log(err)
-              return {
-                statusText: err.data.msg
-              }
-            });
-        }
-      })
-      .catch(function(err) {
-        console.log("catch", err)
-        throw new Error(err);
-      });
+      console.log("Changing the password")
+      changePassword(userInfo);
+      return saveData(userInfo);
     }
     
   }
