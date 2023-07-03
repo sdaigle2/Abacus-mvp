@@ -69,10 +69,10 @@ angular.module('abacuApp')
             var flag = false;
             
             if($scope.accountModel.oldPass !== "" || $scope.accountModel.newPass1 !== "" || $scope.accountModel.newPass2 !== "") {
-              if($scope.accountModel.newPass1<8 || $scope.accountModel.newPass2<8){
+              if($scope.accountModel.newPass1.length<8){
                 $scope.errMessage = "New password should be at least 8 characters long";
               }
-              if($scope.accountModel.newPass1 != $scope.accountModel.newPass2){
+              else if($scope.accountModel.newPass1 != $scope.accountModel.newPass2){
                 $scope.errMessage = "Passwords don't match";
               }
               else if($scope.accountModel.oldPass === "" || $scope.accountModel.newPass1 === "" || $scope.accountModel.newPass2 === "")
