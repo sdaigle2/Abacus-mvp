@@ -117,14 +117,15 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
   //universal DB update. It fetched all the user details and upload to DB, it also update the local file when the data receive from DB
   //TODO: build different section update function to replace the universal update method
 
-  function updateUserInfo(userInfo) {
+  function saveData(userInfo){
     return $http({
       url: '/update-user-info'
       , data: userInfo
       , method: 'POST'
     }).then(function(data) {
+      console.log(data)
       restoreUserInfo(data);
-      return data.message;
+      return data;
     }, function(err) {
       console.log(err)
       throw new Error("function:", err);
@@ -133,6 +134,57 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
       console.log("catch", err)
       throw new Error(err);
     });
+  }
+
+  function changePassword(userInfo){
+    // check if old password is correct
+    return $http({
+      url: '/users/email/sign-in/' + userInfo.email,
+      data: {password: userInfo.oldPass},
+      method: 'POST'
+    }).then(function (data){
+      if(data.data.userID===-1){
+        return {
+          statusText:"Password Incorrect!"
+        }
+      }else{
+        // update password 
+        return $http({
+            url: '/users/current/change-password',
+            method: 'PUT',
+            data: {newPassword:userInfo.newPass1, email:userInfo.email}
+          })
+          .then(data=>{
+            console.log(data)
+            return data
+          })
+          .catch(function(err) {
+            console.log(err)
+            return {
+              statusText: err.data.msg
+            }
+          });
+      }
+    })
+    .catch(function(err) {
+      console.log("catch", err)
+      throw new Error(err);
+    });
+  }
+
+  function updateUserInfo(userInfo) {
+    console.log("userInfo ",userInfo)
+    if(userInfo.oldPass===""){
+      console.log("not changing the password")
+      // if there is no change in password
+      return saveData(userInfo);
+    }
+    else{
+      console.log("Changing the password")
+      changePassword(userInfo);
+      return saveData(userInfo);
+    }
+    
   }
 
   //create a currentDesign object.
@@ -250,15 +302,15 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
   }
 
   function restoreUserInfo(data) {
-    self.fName = data.user.fName;
-    self.lName = data.user.lName;
-    self.email = data.user.email;
-    self.phone = data.user.phone;
-    self.addr = data.user.addr;
-    self.addr2 = data.user.addr2;
-    self.city = data.user.city;
-    self.state = data.user.state;
-    self.zip = data.user.zip;
+    self.fName = data.data.fName;
+    self.lName = data.data.lName;
+    self.email = data.data.email;
+    self.phone = data.data.phone;
+    self.addr = data.data.addr;
+    self.addr2 = data.data.addr2;
+    self.city = data.data.city;
+    self.state = data.data.state;
+    self.zip = data.data.zip;
   } 
 
   function restoreUserFromBackend(data) {

@@ -38,6 +38,7 @@ angular.module('abacuApp')
                 $scope.passChangedReq = true;
                 $scope.user.newPassword = $scope.params.password;
                 $scope.user.email = $scope.params.email;
+                console.log($scope.user)
                 ForgotAPI.setPassword($scope.user)
                 .then(function(resp){
                     $scope.success = 'Your password has been successfully changed.'; 
