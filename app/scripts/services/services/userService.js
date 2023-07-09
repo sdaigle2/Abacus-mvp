@@ -138,16 +138,19 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
 
   function changePassword(userInfo){
     // check if old password is correct
+    console.log("Going to change password now")
     return $http({
       url: '/users/email/sign-in/' + userInfo.email,
       data: {password: userInfo.oldPass},
       method: 'POST'
     }).then(function (data){
+      console.log(data)
       if(data.data.userID===-1){
         return {
           statusText:"Password Incorrect!"
         }
       }else{
+        console.log("CALLING API")
         // update password 
         return $http({
             url: '/users/current/change-password',
@@ -155,6 +158,7 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
             data: {newPassword:userInfo.newPass1, email:userInfo.email}
           })
           .then(data=>{
+            console.log("BACK FROM API")
             console.log(data)
             return data
           })
@@ -181,8 +185,8 @@ function ($http, $location, $q, localJSONStorage, Order, Wheelchair, Units, Cost
     }
     else{
       console.log("Changing the password")
-      changePassword(userInfo);
-      return saveData(userInfo);
+      saveData(userInfo)
+      return changePassword(userInfo);
     }
     
   }

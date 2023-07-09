@@ -86,7 +86,8 @@ router.get('/users/reset-password-code/:resetPasswordCode/exists', function(req,
 router.put('/users/current/change-password', function(req, res) {
   var newPassword = req.body.newPassword;
   var userEmail = req.body.email;
-  if (!newPassword || newPassword.length < 8) {
+  console.log("Saving new password:",newPassword)
+  if (!newPassword && newPassword.length < 8) {
     res.status(400);
     res.json({
       msg: 'New password should be at least 8 characters long'
@@ -102,13 +103,23 @@ router.put('/users/current/change-password', function(req, res) {
         return;
       } else {
         hash(newPassword, function (err, salt, hash) {
-          if (err) throw err;
+          if (err) {
+            console.log(err)
+            res.status(500);
+            return res.json(err);
+          // throw err;
+          }
+          console.log("Done with hash")
           data.password = hash;
           data.salt = salt;
-          dbService.inplaceAtomicFunction('users', userEmail, data, null, function() {
+          console.log("calling inplaceAtomicFunction")
+          dbService.inplaceAtomicFunction('users', userEmail, data, null, function(error, body) {
+            console.log(error,body)
+            if (error) throw error;
             res.json({'success': true});
           })
           .catch(function(err) {
+            console.log(err)
             res.status(500);
             return res.json(err);
           })

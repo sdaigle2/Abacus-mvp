@@ -390,7 +390,7 @@ const inplaceAtomic = async (database,id,updateData,updateField
         body = response.result.rev;
         error = null;
       }).catch(err=>{
-        console.log(err. code, error.result)
+        console.log(err.code, error.result)
         body = null;
         error = err;
       })
@@ -413,6 +413,7 @@ const inplaceAtomic = async (database,id,updateData,updateField
 
 
 async function inplaceAtomicFunction(database, uniqueID,updateData,updateField, f){
+  console.log("called")
   var  res = await inplaceAtomic(database,uniqueID,updateData,updateField)
   f(res.error, res.body)
 }
